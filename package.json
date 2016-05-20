@@ -1,7 +1,7 @@
 {
   "name": "fela",
   "version": "1.0.0-alpha.2",
-  "description": "Universal, dynamic & modular API to handle Styling in JavaScript",
+  "description": "Fast, tiny & dynamic low-level API to handle Styling in JavaScript",
   "main": "lib/fela.js",
   "files": [
     "LICENSE",
