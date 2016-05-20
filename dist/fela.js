@@ -66,8 +66,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _DOMRenderer = __webpack_require__(3);
 
-	var _DOMRenderer2 = _interopRequireDefault(_DOMRenderer);
-
 	var _enhanceWithPlugins = __webpack_require__(2);
 
 	var _enhanceWithPlugins2 = _interopRequireDefault(_enhanceWithPlugins);
@@ -76,7 +74,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = {
 	  Selector: _Selector2.default,
-	  DOMRenderer: _DOMRenderer2.default,
+
+	  render: _DOMRenderer.render,
+	  clear: _DOMRenderer.clear,
 	  enhanceWithPlugins: _enhanceWithPlugins2.default
 	};
 	module.exports = exports['default'];
