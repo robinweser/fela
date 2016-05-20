@@ -1,10 +1,10 @@
-import Fela, { Selector, DOMRenderer, enhanceWithPlugins } from '../modules/fela'
+import Fela, { Selector, render, clear, enhanceWithPlugins } from '../modules/fela'
 
 describe('Importing the default export', () => {
   it('should include Selector, DOMRenderer and helpers', () => {
     expect(Fela.Selector).to.be.exist
-    expect(Fela.DOMRenderer).to.be.a.object
-    expect(Fela.DOMRenderer.render).to.be.a.function
+    expect(Fela.render).to.be.a.function
+    expect(Fela.clear).to.be.a.function
     expect(Fela.enhanceWithPlugins).to.be.a.function
   })
 })
@@ -12,8 +12,8 @@ describe('Importing the default export', () => {
 describe('Importing destructed components', () => {
   it('should work as well', () => {
     expect(Selector).to.be.exist
-    expect(DOMRenderer).to.be.a.object
-    expect(DOMRenderer.render).to.be.a.function
+    expect(render).to.be.a.function
+    expect(clear).to.be.a.function
     expect(enhanceWithPlugins).to.be.a.function
   })
 })
@@ -23,17 +23,17 @@ describe('Requiring the package using require.js', () => {
     const requiredFela = require('../modules/fela')
 
     expect(requiredFela.Selector).to.be.exist
-    expect(requiredFela.DOMRenderer).to.be.a.object
-    expect(requiredFela.DOMRenderer.render).to.be.a.function
+    expect(requiredFela.render).to.be.a.function
+    expect(requiredFela.clear).to.be.a.function
     expect(requiredFela.enhanceWithPlugins).to.be.a.function
   })
 
   it('should also allow destructed import', () => {
-    const { Selector : requiredSelector, DOMRenderer : requiredDOMRenderer, enhanceWithPlugins : requiredenhanceWithPlugins } = require('../modules/fela')
+    const { Selector : requiredSelector, render : requiredRender, clear: requiredClear, enhanceWithPlugins : requiredEnhanceWithPlugins } = require('../modules/fela')
 
     expect(requiredSelector).to.be.exist
-    expect(requiredDOMRenderer).to.be.a.object
-    expect(requiredDOMRenderer.render).to.be.a.function
-    expect(requiredenhanceWithPlugins).to.be.a.function
+    expect(requiredRender).to.be.a.function
+    expect(requiredClear).to.be.a.function
+    expect(requiredEnhanceWithPlugins).to.be.a.function
   })
 })
