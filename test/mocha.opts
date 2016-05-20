@@ -1,0 +1,3 @@
+--recursive
+--require test/test-setup.js
+--compilers js:babel-core/register

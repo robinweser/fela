@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "5"
+  - "4"
+  - "0.12"
+script:
+  - npm run lint
+  - npm test
+  - npm run coverage
+addons:
+  code_climate:
+    repo_token: 667c37a660cd38bbfc9f7ce5e5a3d2d87a1802cb2e45913bb0dd43ab9d27ea5d
