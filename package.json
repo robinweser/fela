@@ -10,7 +10,7 @@
     "dist": "npm run umd:fela && npm run umd:fela-dom",
     "lint": "eslint modules",
     "prepare": "npm run lint && npm test && npm run dist && npm run babel && babel-node scripts/preparePackages",
-    "release": "npm run prepare && npm publish",
+    "release": "npm run prepare && npm run publish:fela && npm run publish:fela-dom",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/mocha.opts",
     "publish:fela": "cd packages/fela && npm publish",
     "publish:fela-dom": "cd packages/fela-dom && npm publish",
