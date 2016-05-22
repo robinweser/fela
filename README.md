@@ -20,8 +20,8 @@ While it is build with CSS and web technology in mind, it is not bound to the DO
 ### Plugins
 | name | description |
 | --- | ------------ |
-| [prefixer](docs/plugins/Prefixer.md) | Adds vendor prefixes to the styles |
-| [fallbackValue](docs/plugins/fallbackValue.md) | Resolves arrays of fallback values |
+|[prefixer](docs/plugins/Prefixer.md) | Adds vendor prefixes to the styles |
+|[fallbackValue](docs/plugins/fallbackValue.md) | Resolves arrays of fallback values |
 
 # Usage
 ```javascript
@@ -57,10 +57,10 @@ import { enhanceWithPlugins } from 'fela'
 import prefixer from 'fela-plugin-prefixer'
 
 // Method 1
-renderer.render(selector, { color: 'red' }, [ prefixer ])
+renderer.render(selector, { color: 'red' }, [ prefixer() ])
 
 // Method 2
-const enhancedSelector = enhanceWithPlugins(selector, [ prefixer ])
+const enhancedSelector = enhanceWithPlugins(selector, [ prefixer() ])
 renderer.render(enhancedSelector, { color: 'red' })
 ```
 
