@@ -32,11 +32,11 @@
 
   babelHelpers;
 
-  /** 
+  /**
    * converts camel cased to dash cased properties
    *
    * @param {string} property - camel cased CSS property
-   * @returns {string} dash cased CSS property 
+   * @returns {string} dash cased CSS property
    */
   function camelToDashCase(property) {
     return property.replace(/([a-z]|^)([A-Z])/g, function (match, p1, p2) {
@@ -44,7 +44,7 @@
     }).replace('ms-', '-ms-');
   }
 
-  /** 
+  /**
    * generates a valid CSS string containing styles
    *
    * @param {Object} styles - object containing CSS declarations

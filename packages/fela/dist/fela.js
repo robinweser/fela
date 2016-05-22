@@ -119,7 +119,7 @@
 
         var pluginInterface = {
           plugins: plugins,
-          process: this._process,
+          processStyles: this._process,
           styles: styles,
           media: media,
           props: props

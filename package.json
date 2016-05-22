@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Fast, tiny & dynamic low-level API to handle Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
@@ -10,10 +10,12 @@
     "dist": "npm run umd:fela && npm run umd:fela-dom",
     "lint": "eslint modules",
     "prepare": "npm run lint && npm test && npm run dist && npm run babel && babel-node scripts/preparePackages",
-    "release": "npm run prepare && npm run publish:fela && npm run publish:fela-dom",
+    "release": "npm run prepare && npm run publish:fela && npm run publish:fela-dom && npm run publish:fela-plugin-prefixer && npm run publish:fela-plugin-fallback-value",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/mocha.opts",
     "publish:fela": "cd packages/fela && npm publish",
     "publish:fela-dom": "cd packages/fela-dom && npm publish",
+    "publish:fela-plugin-prefixer": "cd packages/fela-plugin-prefixer && npm publish",
+    "publish:fela-plugin-fallback-value": "cd packages/fela-plugin-fallback-value && npm publish",
     "umd:fela": "rollup -c rollup/rollup.config.js && rollup -c rollup/rollup.config.min.js",
     "umd:fela-dom": "rollup -c rollup/rollup.config.dom.js && rollup -c rollup/rollup.config.dom.min.js"
   },
