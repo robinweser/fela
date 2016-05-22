@@ -29,6 +29,11 @@ function updateVersion(pkg) {
       const packageJSON = JSON.parse(data)
       packageJSON.version = globalVersion
 
+
+      if (pkg !== 'fela') {
+        packageJSON.peerDependencies.fela = '^' + globalVersion
+      }
+
       const newPackageJSON = JSON.stringify(packageJSON, null, 4)
 
       fs.writeFile(__dirname + '/../packages/' + pkg + '/package.json', newPackageJSON, err => {
@@ -47,3 +52,5 @@ function preparePackage(pkg) {
 
 preparePackage('fela')
 preparePackage('fela-dom')
+preparePackage('fela-plugin-prefixer')
+preparePackage('fela-plugin-fallback-value')

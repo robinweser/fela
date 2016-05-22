@@ -17,6 +17,12 @@ While it is build with CSS and web technology in mind, it is not bound to the DO
 * [API reference](docs/api/)
 * [Design principles](docs/Principles.md)
 
+### Plugins
+| name | description |
+| --- | ------------ |
+| [prefixer](docs/plugins/Prefixer.md) | Adds vendor prefixes to the styles |
+| [fallbackValue](docs/plugins/fallbackValue.md) | Resolves arrays of fallback values |
+
 # Usage
 ```javascript
 import { Selector } from 'fela'
@@ -40,6 +46,22 @@ const selector = new Selector(composer)
 // it always returns the rendered CSS className as reference
 renderer.render(selector, { color: 'red' }) // => c0-ds34
 renderer.render(selector, { color: 'blue' }) // => c0-eqz3x
+```
+
+### Fela with Plugins
+Fela is designed to be configured with plugins which gives huge power and flexibility while styling your application.
+There are actually two ways to use plugins. You can either pass them to the `render` method directly or enhance your Selector with plugins once.
+
+```javascript
+import { enhanceWithPlugins } from 'fela'
+import prefixer from 'fela-plugin-prefixer'
+
+// Method 1
+renderer.render(selector, { color: 'red' }, [ prefixer ])
+
+// Method 2
+const enhancedSelector = enhanceWithPlugins(selector, [ prefixer ])
+renderer.render(enhancedSelector, { color: 'red' })
 ```
 
 ### Fela with React
