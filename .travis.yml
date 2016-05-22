@@ -6,7 +6,8 @@ node_js:
 script:
   - npm run lint
   - npm test
-  - npm run coverage
 addons:
   code_climate:
-    repo_token: 667c37a660cd38bbfc9f7ce5e5a3d2d87a1802cb2e45913bb0dd43ab9d27ea5d
+    repo_token: cfbc90dabcfddb3e664ae2c38a2629eb24ad58674986fc8d2b623f0331ed8d1b
+after_script:
+  - codeclimate-test-reporter < lcov.info
