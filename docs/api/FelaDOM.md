@@ -1,7 +1,7 @@
 # FelaDOM API
 
 * [Renderer(node)](#renderernode)
-  * [.render(selector [, props, plugins])](#renderselector-props-plugins)
+  * [.render(selector [, props, plugins])](#renderselector--props-plugins)
   * [.clear()](#clear)
 
 ## `Renderer(node)`
@@ -33,7 +33,6 @@ renderer.render(selector, { color: 'blue' }) // => c0-ee414
 To reduce redundant rendering cycles every rendered selector variation will get cached and reused for future render-calls. This also boosts performance of runtime rendering as a huge amount of variations can be reused and is therefore not rendered nor mounted to the DOM node again.
 
 ### `clear()`
-**HTMLElement\<node>**
 
 Clears all styles rendered into the associated DOM node. This also clears all cached styles.
 > Warning: Clearing a DOM node might prejudice the rendering performance of future rendering cycles.

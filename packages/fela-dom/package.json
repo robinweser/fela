@@ -19,5 +19,8 @@
         "cssinjs"
     ],
     "author": "Robin Frischmann",
-    "license": "MIT"
+    "license": "MIT",
+    "peerDependencies": {
+        "fela": "^1.0.0-alpha.3"
+    }
 }

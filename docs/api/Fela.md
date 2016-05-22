@@ -1,6 +1,6 @@
 # Fela API
 
-* [Selector(composer [, mediaComposer])](#selectorcomposer-mediacomposer)
+* [Selector(composer [, mediaComposer])](#selectorcomposer--mediacomposer)
 * [enhanceWithPlugins(selector, plugins)](#enhancewithpluginsselector-plugins)
 
 ## `Selector(composer [, mediaComposer])`

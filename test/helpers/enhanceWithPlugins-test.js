@@ -1,5 +1,5 @@
 import enhanceWithPlugins from '../../modules/helpers/enhanceWithPlugins'
-import Selector from '../../modules/components/dom/Selector'
+import Selector from '../../modules/components/Selector'
 
 describe('Enhancing a Selector with plugins', () => {
   it('should invoke plugins into the render call', () => {

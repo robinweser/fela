@@ -1,4 +1,4 @@
-import Selector from '../../../modules/components/dom/Selector'
+import Selector from '../../modules/components/Selector'
 
 describe('Selector Tests', () => {
   describe('Rendering styles', () => {

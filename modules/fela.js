@@ -1,4 +1,4 @@
-import Selector from './components/dom/Selector'
+import Selector from './components/Selector'
 import enhanceWithPlugins from './helpers/enhanceWithPlugins'
 
 export default {

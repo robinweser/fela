@@ -38,7 +38,7 @@ export default class Selector {
    * @return {Object} processed and validated styles
    */
   _process(pluginInterface) {
-    const { plugins, styles } = pluginInterface
+    let { plugins, styles } = pluginInterface
 
     // pipes each plugin by passes the plugin interface
     // NOTE: as the styles are passed directly they're editable
@@ -62,7 +62,7 @@ export default class Selector {
 
     const pluginInterface = {
       plugins: plugins,
-      process: this._process,
+      processStyles: this._process,
       styles,
       media,
       props

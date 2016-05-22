@@ -15,9 +15,7 @@ describe('StyleSheet Tests', () => {
     it('should add a media cache entry for each media', () => {
       const selector = new Selector(props => ({ color: 'red' }), {
         screen: props => ({ color: 'blue' }),
-        'min-height: 300px': props => ({
-          color: 'yellow'
-        })
+        'min-height: 300px': props => ({ color: 'yellow' })
       })
       const sheet = new StyleSheet()
 

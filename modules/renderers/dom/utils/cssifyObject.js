@@ -1,14 +1,6 @@
-/** 
- * converts camel cased to dash cased properties
- *
- * @param {string} property - camel cased CSS property
- * @returns {string} dash cased CSS property 
- */
-function camelToDashCase(property) {
-  return property.replace(/([a-z]|^)([A-Z])/g, (match, p1, p2) => p1 + '-' + p2.toLowerCase()).replace('ms-', '-ms-')
-}
+import camelToDashCase from '../../../utils/camelToDashCase'
 
-/** 
+/**
  * generates a valid CSS string containing styles
  *
  * @param {Object} styles - object containing CSS declarations
