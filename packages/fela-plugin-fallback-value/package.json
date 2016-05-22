@@ -1,0 +1,23 @@
+{
+    "name": "fela-plugin-fallback-value",
+    "version": "1.0.0-alpha.3",
+    "description": "Fallback value plugin for Fela",
+    "main": "fallbackValue.js",
+    "files": [
+        "LICENSE",
+        "README.md",
+        "lib"
+    ],
+    "repository": "https://github.com/rofrischmann/fela/",
+    "keywords": [
+        "fela",
+        "fela-plugin",
+        "fallback value",
+        "cssinjs"
+    ],
+    "author": "Robin Frischmann",
+    "license": "MIT",
+    "peerDependencies": {
+        "fela": "^1.0.0-alpha.3"
+    }
+}
