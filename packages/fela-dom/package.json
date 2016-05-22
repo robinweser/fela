@@ -1,0 +1,23 @@
+{
+    "name": "fela-dom",
+    "version": "1.0.0-alpha.3",
+    "description": "Fela package for working with the DOM",
+    "main": "felaDOM.js",
+    "files": [
+        "LICENSE",
+        "README.md",
+        "lib",
+        "dist"
+    ],
+    "repository": "https://github.com/rofrischmann/fela/",
+    "keywords": [
+        "fela",
+        "dynamic styling",
+        "stylesheet",
+        "css",
+        "styling",
+        "cssinjs"
+    ],
+    "author": "Robin Frischmann",
+    "license": "MIT"
+}

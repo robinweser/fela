@@ -1,12 +1,15 @@
-import { render, clear } from '../../../modules/renderers/dom/DOMRenderer'
+import Renderer from '../../../modules/renderers/dom/DOMRenderer'
 import Selector from '../../_mocks/Selector'
+import DOMNode from '../../_mocks/DOMNode'
 
 describe('DOMRenderer Tests', () => {
   it('should render a selector into a DOM node', () => {
     const selector = new Selector(props => ({ color: 'red' }))
 
-    const node = { textContent: '', nodeType: 1, nodeName: 'STYLE' }
-    const className = render(node, selector, { })
+    const node = DOMNode(1, 'STYLE')
+
+    const renderer = new Renderer(node)
+    const className = renderer.render(selector, { })
 
     expect(node.textContent).to.eql('.c0-s{color:red}')
     expect(className).to.eql('c0-s')
@@ -15,9 +18,11 @@ describe('DOMRenderer Tests', () => {
   it('should concat multiple styles', () => {
     const selector = new Selector(props => ({ color: 'red' }))
 
-    const node = { textContent: '', nodeType: 1, nodeName: 'STYLE' }
-    render(node, selector, { })
-    render(node, selector, { foo: 'bar' })
+    const node = DOMNode(1, 'STYLE')
+    const renderer = new Renderer(node)
+
+    renderer.render(selector, { })
+    renderer.render(selector, { foo: 'bar' })
 
     expect(node.textContent).to.eql('.c0-s{color:red}.c0--kzgh9v{color:red}')
   })
@@ -26,8 +31,7 @@ describe('DOMRenderer Tests', () => {
     const selector = new Selector(props => ({ color: 'red' }))
 
     console.error = sinon.spy()
-    render({ }, selector, { foo: 'bar' })
-
+    const renderer = new Renderer({ })
     expect(console.error).to.have.been.calledOnce
   })
 })

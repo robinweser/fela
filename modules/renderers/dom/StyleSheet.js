@@ -12,7 +12,7 @@ export default class StyleSheet {
   }
 
   /**
-   * clears the sheet's cache but keeps all listeners 
+   * clears the sheet's cache but keeps all listeners
    */
   clear() {
     this._init()
@@ -70,14 +70,14 @@ export default class StyleSheet {
 
   /**
    * renders a new selector variation and caches the result
-   * 
+   *
    * @param {Selector} selector - Selector which gets rendered
    * @param {Object?} props - properties used to render
    * @param {Function[]?} plugins - array of plugins to process styles
    * @return {string} className to reference the rendered selector
    */
   _renderSelectorVariation(selector, props, plugins) {
-    // rendering a Selector for the first time 
+    // rendering a Selector for the first time
     // will create cache entries and an ID reference
     if (!this.cache.has(selector)) {
       this.ids.set(selector, ++this._counter)
@@ -116,7 +116,7 @@ export default class StyleSheet {
 
   /**
    * generates an unique reference id by content hashing props
-   * 
+   *
    * @param {Object} props - props that get hashed
    * @return {string} reference - unique props reference
    */
@@ -127,7 +127,7 @@ export default class StyleSheet {
   /**
    * generates an unique className using a Selectors reference ID
    * as well as a content hash of the passed props
-   * 
+   *
    * @param {number} id - Selectors reference ID stored within the stylesheet
    * @param {strng} reference - generated props reference
    * @return {string} className - unique className reference
