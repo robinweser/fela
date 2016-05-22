@@ -34,4 +34,11 @@ describe('DOMRenderer Tests', () => {
     const renderer = new Renderer({ })
     expect(console.error).to.have.been.calledOnce
   })
+
+  it('should add a fela stylesheet flag to the node', () => {
+    const node = DOMNode(1, 'STYLE')
+
+    const renderer = new Renderer(node)
+    expect(node.hasAttribute('data-fela-stylesheet')).to.exist
+  })
 })
