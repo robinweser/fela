@@ -6,4 +6,5 @@ languages:
 exclude_paths:
 - "scripts/*"
 - "rollup/*"
+- "test/**/*"
 - "**/dist/*"
