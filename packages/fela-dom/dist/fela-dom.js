@@ -369,7 +369,7 @@
       }
 
       if (node.hasAttribute('data-fela-stylesheet')) {
-        console.warn('This node is already used by another renderer. Rendering might overwrite other styles.');
+        console.warn('This node is already used by another renderer. Rendering might overwrite other styles.'); // eslint-disable-line
       }
 
       node.setAttribute('data-fela-stylesheet', '');
