@@ -6,12 +6,7 @@ describe('Selector Tests', () => {
       const selector = new Selector(props => ({ color: 'red' }))
       const rendered = selector.render()
 
-      expect(rendered).to.eql({
-        styles: {
-          color: 'red'
-        },
-        mediaStyles: new Map()
-      })
+      expect(rendered).to.eql({ color: 'red' })
     })
 
     it('should resolve media specific styles', () => {
@@ -23,11 +18,10 @@ describe('Selector Tests', () => {
         })
       })
 
-      const rendered = selector.render({ fontSize: 12 })
-
-      expect(rendered.styles).to.eql({ fontSize: '12px' })
-      expect(rendered.mediaStyles.has('min-height: 200px')).to.eql(true)
-      expect(rendered.mediaStyles.get('min-height: 200px')).to.eql({
+      expect(selector.render({ fontSize: 12 })).to.eql({
+        fontSize: '12px'
+      })
+      expect(selector.render({ fontSize: 12 }, 'min-height: 200px')).to.eql({
         fontSize: '24px'
       })
     })

@@ -15,7 +15,9 @@ describe('StyleSheet Tests', () => {
     it('should add a media cache entry for each media', () => {
       const selector = new Selector(props => ({ color: 'red' }), {
         screen: props => ({ color: 'blue' }),
-        'min-height: 300px': props => ({ color: 'yellow' })
+        'min-height: 300px': props => ({
+          color: 'yellow'
+        })
       })
       const sheet = new StyleSheet()
 
@@ -60,6 +62,18 @@ describe('StyleSheet Tests', () => {
       })
       expect(staticClassName).to.not.eql(dynamicClassName)
       expect(staticClassName.substr(0, 2)).to.eql(dynamicClassName.substr(0, 2))
+    })
+
+    it('should support function selectors', () => {
+      const selector = props => ({ color: 'red' })
+      const sheet = new StyleSheet()
+
+      sheet._renderSelectorVariation(selector)
+
+      expect(sheet.cache.has(selector)).to.eql(true)
+      expect(sheet.cache.get(selector).get('s')).to.eql({
+        color: 'red'
+      })
     })
   })
 

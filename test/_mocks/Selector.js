@@ -5,13 +5,8 @@ export default class Selector {
     this.mediaStrings = Object.keys(mediaComposer)
   }
 
-  render(props) {
-    const styles = this.composer(props)
-    const mediaStyles = this.mediaStrings.reduce((styles, media) => {
-      styles.set(media, this.mediaComposer[media](props))
-      return styles
-    }, new Map())
-
-    return { styles: styles, mediaStyles: mediaStyles }
+  render(props, media) {
+    const composer = this.mediaComposer[media] ? this.mediaComposer[media] : this.composer
+    return composer(props)
   }
 }

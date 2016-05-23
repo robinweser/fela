@@ -71,47 +71,85 @@ export default class StyleSheet {
   /**
    * renders a new selector variation and caches the result
    *
-   * @param {Selector} selector - Selector which gets rendered
+   * @param {Selector|Function} selector - Selector which gets rendered
    * @param {Object?} props - properties used to render
    * @param {Function[]?} plugins - array of plugins to process styles
    * @return {string} className to reference the rendered selector
    */
-  _renderSelectorVariation(selector, props, plugins) {
+  _renderSelectorVariation(selector, props = { }, plugins = []) {
+    const isFunctionalSelector = selector instanceof Function
+
     // rendering a Selector for the first time
     // will create cache entries and an ID reference
     if (!this.cache.has(selector)) {
       this.ids.set(selector, ++this._counter)
       this.cache.set(selector, new Map())
+
       // iterate all used media strings to create
       // selector caches for each media as well
-      selector.mediaStrings.forEach(media => {
-        if (!this.mediaCache.has(media)) {
-          this.mediaCache.set(media, new Map())
-        }
-        this.mediaCache.get(media).set(selector, new Map())
-      })
+      if (!isFunctionalSelector) {
+        selector.mediaStrings.forEach(media => {
+          if (!this.mediaCache.has(media)) {
+            this.mediaCache.set(media, new Map())
+          }
+          this.mediaCache.get(media).set(selector, new Map())
+        })
+      }
     }
 
     const cachedSelector = this.cache.get(selector)
     const propsReference = this._generatePropsReference(props)
 
+    // uses the reference ID and the props to generate an unique className
+    const className = this._renderClassName(this.ids.get(selector), propsReference)
+
     // only if the cached selector has not already been rendered
     // with a specific set of properties it actually renders
     if (!cachedSelector.has(propsReference)) {
-      const { styles, mediaStyles } = selector.render(props, plugins)
+      // get the render method of either class-like selectors
+      // or pure functional selectors without a constructor
+      const pluginInterface = {
+        plugins: plugins,
+        processStyles: this._processStyles,
+        styles: isFunctionalSelector ? selector(props) : selector.render(props),
+        className: className,
+        props: props
+      }
 
-      // cache the rendered output for future usage
-      cachedSelector.set(propsReference, styles)
-      mediaStyles.forEach((styles, media) => {
-        this.mediaCache.get(media).get(selector).set(propsReference, styles)
-      })
+      cachedSelector.set(propsReference, this._processStyles(pluginInterface))
+
+      if (!isFunctionalSelector) {
+        selector.mediaStrings.forEach(media => {
+          pluginInterface.styles = selector.render(props, media)
+          pluginInterface.media = media
+
+          const processedStyles = this._processStyles(pluginInterface)
+          this.mediaCache.get(media).get(selector).set(propsReference, processedStyles)
+        })
+      }
 
       // emit changes as the styles stack changed
       this._emitChange()
     }
 
-    // uses the reference ID and the props to generate an unique className
-    return this._renderClassName(this.ids.get(selector), propsReference)
+    return className
+  }
+
+  /**
+   * executes each plugin using a predefined plugin interface
+   *
+   * @param {Object} pluginInterface - interface containing relevant processing data
+   * @return {Object} processed and validated styles
+   */
+  _processStyles(pluginInterface) {
+    const { plugins, styles } = pluginInterface
+
+    // pipes each plugin by passes the plugin interface
+    // NOTE: as the styles are passed directly they're editable
+    // therefore the plugin order might matter
+    plugins.forEach(plugin => plugin(pluginInterface))
+
+    return styles
   }
 
   /**
