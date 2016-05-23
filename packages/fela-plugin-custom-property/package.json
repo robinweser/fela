@@ -1,0 +1,25 @@
+{
+    "name": "fela-plugin-custom-property",
+    "version": "1.0.0-alpha.4",
+    "description": "Fela plugin to use custom properties",
+    "main": "customProperty.js",
+    "files": [
+        "LICENSE",
+        "README.md",
+        "customProperty.js",
+        "dist"
+    ],
+    "repository": "https://github.com/rofrischmann/fela/",
+    "keywords": [
+        "fela",
+        "fela-plugin",
+        "custom property",
+        "mixin",
+        "cssinjs"
+    ],
+    "author": "Robin Frischmann",
+    "license": "MIT",
+    "peerDependencies": {
+        "fela": "^1.0.0-alpha.4"
+    }
+}

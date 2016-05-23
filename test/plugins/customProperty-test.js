@@ -1,0 +1,53 @@
+import customProperty from '../../modules/plugins/customProperty'
+import pluginInterface from '../_mocks/pluginInterface'
+
+describe('Custom property plugin', () => {
+  it('should resolve custom properties', () => {
+    const position = positions => ({
+      top: positions[0],
+      right: positions[1],
+      bottom: positions[2],
+      left: positions[3]
+    })
+
+    const setting = pluginInterface({
+      width: 20,
+      position: [ 0, 20, 50, 20 ]
+    }, [ customProperty({ position: position }) ])
+
+    expect(customProperty({ position: position })(setting)).to.eql({
+      width: 20,
+      top: 0,
+      right: 20,
+      bottom: 50,
+      left: 20
+    })
+  })
+
+
+  it('should resolve nested style objects', () => {
+    const position = positions => ({
+      top: positions[0],
+      right: positions[1],
+      bottom: positions[2],
+      left: positions[3]
+    })
+
+    const setting = pluginInterface({
+      width: 20,
+      onHover: {
+        position: [ 0, 20, 50, 20 ]
+      }
+    }, [ customProperty({ position: position }) ])
+
+    expect(customProperty({ position: position })(setting)).to.eql({
+      width: 20,
+      onHover: {
+        top: 0,
+        right: 20,
+        bottom: 50,
+        left: 20
+      }
+    })
+  })
+})

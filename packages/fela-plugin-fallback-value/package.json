@@ -1,12 +1,13 @@
 {
     "name": "fela-plugin-fallback-value",
     "version": "1.0.0-alpha.4",
-    "description": "Fallback value plugin for Fela",
+    "description": "Fela plugin to resolve fallback values",
     "main": "fallbackValue.js",
     "files": [
         "LICENSE",
         "README.md",
-        "lib"
+        "fallbackValue.js",
+        "dist"
     ],
     "repository": "https://github.com/rofrischmann/fela/",
     "keywords": [

@@ -1,12 +1,13 @@
 {
     "name": "fela-plugin-prefixer",
     "version": "1.0.0-alpha.4",
-    "description": "Vendor prefixer plugin for Fela",
+    "description": "Fela plugin to add vendor prefixes",
     "main": "prefixer.js",
     "files": [
         "LICENSE",
         "README.md",
-        "lib"
+        "prefixer.js",
+        "dist"
     ],
     "repository": "https://github.com/rofrischmann/fela/",
     "keywords": [
