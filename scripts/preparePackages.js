@@ -1,12 +1,5 @@
 import fs from 'fs-extra'
-
-// Small helper to error and exit on fail
-const errorOnFail = err => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
-  }
-}
+import packages from '../packages'
 
 // Copies LICENSE into a pgk subfolder
 function copyLICENSE(pkg) {
@@ -50,7 +43,4 @@ function preparePackage(pkg) {
   copyLICENSE(pkg)
 }
 
-preparePackage('fela')
-preparePackage('fela-dom')
-preparePackage('fela-plugin-prefixer')
-preparePackage('fela-plugin-fallback-value')
+Object.keys(packages).forEach(pkg => preparePackage(pkg))

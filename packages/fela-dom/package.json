@@ -6,7 +6,7 @@
     "files": [
         "LICENSE",
         "README.md",
-        "lib",
+        "felaDOM.js",
         "dist"
     ],
     "repository": "https://github.com/rofrischmann/fela/",
