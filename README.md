@@ -5,10 +5,10 @@ Dynamic Styling in JavaScript.
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~0.7kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.3kb-brightgreen.svg">
 </p>
 <br>
-**Fela** is a fast, universal, dynamic and tiny *(only ~0.7kb)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well. It has **no dependencies**.
+**Fela** is a fast, universal, dynamic and tiny *(only 0.67kb + 1.64kb fela-dom gzipped)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well. It has **no dependencies**.
 
 The API is strictly designed alongside numerous [design principles](docs/Principles.md)
 While it is build with CSS and web technology in mind, it is not bound to the DOM nor CSS explicitly but build upon basic and abstract Components that can even be used with libraries like React Native.<br>
@@ -18,10 +18,12 @@ While it is build with CSS and web technology in mind, it is not bound to the DO
 * [Design principles](docs/Principles.md)
 
 ### Plugins
-| name | description |
-| --- | ------------ |
-|[prefixer](docs/plugins/Prefixer.md) | Adds vendor prefixes to the styles |
-|[fallbackValue](docs/plugins/fallbackValue.md) | Resolves arrays of fallback values |
+| name | configurable | size *(gzipped)* | description |
+| --- | --- | --- | ------ |
+|[prefixer](docs/plugins/Prefixer.md) | no | 3.04kb | Adds vendor prefixes to the styles |
+|[fallbackValue](docs/plugins/fallbackValue.md) | no | 0.64kb | Resolves arrays of fallback values |
+|[customProperty](docs/plugins/CustomProperty.md) | [yes](docs/plugins/CustomProperty.md#configuration) | 0.42kb | Resolves custom properties |
+|[friendlyPseudoClass](docs/plugins/FriendlyPseudoClass.md) | no | 0.48kb |Transforms javascript-friendly pseudo class into valid syntax  |
 
 # Usage
 ```javascript
@@ -30,7 +32,7 @@ import { Renderer } from 'fela-dom'
 
 // first of all we need a valid DOM element to render into
 // preferable a <style> element within document.head
-// but you could actually use any valid DOM node
+// but you could actually use any valid DOM node>M
 const node = document.getElementById('style-element')
 
 // will create a new renderer and bind to the DOM node
@@ -47,10 +49,44 @@ const selector = new Selector(composer)
 renderer.render(selector, { color: 'red' }) // => c0-ds34
 renderer.render(selector, { color: 'blue' }) // => c0-eqz3x
 ```
+#### Media Queries & Pseudo Classes
+Selector also supports pseudo classes by default. They can also get nested multiple times. To apply media query styles we use the second parameter *mediaComposers*.
+```javascript
+const selector = new Selector(props => ({
+  color: 'red',
+  // pseudo classes can just be nested
+  // within your basic styles
+  ':hover': {
+    color: 'blue'
+  }
+}), {
+  // media queries are defined within an object
+  // passed as second parameter
+  'min-height: 200px': props => ({
+    color: 'yellow',
+    // they can of course also
+    // contain pseudo classes
+    ':hover': {
+      color: 'purple'
+    }
+  }),
+  'screen': props => ({
+    color: 'black'
+  })
+})
+```
+#### Functional Selectors
+If you're used to React you probably know the benefit of pure functional Components. It is quite the same with function selectors.
+> Note: To use media query composers you still need to use the full-featured Selector class.
+
+```javascript
+const selector = props => ({ color: props.color })
+renderer.render(selector, { color: 'blue' })
+```
 
 ### Fela with Plugins
 Fela is designed to be configured with plugins which gives huge power and flexibility while styling your application.
-There are actually two ways to use plugins. You can either pass them to the `render` method directly or enhance your Selector with plugins once.
+There are actually two ways to use plugins. You can either pass them to the `render` method directly or enhance your Renderer with plugins once.
 
 ```javascript
 import { enhanceWithPlugins } from 'fela'
@@ -60,8 +96,8 @@ import prefixer from 'fela-plugin-prefixer'
 renderer.render(selector, { color: 'red' }, [ prefixer() ])
 
 // Method 2
-const enhancedSelector = enhanceWithPlugins(selector, [ prefixer() ])
-renderer.render(enhancedSelector, { color: 'red' })
+const enhancedRenderer = enhanceWithPlugins(renderer, [ prefixer() ])
+enhancedRenderer.render(selector, { color: 'red' })
 ```
 
 ### Fela with React
