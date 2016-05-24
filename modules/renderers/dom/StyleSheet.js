@@ -78,6 +78,7 @@ export default class StyleSheet {
    */
   _renderSelectorVariation(selector, props = { }, plugins = []) {
     const isFunctionalSelector = selector instanceof Function
+    const isMediaSelector = !isFunctionalSelector && selector.renderMedia instanceof Function
 
     // rendering a Selector for the first time
     // will create cache entries and an ID reference
@@ -87,7 +88,7 @@ export default class StyleSheet {
 
       // iterate all used media strings to create
       // selector caches for each media as well
-      if (!isFunctionalSelector) {
+      if (isMediaSelector) {
         selector.mediaStrings.forEach(media => {
           if (!this.mediaCache.has(media)) {
             this.mediaCache.set(media, new Map())
@@ -118,9 +119,9 @@ export default class StyleSheet {
 
       cachedSelector.set(propsReference, this._processStyles(pluginInterface))
 
-      if (!isFunctionalSelector) {
+      if (isMediaSelector) {
         selector.mediaStrings.forEach(media => {
-          pluginInterface.styles = selector.render(props, media)
+          pluginInterface.styles = selector.renderMedia(props, media)
           pluginInterface.media = media
 
           const processedStyles = this._processStyles(pluginInterface)
@@ -174,6 +175,23 @@ export default class StyleSheet {
     return 'c' + id + '-' + reference
   }
 
+
+  _splitPseudoClasses(styles, pseudo = '', out = { }) {
+    Object.keys(styles).forEach(property => {
+      const value = styles[property]
+      if (value instanceof Object) {
+        this._splitPseudoClasses(value, pseudo + property, out)
+      } else {
+        if (!out[pseudo]) {
+          out[pseudo] = { }
+        }
+        out[pseudo][property] = value
+      }
+    })
+
+    return out
+  }
+
   /**
    * renders a single ruleset into a CSS string
    *
@@ -211,7 +229,11 @@ export default class StyleSheet {
 
       variation.forEach((styles, propsReference) => {
         const className = this._renderClassName(id, propsReference)
-        css += this._renderSelector(className, styles)
+        const splitPseudos = this._splitPseudoClasses(styles)
+
+        Object.keys(splitPseudos).forEach(pseudo => {
+          css += this._renderSelector(className + pseudo, splitPseudos[pseudo])
+        })
       })
     })
 

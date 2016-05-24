@@ -1,7 +1,7 @@
 import enhanceWithPlugins from '../../modules/helpers/enhanceWithPlugins'
 import DOMRenderer from '../../modules/renderers/dom/DOMRenderer'
+import Selector from '../../modules/components/shared/Selector'
 import DOMNode from '../_mocks/DOMNode'
-import Selector from '../_mocks/Selector'
 
 describe('Enhancing a Renderer with plugins', () => {
   it('should invoke plugins into the render call', () => {

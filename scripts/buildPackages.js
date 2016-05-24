@@ -24,32 +24,34 @@ const uglifyPlugin = uglify()
 
 const plugins = [ babelPlugin, nodeResolverPlugin, commonJSPlugin ]
 
-function rollupConfig(pkg, minify) {
+function rollupConfig(pkg, info, minify) {
   return {
-    entry: 'modules/' + packages[pkg].entry,
+    entry: 'modules/' + info.entry,
     plugins: minify ? plugins.concat(uglifyPlugin) : plugins
   }
 }
 
-function bundleConfig(pkg, minify) {
+function bundleConfig(pkg, info, minify) {
   return {
     format: 'umd',
-    moduleName: packages[pkg].name,
-    dest: 'packages/' + pkg + '/dist/' + pkg + (minify ? '.min' : '') + '.js',
+    moduleName: info.name,
+    dest: 'packages/' + pkg + '/dist/' + (info.dest ? info.dest : pkg) + (minify ? '.min' : '') + '.js',
     sourceMap: !minify
   }
 }
 
 function buildPackage(pkg) {
-  rollup.rollup(rollupConfig(pkg)).then(bundle => {
-    bundle.write(bundleConfig(pkg))
-    console.log('Successfully bundled ' + pkg + '.')
-  })
+  [ ].concat(packages[pkg]).forEach(p => {
+    rollup.rollup(rollupConfig(pkg, p)).then(bundle => {
+      bundle.write(bundleConfig(pkg, p))
+      console.log('Successfully bundled ' + p.name + '.')
+    })
 
-  rollup.rollup(rollupConfig(pkg, true)).then(bundle => {
-    bundle.write(bundleConfig(pkg, true))
-    console.log('Successfully bundled ' + pkg + ' (minified).')
-  }).catch(err => errorOnFail(err))
+    rollup.rollup(rollupConfig(pkg, p, true)).then(bundle => {
+      bundle.write(bundleConfig(pkg, p, true))
+      console.log('Successfully bundled ' + p.name + ' (minified).')
+    }).catch(err => errorOnFail(err))
+  })
 }
 
 Object.keys(packages).forEach(pkg => buildPackage(pkg))

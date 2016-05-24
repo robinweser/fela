@@ -1,5 +1,5 @@
 import Renderer from '../../../modules/renderers/dom/DOMRenderer'
-import Selector from '../../_mocks/Selector'
+import Selector from '../../../modules/components/shared/Selector'
 import DOMNode from '../../_mocks/DOMNode'
 
 describe('DOMRenderer Tests', () => {

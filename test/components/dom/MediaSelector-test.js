@@ -1,16 +1,16 @@
-import Selector from '../../modules/components/Selector'
+import MediaSelector from '../../../modules/components/dom/MediaSelector'
 
-describe('Selector Tests', () => {
+describe('MediaSelector Tests', () => {
   describe('Rendering styles', () => {
     it('should return an object containing rendered data', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = new MediaSelector(props => ({ color: 'red' }))
       const rendered = selector.render()
 
       expect(rendered).to.eql({ color: 'red' })
     })
 
     it('should resolve media specific styles', () => {
-      const selector = new Selector(props => ({
+      const selector = new MediaSelector(props => ({
         fontSize: props.fontSize + 'px'
       }), {
         'min-height: 200px': props => ({
@@ -21,7 +21,7 @@ describe('Selector Tests', () => {
       expect(selector.render({ fontSize: 12 })).to.eql({
         fontSize: '12px'
       })
-      expect(selector.render({ fontSize: 12 }, 'min-height: 200px')).to.eql({
+      expect(selector.renderMedia({ fontSize: 12 }, 'min-height: 200px')).to.eql({
         fontSize: '24px'
       })
     })

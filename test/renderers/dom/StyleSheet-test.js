@@ -1,5 +1,6 @@
 import StyleSheet from '../../../modules/renderers/dom/StyleSheet'
-import Selector from '../../_mocks/Selector'
+import MediaSelector from '../../../modules/components/dom/MediaSelector'
+import Selector from '../../../modules/components/shared/Selector'
 
 describe('StyleSheet Tests', () => {
   describe('Adding a Selector variation', () => {
@@ -13,12 +14,13 @@ describe('StyleSheet Tests', () => {
     })
 
     it('should add a media cache entry for each media', () => {
-      const selector = new Selector(props => ({ color: 'red' }), {
+      const selector = new MediaSelector(props => ({ color: 'red' }), {
         screen: props => ({ color: 'blue' }),
         'min-height: 300px': props => ({
           color: 'yellow'
         })
       })
+
       const sheet = new StyleSheet()
 
       sheet._renderSelectorVariation(selector)
@@ -156,12 +158,32 @@ describe('StyleSheet Tests', () => {
 
       expect(css).to.eql('.' + staticClassName + '{color:red}.' + dynamicClassName + '{color:red}')
     })
+
+    it('should split and render pseudo classes', () => {
+      const selector = new Selector(props => ({
+        color: 'red',
+        ':hover': {
+          color: 'blue',
+          ':focus': {
+            color: 'yellow',
+            fontSize: '12px'
+          }
+        }
+      }))
+
+      const stylesheet = new StyleSheet()
+      const className = stylesheet._renderSelectorVariation(selector)
+
+      const css = stylesheet._renderCache(stylesheet.cache)
+
+      expect(css).to.eql('.' + className + '{color:red}.' + className + ':hover{color:blue}.' + className + ':hover:focus{color:yellow;font-size:12px}')
+    })
   })
 
 
   describe('Rendering to string', () => {
     it('should render all caches', () => {
-      const selector = new Selector(props => ({ color: 'red' }), {
+      const selector = new MediaSelector(props => ({ color: 'red' }), {
         'min-height: 300px': props => ({ color: 'blue' })
       })
 
@@ -174,7 +196,7 @@ describe('StyleSheet Tests', () => {
     })
 
     it('should cluster media queries', () => {
-      const selector = new Selector(props => ({ color: 'red' }), {
+      const selector = new MediaSelector(props => ({ color: 'red' }), {
         'min-height: 300px': props => ({ color: 'blue' })
       })
 
@@ -187,6 +209,32 @@ describe('StyleSheet Tests', () => {
       const css = stylesheet.renderToString()
 
       expect(css).to.eql('.' + staticClassName + '{color:red}.' + dynamicClassName + '{color:red}@media(min-height: 300px){.' + staticClassName + '{color:blue}.' + dynamicClassName + '{color:blue}}')
+    })
+  })
+
+  describe('Subscribing to the StyleSheet', () => {
+    it('should call the callback each time it emits changes', () => {
+      const selector = new MediaSelector(props => ({ color: 'red' }), {
+        'min-height: 300px': props => ({ color: 'blue' })
+      })
+
+      const stylesheet = new StyleSheet()
+      const subscriber = sinon.spy()
+      stylesheet.subscribe(subscriber)
+      const staticClassName = stylesheet._renderSelectorVariation(selector)
+
+      expect(subscriber).to.have.been.calledOnce
+    })
+
+    it('should return a unsubscribe method', () => {
+      const stylesheet = new StyleSheet()
+      const subscriber = sinon.spy()
+
+      const unsubscriber = stylesheet.subscribe(subscriber)
+      unsubscriber.unsubscribe()
+
+      expect(unsubscriber.unsibscribe).to.be.a.function
+      expect(stylesheet.listeners.size).to.eql(0)
     })
   })
 })
