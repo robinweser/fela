@@ -1,0 +1,43 @@
+import Renderer from '../../../modules/renderers/dom/ServerRenderer'
+import Selector from '../../../modules/components/shared/Selector'
+
+describe('ServerRenderer Tests', () => {
+  describe('Rendering a Selector', () => {
+    it('should render a Selector into the StyleSheet', () => {
+      const selector = new Selector(props => ({ color: 'red' }))
+
+      const renderer = new Renderer()
+      const className = renderer.render(selector, { })
+      expect(className).to.eql('c0-s')
+    })
+  })
+
+  describe('Rendering to string', () => {
+    it('should return concated multiple styles ', () => {
+      const selector = new Selector(props => ({ color: 'red' }))
+
+      const renderer = new Renderer()
+
+      renderer.render(selector, { })
+      renderer.render(selector, { foo: 'bar' })
+
+      expect(renderer.renderToString()).to.eql('.c0-s{color:red}.c0--kzgh9v{color:red}')
+    })
+  })
+
+  describe('Clearing the renderer', () => {
+    it('should clear all caches', () => {
+      const selector = new Selector(props => ({ color: 'red' }))
+
+      const renderer = new Renderer()
+
+      renderer.render(selector, { })
+      renderer.render(selector, { foo: 'bar' })
+
+      renderer.clear()
+
+      expect(renderer.stylesheet.cache.size).to.eql(0)
+      expect(renderer.renderToString()).to.eql('')
+    })
+  })
+})

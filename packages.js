@@ -3,10 +3,14 @@ export default {
     name: 'Fela',
     entry: 'fela.js'
   },
-  'fela-dom': {
+  'fela-dom': [ {
     name: 'FelaDOM',
     entry: 'felaDOM.js'
-  },
+  }, {
+    name: 'FelaDOMServer',
+    entry: 'felaDOMServer.js',
+    dest: 'fela-dom-server'
+  } ],
   'fela-plugin-prefixer': {
     name: 'FelaPluginPrefixer',
     entry: 'plugins/prefixer.js'
