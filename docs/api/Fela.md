@@ -6,11 +6,6 @@
 ## `Selector(composer [, mediaComposer])`
 **Function\<composer>**
 
-Selectors build up the core of every DOM-based CSS environment. <br>
-They are instantiated with at least a basic composer which is a pure function of dynamic properties that returns an object containing style declarations which provides the ability to render multiple variations of one single Selector.
-
-Each composer function should be pure and return an object containing various style declarations. Properties are usually declared in camelCase notation, but do not neccessarily need to follow that convention. You may also use dash-case notation used with old traditional CSS.  
-
 ```javascript
 const composer = props => ({
   // dynamic declarations may vary
@@ -55,22 +50,6 @@ const mediaComposer = {
 const selector = new Fela.Selector(composer, mediaComposer)
 ```
 
-#### Pseudo classes
-Pseudo classes are a core feature of CSS and therefore not missed out as well. They can be nested inside the returned object.
-```javascript
-const selector = new Fela.Selector(props => ({
-  color: props.color,
-  fontSize: '12px',
-  ':hover': {
-    color: 'red',
-    // they can also be nested to achieve
-    // e.g. .className:hover:focus
-    ':focus': {
-      color: 'yellow'
-    }
-  }
-}))
-```
 
 ## `enhanceWithPlugins(selector, plugins)`
 **Selector\<selector>**<br>

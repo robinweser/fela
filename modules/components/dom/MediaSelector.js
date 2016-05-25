@@ -13,6 +13,10 @@ export default class MediaSelector extends Selector {
     this.mediaComposer = mediaComposer
     // safe media strings to iterate later on
     this.mediaStrings = Object.keys(mediaComposer)
+
+    if (Object.keys(mediaComposer).length === 0) {
+      console.warn('You are using a MediaSelector without specifying at least one media style composer. Prefer using basic Selectors instead.')
+    }
   }
 
   /**

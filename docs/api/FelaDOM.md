@@ -1,5 +1,6 @@
 # FelaDOM API
 
+* [MediaSelector(composer [, mediaComposer])](#mediaselectorcomposer--mediacomposer)
 * [Renderer(node)](#renderernode)
   * [.render(selector [, props, plugins])](#renderselector--props-plugins)
   * [.clear()](#clear)
