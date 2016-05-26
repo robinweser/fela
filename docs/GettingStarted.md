@@ -35,7 +35,7 @@ import FelaDOM from 'fela-dom'
 // CommonJS
 var Fela = require('fela')
 var FelaDOM = require('fela-dom')
-``` 
+```
 
 ## 2. Understanding Selectors
 First of all we need understand what a Selector is and what they're used for.<br>
@@ -159,12 +159,12 @@ To be completed soon.
 To be completed soon.
 
 ## 7. Rendering Selectors
-We now know how to use Selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output. 
+We now know how to use Selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.
 
 ### 7.1. Underlaying Mechanism
 Before using any Renderer you should first understand how the rendering process works in general. Both Renderer use some kind of cache to memorize rendered Selectors in order to reuse them every time the same *Selector variation* is rendered again. A Selector variation is considered a pair of the used *props* and the rendered styles output. This prevent dublication and improves performance on future rendering cycles. It also prevents unnecessary DOM manipulations.
 <br>
-The Renderer therefore always has an up-to-date version of all rendered styles during the whole application lifetime which can be rendered to a DOM node or a string at any given time. 
+The Renderer therefore always has an up-to-date version of all rendered styles during the whole application lifetime which can be rendered to a DOM node or a string at any given time.
 
 #### Unique classNames
 Each time a Selector is rendered the Renderer generates a reference className which is returned to be used within the application. The className is generated from a unique selector reference ID as well as a content-based hash of the passed props what makes it unique throughout the whole application.
@@ -187,7 +187,7 @@ const renderer = new Renderer(mountNode)
 renderer.render(selector) // => c0-s
 renderer.render(selector, { size: 12 }) // => c0-eqz3x
 
-console.log(mountNode.textContent) // => .c0-s{font-size:10px;color:red}.c0-eqz3x{font-size:12px;color:'red'} 
+console.log(mountNode.textContent) // => .c0-s{font-size:10px;color:red}.c0-eqz3x{font-size:12px;color:'red'}
 ```
 
 ### 7.3. Server Renderer
@@ -206,7 +206,7 @@ const renderer = new Renderer()
 renderer.render(selector) // => c0-s
 renderer.render(selector, { size: 12 }) // => c0-eqz3x
 
-console.log(renderer.renderToString()) // => .c0-s{font-size:10px;color:red}.c0-eqz3x{font-size:12px;color:'red'} 
+console.log(renderer.renderToString()) // => .c0-s{font-size:10px;color:red}.c0-eqz3x{font-size:12px;color:'red'}
 ```
 
 
@@ -226,8 +226,19 @@ const enhancedRenderer = enhanceWithPlugins(renderer, [ prefixer() ])
 enhancedRenderer.render(selector, { color: 'red' })
 ```
 
+
 ### 8.1. Configuration
-To be completed soon.
+Some plugins might require some configuration. For example the [custom property](plugins/customProperty) plugin must at least have one custom property mapping. You can pass configuration directly on instantiation.
+```javascript
+import customProperty from 'fela-plugin-custom-property'
+
+const sizeProperty = size => ({
+  width: size + 'px',
+  height: size + 'px'
+})
+
+renderer.render(selector, { color: 'red' }, [ prefixer({size: sizeProperty}) ])
+```
 
 ## 9. Fela with other Libraries
 ### Fela + React
