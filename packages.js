@@ -26,5 +26,9 @@ export default {
   'fela-plugin-friendly-pseudo-class': {
     name: 'FelaPluginFriendlyPseudoClass',
     entry: 'plugins/friendlyPseudoClass.js'
+  },
+  'fela-plugin-unit': {
+    name: 'FelaPluginUnit',
+    entry: 'plugins/unit.js'
   }
 }

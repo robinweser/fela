@@ -49,7 +49,8 @@
     "rollup-plugin-node-resolve": "^1.5.0",
     "rollup-plugin-uglify": "^0.3.1",
     "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "unitless-css-property": "^1.0.1"
   },
   "babel": {
     "presets": [

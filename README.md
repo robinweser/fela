@@ -37,9 +37,9 @@ const selector = new Fela.Selector(props => {
   }
 }))
 
-// Binding a new Renderer to a DOM node which 
+// Binding a new Renderer to a DOM node which
 // automatically updates its CSS content on render
-const renderer = new FelaDOM.Renderer(/* mountNode */)
+const renderer = new FelaDOM.Renderer(mountNode)
 
 // Rendering returns a className reference which
 // can be attached to any element
@@ -63,7 +63,7 @@ Generated CSS markup will look like this:
 ```
 
 ## Installation
-```sh 
+```sh
 npm i --save fela fela-dom
 ```
 All packages including all plugins are also available via [npmcdm](https://npmcdn.com/).
@@ -81,6 +81,7 @@ All packages including all plugins are also available via [npmcdm](https://npmcd
 + [Getting Started](/docs/GettingStarted.md)
 * [Design Principles](docs/Principles.md)
 * [API Reference](docs/api/)
+* [Plugins](docs/plugins/)
 * [FAQ](FAQ)
 
 ### Plugins
@@ -88,8 +89,9 @@ All packages including all plugins are also available via [npmcdm](https://npmcd
 | --- | --- | --- | ------ |
 |[prefixer](docs/plugins/Prefixer.md) | no | 3.04kb | Adds vendor prefixes to the styles |
 |[fallbackValue](docs/plugins/fallbackValue.md) | no | 0.64kb | Resolves arrays of fallback values |
-|[customProperty](docs/plugins/CustomProperty.md) | [yes](docs/plugins/CustomProperty.md#configuration) | 0.42kb | Resolves custom properties |
 |[friendlyPseudoClass](docs/plugins/FriendlyPseudoClass.md) | no | 0.48kb |Transforms javascript-friendly pseudo class into valid syntax  |
+|[customProperty](docs/plugins/CustomProperty.md) | [yes](docs/plugins/CustomProperty.md#configuration) | 0.42kb | Resolves custom properties |
+|[unit](docs/plugins/Unit.md) | [yes](docs/plugins/Unit.md#configuration) | 1.08kb | Automatically adds units to values if needed  |
 
 
 # License
