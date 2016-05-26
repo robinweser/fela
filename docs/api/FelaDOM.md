@@ -5,32 +5,31 @@
   * [.render(selector [, props, plugins])](#renderselector--props-plugins)
   * [.clear()](#clear)
 
+## `MediaSelector(composer [, mediaComposers])`
+**Function\<composer>**<br>
+**Object\<mediaComposers>**
 
-  ## `MediaSelector(composer [, mediaComposers])`
-  **Function\<composer>**<br>
-  **Object\<mediaComposers>**
+```javascript
+const composer = props => ({
+  color: props.color,
+  fontSize: props.fontSize + 'px',
+  lineHeight: 1.4,
+  display: 'flex'
+})
 
-  ```javascript
-  const composer = props => ({
-    color: props.color,
-    fontSize: props.fontSize + 'px',
-    lineHeight: 1.4,
-    display: 'flex'
+const mediaComposers = {
+  'min-height: 300px': props => ({
+    color: 'red',
+    fontSize: '14px'
+  }),
+  'max-width: 400px': props => ({
+    color: 'blue',
+    fontSize: props.fontSize * 2 + 'px'
   })
+}
 
-  const mediaComposers = {
-    'min-height: 300px': props => ({
-      color: 'red',
-      fontSize: '14px'
-    }),
-    'max-width: 400px': props => ({
-      color: 'blue',
-      fontSize: props.fontSize * 2 + 'px'
-    })
-  }
-
-  const mediaSelector = new FelaDOM.MediaSelector(composer, mediaComposers)
-  ```
+const mediaSelector = new FelaDOM.MediaSelector(composer, mediaComposers)
+```
 
 ## `Renderer(node)`
 **HTMLElement\<node>**<br>
