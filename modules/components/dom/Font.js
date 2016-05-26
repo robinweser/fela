@@ -25,12 +25,12 @@ export default class Font {
 
   render() {
     const font = {
-      fontFamily: `'${fontFamily}'`,
-      src: files.map(src => `url('${src}') format('${getFontFormat(src)}')`).join(',')
+      fontFamily: '\'' + this.family + '\'',
+      src: this.files.map(src => 'url(\'' + src + '\') format(\'' + getFontFormat(src) + '\')').join(',')
     }
 
     const fontProperties = [ 'fontWeight', 'fontStretch', 'fontStyle', 'unicodeRange' ]
-    Object.keys(properties).filter(prop => fontProperties.indexOf(prop) > -1).forEach(fontProp => font[fontProp] = properties[fontProp])
+    Object.keys(this.properties).filter(prop => fontProperties.indexOf(prop) > -1).forEach(fontProp => font[fontProp] = this.properties[fontProp])
 
     return font
   }
