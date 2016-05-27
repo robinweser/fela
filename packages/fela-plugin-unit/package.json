@@ -1,26 +1,26 @@
 {
-  "name": "fela-plugin-unit",
-  "version": "1.0.0-alpha.4",
-  "description": "Fela plugin to automatically add units if required",
-  "main": "unit.js",
-  "files": [
-    "LICENSE",
-    "README.md",
-    "unit.js",
-    "dist"
-  ],
-  "repository": "https://github.com/rofrischmann/fela/",
-  "keywords": [
-    "fela",
-    "fela-plugin",
-    "cssinjs"
-  ],
-  "author": "Robin Frischmann",
-  "license": "MIT",
-  "peerDependencies": {
-    "fela": "^1.0.0-alpha.4"
-  },
-  "dependencies": {
-    "unitless-css-property": "^1.0.0"
-  }
+    "name": "fela-plugin-unit",
+    "version": "1.0.0-alpha.5",
+    "description": "Fela plugin to automatically add units if required",
+    "main": "unit.js",
+    "files": [
+        "LICENSE",
+        "README.md",
+        "unit.js",
+        "dist"
+    ],
+    "repository": "https://github.com/rofrischmann/fela/",
+    "keywords": [
+        "fela",
+        "fela-plugin",
+        "cssinjs"
+    ],
+    "author": "Robin Frischmann",
+    "license": "MIT",
+    "peerDependencies": {
+        "fela": "^1.0.0-alpha.5"
+    },
+    "dependencies": {
+        "unitless-css-property": "^1.0.0"
+    }
 }

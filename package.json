@@ -10,7 +10,7 @@
     "dist": "babel-node scripts/buildPackages",
     "lint": "eslint modules",
     "prepare": "npm run lint && npm test && npm run dist && npm run babel && babel-node scripts/preparePackages",
-    "release": "npm run prepare && babel-node scripts/buildPackages",
+    "release": "npm run prepare && ./scripts/publishPackages.sh",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/mocha.opts"
   },
   "devDependencies": {

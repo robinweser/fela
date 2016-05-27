@@ -1,6 +1,6 @@
 {
     "name": "fela-plugin-prefixer",
-    "version": "1.0.0-alpha.4",
+    "version": "1.0.0-alpha.5",
     "description": "Fela plugin to add vendor prefixes",
     "main": "prefixer.js",
     "files": [
@@ -21,7 +21,7 @@
     "author": "Robin Frischmann",
     "license": "MIT",
     "peerDependencies": {
-        "fela": "^1.0.0-alpha.4"
+        "fela": "^1.0.0-alpha.5"
     },
     "dependencies": {
         "inline-style-prefix-all": "^2.0.2"

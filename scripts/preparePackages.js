@@ -1,6 +1,14 @@
 import fs from 'fs-extra'
 import packages from '../packages'
 
+// Small helper to error and exit on fail
+const errorOnFail = err => {
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+}
+
 // Copies LICENSE into a pgk subfolder
 function copyLICENSE(pkg) {
   fs.copy(__dirname + '/../LICENSE', __dirname + '/../packages/' + pkg + '/LICENSE', err => {

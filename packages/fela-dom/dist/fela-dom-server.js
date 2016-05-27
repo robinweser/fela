@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaDOM = factory());
+  (global.FelaDOMServer = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -47,30 +47,6 @@
     }
 
     return target;
-  };
-
-  babelHelpers.inherits = function (subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-    }
-
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-      constructor: {
-        value: subClass,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-  };
-
-  babelHelpers.possibleConstructorReturn = function (self, call) {
-    if (!self) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }
-
-    return call && (typeof call === "object" || typeof call === "function") ? call : self;
   };
 
   babelHelpers;
@@ -463,41 +439,11 @@
     return StyleSheet;
   }();
 
-  var NODE_TYPE = 1;
-  var NODE_NAME = 'STYLE';
-
   var Renderer = function () {
-    function Renderer(node) {
-      var _this = this;
-
+    function Renderer() {
       babelHelpers.classCallCheck(this, Renderer);
 
-      // Check if the passed node is a valid element node which allows
-      // setting the `textContent` property to update the node's content
-      if (node.nodeType !== NODE_TYPE || node.textContent === undefined) {
-        console.error('You need to specify a valid element node (nodeType = 1) to render into.'); // eslint-disable-line
-        return false;
-      }
-
-      // TODO: DEV-MODE
-      // In dev-mode we should allow using elements other than <style> as
-      // one might want to render the CSS markup into a visible node to be able to
-      // validate and observe the styles on runtime
-      if (node.nodeName !== NODE_NAME) {
-        console.warn('You are using a node other than `<style>`. Your styles might not get applied correctly.'); // eslint-disable-line
-      }
-
-      if (node.hasAttribute('data-fela-stylesheet')) {
-        console.warn('This node is already used by another renderer. Rendering might overwrite other styles.'); // eslint-disable-line
-      }
-
-      node.setAttribute('data-fela-stylesheet', '');
-      this.node = node;
-
       this.stylesheet = new StyleSheet();
-      this.stylesheet.subscribe(function (css) {
-        return _this.node.textContent = css;
-      });
     }
     /**
      * renders a Selector variation of props into a DOM node
@@ -518,106 +464,27 @@
         // the cached className to reference the mounted CSS selector
         return this.stylesheet._renderSelectorVariation(selector, props, plugins);
       }
-
+    }, {
+      key: 'renderToString',
+      value: function renderToString() {
+        return this.stylesheet.renderToString();
+      }
       /**
-       * clears the stylesheet associated with a DOM node
+       * clears the stylesheet
        */
 
     }, {
       key: 'clear',
       value: function clear() {
         this.stylesheet.clear();
-        this.node.textContent = '';
       }
     }]);
     return Renderer;
   }();
 
-  var Selector = function () {
-    /**
-     * Selector is a dynamic style container
-     *
-     * @param {Function} composer - values to resolve dynamic styles
-     */
+  var felaDOMServer = { Renderer: Renderer };
 
-    function Selector(composer) {
-      babelHelpers.classCallCheck(this, Selector);
-
-      this.composer = composer;
-    }
-
-    /**
-     * resolves the styles with given set of props
-     *
-     * @param {Object?} props - values to resolve dynamic styles
-     * @return {Object} rendered styles
-     */
-
-
-    babelHelpers.createClass(Selector, [{
-      key: "render",
-      value: function render() {
-        var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-        return this.composer(props);
-      }
-    }]);
-    return Selector;
-  }();
-
-  var MediaSelector = function (_Selector) {
-    babelHelpers.inherits(MediaSelector, _Selector);
-
-    /**
-     * MediaSelector is an enhanced Selector providing
-     * support for media query
-     *
-     * @param {Function} composer - values to resolve dynamic styles
-     * @param {Object} mediaComposer - set of additional media composer
-     */
-
-    function MediaSelector(composer) {
-      var mediaComposer = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-      babelHelpers.classCallCheck(this, MediaSelector);
-
-      var _this = babelHelpers.possibleConstructorReturn(this, Object.getPrototypeOf(MediaSelector).call(this, composer));
-
-      _this.mediaComposer = mediaComposer;
-      // safe media strings to iterate later on
-      _this.mediaStrings = Object.keys(mediaComposer);
-
-      if (Object.keys(mediaComposer).length === 0) {
-        console.warn('You are using a MediaSelector without specifying at least one media style composer. Prefer using basic Selectors instead.'); // eslint-disable-line
-      }
-      return _this;
-    }
-
-    /**
-     * resolves media styles with given set of props
-     *
-     * @param {Object?} props - values to resolve dynamic styles
-     * @param {string?} media - media environment to render
-     * @return {Object} rendered styles
-     */
-
-
-    babelHelpers.createClass(MediaSelector, [{
-      key: 'renderMedia',
-      value: function renderMedia() {
-        var props = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-        var media = arguments[1];
-
-        // renders styles by resolving and processing them
-        var composer = this.mediaComposer[media];
-        return composer(props);
-      }
-    }]);
-    return MediaSelector;
-  }(Selector);
-
-  var felaDOM = { Renderer: Renderer, MediaSelector: MediaSelector };
-
-  return felaDOM;
+  return felaDOMServer;
 
 }));
-//# sourceMappingURL=fela-dom.js.map
+//# sourceMappingURL=fela-dom-server.js.map

@@ -1,6 +1,6 @@
 {
     "name": "fela-dom",
-    "version": "1.0.0-alpha.4",
+    "version": "1.0.0-alpha.5",
     "description": "Fela package for working with the DOM",
     "main": "felaDOM.js",
     "files": [
@@ -22,6 +22,6 @@
     "author": "Robin Frischmann",
     "license": "MIT",
     "peerDependencies": {
-        "fela": "^1.0.0-alpha.4"
+        "fela": "^1.0.0-alpha.5"
     }
 }
