@@ -1,4 +1,4 @@
-import camelToDashCase from '../../../utils/camelToDashCase'
+import camelToDashCase from './camelToDashCase'
 
 /**
  * generates a valid CSS string containing styles

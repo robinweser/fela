@@ -12,7 +12,7 @@ export default function generateHash(str) {
   const length = str.length
 
   // return a `s` for empty strings
-  // to symbolize `static` 
+  // to symbolize `static`
   if (length === 0) {
     return 's'
   }
