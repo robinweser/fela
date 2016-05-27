@@ -29,8 +29,8 @@ export default class StyleSheet {
     let css = ''
 
     this.fontFaces.forEach(fontFace => css += fontFace)
-    this.keyframes.forEach((variation, keyframe) => {
-      variation.forEach((markup, propsReference) => css += markup)
+    this.keyframes.forEach(variation => {
+      variation.forEach(markup => css += markup)
     })
 
     css += this._renderCache(this.cache)
@@ -242,7 +242,7 @@ export default class StyleSheet {
     Object.keys(styles).forEach(property => {
       const value = styles[property]
       if (value instanceof Object && !Array.isArray(value)) {
-        styles[property] = _extractDynamicStyles(styles[property], base[property])
+        styles[property] = this._extractDynamicStyles(styles[property], base[property])
         if (Object.keys(styles[property]).length === 0) {
           delete styles[property]
         }
@@ -372,7 +372,7 @@ export default class StyleSheet {
   _renderCache(cache) {
     let css = ''
 
-    cache.forEach((variation, selector) => {
+    cache.forEach(variation => {
       variation.forEach((markup, propsReference) => {
         if (propsReference !== 'static') {
           css += markup
