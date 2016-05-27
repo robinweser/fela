@@ -8,7 +8,7 @@ describe('ServerRenderer Tests', () => {
 
       const renderer = new Renderer()
       const className = renderer.render(selector, { })
-      expect(className).to.eql('c0-s')
+      expect(className).to.eql('c0')
     })
   })
 
@@ -21,7 +21,7 @@ describe('ServerRenderer Tests', () => {
       renderer.render(selector, { })
       renderer.render(selector, { foo: 'bar' })
 
-      expect(renderer.renderToString()).to.eql('.c0-s{color:red}.c0--kzgh9v{color:red}')
+      expect(renderer.renderToString()).to.eql('.c0{color:red}')
     })
   })
 

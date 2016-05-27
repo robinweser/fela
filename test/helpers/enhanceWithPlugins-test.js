@@ -7,7 +7,10 @@ describe('Enhancing a Renderer with plugins', () => {
   it('should invoke plugins into the render call', () => {
     const selector = new Selector(props => ({ color: 'red' }))
     // dumb test plugin that adds the property `foo` to the styles
-    const plugin = ({ styles }) => styles.foo = 'bar'
+    const plugin = ({ styles }) => ({
+      ...styles,
+      foo: 'bar'
+    })
 
     const node = DOMNode(1, 'STYLE')
 
@@ -17,8 +20,10 @@ describe('Enhancing a Renderer with plugins', () => {
     enhancedRenderer.render(selector)
 
     expect(enhancedRenderer.stylesheet.cache.get(selector).get('s')).to.eql({
-      color: 'red',
-      foo: 'bar'
+      '': {
+        color: 'red',
+        foo: 'bar'
+      }
     })
   })
 })

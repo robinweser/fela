@@ -12,8 +12,8 @@ describe('DOMRenderer Tests', () => {
       const renderer = new Renderer(node)
       const className = renderer.render(selector, { })
 
-      expect(node.textContent).to.eql('.c0-s{color:red}')
-      expect(className).to.eql('c0-s')
+      expect(node.textContent).to.eql('.c0{color:red}')
+      expect(className).to.eql('c0')
     })
 
     it('should concat multiple styles', () => {
@@ -25,15 +25,13 @@ describe('DOMRenderer Tests', () => {
       renderer.render(selector, { })
       renderer.render(selector, { foo: 'bar' })
 
-      expect(node.textContent).to.eql('.c0-s{color:red}.c0--kzgh9v{color:red}')
+      expect(node.textContent).to.eql('.c0{color:red}')
     })
 
     it('should throw if no element node was passed', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
-
-      console.error = sinon.spy()
-      const renderer = new Renderer({ })
-      expect(console.error).to.have.been.calledOnce
+      expect((function() {
+        new Renderer({ })
+      })).to.throw('You need to specify a valid element node (nodeType = 1) to render into.')
     })
 
     it('should add a fela stylesheet flag to the node', () => {

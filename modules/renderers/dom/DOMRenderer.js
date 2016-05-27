@@ -1,35 +1,29 @@
+import warning from 'fbjs/lib/warning'
 import StyleSheet from './StyleSheet'
+import FontFace from '../../components/dom/FontFace'
+import Keyframe from '../../components/dom/Keyframe'
 
 const NODE_TYPE = 1
 const NODE_NAME = 'STYLE'
 
 export default class Renderer {
-  constructor(node) {
+  constructor(node, config) {
     // Check if the passed node is a valid element node which allows
     // setting the `textContent` property to update the node's content
-    if (node.nodeType !== NODE_TYPE || node.textContent === undefined) {
-      console.error('You need to specify a valid element node (nodeType = 1) to render into.') // eslint-disable-line
-      return false
+    if (node.nodeType !== NODE_TYPE || node.textContent === undefined || node.setAttribute instanceof Function === false) {
+      throw new Error('You need to specify a valid element node (nodeType = 1) to render into.')
     }
 
-    // TODO: DEV-MODE
-    // In dev-mode we should allow using elements other than <style> as
-    // one might want to render the CSS markup into a visible node to be able to
-    // validate and observe the styles on runtime
-    if (node.nodeName !== NODE_NAME) {
-      console.warn('You are using a node other than `<style>`. Your styles might not get applied correctly.') // eslint-disable-line
-    }
-
-    if (node.hasAttribute('data-fela-stylesheet')) {
-      console.warn('This node is already used by another renderer. Rendering might overwrite other styles.') // eslint-disable-line
-    }
+    warning(node.nodeName === NODE_NAME, 'You are using a node other than `<style>`. Your styles might not get applied correctly.')
+    warning(!node.hasAttribute('data-fela-stylesheet'), 'This node is already used by another renderer. Rendering might overwrite other styles.')
 
     node.setAttribute('data-fela-stylesheet', '')
     this.node = node
 
-    this.stylesheet = new StyleSheet()
+    this.stylesheet = new StyleSheet(config)
     this.stylesheet.subscribe(css => this.node.textContent = css)
   }
+
   /**
    * renders a Selector variation of props into a DOM node
    *
@@ -39,6 +33,14 @@ export default class Renderer {
    * @return {string} className reference of the rendered selector
    */
   render(selector, props, plugins) {
+    if (selector instanceof FontFace) {
+      return this.stylesheet._renderFontFace(selector)
+    }
+
+    if (selector instanceof Keyframe) {
+      return this.stylesheet._renderKeyframeVariation(selector, props, plugins)
+    }
+
     // renders the passed selector variation into the stylesheet which
     // adds the variation to the cache and updates the DOM automatically
     // if the variation has already been added it will do nothing but return

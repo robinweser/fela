@@ -2,7 +2,7 @@ export default class Selector {
   /**
    * Selector is a dynamic style container
    *
-   * @param {Function} composer - values to resolve dynamic styles
+   * @param {Function} composer - style composer
    */
   constructor(composer) {
     this.composer = composer
