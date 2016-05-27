@@ -1,7 +1,7 @@
+import rollup from 'rollup'
 import babel from 'rollup-plugin-babel'
 import uglify from 'rollup-plugin-uglify'
 import commonjs from 'rollup-plugin-commonjs'
-import rollup from 'rollup'
 import nodeResolver from 'rollup-plugin-node-resolve'
 
 import packages from '../packages'
@@ -16,7 +16,8 @@ const errorOnFail = err => {
 
 const babelPlugin = babel({
   babelrc: false,
-  presets: [ 'es2015-rollup', 'stage-0' ]
+  presets: [ 'es2015-rollup', 'stage-0' ],
+  plugins: [ 'transform-dev-warning', 'transform-node-env-inline' ]
 })
 const nodeResolverPlugin = nodeResolver({ jsnext: true, main: true })
 const commonJSPlugin = commonjs({ include: 'node_modules/**' })
@@ -42,15 +43,10 @@ function bundleConfig(pkg, info, minify) {
 
 function buildPackage(pkg) {
   [ ].concat(packages[pkg]).forEach(p => {
-    rollup.rollup(rollupConfig(pkg, p)).then(bundle => {
-      bundle.write(bundleConfig(pkg, p))
-      console.log('Successfully bundled ' + p.name + '.')
+    rollup.rollup(rollupConfig(pkg, p, process.env.NODE_ENV === 'production')).then(bundle => {
+      bundle.write(bundleConfig(pkg, p, process.env.NODE_ENV === 'production'))
+      console.log('Successfully bundled ' + p.name + (process.env.NODE_ENV === 'production' ? ' (minified).' : '.'))
     })
-
-    rollup.rollup(rollupConfig(pkg, p, true)).then(bundle => {
-      bundle.write(bundleConfig(pkg, p, true))
-      console.log('Successfully bundled ' + p.name + ' (minified).')
-    }).catch(err => errorOnFail(err))
   })
 }
 
