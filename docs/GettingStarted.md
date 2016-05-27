@@ -204,18 +204,18 @@ console.log(renderer.renderToString()) // => .c0-s{font-size:10px;color:red}.c0-
 
 ## 8. Plugins
 Fela is designed to be configured with plugins which gives huge power and flexibility while styling your application.
-There are actually two ways to use plugins. You can either pass them to the `render` method directly or enhance your Renderer with plugins once.
+There are actually two ways to use plugins. You can either pass them to the `render` method or directly instantiate your Renderer with plugins once.
 
 ```javascript
-import { enhanceWithPlugins } from 'fela'
 import prefixer from 'fela-plugin-prefixer'
 
 // Method 1
+const renderer = new FelaDOM.Renderer(mountNode)
 renderer.render(selector, { color: 'red' }, [ prefixer() ])
 
 // Method 2
-const enhancedRenderer = enhanceWithPlugins(renderer, [ prefixer() ])
-enhancedRenderer.render(selector, { color: 'red' })
+const renderer = new FelaDOM.Renderer(mountNode, { plugins: [ prefixer() ]})
+renderer.render(selector, { color: 'red' })
 ```
 
 

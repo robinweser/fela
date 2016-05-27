@@ -4,10 +4,9 @@ Both Renderer use some kind of cache to memorize rendered Selectors in order to 
 <br>
 The Renderer therefore always has an up-to-date version of all rendered styles during the whole application lifetime which can be rendered to a DOM node or a string at any given time.
 
-## Caching 
+## Caching
 
 ## Reusing static styles
 
 ## Unique classNames
 Each time a Selector is rendered the Renderer generates a reference className which is returned to be used within the application. The className is generated from a unique selector reference ID as well as a content-based hash of the passed props what makes it unique throughout the whole application.
-
