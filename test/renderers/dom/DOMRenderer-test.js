@@ -17,15 +17,18 @@ describe('DOMRenderer Tests', () => {
     })
 
     it('should concat multiple styles', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = new Selector(props => ({
+        color: 'red',
+        bar: props.foo
+      }))
 
       const node = DOMNode(1, 'STYLE')
       const renderer = new Renderer(node)
 
       renderer.render(selector, { })
-      renderer.render(selector, { foo: 'bar' })
+      renderer.render(selector, { foo: 'foo' })
 
-      expect(node.textContent).to.eql('.c0{color:red}')
+      expect(node.textContent).to.eql('.c0{color:red}.c0--kzgdz4{bar:foo}')
     })
 
     it('should throw if no element node was passed', () => {

@@ -41,7 +41,7 @@ describe('StyleSheet Tests', () => {
       sheet._renderSelectorVariation(selector, { color: 'red' })
       sheet._renderSelectorVariation(selector, { color: 'blue' })
 
-      expect(sheet.cache.get(selector).size).to.eql(3)
+      expect(sheet.cache.get(selector).size).to.eql(4)
     })
 
     it('should generate an incrementing reference id', () => {
@@ -76,10 +76,17 @@ describe('StyleSheet Tests', () => {
       sheet._renderSelectorVariation(selector)
 
       expect(sheet.cache.has(selector)).to.eql(true)
-      expect(sheet.cache.get(selector).get('s')).to.eql({
-        '': {
-          color: 'red'
-        }
+      expect(sheet.cache.get(selector).get('')).to.eql('.c0{color:red}')
+    })
+
+    it('should keep base styles for diffing', () => {
+      const selector = props => ({ color: 'red' })
+      const sheet = new StyleSheet()
+
+      sheet._renderSelectorVariation(selector)
+
+      expect(sheet.cache.get(selector).get('static')).to.eql({
+        color: 'red'
       })
     })
   })
@@ -133,44 +140,25 @@ describe('StyleSheet Tests', () => {
       })
 
       expect(animationName).to.eql('k0--aedinm')
-      expect(sheet.keyframes.get(keyframe).get('-aedinm')).to.eql({
-        from: {
-          color: 'red'
-        },
-        to: {
-          color: 'blue'
-        }
-      })
+      expect(sheet.keyframes.get(keyframe).get('--aedinm')).to.eql('@-webkit-keyframes k0--aedinm{from{color:red}to{color:blue}}@-moz-keyframes k0--aedinm{from{color:red}to{color:blue}}@keyframes k0--aedinm{from{color:red}to{color:blue}}')
     })
 
     it('should process keyframes with plugins', () => {
       const keyframe = new Keyframe(props => ({
         from: {
           color: 'red'
-        },
-        to: {
-          color: 'blue'
         }
       }))
       const sheet = new StyleSheet()
 
       const animationName = sheet._renderKeyframeVariation(keyframe, {}, [ ({ styles }) => ({
         ...styles,
-        from: {
-          ...styles.from,
-          foo: 'bar'
-        }
-      }) ])
-
-      expect(sheet.keyframes.get(keyframe).get('s')).to.eql({
-        from: {
-          color: 'red',
-          foo: 'bar'
-        },
         to: {
           color: 'blue'
         }
-      })
+      }) ])
+
+      expect(sheet.keyframes.get(keyframe).get('')).to.eql('@-webkit-keyframes k0{from{color:red}to{color:blue}}@-moz-keyframes k0{from{color:red}to{color:blue}}@keyframes k0{from{color:red}to{color:blue}}')
     })
   })
 
@@ -197,22 +185,13 @@ describe('StyleSheet Tests', () => {
       expect(className1).to.eql(className2)
     })
 
-    it('should use a `s` for selectors base', () => {
+    it('should use an empty string for empty props', () => {
       const stylesheet = new StyleSheet()
 
       const className1 = stylesheet._generatePropsReference()
       const className2 = stylesheet._generatePropsReference({ })
-      expect(className1).to.eql('s')
-      expect(className2).to.eql('s')
-    })
-  })
-
-  describe('Rendering a className', () => {
-    it('should render valid CSS', () => {
-      const stylesheet = new StyleSheet()
-      const className = stylesheet._renderClassName('0', 'x345')
-
-      expect(className).to.eql('c0-x345')
+      expect(className1).to.eql('')
+      expect(className2).to.eql('')
     })
   })
 
@@ -385,42 +364,7 @@ describe('StyleSheet Tests', () => {
     })
   })
 
-  describe('Splitting styles into pseudo classes', () => {
-    it('should concat nested pseudo classes', () => {
-      const selector = props => ({
-        color: 'blue',
-        fontSize: '12px',
-        ':hover': {
-          color: 'red',
-          ':focus': {
-            color: 'green'
-          }
-        },
-        ':focus': {
-          color: 'yellow'
-        }
-      })
-
-      const stylesheet = new StyleSheet()
-      const splitStyles = stylesheet._splitPseudoClasses(selector())
-
-      expect(splitStyles).to.eql({
-        '': {
-          color: 'blue',
-          fontSize: '12px'
-        },
-        ':hover': {
-          color: 'red'
-        },
-        ':hover:focus': {
-          color: 'green'
-        },
-        ':focus': {
-          color: 'yellow'
-        }
-      })
-    })
-
+  describe('Validating styles', () => {
     it('should remove invalid properties', () => {
       const selector = props => ({
         color: props.color,
@@ -433,76 +377,9 @@ describe('StyleSheet Tests', () => {
       })
 
       const stylesheet = new StyleSheet()
-      const splitStyles = stylesheet._splitPseudoClasses(selector({}))
+      const validatedStyles = stylesheet._validateStyles(selector({ }))
 
-      expect(splitStyles['']).to.eql({ fontSize: '12px' })
-    })
-
-    it('should clean empty pseudo classes', () => {
-      const selector = props => ({
-        color: 'blue',
-        fontSize: '12px',
-        ':hover': {
-          ':focus': {
-            color: 'red'
-          }
-        },
-        ':focus': {
-          color: 'yellow'
-        }
-      })
-
-      const stylesheet = new StyleSheet()
-      const splitStyles = stylesheet._splitPseudoClasses(selector())
-
-      expect(splitStyles).to.eql({
-        '': {
-          color: 'blue',
-          fontSize: '12px'
-        },
-        ':hover:focus': {
-          color: 'red'
-        },
-        ':focus': {
-          color: 'yellow'
-        }
-      })
-    })
-  })
-
-  describe('Preparing styles', () => {
-    it('should keep static base styles even if empty', () => {
-      const selector = props => ({
-        ':hover': {
-          ':focus': {
-            color: 'red'
-          }
-        },
-        ':focus': {
-          color: 'yellow'
-        }
-      })
-
-      const stylesheet = new StyleSheet()
-      const pluginInterface = {
-        styles: selector(),
-        props: { },
-        plugins: []
-      }
-      const splitStyles = stylesheet._prepareStyles(pluginInterface, {})
-      const dynamicPluginInterface = {
-        styles: selector({ color: 'red' }),
-        props: {
-          color: 'red'
-        },
-        plugins: []
-      }
-      const splitDynamicStyles = stylesheet._prepareStyles(dynamicPluginInterface, splitStyles)
-
-      expect(splitDynamicStyles).to.eql({
-        ':focus': {},
-        ':hover:focus': {}
-      })
+      expect(validatedStyles).to.eql({ fontSize: '12px' })
     })
   })
 })
