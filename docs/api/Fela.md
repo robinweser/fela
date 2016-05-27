@@ -5,6 +5,8 @@
 ## `Selector(composer)`
 **Function\<composer>**
 
+Instantiates a new Selector with a pure style `composer`.
+
 ```javascript
 const composer = props => ({
   color: props.color,
