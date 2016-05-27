@@ -5,10 +5,10 @@ Dynamic Styling in JavaScript.
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.3kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~3.5kb-brightgreen.svg">
 </p>
 <br>
-**Fela** is a fast, modular, dynamic and tiny *(2.3kb incl. fela-dom, no dependencies)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
+**Fela** is a fast, modular, dynamic and tiny *(3.5kb gzipped)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
 
 ## Benefits
 * Universal rendering

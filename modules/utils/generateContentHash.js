@@ -14,7 +14,7 @@ export default function generateHash(str) {
   // return a `s` for empty strings
   // to symbolize `static`
   if (length === 0) {
-    return 's'
+    return ''
   }
 
   for (; iterator < length; ++iterator) {
@@ -23,5 +23,5 @@ export default function generateHash(str) {
     hash |= 0
   }
 
-  return hash.toString(36)
+  return '-' + hash.toString(36)
 }

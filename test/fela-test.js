@@ -1,16 +1,14 @@
-import Fela, { Selector, enhanceWithPlugins } from '../modules/fela'
+import Fela, { Selector } from '../modules/fela'
 
 describe('Importing the default export', () => {
   it('should include Selector, DOMRenderer and helpers', () => {
     expect(Fela.Selector).to.exist
-    expect(Fela.enhanceWithPlugins).to.be.a.function
   })
 })
 
 describe('Importing destructed components', () => {
   it('should work as well', () => {
     expect(Selector).to.exist
-    expect(enhanceWithPlugins).to.be.a.function
   })
 })
 
@@ -19,13 +17,11 @@ describe('Requiring the package using require.js', () => {
     const requiredFela = require('../modules/fela')
 
     expect(requiredFela.Selector).to.exist
-    expect(requiredFela.enhanceWithPlugins).to.be.a.function
   })
 
   it('should also allow destructed import', () => {
-    const { Selector : requiredSelector, enhanceWithPlugins : requiredEnhanceWithPlugins } = require('../modules/fela')
+    const { Selector : requiredSelector } = require('../modules/fela')
 
     expect(requiredSelector).to.exist
-    expect(requiredEnhanceWithPlugins).to.be.a.function
   })
 })
