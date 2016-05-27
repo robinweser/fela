@@ -30,5 +30,9 @@ export default {
   'fela-plugin-unit': {
     name: 'FelaPluginUnit',
     entry: 'plugins/unit.js'
+  },
+  'fela-plugin-lvha': {
+    name: 'FelaPluginLVHA',
+    entry: 'plugins/LVHA.js'
   }
 }

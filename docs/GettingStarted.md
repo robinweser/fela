@@ -9,9 +9,8 @@
 5. [Animation Keyframes](#5-animation-keyframes)
 6. [Font Faces](#6-font-faces)
 7. [Rendering Selectors](#7-rendering-selectors)
-  * 7.1. [Underlaying Mechanism](#71-underlaying-mechanism)
-  * 7.2. [DOM Renderer](#72-dom-renderer)
-  * 7.3. [Server Renderer](#73-server-renderer)
+  * 7.1. [DOM Renderer](#71-dom-renderer)
+  * 7.2. [Server Renderer](#72-server-renderer)
 8. [Plugins](#8-plugins)
   * 8.1. [Configuration](#81-configuration)
 9. [Fela with other Libraries](#9-fela-with-other-libraries)
@@ -159,17 +158,10 @@ To be completed soon.
 To be completed soon.
 
 ## 7. Rendering Selectors
-We now know how to use Selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.
+We now know how to use Selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.<br>
+> Note: Before using any Renderer you should first understand how the rendering process works in general. If you're not already familiar with the mechansism please check out [Rendering Mechanism](RenderingMechanism.md) for a detailed explanation.
 
-### 7.1. Underlaying Mechanism
-Before using any Renderer you should first understand how the rendering process works in general. Both Renderer use some kind of cache to memorize rendered Selectors in order to reuse them every time the same *Selector variation* is rendered again. A Selector variation is considered a pair of the used *props* and the rendered styles output. This prevent dublication and improves performance on future rendering cycles. It also prevents unnecessary DOM manipulations.
-<br>
-The Renderer therefore always has an up-to-date version of all rendered styles during the whole application lifetime which can be rendered to a DOM node or a string at any given time.
-
-#### Unique classNames
-Each time a Selector is rendered the Renderer generates a reference className which is returned to be used within the application. The className is generated from a unique selector reference ID as well as a content-based hash of the passed props what makes it unique throughout the whole application.
-
-### 7.2. DOM Renderer
+### 7.1. DOM Renderer
 The DOM Renderer is used to directly render Selector variations into a specific DOM node. It is used for client-side rendering and requires a real DOM to be working.
 It can basically render into any valid element node though styles will only get applied correctly if a real `<style>` element is used.
 
@@ -190,7 +182,7 @@ renderer.render(selector, { size: 12 }) // => c0-eqz3x
 console.log(mountNode.textContent) // => .c0-s{font-size:10px;color:red}.c0-eqz3x{font-size:12px;color:'red'}
 ```
 
-### 7.3. Server Renderer
+### 7.2. Server Renderer
 The Server Renderer does exactly the same as the DOM Renderer does except actually rendering into a DOM node. It is used for server-side rendering and only caches all the variations. It is used to collect all rendered variations produced on initial render. Using the `renderToString` method afterwards will return a single string containing all styles transformed into valid CSS markup.<br>
 This string can now be injected into the provided HTML file.
 ```javascript
@@ -299,4 +291,31 @@ ReactDOM.render(
 ```
 
 ### Fela + Web Components
-To be completed soon.
+```javascript
+import { Renderer } from 'fela-dom'
+
+const node = document.getElementById('style-element')
+const renderer = new Renderer(node)
+
+const selector = props => ({
+  outline: 'none',
+  color: props.color,
+  outlineWidth: 0,
+  border: 0,
+  padding: '10px 8px',
+  fontSize: props.size
+})
+
+
+class App extends HTMLElement {
+    attachedCallback() {
+        this.innerHTML = `
+            <div class="${renderer.render(selector, { color: 'red' })}">
+                I do not have a font-size, but am red.
+            </div>
+        `
+    }
+}
+
+document.registerElement('my-app', App)
+```

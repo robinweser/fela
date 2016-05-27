@@ -8,7 +8,7 @@ Dynamic Styling in JavaScript.
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.3kb-brightgreen.svg">
 </p>
 <br>
-**Fela** is a fast, universal, dynamic and tiny *(2.3kb incl. fela-dom, no dependencies)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
+**Fela** is a fast, modular, dynamic and tiny *(2.3kb incl. fela-dom, no dependencies)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
 
 ## Benefits
 * Universal rendering
@@ -80,6 +80,7 @@ All packages including all plugins are also available via [npmcdm](https://npmcd
 ## Documentation
 + [Getting Started](/docs/GettingStarted.md)
 * [Design Principles](docs/Principles.md)
+* [Rendering Mechanism](docs/RenderingMechanism.md)
 * [API Reference](docs/api/)
 * [Plugins](docs/plugins/)
 * [FAQ](FAQ)
@@ -87,11 +88,12 @@ All packages including all plugins are also available via [npmcdm](https://npmcd
 ### Plugins
 | name | configurable | size *(gzipped)* | description |
 | --- | --- | --- | ------ |
-|[prefixer](docs/plugins/Prefixer.md) | no | 3.04kb | Adds vendor prefixes to the styles |
-|[fallbackValue](docs/plugins/fallbackValue.md) | no | 0.64kb | Resolves arrays of fallback values |
-|[friendlyPseudoClass](docs/plugins/FriendlyPseudoClass.md) | no | 0.48kb |Transforms javascript-friendly pseudo class into valid syntax  |
-|[customProperty](docs/plugins/CustomProperty.md) | [yes](docs/plugins/CustomProperty.md#configuration) | 0.42kb | Resolves custom properties |
-|[unit](docs/plugins/Unit.md) | [yes](docs/plugins/Unit.md#configuration) | 1.08kb | Automatically adds units to values if needed  |
+|[prefixer](docs/plugins/Prefixer.md) |no | 3.04kb |Adds vendor prefixes to the styles |
+|[fallbackValue](docs/plugins/fallbackValue.md) |no | 0.64kb | Resolves arrays of fallback values |
+|[friendlyPseudoClass](docs/plugins/FriendlyPseudoClass.md) |no |0.48kb |Transforms javascript-friendly pseudo class into valid syntax  |
+|[customProperty](docs/plugins/CustomProperty.md) |[yes](docs/plugins/CustomProperty.md#configuration) | 0.42kb | Resolves custom properties |
+|[unit](docs/plugins/Unit.md) |[yes](docs/plugins/Unit.md#configuration) |1.08kb | Automatically adds units to values if needed  |
+|[LVHA](docs/plugins/LVHA.md) |no |0.47kb | Sorts pseudo classes according to [LVH(F)A](https://css-tricks.com/remember-selectors-with-love-and-hate/)  |
 
 
 # License
