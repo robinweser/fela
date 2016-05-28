@@ -1,11 +1,10 @@
 import Renderer from '../../../modules/renderers/dom/DOMRenderer'
-import Selector from '../../../modules/components/shared/Selector'
 import DOMNode from '../../_mocks/DOMNode'
 
 describe('DOMRenderer Tests', () => {
   describe('Rendering a selector', () => {
     it('should render a selector into a DOM node', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({ color: 'red' })
 
       const node = DOMNode(1, 'STYLE')
 
@@ -17,10 +16,7 @@ describe('DOMRenderer Tests', () => {
     })
 
     it('should concat multiple styles', () => {
-      const selector = new Selector(props => ({
-        color: 'red',
-        bar: props.foo
-      }))
+      const selector = props => ({ color: 'red', bar: props.foo })
 
       const node = DOMNode(1, 'STYLE')
       const renderer = new Renderer(node)
@@ -47,7 +43,7 @@ describe('DOMRenderer Tests', () => {
 
   describe('Clearing the renderer', () => {
     it('should clear all caches', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({ color: 'red' })
 
       const node = DOMNode(1, 'STYLE')
       const renderer = new Renderer(node)
@@ -61,7 +57,7 @@ describe('DOMRenderer Tests', () => {
     })
 
     it('should clear the DOM node', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({ color: 'red' })
 
       const node = DOMNode(1, 'STYLE')
       const renderer = new Renderer(node)

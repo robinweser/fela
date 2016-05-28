@@ -1,6 +1,8 @@
 import cssifyObject from '../../utils/cssifyObject'
 import generateContentHash from '../../utils/generateContentHash'
 import sortedStringify from '../../utils/sortedStringify'
+import isPseudo from '../../utils/isPseudo'
+import isMediaQuery from '../../utils/isMediaQuery'
 
 export default class StyleSheet {
   /**
@@ -35,7 +37,7 @@ export default class StyleSheet {
 
     css += this._renderCache(this.cache)
     this.mediaCache.forEach((cache, media) => {
-      css += '@media(' + media + '){' + this._renderCache(cache) + '}'
+      css += '@media ' + media + '{' + this._renderCache(cache) + '}'
     })
 
     return css
@@ -141,23 +143,12 @@ export default class StyleSheet {
    * @return {string} className to reference the rendered selector
    */
   _renderSelectorVariation(selector, props = { }, plugins = []) {
-    const isFunctionalSelector = selector instanceof Function
-    const isMediaSelector = !isFunctionalSelector && selector.renderMedia instanceof Function
     // rendering a Selector for the first time
     // will create cache entries and an ID reference
     if (!this.cache.has(selector)) {
       this.ids.set(selector, ++this._counter)
       this.cache.set(selector, new Map())
-      // iterate all used media strings to create
-      // selector caches for each media as well
-      if (isMediaSelector) {
-        selector.mediaStrings.forEach(media => {
-          if (!this.mediaCache.has(media)) {
-            this.mediaCache.set(media, new Map())
-          }
-          this.mediaCache.get(media).set(selector, new Map())
-        })
-      }
+
       // directly render the static base styles to be able
       // to diff future dynamic styles with those
       this._renderSelectorVariation(selector, { }, plugins)
@@ -166,7 +157,7 @@ export default class StyleSheet {
     const cachedSelector = this.cache.get(selector)
     const propsReference = this._generatePropsReference(props)
     // uses the reference ID and the props to generate an unique className
-    const className = 'c' + this.ids.get(selector) + propsReference
+    let className = 'c' + this.ids.get(selector) + propsReference
 
     // only if the cached selector has not already been rendered
     // with a specific set of properties it actually renders
@@ -176,43 +167,49 @@ export default class StyleSheet {
       const pluginInterface = {
         plugins: this.plugins.concat(plugins),
         processStyles: this._processStyles,
-        styles: isFunctionalSelector ? selector(props) : selector.render(props),
+        styles: selector(props),
         props: props
       }
 
+
       const preparedStyles = this._prepareStyles(pluginInterface, cachedSelector.get('static'), propsReference)
-      cachedSelector.set(propsReference, this._renderStyles(preparedStyles, className))
+      const clusteredStyles = this._clusterStyles(preparedStyles)
+
+      if (Object.keys(clusteredStyles).length === 0) {
+        cachedSelector.set(propsReference, '')
+      }
+
+      Object.keys(clusteredStyles).forEach(media => {
+        const renderedStyles = this._renderStyles(clusteredStyles[media], className)
+        if (media === '') {
+          cachedSelector.set(propsReference, renderedStyles)
+        } else {
+          if (!this.mediaCache.has(media)) {
+            this.mediaCache.set(media, new Map([ [ selector, new Map() ] ]))
+          }
+          if (!this.mediaCache.get(media).has(selector)) {
+            this.mediaCache.get(media).set(selector, new Map())
+          }
+
+          this.mediaCache.get(media).get(selector).set(propsReference, renderedStyles)
+        }
+      })
 
       // keep static styles to diff dynamic onces later on
       if (propsReference === '') {
         cachedSelector.set('static', preparedStyles)
       }
 
-      if (isMediaSelector) {
-        selector.mediaStrings.forEach(media => {
-          const cachedMediaSelector = this.mediaCache.get(media).get(selector)
-
-          const mediaPluginInterface = {
-            ...pluginInterface,
-            styles: selector.renderMedia(props, media),
-            media: media
-          }
-
-          const preparedMediaStyles = this._prepareStyles(mediaPluginInterface, cachedMediaSelector.get('static'), propsReference)
-          cachedMediaSelector.set(propsReference, this._renderStyles(preparedMediaStyles, className))
-
-          // keep static styles to diff dynamic onces later on
-          if (propsReference === '') {
-            cachedMediaSelector.set('static', preparedMediaStyles)
-          }
-        })
-      }
       // emit changes as the styles stack changed
       this._emitChange()
     }
 
-    // returns either the base className or both the base and the dynamic part
     const baseClassName = 'c' + this.ids.get(selector)
+    if (cachedSelector.get(propsReference) === '') {
+      return baseClassName
+    }
+
+    // returns either the base className or both the base and the dynamic part
     return className !== baseClassName ? baseClassName + ' ' + className : className
   }
 
@@ -242,11 +239,13 @@ export default class StyleSheet {
     Object.keys(styles).forEach(property => {
       const value = styles[property]
       if (value instanceof Object && !Array.isArray(value)) {
+        // also diff inner objects such as pseudo classes
         styles[property] = this._extractDynamicStyles(styles[property], base[property])
         if (Object.keys(styles[property]).length === 0) {
           delete styles[property]
         }
-      } else if (base.hasOwnProperty(property)) {
+      // checks if the base styles has the property and if the value is equal
+      } else if (base.hasOwnProperty(property) && base[property] === value) {
         delete styles[property]
       }
     })
@@ -265,7 +264,7 @@ export default class StyleSheet {
     Object.keys(styles).forEach(property => {
       const value = styles[property]
       if (value instanceof Object && !Array.isArray(value)) {
-        styles[property] = property.charAt(0) === ':' ? this._validateStyles(value) : {}
+        styles[property] = isPseudo(property) || isMediaQuery(property) ? this._validateStyles(value) : {}
         if (Object.keys(styles[property]).length === 0) {
           delete styles[property]
         }
@@ -284,17 +283,25 @@ export default class StyleSheet {
    * @param {Object} styles - dynamic styles
    * @return {Object} flat and validated styles
    */
-  _splitPseudoClasses(styles, pseudo = '', out = { }) {
+  _clusterStyles(styles, pseudo = '', media = '', out = { }) {
     Object.keys(styles).forEach(property => {
       const value = styles[property]
       if (value instanceof Object && !Array.isArray(value)) {
-        this._splitPseudoClasses(value, pseudo + property, out)
-      } else {
-        if (!out[pseudo]) {
-          out[pseudo] = { }
+        if (isPseudo(property)) {
+          this._clusterStyles(value, pseudo + property, media, out)
+        } else if (isMediaQuery(property)) {
+          const query = property.replace('@media', '').trim()
+          const nestedMedia = media !== '' ? media + ' and ' + query : query
+          this._clusterStyles(value, pseudo, nestedMedia, out)
         }
-        // add properties to pseudo maps
-        out[pseudo][property] = value
+      } else {
+        if (!out[media]) {
+          out[media] = { }
+        }
+        if (!out[media][pseudo]) {
+          out[media][pseudo] = { }
+        }
+        out[media][pseudo][property] = value
       }
     })
 
@@ -339,10 +346,8 @@ export default class StyleSheet {
    * @return {string} valid CSS string
    */
   _renderStyles(styles, className) {
-    const splitStyles = this._splitPseudoClasses(styles)
-
-    return Object.keys(splitStyles).reduce((css, pseudo) => {
-      return css + '.' + className + pseudo + '{' + cssifyObject(splitStyles[pseudo]) + '}'
+    return Object.keys(styles).reduce((css, pseudo) => {
+      return css + '.' + className + pseudo + '{' + cssifyObject(styles[pseudo]) + '}'
     }, '')
   }
 

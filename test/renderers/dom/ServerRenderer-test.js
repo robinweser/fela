@@ -1,10 +1,9 @@
 import Renderer from '../../../modules/renderers/dom/ServerRenderer'
-import Selector from '../../../modules/components/shared/Selector'
 
 describe('ServerRenderer Tests', () => {
   describe('Rendering a Selector', () => {
     it('should render a Selector into the StyleSheet', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({ color: 'red' })
 
       const renderer = new Renderer()
       const className = renderer.render(selector, { })
@@ -14,7 +13,7 @@ describe('ServerRenderer Tests', () => {
 
   describe('Rendering to string', () => {
     it('should return concated multiple styles ', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({ color: 'red' })
 
       const renderer = new Renderer()
 
@@ -27,7 +26,7 @@ describe('ServerRenderer Tests', () => {
 
   describe('Clearing the renderer', () => {
     it('should clear all caches', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({ color: 'red' })
 
       const renderer = new Renderer()
 
