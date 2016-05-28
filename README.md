@@ -5,10 +5,10 @@ Dynamic Styling in JavaScript.
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.9kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.6kb-brightgreen.svg">
 </p>
 <br>
-**Fela** is a fast, modular, dynamic and tiny *(2.9kb gzipped)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
+**Fela** is a fast, modular, dynamic and tiny *(2.6kb gzipped)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
 
 ## Benefits
 * Universal rendering
@@ -24,11 +24,11 @@ Dynamic Styling in JavaScript.
 
 ## Example
 ```javascript
-import { Selector, Renderer } from 'fela'
+import { Renderer } from 'fela'
 
-// Selectors use simple functions of props
+// selectors are just plain functions of props
 // returning a valid object of style declarations
-const selector = new Selector(props => {
+const selector = props => {
   fontSize: props.fontSize + 'px',
   marginTop: props.margin ? '15px' : 0,
   color: 'red',
@@ -36,6 +36,14 @@ const selector = new Selector(props => {
   ':hover': {
     color: 'blue',
     fontSize: props.fontSize + 2 + 'px'
+  },
+  // nest media queries and pseudo classes
+  // inside the style object as is
+  '@media (min-height: 300px)': {
+    backgroundColor: 'gray',
+    ':hover': {
+      color: 'black'
+    }
   }
 }))
 
@@ -47,20 +55,35 @@ const renderer = new Renderer(mountNode)
 // can be attached to any element
 const className = renderer.render(selector, { fontSize: 12 }))
 
-console.log(className) // => c0-aw22w
+console.log(className) // => c0 c0-aw22w
 ```
 Generated CSS markup will look like this:
 ```CSS
+.c0 {
+  color: red;
+  lineHeight: 1.4
+}
+.c0:hover {
+  color: blue
+}
+
 .c0-aw22w {
   font-size: 12px;
-  margin-top: 0;
-  color: red;
-  line-height: 1.4
+  margin-top: 0
 }
 
 .c0-aw22w:hover {
-  color: blue;
   font-size: 14px;
+}
+
+@media (min-height: 300px) {
+  .c0 {
+    background-color: gray
+  }
+
+  .c0:hover {
+    color: black
+  }
 }
 ```
 

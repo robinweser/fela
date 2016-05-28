@@ -1,55 +1,11 @@
 # Fela API
 
-* [Selector(composer)](#selectorcomposer)
-* [MediaSelector(composer [, mediaComposers])](#mediaselectorcomposer--mediacomposers)
 * [FontFace(family, files [, properties])](#fontfacefamily-files--properties)
 * [Keyframe(keyframeComposer)](#keyframekeyframecomposer)
 * [Renderer(node)](#renderernode)
   * [.render(selector [, props, plugins])](#renderselector--props-plugins)
   * [.clear()](#clear)
 
-## `Selector(composer)`
-**Function\<composer>**
-
-Instantiates a new Selector with a pure style `composer`.
-
-```javascript
-const composer = props => ({
-  color: props.color,
-  fontSize: props.fontSize,
-  lineHeight: 1.4,
-  display: 'flex'
-})
-
-const selector = new Fela.Selector(composer)
-```
-
-## `MediaSelector(composer [, mediaComposers])`
-**Function\<composer>**<br>
-**Object\<mediaComposers>**
-
-Instantiates a new MediaSelector with a basic style `composer` and an optional list of additional media style composer.
-```javascript
-const composer = props => ({
-  color: props.color,
-  fontSize: props.fontSize + 'px',
-  lineHeight: 1.4,
-  display: 'flex'
-})
-
-const mediaComposers = {
-  'min-height: 300px': props => ({
-    color: 'red',
-    fontSize: '14px'
-  }),
-  'max-width: 400px': props => ({
-    color: 'blue',
-    fontSize: props.fontSize * 2 + 'px'
-  })
-}
-
-const mediaSelector = new Fela.MediaSelector(composer, mediaComposers)
-```
 
 ## `FontFace(family, files [, properties])`
 **string\<family>**<br>
@@ -76,7 +32,7 @@ const fontFace = new Fela.FontFace('Arial', files, { fontWeight: 300 })
 ## `Keyframe(keyframeComposer)`
 **Function\<keyframeComposer>**
 
-Instantiates a new Keyframe with a pure keyframe *composer*. It is used similar to the basic [Selector](Fela.md#selectorcomposer).
+Instantiates a new Keyframe with a pure keyframe *composer*. It is used similar to basic Selectors.
 
 ```javascript
 const frameComposer = props => ({
@@ -101,7 +57,7 @@ const keyframe = new Fela.Keyframe(frameComposer)
 Instantiates a new DOM Renderer and binds itself to a valid DOM `node`.
 
 ### `render(selector [, props, plugins])`
-**Function|Selector|MediaSelector|Keyframe|FontFace\<selector>**<br><br>
+**Function|Keyframe|FontFace\<selector>**<br><br>
 **Object?\<props>**<br>
 **Function[]?\<plugins>**
 
@@ -111,7 +67,7 @@ Returns the mounted *className* reference.
 const node = document.getElementById('style-element')
 const renderer = new Fela.Renderer(node)
 
-const selector = new Fela.Selector(props => ({ color: props.color }))
+const selector = props => ({ color: props.color })
 
 renderer.render(selector, { color: 'red' }) // => c0-se22d
 renderer.render(selector, { color: 'blue' }) // => c0-ee414
@@ -124,7 +80,7 @@ Clears the associated DOM node and all cached Selector variations.
 const node = document.getElementById('style-element')
 const renderer = new Fela.Renderer(node)
 
-const selector = new Fela.Selector(props => ({ color: props.color }))
+const selector = props => ({ color: props.color }))
 
 renderer.render(selector, { color: 'red' }) // => c0-se22d
 renderer.render(selector, { color: 'blue' }) // => c0-ee414

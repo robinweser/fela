@@ -2,13 +2,12 @@
 
 1. [Installation](#1-installation)
 2. [Understanding Selectors](#2-understanding-selectors)
-  * 2.1. [Functional Selectors](#21-functional-selectors)
-  * 2.2. [Tips & Tricks](#22-tips-tricks)
+  * 2.1. [Tips & Tricks](#21-tips-tricks)
 3. [Pseudo Classes](#3-pseudo-classes)
 4. [Media Queries](#4-media-queries)
 5. [Animation Keyframes](#5-animation-keyframes)
 6. [Font Faces](#6-font-faces)
-7. [Rendering Selectors](#7-rendering-selectors)
+7. [Rendering](#7-rendering)
   * 7.1. [DOM Renderer](#71-dom-renderer)
   * 7.2. [Server Renderer](#72-server-renderer)
 8. [Plugins](#8-plugins)
@@ -35,29 +34,12 @@ var Fela = require('fela')
 ```
 
 ## 2. Understanding Selectors
-First of all we need understand what a Selector is and what they're used for.<br>
-Selectors build up the core of your DOM-based CSS environment. They are instantiated with a *style composer*. A style composer is basically just a **pure** function of *props* that returns a plain object containing style declarations. Pure functions produce predictable output, are easy to test and are quite fail-safe. To keep your composer pure you should not:
+First of all we need understand what a selector is and what they're used for.<br>
+Selectors build up the core of your DOM-based CSS environment. A selector is basically just a **pure** function of *props* that returns a plain object containing style declarations. Pure functions produce predictable output, are easy to test and are quite fail-safe. To keep your composer pure you should not:
 
 * Mutate the *props*
 * Perform side effects e.g. API calls
 * Call non-pure functions e.g. `Date.now()`
-
-```javascript
-import { Selector } from 'fela'
-
-const composer = props => ({
-  fontSize: '15px',
-  color: props.color,
-  lineHeight: 1.5
-})
-
-const selector = new Selector(composer)
-```
-
-### 2.1. Functional Selectors
-As you might have noticed we need to call `new Selector()` every time we create a new Selector. Yet it technically doesn't do a lot (at least right now) except calling the composer with a given set of *props*. That's why you can use pure functional Selectors too. Actually every *composer* (e.g. the composer from the example above) qualifies as a functional Selector.
-
-> Tip: I recommend using functional Selectors as much as possible. Less code, more readability and simple to test.
 
 ```javascript
 const selector = props => ({
@@ -67,7 +49,7 @@ const selector = props => ({
 })
 ```
 
-### 2.2. Tips & Tricks
+### 2.1. Tips & Tricks
 To write even more advanced and simple Selectors there are some helpful tips & tricks you might want to know and use.
 
 1. Optional props & Default values
@@ -102,7 +84,7 @@ selector({ }) // => { color: 'green' }
 
 
 ## 3. Pseudo Classes
-As pseudo classes are a key feature of CSS they are supported by Fela's Renderer as well. You can easily define them as nested property objects within your style composer. You can also nest them to require both pseudo classes to be active.
+As pseudo classes are a key feature of CSS they are supported by Fela's Renderer as well. You can easily define them as nested property objects within your selector. You can also nest them to require both pseudo classes to be active.
 ```javascript
 const selector = props => ({
   color: 'red',
@@ -123,31 +105,24 @@ const selector = props => ({
 ```
 
 ## 4. Media Queries
-Yet another CSS key feature are media queries. They're used to describe how style get rendered depending on the current device. Unlike pseudo classes they can **not** be used directly with basic isomorphic Selectors. We need to use special extended Selectors called MediaSelectors which are provided by Fela directly. They accept a simple composer as well as multiple media composers.
+Yet another CSS key feature are media queries. They're used to describe how style get rendered depending on the current device. Just like pseudo classes they can also be nested within your selector. They **must** begin with the `@media` keyword.
 
 ```javascript
-import { MediaSelector } from 'fela'
-
 const composer = props => ({
   color: 'red',
   ':hover': {
     color: 'blue'
-  }
-})
-
-const mediaComposer = {
-  'min-height: 200px': props => ({
+  },
+  '@media (min-height: 200px)': {
     color: 'yellow',
     ':hover': {
       color: 'purple'
     }
-  }),
-  'screen': props => ({
+  },
+  '@media (screen)': {
     color: 'black'
-  })
-}
-
-const mediaSelector = new Fela.MediaSelector(composer, mediaComposer)
+  }
+})
 ```
 
 ## 5. Animation Keyframes
@@ -156,7 +131,7 @@ To be completed soon.
 To be completed soon.
 
 ## 7. Rendering Selectors
-We now know how to use Selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.<br>
+We now know how to use selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.<br>
 > Note: Before using any Renderer you should first understand how the rendering process works in general. If you're not already familiar with the mechansism please check out [Rendering Mechanism](RenderingMechanism.md) for a detailed explanation.
 
 ### 7.1. DOM Renderer
@@ -174,10 +149,10 @@ const selector = props => ({
 
 const renderer = new Renderer(mountNode)
 
-renderer.render(selector) // => c0-s
+renderer.render(selector) // => c0
 renderer.render(selector, { size: 12 }) // => c0-eqz3x
 
-console.log(mountNode.textContent) // => .c0-s{font-size:10px;color:red}.c0-eqz3x{font-size:12px;color:'red'}
+console.log(mountNode.textContent) // => .c0{color:red}.c0-eqz3x{font-size:12px}
 ```
 
 ### 7.2. Server Renderer
@@ -193,10 +168,10 @@ const selector = props => ({
 
 const renderer = new Renderer()
 
-renderer.render(selector) // => c0-s
+renderer.render(selector) // => c0
 renderer.render(selector, { size: 12 }) // => c0-eqz3x
 
-console.log(renderer.renderToString()) // => .c0-s{font-size:10px;color:red}.c0-eqz3x{font-size:12px;color:'red'}
+console.log(renderer.renderToString()) // => .c0{color:red}.c0-eqz3x{font-size:12px}
 ```
 
 
