@@ -5,10 +5,10 @@ Dynamic Styling in JavaScript.
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~3.5kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.9kb-brightgreen.svg">
 </p>
 <br>
-**Fela** is a fast, modular, dynamic and tiny *(3.5kb gzipped)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
+**Fela** is a fast, modular, dynamic and tiny *(2.9kb gzipped)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
 
 ## Benefits
 * Universal rendering
@@ -24,9 +24,11 @@ Dynamic Styling in JavaScript.
 
 ## Example
 ```javascript
+import { Selector, Renderer } from 'fela'
+
 // Selectors use simple functions of props
 // returning a valid object of style declarations
-const selector = new Fela.Selector(props => {
+const selector = new Selector(props => {
   fontSize: props.fontSize + 'px',
   marginTop: props.margin ? '15px' : 0,
   color: 'red',
@@ -39,7 +41,7 @@ const selector = new Fela.Selector(props => {
 
 // Binding a new Renderer to a DOM node which
 // automatically updates its CSS content on render
-const renderer = new FelaDOM.Renderer(mountNode)
+const renderer = new Renderer(mountNode)
 
 // Rendering returns a className reference which
 // can be attached to any element
@@ -64,14 +66,12 @@ Generated CSS markup will look like this:
 
 ## Installation
 ```sh
-npm i --save fela fela-dom
+npm i --save fela
 ```
-All packages including all plugins are also available via [npmcdm](https://npmcdn.com/).
+All packages including all plugins are also available via [npmcdn](https://npmcdn.com/).
 ```HTML
-<!-- Fela: isomorphic core library -->
+<!-- Fela: core library  -->
 <script src="https://npmcdn.com/fela@1.0.0-alpha.3/dist/fela.min.js"></script>
-<!-- FelaDOM: DOM Components and Renderer -->
-<script src="https://npmcdn.com/fela-dom@1.0.0-alpha.3/dist/fela-dom.min.js"></script>
 
 <!-- FelaPluginFallbackValue: plugins always use camel cased globals -->
 <script src="https://npmcdn.com/fela-plugin-fallback-value@1.0.0-alpha.3/dist/fela-plugin-fallback-value.min.js"></script>

@@ -1,3 +1,1 @@
 # FAQ
-
-Nothing yet.

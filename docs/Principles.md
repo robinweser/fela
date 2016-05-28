@@ -6,5 +6,3 @@ But todays applications are everything except static pages. They evolve over tim
 #### Style composer
 Fela uses functions which are often referred as *style composer* to specify dynamic behavior of styles that can change over time. Most element changes can be measured with some kind of parameters which we call **props**.<br>
 That's why every style composer basically is a function of *props* that returns a plain object containing style declarations.<br>
-
-## 2. Pure style composer

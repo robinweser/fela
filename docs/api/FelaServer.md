@@ -1,4 +1,4 @@
-# FelaDOMServer API
+# FelaServer API
 
 * [Renderer()](#renderernode)
   * [.render(selector [, props, plugins])](#renderselector--props-plugins)
@@ -16,7 +16,7 @@ Instantiates a new Server Renderer.
 Silently renders a specific Selector variation or Keyframe variation using `selector` and `props` and mounts the rendered CSS markup into the DOM node. Optionally processes the variation with a set of  `plugins`. Also renders FontFaces but without additional parameters.<br><br>
 Returns the mounted *className* reference.
 ```javascript
-const renderer = new FelaDOMServer.Renderer()
+const renderer = new FelaServer.Renderer()
 const selector = new Fela.Selector(props => ({ color: props.color }))
 
 renderer.render(selector, { color: 'red' }) // => c0-se22d
@@ -27,7 +27,7 @@ renderer.render(selector, { color: 'blue' }) // => c0-ee414
 
 Renders all cached selector variations, Keyframes variations and FontFaces into a single CSS string.
 ```javascript
-const renderer = new FelaDOMServer.Renderer()
+const renderer = new FelaServer.Renderer()
 const selector = new Fela.Selector(props => ({ color: props.color }))
 
 renderer.render(selector, { color: 'red' }) // => c0-se22d
@@ -39,7 +39,7 @@ const css = renderer.renderToString() // => .c0-se22d{color:red}.c0-ee414{color:
 ### `clear()`
 Clears all cached Selector variations, Keyframe variations and FontFaces.
 ```javascript
-const renderer = new FelaDOMServer.Renderer()
+const renderer = new FelaServer.Renderer()
 const selector = new Fela.Selector(props => ({ color: props.color }))
 
 renderer.render(selector, { color: 'red' }) // => c0-se22d

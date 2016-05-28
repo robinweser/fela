@@ -18,10 +18,10 @@
   * [Fela + Web Components](#fela-web-components)
 
 ## 1. Installation
-Before we can even start we need to install Fela and FelaDOM to our project.
+Before we can even start we need to install Fela to our project.
 
 ```sh
-npm i --save fela fela-dom
+npm i --save fela
 ```
 
 We can now either use the new ECMAScript 2015 `import` syntax or the CommonJS `require` syntax. *(The examples will use the `import`-syntax)*
@@ -29,11 +29,9 @@ We can now either use the new ECMAScript 2015 `import` syntax or the CommonJS `r
 ```javascript
 // ECMAScript 2015
 import Fela from 'fela'
-import FelaDOM from 'fela-dom'
 
 // CommonJS
 var Fela = require('fela')
-var FelaDOM = require('fela-dom')
 ```
 
 ## 2. Understanding Selectors
@@ -91,7 +89,7 @@ selector({ }) // => { color: 'red' }
 ```
 
 2. Conditional values
-Some values might only be applied if a certain condition is fullfilled. Instead of complex and big `if` statements you can use the ternary operator.
+Some values might only be applied if a certain condition is fulfilled. Instead of complex and big `if` statements you can use the ternary operator.
 
 ```javascript
 const selector = props => ({
@@ -104,7 +102,7 @@ selector({ }) // => { color: 'green' }
 
 
 ## 3. Pseudo Classes
-As pseudo classes are a key feature of CSS they are supported by FelaDOM's Renderer as well. You can easily define them as nested property objects within your style composer. You can also nest them to require both pseudo classes to be active.
+As pseudo classes are a key feature of CSS they are supported by Fela's Renderer as well. You can easily define them as nested property objects within your style composer. You can also nest them to require both pseudo classes to be active.
 ```javascript
 const selector = props => ({
   color: 'red',
@@ -125,10 +123,10 @@ const selector = props => ({
 ```
 
 ## 4. Media Queries
-Yet another CSS key feature are media queries. They're used to describe how style get rendered depending on the current device. Unlike pseudo classes they can **not** be used directly with basic isomorphic Selectors. We need to use special extended Selectors called MediaSelectors which are provided by FelaDOM directly. They accept a simple composer as well as multiple media composers.
+Yet another CSS key feature are media queries. They're used to describe how style get rendered depending on the current device. Unlike pseudo classes they can **not** be used directly with basic isomorphic Selectors. We need to use special extended Selectors called MediaSelectors which are provided by Fela directly. They accept a simple composer as well as multiple media composers.
 
 ```javascript
-import { MediaSelector } from 'fela-dom'
+import { MediaSelector } from 'fela'
 
 const composer = props => ({
   color: 'red',
@@ -149,7 +147,7 @@ const mediaComposer = {
   })
 }
 
-const mediaSelector = new FelaDOM.MediaSelector(composer, mediaComposer)
+const mediaSelector = new Fela.MediaSelector(composer, mediaComposer)
 ```
 
 ## 5. Animation Keyframes
@@ -166,7 +164,7 @@ The DOM Renderer is used to directly render Selector variations into a specific 
 It can basically render into any valid element node though styles will only get applied correctly if a real `<style>` element is used.
 
 ```javascript
-import { Renderer } from 'fela-dom'
+import { Renderer } from 'fela'
 const mountNode = document.getElementsByTagName('style')[0]
 
 const selector = props => ({
@@ -186,7 +184,7 @@ console.log(mountNode.textContent) // => .c0-s{font-size:10px;color:red}.c0-eqz3
 The Server Renderer does exactly the same as the DOM Renderer does except actually rendering into a DOM node. It is used for server-side rendering and only caches all the variations. It is used to collect all rendered variations produced on initial render. Using the `renderToString` method afterwards will return a single string containing all styles transformed into valid CSS markup.<br>
 This string can now be injected into the provided HTML file.
 ```javascript
-import { Renderer } from 'fela-dom/server'
+import { Renderer } from 'fela/server'
 
 const selector = props => ({
   fontSize: props.size || 10 + 'px',
@@ -210,11 +208,11 @@ There are actually two ways to use plugins. You can either pass them to the `ren
 import prefixer from 'fela-plugin-prefixer'
 
 // Method 1
-const renderer = new FelaDOM.Renderer(mountNode)
+const renderer = new Fela.Renderer(mountNode)
 renderer.render(selector, { color: 'red' }, [ prefixer() ])
 
 // Method 2
-const renderer = new FelaDOM.Renderer(mountNode, { plugins: [ prefixer() ]})
+const renderer = new Fela.Renderer(mountNode, { plugins: [ prefixer() ]})
 renderer.render(selector, { color: 'red' })
 ```
 
@@ -239,7 +237,7 @@ It can be used with any solution, but works perfectly fine together with React -
 
 ```javascript
 import React, { Component } from 'react'
-import { Renderer } from 'fela-dom'
+import { Renderer } from 'fela'
 
 const node = document.getElementById('style-element')
 const renderer = new Renderer(node)
@@ -292,7 +290,7 @@ ReactDOM.render(
 
 ### Fela + Web Components
 ```javascript
-import { Renderer } from 'fela-dom'
+import { Renderer } from 'fela'
 
 const node = document.getElementById('style-element')
 const renderer = new Renderer(node)
