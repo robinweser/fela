@@ -25,25 +25,6 @@ export default class StyleSheet {
   }
 
   /**
-   * renders all cached selector styles into a single valid CSS string
-   * clusters media query styles into groups to reduce output size
-   */
-  renderToString() {
-    let css = ''
-
-    this.fontFaces.forEach(fontFace => css += fontFace)
-    css += this._renderCache(this.cache)
-    this.mediaCache.forEach((cache, media) => {
-      css += '@media ' + media + '{' + this._renderCache(cache) + '}'
-    })
-    this.keyframes.forEach(variation => {
-      variation.forEach(markup => css += markup)
-    })
-
-    return css
-  }
-
-  /**
    * Adds a new subscription to get notified on every rerender
    *
    * @param {Function} callback - callback function which will be executed
@@ -366,25 +347,5 @@ export default class StyleSheet {
     return this.keyframePrefixes.reduce((css, prefix) => {
       return css + '@' + prefix + 'keyframes ' + animationName + '{' + keyframe + '}'
     }, '')
-  }
-
-  /**
-   * renders a whole cache into a single CSS string
-   *
-   * @param {Map} cache - cache including all selector variations
-   * @return {string} valid CSS string
-   */
-  _renderCache(cache) {
-    let css = ''
-
-    cache.forEach(variation => {
-      variation.forEach((markup, propsReference) => {
-        if (propsReference !== 'static') {
-          css += markup
-        }
-      })
-    })
-
-    return css
   }
 }

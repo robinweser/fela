@@ -31,8 +31,25 @@ export default class Renderer {
     return this.stylesheet._renderSelectorVariation(selector, props, plugins)
   }
 
+  /**
+   * renders all cached selector styles into a single valid CSS string
+   * clusters media query styles into groups to reduce output size
+
+   * @return single concatenated CSS string
+   */
   renderToString() {
-    return this.stylesheet.renderToString()
+    let css = ''
+
+    this.stylesheet.fontFaces.forEach(fontFace => css += fontFace)
+    css += this._renderCache(this.stylesheet.cache)
+    this.stylesheet.mediaCache.forEach((cache, media) => {
+      css += '@media ' + media + '{' + this._renderCache(cache) + '}'
+    })
+    this.stylesheet.keyframes.forEach(variation => {
+      variation.forEach(markup => css += markup)
+    })
+
+    return css
   }
 
   /**
@@ -40,5 +57,26 @@ export default class Renderer {
    */
   clear() {
     this.stylesheet.clear()
+  }
+
+
+  /**
+   * renders a whole cache into a single CSS string
+   *
+   * @param {Map} cache - cache including all selector variations
+   * @return {string} valid CSS string
+   */
+  _renderCache(cache) {
+    let css = ''
+
+    cache.forEach(variation => {
+      variation.forEach((markup, propsReference) => {
+        if (propsReference !== 'static') {
+          css += markup
+        }
+      })
+    })
+
+    return css
   }
 }

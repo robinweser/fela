@@ -10,10 +10,14 @@ export default (options = { }) => {
   return (renderer) => {
     // DOM Renderer
     if (renderer.hasOwnProperty('node')) {
-      renderer.stylesheet.subscribe(() => renderer.node.textContent = cssbeautify(renderer.stylesheet.renderToString(), {
-        ...defaultOptions,
-        ...options
-      }))
+      var css = ''
+      renderer.stylesheet.subscribe(newCSS => {
+        css += newCSS
+        renderer.node.textContent = cssbeautify(css, {
+          ...defaultOptions,
+          ...options
+        })
+      })
       return renderer
     }
 
