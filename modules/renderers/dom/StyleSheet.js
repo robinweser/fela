@@ -180,7 +180,7 @@ export default class StyleSheet {
       }
 
       Object.keys(clusteredStyles).forEach(media => {
-        const renderedStyles = this._renderStyles(clusteredStyles[media], className)
+        const renderedStyles = this._renderClusteredStyles(clusteredStyles[media], className)
         if (media === '') {
           cachedSelector.set(propsReference, renderedStyles)
         } else {
@@ -290,13 +290,13 @@ export default class StyleSheet {
         if (isPseudo(property)) {
           this._clusterStyles(value, pseudo + property, media, out)
         } else if (isMediaQuery(property)) {
-          const query = property.replace('@media', '').trim()
+          const query = property.slice(6).trim()
           const nestedMedia = media !== '' ? media + ' and ' + query : query
           this._clusterStyles(value, pseudo, nestedMedia, out)
         }
       } else {
         if (!out[media]) {
-          out[media] = { }
+          out[media] = { [ pseudo]: { } }
         }
         if (!out[media][pseudo]) {
           out[media][pseudo] = { }
@@ -339,13 +339,13 @@ export default class StyleSheet {
   }
 
   /**
-   * renders styles into a CSS string
+   * renders clustered styles into a CSS string
    *
    * @param {Object} styles - prepared styles with pseudo keys
    * @param {string} className - className reference to render
    * @return {string} valid CSS string
    */
-  _renderStyles(styles, className) {
+  _renderClusteredStyles(styles, className) {
     return Object.keys(styles).reduce((css, pseudo) => {
       return css + '.' + className + pseudo + '{' + cssifyObject(styles[pseudo]) + '}'
     }, '')
