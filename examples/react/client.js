@@ -3,9 +3,9 @@ import { render } from 'react-dom'
 import { Renderer } from '../../modules/fela'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
-import beautifier from '../../modules/devtools/beautifier'
-import logger from '../../modules/devtools/logger'
-import applyDevTools from '../../modules/helper/applyDevTools'
+import beautifier from '../../modules/middleware/beautifier'
+import logger from '../../modules/middleware/logger'
+import applyMiddleware from '../../modules/helper/applyMiddleware'
 
 import App from './app'
 
@@ -14,7 +14,7 @@ const renderer = new Renderer(document.getElementById('stylesheet'), {
   plugins: [ prefixer(), fallbackValue() ]
 })
 
-const enhancedRenderer = applyDevTools(renderer, [
+const enhancedRenderer = applyMiddleware(renderer, [
   beautifier(), logger({ beautify: true })
 ])
 

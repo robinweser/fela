@@ -8,35 +8,29 @@ import App from './app.js'
 import { Renderer } from '../../modules/felaServer'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
-import beautifier from '../../modules/devtools/beautifier'
-import logger from '../../modules/devtools/logger'
-import applyDevTools from '../../modules/helper/applyDevTools'
+import beautifier from '../../modules/middleware/beautifier'
+import logger from '../../modules/middleware/logger'
+import applyMiddleware from '../../modules/helper/applyMiddleware'
 
-const indexHTML = fs.readFileSync(__dirname + '/index.html').toString()
 const app = express()
-const host = 'localhost'
-const port = 8000
 
 app.get('/', (req, res) => {
-  const renderer = new Renderer({
-    keyframePrefixes: [],
-    plugins: [ prefixer(), fallbackValue() ]
-  })
+  const plugins = [ prefixer(), fallbackValue() ]
+  const renderer = new Renderer({ plugins: plugins })
 
-  const enhancedRenderer = applyDevTools(renderer, [
-    beautifier(), logger({ beautify: false })
-  ])
+  const middleware = [ beautifier(), logger({ beautify: false }) ]
+  const enhancedRenderer = applyMiddleware(renderer, middleware)
 
+  const indexHTML = fs.readFileSync(__dirname + '/index.html').toString()
   const appHtml = renderToString(
     <App renderer={enhancedRenderer} />
   )
-
   const appCSS = enhancedRenderer.renderToString()
 
   res.write(indexHTML.replace('<!-- {{app}} -->', appHtml).replace('<!-- {{css}} -->', appCSS))
   res.end()
 })
 
-app.listen(port, host, () => {
-  console.log('Access the universal app at http://%s:%d', host, port)
+app.listen(8000, 'localhost', () => {
+  console.log('Access the universal app at http://%s:%d', 'localhost', 8000)
 })

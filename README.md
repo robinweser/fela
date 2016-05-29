@@ -123,7 +123,7 @@ All packages including all plugins are also available via [npmcdn](https://npmcd
 | name | configurable | production | description |
 | --- | --- | --- | ------ |
 |[logger](docs/middleware/Logger.md) (dev-tool) |[yes](docs/middleware/Logger.md#configuration) | no | Logs changes (rendered CSS) |
-|[beautifier](docs/middleware/Beautifer.md) (dev-tool) |[yes](docs/middleware/Beautifer.md#configuration) | no | Beautifies rendered CSS markup |
+|[beautifier](docs/middleware/Beautifier.md) (dev-tool) |[yes](docs/middleware/Beautifier.md#configuration) | no | Beautifies rendered CSS markup |
 
 # License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

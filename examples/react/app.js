@@ -45,7 +45,7 @@ const infoSelector = props => ({
 export default class App extends Component {
   constructor() {
     super(...arguments)
-    this.state = { size: 20 }
+    this.state = { size: 100 }
     this.setSize = this.setSize.bind(this)
   }
 
