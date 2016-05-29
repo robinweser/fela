@@ -2,7 +2,7 @@
 
 1. [Installation](#1-installation)
 2. [Understanding Selectors](#2-understanding-selectors)
-  * 2.1. [Tips & Tricks](#21-tips-tricks)
+  * 2.1. [Tips & Tricks](#21-tips--tricks)
 3. [Pseudo Classes](#3-pseudo-classes)
 4. [Media Queries](#4-media-queries)
 5. [Animation Keyframes](#5-animation-keyframes)
@@ -13,8 +13,8 @@
 8. [Plugins](#8-plugins)
   * 8.1. [Configuration](#81-configuration)
 9. [Fela with other Libraries](#9-fela-with-other-libraries)
-  * [Fela + React](#fela-react)
-  * [Fela + Web Components](#fela-web-components)
+  * [Fela + React](#fela--react)
+  * [Fela + Web Components](#fela--web-components)
 
 ## 1. Installation
 Before we can even start we need to install Fela to our project.
@@ -52,7 +52,7 @@ const selector = props => ({
 ### 2.1. Tips & Tricks
 To write even more advanced and simple Selectors there are some helpful tips & tricks you might want to know and use.
 
-1. Optional props & Default values
+* Optional props & Default values
 Sometimes you do not always pass all props required to completely resolve all style declarations, but want to use a default value in order to not produce any invalid CSS markup. You can achieve this in two ways. Either with ECMA2015 [default function parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters) or with the logical OR operator.
 
 ```javascript
@@ -70,7 +70,7 @@ selector({ color: 'blue' }) // => { color: 'blue' }
 selector({ }) // => { color: 'red' }
 ```
 
-2. Conditional values
+* Conditional values
 Some values might only be applied if a certain condition is fulfilled. Instead of complex and big `if` statements you can use the ternary operator.
 
 ```javascript
@@ -89,15 +89,14 @@ As pseudo classes are a key feature of CSS they are supported by Fela's Renderer
 const selector = props => ({
   color: 'red',
   fontSize: '12px',
-  // if is hovered
   ':hover': {
     color: 'blue',
-    // if is hovered AND active
+    // they can be nested to produce 
+    // e.g. :hover:active
     ':active': {
       color: 'yellow'
     }
   },
-  // if is active
   ':active': {
     color: 'black'
   }
@@ -115,7 +114,9 @@ const composer = props => ({
   },
   '@media (min-height: 200px)': {
     color: 'yellow',
-    ':hover': {
+    // they can be nested to produce e.g.
+    // @media (min-height: 200px) and (max-width: 300px)
+    '@media (max-width: 300px)': {
       color: 'purple'
     }
   },
@@ -130,7 +131,7 @@ To be completed soon.
 ## 6. Font Faces
 To be completed soon.
 
-## 7. Rendering Selectors
+## 7. Rendering
 We now know how to use selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.<br>
 > Note: Before using any Renderer you should first understand how the rendering process works in general. If you're not already familiar with the mechansism please check out [Rendering Mechanism](RenderingMechanism.md) for a detailed explanation.
 
@@ -150,7 +151,7 @@ const selector = props => ({
 const renderer = new Renderer(mountNode)
 
 renderer.render(selector) // => c0
-renderer.render(selector, { size: 12 }) // => c0-eqz3x
+renderer.render(selector, { size: 12 }) // => c0 c0-eqz3x
 
 console.log(mountNode.textContent) // => .c0{color:red}.c0-eqz3x{font-size:12px}
 ```
@@ -169,7 +170,7 @@ const selector = props => ({
 const renderer = new Renderer()
 
 renderer.render(selector) // => c0
-renderer.render(selector, { size: 12 }) // => c0-eqz3x
+renderer.render(selector, { size: 12 }) // => c0 c0-eqz3x
 
 console.log(renderer.renderToString()) // => .c0{color:red}.c0-eqz3x{font-size:12px}
 ```
@@ -202,7 +203,7 @@ const sizeProperty = size => ({
   height: size + 'px'
 })
 
-renderer.render(selector, { color: 'red' }, [ prefixer({size: sizeProperty}) ])
+renderer.render(selector, { color: 'red' }, [ customProperty({size: sizeProperty}) ])
 ```
 
 ## 9. Fela with other Libraries
