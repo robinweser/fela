@@ -61,7 +61,7 @@ Generated CSS markup will look like this:
 ```CSS
 .c0 {
   color: red;
-  lineHeight: 1.4
+  line-height: 1.4
 }
 .c0:hover {
   color: blue
