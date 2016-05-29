@@ -1,13 +1,11 @@
 import StyleSheet from '../../../modules/renderers/dom/StyleSheet'
-import MediaSelector from '../../../modules/components/dom/MediaSelector'
-import Selector from '../../../modules/components/shared/Selector'
 import FontFace from '../../../modules/components/dom/FontFace'
 import Keyframe from '../../../modules/components/dom/Keyframe'
 
 describe('StyleSheet Tests', () => {
   describe('Adding a Selector variation', () => {
     it('should add a cache entry', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({ color: 'red' })
       const sheet = new StyleSheet()
 
       sheet._renderSelectorVariation(selector)
@@ -16,11 +14,14 @@ describe('StyleSheet Tests', () => {
     })
 
     it('should add a media cache entry for each media', () => {
-      const selector = new MediaSelector(props => ({ color: 'red' }), {
-        screen: props => ({ color: 'blue' }),
-        'min-height: 300px': props => ({
+      const selector = props => ({
+        color: 'red',
+        '@media screen': {
+          color: 'blue'
+        },
+        '@media min-height: 300px': {
           color: 'yellow'
-        })
+        }
       })
 
       const sheet = new StyleSheet()
@@ -34,7 +35,10 @@ describe('StyleSheet Tests', () => {
     })
 
     it('should reuse cached variations', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({
+        color: props.color,
+        fontSize: '23px'
+      })
       const sheet = new StyleSheet()
 
       sheet._renderSelectorVariation(selector, { color: 'red' })
@@ -44,9 +48,28 @@ describe('StyleSheet Tests', () => {
       expect(sheet.cache.get(selector).size).to.eql(4)
     })
 
+    it('should reuse static styles', () => {
+      const selector = props => ({ fontSize: '23px' })
+      const sheet = new StyleSheet()
+
+      const className = sheet._renderSelectorVariation(selector, {
+        color: 'red'
+      })
+      const className2 = sheet._renderSelectorVariation(selector, {
+        color: 'red'
+      })
+      const className3 = sheet._renderSelectorVariation(selector, {
+        color: 'blue'
+      })
+
+      expect(className).to.eql(className2)
+      expect(className).to.eql(className3)
+      expect(sheet.cache.get(selector).size).to.eql(4)
+    })
+
     it('should generate an incrementing reference id', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
-      const selector2 = new Selector(props => ({ color: 'blue' }))
+      const selector = props => ({ color: 'red' })
+      const selector2 = props => ({ color: 'blue' })
       const sheet = new StyleSheet()
 
       sheet._renderSelectorVariation(selector)
@@ -58,7 +81,7 @@ describe('StyleSheet Tests', () => {
     })
 
     it('should always return the same className prefix', () => {
-      const selector = new Selector(props => ({ color: 'red' }))
+      const selector = props => ({ color: 'red', foo: props.foo })
       const sheet = new StyleSheet()
 
       const staticClassName = sheet._renderSelectorVariation(selector)
@@ -67,16 +90,6 @@ describe('StyleSheet Tests', () => {
       })
       expect(staticClassName).to.not.eql(dynamicClassName)
       expect(staticClassName.substr(0, 2)).to.eql(dynamicClassName.substr(0, 2))
-    })
-
-    it('should support function selectors', () => {
-      const selector = props => ({ color: 'red' })
-      const sheet = new StyleSheet()
-
-      sheet._renderSelectorVariation(selector)
-
-      expect(sheet.cache.has(selector)).to.eql(true)
-      expect(sheet.cache.get(selector).get('')).to.eql('.c0{color:red}')
     })
 
     it('should keep base styles for diffing', () => {
@@ -197,10 +210,10 @@ describe('StyleSheet Tests', () => {
 
   describe('Rendering a whole cache', () => {
     it('should render valid CSS', () => {
-      const selector = new Selector(props => ({
+      const selector = props => ({
         color: props.color,
         fontSize: '12px'
-      }))
+      })
 
       const stylesheet = new StyleSheet()
       const staticClassName = stylesheet._renderSelectorVariation(selector)
@@ -214,7 +227,7 @@ describe('StyleSheet Tests', () => {
     })
 
     it('should not render empty selectors', () => {
-      const selector = new Selector(props => ({ fontSize: '12px' }))
+      const selector = props => ({ fontSize: '12px' })
 
       const stylesheet = new StyleSheet()
       const staticClassName = stylesheet._renderSelectorVariation(selector)
@@ -228,7 +241,7 @@ describe('StyleSheet Tests', () => {
     })
 
     it('should split and render pseudo classes', () => {
-      const selector = new Selector(props => ({
+      const selector = props => ({
         color: 'red',
         ':hover': {
           color: 'blue',
@@ -237,7 +250,7 @@ describe('StyleSheet Tests', () => {
             fontSize: '12px'
           }
         }
-      }))
+      })
 
       const stylesheet = new StyleSheet()
       const className = stylesheet._renderSelectorVariation(selector)
@@ -251,8 +264,11 @@ describe('StyleSheet Tests', () => {
 
   describe('Rendering to string', () => {
     it('should render all caches', () => {
-      const selector = new MediaSelector(props => ({ color: 'red' }), {
-        'min-height: 300px': props => ({ color: 'blue' })
+      const selector = props => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          color: 'blue'
+        }
       })
 
       const stylesheet = new StyleSheet()
@@ -260,12 +276,15 @@ describe('StyleSheet Tests', () => {
 
       const css = stylesheet.renderToString()
 
-      expect(css).to.eql('.' + staticClassName + '{color:red}@media(min-height: 300px){.' + staticClassName + '{color:blue}}')
+      expect(css).to.eql('.' + staticClassName + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
     })
 
     it('should cluster media queries', () => {
-      const selector = new MediaSelector(props => ({ color: 'red' }), {
-        'min-height: 300px': props => ({ color: 'blue' })
+      const selector = props => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          color: 'blue'
+        }
       })
 
       const stylesheet = new StyleSheet()
@@ -276,13 +295,16 @@ describe('StyleSheet Tests', () => {
 
       const css = stylesheet.renderToString()
 
-      expect(css).to.eql('.' + staticClassName + '{color:red}@media(min-height: 300px){.' + staticClassName + '{color:blue}}')
+      expect(css).to.eql('.' + staticClassName + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
     })
 
     it('should not render empty media styles', () => {
-      const selector = new MediaSelector(props => ({
-        color: props.color
-      }), { 'min-height: 300px': props => ({ color: 'blue' }) })
+      const selector = props => ({
+        color: props.color,
+        '@media (min-height: 300px)': {
+          color: 'blue'
+        }
+      })
 
       const stylesheet = new StyleSheet()
       const staticClassName = stylesheet._renderSelectorVariation(selector)
@@ -292,7 +314,7 @@ describe('StyleSheet Tests', () => {
 
       const css = stylesheet.renderToString()
 
-      expect(css).to.eql('.' + dynamicClassName.replace(staticClassName, '').trim() + '{color:red}@media(min-height: 300px){.' + staticClassName + '{color:blue}}')
+      expect(css).to.eql('.' + dynamicClassName.replace(staticClassName, '').trim() + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
     })
 
     it('should only render valid font face properties', () => {
@@ -340,8 +362,11 @@ describe('StyleSheet Tests', () => {
 
   describe('Subscribing to the StyleSheet', () => {
     it('should call the callback each time it emits changes', () => {
-      const selector = new MediaSelector(props => ({ color: 'red' }), {
-        'min-height: 300px': props => ({ color: 'blue' })
+      const selector = props => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          color: 'blue'
+        }
       })
 
       const stylesheet = new StyleSheet()
@@ -380,6 +405,159 @@ describe('StyleSheet Tests', () => {
       const validatedStyles = stylesheet._validateStyles(selector({ }))
 
       expect(validatedStyles).to.eql({ fontSize: '12px' })
+    })
+  })
+
+  describe('Clustering styles', () => {
+    it('should cluster and flatten media query styles', () => {
+      const styles = {
+        color: 'blue',
+        fontSize: '12px',
+        '@media (min-height: 300px)': {
+          color: 'red',
+          fontSize: '5px',
+          '@media (max-width: 200px)': {
+            color: 'black'
+          }
+        },
+        '@media screen': {
+          fontSize: '20px'
+        }
+      }
+
+      const stylesheet = new StyleSheet()
+      const clusteredStyles = stylesheet._clusterStyles(styles)
+
+      expect(clusteredStyles).to.eql({
+        '': {
+          '': {
+            color: 'blue',
+            fontSize: '12px'
+          }
+        },
+        '(min-height: 300px)': {
+          '': {
+            color: 'red',
+            fontSize: '5px'
+          }
+        },
+        '(min-height: 300px) and (max-width: 200px)': {
+          '': {
+            color: 'black'
+          }
+        },
+        screen: {
+          '': {
+            fontSize: '20px'
+          }
+        }
+      })
+    })
+
+    it('should cluster and flatten pseudo classes', () => {
+      const styles = {
+        color: 'blue',
+        fontSize: '12px',
+        ':hover': {
+          color: 'red',
+          fontSize: '5px',
+          ':focus': {
+            color: 'black'
+          }
+        },
+        ':focus': {
+          fontSize: '20px'
+        }
+      }
+
+      const stylesheet = new StyleSheet()
+      const clusteredStyles = stylesheet._clusterStyles(styles)
+
+      expect(clusteredStyles).to.eql({
+        '': {
+          '': {
+            color: 'blue',
+            fontSize: '12px'
+          },
+          ':hover': {
+            color: 'red',
+            fontSize: '5px'
+          },
+          ':hover:focus': {
+            color: 'black'
+          },
+          ':focus': {
+            fontSize: '20px'
+          }
+        }
+      })
+    })
+
+    it('should cluster flatten media query styles and pseudo classes combined', () => {
+      const styles = {
+        color: 'blue',
+        fontSize: '12px',
+        ':hover': {
+          color: 'black',
+          ':active': {
+            color: 'gray'
+          }
+        },
+        '@media (min-height: 300px)': {
+          color: 'red',
+          fontSize: '5px',
+          ':hover': {
+            color: 'yellow',
+            ':focus': {
+              color: 'brown'
+            }
+          },
+          '@media (max-width: 200px)': {
+            color: 'black',
+            ':focus': {
+              color: 'purple'
+            }
+          }
+        }
+      }
+
+      const stylesheet = new StyleSheet()
+      const clusteredStyles = stylesheet._clusterStyles(styles)
+
+      expect(clusteredStyles).to.eql({
+        '': {
+          '': {
+            color: 'blue',
+            fontSize: '12px'
+          },
+          ':hover': {
+            color: 'black'
+          },
+          ':hover:active': {
+            color: 'gray'
+          }
+        },
+        '(min-height: 300px)': {
+          '': {
+            color: 'red',
+            fontSize: '5px'
+          },
+          ':hover': {
+            color: 'yellow'
+          },
+          ':hover:focus': {
+            color: 'brown'
+          }
+        },
+        '(min-height: 300px) and (max-width: 200px)': {
+          '': {
+            color: 'black'
+          },
+          ':focus': {
+            color: 'purple'
+          }
+        }
+      })
     })
   })
 })
