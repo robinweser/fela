@@ -1,0 +1,26 @@
+{
+  "name": "fela-logger",
+  "version": "1.0.0-alpha.7",
+  "description": "Logging middleware for Fela",
+  "main": "logger.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "logger.js",
+    "dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-devtools",
+    "dx",
+    "devtools",
+    "cssinjs",
+    "logger"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "cssbeautify": "^0.3.1"
+  }
+}
