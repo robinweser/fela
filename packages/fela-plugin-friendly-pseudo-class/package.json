@@ -1,6 +1,6 @@
 {
     "name": "fela-plugin-friendly-pseudo-class",
-    "version": "1.0.0-alpha.5",
+    "version": "1.0.0-alpha.7",
     "description": "Fela plugin to support javascript-friendly pseudo class syntax",
     "main": "friendlyPseudoClass.js",
     "files": [
@@ -17,8 +17,5 @@
         "cssinjs"
     ],
     "author": "Robin Frischmann",
-    "license": "MIT",
-    "peerDependencies": {
-        "fela": "^1.0.0-alpha.5"
-    }
+    "license": "MIT"
 }

@@ -1,6 +1,6 @@
 {
     "name": "fela-plugin-unit",
-    "version": "1.0.0-alpha.5",
+    "version": "1.0.0-alpha.7",
     "description": "Fela plugin to automatically add units if required",
     "main": "unit.js",
     "files": [
@@ -17,9 +17,6 @@
     ],
     "author": "Robin Frischmann",
     "license": "MIT",
-    "peerDependencies": {
-        "fela": "^1.0.0-alpha.5"
-    },
     "dependencies": {
         "unitless-css-property": "^1.0.0"
     }

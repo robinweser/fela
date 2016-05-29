@@ -1,6 +1,6 @@
 {
     "name": "fela-plugin-lvha",
-    "version": "1.0.0-alpha.5",
+    "version": "1.0.0-alpha.7",
     "description": "Fela plugin that sorts pseudo classes according to LVH(F)A",
     "main": "LVHA.js",
     "files": [
@@ -14,12 +14,9 @@
         "fela",
         "fela-plugin",
         "lvha",
-        "pseudo classes"
+        "pseudo classes",
         "cssinjs"
     ],
     "author": "Robin Frischmann",
-    "license": "MIT",
-    "peerDependencies": {
-        "fela": "^1.0.0-alpha.5"
-    }
+    "license": "MIT"
 }

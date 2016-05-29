@@ -30,12 +30,7 @@ function updateVersion(pkg) {
       const packageJSON = JSON.parse(data)
       packageJSON.version = globalVersion
 
-
-      if (pkg !== 'fela') {
-        packageJSON.peerDependencies.fela = '^' + globalVersion
-      }
-
-      const newPackageJSON = JSON.stringify(packageJSON, null, 4)
+      const newPackageJSON = JSON.stringify(packageJSON, null, 2)
 
       fs.writeFile(__dirname + '/../packages/' + pkg + '/package.json', newPackageJSON, err => {
         errorOnFail(err)

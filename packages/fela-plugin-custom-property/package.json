@@ -1,6 +1,6 @@
 {
     "name": "fela-plugin-custom-property",
-    "version": "1.0.0-alpha.5",
+    "version": "1.0.0-alpha.7",
     "description": "Fela plugin to use custom properties",
     "main": "customProperty.js",
     "files": [
@@ -18,8 +18,5 @@
         "cssinjs"
     ],
     "author": "Robin Frischmann",
-    "license": "MIT",
-    "peerDependencies": {
-        "fela": "^1.0.0-alpha.5"
-    }
+    "license": "MIT"
 }

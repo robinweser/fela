@@ -17,7 +17,7 @@ Dynamic Styling in JavaScript.
 * No specificity conflicts
 * Works with any framework
 * Dead code elimination
-* Optimized rendering
+* Minimal CSS rules
 * Extendable with plugins
 * No build step
 
@@ -106,6 +106,7 @@ All packages including all plugins are also available via [npmcdn](https://npmcd
 * [Rendering Mechanism](docs/RenderingMechanism.md)
 * [API Reference](docs/api/)
 * [Plugins](docs/plugins/)
+* [Middleware](docs/middleware/)
 * [FAQ](FAQ)
 
 ### Plugins
@@ -118,6 +119,11 @@ All packages including all plugins are also available via [npmcdn](https://npmcd
 |[unit](docs/plugins/Unit.md) |[yes](docs/plugins/Unit.md#configuration) |1.08kb | Automatically adds units to values if needed  |
 |[LVHA](docs/plugins/LVHA.md) |no |0.47kb | Sorts pseudo classes according to [LVH(F)A](https://css-tricks.com/remember-selectors-with-love-and-hate/)  |
 
+### Middleware
+| name | configurable | production | description |
+| --- | --- | --- | ------ |
+|[logger](docs/middleware/Logger.md) (dev-tool) |[yes](docs/middleware/Logger.md#configuration) | no | Logs changes (rendered CSS) |
+|[beautifier](docs/middleware/Beautifer.md) (dev-tool) |[yes](docs/middleware/Beautifer.md#configuration) | no | Beautifies rendered CSS markup |
 
 # License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

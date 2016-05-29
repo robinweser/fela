@@ -1,6 +1,6 @@
 {
     "name": "fela-plugin-fallback-value",
-    "version": "1.0.0-alpha.5",
+    "version": "1.0.0-alpha.7",
     "description": "Fela plugin to resolve fallback values",
     "main": "fallbackValue.js",
     "files": [
@@ -17,8 +17,5 @@
         "cssinjs"
     ],
     "author": "Robin Frischmann",
-    "license": "MIT",
-    "peerDependencies": {
-        "fela": "^1.0.0-alpha.5"
-    }
+    "license": "MIT"
 }
