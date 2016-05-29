@@ -8,6 +8,9 @@ import App from './app.js'
 import { Renderer } from '../../modules/felaServer'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
+import beautifier from '../../modules/devtools/beautifier'
+import logger from '../../modules/devtools/logger'
+import applyDevTools from '../../modules/helper/applyDevTools'
 
 const indexHTML = fs.readFileSync(__dirname + '/index.html').toString()
 const app = express()
@@ -16,14 +19,19 @@ const port = 8000
 
 app.get('/', (req, res) => {
   const renderer = new Renderer({
+    keyframePrefixes: [],
     plugins: [ prefixer(), fallbackValue() ]
   })
 
+  const enhancedRenderer = applyDevTools(renderer, [
+    beautifier(), logger({ beautify: false })
+  ])
+
   const appHtml = renderToString(
-    <App renderer={renderer} />
+    <App renderer={enhancedRenderer} />
   )
 
-  const appCSS = renderer.renderToString()
+  const appCSS = enhancedRenderer.renderToString()
 
   res.write(indexHTML.replace('<!-- {{app}} -->', appHtml).replace('<!-- {{css}} -->', appCSS))
   res.end()

@@ -28,7 +28,7 @@ const animation = new Keyframe(props => ({
 
 const welcomeSelector = props => ({
   padding: '50px',
-  color: props.color,
+  color: 'rgb(50, 50, 50)',
   fontSize: props.fontSize,
   animation: props.name + ' 2s infinite'
 })
@@ -43,18 +43,26 @@ const infoSelector = props => ({
 })
 
 export default class App extends Component {
-  render() {
+  constructor() {
+    super(...arguments)
+    this.state = { size: 20 }
+    this.setSize = this.setSize.bind(this)
+  }
 
+  setSize() {
+    this.setState({ size: ++this.state.size })
+  }
+
+  render() {
     const { renderer } = this.props
     const welcome = renderer.render(welcomeSelector, {
-      color: 'rgb(50, 50, 50)',
-      fontSize: '80px',
+      fontSize: this.state.size + 'px',
       name: renderer.render(animation, { color: 'green' })
     })
 
     return (
       <div className={renderer.render(centerSelector)}>
-        <div className={welcome}>Welcome to Fela.</div>
+        <div className={welcome} onClick={this.setSize}>Welcome to Fela.</div>
         <div className={renderer.render(infoSelector)}>
           <div>This is the basic example with React.</div>
           <div>It will be updated and extended soon.</div>
