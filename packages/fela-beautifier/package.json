@@ -1,0 +1,27 @@
+{
+  "name": "fela-beautifier",
+  "version": "1.0.0-alpha.7",
+  "description": "Beautifier middleware for Fela",
+  "main": "beautifier.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "beautifier.js",
+    "dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-devtools",
+    "dx",
+    "devtools",
+    "cssinjs",
+    "beautifier",
+    "cssbeautify"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "cssbeautify": "^0.3.1"
+  }
+}
