@@ -5,6 +5,7 @@
 * [Renderer(node)](#renderernode)
   * [.render(selector [, props, plugins])](#renderselector--props-plugins)
   * [.clear()](#clear)
+* [applyMiddleware(renderer, middleware)](#applymiddlewarerenderer-middleware)
 
 
 ## `FontFace(family, files [, properties])`
@@ -89,5 +90,28 @@ renderer.render(selector, { color: 'blue' }) // => c0-ee414
 
 renderer.clear()
 // node.textContent === ''
+```
 
+## `applyMiddleware(renderer, middleware)`
+**Renderer\<renderer>**<br>
+**Function[]?\<middleware>**
+
+Helper to apply `middleware` to a Renderer instance.
+
+```javascript
+const renderer = new Fela.Renderer(node)
+
+// example renderer that logs a text
+// on every render call
+const logger = options => {
+  return renderer => {
+    const existingRender = renderer.render.bind(renderer)
+    renderer.render = (selector, props, plugins) => {
+      console.log("Render has been called!")
+      return existingRender(selector, props, plugins)
+    }
+  }
+}
+
+const enhancedRenderer = Fela.applyMiddleware(renderer, [ logger() ])
 ```

@@ -42,6 +42,4 @@ const plugin = customProperty({
   // the value references the resolving function
   size: sizeProperty
 })
-
-
 ```
