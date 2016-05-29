@@ -11,7 +11,8 @@ export default class StyleSheet {
    */
   constructor(config = { }) {
     this.listeners = new Set()
-    this.keyframePrefixes = config.keyframePrefixes || [ '-webkit-', '-moz-', '' ]
+    this.keyframePrefixes = config.keyframePrefixes || [ '-webkit-', '-moz-' ]
+    this.keyframePrefixes.push('')
     this.plugins = config.plugins || [ ]
     this._init()
   }
@@ -31,13 +32,12 @@ export default class StyleSheet {
     let css = ''
 
     this.fontFaces.forEach(fontFace => css += fontFace)
-    this.keyframes.forEach(variation => {
-      variation.forEach(markup => css += markup)
-    })
-
     css += this._renderCache(this.cache)
     this.mediaCache.forEach((cache, media) => {
       css += '@media ' + media + '{' + this._renderCache(cache) + '}'
+    })
+    this.keyframes.forEach(variation => {
+      variation.forEach(markup => css += markup)
     })
 
     return css
@@ -63,8 +63,7 @@ export default class StyleSheet {
    * @param {Function} callback - callback function which will be executed
    * @return {Object} equivalent unsubscribe method
    */
-  _emitChange() {
-    const css = this.renderToString()
+  _emitChange(css) {
     this.listeners.forEach(listener => listener(css))
   }
 
@@ -90,7 +89,7 @@ export default class StyleSheet {
     if (!this.fontFaces.has(fontFace)) {
       const renderedFontFace = '@font-face {' + cssifyObject(fontFace.render()) + '}'
       this.fontFaces.add(renderedFontFace)
-      this._emitChange()
+      this._emitChange(renderedFontFace)
     }
 
     return fontFace.fontFamily
@@ -127,8 +126,9 @@ export default class StyleSheet {
       }
 
       const processedKeyframe = this._processStyles(pluginInterface)
-      cachedKeyframe.set(propsReference, this._renderKeyframe(processedKeyframe, animationName))
-      this._emitChange()
+      const renderedKeyframe = this._renderKeyframe(processedKeyframe, animationName)
+      cachedKeyframe.set(propsReference, renderedKeyframe)
+      this._emitChange(renderedKeyframe)
     }
 
     return animationName
@@ -193,15 +193,15 @@ export default class StyleSheet {
 
           this.mediaCache.get(media).get(selector).set(propsReference, renderedStyles)
         }
+
+        // emit changes as the styles stack changed
+        this._emitChange(renderedStyles)
       })
 
       // keep static styles to diff dynamic onces later on
       if (propsReference === '') {
         cachedSelector.set('static', preparedStyles)
       }
-
-      // emit changes as the styles stack changed
-      this._emitChange()
     }
 
     const baseClassName = 'c' + this.ids.get(selector)

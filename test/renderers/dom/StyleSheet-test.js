@@ -374,7 +374,7 @@ describe('StyleSheet Tests', () => {
       stylesheet.subscribe(subscriber)
       const staticClassName = stylesheet._renderSelectorVariation(selector)
 
-      expect(subscriber).to.have.been.calledOnce
+      expect(subscriber).to.have.been.calledTwice
     })
 
     it('should return a unsubscribe method', () => {

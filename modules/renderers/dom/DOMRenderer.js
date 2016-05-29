@@ -19,9 +19,10 @@ export default class Renderer {
 
     node.setAttribute('data-fela-stylesheet', '')
     this.node = node
+    this.node.textContent = ''
 
     this.stylesheet = new StyleSheet(config)
-    this.stylesheet.subscribe(css => this.node.textContent = css)
+    this.stylesheet.subscribe(css => this.node.textContent += css)
   }
 
   /**
