@@ -9,7 +9,7 @@ By passing an array of values you may provide fallback values.
 	box: {
 		color: [ 'rgba(0, 0, 0, 0.5)', '#ccc']
 		// This would outputcolor
-		// color: '#ccc;color:rgba(0, 0, 0, 0.5)'
+		// color: 'rgba(0, 0, 0, 0.5);color:#ccc'
 	}
 }
 ```
