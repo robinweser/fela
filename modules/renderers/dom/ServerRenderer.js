@@ -1,6 +1,4 @@
 import StyleSheet from './StyleSheet'
-import FontFace from '../../components/dom/FontFace'
-import Keyframe from '../../components/dom/Keyframe'
 
 export default class Renderer {
   constructor(config) {
@@ -8,27 +6,16 @@ export default class Renderer {
   }
 
   /**
-   * renders a Selector variation of props into a DOM node
+   * renders selector or Keyframe variations, FontFaces and static styles
+   * to an intern StyleSheet that caches those for future use
    *
-   * @param {Selector} selector - Selector instance that is rendered
+   * @param {Function|Keyframe|FontFace|string|Object} selector - selector, Keyframe, FontFace or static styles
    * @param {Object?} props - list of props to render
    * @param {Function[]?} plugins - array of plugins to process styles
-   * @return {string} className reference of the rendered selector
+   * @return {string} className, animation name, font family
    */
   render(selector, props, plugins) {
-    if (selector instanceof FontFace) {
-      return this.stylesheet._renderFontFace(selector)
-    }
-
-    if (selector instanceof Keyframe) {
-      return this.stylesheet._renderKeyframeVariation(selector, props, plugins)
-    }
-
-    // renders the passed selector variation into the stylesheet which
-    // adds the variation to the cache and updates the DOM automatically
-    // if the variation has already been added it will do nothing but return
-    // the cached className to reference the mounted CSS selector
-    return this.stylesheet._renderSelectorVariation(selector, props, plugins)
+    return this.stylesheet._handleRender(selector, props, plugins)
   }
 
   /**
@@ -40,7 +27,7 @@ export default class Renderer {
   renderToString() {
     let css = ''
 
-    this.stylesheet.fontFaces.forEach(fontFace => css += fontFace)
+    this.stylesheet.fontFaces.forEach(markup => css += markup)
     css += this._renderCache(this.stylesheet.cache)
     this.stylesheet.mediaCache.forEach((cache, media) => {
       css += '@media ' + media + '{' + this._renderCache(cache) + '}'
