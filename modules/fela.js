@@ -1,7 +1,7 @@
 import Renderer from './renderers/dom/DOMRenderer'
 import Keyframe from './components/dom/Keyframe'
 import FontFace from './components/dom/FontFace'
-import applyMiddleware from './helper/applyMiddleware'
+import applyMiddleware from './helpers/applyMiddleware'
 
 export default {
   Renderer: Renderer,

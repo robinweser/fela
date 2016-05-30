@@ -46,7 +46,7 @@ function buildPackage(pkg) {
     rollup.rollup(rollupConfig(pkg, p, process.env.NODE_ENV === 'production')).then(bundle => {
       bundle.write(bundleConfig(pkg, p, process.env.NODE_ENV === 'production'))
       console.log('Successfully bundled ' + p.name + (process.env.NODE_ENV === 'production' ? ' (minified).' : '.'))
-    })
+    }).catch(errorOnFail)
   })
 }
 
