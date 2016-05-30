@@ -1,6 +1,7 @@
 import StyleSheet from '../../../modules/renderers/dom/StyleSheet'
 import FontFace from '../../../modules/components/dom/FontFace'
 import Keyframe from '../../../modules/components/dom/Keyframe'
+import renderToString from '../../_mocks/renderToString'
 
 describe('StyleSheet Tests', () => {
   describe('Adding a Selector variation', () => {
@@ -221,7 +222,7 @@ describe('StyleSheet Tests', () => {
         color: 'red'
       })
 
-      const css = stylesheet._renderCache(stylesheet.cache)
+      const css = renderToString(stylesheet)
 
       expect(css).to.eql('.' + staticClassName + '{font-size:12px}.' + dynamicClassName.replace(staticClassName, '').trim() + '{color:red}')
     })
@@ -235,7 +236,7 @@ describe('StyleSheet Tests', () => {
         color: 'red'
       })
 
-      const css = stylesheet._renderCache(stylesheet.cache)
+      const css = renderToString(stylesheet)
 
       expect(css).to.eql('.' + staticClassName + '{font-size:12px}')
     })
@@ -255,7 +256,7 @@ describe('StyleSheet Tests', () => {
       const stylesheet = new StyleSheet()
       const className = stylesheet._renderSelectorVariation(selector)
 
-      const css = stylesheet._renderCache(stylesheet.cache)
+      const css = renderToString(stylesheet)
 
       expect(css).to.eql('.' + className + '{color:red}.' + className + ':hover{color:blue}.' + className + ':hover:focus{color:yellow;font-size:12px}')
     })
@@ -274,7 +275,7 @@ describe('StyleSheet Tests', () => {
       const stylesheet = new StyleSheet()
       const staticClassName = stylesheet._renderSelectorVariation(selector)
 
-      const css = stylesheet.renderToString()
+      const css = renderToString(stylesheet)
 
       expect(css).to.eql('.' + staticClassName + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
     })
@@ -293,7 +294,7 @@ describe('StyleSheet Tests', () => {
         foo: 'bar'
       })
 
-      const css = stylesheet.renderToString()
+      const css = renderToString(stylesheet)
 
       expect(css).to.eql('.' + staticClassName + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
     })
@@ -312,7 +313,7 @@ describe('StyleSheet Tests', () => {
         color: 'red'
       })
 
-      const css = stylesheet.renderToString()
+      const css = renderToString(stylesheet)
 
       expect(css).to.eql('.' + dynamicClassName.replace(staticClassName, '').trim() + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
     })
@@ -325,7 +326,7 @@ describe('StyleSheet Tests', () => {
       const stylesheet = new StyleSheet()
       const staticClassName = stylesheet._renderFontFace(fontFace)
 
-      const css = stylesheet.renderToString()
+      const css = renderToString(stylesheet)
 
       expect(css).to.eql('@font-face {font-family:\'Arial\';src:url(\'../fonts/Arial.ttf\') format(\'truetype\'),url(\'../fonts/Arial.woff\') format(\'woff\')}')
     })
@@ -338,7 +339,7 @@ describe('StyleSheet Tests', () => {
       const stylesheet = new StyleSheet()
       const staticClassName = stylesheet._renderFontFace(fontFace)
 
-      const css = stylesheet.renderToString()
+      const css = renderToString(stylesheet)
 
       expect(css).to.eql('@font-face {font-family:\'Arial\';src:url(\'../fonts/Arial.ttf\') format(\'truetype\'),url(\'../fonts/Arial.woff\') format(\'woff\');font-weight:300}')
     })
@@ -356,7 +357,7 @@ describe('StyleSheet Tests', () => {
 
       const animationName = sheet._renderKeyframeVariation(keyframe)
       const keyframeMarkup = ' ' + animationName + '{from{color:red}to{color:blue}}'
-      expect(sheet.renderToString()).to.eql([ '@-webkit-keyframes', '@-moz-keyframes', '@keyframes', '' ].join(keyframeMarkup))
+      expect(renderToString(sheet)).to.eql([ '@-webkit-keyframes', '@-moz-keyframes', '@keyframes', '' ].join(keyframeMarkup))
     })
   })
 
