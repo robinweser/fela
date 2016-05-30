@@ -11,6 +11,7 @@
     "demo:server": "babel-node examples/react/server.js",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
     "lint": "eslint modules",
+    "precommit": "npm run lint && npm test",
     "prepare": "npm run lint && npm test && npm run dist && npm run babel && babel-node scripts/preparePackages",
     "release": "npm run prepare && ./scripts/publishPackages.sh",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/mocha.opts"

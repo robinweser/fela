@@ -27,13 +27,13 @@ export default class Renderer {
    * renders selector or Keyframe variations, FontFaces and static styles
    * to an intern StyleSheet that caches those and updates the DOM node
    *
-   * @param {Function|Keyframe|FontFace|string|Object} selector - selector, Keyframe, FontFace or static styles
+   * @param {Function|Keyframe|FontFace|string|Object} element - selector, Keyframe, FontFace or static styles
    * @param {Object?} props - list of props to render
    * @param {Function[]?} plugins - array of plugins to process styles
    * @return {string} className, animation name, font family
    */
-  render(selector, props, plugins) {
-    return this.stylesheet._handleRender(selector, props, plugins)
+  render(element, props, plugins) {
+    return this.stylesheet._handleRender(element, props, plugins)
   }
 
   /**

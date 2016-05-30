@@ -77,30 +77,30 @@ export default class StyleSheet {
   /**
    * helper that handles rendering of different input
    *
-   * @param {Function|Keyframe|FontFace|string|Object} input - selector, Keyframe, FontFace or static styles
+   * @param {Function|Keyframe|FontFace|string|Object} element - selector, Keyframe, FontFace or static styles
    * @param {Object?} props - list of props to render
    * @param {Function[]?} plugins - array of plugins to process styles
    * @return {string} className, animation name, font family
    */
-  _handleRender(input, props, plugins) {
-    if (input instanceof FontFace) {
-      return this._renderFontFace(input)
+  _handleRender(element, props, plugins) {
+    if (element instanceof FontFace) {
+      return this._renderFontFace(element)
     }
 
-    if (input instanceof Keyframe) {
-      return this._renderKeyframeVariation(input, props, plugins)
+    if (element instanceof Keyframe) {
+      return this._renderKeyframeVariation(element, props, plugins)
     }
 
-    const inputType = typeof input
-    if (inputType === 'string' || inputType === 'object') {
-      return this._renderStatic(input, plugins)
+    const elementType = typeof element
+    if (elementType === 'string' || elementType === 'object') {
+      return this._renderStatic(element, plugins)
     }
 
     // renders the passed selector variation into the stylesheet which
     // adds the variation to the cache and updates the DOM automatically
     // if the variation has already been added it will do nothing but return
     // the cached className to reference the mounted CSS selector
-    return this._renderSelectorVariation(input, props, plugins)
+    return this._renderSelectorVariation(element, props, plugins)
   }
 
   /**
