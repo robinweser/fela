@@ -3,7 +3,7 @@
 * [FontFace(family, files [, properties])](#fontfacefamily-files--properties)
 * [Keyframe(keyframeComposer)](#keyframekeyframecomposer)
 * [Renderer(node)](#renderernode)
-  * [.render(selector [, props, plugins])](#renderselector--props-plugins)
+  * [.render(element [, props, plugins])](#renderelement--props-plugins)
   * [.clear()](#clear)
 * [applyMiddleware(renderer, middleware)](#applymiddlewarerenderer-middleware)
 
@@ -57,13 +57,14 @@ const keyframe = new Fela.Keyframe(frameComposer)
 
 Instantiates a new DOM Renderer and binds itself to a valid DOM `node`.
 
-### `render(selector [, props, plugins])`
-**Function|Keyframe|FontFace\<selector>**<br><br>
+### `render(element [, props, plugins])`
+**Function|Keyframe|FontFace|Object|string\<element>**<br>
 **Object?\<props>**<br>
 **Function[]?\<plugins>**
 
-Renders a specific Selector variation or Keyframe variation using `selector` and `props` and mounts the rendered CSS markup into the DOM node. Optionally processes the variation with a set of  `plugins`. Also renders FontFaces but without additional parameters.<br><br>
-Returns the mounted *className* reference.
+A universal method to render either selector & Keyframe variations, FontFaces or static styles. Optionally processes the variation with a set of  `plugins`. <br>
+Automatically updates the associated DOM node if the overall CSS markup changed.<br>
+Returns the mounted *className*, *animationName* or *fontFamily* reference.
 ```javascript
 const node = document.getElementById('style-element')
 const renderer = new Fela.Renderer(node)

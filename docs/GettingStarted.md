@@ -7,12 +7,15 @@
 4. [Media Queries](#4-media-queries)
 5. [Animation Keyframes](#5-animation-keyframes)
 6. [Font Faces](#6-font-faces)
-7. [Rendering](#7-rendering)
-  * 7.1. [DOM Renderer](#71-dom-renderer)
-  * 7.2. [Server Renderer](#72-server-renderer)
-8. [Plugins](#8-plugins)
-  * 8.1. [Configuration](#81-configuration)
-9. [Fela with other Libraries](#9-fela-with-other-libraries)
+7. [Global & Third-Party CSS](#7-global--third-party-css)
+8. [Rendering](#8-rendering)
+  * 8.1. [DOM Renderer](#81-dom-renderer)
+  * 8.2. [Server Renderer](#82-server-renderer)
+9. [Plugins](#9-plugins)
+  * 9.1. [Configuration](#91-configuration)
+10. [Middleware](#10-middleware)
+  * 10.1. [Configuration](#101-configuration)
+11. [Fela with other Libraries](#11-fela-with-other-libraries)
   * [Fela + React](#fela--react)
   * [Fela + Web Components](#fela--web-components)
 
@@ -91,7 +94,7 @@ const selector = props => ({
   fontSize: '12px',
   ':hover': {
     color: 'blue',
-    // they can be nested to produce 
+    // they can be nested to produce
     // e.g. :hover:active
     ':active': {
       color: 'yellow'
@@ -131,11 +134,14 @@ To be completed soon.
 ## 6. Font Faces
 To be completed soon.
 
-## 7. Rendering
+## 7. Global & Third-Party CSS
+To be completed soon.
+
+## 8. Rendering
 We now know how to use selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.<br>
 > Note: Before using any Renderer you should first understand how the rendering process works in general. If you're not already familiar with the mechansism please check out [Rendering Mechanism](RenderingMechanism.md) for a detailed explanation.
 
-### 7.1. DOM Renderer
+### 8.1. DOM Renderer
 The DOM Renderer is used to directly render Selector variations into a specific DOM node. It is used for client-side rendering and requires a real DOM to be working.
 It can basically render into any valid element node though styles will only get applied correctly if a real `<style>` element is used.
 
@@ -156,7 +162,7 @@ renderer.render(selector, { size: 12 }) // => c0 c0-eqz3x
 console.log(mountNode.textContent) // => .c0{color:red}.c0-eqz3x{font-size:12px}
 ```
 
-### 7.2. Server Renderer
+### 8.2. Server Renderer
 The Server Renderer does exactly the same as the DOM Renderer does except actually rendering into a DOM node. It is used for server-side rendering and only caches all the variations. It is used to collect all rendered variations produced on initial render. Using the `renderToString` method afterwards will return a single string containing all styles transformed into valid CSS markup.<br>
 This string can now be injected into the provided HTML file.
 ```javascript
@@ -176,7 +182,7 @@ console.log(renderer.renderToString()) // => .c0{color:red}.c0-eqz3x{font-size:1
 ```
 
 
-## 8. Plugins
+## 9. Plugins
 Fela is designed to be configured with plugins which gives huge power and flexibility while styling your application.
 There are actually two ways to use plugins. You can either pass them to the `render` method or directly instantiate your Renderer with plugins once.
 
@@ -193,7 +199,7 @@ renderer.render(selector, { color: 'red' })
 ```
 
 
-### 8.1. Configuration
+### 9.1. Configuration
 Some plugins might require some configuration. For example the [custom property](plugins/customProperty) plugin must at least have one custom property mapping. You can pass configuration directly on instantiation.
 ```javascript
 import customProperty from 'fela-plugin-custom-property'
@@ -206,7 +212,12 @@ const sizeProperty = size => ({
 renderer.render(selector, { color: 'red' }, [ customProperty({size: sizeProperty}) ])
 ```
 
-## 9. Fela with other Libraries
+## 10. Middleware
+To be completed soon.
+### 10.1. Configuration
+To be completed soon.
+
+## 11. Fela with other Libraries
 ### Fela + React
 Fela was not explicitly designed for React, but rather is as a result of working with React.<br>
 It can be used with any solution, but works perfectly fine together with React - especially if dealing with dynamic & stateful styling.

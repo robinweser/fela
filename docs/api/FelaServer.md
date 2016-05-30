@@ -1,20 +1,20 @@
 # FelaServer API
 
 * [Renderer()](#renderernode)
-  * [.render(selector [, props, plugins])](#renderselector--props-plugins)
+  * [.render(element [, props, plugins])](#renderelement--props-plugins)
   * [.renderToString()](#rendertostring)
   * [.clear()](#clear)
 
 ## `Renderer()`
 
 Instantiates a new Server Renderer.
-### `render(selector [, props, plugins])`
-**Function|Keyframe|FontFace\<selector>**<br>
+### `render(element [, props, plugins])`
+**Function|Keyframe|FontFace|Object|string\<element>**<br>
 **Object?\<props>**<br>
 **Function[]?\<plugins>**
 
-Silently renders a specific selector variation or Keyframe variation using `selector` and `props` and mounts the rendered CSS markup into the DOM node. Optionally processes the variation with a set of  `plugins`. Also renders FontFaces but without additional parameters.<br><br>
-Returns the mounted *className* reference.
+A universal method to render either selector & Keyframe variations, FontFaces or static styles. Optionally processes the variation with a set of  `plugins`. <br>
+Returns the mounted *className*, *animationName* or *fontFamily* reference.
 ```javascript
 const renderer = new FelaServer.Renderer()
 const selector = props => ({ color: props.color }))

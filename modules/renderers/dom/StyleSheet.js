@@ -1,7 +1,10 @@
+import FontFace from '../../../modules/components/dom/FontFace'
+import Keyframe from '../../../modules/components/dom/Keyframe'
+
 import cssifyObject from '../../utils/cssifyObject'
 import generateContentHash from '../../utils/generateContentHash'
 import sortedStringify from '../../utils/sortedStringify'
-import isPseudo from '../../utils/isPseudo'
+import isPseudoClass from '../../utils/isPseudoClass'
 import isMediaQuery from '../../utils/isMediaQuery'
 
 export default class StyleSheet {
@@ -54,10 +57,82 @@ export default class StyleSheet {
   _init() {
     this.cache = new Map()
     this.mediaCache = new Map()
-    this.fontFaces = new Set()
+    this.fontFaces = new Map()
     this.keyframes = new Map()
+    this.statics = new Set()
     this.ids = new Map()
     this._counter = -1
+  }
+  /**
+   * generates an unique reference id by content hashing props
+   *
+   * @param {Object} props - props that get hashed
+   * @return {string} reference - unique props reference
+   */
+  _generatePropsReference(props) {
+    return generateContentHash(sortedStringify(props))
+  }
+
+
+  /**
+   * helper that handles rendering of different input
+   *
+   * @param {Function|Keyframe|FontFace|string|Object} input - selector, Keyframe, FontFace or static styles
+   * @param {Object?} props - list of props to render
+   * @param {Function[]?} plugins - array of plugins to process styles
+   * @return {string} className, animation name, font family
+   */
+  _handleRender(input, props, plugins) {
+    if (input instanceof FontFace) {
+      return this._renderFontFace(input)
+    }
+
+    if (input instanceof Keyframe) {
+      return this._renderKeyframeVariation(input, props, plugins)
+    }
+
+    const inputType = typeof input
+    if (inputType === 'string' || inputType === 'object') {
+      return this._renderStatic(input, plugins)
+    }
+
+    // renders the passed selector variation into the stylesheet which
+    // adds the variation to the cache and updates the DOM automatically
+    // if the variation has already been added it will do nothing but return
+    // the cached className to reference the mounted CSS selector
+    return this._renderSelectorVariation(input, props, plugins)
+  }
+
+  /**
+   * renders static styles and caches them
+   *
+   * @param {string|Object} styles - static styles to be rendered
+   * @param {Function[]?} plugins - additional plugins
+   * @return {string} rendered CSS output
+   */
+  _renderStatic(styles, plugins = [ ]) {
+    let css = ''
+
+    if (typeof styles === 'string') {
+      css = styles.replace(/\s+/g, '')
+    } else {
+      Object.keys(styles).forEach(selector => {
+        const pluginInterface = {
+          plugins: this.plugins.concat(plugins),
+          processStyles: this._processStyles,
+          styles: styles[selector]
+        }
+
+        css += selector + '{' + cssifyObject(this._processStyles(pluginInterface)) + '}'
+      })
+    }
+
+    if (!this.statics.has(css)) {
+      this.statics.add(css)
+      this._emitChange(css)
+    }
+
+    return css
   }
 
   /**
@@ -68,12 +143,12 @@ export default class StyleSheet {
    */
   _renderFontFace(fontFace) {
     if (!this.fontFaces.has(fontFace)) {
-      const renderedFontFace = '@font-face {' + cssifyObject(fontFace.render()) + '}'
-      this.fontFaces.add(renderedFontFace)
-      this._emitChange(renderedFontFace)
+      const css = '@font-face {' + cssifyObject(fontFace.render()) + '}'
+      this.fontFaces.set(fontFace, css)
+      this._emitChange(css)
     }
 
-    return fontFace.fontFamily
+    return fontFace.family
   }
 
   /**
@@ -107,9 +182,9 @@ export default class StyleSheet {
       }
 
       const processedKeyframe = this._processStyles(pluginInterface)
-      const renderedKeyframe = this._renderKeyframe(processedKeyframe, animationName)
-      cachedKeyframe.set(propsReference, renderedKeyframe)
-      this._emitChange(renderedKeyframe)
+      const css = this._cssifyKeyframe(processedKeyframe, animationName)
+      cachedKeyframe.set(propsReference, css)
+      this._emitChange(css)
     }
 
     return animationName
@@ -161,9 +236,9 @@ export default class StyleSheet {
       }
 
       Object.keys(clusteredStyles).forEach(media => {
-        const renderedStyles = this._renderClusteredStyles(clusteredStyles[media], className)
+        const css = this._cssifyClusteredStyles(clusteredStyles[media], className)
         if (media === '') {
-          cachedSelector.set(propsReference, renderedStyles)
+          cachedSelector.set(propsReference, css)
         } else {
           if (!this.mediaCache.has(media)) {
             this.mediaCache.set(media, new Map([ [ selector, new Map() ] ]))
@@ -172,11 +247,11 @@ export default class StyleSheet {
             this.mediaCache.get(media).set(selector, new Map())
           }
 
-          this.mediaCache.get(media).get(selector).set(propsReference, renderedStyles)
+          this.mediaCache.get(media).get(selector).set(propsReference, css)
         }
 
         // emit changes as the styles stack changed
-        this._emitChange(renderedStyles)
+        this._emitChange(css)
       })
 
       // keep static styles to diff dynamic onces later on
@@ -192,21 +267,6 @@ export default class StyleSheet {
 
     // returns either the base className or both the base and the dynamic part
     return className !== baseClassName ? baseClassName + ' ' + className : className
-  }
-
-  /**
-   * executes each plugin using a predefined plugin interface
-   *
-   * @param {Object} pluginInterface - interface containing relevant processing data
-   * @return {Object} processed styles
-   */
-  _processStyles(pluginInterface) {
-    let { plugins, styles } = pluginInterface
-    // pipes each plugin by passes the plugin interface
-    // NOTE: as the styles are passed directly they're editable
-    // therefore the plugin order might matter
-    plugins.forEach(plugin => styles = plugin(pluginInterface))
-    return styles
   }
 
   /**
@@ -234,6 +294,20 @@ export default class StyleSheet {
     return styles
   }
 
+  /**
+   * executes each plugin using a predefined plugin interface
+   *
+   * @param {Object} pluginInterface - interface containing relevant processing data
+   * @return {Object} processed styles
+   */
+  _processStyles(pluginInterface) {
+    let { plugins, styles } = pluginInterface
+    // pipes each plugin by passes the plugin interface
+    // NOTE: as the styles are passed directly they're editable
+    // therefore the plugin order might matter
+    plugins.forEach(plugin => styles = plugin(pluginInterface))
+    return styles
+  }
 
   /**
    * removes every invalid property except pseudo class objects
@@ -245,7 +319,7 @@ export default class StyleSheet {
     Object.keys(styles).forEach(property => {
       const value = styles[property]
       if (value instanceof Object && !Array.isArray(value)) {
-        styles[property] = isPseudo(property) || isMediaQuery(property) ? this._validateStyles(value) : {}
+        styles[property] = isPseudoClass(property) || isMediaQuery(property) ? this._validateStyles(value) : {}
         if (Object.keys(styles[property]).length === 0) {
           delete styles[property]
         }
@@ -268,7 +342,7 @@ export default class StyleSheet {
     Object.keys(styles).forEach(property => {
       const value = styles[property]
       if (value instanceof Object && !Array.isArray(value)) {
-        if (isPseudo(property)) {
+        if (isPseudoClass(property)) {
           this._clusterStyles(value, pseudo + property, media, out)
         } else if (isMediaQuery(property)) {
           const query = property.slice(6).trim()
@@ -310,23 +384,13 @@ export default class StyleSheet {
   }
 
   /**
-   * generates an unique reference id by content hashing props
-   *
-   * @param {Object} props - props that get hashed
-   * @return {string} reference - unique props reference
-   */
-  _generatePropsReference(props) {
-    return generateContentHash(sortedStringify(props))
-  }
-
-  /**
    * renders clustered styles into a CSS string
    *
    * @param {Object} styles - prepared styles with pseudo keys
    * @param {string} className - className reference to render
    * @return {string} valid CSS string
    */
-  _renderClusteredStyles(styles, className) {
+  _cssifyClusteredStyles(styles, className) {
     return Object.keys(styles).reduce((css, pseudo) => {
       return css + '.' + className + pseudo + '{' + cssifyObject(styles[pseudo]) + '}'
     }, '')
@@ -339,7 +403,7 @@ export default class StyleSheet {
    * @param {string} animationName - animation reference naming
    * @return {string} valid CSS string
    */
-  _renderKeyframe(frames, animationName) {
+  _cssifyKeyframe(frames, animationName) {
     const keyframe = Object.keys(frames).reduce((css, percentage) => {
       return css + percentage + '{' + cssifyObject(this._validateStyles(frames[percentage])) + '}'
     }, '')
