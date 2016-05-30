@@ -10,7 +10,7 @@ export default (options = { }) => {
   return (renderer) => {
     // DOM Renderer
     if (renderer.hasOwnProperty('node')) {
-      var css = ''
+      let css = ''
       renderer.stylesheet.subscribe(newCSS => {
         css += newCSS
         renderer.node.textContent = cssbeautify(css, {
