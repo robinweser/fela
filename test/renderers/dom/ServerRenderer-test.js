@@ -1,26 +1,24 @@
 import Renderer from '../../../modules/renderers/dom/ServerRenderer'
+import FontFace from '../../../modules/components/dom/FontFace'
+import Keyframe from '../../../modules/components/dom/Keyframe'
 
 describe('ServerRenderer Tests', () => {
-  describe('Rendering a Selector', () => {
-    it('should render a Selector into the StyleSheet', () => {
+  describe('Rendering', () => {
+    it('should use its stylesheets render handler', () => {
       const selector = props => ({ color: 'red' })
 
       const renderer = new Renderer()
+      renderer.stylesheet._handleRender = sinon.spy()
       const className = renderer.render(selector, { })
-      expect(className).to.eql('c0')
+      expect(renderer.stylesheet._handleRender).to.have.been.calledOnce
     })
-  })
 
-  describe('Rendering to string', () => {
-    it('should return concated multiple styles ', () => {
+    it('should return its stylesheets render handler results', () => {
       const selector = props => ({ color: 'red' })
 
       const renderer = new Renderer()
-
-      renderer.render(selector, { })
-      renderer.render(selector, { foo: 'bar' })
-
-      expect(renderer.renderToString()).to.eql('.c0{color:red}')
+      const className = renderer.render(selector)
+      expect(className).to.eql('c0')
     })
   })
 
@@ -37,6 +35,81 @@ describe('ServerRenderer Tests', () => {
 
       expect(renderer.stylesheet.cache.size).to.eql(0)
       expect(renderer.renderToString()).to.eql('')
+    })
+  })
+
+  describe('Rendering its stylesheet cache', () => {
+    it('should render valid CSS', () => {
+      const selector = props => ({
+        color: props.color,
+        fontSize: '12px'
+      })
+
+      const renderer = new Renderer()
+      const staticClassName = renderer.render(selector)
+      const dynamicClassName = renderer.render(selector, {
+        color: 'red'
+      })
+
+      const css = renderer._renderCache(renderer.stylesheet.cache)
+
+      expect(css).to.eql('.' + staticClassName + '{font-size:12px}.' + dynamicClassName.replace(staticClassName, '').trim() + '{color:red}')
+    })
+
+    it('should not render empty selectors', () => {
+      const selector = props => ({ fontSize: '12px' })
+
+      const renderer = new Renderer()
+      const staticClassName = renderer.render(selector)
+      const dynamicClassName = renderer.render(selector, {
+        color: 'red'
+      })
+
+      const css = renderer._renderCache(renderer.stylesheet.cache)
+
+      expect(css).to.eql('.' + staticClassName + '{font-size:12px}')
+    })
+  })
+
+
+  describe('Rendering to string', () => {
+    it('should render all caches', () => {
+      const selector = props => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          color: 'blue'
+        }
+      })
+
+      const fontFace = new FontFace('Arial', [ '../fonts/Arial.ttf', '../fonts/Arial.woff' ], {
+        fontWeight: 300
+      })
+
+      const keyframe = new Keyframe(props => ({
+        from: {
+          color: 'red'
+        },
+        to: {
+          color: 'blue'
+        }
+      }))
+
+      const renderer = new Renderer()
+      const className = renderer.render(selector)
+      const fontFamily = renderer.render(fontFace)
+      const animationName = renderer.render(keyframe)
+
+      const css = renderer.renderToString()
+
+      const selectorMarkup = '.' + className + '{color:red}@media (min-height: 300px){.' + className + '{color:blue}}'
+      const fontFaceMarkup = '@font-face {font-family:\'Arial\';src:url(\'../fonts/Arial.ttf\') format(\'truetype\'),url(\'../fonts/Arial.woff\') format(\'woff\');font-weight:300}'
+      const keyframeMarkup = ' ' + animationName + '{from{color:red}to{color:blue}}'
+      const prefixedKeyframeMarkup = [ '@-webkit-keyframes', '@-moz-keyframes', '@keyframes', '' ].join(keyframeMarkup)
+
+      expect(fontFamily).to.eql('Arial')
+      expect(animationName).to.eql('k1')
+      expect(className).to.eql('c0')
+      expect(css).to.eql(fontFaceMarkup + selectorMarkup + prefixedKeyframeMarkup)
     })
   })
 })

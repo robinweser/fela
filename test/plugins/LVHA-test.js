@@ -7,6 +7,7 @@ describe('LVHA plugin', () => {
       ':hover': {},
       ':focus': {},
       ':link': {},
+      ':first-child': {},
       ':active': {},
       ':visited': {}
     }, [ LVHA() ])
@@ -16,7 +17,8 @@ describe('LVHA plugin', () => {
       ':visited': {},
       ':hover': {},
       ':focus': {},
-      ':active': {}
+      ':active': {},
+      ':first-child': {}
     })
   })
 })

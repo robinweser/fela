@@ -1,10 +1,48 @@
 import StyleSheet from '../../../modules/renderers/dom/StyleSheet'
 import FontFace from '../../../modules/components/dom/FontFace'
 import Keyframe from '../../../modules/components/dom/Keyframe'
-import renderToString from '../../_mocks/renderToString'
 
 describe('StyleSheet Tests', () => {
-  describe('Adding a Selector variation', () => {
+  describe('Instantiating a new StyleSheet', () => {
+    it('should add caches for all styles', () => {
+      const stylesheet = new StyleSheet()
+
+      expect(stylesheet.cache).to.eql(new Map())
+      expect(stylesheet.mediaCache).to.eql(new Map())
+      expect(stylesheet.keyframes).to.eql(new Map())
+      expect(stylesheet.fontFaces).to.eql(new Set())
+      expect(stylesheet.statics).to.eql(new Set())
+    })
+  })
+
+  describe('Clearing a StyleSheet', () => {
+    it('should reset all caches', () => {
+      const stylesheet = new StyleSheet()
+      const selector = props => ({ color: 'red' })
+
+      stylesheet._renderSelectorVariation(selector)
+      stylesheet.clear()
+
+      expect(stylesheet.cache).to.eql(new Map())
+      expect(stylesheet.mediaCache).to.eql(new Map())
+      expect(stylesheet.keyframes).to.eql(new Map())
+      expect(stylesheet.fontFaces).to.eql(new Set())
+      expect(stylesheet.statics).to.eql(new Set())
+    })
+
+    it('should reset the counter and the ids', () => {
+      const stylesheet = new StyleSheet()
+      const selector = props => ({ color: 'red' })
+
+      stylesheet._renderSelectorVariation(selector)
+      stylesheet.clear()
+
+      expect(stylesheet._counter).to.eql(-1)
+      expect(stylesheet.ids).to.eql(new Map())
+    })
+  })
+
+  describe('Rendering selector variations', () => {
     it('should add a cache entry', () => {
       const selector = props => ({ color: 'red' })
       const sheet = new StyleSheet()
@@ -25,14 +63,23 @@ describe('StyleSheet Tests', () => {
         }
       })
 
+      const anotherSelector = props => ({
+        color: 'blue',
+        '@media min-height: 300px': {
+          color: 'red'
+        }
+      })
+
       const sheet = new StyleSheet()
 
       sheet._renderSelectorVariation(selector)
+      sheet._renderSelectorVariation(anotherSelector)
 
       expect(sheet.mediaCache.has('screen')).to.eql(true)
       expect(sheet.mediaCache.has('min-height: 300px')).to.eql(true)
       expect(sheet.mediaCache.get('screen').has(selector)).to.eql(true)
       expect(sheet.mediaCache.get('min-height: 300px').has(selector)).to.eql(true)
+      expect(sheet.mediaCache.get('min-height: 300px').has(anotherSelector)).to.eql(true)
     })
 
     it('should reuse cached variations', () => {
@@ -65,6 +112,7 @@ describe('StyleSheet Tests', () => {
 
       expect(className).to.eql(className2)
       expect(className).to.eql(className3)
+      expect(sheet.cache.get(selector).get('')).to.eql('.c0{font-size:23px}')
       expect(sheet.cache.get(selector).size).to.eql(4)
     })
 
@@ -93,7 +141,7 @@ describe('StyleSheet Tests', () => {
       expect(staticClassName.substr(0, 2)).to.eql(dynamicClassName.substr(0, 2))
     })
 
-    it('should keep base styles for diffing', () => {
+    it('should keep base styles as an object for diffing', () => {
       const selector = props => ({ color: 'red' })
       const sheet = new StyleSheet()
 
@@ -105,7 +153,7 @@ describe('StyleSheet Tests', () => {
     })
   })
 
-  describe('Adding a Keyframe variation', () => {
+  describe('Rendering Keyframe variations', () => {
     it('should add a cache entry', () => {
       const keyframe = new Keyframe(props => ({
         from: {
@@ -176,6 +224,58 @@ describe('StyleSheet Tests', () => {
     })
   })
 
+  describe('Rendering static styles', () => {
+    it('should cache the styles and return the rendered markup', () => {
+      const sheet = new StyleSheet()
+
+      const staticStyles = '*{color:red;margin:0}'
+      const css = sheet._renderStatic(staticStyles)
+
+      expect(sheet.statics.has(staticStyles)).to.eql(true)
+      expect(css).to.eql(staticStyles)
+    })
+
+    it('should render a flat object of static selectors', () => {
+      const sheet = new StyleSheet()
+
+      const css = sheet._renderStatic({
+        '*': {
+          margin: 0,
+          fontSize: '12px'
+        },
+        div: {
+          display: 'flex'
+        }
+      })
+
+      expect(sheet.statics.has(css)).to.eql(true)
+      expect(css).to.eql('*{margin:0;font-size:12px}div{display:flex}')
+    })
+  })
+
+  describe('Rendering FontFaces', () => {
+    it('should cache the font-face', () => {
+      const sheet = new StyleSheet()
+
+      const fontFace = new FontFace('Arial', [ '../fonts/Arial.ttf', '../fonts/Arial.woff' ], {
+        fontWeight: 300
+      })
+      const css = sheet._renderFontFace(fontFace)
+
+      expect(sheet.fontFaces.has(fontFace)).to.eql(true)
+    })
+    it('should return the font family', () => {
+      const sheet = new StyleSheet()
+
+      const fontFace = new FontFace('Arial', [ '../fonts/Arial.ttf', '../fonts/Arial.woff' ], {
+        fontWeight: 300
+      })
+      const css = sheet._renderFontFace(fontFace)
+
+      expect(css).to.eql('Arial')
+    })
+  })
+
   describe('Generating the props reference', () => {
     it('should always return the same className with the same props', () => {
       const stylesheet = new StyleSheet()
@@ -209,157 +309,6 @@ describe('StyleSheet Tests', () => {
     })
   })
 
-  describe('Rendering a whole cache', () => {
-    it('should render valid CSS', () => {
-      const selector = props => ({
-        color: props.color,
-        fontSize: '12px'
-      })
-
-      const stylesheet = new StyleSheet()
-      const staticClassName = stylesheet._renderSelectorVariation(selector)
-      const dynamicClassName = stylesheet._renderSelectorVariation(selector, {
-        color: 'red'
-      })
-
-      const css = renderToString(stylesheet)
-
-      expect(css).to.eql('.' + staticClassName + '{font-size:12px}.' + dynamicClassName.replace(staticClassName, '').trim() + '{color:red}')
-    })
-
-    it('should not render empty selectors', () => {
-      const selector = props => ({ fontSize: '12px' })
-
-      const stylesheet = new StyleSheet()
-      const staticClassName = stylesheet._renderSelectorVariation(selector)
-      const dynamicClassName = stylesheet._renderSelectorVariation(selector, {
-        color: 'red'
-      })
-
-      const css = renderToString(stylesheet)
-
-      expect(css).to.eql('.' + staticClassName + '{font-size:12px}')
-    })
-
-    it('should split and render pseudo classes', () => {
-      const selector = props => ({
-        color: 'red',
-        ':hover': {
-          color: 'blue',
-          ':focus': {
-            color: 'yellow',
-            fontSize: '12px'
-          }
-        }
-      })
-
-      const stylesheet = new StyleSheet()
-      const className = stylesheet._renderSelectorVariation(selector)
-
-      const css = renderToString(stylesheet)
-
-      expect(css).to.eql('.' + className + '{color:red}.' + className + ':hover{color:blue}.' + className + ':hover:focus{color:yellow;font-size:12px}')
-    })
-  })
-
-
-  describe('Rendering to string', () => {
-    it('should render all caches', () => {
-      const selector = props => ({
-        color: 'red',
-        '@media (min-height: 300px)': {
-          color: 'blue'
-        }
-      })
-
-      const stylesheet = new StyleSheet()
-      const staticClassName = stylesheet._renderSelectorVariation(selector)
-
-      const css = renderToString(stylesheet)
-
-      expect(css).to.eql('.' + staticClassName + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
-    })
-
-    it('should cluster media queries', () => {
-      const selector = props => ({
-        color: 'red',
-        '@media (min-height: 300px)': {
-          color: 'blue'
-        }
-      })
-
-      const stylesheet = new StyleSheet()
-      const staticClassName = stylesheet._renderSelectorVariation(selector)
-      const dynamicClassName = stylesheet._renderSelectorVariation(selector, {
-        foo: 'bar'
-      })
-
-      const css = renderToString(stylesheet)
-
-      expect(css).to.eql('.' + staticClassName + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
-    })
-
-    it('should not render empty media styles', () => {
-      const selector = props => ({
-        color: props.color,
-        '@media (min-height: 300px)': {
-          color: 'blue'
-        }
-      })
-
-      const stylesheet = new StyleSheet()
-      const staticClassName = stylesheet._renderSelectorVariation(selector)
-      const dynamicClassName = stylesheet._renderSelectorVariation(selector, {
-        color: 'red'
-      })
-
-      const css = renderToString(stylesheet)
-
-      expect(css).to.eql('.' + dynamicClassName.replace(staticClassName, '').trim() + '{color:red}@media (min-height: 300px){.' + staticClassName + '{color:blue}}')
-    })
-
-    it('should only render valid font face properties', () => {
-      const fontFace = new FontFace('Arial', [ '../fonts/Arial.ttf', '../fonts/Arial.woff' ], {
-        fontSize: '30px'
-      })
-
-      const stylesheet = new StyleSheet()
-      const staticClassName = stylesheet._renderFontFace(fontFace)
-
-      const css = renderToString(stylesheet)
-
-      expect(css).to.eql('@font-face {font-family:\'Arial\';src:url(\'../fonts/Arial.ttf\') format(\'truetype\'),url(\'../fonts/Arial.woff\') format(\'woff\')}')
-    })
-
-    it('should render font faces', () => {
-      const fontFace = new FontFace('Arial', [ '../fonts/Arial.ttf', '../fonts/Arial.woff' ], {
-        fontWeight: 300
-      })
-
-      const stylesheet = new StyleSheet()
-      const staticClassName = stylesheet._renderFontFace(fontFace)
-
-      const css = renderToString(stylesheet)
-
-      expect(css).to.eql('@font-face {font-family:\'Arial\';src:url(\'../fonts/Arial.ttf\') format(\'truetype\'),url(\'../fonts/Arial.woff\') format(\'woff\');font-weight:300}')
-    })
-
-    it('should render keyframe markup', () => {
-      const keyframe = new Keyframe(props => ({
-        from: {
-          color: 'red'
-        },
-        to: {
-          color: 'blue'
-        }
-      }))
-      const sheet = new StyleSheet()
-
-      const animationName = sheet._renderKeyframeVariation(keyframe)
-      const keyframeMarkup = ' ' + animationName + '{from{color:red}to{color:blue}}'
-      expect(renderToString(sheet)).to.eql([ '@-webkit-keyframes', '@-moz-keyframes', '@keyframes', '' ].join(keyframeMarkup))
-    })
-  })
 
   describe('Subscribing to the StyleSheet', () => {
     it('should call the callback each time it emits changes', () => {
@@ -558,6 +507,47 @@ describe('StyleSheet Tests', () => {
             color: 'purple'
           }
         }
+      })
+    })
+  })
+
+  describe('Extracting dynamic styles', () => {
+    it('should only return the difference of two style objects', () => {
+      const base = {
+        color: 'red',
+        display: '-webkit-box;display:flex',
+        something: {
+          color: 'blue'
+        },
+        test: {
+          foo: 'bar'
+        },
+        fontSize: '12px',
+        width: false
+      }
+
+      const styles = {
+        color: 'blue',
+        something: {
+          fontSize: '15px'
+        },
+        test: {
+          foo: 'bar'
+        },
+        width: true,
+        fontSize: '12px',
+        height: 12
+      }
+      const stylesheet = new StyleSheet()
+      const dynamicStyles = stylesheet._extractDynamicStyles(styles, base)
+
+      expect(dynamicStyles).to.eql({
+        color: 'blue',
+        something: {
+          fontSize: '15px'
+        },
+        width: true,
+        height: 12
       })
     })
   })
