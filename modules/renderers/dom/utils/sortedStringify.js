@@ -9,7 +9,6 @@ export default function sortedStringify(obj) {
   return Object.keys(obj).sort().reduce((str, prop) => {
     // only concatenate property and value
     // without any special characters
-    str += prop + obj[prop]
-    return str
+    return str + prop + obj[prop]
   }, '')
 }
