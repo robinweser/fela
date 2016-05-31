@@ -19,7 +19,7 @@ const animation = new Keyframe(props => ({
     color: 'blue'
   },
   '80%': {
-    color: 'yellow'
+    color: 'purple'
   },
   '100%': {
     color: props.color

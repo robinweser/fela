@@ -4,13 +4,14 @@ import Keyframe from '../../../modules/components/dom/Keyframe'
 import generateContentHash from './utils/generateContentHash'
 import sortedStringify from './utils/sortedStringify'
 
+import extractDynamicStyle from './utils/extractDynamicStyle'
+import validateStyle from './utils/validateStyle'
 import processStyle from './utils/processStyle'
-import prepareStyle from './utils/prepareStyle'
 import clusterStyle from './utils/clusterStyle'
 
-import cssifyObject from './utils/cssifyObject'
-import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyClusteredStyle from './utils/cssifyClusteredStyle'
+import cssifyKeyframe from './utils/cssifyKeyframe'
+import cssifyObject from './utils/cssifyObject'
 
 
 export default class StyleSheet {
@@ -88,6 +89,8 @@ export default class StyleSheet {
     }
 
     const elementType = typeof element
+    // renders static styles either passed as a valid CSS string
+    // or alternatively as an style object of selectors
     if (elementType === 'string' || elementType === 'object') {
       return this._renderStatic(element, plugins)
     }
@@ -113,7 +116,7 @@ export default class StyleSheet {
    * renders static style and caches them
    *
    * @param {string|Object} style - static style to be rendered
-   * @param {Function[]?} plugins - additional plugins 
+   * @param {Function[]?} plugins - additional plugins
    * @return {string} rendered CSS output
    */
   _renderStatic(style, plugins = [ ]) {
@@ -182,7 +185,7 @@ export default class StyleSheet {
     if (!cachedKeyframe.has(propsReference)) {
       const pluginInterface = {
         plugins: this.plugins.concat(plugins),
-        processStyle: this._processStyle,
+        processStyle: processStyle,
         style: keyframe.render(props),
         props: props
       }
@@ -228,14 +231,19 @@ export default class StyleSheet {
       // or pure functional selectors without a constructor
       const pluginInterface = {
         plugins: this.plugins.concat(plugins),
-        processStyle: this._processStyle,
+        processStyle: processStyle,
         style: selector(props),
         props: props
       }
 
+      let validatedStyle = validateStyle(processStyle(pluginInterface))
+      // only diff and extract dynamic style
+      // if not actually rendering the base style
+      if (propsReference !== '') {
+        validatedStyle = extractDynamicStyle(validatedStyle, cachedSelector.get('static'))
+      }
 
-      const preparedStyle = prepareStyle(pluginInterface, cachedSelector.get('static'), propsReference)
-      const clusteredStyle = clusterStyle(preparedStyle)
+      const clusteredStyle = clusterStyle(validatedStyle)
 
       if (Object.keys(clusteredStyle).length === 0) {
         cachedSelector.set(propsReference, '')
@@ -263,7 +271,7 @@ export default class StyleSheet {
 
       // keep static style to diff dynamic onces later on
       if (propsReference === '') {
-        cachedSelector.set('static', preparedStyle)
+        cachedSelector.set('static', validatedStyle)
       }
     }
 
