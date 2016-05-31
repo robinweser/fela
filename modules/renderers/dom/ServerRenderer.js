@@ -29,6 +29,7 @@ export default class Renderer {
     let css = ''
 
     this.stylesheet.fontFaces.forEach(markup => css += markup)
+    this.stylesheet.statics.forEach(markup => css += markup)
     css += cssifyCache(this.stylesheet.cache)
     this.stylesheet.mediaCache.forEach((cache, media) => {
       css += '@media ' + media + '{' + cssifyCache(cache) + '}'
