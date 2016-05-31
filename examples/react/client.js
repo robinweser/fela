@@ -5,7 +5,7 @@ import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
 import beautifier from '../../modules/middleware/beautifier'
 import logger from '../../modules/middleware/logger'
-import applyMiddleware from '../../modules/helper/applyMiddleware'
+import applyMiddleware from '../../modules/helpers/applyMiddleware'
 
 import App from './app'
 
