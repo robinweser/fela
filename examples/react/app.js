@@ -2,13 +2,11 @@ import React, { Component } from 'react'
 import Keyframe from '../../modules/components/dom/Keyframe'
 
 const centerSelector = props => ({
-  display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
-  width: '100%',
-  height: '100%',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  flex: 1
 })
 
 const animation = new Keyframe(props => ({

@@ -21,6 +21,18 @@ app.get('/', (req, res) => {
   const middleware = [ beautifier(), logger({ beautify: false }) ]
   const enhancedRenderer = applyMiddleware(renderer, middleware)
 
+  enhancedRenderer.render({
+    'html,body,#app': {
+      width: '100%',
+      height: '100%',
+      margin: 0,
+      padding: 0
+    },
+    div: {
+      display: 'flex'
+    }
+  })
+
   const indexHTML = fs.readFileSync(__dirname + '/index.html').toString()
   const appHtml = renderToString(
     <App renderer={enhancedRenderer} />
