@@ -8,9 +8,9 @@ describe('ServerRenderer Tests', () => {
       const selector = props => ({ color: 'red' })
 
       const renderer = new Renderer()
-      renderer.stylesheet._handleRender = sinon.spy()
+      renderer.stylesheet.handleRender = sinon.spy()
       const className = renderer.render(selector, { })
-      expect(renderer.stylesheet._handleRender).to.have.been.calledOnce
+      expect(renderer.stylesheet.handleRender).to.have.been.calledOnce
     })
 
     it('should return its stylesheets render handler results', () => {
@@ -37,40 +37,6 @@ describe('ServerRenderer Tests', () => {
       expect(renderer.renderToString()).to.eql('')
     })
   })
-
-  describe('Rendering its stylesheet cache', () => {
-    it('should render valid CSS', () => {
-      const selector = props => ({
-        color: props.color,
-        fontSize: '12px'
-      })
-
-      const renderer = new Renderer()
-      const staticClassName = renderer.render(selector)
-      const dynamicClassName = renderer.render(selector, {
-        color: 'red'
-      })
-
-      const css = renderer._renderCache(renderer.stylesheet.cache)
-
-      expect(css).to.eql('.' + staticClassName + '{font-size:12px}.' + dynamicClassName.replace(staticClassName, '').trim() + '{color:red}')
-    })
-
-    it('should not render empty selectors', () => {
-      const selector = props => ({ fontSize: '12px' })
-
-      const renderer = new Renderer()
-      const staticClassName = renderer.render(selector)
-      const dynamicClassName = renderer.render(selector, {
-        color: 'red'
-      })
-
-      const css = renderer._renderCache(renderer.stylesheet.cache)
-
-      expect(css).to.eql('.' + staticClassName + '{font-size:12px}')
-    })
-  })
-
 
   describe('Rendering to string', () => {
     it('should render all caches', () => {

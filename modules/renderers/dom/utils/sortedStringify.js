@@ -6,10 +6,6 @@
  * @return {string} stringyfied sorted object
  */
 export default function sortedStringify(obj) {
-  if (obj === undefined) {
-    return ''
-  }
-
   return Object.keys(obj).sort().reduce((str, prop) => {
     // only concatenate property and value
     // without any special characters

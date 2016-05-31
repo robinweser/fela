@@ -96,7 +96,7 @@ describe('StyleSheet Tests', () => {
       expect(sheet.cache.get(selector).size).to.eql(4)
     })
 
-    it('should reuse static styles', () => {
+    it('should reuse static style', () => {
       const selector = props => ({ fontSize: '23px' })
       const sheet = new StyleSheet()
 
@@ -213,8 +213,8 @@ describe('StyleSheet Tests', () => {
       }))
       const sheet = new StyleSheet()
 
-      const animationName = sheet._renderKeyframeVariation(keyframe, {}, [ ({ styles }) => ({
-        ...styles,
+      const animationName = sheet._renderKeyframeVariation(keyframe, {}, [ ({ style }) => ({
+        ...style,
         to: {
           color: 'blue'
         }
@@ -225,14 +225,14 @@ describe('StyleSheet Tests', () => {
   })
 
   describe('Rendering static styles', () => {
-    it('should cache the styles and return the rendered markup', () => {
+    it('should cache the style and return the rendered markup', () => {
       const sheet = new StyleSheet()
 
-      const staticStyles = '*{color:red;margin:0}'
-      const css = sheet._renderStatic(staticStyles)
+      const staticStyle = '*{color:red;margin:0}'
+      const css = sheet._renderStatic(staticStyle)
 
-      expect(sheet.statics.has(staticStyles)).to.eql(true)
-      expect(css).to.eql(staticStyles)
+      expect(sheet.statics.has(staticStyle)).to.eql(true)
+      expect(css).to.eql(staticStyle)
     })
 
     it('should render a flat object of static selectors', () => {
@@ -298,15 +298,6 @@ describe('StyleSheet Tests', () => {
       })
       expect(className1).to.eql(className2)
     })
-
-    it('should use an empty string for empty props', () => {
-      const stylesheet = new StyleSheet()
-
-      const className1 = stylesheet._generatePropsReference()
-      const className2 = stylesheet._generatePropsReference({ })
-      expect(className1).to.eql('')
-      expect(className2).to.eql('')
-    })
   })
 
 
@@ -336,219 +327,6 @@ describe('StyleSheet Tests', () => {
 
       expect(unsubscriber.unsibscribe).to.be.a.function
       expect(stylesheet.listeners.size).to.eql(0)
-    })
-  })
-
-  describe('Validating styles', () => {
-    it('should remove invalid properties', () => {
-      const selector = props => ({
-        color: props.color,
-        display: [ '-webkit-box', 'flex' ],
-        something: {
-          color: 'blue'
-        },
-        fontSize: '12px',
-        width: false
-      })
-
-      const stylesheet = new StyleSheet()
-      const validatedStyles = stylesheet._validateStyles(selector({ }))
-
-      expect(validatedStyles).to.eql({ fontSize: '12px' })
-    })
-  })
-
-  describe('Clustering styles', () => {
-    it('should cluster and flatten media query styles', () => {
-      const styles = {
-        color: 'blue',
-        fontSize: '12px',
-        '@media (min-height: 300px)': {
-          color: 'red',
-          fontSize: '5px',
-          '@media (max-width: 200px)': {
-            color: 'black'
-          }
-        },
-        '@media screen': {
-          fontSize: '20px'
-        }
-      }
-
-      const stylesheet = new StyleSheet()
-      const clusteredStyles = stylesheet._clusterStyles(styles)
-
-      expect(clusteredStyles).to.eql({
-        '': {
-          '': {
-            color: 'blue',
-            fontSize: '12px'
-          }
-        },
-        '(min-height: 300px)': {
-          '': {
-            color: 'red',
-            fontSize: '5px'
-          }
-        },
-        '(min-height: 300px) and (max-width: 200px)': {
-          '': {
-            color: 'black'
-          }
-        },
-        screen: {
-          '': {
-            fontSize: '20px'
-          }
-        }
-      })
-    })
-
-    it('should cluster and flatten pseudo classes', () => {
-      const styles = {
-        color: 'blue',
-        fontSize: '12px',
-        ':hover': {
-          color: 'red',
-          fontSize: '5px',
-          ':focus': {
-            color: 'black'
-          }
-        },
-        ':focus': {
-          fontSize: '20px'
-        }
-      }
-
-      const stylesheet = new StyleSheet()
-      const clusteredStyles = stylesheet._clusterStyles(styles)
-
-      expect(clusteredStyles).to.eql({
-        '': {
-          '': {
-            color: 'blue',
-            fontSize: '12px'
-          },
-          ':hover': {
-            color: 'red',
-            fontSize: '5px'
-          },
-          ':hover:focus': {
-            color: 'black'
-          },
-          ':focus': {
-            fontSize: '20px'
-          }
-        }
-      })
-    })
-
-    it('should cluster flatten media query styles and pseudo classes combined', () => {
-      const styles = {
-        color: 'blue',
-        fontSize: '12px',
-        ':hover': {
-          color: 'black',
-          ':active': {
-            color: 'gray'
-          }
-        },
-        '@media (min-height: 300px)': {
-          color: 'red',
-          fontSize: '5px',
-          ':hover': {
-            color: 'yellow',
-            ':focus': {
-              color: 'brown'
-            }
-          },
-          '@media (max-width: 200px)': {
-            color: 'black',
-            ':focus': {
-              color: 'purple'
-            }
-          }
-        }
-      }
-
-      const stylesheet = new StyleSheet()
-      const clusteredStyles = stylesheet._clusterStyles(styles)
-
-      expect(clusteredStyles).to.eql({
-        '': {
-          '': {
-            color: 'blue',
-            fontSize: '12px'
-          },
-          ':hover': {
-            color: 'black'
-          },
-          ':hover:active': {
-            color: 'gray'
-          }
-        },
-        '(min-height: 300px)': {
-          '': {
-            color: 'red',
-            fontSize: '5px'
-          },
-          ':hover': {
-            color: 'yellow'
-          },
-          ':hover:focus': {
-            color: 'brown'
-          }
-        },
-        '(min-height: 300px) and (max-width: 200px)': {
-          '': {
-            color: 'black'
-          },
-          ':focus': {
-            color: 'purple'
-          }
-        }
-      })
-    })
-  })
-
-  describe('Extracting dynamic styles', () => {
-    it('should only return the difference of two style objects', () => {
-      const base = {
-        color: 'red',
-        display: '-webkit-box;display:flex',
-        something: {
-          color: 'blue'
-        },
-        test: {
-          foo: 'bar'
-        },
-        fontSize: '12px',
-        width: false
-      }
-
-      const styles = {
-        color: 'blue',
-        something: {
-          fontSize: '15px'
-        },
-        test: {
-          foo: 'bar'
-        },
-        width: true,
-        fontSize: '12px',
-        height: 12
-      }
-      const stylesheet = new StyleSheet()
-      const dynamicStyles = stylesheet._extractDynamicStyles(styles, base)
-
-      expect(dynamicStyles).to.eql({
-        color: 'blue',
-        something: {
-          fontSize: '15px'
-        },
-        width: true,
-        height: 12
-      })
     })
   })
 })

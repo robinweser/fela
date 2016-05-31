@@ -1,4 +1,4 @@
-import getFontFormat from '../../utils/getFontFormat'
+import getFontFormat from './utils/getFontFormat'
 
 export default class FontFace {
   constructor(family, files, properties = { }) {

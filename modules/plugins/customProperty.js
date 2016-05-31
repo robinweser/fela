@@ -1,22 +1,22 @@
 export default function customProperty(properties) {
   return (pluginInterface) => {
-    const { styles, processStyles } = pluginInterface
+    const { style, processStyle } = pluginInterface
 
-    Object.keys(styles).forEach(property => {
-      const value = styles[property]
+    Object.keys(style).forEach(property => {
+      const value = style[property]
       if (properties[property]) {
-        Object.assign(styles, properties[property](value))
-        delete styles[property]
+        Object.assign(style, properties[property](value))
+        delete style[property]
       }
 
       if (value instanceof Object && !Array.isArray(value)) {
-        styles[property] = processStyles({
+        style[property] = processStyle({
           ...pluginInterface,
-          styles: value
+          style: value
         })
       }
     })
 
-    return styles
+    return style
   }
 }

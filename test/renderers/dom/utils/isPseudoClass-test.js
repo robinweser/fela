@@ -1,4 +1,4 @@
-import isPseudoClass from '../../modules/utils/isPseudoClass'
+import isPseudoClass from '../../../../modules/renderers/dom/utils/isPseudoClass'
 
 describe('Checking if a property is a pseudo class string', () => {
   it('should return true', () => {

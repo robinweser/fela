@@ -1,24 +1,24 @@
 export default function friendlyPseudoClass() {
   return (pluginInterface) => {
-    const { styles, processStyles } = pluginInterface
+    const { style, processStyle } = pluginInterface
 
-    Object.keys(styles).forEach(property => {
-      const value = styles[property]
+    Object.keys(style).forEach(property => {
+      const value = style[property]
       if (value instanceof Object && !Array.isArray(value)) {
         const regex = new RegExp('^on([A-Z])')
         if (regex.test(property)) {
           const pseudo = property.replace(regex, (match, p1) => ':' + p1.toLowerCase())
 
-          styles[pseudo] = processStyles({
+          style[pseudo] = processStyle({
             ...pluginInterface,
-            styles: value
+            style: value
           })
 
-          delete styles[property]
+          delete style[property]
         }
       }
     })
 
-    return styles
+    return style
   }
 }
