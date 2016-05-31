@@ -1,12 +1,12 @@
-export default function pluginInterface(styles, plugins) {
+export default function pluginInterface(style, plugins) {
   return {
-    styles: styles,
+    style: style,
     plugins: plugins,
-    processStyles: pluginInterface => {
-      const { plugins, styles } = pluginInterface
+    processStyle: pluginInterface => {
+      const { plugins, style } = pluginInterface
       plugins.forEach(plugin => plugin(pluginInterface))
 
-      return styles
+      return style
     }
   }
 }

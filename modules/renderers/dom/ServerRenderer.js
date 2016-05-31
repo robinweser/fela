@@ -1,4 +1,5 @@
 import StyleSheet from './StyleSheet'
+import cssifyCache from './utils/cssifyCache'
 
 export default class Renderer {
   constructor(config) {
@@ -15,7 +16,7 @@ export default class Renderer {
    * @return {string} className, animation name, font family
    */
   render(element, props, plugins) {
-    return this.stylesheet._handleRender(element, props, plugins)
+    return this.stylesheet.handleRender(element, props, plugins)
   }
 
   /**
@@ -28,9 +29,9 @@ export default class Renderer {
     let css = ''
 
     this.stylesheet.fontFaces.forEach(markup => css += markup)
-    css += this._renderCache(this.stylesheet.cache)
+    css += cssifyCache(this.stylesheet.cache)
     this.stylesheet.mediaCache.forEach((cache, media) => {
-      css += '@media ' + media + '{' + this._renderCache(cache) + '}'
+      css += '@media ' + media + '{' + cssifyCache(cache) + '}'
     })
     this.stylesheet.keyframes.forEach(variation => {
       variation.forEach(markup => css += markup)
@@ -44,26 +45,5 @@ export default class Renderer {
    */
   clear() {
     this.stylesheet.clear()
-  }
-
-
-  /**
-   * renders a whole cache into a single CSS string
-   *
-   * @param {Map} cache - cache including all selector variations
-   * @return {string} valid CSS string
-   */
-  _renderCache(cache) {
-    let css = ''
-
-    cache.forEach(variation => {
-      variation.forEach((markup, propsReference) => {
-        if (propsReference !== 'static') {
-          css += markup
-        }
-      })
-    })
-
-    return css
   }
 }

@@ -1,21 +1,21 @@
-import camelToDashCase from '../utils/camelToDashCase'
+import hypenateStyleName from 'hyphenate-style-name'
 
 export default function fallbackValue() {
   return (pluginInterface) => {
-    const { styles, processStyles } = pluginInterface
+    const { style, processStyle } = pluginInterface
 
-    Object.keys(styles).forEach(property => {
-      const value = styles[property]
+    Object.keys(style).forEach(property => {
+      const value = style[property]
       if (Array.isArray(value)) {
-        styles[property] = value.join(';' + camelToDashCase(property) + ':')
+        style[property] = value.join(';' + hypenateStyleName(property) + ':')
       } else if (value instanceof Object) {
-        styles[property] = processStyles({
+        style[property] = processStyle({
           ...pluginInterface,
-          styles: value
+          style: value
         })
       }
     })
 
-    return styles
+    return style
   }
 }

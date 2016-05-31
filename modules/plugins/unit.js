@@ -14,25 +14,25 @@ export default function unit(unit = 'px') {
   warning(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`. Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.')
 
   return (pluginInterface) => {
-    const { styles, processStyles } = pluginInterface
+    const { style, processStyle } = pluginInterface
 
-    Object.keys(styles).forEach(property => {
+    Object.keys(style).forEach(property => {
       if (!isUnitlessCSSProperty(property)) {
 
-        const value = styles[property]
+        const value = style[property]
         if (Array.isArray(value)) {
-          styles[property] = value.map(value => addUnitIfNeeded(property, value, unit))
+          style[property] = value.map(value => addUnitIfNeeded(property, value, unit))
         } else if (value instanceof Object) {
-          styles[property] = processStyles({
+          style[property] = processStyle({
             ...pluginInterface,
-            styles: value
+            style: value
           })
         } else {
-          styles[property] = addUnitIfNeeded(property, value, unit)
+          style[property] = addUnitIfNeeded(property, value, unit)
         }
       }
     })
 
-    return styles
+    return style
   }
 }

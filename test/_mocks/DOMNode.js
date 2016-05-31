@@ -1,8 +1,8 @@
-export default function DOMNode(type, name) {
+export default function DOMNode() {
   return {
     textContent: '',
-    nodeType: type,
-    nodeName: name,
+    nodeType: 1,
+    nodeName: 'STYLE',
     hasAttribute: function(attribute) {
       return this.hasOwnProperty(attribute)
     },
