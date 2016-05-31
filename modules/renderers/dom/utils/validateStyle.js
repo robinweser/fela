@@ -17,6 +17,9 @@ export default function validateStyle(style) {
       }
     } else if (typeof value !== 'string' && typeof value !== 'number') {
       delete style[property]
+    // also remove properties including concatenated props valued with undefined
+    } else if (typeof value === 'string' && value.indexOf('undefined') > -1) {
+      delete style[property]
     }
   })
 
