@@ -166,14 +166,44 @@ const fontFace = new FontFace('Arial', files, properties)
 ```
 
 ## 7. Global & Third-Party CSS
-You most likely also want to define some global CSS rules e.g. some CSS resets. Also frequently you need to include some third-party CSS rules. 
+You most likely also want to define some global CSS rules e.g. some CSS resets. Also frequently you need to include some third-party CSS rules.<br>
+There are actually two ways to achieve that. If you already got CSS you can basically just use it. Either as a single compressed string or using ECMAScript 2015 [template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings).
+```javascript
+// simple compressed string
+const static = '*{margin:0;padding:0}'
+
+// ECMAScript 2015 template string
+const static = `
+* {
+  margin: 0;
+  padding: 0
+}`
+```
+
+If you just want to define some global rules you can use a plain object to do that. Each key should reference a valid CSS selector.
+```javascript
+const static = {
+  '*': {
+    margin: 0,
+    padding: 0,
+  },
+  'html, body': {
+    overflowX: 'hidden',
+    overflowY: 'auto'
+  },
+  div: {
+    fontSize: '15px',
+    display: 'flex'
+  }
+}
+```
 
 ## 8. Rendering
-We now know how to use selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.<br>
-> Note: Before using any Renderer you should first understand how the rendering process works in general. If you're not already familiar with the mechansism please check out [Rendering Mechanism](RenderingMechanism.md) for a detailed explanation.
+Now that we know how to use selectors, Keyframes, Fonts and all the CSS features with Fela, we are finally ready to actually use them in a real application. We need to render them somehow to produce and attach valid CSS output.<br>
+Before reading further or even using any Renderer you should first understand how the rendering flow works in general. If you're not already familiar please check out [Rendering Workflow](Workflow.md) for a detailed explanation.
 
 ### 8.1. DOM Renderer
-The DOM Renderer is used to directly render Selector variations into a specific DOM node. It is used for client-side rendering and requires a real DOM to be working.
+The DOM Renderer is used to directly render style (variations) into a specific DOM node. It is used for client-side rendering and requires a real DOM to be working.
 It can basically render into any valid element node though styles will only get applied correctly if a real `<style>` element is used.
 
 ```javascript
@@ -194,7 +224,7 @@ console.log(mountNode.textContent) // => .c0{color:red}.c0-eqz3x{font-size:12px}
 ```
 
 ### 8.2. Server Renderer
-The Server Renderer does exactly the same as the DOM Renderer does except actually rendering into a DOM node. It is used for server-side rendering and only caches all the variations. It is used to collect all rendered variations produced on initial render. Using the `renderToString` method afterwards will return a single string containing all styles transformed into valid CSS markup.<br>
+The Server Renderer works exactly identical except actually rendering into a DOM node. It is used for server-side rendering and only caches all the variations. It is used to collect all rendered variations produced on initial render. Using the `renderToString` method afterwards will return a single string containing all styles transformed into valid CSS markup.<br>
 This string can now be injected into the provided HTML file.
 ```javascript
 import { Renderer } from 'fela/server'
@@ -214,8 +244,9 @@ console.log(renderer.renderToString()) // => .c0{color:red}.c0-eqz3x{font-size:1
 
 
 ## 9. Plugins
-Fela is designed to be configured with plugins which gives huge power and flexibility while styling your application.
-There are actually two ways to use plugins. You can either pass them to the `render` method or directly instantiate your Renderer with plugins once.
+Knowing how to use and render every type Fela provides it is time to learn how to use plugins.<br>
+Fela is especially designed to be extended with plugins which give huge power and flexibility while styling your application.
+There are two ways to use them. You can either pass them to the `render` method or directly instantiate your Renderer with plugins once.
 
 ```javascript
 import prefixer from 'fela-plugin-prefixer'
@@ -231,7 +262,8 @@ renderer.render(selector, { color: 'red' })
 
 
 ### 9.1. Configuration
-Some plugins might require some configuration. For example the [custom property](plugins/customProperty) plugin must at least have one custom property mapping. You can pass configuration directly on instantiation.
+Some plugins might require some configuration. For example the [custom property](plugins/customProperty) plugin must at least have one custom property mapping. You can pass configuration directly, but note that not every plugin is capable of configuration. <br>
+Check the [plugin overview](../README.md#plugins) to see which plugins allow configuration and how it looks like.
 ```javascript
 import customProperty from 'fela-plugin-custom-property'
 

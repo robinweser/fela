@@ -11,8 +11,11 @@ That's why every style composer basically is a function of *props* that returns 
 Fela was designed to be extended with Middleware and Plugins in order to keep the core package clean and small. Therefore everything that is not necessarily required to render selectors, keyframes or font-faces should be provided as middleware or as a rendering plugin.
 
 #### Why both?
-That's the point where you might have asked yourself: Why are there both - Middleware **and** Plugins? Both are used in a similar way to achieve different tasks. <br><br>
-**Plugins** are used to process rendered styles. They take a *plugin interface* and return processed styles. <br>
+That's the point where you might have asked yourself: Why are there both - Middleware and Plugins? Both are used in a similar way to achieve different tasks.
+* **Plugins** are used to process rendered styles. They take a *plugin interface* and return processed styles. <br>
 Most plugins are build for use in production.<br><br>
-**Middleware** on the other hand is mostly used to improve developer experience (DX) by providing handy developer tooling such as CSS formatting and Logging. They extend the renderer itself instead of processing the rendered styles. <br>
+* **Middleware** on the other hand is mostly used to improve developer experience (DX) by providing handy developer tooling such as CSS formatting and Logging. They extend the renderer itself instead of processing the rendered styles. <br>
 Most middleware is not designed to be used in production.
+
+## 3. Universal .render
+To be completed soon.
