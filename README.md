@@ -8,7 +8,7 @@ Dynamic Styling in JavaScript.
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.6kb-brightgreen.svg">
 </p>
 <br>
-**Fela** is a fast, modular, dynamic and tiny *(2.6kb gzipped)* low-level API to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It is considered a low-level API, but serves well in production as a stand-alone solution as well.
+**Fela** is a fast, modular, dynamic and tiny *(2.6kb gzipped)* library to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It transforms, diffs and renders styles to CSS on the fly.
 
 ## Benefits
 * Universal rendering
@@ -28,7 +28,7 @@ import { Renderer } from 'fela'
 
 // selectors are just plain functions of props
 // returning a valid object of style declarations
-const selector = props => {
+const selector = props => ({
   fontSize: props.fontSize + 'px',
   marginTop: props.margin ? '15px' : 0,
   color: 'red',
@@ -45,7 +45,7 @@ const selector = props => {
       color: 'black'
     }
   }
-}))
+})
 
 // Binding a new Renderer to a DOM node which
 // automatically updates its CSS content on render
@@ -103,7 +103,7 @@ All packages including all plugins are also available via [npmcdn](https://npmcd
 ## Documentation
 + [Getting Started](/docs/GettingStarted.md)
 * [Design Principles](docs/Principles.md)
-* [Rendering Mechanism](docs/RenderingMechanism.md)
+* [Rendering Workflow](docs/Workflow.md)
 * [API Reference](docs/api/)
 * [Plugins](docs/plugins/)
 * [Middleware](docs/middleware/)

@@ -1,14 +1,14 @@
 # Fela API
 
 * [FontFace(family, files [, properties])](#fontfacefamily-files--properties)
-* [Keyframe(keyframeComposer)](#keyframekeyframecomposer)
+* [Keyframe(composer)](#keyframecomposer)
 * [Renderer(node)](#renderernode)
   * [.render(element [, props, plugins])](#renderelement--props-plugins)
   * [.clear()](#clear)
 * [applyMiddleware(renderer, middleware)](#applymiddlewarerenderer-middleware)
 
 
-## `FontFace(family, files [, properties])`
+## `FontFace(f>amily, files [, properties])`
 **string\<family>**<br>
 **string[]\<files>**<br>
 **Object?\<properties>**
@@ -30,13 +30,13 @@ const files = [
 const fontFace = new Fela.FontFace('Arial', files, { fontWeight: 300 })
 ```
 
-## `Keyframe(keyframeComposer)`
-**Function\<keyframeComposer>**
+## `Keyframe(composer)`
+**Function\<composer>**
 
 Instantiates a new Keyframe with a pure keyframe *composer*. It is used similar to basic Selectors.
 
 ```javascript
-const frameComposer = props => ({
+const composer = props => ({
   '0%': {
     color: 'red'
   },
@@ -48,7 +48,7 @@ const frameComposer = props => ({
   }
 })
 
-const keyframe = new Fela.Keyframe(frameComposer)
+const keyframe = new Fela.Keyframe(composer)
 ```
 
 
