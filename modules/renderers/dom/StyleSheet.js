@@ -152,7 +152,7 @@ export default class StyleSheet {
    */
   _renderFontFace(fontFace) {
     if (!this.fontFaces.has(fontFace)) {
-      const css = '@font-face {' + cssifyObject(fontFace.render()) + '}'
+      const css = '@font-face{' + cssifyObject(fontFace.render()) + '}'
       this.fontFaces.set(fontFace, css)
       this._emitChange(css)
     }

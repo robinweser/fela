@@ -68,7 +68,7 @@ describe('ServerRenderer Tests', () => {
       const css = renderer.renderToString()
 
       const selectorMarkup = '.' + className + '{color:red}@media (min-height: 300px){.' + className + '{color:blue}}'
-      const fontFaceMarkup = '@font-face {font-family:\'Arial\';src:url(\'../fonts/Arial.ttf\') format(\'truetype\'),url(\'../fonts/Arial.woff\') format(\'woff\');font-weight:300}'
+      const fontFaceMarkup = '@font-face{font-family:\'Arial\';src:url(\'../fonts/Arial.ttf\') format(\'truetype\'),url(\'../fonts/Arial.woff\') format(\'woff\');font-weight:300}'
       const keyframeMarkup = ' ' + animationName + '{from{color:red}to{color:blue}}'
       const prefixedKeyframeMarkup = [ '@-webkit-keyframes', '@-moz-keyframes', '@keyframes', '' ].join(keyframeMarkup)
 
