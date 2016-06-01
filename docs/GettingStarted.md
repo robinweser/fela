@@ -110,7 +110,7 @@ const selector = props => ({
 Yet another CSS key feature are media queries. They're used to describe how style get rendered depending on the current device. Just like pseudo classes they can also be nested within your selector. They **must** begin with the `@media` keyword.
 
 ```javascript
-const composer = props => ({
+const selector = props => ({
   color: 'red',
   ':hover': {
     color: 'blue'
@@ -130,12 +130,43 @@ const composer = props => ({
 ```
 
 ## 5. Animation Keyframes
-To be completed soon.
+Keyframe animations require a special syntax. We achieve this using a dedicated Keyframe Component which Fela provides. It gets instantiated with a single keyframe **composer** which is similar to basic selectors just a plain function of *props* returning an object of frame style declarations.
+
+```javascript
+import { Keyframe } from 'fela'
+
+const composer = props => ({
+  '0%': {
+    color: 'blue'
+  },
+  '33%': {
+    color: props.color,
+  },
+  '66%': {
+    color: 'green'
+  },
+  '100%': {
+    color: 'blue'
+  }
+})
+
+const keyframe = new Keyframe(composer)
+```
+
 ## 6. Font Faces
-To be completed soon.
+Font faces also require a special syntax which is again provided by Fela's FontFace Component itself.
+
+> Note: You can also pass special font properties, but remember there are [only four valid](api/Fela.md#fontfacefamily-files--properties) properties for @font-face notation.
+
+```javascript
+const files = ['../fonts/Arial.ttf', '../fonts/Arial.woff']
+const properties = { fontWeight: 300 }
+
+const fontFace = new FontFace('Arial', files, properties)
+```
 
 ## 7. Global & Third-Party CSS
-To be completed soon.
+You most likely also want to define some global CSS rules e.g. some CSS resets. Also frequently you need to include some third-party CSS rules. 
 
 ## 8. Rendering
 We now know how to use selectors, Keyframes, Fonts and all the CSS features with Fela, but to use them within a real application we still need to render them somehow to produce and attach valid CSS output.<br>
