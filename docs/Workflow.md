@@ -46,7 +46,7 @@ const style = {
   marginTop: '15px',
   color: 'red',
   boxSizing: 'border-box',
-  WebkitBoxSizing: 'border-box',
+  MozBoxSizing: 'border-box',
   ':hover': {
     color: 'blue',
     fontSize: '24px'

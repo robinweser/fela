@@ -73,7 +73,7 @@ Generated CSS markup will look like this:
 }
 
 .c0-aw22w:hover {
-  font-size: 14px;
+  font-size: 14px
 }
 
 @media (min-height: 300px) {
