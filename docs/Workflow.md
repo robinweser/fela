@@ -116,6 +116,7 @@ const style = {
 
 #### 4. Clustering
 Finally the style object will be clustered into three hierarchical levels.
+
 1. Media query
 2. Pseudo class
 3. Style object
