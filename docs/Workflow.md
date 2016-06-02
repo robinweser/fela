@@ -64,7 +64,7 @@ const style = {
 
 #### 2. Validation
 
-Next the resolved and processed style object gets validated in order to remove any invalid properties which would produce invalid CSS markup. It removes properties with arrays, functions and objects as value. The only exceptions to the removal of object values are pseudo class and media query properties, if their value is not an empty object. String values containing `undefined` will also get removed.<br>
+Next the resolved and processed style object gets validated in order to remove any invalid properties which would produce invalid CSS markup. It removes properties with arrays, functions and objects as values. The only exceptions to the removal of object values are pseudo class and media query properties, if their value is not an empty object. String values containing `undefined` will also get removed.<br>
 This step is especially important if no props are passed,  as all dynamic values will remain either `undefined` or contain `undefined` as a string.
 
 ```javascript
