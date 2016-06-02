@@ -1,6 +1,6 @@
 # Rendering Workflow
 
-Both Renderer use a cache to memorize rendered styles in order to reuse them every time the same style is rendered again. This prevent duplication and improves performance on future rendering cycles. It also prevents unnecessary DOM manipulations.
+Both Renderers use a cache to memorize rendered styles in order to reuse them every time the same style is rendered again. This prevents duplication and improves performance on future rendering cycles. It also prevents unnecessary DOM manipulations.
 <br>
 The Renderer therefore always has an up-to-date version of all rendered styles during the whole application lifetime which can be rendered to a DOM node or a string at any given time.
 
@@ -14,7 +14,7 @@ Every render-call is evaluated by a render handler which delegates next steps de
 * [Static Style](#staticstyle)
 
 ### Selector
-Selectors should build up at least 80% of your styles and also got the most complicated but also optimized rendering flow as they have to go through several steps until they finally get rendered to CSS. We will a basic example selector used similar to the one used in the README to demonstrate the process step by step.
+Selectors should build up at least 80% of your styles. They have the most complicated, but well optimized, rendering flow as they have to go through several steps until they finally get rendered to CSS. We will use a basic example selector, similar to the one used in the README to demonstrate the process step by step.
 
 ```javascript
 const selector = props => ({
@@ -38,8 +38,9 @@ const selector = props => ({
 
 #### 1. Resolving & Processing
 
-First of all the selector gets resolved with *props* passed to the Renderer. Not passing props will automatically suggest an empty object as *props*. The resolved style object then gets piped through each plugin (if any plugins are defined) which are used to process and alter the style *e.g. by adding vendor prefixes*.
-Let's assume we're using the [prefixer](plugins/Prefixer.md) plugin along with `{margin: true, fontSize: 12}` as *props*.
+First of all the selector gets resolved with *props* passed to the Renderer. Not passing props will automatically inject an empty object as *props*. The resolved style object then gets piped through the defined set of plugins, which are used to process and alter the style *e.g. by adding vendor prefixes*.
+Let's assume we're using the [prefixer](plugins/Prefixer.md) plugin along with `{margin: true, fontSize: 12}` as *props*. 
+
 ```javascript
 const style = {
   fontSize: '12px',
@@ -63,8 +64,8 @@ const style = {
 
 #### 2. Validation
 
-Next the resolved and processed style object gets validated in order to remove any invalid property that would produce invalid CSS markup. It removes properties with arrays, functions and objects (expect, if not empty, pseudo class and media query objects) as value. String values containing `undefined` will also get removed.<br>
-This step is especially important if no props are passed as all dynamic values will remain either `undefined` or contain `undefined` as a string.
+Next the resolved and processed style object gets validated in order to remove any invalid properties which would produce invalid CSS markup. It removes properties with arrays, functions and objects as values. The only exceptions to the removal of object values are pseudo class and media query properties, if their values are not empty objects. String values containing `undefined` will also get removed.<br>
+This step is especially important if no props are passed, as all dynamic values will remain either `undefined` or contain `undefined` as a string.
 
 ```javascript
 const style = {
@@ -84,9 +85,10 @@ const style = {
 }
 ```
 
-#### 3. Dynamic syle extraction (Diffing)
+#### 3. Dynamic style extraction (diffing)
 
-Now the style object will be diffed against the static subset which is rendered and cached immediately if a new selector is rendered. For this example the cached static subset would be:
+Now the style object will be diffed against the static subset, which is rendered and cached immediately if a new selector is rendered. For this example the cached static subset would be:
+
 ```javascript
 const subset = {
   color: 'red',
@@ -100,7 +102,9 @@ const subset = {
   }
 }
 ```
-Diffing both style objects will output only the dynamic subset.
+
+Diffing both style objects will output only the dynamic subset:
+
 ```javascript
 const style = {
   fontSize: '12px',
@@ -141,7 +145,7 @@ const style = {
 ```
 
 #### 5. Cssifying & Caching
-Last but not least the style objects get transformed to valid CSS rulesets (including pseudo class rulesets) using a unique className generated from an unique reference ID as well as a content-based hash of the passed *props* what makes it unique throughout the whole application. They then get added to the appropriate (media) cache to be reused if the selector is ever rendered with those *props* again.
+Last but not least the style objects get transformed to valid CSS rulesets (including pseudo class rulesets) using a unique className generated from an unique reference ID as well as a content-based hash of the passed *props*, which makes it unique throughout the whole application. They then get added to the appropriate (media) cache to be reused if the selector is ever rendered with those *props* again.
 
 ```javascript
 // static subset
@@ -187,7 +191,7 @@ The CSS markup which is finally mounted to the DOM would thus be the following (
 ```
 
 ### Keyframe
-Similar to selectors Keyframes are also instantiated using a pure function of props. Therefore they're undergoing a similar rendering process (if not as complicated).
+Similar to selectors Keyframes are also instantiated using a pure function of props. Therefore they're undergoing a similar rendering process, albeit not as complicated.
 We will use the following Keyframe to demonstrate the process:
 
 ```javascript
@@ -205,7 +209,7 @@ const keyframe = new Fela.Keyframe(props => {
 ```
 
 #### 1. Resolving & Processing
-First of all the keyframe gets resolved using the provided *props*. The resolved frame object then gets processed by piping through each plugin as well. Let's assume we're using the [unit](plugins/Unit.md) plugin along with `{fontSize: 12}` as *props*.
+First of all the Keyframe gets resolved using the provided *props*. The resolved frame object then gets processed by piping it through each plugin as well. Let's assume we're using the [unit](plugins/Unit.md) plugin along with `{fontSize: 12}` as *props*.
 
 ```javascript
 const frames = {
@@ -222,7 +226,7 @@ const frames = {
 ```
 
 #### 2. Validation
-Again similar to selectors validation the frame object now gets rid of all invalid properties. This time we're removing arrays, functions, `undefined` + strings including `undefined` and **all** objects except the first level (`from`, `to`).
+Again, similar to selector validation, all invalid properties will now be removed from the frame object. This time we're removing arrays, functions, `undefined` + strings including `undefined` and **all** objects except the first level (`from`, `to`).
 
 ```javascript
 const frames = {
