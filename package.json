@@ -1,7 +1,7 @@
 {
   "private": true,
   "version": "1.0.0-alpha.7",
-  "description": "Fast, tiny & dynamic low-level API to handle Styling in JavaScript",
+  "description": "Fast, modular, dynamic & tiny library to handle Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
   "license": "MIT",
