@@ -6,7 +6,8 @@ Dynamic Styling in JavaScript.
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.6kb-brightgreen.svg">
-[![Join the chat at https://gitter.im/rofrischmann/fela](https://badges.gitter.im/rofrischmann/fela.svg)](https://gitter.im/rofrischmann/fela?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
+
 </p>
 <br>
 **Fela** is a fast, modular, dynamic and tiny *(2.6kb gzipped)* library to handle Styling in JavaScript. It adds dynamic behavior to extend and modify styles over time. It transforms, diffs and renders styles to CSS on the fly.
