@@ -38,7 +38,7 @@ export default class Renderer {
    * @param {Function[]?} plugins - array of plugins to process styles
    * @return {string} className, animation name, font family
    */
-  render(element, props, plugins) {
+  render = (element, props, plugins) => {
     return this.stylesheet.handleRender(element, props, plugins)
   }
 
