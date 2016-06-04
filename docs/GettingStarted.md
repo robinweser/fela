@@ -55,8 +55,8 @@ const selector = props => ({
 ### 2.1. Tips & Tricks
 To write even more advanced and simple Selectors there are some helpful tips & tricks you might want to know and use.
 
-* Optional props & Default values
-Sometimes you do not always pass all props required to completely resolve all style declarations, but want to use a default value in order to not produce any invalid CSS markup. You can achieve this in two ways. Either with ECMA2015 [default function parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters) or with the logical OR operator.
+* Optional props & Default values  
+Sometimes you do not pass all props required to completely resolve all style declarations, but want to use a default value in order to not produce any invalid CSS markup. You can achieve this in two ways. Either with ECMA2015 [default function parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters) or with the logical OR (`||`) operator.
 
 ```javascript
 // default parameters
@@ -65,16 +65,19 @@ const selector = ({ color = 'red' } = {}) => ({
 })
 
 // OR operator
-const selector = props => ({
-  color: props.color || 'red'
-})
+const selector = props => {
+  props = props || {}
+  return {
+    color: props.color || 'red'
+  }
+}
 
 selector({ color: 'blue' }) // => { color: 'blue' }
 selector({ }) // => { color: 'red' }
 ```
 
-* Conditional values
-Some values might only be applied if a certain condition is fulfilled. Instead of complex and big `if` statements you can use the ternary operator.
+* Conditional values  
+Some values might only be applied, if a certain condition is fulfilled. Instead of complex and big `if` statements you can use the ternary operator.
 
 ```javascript
 const selector = props => ({
@@ -107,7 +110,7 @@ const selector = props => ({
 ```
 
 ## 4. Media Queries
-Yet another CSS key feature are media queries. They're used to describe how style get rendered depending on the current device. Just like pseudo classes they can also be nested within your selector. They **must** begin with the `@media` keyword.
+Yet another CSS key feature are [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries). They're used to describe what styles are rendered depending on the current screen width, height, aspect ratio, device etc. Just like pseudo classes they can also be nested within your selector. They **must** begin with the `@media` keyword.
 
 ```javascript
 const selector = props => ({
@@ -130,7 +133,7 @@ const selector = props => ({
 ```
 
 ## 5. Animation Keyframes
-Keyframe animations require a special syntax. We achieve this using a dedicated Keyframe Component which Fela provides. It gets instantiated with a single keyframe **composer** which is similar to basic selectors just a plain function of *props* returning an object of frame style declarations.
+Keyframe animations require a special syntax. We achieve this by using Fela's provided `Keyframe` component. It gets instantiated with a single keyframe **composer** which is a plain function of *props* returning an object of frame style declarations, similar to how basic selectors work for styles.
 
 ```javascript
 import { Keyframe } from 'fela'
@@ -154,7 +157,7 @@ const keyframe = new Keyframe(composer)
 ```
 
 ## 6. Font Faces
-Font faces also require a special syntax which is again provided by Fela's FontFace Component itself.
+Font faces also require a special syntax which is again provided by Fela's `FontFace` component itself.
 
 > Note: You can also pass special font properties, but remember there are [only four valid](api/Fela.md#fontfacefamily-files--properties) properties for @font-face notation.
 
@@ -166,14 +169,14 @@ const fontFace = new FontFace('Arial', files, properties)
 ```
 
 ## 7. Global & Third-Party CSS
-You most likely also want to define some global CSS rules e.g. some CSS resets. Also frequently you need to include some third-party CSS rules.<br>
+You most likely also want to define some global CSS rules, e.g. CSS resets. In additional to that you frequently need to include some third-party CSS rules.  
 There are actually two ways to achieve that. If you already got CSS you can basically just use it. Either as a single compressed string or using ECMAScript 2015 [template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings).
 ```javascript
 // simple compressed string
-const static = '*{margin:0;padding:0}'
+const staticCSS = '*{margin:0;padding:0}'
 
 // ECMAScript 2015 template string
-const static = `
+const staticCSS = `
 * {
   margin: 0;
   padding: 0
@@ -182,7 +185,7 @@ const static = `
 
 If you just want to define some global rules you can use a plain object to do that. Each key should reference a valid CSS selector.
 ```javascript
-const static = {
+const staticCSS = {
   '*': {
     margin: 0,
     padding: 0,
@@ -199,11 +202,11 @@ const static = {
 ```
 
 ## 8. Rendering
-Now that we know how to use selectors, Keyframes, Fonts and all the CSS features with Fela, we are finally ready to actually use them in a real application. We need to render them somehow to produce and attach valid CSS output.<br>
-Before reading further or even using any Renderer you should first understand how the rendering flow works in general. If you're not already familiar please check out [Rendering Workflow](Workflow.md) for a detailed explanation.
+Now that we know how to use selectors, keyframes, fonts and all the CSS features with Fela, we are finally ready to actually use them in a real application. We need to render them somehow to produce and attach valid CSS output.  
+Before reading further or even using any Renderer you should first understand how the rendering flow works in general. If you're not already familiar with it, please check out [Rendering Workflow](Workflow.md) for a detailed explanation.
 
 ### 8.1. DOM Renderer
-The DOM Renderer is used to directly render style (variations) into a specific DOM node. It is used for client-side rendering and requires a real DOM to be working.
+The DOM Renderer is used to directly render styles (and their variations) into a specific DOM node. It is used for client-side rendering and requires a real DOM.
 It can basically render into any valid element node though styles will only get applied correctly if a real `<style>` element is used.
 
 ```javascript
@@ -224,7 +227,7 @@ console.log(mountNode.textContent) // => .c0{color:red}.c0-eqz3x{font-size:12px}
 ```
 
 ### 8.2. Server Renderer
-The Server Renderer works exactly identical except actually rendering into a DOM node. It is used for server-side rendering and only caches all the variations. It is used to collect all rendered variations produced on initial render. Using the `renderToString` method afterwards will return a single string containing all styles transformed into valid CSS markup.<br>
+The Server Renderer works identical to the DOM Renderer, except that it does not render into a DOM node. It is used for server-side rendering and only caches all the variations. It is used to collect all rendered variations produced on initial render. Using the `renderToString` method afterwards will return a single string containing all styles transformed into valid CSS markup.  
 This string can now be injected into the provided HTML file.
 ```javascript
 import { Renderer } from 'fela/server'
@@ -242,11 +245,10 @@ renderer.render(selector, { size: 12 }) // => c0 c0-eqz3x
 console.log(renderer.renderToString()) // => .c0{color:red}.c0-eqz3x{font-size:12px}
 ```
 
-
 ## 9. Plugins
-Knowing how to use and render every type Fela provides it is time to learn how to use plugins.<br>
-Fela is especially designed to be extended with plugins which give huge power and flexibility while styling your application.
-There are two ways to use them. You can either pass them to the `render` method or directly instantiate your Renderer with plugins once.
+Knowing how to use and render every type Fela provides, it is time to learn how to use plugins.  
+Fela is specifically designed to be extended with plugins, which provide you with huge power and flexibility while styling your application.
+There are two ways to use them: you can either pass them to the `render` method or directly instantiate your Renderer with plugins once.
 
 ```javascript
 import prefixer from 'fela-plugin-prefixer'
@@ -260,10 +262,10 @@ const renderer = new Fela.Renderer(mountNode, { plugins: [ prefixer() ]})
 renderer.render(selector, { color: 'red' })
 ```
 
-
 ### 9.1. Configuration
-Some plugins might require some configuration. For example the [custom property](plugins/customProperty) plugin must at least have one custom property mapping. You can pass configuration directly, but note that not every plugin is capable of configuration. <br>
+Some plugins might require some configuration. For example the [custom property](plugins/customProperty) plugin must at least have one custom property mapping. You can pass configuration directly, but note that not every plugin is capable of configuration.  
 Check the [plugin overview](../README.md#plugins) to see which plugins allow configuration and how it looks like.
+
 ```javascript
 import customProperty from 'fela-plugin-custom-property'
 
@@ -282,7 +284,7 @@ To be completed soon.
 
 ## 11. Fela with other Libraries
 ### Fela + React
-Fela was not explicitly designed for React, but rather is as a result of working with React.<br>
+Fela was not explicitly designed for React, but rather is as a result of working with React.  
 It can be used with any solution, but works perfectly fine together with React - especially if dealing with dynamic & stateful styling.
 
 ```javascript
@@ -303,8 +305,8 @@ const selector = props => ({
 
 // A simple React Component to choose a font-size
 class FontSize extends Component {
-  constructor() {
-    super(...arguments)
+  constructor(...args) {
+    super(...args)
     this.state = { fontSize: 15 }
     this.resize = this.resize.bind(this)
   }
@@ -356,13 +358,13 @@ const selector = props => ({
 
 
 class App extends HTMLElement {
-    attachedCallback() {
-        this.innerHTML = `
-            <div class="${renderer.render(selector, { color: 'red' })}">
-                I do not have a font-size, but am red.
-            </div>
-        `
-    }
+   attachedCallback() {
+     this.innerHTML = `
+       <div class="${renderer.render(selector, { color: 'red' })}">
+         I do not have a font-size, but am red.
+       </div>
+     `
+   }
 }
 
 document.registerElement('my-app', App)
