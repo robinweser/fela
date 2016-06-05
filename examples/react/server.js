@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
   const renderer = new Renderer({ plugins: plugins })
 
   const middleware = [ beautifier(), logger({ beautify: false }) ]
-  const enhancedRenderer = applyMiddleware(renderer, middleware)
+  const enhancedRenderer = applyMiddleware(middleware)(renderer)
 
   enhancedRenderer.render({
     'html,body,#app': {

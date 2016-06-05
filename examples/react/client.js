@@ -5,6 +5,7 @@ import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
 import beautifier from '../../modules/middleware/beautifier'
 import logger from '../../modules/middleware/logger'
+import perf from '../../modules/middleware/perf'
 import applyMiddleware from '../../modules/helpers/applyMiddleware'
 
 import App from './app'
@@ -14,9 +15,7 @@ const renderer = new Renderer(document.getElementById('stylesheet'), {
   plugins: [ prefixer(), fallbackValue() ]
 })
 
-const enhancedRenderer = applyMiddleware(renderer, [
-  beautifier(), logger({ beautify: true })
-])
+const enhancedRenderer = applyMiddleware([ beautifier(), logger(), perf() ])(renderer)
 
 enhancedRenderer.render({
   'html,body,#app': {
