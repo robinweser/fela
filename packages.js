@@ -38,5 +38,9 @@ export default {
   'fela-logger': {
     name: 'FelaLogger',
     entry: 'middleware/logger.js'
+  },
+  'fela-perf': {
+    name: 'FelaPerf',
+    entry: 'middleware/perf.js'
   }
 }

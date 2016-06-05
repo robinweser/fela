@@ -17,7 +17,7 @@ const errorOnFail = err => {
 const babelPlugin = babel({
   babelrc: false,
   presets: [ 'es2015-rollup', 'stage-0' ],
-  plugins: [ 'transform-dev-warning', 'transform-node-env-inline' ]
+  plugins: [ 'transform-class-properties', 'transform-dev-warning', 'transform-node-env-inline' ]
 })
 const nodeResolverPlugin = nodeResolver({ jsnext: true, main: true })
 const commonJSPlugin = commonjs({ include: 'node_modules/**' })
