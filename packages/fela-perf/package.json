@@ -1,0 +1,26 @@
+{
+  "name": "fela-perf",
+  "version": "1.0.0-alpha.7",
+  "description": "Performance middleware for Fela",
+  "main": "perf.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "perf.js",
+    "dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-devtools",
+    "dx",
+    "devtools",
+    "cssinjs",
+    "performance"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "cssbeautify": "^0.3.1"
+  }
+}
