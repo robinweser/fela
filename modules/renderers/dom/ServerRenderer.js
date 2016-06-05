@@ -1,5 +1,4 @@
 import StyleSheet from './StyleSheet'
-import cssifyCache from './utils/cssifyCache'
 
 export default class Renderer {
   constructor(config) {

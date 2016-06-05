@@ -279,9 +279,13 @@ export default class StyleSheet {
   }
 
 
-
-
-  // really need to refactor that
+  /**
+   * iterates a style object and renders each selector to the cache
+   *
+   * @param {string} className - className reference to be rendered to
+   * @param {Object} style - style object which is rendered
+   * @param {Object`} base - base style subset for diffing
+   */
   _renderStyle(className, style, base = { }, pseudo = '', media = '') {
     const ruleset = Object.keys(style).reduce((ruleset, property) => {
       const value = style[property]
