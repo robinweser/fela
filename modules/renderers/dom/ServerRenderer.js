@@ -20,25 +20,13 @@ export default class Renderer {
   }
 
   /**
-   * renders all cached selector styles into a single valid CSS string
+   * renders all cached styles into a single valid CSS string
    * clusters media query styles into groups to reduce output size
 
    * @return single concatenated CSS string
    */
   renderToString() {
-    let css = ''
-
-    this.stylesheet.fontFaces.forEach(markup => css += markup)
-    this.stylesheet.statics.forEach(markup => css += markup)
-    css += cssifyCache(this.stylesheet.cache)
-    this.stylesheet.mediaCache.forEach((cache, media) => {
-      css += '@media ' + media + '{' + cssifyCache(cache) + '}'
-    })
-    this.stylesheet.keyframes.forEach(variation => {
-      variation.forEach(markup => css += markup)
-    })
-
-    return css
+    return this.stylesheet._renderToString()
   }
 
   /**

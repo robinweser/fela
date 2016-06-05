@@ -33,7 +33,7 @@ describe('ServerRenderer Tests', () => {
 
       renderer.clear()
 
-      expect(renderer.stylesheet.cache.size).to.eql(0)
+      expect(renderer.stylesheet.rendered.size).to.eql(0)
       expect(renderer.renderToString()).to.eql('')
     })
   })
@@ -60,10 +60,12 @@ describe('ServerRenderer Tests', () => {
         }
       }))
 
+      const staticStyles = '*{margin:0}'
       const renderer = new Renderer()
       const className = renderer.render(selector)
       const fontFamily = renderer.render(fontFace)
       const animationName = renderer.render(keyframe)
+      renderer.render(staticStyles)
 
       const css = renderer.renderToString()
 
@@ -75,7 +77,7 @@ describe('ServerRenderer Tests', () => {
       expect(fontFamily).to.eql('Arial')
       expect(animationName).to.eql('k1')
       expect(className).to.eql('c0')
-      expect(css).to.eql(fontFaceMarkup + selectorMarkup + prefixedKeyframeMarkup)
+      expect(css).to.eql(fontFaceMarkup + staticStyles + selectorMarkup + prefixedKeyframeMarkup)
     })
   })
 })

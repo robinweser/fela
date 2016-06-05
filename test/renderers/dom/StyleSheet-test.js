@@ -7,11 +7,11 @@ describe('StyleSheet Tests', () => {
     it('should add caches for all styles', () => {
       const stylesheet = new StyleSheet()
 
-      expect(stylesheet.cache).to.eql(new Map())
-      expect(stylesheet.mediaCache).to.eql(new Map())
-      expect(stylesheet.keyframes).to.eql(new Map())
-      expect(stylesheet.fontFaces).to.eql(new Set())
-      expect(stylesheet.statics).to.eql(new Set())
+      expect(stylesheet.selectors).to.eql('')
+      expect(stylesheet.mediaSelectors).to.eql(new Map())
+      expect(stylesheet.keyframes).to.eql('')
+      expect(stylesheet.fontFaces).to.eql('')
+      expect(stylesheet.statics).to.eql('')
     })
   })
 
@@ -23,11 +23,11 @@ describe('StyleSheet Tests', () => {
       stylesheet._renderSelectorVariation(selector)
       stylesheet.clear()
 
-      expect(stylesheet.cache).to.eql(new Map())
-      expect(stylesheet.mediaCache).to.eql(new Map())
-      expect(stylesheet.keyframes).to.eql(new Map())
-      expect(stylesheet.fontFaces).to.eql(new Set())
-      expect(stylesheet.statics).to.eql(new Set())
+      expect(stylesheet.selectors).to.eql('')
+      expect(stylesheet.mediaSelectors).to.eql(new Map())
+      expect(stylesheet.keyframes).to.eql('')
+      expect(stylesheet.fontFaces).to.eql('')
+      expect(stylesheet.statics).to.eql('')
     })
 
     it('should reset the counter and the ids', () => {
@@ -47,9 +47,9 @@ describe('StyleSheet Tests', () => {
       const selector = props => ({ color: 'red' })
       const sheet = new StyleSheet()
 
-      sheet._renderSelectorVariation(selector)
+      const cls = sheet._renderSelectorVariation(selector)
 
-      expect(sheet.cache.has(selector)).to.eql(true)
+      expect(sheet.rendered.has(cls)).to.eql(true)
     })
 
     it('should add a media cache entry for each media', () => {
@@ -72,14 +72,13 @@ describe('StyleSheet Tests', () => {
 
       const sheet = new StyleSheet()
 
-      sheet._renderSelectorVariation(selector)
-      sheet._renderSelectorVariation(anotherSelector)
+      const className1 = sheet._renderSelectorVariation(selector)
+      const className2 = sheet._renderSelectorVariation(anotherSelector)
 
-      expect(sheet.mediaCache.has('screen')).to.eql(true)
-      expect(sheet.mediaCache.has('min-height: 300px')).to.eql(true)
-      expect(sheet.mediaCache.get('screen').has(selector)).to.eql(true)
-      expect(sheet.mediaCache.get('min-height: 300px').has(selector)).to.eql(true)
-      expect(sheet.mediaCache.get('min-height: 300px').has(anotherSelector)).to.eql(true)
+      expect(sheet.mediaSelectors.has('screen')).to.eql(true)
+      expect(sheet.mediaSelectors.has('min-height: 300px')).to.eql(true)
+      expect(sheet.rendered.has(className1)).to.eql(true)
+      expect(sheet.rendered.has(className2)).to.eql(true)
     })
 
     it('should reuse cached variations', () => {
@@ -93,7 +92,7 @@ describe('StyleSheet Tests', () => {
       sheet._renderSelectorVariation(selector, { color: 'red' })
       sheet._renderSelectorVariation(selector, { color: 'blue' })
 
-      expect(sheet.cache.get(selector).size).to.eql(4)
+      expect(sheet.rendered.size).to.eql(3)
     })
 
     it('should reuse static style', () => {
@@ -112,8 +111,8 @@ describe('StyleSheet Tests', () => {
 
       expect(className).to.eql(className2)
       expect(className).to.eql(className3)
-      expect(sheet.cache.get(selector).get('')).to.eql('.c0{font-size:23px}')
-      expect(sheet.cache.get(selector).size).to.eql(4)
+      expect(sheet.selectors).to.eql('.c0{font-size:23px}')
+      expect(sheet.rendered.size).to.eql(3)
     })
 
     it('should generate an incrementing reference id', () => {
@@ -145,9 +144,9 @@ describe('StyleSheet Tests', () => {
       const selector = props => ({ color: 'red' })
       const sheet = new StyleSheet()
 
-      sheet._renderSelectorVariation(selector)
+      const className = sheet._renderSelectorVariation(selector)
 
-      expect(sheet.cache.get(selector).get('static')).to.eql({
+      expect(sheet.base.get(selector)).to.eql({
         color: 'red'
       })
     })
@@ -165,9 +164,9 @@ describe('StyleSheet Tests', () => {
       }))
       const sheet = new StyleSheet()
 
-      sheet._renderKeyframeVariation(keyframe)
+      const animationName = sheet._renderKeyframeVariation(keyframe)
 
-      expect(sheet.keyframes.has(keyframe)).to.eql(true)
+      expect(sheet.rendered.has(animationName)).to.eql(true)
     })
 
     it('should return a valid animation name', () => {
@@ -202,7 +201,7 @@ describe('StyleSheet Tests', () => {
       })
 
       expect(animationName).to.eql('k0--aedinm')
-      expect(sheet.keyframes.get(keyframe).get('--aedinm')).to.eql('@-webkit-keyframes k0--aedinm{from{color:red}to{color:blue}}@-moz-keyframes k0--aedinm{from{color:red}to{color:blue}}@keyframes k0--aedinm{from{color:red}to{color:blue}}')
+      expect(sheet.keyframes).to.eql('@-webkit-keyframes k0--aedinm{from{color:red}to{color:blue}}@-moz-keyframes k0--aedinm{from{color:red}to{color:blue}}@keyframes k0--aedinm{from{color:red}to{color:blue}}')
     })
 
     it('should process keyframes with plugins', () => {
@@ -220,7 +219,7 @@ describe('StyleSheet Tests', () => {
         }
       }) ])
 
-      expect(sheet.keyframes.get(keyframe).get('')).to.eql('@-webkit-keyframes k0{from{color:red}to{color:blue}}@-moz-keyframes k0{from{color:red}to{color:blue}}@keyframes k0{from{color:red}to{color:blue}}')
+      expect(sheet.keyframes).to.eql('@-webkit-keyframes k0{from{color:red}to{color:blue}}@-moz-keyframes k0{from{color:red}to{color:blue}}@keyframes k0{from{color:red}to{color:blue}}')
     })
   })
 
@@ -229,16 +228,16 @@ describe('StyleSheet Tests', () => {
       const sheet = new StyleSheet()
 
       const staticStyle = '*{color:red;margin:0}'
-      const css = sheet._renderStatic(staticStyle)
+      sheet._renderStatic(staticStyle)
 
-      expect(sheet.statics.has(staticStyle)).to.eql(true)
-      expect(css).to.eql(staticStyle)
+      expect(sheet.rendered.has(staticStyle)).to.eql(true)
+      expect(sheet.statics).to.eql(staticStyle)
     })
 
     it('should render a flat object of static selectors', () => {
       const sheet = new StyleSheet()
 
-      const css = sheet._renderStatic({
+      const staticStyle = {
         '*': {
           margin: 0,
           fontSize: '12px'
@@ -246,10 +245,12 @@ describe('StyleSheet Tests', () => {
         div: {
           display: 'flex'
         }
-      })
+      }
 
-      expect(sheet.statics.has(css)).to.eql(true)
-      expect(css).to.eql('*{margin:0;font-size:12px}div{display:flex}')
+      sheet._renderStatic(staticStyle)
+
+      expect(sheet.rendered.has(staticStyle)).to.eql(true)
+      expect(sheet.statics).to.eql('*{margin:0;font-size:12px}div{display:flex}')
     })
   })
 
@@ -262,7 +263,7 @@ describe('StyleSheet Tests', () => {
       })
       const css = sheet._renderFontFace(fontFace)
 
-      expect(sheet.fontFaces.has(fontFace)).to.eql(true)
+      expect(sheet.rendered.has(fontFace)).to.eql(true)
     })
     it('should return the font family', () => {
       const sheet = new StyleSheet()
@@ -315,7 +316,7 @@ describe('StyleSheet Tests', () => {
       stylesheet.subscribe(subscriber)
       const staticClassName = stylesheet._renderSelectorVariation(selector)
 
-      expect(subscriber).to.have.been.calledTwice
+      expect(subscriber).to.have.been.calledOnce
     })
 
     it('should return a unsubscribe method', () => {

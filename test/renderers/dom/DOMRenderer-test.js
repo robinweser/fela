@@ -46,6 +46,24 @@ describe('DOMRenderer Tests', () => {
       expect(node.textContent).to.eql('.c0{color:red}.c0--kzgdz4{bar:foo}')
     })
 
+    it('should render media query styles', () => {
+      const selector = props => ({
+        color: 'red',
+        bar: props.foo,
+        '@media (min-height: 300px)': {
+          color: 'blue'
+        }
+      })
+
+      const node = DOMNode()
+      const renderer = new Renderer(node)
+
+      renderer.render(selector, { })
+      renderer.render(selector, { foo: 'foo' })
+
+      expect(node.textContent).to.eql('.c0{color:red}.c0--kzgdz4{bar:foo}@media (min-height: 300px){.c0{color:blue}}')
+    })
+
     it('should throw if no element node was passed', () => {
       expect((function() {
         new Renderer({ })
@@ -72,7 +90,7 @@ describe('DOMRenderer Tests', () => {
 
       renderer.clear()
 
-      expect(renderer.stylesheet.cache.size).to.eql(0)
+      expect(renderer.stylesheet.rendered.size).to.eql(0)
     })
 
     it('should clear the DOM node', () => {

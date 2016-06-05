@@ -39,7 +39,7 @@ const selector = props => ({
 #### 1. Resolving & Processing
 
 First of all the selector gets resolved with *props* passed to the Renderer. Not passing props will automatically inject an empty object as *props*. The resolved style object then gets piped through the defined set of plugins, which are used to process and alter the style *e.g. by adding vendor prefixes*.
-Let's assume we're using the [prefixer](plugins/Prefixer.md) plugin along with `{margin: true, fontSize: 12}` as *props*. 
+Let's assume we're using the [prefixer](plugins/Prefixer.md) plugin along with `{margin: true, fontSize: 12}` as *props*.
 
 ```javascript
 const style = {
@@ -85,10 +85,9 @@ const style = {
 }
 ```
 
-#### 3. Dynamic style extraction (diffing)
-
-Now the style object will be diffed against the static subset, which is rendered and cached immediately if a new selector is rendered. For this example the cached static subset would be:
-
+#### 3. Dynamic style extraction, Cssifying & Caching
+Last but not least the style objects get transformed to valid CSS rulesets (including pseudo class rulesets) using a unique className generated from an unique reference ID as well as a content-based hash of the passed *props*, which makes it unique throughout the whole application.<br>
+During this process only dynamic styles are actually used which is achieved by diffing the styles against the static style subset. The static style subset is immediately rendered the first time a selector is rendered itself. Using the above example, the static subset would be:
 ```javascript
 const subset = {
   color: 'red',
@@ -102,62 +101,7 @@ const subset = {
   }
 }
 ```
-
-Diffing both style objects will output only the dynamic subset:
-
-```javascript
-const style = {
-  fontSize: '12px',
-  marginTop: '15px',
-  ':hover': {
-    fontSize: '24px'
-  },
-  '@media (min-height: 300px)': {
-    marginTop: '30px'
-  }
-}
-```
-
-#### 4. Clustering
-Finally the style object will be clustered into three hierarchical levels.
-
-1. Media query
-2. Pseudo class
-3. Style object
-
-```javascript
-const style = {
-  '': {
-    '': {
-      fontSize: '12px',
-      marginTop: '15px'
-    },
-    ':hover': {
-      fontSize: '24px'
-    }
-  },
-  '@media (min-height: 300px)': {
-    '': {
-      marginTop: '30px'
-    }
-  }
-}
-```
-
-#### 5. Cssifying & Caching
-Last but not least the style objects get transformed to valid CSS rulesets (including pseudo class rulesets) using a unique className generated from an unique reference ID as well as a content-based hash of the passed *props*, which makes it unique throughout the whole application. They then get added to the appropriate (media) cache to be reused if the selector is ever rendered with those *props* again.
-
-```javascript
-// static subset
-cache => selector => '' => '.c0{color:red;box-sizing:border-box;-moz-box-sizing:border-box}.c0:hover{color:blue}'
-mediaCache => '@media (min-height: 300px)' => selector => '' => '.c0{background-color:gray}'
-
-// dynamic subset
-cache => selector => '-foo' => '.c0-foo{font-size:12px;margin-top:15px}.c0-foo:hover{font-size:24px}'
-mediaCache => '@media (min-height: 300px)' => selector => '-foo' => '.c0-foo{margin-top:30px}'
-```
-
-The CSS markup which is finally mounted to the DOM would thus be the following (beautified for better readability):
+The extracted dynamic subset then gets transformed into valid CSS and added to the cache. The markup which is finally mounted to the DOM would thus be the following (beautified for better readability):
 
 ```CSS
 .c0 {
@@ -245,13 +189,6 @@ const frames = {
 As keyframe animations can **not** be split into static and dynamic subsets to be reused wisely, we do not have to do that additional step. Also they are actually already clustered by frame percentage values which is why we can skip that one as well.<br>
 So finally we just need to transform the frames to valid CSS frames using an unique animationName generated similar to a selectors className. It also adds prefixed keyframes.<br>
 The resulting CSS markup gets cached to be reused as well.
-
-```javascript
-keyframeCache => keyframe => '-bar' => '@-webkit-keyframes k0-bar{from{font-size:12px;color:blue}to{font-size:17px;background-color:black}}@-moz-keyframes k0-bar{from{font-size:12px;color:blue}to{font-size:17px;background-color:black}}@keyframes k0-bar{from{font-size:12px;color:blue}to{font-size:17px;background-color:black}}'
-```
-
-The CSS markup which is finally mounted to the DOM would thus be the following (beautified for better readability):
-
 ```CSS
 @-webkit-keyframes k0-bar {
   from {
@@ -312,9 +249,6 @@ Validation will remove the `fontSize: 12px` as it is not a [valid @font-face pro
 
 #### 2. Cssifying & Caching
 FontFaces get cached to prevent duplication.
-```javascript
-fontCache => fontFace => "@font-face {font-family:'Arial';src:url('../font/Arial.ttf') format('truetype'),url('../font/Arial.woff') format('woff');font-weight:300}"
-```
 The rendered CSS markup therefore is:
 ```CSS
 @font-face {
