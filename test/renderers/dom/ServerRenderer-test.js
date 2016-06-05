@@ -33,7 +33,7 @@ describe('ServerRenderer Tests', () => {
 
       renderer.clear()
 
-      expect(renderer.stylesheet.rendered.size).to.eql(0)
+      expect(Object.keys(renderer.stylesheet.rendered).length).to.eql(0)
       expect(renderer.renderToString()).to.eql('')
     })
   })

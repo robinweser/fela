@@ -18,4 +18,16 @@ const enhancedRenderer = applyMiddleware(renderer, [
   beautifier(), logger({ beautify: true })
 ])
 
+enhancedRenderer.render({
+  'html,body,#app': {
+    width: '100%',
+    height: '100%',
+    margin: 0,
+    padding: 0
+  },
+  div: {
+    display: 'flex'
+  }
+})
+
 render(<App renderer={enhancedRenderer} />, document.getElementById('app'))

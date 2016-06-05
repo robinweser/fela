@@ -24,21 +24,11 @@ describe('StyleSheet Tests', () => {
       stylesheet.clear()
 
       expect(stylesheet.selectors).to.eql('')
-      expect(stylesheet.mediaSelectors).to.eql(new Map())
+      expect(stylesheet.mediaSelectors).to.eql({ })
       expect(stylesheet.keyframes).to.eql('')
       expect(stylesheet.fontFaces).to.eql('')
       expect(stylesheet.statics).to.eql('')
-    })
-
-    it('should reset the counter and the ids', () => {
-      const stylesheet = new StyleSheet()
-      const selector = props => ({ color: 'red' })
-
-      stylesheet._renderSelectorVariation(selector)
-      stylesheet.clear()
-
-      expect(stylesheet._counter).to.eql(-1)
-      expect(stylesheet.ids).to.eql(new Map())
+      expect(stylesheet.ids).to.eql([ ])
     })
   })
 
@@ -49,7 +39,7 @@ describe('StyleSheet Tests', () => {
 
       const cls = sheet._renderSelectorVariation(selector)
 
-      expect(sheet.rendered.has(cls)).to.eql(true)
+      expect(sheet.rendered.hasOwnProperty(cls)).to.eql(true)
     })
 
     it('should add a media cache entry for each media', () => {
@@ -75,10 +65,10 @@ describe('StyleSheet Tests', () => {
       const className1 = sheet._renderSelectorVariation(selector)
       const className2 = sheet._renderSelectorVariation(anotherSelector)
 
-      expect(sheet.mediaSelectors.has('screen')).to.eql(true)
-      expect(sheet.mediaSelectors.has('min-height: 300px')).to.eql(true)
-      expect(sheet.rendered.has(className1)).to.eql(true)
-      expect(sheet.rendered.has(className2)).to.eql(true)
+      expect(sheet.mediaSelectors.hasOwnProperty('screen')).to.eql(true)
+      expect(sheet.mediaSelectors.hasOwnProperty('min-height: 300px')).to.eql(true)
+      expect(sheet.rendered.hasOwnProperty(className1)).to.eql(true)
+      expect(sheet.rendered.hasOwnProperty(className2)).to.eql(true)
     })
 
     it('should reuse cached variations', () => {
@@ -92,7 +82,7 @@ describe('StyleSheet Tests', () => {
       sheet._renderSelectorVariation(selector, { color: 'red' })
       sheet._renderSelectorVariation(selector, { color: 'blue' })
 
-      expect(sheet.rendered.size).to.eql(3)
+      expect(Object.keys(sheet.rendered).length).to.eql(3)
     })
 
     it('should reuse static style', () => {
@@ -112,7 +102,7 @@ describe('StyleSheet Tests', () => {
       expect(className).to.eql(className2)
       expect(className).to.eql(className3)
       expect(sheet.selectors).to.eql('.c0{font-size:23px}')
-      expect(sheet.rendered.size).to.eql(3)
+      expect(Object.keys(sheet.rendered).length).to.eql(3)
     })
 
     it('should generate an incrementing reference id', () => {
@@ -123,9 +113,9 @@ describe('StyleSheet Tests', () => {
       sheet._renderSelectorVariation(selector)
       sheet._renderSelectorVariation(selector2)
 
-      expect(sheet.ids.has(selector)).to.eql(true)
-      expect(sheet.ids.has(selector2)).to.eql(true)
-      expect(sheet.ids.get(selector2)).to.be.greaterThan(sheet.ids.get(selector))
+      expect(sheet.ids.indexOf(selector)).to.be.greaterThan(-1)
+      expect(sheet.ids.indexOf(selector2)).to.be.greaterThan(-1)
+      expect(sheet.ids.indexOf(selector2)).to.be.greaterThan(sheet.ids.indexOf(selector))
     })
 
     it('should always return the same className prefix', () => {
@@ -146,7 +136,7 @@ describe('StyleSheet Tests', () => {
 
       const className = sheet._renderSelectorVariation(selector)
 
-      expect(sheet.base.get(selector)).to.eql({
+      expect(sheet.base[sheet.ids.indexOf(selector)]).to.eql({
         color: 'red'
       })
     })
@@ -166,7 +156,7 @@ describe('StyleSheet Tests', () => {
 
       const animationName = sheet._renderKeyframeVariation(keyframe)
 
-      expect(sheet.rendered.has(animationName)).to.eql(true)
+      expect(sheet.rendered.hasOwnProperty(animationName)).to.eql(true)
     })
 
     it('should return a valid animation name', () => {
@@ -230,7 +220,7 @@ describe('StyleSheet Tests', () => {
       const staticStyle = '*{color:red;margin:0}'
       sheet._renderStatic(staticStyle)
 
-      expect(sheet.rendered.has(staticStyle)).to.eql(true)
+      expect(sheet.rendered.hasOwnProperty(staticStyle)).to.eql(true)
       expect(sheet.statics).to.eql(staticStyle)
     })
 
@@ -249,7 +239,7 @@ describe('StyleSheet Tests', () => {
 
       sheet._renderStatic(staticStyle)
 
-      expect(sheet.rendered.has(staticStyle)).to.eql(true)
+      expect(sheet.rendered.hasOwnProperty(sheet._generatePropsReference(staticStyle))).to.eql(true)
       expect(sheet.statics).to.eql('*{margin:0;font-size:12px}div{display:flex}')
     })
   })
@@ -263,7 +253,7 @@ describe('StyleSheet Tests', () => {
       })
       const css = sheet._renderFontFace(fontFace)
 
-      expect(sheet.rendered.has(fontFace)).to.eql(true)
+      expect(sheet.rendered.hasOwnProperty(fontFace.family)).to.eql(true)
     })
     it('should return the font family', () => {
       const sheet = new StyleSheet()
@@ -326,8 +316,8 @@ describe('StyleSheet Tests', () => {
       const unsubscriber = stylesheet.subscribe(subscriber)
       unsubscriber.unsubscribe()
 
-      expect(unsubscriber.unsibscribe).to.be.a.function
-      expect(stylesheet.listeners.size).to.eql(0)
+      expect(unsubscriber.unsubscribe).to.be.a.function
+      expect(stylesheet.listeners.length).to.eql(0)
     })
   })
 })

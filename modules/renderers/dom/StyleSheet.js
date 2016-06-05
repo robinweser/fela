@@ -19,7 +19,7 @@ export default class StyleSheet {
    * Keyframes and FontFaces which optimizes style
    */
   constructor(config = { }) {
-    this.listeners = new Set()
+    this.listeners = [ ]
     this.keyframePrefixes = config.keyframePrefixes || [ '-webkit-', '-moz-' ]
     this.keyframePrefixes.push('')
     this.plugins = config.plugins || [ ]
@@ -40,9 +40,9 @@ export default class StyleSheet {
    * @return {Object} equivalent unsubscribe method
    */
   subscribe(callback) {
-    this.listeners.add(callback)
+    this.listeners.push(callback)
     return {
-      unsubscribe: () => this.listeners.delete(callback)
+      unsubscribe: () => this.listeners.splice(this.listeners.indexOf(callback), 1)
     }
   }
 
@@ -85,11 +85,10 @@ export default class StyleSheet {
     this.keyframes = ''
     this.statics = ''
     this.selectors = ''
-    this.mediaSelectors = new Map()
-    this.rendered = new Map()
-    this.base = new Map()
-    this.ids = new Map()
-    this._counter = -1
+    this.mediaSelectors = { }
+    this.rendered = { }
+    this.base = { }
+    this.ids = [ ]
   }
 
   /**
@@ -112,9 +111,10 @@ export default class StyleSheet {
    */
   _renderToString() {
     let css = this.fontFaces + this.statics + this.selectors
-    this.mediaSelectors.forEach((markup, media) => {
-      css += '@media ' + media + '{' + markup + '}'
-    })
+
+    for (var media in this.mediaSelectors) {
+      css += '@media ' + media + '{' + this.mediaSelectors[media] + '}'
+    }
 
     return css + this.keyframes
   }
@@ -137,7 +137,9 @@ export default class StyleSheet {
    * @return {string} rendered CSS output
    */
   _renderStatic(style, plugins = [ ]) {
-    if (!this.rendered.has(style)) {
+    const ref = typeof style === 'string' ? style : this._generatePropsReference(style)
+
+    if (!this.rendered.hasOwnProperty(ref)) {
       let css = ''
 
       if (typeof style === 'string') {
@@ -155,7 +157,7 @@ export default class StyleSheet {
         })
       }
 
-      this.rendered.set(style, true)
+      this.rendered[ref] = true
       this.statics += css
       this._emitChange()
     }
@@ -168,9 +170,9 @@ export default class StyleSheet {
    * @return {string} fontFamily reference
    */
   _renderFontFace(fontFace) {
-    if (!this.rendered.has(fontFace)) {
+    if (!this.rendered.hasOwnProperty(fontFace.family)) {
       const css = '@font-face{' + cssifyObject(fontFace.render()) + '}'
-      this.rendered.set(fontFace, true)
+      this.rendered[fontFace.family] = true
       this.fontFaces += css
       this._emitChange()
     }
@@ -189,16 +191,16 @@ export default class StyleSheet {
   _renderKeyframeVariation(keyframe, props = { }, plugins = []) {
     // rendering a Keyframe for the first time
     // will create cache entries and an ID reference
-    if (!this.ids.has(keyframe)) {
-      this.ids.set(keyframe, ++this._counter)
+    if (this.ids.indexOf(keyframe) < 0) {
+      this.ids.push(keyframe)
     }
 
     const propsReference = this._generatePropsReference(props)
-    const animationName = 'k' + this.ids.get(keyframe) + propsReference
+    const animationName = 'k' + this.ids.indexOf(keyframe) + propsReference
 
     // only if the cached selector has not already been rendered
     // with a specific set of properties it actually renders
-    if (!this.rendered.has(animationName)) {
+    if (!this.rendered.hasOwnProperty(animationName)) {
       const pluginInterface = {
         plugins: this.plugins.concat(plugins),
         processStyle: processStyle,
@@ -208,7 +210,7 @@ export default class StyleSheet {
 
       const processedKeyframe = processStyle(pluginInterface)
       const css = cssifyKeyframe(processedKeyframe, animationName, this.keyframePrefixes)
-      this.rendered.set(animationName, true)
+      this.rendered[animationName] = true
       this.keyframes += css
     }
 
@@ -226,8 +228,8 @@ export default class StyleSheet {
   _renderSelectorVariation(selector, props = { }, plugins = []) {
     // rendering a Selector for the first time
     // will create an ID reference
-    if (!this.ids.has(selector)) {
-      this.ids.set(selector, ++this._counter)
+    if (this.ids.indexOf(selector) < 0) {
+      this.ids.push(selector)
 
       // directly render the static base style to be able
       // to diff future dynamic style with those
@@ -235,12 +237,12 @@ export default class StyleSheet {
     }
 
     // uses the reference ID and the props to generate an unique className
-    const selectorId = this.ids.get(selector)
+    const selectorId = this.ids.indexOf(selector)
     const className = 'c' + selectorId + this._generatePropsReference(props)
 
     // only if the cached selector has not already been rendered
     // with a specific set of properties it actually renders
-    if (!this.rendered.has(className)) {
+    if (!this.rendered.hasOwnProperty(className)) {
       // get the render method of either class-like selectors
       // or pure functional selectors without a constructor
       const pluginInterface = {
@@ -251,26 +253,23 @@ export default class StyleSheet {
       }
 
       const style = validateStyle(processStyle(pluginInterface))
-      const base = this.base.get(selector)
+      this._renderStyle(className, style, this.base[selectorId])
 
-      this._renderStyle(className, style, base)
+      this.rendered[className] = this._didChange
 
       if (this._didChange) {
-        this.rendered.set(className, true)
         this._didChange = false
         this._emitChange()
-      } else {
-        this.rendered.set(className, false)
       }
 
       // keep static style to diff dynamic onces later on
       if (className === 'c' + selectorId) {
-        this.base.set(selector, style)
+        this.base[selectorId] = style
       }
     }
 
     const baseClassName = 'c' + selectorId
-    if (!this.rendered.get(className)) {
+    if (!this.rendered[className]) {
       return baseClassName
     }
 
@@ -315,8 +314,11 @@ export default class StyleSheet {
       this._didChange = true
 
       if (media.length > 0) {
-        const currentMedia = this.mediaSelectors.get(media)
-        this.mediaSelectors.set(media, currentMedia ? currentMedia + css : css)
+        if (!this.mediaSelectors.hasOwnProperty(media)) {
+          this.mediaSelectors[media] = ''
+        }
+
+        this.mediaSelectors[media] += css
       } else {
         this.selectors += css
       }

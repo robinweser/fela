@@ -90,7 +90,7 @@ describe('DOMRenderer Tests', () => {
 
       renderer.clear()
 
-      expect(renderer.stylesheet.rendered.size).to.eql(0)
+      expect(Object.keys(renderer.stylesheet.rendered).length).to.eql(0)
     })
 
     it('should clear the DOM node', () => {
