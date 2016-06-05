@@ -23,10 +23,8 @@ export default class Renderer {
     this.node = node
 
     this.stylesheet = new StyleSheet(config)
-    // adds newly rendered markup to the DOM node's textContent
-    // TODO: Benchmark for best (fastest) insertion technique
-    // see https://github.com/rofrischmann/fela/issues/3
-    this.stylesheet.subscribe(css => this.node.textContent += css)
+    // updated the DOM node's textContent with newly rendered markup
+    this.stylesheet.subscribe(css => this.node.textContent = css)
   }
 
   /**

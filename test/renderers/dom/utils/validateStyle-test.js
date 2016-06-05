@@ -9,6 +9,7 @@ describe('Validating style', () => {
         color: 'blue'
       },
       fontSize: '12px',
+      animation: props.name + ' 2s infinite',
       width: false
     })
 

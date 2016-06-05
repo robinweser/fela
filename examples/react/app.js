@@ -28,7 +28,10 @@ const welcomeSelector = props => ({
   padding: '50px',
   color: 'rgb(50, 50, 50)',
   fontSize: props.fontSize,
-  animation: props.name + ' 2s infinite'
+  animation: props.name + ' 2s infinite',
+  '@media (max-width: 800px)': {
+    fontSize: '40px'
+  }
 })
 
 const infoSelector = props => ({
