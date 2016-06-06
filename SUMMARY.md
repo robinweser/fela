@@ -7,4 +7,5 @@
 * Basics
    * Selectors
    * Keyframes
+* Font Faces
 
