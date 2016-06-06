@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "babel": "babel -d packages/fela/lib modules",
-    "demo": "browserify ./examples/react/client.js -t babelify -d -p [minifyify --no-map] > ./examples/react/bundle.js && open examples/react/index.html",
+    "demo": "browserify ./examples/react/client.js -t babelify -d -p [minifyify --no-map] > ./examples/react/bundle.js",
     "demo:server": "babel-node examples/react/server.js",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
     "lint": "eslint modules",
@@ -17,6 +17,7 @@
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/mocha.opts"
   },
   "dependencies": {
+    "deep-assign": "^2.0.0",
     "fbjs": "^0.8.3",
     "hyphenate-style-name": "^1.0.1"
   },

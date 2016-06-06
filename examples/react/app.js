@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Keyframe from '../../modules/components/dom/Keyframe'
+import combineSelectors from '../../modules/helpers/combineSelectors'
 
 const centerSelector = props => ({
   justifyContent: 'center',
@@ -43,6 +44,18 @@ const infoSelector = props => ({
   }
 })
 
+const selector1 = props => ({
+  fontSize: props.fontSize,
+  color: 'blue'
+})
+
+const selector2 = props => ({
+  lineHeight: props.lineHeight,
+  color: 'red'
+})
+
+const combined = combineSelectors(selector2, selector1)
+
 export default class App extends Component {
   constructor() {
     super(...arguments)
@@ -66,7 +79,7 @@ export default class App extends Component {
         <div className={welcome} onClick={this.setSize}>Welcome to Fela.</div>
         <div className={renderer.render(infoSelector)}>
           <div>This is the basic example with React.</div>
-          <div>It will be updated and extended soon.</div>
+          <div className={renderer.render(combined, { fontSize: '20px', lineHeight: 1.0 })}>It will be updated and extended soon.</div>
         </div>
       </div>
     )
