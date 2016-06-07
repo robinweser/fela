@@ -1,6 +1,6 @@
 import deepAssign from 'deep-assign'
 
-export default (...selectors) => {
+export default function combineSelectors(...selectors) {
   return props => {
     const style = { }
 
