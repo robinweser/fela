@@ -2,12 +2,12 @@
     "name": "fela-plugin-friendly-pseudo-class",
     "version": "1.0.0-alpha.7",
     "description": "Fela plugin to support javascript-friendly pseudo class syntax",
-    "main": "friendlyPseudoClass.js",
+    "main": "index.js",
     "files": [
         "LICENSE",
         "README.md",
-        "friendlyPseudoClass.js",
-        "dist"
+        "index.js",
+        "/dist"
     ],
     "repository": "https://github.com/rofrischmann/fela/",
     "keywords": [

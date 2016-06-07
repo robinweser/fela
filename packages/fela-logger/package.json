@@ -2,12 +2,12 @@
   "name": "fela-logger",
   "version": "1.0.0-alpha.7",
   "description": "Logging middleware for Fela",
-  "main": "logger.js",
+  "main": "index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "logger.js",
-    "dist"
+    "index.js",
+    "/dist"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [

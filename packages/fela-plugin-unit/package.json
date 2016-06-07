@@ -2,12 +2,12 @@
     "name": "fela-plugin-unit",
     "version": "1.0.0-alpha.7",
     "description": "Fela plugin to automatically add units if required",
-    "main": "unit.js",
+    "main": "index.js",
     "files": [
         "LICENSE",
         "README.md",
-        "unit.js",
-        "dist"
+        "index.js",
+        "/dist"
     ],
     "repository": "https://github.com/rofrischmann/fela/",
     "keywords": [

@@ -9,7 +9,7 @@
         "server.js",
         "index.js",
         "/lib",
-        "dist"
+        "/dist"
     ],
     "repository": "https://github.com/rofrischmann/fela/",
     "keywords": [

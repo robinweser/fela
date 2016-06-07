@@ -1,1 +1,1 @@
-module.exports = require('./lib/fela')
+module.exports = require('./lib')
