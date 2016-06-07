@@ -1,4 +1,4 @@
-import sortedStringify from '../../../../modules/renderers/dom/utils/sortedStringify'
+import sortedStringify from '../../../modules/renderer/utils/sortedStringify'
 
 describe('Stringifying an object', () => {
   it('should sort the object', () => {

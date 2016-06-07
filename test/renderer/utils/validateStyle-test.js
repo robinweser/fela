@@ -1,4 +1,4 @@
-import validateStyle from '../../../../modules/renderers/dom/utils/validateStyle'
+import validateStyle from '../../../modules/renderer/utils/validateStyle'
 
 describe('Validating style', () => {
   it('should remove invalid properties', () => {

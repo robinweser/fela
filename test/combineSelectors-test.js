@@ -1,4 +1,4 @@
-import combineSelectors from '../../modules/helpers/combineSelectors'
+import combineSelectors from '../modules/combineSelectors'
 
 describe('Combining selectors', () => {
   it('should create a combined selector', () => {

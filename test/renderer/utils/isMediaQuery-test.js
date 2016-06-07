@@ -1,4 +1,4 @@
-import isMediaQuery from '../../../../modules/renderers/dom/utils/isMediaQuery'
+import isMediaQuery from '../../../modules/renderer/utils/isMediaQuery'
 
 describe('Checking if a property is a media query string', () => {
   it('should return true', () => {

@@ -1,4 +1,4 @@
-import cssifyKeyframe from '../../../../modules/renderers/dom/utils/cssifyKeyframe'
+import cssifyKeyframe from '../../../modules/renderer/utils/cssifyKeyframe'
 
 describe('Cssifying keyframes', () => {
   it('should generate a valid CSS string', () => {
