@@ -1,0 +1,14 @@
+{
+  "gitbook": "3.1.0",
+  "title": "Fela",
+  "plugins": ["edit-link", "prism", "-highlight", "github", "anker-enable"],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/rofrischmann/fela/tree/master",
+      "label": "Edit This Page"
+    },
+    "github": {
+      "url": "https://github.com/rofrischmann/fela/"
+    }
+  }
+}

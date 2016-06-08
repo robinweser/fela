@@ -25,3 +25,4 @@ node_modules/
 npm-debug.log
 lib/
 coverage
+_book
