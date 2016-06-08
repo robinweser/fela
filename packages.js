@@ -1,10 +1,10 @@
 export default {
   fela: [ {
     name: 'Fela',
-    entry: 'fela.js'
+    entry: 'index.js'
   }, {
     name: 'FelaServer',
-    entry: 'felaServer.js',
+    entry: 'server/index.js',
     dest: 'fela-server'
   } ],
   'fela-plugin-prefixer': {
