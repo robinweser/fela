@@ -11,10 +11,6 @@ import isMediaQuery from './utils/isMediaQuery'
 import isPseudoClass from './utils/isPseudoClass'
 
 export default class Renderer {
-  /**
-   * StyleSheet is a low-level container to cache Selectors
-   * Keyframes and FontFaces which optimizes style
-   */
   constructor(config = { }) {
     this.listeners = [ ]
     this.keyframePrefixes = config.keyframePrefixes || [ '-webkit-', '-moz-' ]
@@ -30,8 +26,8 @@ export default class Renderer {
     this.fontFaces = ''
     this.keyframes = ''
     this.statics = ''
-    this.selectors = ''
-    this.mediaSelectors = { }
+    this.rules = ''
+    this.mediaRules = { }
     this.rendered = { }
     this.base = { }
     this.ids = [ ]
@@ -41,42 +37,41 @@ export default class Renderer {
   }
 
   /**
-   * renders a new selector variation and caches the result
+   * renders a new rule variation and caches the result
    *
-   * @param {Selector|Function} selector - Selector which gets rendered
+   * @param {Function} rule - rule which gets rendered
    * @param {Object?} props - properties used to render
    * @param {Function[]?} plugins - array of plugins to process style
-   * @return {string} className to reference the rendered selector
+   * @return {string} className to reference the rendered rule
    */
-  render(selector, props = { }) {
-    // rendering a Selector for the first time
+  renderRule(rule, props = { }) {
+    // rendering a rule for the first time
     // will create an ID reference
-    if (this.ids.indexOf(selector) < 0) {
-      this.ids.push(selector)
+    if (this.ids.indexOf(rule) < 0) {
+      this.ids.push(rule)
 
       // directly render the static base style to be able
       // to diff future dynamic style with those
-      this.render(selector, { })
+      this.renderRule(rule, { })
     }
 
     // uses the reference ID and the props to generate an unique className
-    const selectorId = this.ids.indexOf(selector)
-    const className = 'c' + selectorId + this._generatePropsReference(props)
+    const ruleId = this.ids.indexOf(rule)
+    const className = 'c' + ruleId + this._generatePropsReference(props)
 
-    // only if the cached selector has not already been rendered
+    // only if the cached rule has not already been rendered
     // with a specific set of properties it actually renders
     if (!this.rendered.hasOwnProperty(className)) {
-      // get the render method of either class-like selectors
-      // or pure functional selectors without a constructor
+
       const pluginInterface = {
         plugins: this.plugins,
         processStyle: processStyle,
-        style: selector(props),
+        style: rule(props),
         props: props
       }
 
       const style = validateStyle(processStyle(pluginInterface))
-      this._renderStyle(className, style, this.base[selectorId])
+      this._renderStyle(className, style, this.base[ruleId])
 
       this.rendered[className] = this._didChange
 
@@ -86,12 +81,12 @@ export default class Renderer {
       }
 
       // keep static style to diff dynamic onces later on
-      if (className === 'c' + selectorId) {
-        this.base[selectorId] = style
+      if (className === 'c' + ruleId) {
+        this.base[ruleId] = style
       }
     }
 
-    const baseClassName = 'c' + selectorId
+    const baseClassName = 'c' + ruleId
     if (!this.rendered[className]) {
       return baseClassName
     }
@@ -117,7 +112,7 @@ export default class Renderer {
     const propsReference = this._generatePropsReference(props)
     const animationName = 'k' + this.ids.indexOf(keyframe) + propsReference
 
-    // only if the cached selector has not already been rendered
+    // only if the cached keyframe has not already been rendered
     // with a specific set of properties it actually renders
     if (!this.rendered.hasOwnProperty(animationName)) {
       const pluginInterface = {
@@ -166,32 +161,27 @@ export default class Renderer {
    * renders static style and caches them
    *
    * @param {string|Object} style - static style to be rendered
-   * @param {Function[]?} plugins - additional plugins
+   * @param {string?} selector - selector used to render the styles
    * @return {string} rendered CSS output
    */
-  renderStatic(style) {
-    const ref = typeof style === 'string' ? style : this._generatePropsReference(style)
+  renderStatic(style, selector) {
+    const reference = typeof style === 'string' ? style : selector
 
-    if (!this.rendered.hasOwnProperty(ref)) {
-      let css = ''
-
+    if (!this.rendered.hasOwnProperty(reference)) {
       if (typeof style === 'string') {
         // remove new lines from template strings
-        css = style.replace(/\s+/g, '')
+        this.statics += style.replace(/\s{2,}/g, '')
       } else {
-        Object.keys(style).forEach(selector => {
-          const pluginInterface = {
-            plugins: this.plugins,
-            processStyle: processStyle,
-            style: style[selector]
-          }
+        const pluginInterface = {
+          plugins: this.plugins,
+          processStyle: processStyle,
+          style: style
+        }
 
-          css += selector + '{' + cssifyObject(processStyle(pluginInterface)) + '}'
-        })
+        this.statics += selector + '{' + cssifyObject(processStyle(pluginInterface)) + '}'
       }
 
-      this.rendered[ref] = true
-      this.statics += css
+      this.rendered[reference] = true
       this._emitChange()
     }
   }
@@ -199,14 +189,14 @@ export default class Renderer {
   /**
    * renders all cached styles into a single valid CSS string
    * clusters media query styles into groups to reduce output size
-  
+
    * @return single concatenated CSS string
    */
   renderToString() {
-    let css = this.fontFaces + this.statics + this.selectors
+    let css = this.fontFaces + this.statics + this.rules
 
-    for (var media in this.mediaSelectors) {
-      css += '@media ' + media + '{' + this.mediaSelectors[media] + '}'
+    for (var media in this.mediaRules) {
+      css += '@media ' + media + '{' + this.mediaRules[media] + '}'
     }
 
     return css + this.keyframes
@@ -248,7 +238,7 @@ export default class Renderer {
   }
 
   /**
-   * iterates a style object and renders each selector to the cache
+   * iterates a style object and renders each rule to the cache
    *
    * @param {string} className - className reference to be rendered to
    * @param {Object} style - style object which is rendered
@@ -263,7 +253,7 @@ export default class Renderer {
         if (isPseudoClass(property)) {
           this._renderStyle(className, value, base[property], pseudo + property, media)
         } else if (isMediaQuery(property)) {
-          // combine media query selectors with an `and`
+          // combine media query rules with an `and`
           const query = property.slice(6).trim()
           const combinedMedia = media.length > 0 ? media + ' and ' + query : query
           this._renderStyle(className, value, base[property], pseudo, combinedMedia)
@@ -283,13 +273,13 @@ export default class Renderer {
       this._didChange = true
 
       if (media.length > 0) {
-        if (!this.mediaSelectors.hasOwnProperty(media)) {
-          this.mediaSelectors[media] = ''
+        if (!this.mediaRules.hasOwnProperty(media)) {
+          this.mediaRules[media] = ''
         }
 
-        this.mediaSelectors[media] += css
+        this.mediaRules[media] += css
       } else {
-        this.selectors += css
+        this.rules += css
       }
     }
   }

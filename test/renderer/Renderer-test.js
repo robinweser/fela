@@ -5,8 +5,8 @@ describe('Renderer', () => {
     it('should add caches for all styles', () => {
       const renderer = new Renderer()
 
-      expect(renderer.selectors).to.eql('')
-      expect(renderer.mediaSelectors).to.eql(new Map())
+      expect(renderer.rules).to.eql('')
+      expect(renderer.mediaRules).to.eql({ })
       expect(renderer.keyframes).to.eql('')
       expect(renderer.fontFaces).to.eql('')
       expect(renderer.statics).to.eql('')
@@ -17,13 +17,13 @@ describe('Renderer', () => {
   describe('Clearing a Renderer', () => {
     it('should reset all caches', () => {
       const renderer = new Renderer()
-      const selector = props => ({ color: 'red' })
+      const rule = props => ({ color: 'red' })
 
-      renderer.render(selector)
+      renderer.renderRule(rule)
       renderer.clear()
 
-      expect(renderer.selectors).to.eql('')
-      expect(renderer.mediaSelectors).to.eql({ })
+      expect(renderer.rules).to.eql('')
+      expect(renderer.mediaRules).to.eql({ })
       expect(renderer.keyframes).to.eql('')
       expect(renderer.fontFaces).to.eql('')
       expect(renderer.statics).to.eql('')
@@ -32,18 +32,18 @@ describe('Renderer', () => {
   })
 
 
-  describe('Rendering selectors', () => {
+  describe('Rendering rules', () => {
     it('should add a cache entry', () => {
-      const selector = props => ({ color: 'red' })
+      const rule = props => ({ color: 'red' })
       const renderer = new Renderer()
 
-      const className = renderer.render(selector)
+      const className = renderer.renderRule(rule)
 
       expect(renderer.rendered.hasOwnProperty(className)).to.eql(true)
     })
 
     it('should add a media cache entry for each media', () => {
-      const selector = props => ({
+      const rule = props => ({
         color: 'red',
         '@media screen': {
           color: 'blue'
@@ -53,7 +53,7 @@ describe('Renderer', () => {
         }
       })
 
-      const anotherSelector = props => ({
+      const anotherRule = props => ({
         color: 'blue',
         '@media min-height: 300px': {
           color: 'red'
@@ -62,64 +62,59 @@ describe('Renderer', () => {
 
       const renderer = new Renderer()
 
-      const className1 = renderer.render(selector)
-      const className2 = renderer.render(anotherSelector)
+      const className1 = renderer.renderRule(rule)
+      const className2 = renderer.renderRule(anotherRule)
 
-      expect(renderer.mediaSelectors.hasOwnProperty('screen')).to.eql(true)
-      expect(renderer.mediaSelectors.hasOwnProperty('min-height: 300px')).to.eql(true)
+      expect(renderer.mediaRules.hasOwnProperty('screen')).to.eql(true)
+      expect(renderer.mediaRules.hasOwnProperty('min-height: 300px')).to.eql(true)
       expect(renderer.rendered.hasOwnProperty(className1)).to.eql(true)
       expect(renderer.rendered.hasOwnProperty(className2)).to.eql(true)
     })
 
     it('should reuse cached variations', () => {
-      const selector = props => ({
-        color: props.color,
-        fontSize: '23px'
-      })
+      const rule = props => ({ color: props.color, fontSize: '23px' })
       const renderer = new Renderer()
 
-      renderer.render(selector, { color: 'red' })
-      renderer.render(selector, { color: 'red' })
-      renderer.render(selector, { color: 'blue' })
+      renderer.renderRule(rule, { color: 'red' })
+      renderer.renderRule(rule, { color: 'red' })
+      renderer.renderRule(rule, { color: 'blue' })
 
       expect(Object.keys(renderer.rendered).length).to.eql(3)
     })
 
     it('should reuse static style', () => {
-      const selector = props => ({ fontSize: '23px' })
+      const rule = props => ({ fontSize: '23px' })
       const renderer = new Renderer()
 
-      const className = renderer.render(selector, { color: 'red' })
-      const className2 = renderer.render(selector, { color: 'red' })
-      const className3 = renderer.render(selector, {
-        color: 'blue'
-      })
+      const className = renderer.renderRule(rule, { color: 'red' })
+      const className2 = renderer.renderRule(rule, { color: 'red' })
+      const className3 = renderer.renderRule(rule, { color: 'blue' })
 
       expect(className).to.eql(className2)
       expect(className).to.eql(className3)
-      expect(renderer.selectors).to.eql('.c0{font-size:23px}')
+      expect(renderer.rules).to.eql('.c0{font-size:23px}')
       expect(Object.keys(renderer.rendered).length).to.eql(3)
     })
 
     it('should generate an incrementing reference id', () => {
-      const selector = props => ({ color: 'red' })
-      const selector2 = props => ({ color: 'blue' })
+      const rule = props => ({ color: 'red' })
+      const rule2 = props => ({ color: 'blue' })
       const renderer = new Renderer()
 
-      renderer.render(selector)
-      renderer.render(selector2)
+      renderer.renderRule(rule)
+      renderer.renderRule(rule2)
 
-      expect(renderer.ids.indexOf(selector)).to.be.greaterThan(-1)
-      expect(renderer.ids.indexOf(selector2)).to.be.greaterThan(-1)
-      expect(renderer.ids.indexOf(selector2)).to.be.greaterThan(renderer.ids.indexOf(selector))
+      expect(renderer.ids.indexOf(rule)).to.be.greaterThan(-1)
+      expect(renderer.ids.indexOf(rule2)).to.be.greaterThan(-1)
+      expect(renderer.ids.indexOf(rule2)).to.be.greaterThan(renderer.ids.indexOf(rule))
     })
 
     it('should always return the same className prefix', () => {
-      const selector = props => ({ color: 'red', foo: props.foo })
+      const rule = props => ({ color: 'red', foo: props.foo })
       const renderer = new Renderer()
 
-      const staticClassName = renderer.render(selector)
-      const dynamicClassName = renderer.render(selector, {
+      const staticClassName = renderer.renderRule(rule)
+      const dynamicClassName = renderer.renderRule(rule, {
         foo: 'bar'
       })
       expect(staticClassName).to.not.eql(dynamicClassName)
@@ -127,12 +122,12 @@ describe('Renderer', () => {
     })
 
     it('should keep base styles as an object for diffing', () => {
-      const selector = props => ({ color: 'red' })
+      const rule = props => ({ color: 'red' })
       const renderer = new Renderer()
 
-      const className = renderer.render(selector)
+      const className = renderer.renderRule(rule)
 
-      expect(renderer.base[renderer.ids.indexOf(selector)]).to.eql({
+      expect(renderer.base[renderer.ids.indexOf(rule)]).to.eql({
         color: 'red'
       })
     })
@@ -208,20 +203,11 @@ describe('Renderer', () => {
     it('should render a flat object of static selectors', () => {
       const renderer = new Renderer()
 
-      const staticStyle = {
-        '*': {
-          margin: 0,
-          fontSize: '12px'
-        },
-        div: {
-          display: 'flex'
-        }
-      }
+      const staticStyle = { margin: 0, fontSize: '12px' }
 
-      renderer.renderStatic(staticStyle)
-
-      expect(renderer.rendered.hasOwnProperty(renderer._generatePropsReference(staticStyle))).to.eql(true)
-      expect(renderer.statics).to.eql('*{margin:0;font-size:12px}div{display:flex}')
+      renderer.renderStatic(staticStyle, 'html,body')
+      expect(renderer.rendered.hasOwnProperty('html,body')).to.eql(true)
+      expect(renderer.statics).to.eql('html,body{margin:0;font-size:12px}')
     })
   })
 
@@ -276,7 +262,7 @@ describe('Renderer', () => {
 
   describe('Subscribing to the Renderer', () => {
     it('should call the callback each time it emits changes', () => {
-      const selector = props => ({
+      const rule = props => ({
         color: 'red',
         '@media (min-height: 300px)': {
           color: 'blue'
@@ -286,7 +272,7 @@ describe('Renderer', () => {
       const renderer = new Renderer()
       const subscriber = sinon.spy()
       renderer.subscribe(subscriber)
-      const staticClassName = renderer.render(selector)
+      const staticClassName = renderer.renderRule(rule)
 
       expect(subscriber).to.have.been.calledOnce
     })

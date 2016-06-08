@@ -3,22 +3,22 @@ import DOMNode from './_mocks/DOMNode'
 
 describe('Using the DOM Renderer', () => {
   it('should update the DOM Node on render', () => {
-    const selector = props => ({ color: 'red' })
+    const rule = props => ({ color: 'red' })
 
     const node = DOMNode()
 
     const renderer = createRenderer(node)
-    const className = renderer.render(selector)
+    const className = renderer.renderRule(rule)
     expect(node.textContent).to.eql('.c0{color:red}')
   })
 
   it('should clear the DOM node', () => {
-    const selector = props => ({ color: 'red' })
+    const rule = props => ({ color: 'red' })
 
     const node = DOMNode()
 
     const renderer = createRenderer(node)
-    const className = renderer.render(selector)
+    const className = renderer.renderRule(rule)
     renderer.clear()
 
     expect(node.textContent).to.eql('')
