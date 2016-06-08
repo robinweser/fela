@@ -1,5 +1,7 @@
 # Fela
 
+> **Warning**: Fela is still in development and the available packages are only for preview and testing. Use at your own risk.
+ 
 **Fela** is a fast and modular library to handle styling in JavaScript.<br>
 It is dynamic by design and renders your styles depending on your application state.
 

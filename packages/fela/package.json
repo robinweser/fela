@@ -1,25 +1,25 @@
 {
-    "name": "fela",
-    "version": "1.0.0-alpha.4",
-    "description": "Fast, tiny & dynamic low-level API to handle Styling in JavaScript",
-    "main": "index.js",
-    "files": [
-        "LICENSE",
-        "README.md",
-        "server.js",
-        "index.js",
-        "/lib",
-        "/dist"
-    ],
-    "repository": "https://github.com/rofrischmann/fela/",
-    "keywords": [
-        "fela",
-        "dynamic styling",
-        "stylesheet",
-        "css",
-        "styling",
-        "cssinjs"
-    ],
-    "author": "Robin Frischmann",
-    "license": "MIT"
+  "name": "fela",
+  "version": "1.0.0-beta.1",
+  "description": "Fast, tiny & dynamic low-level API to handle Styling in JavaScript",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "server.js",
+    "index.js",
+    "/lib",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "dynamic styling",
+    "stylesheet",
+    "css",
+    "styling",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT"
 }

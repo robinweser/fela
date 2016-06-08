@@ -9,13 +9,14 @@ const defaultOptions = {
 export default (options = { }) => {
   return (renderer) => {
     // DOM Renderer
-    if (renderer.hasOwnProperty('node')) {
-      renderer.stylesheet.subscribe(css => {
-        renderer.node.textContent = cssbeautify(css, {
+    if (renderer.hasOwnProperty('mountNode')) {
+      renderer.subscribe(css => {
+        renderer.mountNode.textContent = cssbeautify(css, {
           ...defaultOptions,
           ...options
         })
       })
+
       return renderer
     }
 
@@ -28,6 +29,7 @@ export default (options = { }) => {
         ...options
       })
     }
+
     return renderer
   }
 }

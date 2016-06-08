@@ -1,21 +1,21 @@
 {
-    "name": "fela-plugin-friendly-pseudo-class",
-    "version": "1.0.0-alpha.7",
-    "description": "Fela plugin to support javascript-friendly pseudo class syntax",
-    "main": "index.js",
-    "files": [
-        "LICENSE",
-        "README.md",
-        "index.js",
-        "/dist"
-    ],
-    "repository": "https://github.com/rofrischmann/fela/",
-    "keywords": [
-        "fela",
-        "fela-plugin",
-        "fallback value",
-        "cssinjs"
-    ],
-    "author": "Robin Frischmann",
-    "license": "MIT"
+  "name": "fela-plugin-friendly-pseudo-class",
+  "version": "1.0.0-beta.1",
+  "description": "Fela plugin to support javascript-friendly pseudo class syntax",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "fallback value",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT"
 }

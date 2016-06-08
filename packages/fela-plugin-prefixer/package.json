@@ -1,26 +1,26 @@
 {
-    "name": "fela-plugin-prefixer",
-    "version": "1.0.0-alpha.7",
-    "description": "Fela plugin to add vendor prefixes",
-    "main": "index.js",
-    "files": [
-        "LICENSE",
-        "README.md",
-        "index.js",
-        "/dist"
-    ],
-    "repository": "https://github.com/rofrischmann/fela/",
-    "keywords": [
-        "fela",
-        "fela-plugin",
-        "vendor prefixing",
-        "prefixer",
-        "autoprefixer",
-        "cssinjs"
-    ],
-    "author": "Robin Frischmann",
-    "license": "MIT",
-    "dependencies": {
-        "inline-style-prefix-all": "^2.0.2"
-    }
+  "name": "fela-plugin-prefixer",
+  "version": "1.0.0-beta.1",
+  "description": "Fela plugin to add vendor prefixes",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "vendor prefixing",
+    "prefixer",
+    "autoprefixer",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "inline-style-prefix-all": "^2.0.2"
+  }
 }

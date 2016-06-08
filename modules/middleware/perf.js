@@ -1,19 +1,17 @@
 let counter = 0
 
-export default (options = { }) => {
+export default () => {
   return renderer => {
-    const { stylesheet } = renderer
+    const existingRenderRule = renderer.renderRule.bind(renderer)
 
-    const existingHandleRender = stylesheet.handleRender.bind(stylesheet)
-
-    stylesheet.handleRender = (selector, props, plugins) => {
+    renderer.renderRule = (rule, props) => {
       const timerCounter = ++counter
 
-      console.time('[' + counter + '] Elapsed time')
-      const reference = existingHandleRender(selector, props, plugins)
-      console.timeEnd('[' + counter + '] Elapsed time')
+      console.time('[' + timerCounter + '] Elapsed time') // eslint-disable-line
+      const className = existingRenderRule(rule, props)
+      console.timeEnd('[' + timerCounter + '] Elapsed time') // eslint-disable-line
 
-      return reference
+      return className
     }
 
     return renderer

@@ -29,12 +29,12 @@
 
   function friendlyPseudoClass() {
     return function (pluginInterface) {
-      var styles = pluginInterface.styles;
-      var processStyles = pluginInterface.processStyles;
+      var style = pluginInterface.style;
+      var processStyle = pluginInterface.processStyle;
 
 
-      Object.keys(styles).forEach(function (property) {
-        var value = styles[property];
+      Object.keys(style).forEach(function (property) {
+        var value = style[property];
         if (value instanceof Object && !Array.isArray(value)) {
           var regex = new RegExp('^on([A-Z])');
           if (regex.test(property)) {
@@ -42,16 +42,16 @@
               return ':' + p1.toLowerCase();
             });
 
-            styles[pseudo] = processStyles(babelHelpers.extends({}, pluginInterface, {
-              styles: value
+            style[pseudo] = processStyle(babelHelpers.extends({}, pluginInterface, {
+              style: value
             }));
 
-            delete styles[property];
+            delete style[property];
           }
         }
       });
 
-      return styles;
+      return style;
     };
   }
 

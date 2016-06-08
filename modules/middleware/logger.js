@@ -1,9 +1,9 @@
 import cssbeautify from 'cssbeautify'
 
 function compareString(a, b) {
-  var i = 0
-  var j = 0
-  var result = ''
+  let i = 0
+  let j = 0
+  let result = ''
 
   while (j < b.length) {
     if (a[i] != b[j] || i == a.length) {
@@ -19,19 +19,17 @@ function compareString(a, b) {
 
 export default (options = { }) => {
   return renderer => {
-    const { stylesheet } = renderer
-
     let oldCSS = ''
 
-    stylesheet.subscribe(css => {
+    renderer.subscribe(css => {
       const diff = compareString(oldCSS, css)
       oldCSS = css
 
       if (options.beautify) {
-        console.log('CSS changed: ')
-        console.log(cssbeautify(diff))
+        console.log('CSS changed: ') // eslint-disable-line
+        console.log(cssbeautify(diff)) // eslint-disable-line
       } else {
-        console.log('CSS changed: ' + diff)
+        console.log('CSS changed: ' + diff) // eslint-disable-line
       }
     })
 

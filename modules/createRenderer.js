@@ -24,5 +24,6 @@ export default function createRenderer(mountNode, config) {
 
   // updated the DOM node's textContent with newly rendered markup
   renderer.subscribe(css => mountNode.textContent = css)
+  renderer.mountNode = mountNode
   return renderer
 }

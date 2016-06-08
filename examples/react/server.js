@@ -5,34 +5,30 @@ import { renderToString } from 'react-dom/server'
 import fs from 'fs'
 
 import App from './app.js'
-import { Renderer } from '../../modules/felaServer'
+import { createRenderer } from '../../modules/server'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
 import beautifier from '../../modules/middleware/beautifier'
 import logger from '../../modules/middleware/logger'
-import applyMiddleware from '../../modules/helpers/applyMiddleware'
+import applyMiddleware from '../../modules/applyMiddleware'
 
 const app = express()
 
 app.get('/', (req, res) => {
   const plugins = [ prefixer(), fallbackValue() ]
-  const renderer = new Renderer({ plugins: plugins })
+  const renderer = createRenderer({ plugins: plugins })
 
   const middleware = [ beautifier(), logger({ beautify: false }) ]
   const enhancedRenderer = applyMiddleware(middleware)(renderer)
 
-  enhancedRenderer.render({
-    'html,body,#app': {
-      width: '100%',
-      height: '100%',
-      margin: 0,
-      padding: 0
-    },
-    div: {
-      display: 'flex'
-    }
-  })
+  enhancedRenderer.renderStatic({
+    width: '100%',
+    height: '100%',
+    margin: 0,
+    padding: 0
+  }, 'html, body,#app')
 
+  enhancedRenderer.renderStatic({ display: 'flex' }, 'div')
   const indexHTML = fs.readFileSync(__dirname + '/index.html').toString()
   const appHtml = renderToString(
     <App renderer={enhancedRenderer} />

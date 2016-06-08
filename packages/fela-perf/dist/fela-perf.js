@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginCustomProperty = factory());
+  (global.FelaPerf = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -27,31 +27,27 @@
 
   babelHelpers;
 
-  function customProperty(properties) {
-    return function (pluginInterface) {
-      var style = pluginInterface.style;
-      var processStyle = pluginInterface.processStyle;
+  var counter = 0;
 
+  var perf = (function () {
+    return function (renderer) {
+      var existingRenderRule = renderer.renderRule.bind(renderer);
 
-      Object.keys(style).forEach(function (property) {
-        var value = style[property];
-        if (properties[property]) {
-          Object.assign(style, properties[property](value));
-          delete style[property];
-        }
+      renderer.renderRule = function (rule, props) {
+        var timerCounter = ++counter;
 
-        if (value instanceof Object && !Array.isArray(value)) {
-          style[property] = processStyle(babelHelpers.extends({}, pluginInterface, {
-            style: value
-          }));
-        }
-      });
+        console.time('[' + timerCounter + '] Elapsed time'); // eslint-disable-line
+        var className = existingRenderRule(rule, props);
+        console.timeEnd('[' + timerCounter + '] Elapsed time'); // eslint-disable-line
 
-      return style;
+        return className;
+      };
+
+      return renderer;
     };
-  }
+  })
 
-  return customProperty;
+  return perf;
 
 }));
-//# sourceMappingURL=fela-plugin-custom-property.js.map
+//# sourceMappingURL=fela-perf.js.map

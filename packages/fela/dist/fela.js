@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
-    (global.FelaServer = factory());
+    (global.Fela = factory());
 }(this, function () { 'use strict';
 
     var babelHelpers = {};
@@ -53,6 +53,110 @@
 
 
     function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
+
+    var emptyFunction = __commonjs(function (module) {
+    "use strict";
+
+    /**
+     * Copyright (c) 2013-present, Facebook, Inc.
+     * All rights reserved.
+     *
+     * This source code is licensed under the BSD-style license found in the
+     * LICENSE file in the root directory of this source tree. An additional grant
+     * of patent rights can be found in the PATENTS file in the same directory.
+     *
+     * 
+     */
+
+    function makeEmptyFunction(arg) {
+      return function () {
+        return arg;
+      };
+    }
+
+    /**
+     * This function accepts and discards inputs; it has no side effects. This is
+     * primarily useful idiomatically for overridable function endpoints which
+     * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+     */
+    var emptyFunction = function emptyFunction() {};
+
+    emptyFunction.thatReturns = makeEmptyFunction;
+    emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+    emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+    emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+    emptyFunction.thatReturnsThis = function () {
+      return this;
+    };
+    emptyFunction.thatReturnsArgument = function (arg) {
+      return arg;
+    };
+
+    module.exports = emptyFunction;
+    });
+
+    var require$$0 = (emptyFunction && typeof emptyFunction === 'object' && 'default' in emptyFunction ? emptyFunction['default'] : emptyFunction);
+
+    var warning = __commonjs(function (module) {
+    /**
+     * Copyright 2014-2015, Facebook, Inc.
+     * All rights reserved.
+     *
+     * This source code is licensed under the BSD-style license found in the
+     * LICENSE file in the root directory of this source tree. An additional grant
+     * of patent rights can be found in the PATENTS file in the same directory.
+     *
+     */
+
+    'use strict';
+
+    var emptyFunction = require$$0;
+
+    /**
+     * Similar to invariant but only logs a warning if the condition is not met.
+     * This can be used to log issues in development environments in critical
+     * paths. Removing the logging code for production environments will keep the
+     * same logic and follow the same code paths.
+     */
+
+    var warning = emptyFunction;
+
+    if (true) {
+      warning = function warning(condition, format) {
+        for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+          args[_key - 2] = arguments[_key];
+        }
+
+        if (format === undefined) {
+          throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+        }
+
+        if (format.indexOf('Failed Composite propType: ') === 0) {
+          return; // Ignore CompositeComponent proptype check.
+        }
+
+        if (!condition) {
+          var argIndex = 0;
+          var message = 'Warning: ' + format.replace(/%s/g, function () {
+            return args[argIndex++];
+          });
+          if (typeof console !== 'undefined') {
+            console.error(message);
+          }
+          try {
+            // --- Welcome to debugging React ---
+            // This error was thrown as a convenience so that you can use this stack
+            // to find the callsite that caused this warning to fire.
+            throw new Error(message);
+          } catch (x) {}
+        }
+      };
+    }
+
+    module.exports = warning;
+    });
+
+    var warning$1 = (warning && typeof warning === 'object' && 'default' in warning ? warning['default'] : warning);
 
     /**
      * generates a hashcode from a string
@@ -558,15 +662,150 @@
       return Renderer;
     }();
 
-    function createRenderer(config) {
-      return new Renderer(config);
+    var NODE_TYPE = 1;
+    var NODE_NAME = 'STYLE';
+
+    function createRenderer(mountNode, config) {
+      // check if the passed node is a valid element node which allows
+      // setting the `textContent` property to update the node's content
+      if (!mountNode || mountNode.nodeType !== NODE_TYPE) {
+        throw new Error('You need to specify a valid element node (nodeType = 1) to render into.');
+      }
+
+      // warns if the DOM node either is not a valid <style> element thus the styles do not get applied as Expected
+      // or if the node already got the data-fela-stylesheet attribute applied suggesting it is already used by another Renderer
+      warning$1(mountNode.nodeName === NODE_NAME, 'You are using a node other than `<style>`. Your styles might not get applied correctly.');
+      warning$1(!mountNode.hasAttribute('data-fela-stylesheet'), 'This node is already used by another renderer. Rendering might overwrite other styles.');
+
+      // mark and clean the DOM node to prevent side-effects
+      mountNode.setAttribute('data-fela-stylesheet', '');
+      mountNode.textContent = '';
+
+      var renderer = new Renderer(config);
+
+      // updated the DOM node's textContent with newly rendered markup
+      renderer.subscribe(function (css) {
+        return mountNode.textContent = css;
+      });
+      renderer.mountNode = mountNode;
+      return renderer;
+    }
+
+    function applyMiddleware() {
+      var middleware = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+
+      return function (renderer) {
+        middleware.forEach(function (tool) {
+          return renderer = tool(renderer);
+        });
+        return renderer;
+      };
+    }
+
+    var index$3 = __commonjs(function (module) {
+    'use strict';
+
+    module.exports = function (x) {
+    	var type = typeof x === 'undefined' ? 'undefined' : babelHelpers.typeof(x);
+    	return x !== null && (type === 'object' || type === 'function');
+    };
+    });
+
+    var require$$0$1 = (index$3 && typeof index$3 === 'object' && 'default' in index$3 ? index$3['default'] : index$3);
+
+    var index$2 = __commonjs(function (module) {
+    'use strict';
+
+    var isObj = require$$0$1;
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
+    var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+    function toObject(val) {
+    	if (val === null || val === undefined) {
+    		throw new TypeError('Sources cannot be null or undefined');
+    	}
+
+    	return Object(val);
+    }
+
+    function assignKey(to, from, key) {
+    	var val = from[key];
+
+    	if (val === undefined || val === null) {
+    		return;
+    	}
+
+    	if (hasOwnProperty.call(to, key)) {
+    		if (to[key] === undefined || to[key] === null) {
+    			throw new TypeError('Cannot convert undefined or null to object (' + key + ')');
+    		}
+    	}
+
+    	if (!hasOwnProperty.call(to, key) || !isObj(val)) {
+    		to[key] = val;
+    	} else {
+    		to[key] = assign(Object(to[key]), from[key]);
+    	}
+    }
+
+    function assign(to, from) {
+    	if (to === from) {
+    		return to;
+    	}
+
+    	from = Object(from);
+
+    	for (var key in from) {
+    		if (hasOwnProperty.call(from, key)) {
+    			assignKey(to, from, key);
+    		}
+    	}
+
+    	if (Object.getOwnPropertySymbols) {
+    		var symbols = Object.getOwnPropertySymbols(from);
+
+    		for (var i = 0; i < symbols.length; i++) {
+    			if (propIsEnumerable.call(from, symbols[i])) {
+    				assignKey(to, from, symbols[i]);
+    			}
+    		}
+    	}
+
+    	return to;
+    }
+
+    module.exports = function deepAssign(target) {
+    	target = toObject(target);
+
+    	for (var s = 1; s < arguments.length; s++) {
+    		assign(target, arguments[s]);
+    	}
+
+    	return target;
+    };
+    });
+
+    var deepAssign = (index$2 && typeof index$2 === 'object' && 'default' in index$2 ? index$2['default'] : index$2);
+
+    function combineRules() {
+      for (var _len = arguments.length, rules = Array(_len), _key = 0; _key < _len; _key++) {
+        rules[_key] = arguments[_key];
+      }
+
+      return function (props) {
+        return rules.reduce(function (style, rule) {
+          return deepAssign(style, rule(props));
+        }, {});
+      };
     }
 
     var index = {
-      createRenderer: createRenderer
+      createRenderer: createRenderer,
+      applyMiddleware: applyMiddleware,
+      combineRules: combineRules
     };
 
     return index;
 
 }));
-//# sourceMappingURL=fela-server.js.map
+//# sourceMappingURL=fela.js.map

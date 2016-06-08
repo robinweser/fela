@@ -195,7 +195,7 @@ export default class Renderer {
   renderToString() {
     let css = this.fontFaces + this.statics + this.rules
 
-    for (var media in this.mediaRules) {
+    for (let media in this.mediaRules) {
       css += '@media ' + media + '{' + this.mediaRules[media] + '}'
     }
 

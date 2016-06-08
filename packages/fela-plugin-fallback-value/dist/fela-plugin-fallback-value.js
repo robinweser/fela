@@ -1,66 +1,96 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginFallbackValue = factory());
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global.FelaPluginFallbackValue = factory());
 }(this, function () { 'use strict';
 
-  var babelHelpers = {};
-  babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
-  };
+    var babelHelpers = {};
+    babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+    };
 
-  babelHelpers.extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
+    babelHelpers.classCallCheck = function (instance, Constructor) {
+      if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+      }
+    };
 
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
+    babelHelpers.createClass = function () {
+      function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+          var descriptor = props[i];
+          descriptor.enumerable = descriptor.enumerable || false;
+          descriptor.configurable = true;
+          if ("value" in descriptor) descriptor.writable = true;
+          Object.defineProperty(target, descriptor.key, descriptor);
         }
       }
+
+      return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);
+        if (staticProps) defineProperties(Constructor, staticProps);
+        return Constructor;
+      };
+    }();
+
+    babelHelpers.extends = Object.assign || function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+
+      return target;
+    };
+
+    babelHelpers;
+
+
+    function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
+
+    var index = __commonjs(function (module) {
+    'use strict';
+
+    var uppercasePattern = /[A-Z]/g;
+    var msPattern = /^ms-/;
+
+    function hyphenateStyleName(string) {
+        return string.replace(uppercasePattern, '-$&').toLowerCase().replace(msPattern, '-ms-');
     }
 
-    return target;
-  };
+    module.exports = hyphenateStyleName;
+    });
 
-  babelHelpers;
+    var hypenateStyleName = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
 
-  /**
-   * converts camel cased to dash cased properties
-   *
-   * @param {string} property - camel cased CSS property
-   * @returns {string} dash cased CSS property
-   */
-  function camelToDashCase(property) {
-    return property.replace(/([a-z]|^)([A-Z])/g, function (match, p1, p2) {
-      return p1 + '-' + p2.toLowerCase();
-    }).replace('ms-', '-ms-');
-  }
-
-  function fallbackValue() {
-    return function (pluginInterface) {
-      var styles = pluginInterface.styles;
-      var processStyles = pluginInterface.processStyles;
+    function fallbackValue() {
+      return function (pluginInterface) {
+        var style = pluginInterface.style;
+        var processStyle = pluginInterface.processStyle;
 
 
-      Object.keys(styles).forEach(function (property) {
-        var value = styles[property];
-        if (Array.isArray(value)) {
-          styles[property] = value.join(';' + camelToDashCase(property) + ':');
-        } else if (value instanceof Object) {
-          styles[property] = processStyles(babelHelpers.extends({}, pluginInterface, {
-            styles: value
-          }));
-        }
-      });
+        Object.keys(style).forEach(function (property) {
+          var value = style[property];
+          if (Array.isArray(value)) {
+            style[property] = value.join(';' + hypenateStyleName(property) + ':');
+          } else if (value instanceof Object) {
+            style[property] = processStyle(babelHelpers.extends({}, pluginInterface, {
+              style: value
+            }));
+          }
+        });
 
-      return styles;
-    };
-  }
+        return style;
+      };
+    }
 
-  return fallbackValue;
+    return fallbackValue;
 
 }));
 //# sourceMappingURL=fela-plugin-fallback-value.js.map

@@ -54,6 +54,110 @@
 
   function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
+  var emptyFunction = __commonjs(function (module) {
+  "use strict";
+
+  /**
+   * Copyright (c) 2013-present, Facebook, Inc.
+   * All rights reserved.
+   *
+   * This source code is licensed under the BSD-style license found in the
+   * LICENSE file in the root directory of this source tree. An additional grant
+   * of patent rights can be found in the PATENTS file in the same directory.
+   *
+   * 
+   */
+
+  function makeEmptyFunction(arg) {
+    return function () {
+      return arg;
+    };
+  }
+
+  /**
+   * This function accepts and discards inputs; it has no side effects. This is
+   * primarily useful idiomatically for overridable function endpoints which
+   * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+   */
+  var emptyFunction = function emptyFunction() {};
+
+  emptyFunction.thatReturns = makeEmptyFunction;
+  emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+  emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+  emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+  emptyFunction.thatReturnsThis = function () {
+    return this;
+  };
+  emptyFunction.thatReturnsArgument = function (arg) {
+    return arg;
+  };
+
+  module.exports = emptyFunction;
+  });
+
+  var require$$0 = (emptyFunction && typeof emptyFunction === 'object' && 'default' in emptyFunction ? emptyFunction['default'] : emptyFunction);
+
+  var warning = __commonjs(function (module) {
+  /**
+   * Copyright 2014-2015, Facebook, Inc.
+   * All rights reserved.
+   *
+   * This source code is licensed under the BSD-style license found in the
+   * LICENSE file in the root directory of this source tree. An additional grant
+   * of patent rights can be found in the PATENTS file in the same directory.
+   *
+   */
+
+  'use strict';
+
+  var emptyFunction = require$$0;
+
+  /**
+   * Similar to invariant but only logs a warning if the condition is not met.
+   * This can be used to log issues in development environments in critical
+   * paths. Removing the logging code for production environments will keep the
+   * same logic and follow the same code paths.
+   */
+
+  var warning = emptyFunction;
+
+  if (true) {
+    warning = function warning(condition, format) {
+      for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+        args[_key - 2] = arguments[_key];
+      }
+
+      if (format === undefined) {
+        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+      }
+
+      if (format.indexOf('Failed Composite propType: ') === 0) {
+        return; // Ignore CompositeComponent proptype check.
+      }
+
+      if (!condition) {
+        var argIndex = 0;
+        var message = 'Warning: ' + format.replace(/%s/g, function () {
+          return args[argIndex++];
+        });
+        if (typeof console !== 'undefined') {
+          console.error(message);
+        }
+        try {
+          // --- Welcome to debugging React ---
+          // This error was thrown as a convenience so that you can use this stack
+          // to find the callsite that caused this warning to fire.
+          throw new Error(message);
+        } catch (x) {}
+      }
+    };
+  }
+
+  module.exports = warning;
+  });
+
+  var warning$1 = (warning && typeof warning === 'object' && 'default' in warning ? warning['default'] : warning);
+
   var index = __commonjs(function (module) {
   var unitlessProperties = {
     animationIterationCount: true,
@@ -127,30 +231,32 @@
   function unit() {
     var unit = arguments.length <= 0 || arguments[0] === undefined ? 'px' : arguments[0];
 
+    warning$1(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`. Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
+
     return function (pluginInterface) {
-      var styles = pluginInterface.styles;
-      var processStyles = pluginInterface.processStyles;
+      var style = pluginInterface.style;
+      var processStyle = pluginInterface.processStyle;
 
 
-      Object.keys(styles).forEach(function (property) {
+      Object.keys(style).forEach(function (property) {
         if (!isUnitlessCSSProperty(property)) {
 
-          var value = styles[property];
+          var value = style[property];
           if (Array.isArray(value)) {
-            styles[property] = value.map(function (value) {
+            style[property] = value.map(function (value) {
               return addUnitIfNeeded(property, value, unit);
             });
           } else if (value instanceof Object) {
-            styles[property] = processStyles(babelHelpers.extends({}, pluginInterface, {
-              styles: value
+            style[property] = processStyle(babelHelpers.extends({}, pluginInterface, {
+              style: value
             }));
           } else {
-            styles[property] = addUnitIfNeeded(property, value, unit);
+            style[property] = addUnitIfNeeded(property, value, unit);
           }
         }
       });
 
-      return styles;
+      return style;
     };
   }
 

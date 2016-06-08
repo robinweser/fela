@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Keyframe from '../../modules/components/dom/Keyframe'
-import combineSelectors from '../../modules/helpers/combineSelectors'
 
-const centerSelector = props => ({
+const center = props => ({
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
@@ -10,7 +8,7 @@ const centerSelector = props => ({
   flex: 1
 })
 
-const animation = new Keyframe(props => ({
+const animation = props => ({
   '0%': {
     color: props.color
   },
@@ -23,9 +21,9 @@ const animation = new Keyframe(props => ({
   '100%': {
     color: props.color
   }
-}))
+})
 
-const welcomeSelector = props => ({
+const welcome = props => ({
   padding: '50px',
   color: 'rgb(50, 50, 50)',
   fontSize: props.fontSize,
@@ -35,7 +33,7 @@ const welcomeSelector = props => ({
   }
 })
 
-const infoSelector = props => ({
+const info = props => ({
   fontSize: '20px',
   color: 'gray',
   flexDirection: 'column',
@@ -43,18 +41,6 @@ const infoSelector = props => ({
     color: 'lightgray'
   }
 })
-
-const selector1 = props => ({
-  fontSize: props.fontSize,
-  color: 'blue'
-})
-
-const selector2 = props => ({
-  lineHeight: props.lineHeight,
-  color: 'red'
-})
-
-const combined = combineSelectors(selector2, selector1)
 
 export default class App extends Component {
   constructor() {
@@ -69,17 +55,17 @@ export default class App extends Component {
 
   render() {
     const { renderer } = this.props
-    const welcome = renderer.render(welcomeSelector, {
+    const welcomeName = renderer.renderRule(welcome, {
       fontSize: this.state.size + 'px',
-      name: renderer.render(animation, { color: 'green' })
+      name: renderer.renderKeyframe(animation, { color: 'green' })
     })
 
     return (
-      <div className={renderer.render(centerSelector)}>
-        <div className={welcome} onClick={this.setSize}>Welcome to Fela.</div>
-        <div className={renderer.render(infoSelector)}>
+      <div className={renderer.renderRule(center)}>
+        <div className={welcomeName} onClick={this.setSize}>Welcome to Fela.</div>
+        <div className={renderer.renderRule(info)}>
           <div>This is the basic example with React.</div>
-          <div className={renderer.render(combined, { fontSize: '20px', lineHeight: 1.0 })}>It will be updated and extended soon.</div>
+          <div>It will be updated and extended soon.</div>
         </div>
       </div>
     )

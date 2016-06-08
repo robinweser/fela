@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginCustomProperty = factory());
+  (global.FelaPluginLVHA = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -27,31 +27,38 @@
 
   babelHelpers;
 
-  function customProperty(properties) {
+  var precedence = {
+    ':link': 4,
+    ':visited': 3,
+    ':hover': 2,
+    ':focus': 1.5,
+    ':active': 1
+  };
+
+  function sortPseudoClasses(left, right) {
+    var precedenceLeft = precedence[left]; // eslint-disable-line
+    var precedenceRight = precedence[right];
+    // Only sort if both properties are listed
+    // This prevents other pseudos from reordering
+    if (precedenceLeft && precedenceRight) {
+      return precedenceLeft < precedenceRight ? 1 : -1;
+    }
+    return 0;
+  }
+
+  function LVHA() {
     return function (pluginInterface) {
       var style = pluginInterface.style;
-      var processStyle = pluginInterface.processStyle;
 
 
-      Object.keys(style).forEach(function (property) {
-        var value = style[property];
-        if (properties[property]) {
-          Object.assign(style, properties[property](value));
-          delete style[property];
-        }
-
-        if (value instanceof Object && !Array.isArray(value)) {
-          style[property] = processStyle(babelHelpers.extends({}, pluginInterface, {
-            style: value
-          }));
-        }
-      });
-
-      return style;
+      return Object.keys(style).sort(sortPseudoClasses).reduce(function (out, pseudo) {
+        out[pseudo] = style[pseudo];
+        return out;
+      }, {});
     };
   }
 
-  return customProperty;
+  return LVHA;
 
 }));
-//# sourceMappingURL=fela-plugin-custom-property.js.map
+//# sourceMappingURL=fela-plugin-lvha.js.map
