@@ -12,7 +12,5 @@ Fela only adds styles to your CSS that have actively been rendered. Unused style
 #### 4. Framework-agnostic
 In contrast to many other JavaScript-based styling solutions, Fela is not tied to any framework or library. In fact it has been designed with [React](https://facebook.github.io/react/) in mind, but can be used as a stand-alone solution though we also provide [bindings](https://github.com/rofrischmann/react-fela) for React.
 
-#### 5. Minimal Markup 
+#### 5. Minimal Markup
 Fela uses a special diffing mechanism to extract dynamic styles on the fly. It allows us to reuse all static style declarations in order to produce as little CSS markup as possible.
-
-

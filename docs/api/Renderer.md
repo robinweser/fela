@@ -16,7 +16,7 @@ You should only have a single renderer which handles all styles of your whole ap
 * [`clear()`](#clear)
 
 ## `renderRule(rule, [props])`
-Renders a `rule` using the `props` to resolve it. 
+Renders a `rule` using the `props` to resolve it.
 ### Arguments
 1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
 2. `props` (*Object?*): An object containing properties to resolve dynamic rule values. *Defaults to an empty object.*
@@ -45,7 +45,7 @@ renderer.render(rule) // => c0
 
 ## `renderKeyframe(keyframe, [props])`
 
-Renders a `keyframe` using the `props` to resolve it. 
+Renders a `keyframe` using the `props` to resolve it.
 
 ### Arguments
 1. `keyframe` (*Function*): A function which satisfies the [keyframe](../basics/Keyframes.md) behavior. It **must** return a valid [keyframe object](../basics/Keyframes.md#keyframeobject).
@@ -90,8 +90,8 @@ const renderer = createRenderer(mountNode)
 
 const files = [
   '../fonts/Lato.ttf',
-  '../fonts/Lato.woff,
-  '../fonts/Lato.eof
+  '../fonts/Lato.woff',
+  '../fonts/Lato.eof'
 ]
 
 renderer.render('Lato', files, { fontWeight: 300 })
@@ -157,7 +157,7 @@ Renders all cached styles into a single CSS string. Styles are grouped in the fo
 5. Keyframes
 
 ### Returns
-(*string*): Single concatenated CSS string containing all cached styles by that time. 
+(*string*): Single concatenated CSS string containing all cached styles by that time.
 
 ### Example
 ```javascript

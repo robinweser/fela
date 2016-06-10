@@ -1,4 +1,21 @@
-# Friendly pseudo class plugin for Fela
+# fela-plugin-friendly-pseudo-class
 
-Plugin that adds support for javascript-friendly pseudo class syntax.
-Check out the [Fela repository](https://github.com/rofrischmann/fela) for further information.
+Writing CSS pseudo classes within a plain JavaScript object sadly is sometimes painful as the default syntax is not really JavaScript-friendly.<br>
+
+This plugins provides support for JavaScript-friendly pseudo class syntax with an `on`-prefix. e.g.
+
+```javascript
+{
+  onHover: {
+    color: 'red'
+  }
+}
+```
+will be transformed into:
+```javascript
+{
+  ':hover': {
+    color: 'red'
+  }
+}
+```
