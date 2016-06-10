@@ -1,4 +1,4 @@
-import warning from 'fbjs/lib/warning'
+import warning from './utils/warning'
 import Renderer from './renderer/Renderer'
 
 const NODE_TYPE = 1
