@@ -18,12 +18,12 @@ export default function createRenderer(mountNode, config) {
 
   // mark and clean the DOM node to prevent side-effects
   mountNode.setAttribute('data-fela-stylesheet', '')
-  mountNode.textContent = ''
 
   const renderer = new Renderer(config)
 
   // updated the DOM node's textContent with newly rendered markup
   renderer.subscribe(css => mountNode.textContent = css)
   renderer.mountNode = mountNode
+
   return renderer
 }

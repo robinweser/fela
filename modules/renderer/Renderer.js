@@ -3,7 +3,6 @@ import sortedStringify from './utils/sortedStringify'
 import getFontFormat from './utils/getFontFormat'
 
 import validateStyle from './utils/validateStyle'
-import processStyle from './utils/processStyle'
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
 
@@ -62,15 +61,7 @@ export default class Renderer {
     // only if the cached rule has not already been rendered
     // with a specific set of properties it actually renders
     if (!this.rendered.hasOwnProperty(className)) {
-
-      const pluginInterface = {
-        plugins: this.plugins,
-        processStyle: processStyle,
-        style: rule(props),
-        props: props
-      }
-
-      const style = validateStyle(processStyle(pluginInterface))
+      const style = validateStyle(this._processStyle(rule(props)))
       this._renderStyle(className, style, this.base[ruleId])
 
       this.rendered[className] = this._didChange
@@ -115,14 +106,7 @@ export default class Renderer {
     // only if the cached keyframe has not already been rendered
     // with a specific set of properties it actually renders
     if (!this.rendered.hasOwnProperty(animationName)) {
-      const pluginInterface = {
-        plugins: this.plugins,
-        processStyle: processStyle,
-        style: keyframe(props),
-        props: props
-      }
-
-      const processedKeyframe = processStyle(pluginInterface)
+      const processedKeyframe = this._processStyle(keyframe(props))
       const css = cssifyKeyframe(processedKeyframe, animationName, this.keyframePrefixes)
       this.rendered[animationName] = true
       this.keyframes += css
@@ -172,13 +156,7 @@ export default class Renderer {
         // remove new lines from template strings
         this.statics += style.replace(/\s{2,}/g, '')
       } else {
-        const pluginInterface = {
-          plugins: this.plugins,
-          processStyle: processStyle,
-          style: style
-        }
-
-        this.statics += selector + '{' + cssifyObject(processStyle(pluginInterface)) + '}'
+        this.statics += selector + '{' + cssifyObject(this._processStyle(style)) + '}'
       }
 
       this.rendered[reference] = true
@@ -236,6 +214,17 @@ export default class Renderer {
   _generatePropsReference(props) {
     return generateContentHash(sortedStringify(props))
   }
+
+  /**
+   * pipes a style object through a list of plugins
+   *
+   * @param {Object} style - style object to process
+   * @return {Object} processed style
+   */
+  _processStyle(style) {
+    return this.plugins.reduce((processedStyle, plugin) => plugin(processedStyle), style)
+  }
+
 
   /**
    * iterates a style object and renders each rule to the cache

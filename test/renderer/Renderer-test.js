@@ -288,4 +288,23 @@ describe('Renderer', () => {
       expect(renderer.listeners.length).to.eql(0)
     })
   })
+
+
+  describe('Processing style', () => {
+    it('should process style using data provided via the plugin interface', () => {
+
+      const plugin = style => ({
+        ...style,
+        foo: 'bar'
+      })
+
+      const renderer = new Renderer({ plugins: [ plugin ] })
+
+      expect(renderer._processStyle({ width: 20 })).to.eql({
+        width: 20,
+        foo: 'bar'
+      })
+    })
+  })
+
 })

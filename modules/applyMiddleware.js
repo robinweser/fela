@@ -1,6 +1,3 @@
-export default function applyMiddleware(middleware = [ ]) {
-  return renderer => {
-    middleware.forEach(tool => renderer = tool(renderer))
-    return renderer
-  }
+export default function applyMiddleware(middlewares = [ ]) {
+  return renderer => middlewares.reduce((renderer, middleware) => middleware(renderer), renderer)
 }

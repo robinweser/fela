@@ -1,16 +1,10 @@
 import friendlyPseudoClass from '../../modules/plugins/friendlyPseudoClass'
-import pluginInterface from '../_mocks/pluginInterface'
 
 describe('Friendly pseudo class plugin', () => {
   it('should replace friendly with valid pseudo classes', () => {
-    const setting = pluginInterface({
-      width: 20,
-      onHover: {
-        color: 'red'
-      }
-    }, [ friendlyPseudoClass() ])
+    const style = { width: 20, onHover: { color: 'red' } }
 
-    expect(friendlyPseudoClass()(setting)).to.eql({
+    expect(friendlyPseudoClass()(style)).to.eql({
       width: 20,
       ':hover': {
         color: 'red'
@@ -20,7 +14,7 @@ describe('Friendly pseudo class plugin', () => {
 
 
   it('should resolve nested pseudo class objects', () => {
-    const setting = pluginInterface({
+    const style = {
       width: 20,
       onHover: {
         width: 30,
@@ -28,9 +22,9 @@ describe('Friendly pseudo class plugin', () => {
           color: 'red'
         }
       }
-    }, [ friendlyPseudoClass() ])
+    }
 
-    expect(friendlyPseudoClass()(setting)).to.eql({
+    expect(friendlyPseudoClass()(style)).to.eql({
       width: 20,
       ':hover': {
         width: 30,

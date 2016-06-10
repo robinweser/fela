@@ -17,13 +17,11 @@ function sortPseudoClasses(left, right) {
   return 0
 }
 
-export default function LVHA() {
-  return (pluginInterface) => {
-    const { style } = pluginInterface
-
-    return Object.keys(style).sort(sortPseudoClasses).reduce((out, pseudo) => {
-      out[pseudo] = style[pseudo]
-      return out
-    }, { })
-  }
+function LVHA(style) {
+  return Object.keys(style).sort(sortPseudoClasses).reduce((out, pseudo) => {
+    out[pseudo] = style[pseudo]
+    return out
+  }, { })
 }
+
+export default () => LVHA

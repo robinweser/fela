@@ -1,5 +1,4 @@
 import customProperty from '../../modules/plugins/customProperty'
-import pluginInterface from '../_mocks/pluginInterface'
 
 describe('Custom property plugin', () => {
   it('should resolve custom properties', () => {
@@ -10,12 +9,9 @@ describe('Custom property plugin', () => {
       left: positions[3]
     })
 
-    const setting = pluginInterface({
-      width: 20,
-      position: [ 0, 20, 50, 20 ]
-    }, [ customProperty({ position: position }) ])
+    const style = { width: 20, position: [ 0, 20, 50, 20 ] }
 
-    expect(customProperty({ position: position })(setting)).to.eql({
+    expect(customProperty({ position: position })(style)).to.eql({
       width: 20,
       top: 0,
       right: 20,
@@ -33,14 +29,14 @@ describe('Custom property plugin', () => {
       left: positions[3]
     })
 
-    const setting = pluginInterface({
+    const style = {
       width: 20,
       onHover: {
         position: [ 0, 20, 50, 20 ]
       }
-    }, [ customProperty({ position: position }) ])
+    }
 
-    expect(customProperty({ position: position })(setting)).to.eql({
+    expect(customProperty({ position: position })(style)).to.eql({
       width: 20,
       onHover: {
         top: 0,

@@ -1,9 +1,8 @@
 import unit from '../../modules/plugins/unit'
-import pluginInterface from '../_mocks/pluginInterface'
 
 describe('Unit plugin', () => {
   it('should add units to number values', () => {
-    const setting = pluginInterface({
+    const style = {
       width: 46,
       height: '34',
       lineHeight: 3.2,
@@ -11,9 +10,9 @@ describe('Unit plugin', () => {
       WebkitBorderRadius: 2,
       margin: [ 23, '45', '3px' ],
       opacity: [ 23, '5' ]
-    })
+    }
 
-    expect(unit('px')(setting)).to.eql({
+    expect(unit('px')(style)).to.eql({
       width: '46px',
       height: '34px',
       lineHeight: 3.2,
@@ -25,14 +24,9 @@ describe('Unit plugin', () => {
   })
 
   it('should add units to nested style objects', () => {
-    const setting = pluginInterface({
-      width: 46,
-      ':hover': {
-        height: 34
-      }
-    }, [ unit('px') ])
+    const style = { width: 46, ':hover': { height: 34 } }
 
-    expect(unit('px')(setting)).to.eql({
+    expect(unit('px')(style)).to.eql({
       width: '46px',
       ':hover': {
         height: '34px'
@@ -41,12 +35,12 @@ describe('Unit plugin', () => {
   })
 
   it('should default to px', () => {
-    const setting = pluginInterface({ width: 46 })
-    expect(unit()(setting)).to.eql({ width: '46px' })
+    const style = { width: 46 }
+    expect(unit()(style)).to.eql({ width: '46px' })
   })
 
   it('should accept units other than px', () => {
-    const setting = pluginInterface({ width: 46 })
-    expect(unit('em')(setting)).to.eql({ width: '46em' })
+    const style = { width: 46 }
+    expect(unit('em')(style)).to.eql({ width: '46em' })
   })
 })
