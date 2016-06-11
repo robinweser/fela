@@ -4,7 +4,7 @@
 Fela was designed to be capable of universal rendering (server-side rendering) from the very beginning. The Renderer class which is the core of Fela ships with a simple `renderToString`-method which allows to get a valid CSS string of all rendered styles at any time. The DOM Renderer was not designed as the base, but rather as an extension to the universal Renderer.
 
 #### 2. Local Namespace
-Each rule is locally scoped with a reference ID which is always unique by design. Hence there is no chance of any conflicts due to the global namespace. 
+Each rule is locally scoped with a reference ID which is always unique by design. Hence there is no chance of any conflicts due to the global namespace.
 
 #### 3. Dead Code Elimination
 Fela only adds styles to your CSS that have actively been rendered. Unused style declarations are left out by default.

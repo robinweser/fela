@@ -8,9 +8,9 @@ import App from './app.js'
 import { createRenderer } from '../../modules/server'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
-import beautifier from '../../modules/middleware/beautifier'
-import logger from '../../modules/middleware/logger'
-import applyMiddleware from '../../modules/applyMiddleware'
+import beautifier from '../../modules/enhance/beautifier'
+import logger from '../../modules/enhance/logger'
+import enhance from '../../modules/enhance'
 
 const app = express()
 
@@ -18,8 +18,8 @@ app.get('/', (req, res) => {
   const plugins = [ prefixer(), fallbackValue() ]
   const renderer = createRenderer({ plugins: plugins })
 
-  const middleware = [ beautifier(), logger({ beautify: false }) ]
-  const enhancedRenderer = applyMiddleware(middleware)(renderer)
+  const enhancers = [ beautifier(), logger({ beautify: false }) ]
+  const enhancedRenderer = enhance(enhancers)(renderer)
 
   enhancedRenderer.renderStatic({
     width: '100%',
