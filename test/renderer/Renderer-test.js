@@ -3,7 +3,7 @@ import Renderer from '../../modules/renderer/Renderer'
 describe('Renderer', () => {
   describe('Instantiating a new Renderer', () => {
     it('should add caches for all styles', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       expect(renderer.rules).to.eql('')
       expect(renderer.mediaRules).to.eql({ })
@@ -16,7 +16,7 @@ describe('Renderer', () => {
 
   describe('Clearing a Renderer', () => {
     it('should reset all caches', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
       const rule = props => ({ color: 'red' })
 
       renderer.renderRule(rule)
@@ -35,7 +35,7 @@ describe('Renderer', () => {
   describe('Rendering rules', () => {
     it('should add a cache entry', () => {
       const rule = props => ({ color: 'red' })
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const className = renderer.renderRule(rule)
 
@@ -60,7 +60,7 @@ describe('Renderer', () => {
         }
       })
 
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const className1 = renderer.renderRule(rule)
       const className2 = renderer.renderRule(anotherRule)
@@ -73,7 +73,7 @@ describe('Renderer', () => {
 
     it('should reuse cached variations', () => {
       const rule = props => ({ color: props.color, fontSize: '23px' })
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       renderer.renderRule(rule, { color: 'red' })
       renderer.renderRule(rule, { color: 'red' })
@@ -84,7 +84,7 @@ describe('Renderer', () => {
 
     it('should reuse static style', () => {
       const rule = props => ({ fontSize: '23px' })
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const className = renderer.renderRule(rule, { color: 'red' })
       const className2 = renderer.renderRule(rule, { color: 'red' })
@@ -99,7 +99,7 @@ describe('Renderer', () => {
     it('should generate an incrementing reference id', () => {
       const rule = props => ({ color: 'red' })
       const rule2 = props => ({ color: 'blue' })
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       renderer.renderRule(rule)
       renderer.renderRule(rule2)
@@ -111,7 +111,7 @@ describe('Renderer', () => {
 
     it('should always return the same className prefix', () => {
       const rule = props => ({ color: 'red', foo: props.foo })
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const staticClassName = renderer.renderRule(rule)
       const dynamicClassName = renderer.renderRule(rule, {
@@ -123,7 +123,7 @@ describe('Renderer', () => {
 
     it('should keep base styles as an object for diffing', () => {
       const rule = props => ({ color: 'red' })
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const className = renderer.renderRule(rule)
 
@@ -145,7 +145,7 @@ describe('Renderer', () => {
         }
       })
 
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const animationName = renderer.renderKeyframe(keyframe)
 
@@ -161,7 +161,7 @@ describe('Renderer', () => {
           color: 'blue'
         }
       })
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const animationName = renderer.renderKeyframe(keyframe)
 
@@ -177,7 +177,7 @@ describe('Renderer', () => {
           color: 'blue'
         }
       })
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const animationName = renderer.renderKeyframe(keyframe, {
         color: 'red'
@@ -191,7 +191,7 @@ describe('Renderer', () => {
 
   describe('Rendering static styles', () => {
     it('should cache the style and return the rendered markup', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const staticStyle = '*{color:red;margin:0}'
       renderer.renderStatic(staticStyle)
@@ -201,7 +201,7 @@ describe('Renderer', () => {
     })
 
     it('should render a flat object of static selectors', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const staticStyle = { margin: 0, fontSize: '12px' }
 
@@ -214,7 +214,7 @@ describe('Renderer', () => {
 
   describe('Rendering Fonts', () => {
     it('should cache the font-face', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const family = renderer.renderFont('Arial', [ '../fonts/Arial.ttf', '../fonts/Arial.woff' ], {
         fontWeight: 300
@@ -224,7 +224,7 @@ describe('Renderer', () => {
     })
 
     it('should return the font family', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const family = renderer.renderFont('Arial', [ '../fonts/Arial.ttf', '../fonts/Arial.woff' ], {
         fontWeight: 300
@@ -237,7 +237,7 @@ describe('Renderer', () => {
 
   describe('Generating the props reference', () => {
     it('should always return the same className with the same props', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const className1 = renderer._generatePropsReference('foobar')
       const className2 = renderer._generatePropsReference('foobar')
@@ -245,7 +245,7 @@ describe('Renderer', () => {
     })
 
     it('should sort props before', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
 
       const className1 = renderer._generatePropsReference({
         foo: 'bar',
@@ -269,7 +269,7 @@ describe('Renderer', () => {
         }
       })
 
-      const renderer = new Renderer()
+      const renderer = Renderer()
       const subscriber = sinon.spy()
       renderer.subscribe(subscriber)
       const staticClassName = renderer.renderRule(rule)
@@ -278,7 +278,7 @@ describe('Renderer', () => {
     })
 
     it('should return a unsubscribe method', () => {
-      const renderer = new Renderer()
+      const renderer = Renderer()
       const subscriber = sinon.spy()
 
       const unsubscriber = renderer.subscribe(subscriber)
@@ -298,7 +298,7 @@ describe('Renderer', () => {
         foo: 'bar'
       })
 
-      const renderer = new Renderer({ plugins: [ plugin ] })
+      const renderer = Renderer({ plugins: [ plugin ] })
 
       expect(renderer._processStyle({ width: 20 })).to.eql({
         width: 20,

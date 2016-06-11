@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/middleware/logger')
+module.exports = require('fela/lib/enhancers/logger')

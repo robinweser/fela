@@ -33,14 +33,14 @@ export default {
   },
   'fela-beautifier': {
     name: 'FelaBeautifier',
-    entry: 'middleware/beautifier.js'
+    entry: 'enhancers/beautifier.js'
   },
   'fela-logger': {
     name: 'FelaLogger',
-    entry: 'middleware/logger.js'
+    entry: 'enhancers/logger.js'
   },
   'fela-perf': {
     name: 'FelaPerf',
-    entry: 'middleware/perf.js'
+    entry: 'enhancers/perf.js'
   }
 }

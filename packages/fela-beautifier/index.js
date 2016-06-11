@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/middleware/beautifier')
+module.exports = require('fela/lib/enhancers/beautifier')

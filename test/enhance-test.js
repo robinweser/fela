@@ -1,14 +1,14 @@
-import applyMiddleware from '../modules/applyMiddleware'
+import enhance from '../modules/enhance'
 
-describe('Applying middleware', () => {
+describe('Enhancing renderers', () => {
   it('should enhance a renderer', () => {
     const renderer = { }
-    const middleware = renderer => ({
+    const enhancer = renderer => ({
       ...renderer,
       greet: name => 'Hello ' + name
     })
 
-    const enhancedRenderer = applyMiddleware([ middleware ])(renderer)
+    const enhancedRenderer = enhance(enhancer)(renderer)
     expect(enhancedRenderer.greet).to.be.a.function
     expect(enhancedRenderer.greet('World')).to.eql('Hello World')
   })
@@ -16,17 +16,17 @@ describe('Applying middleware', () => {
   it('should enhance a renderer multiple times', () => {
     const renderer = { }
 
-    const middleware = renderer => ({
+    const enhancer = renderer => ({
       ...renderer,
       greet: name => 'Hello ' + name
     })
 
-    const anotherMiddleware = renderer => ({
+    const anotherEnhancer = renderer => ({
       ...renderer,
       foo: 'bar'
     })
 
-    const enhancedRenderer = applyMiddleware([ middleware, anotherMiddleware ])(renderer)
+    const enhancedRenderer = enhance(enhancer, anotherEnhancer)(renderer)
     expect(enhancedRenderer.greet).to.be.a.function
     expect(enhancedRenderer.greet('World')).to.eql('Hello World')
     expect(enhancedRenderer.foo).to.eql('bar')
