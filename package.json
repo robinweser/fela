@@ -17,8 +17,6 @@
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/_setup/mocha.opts"
   },
   "dependencies": {
-    "deep-assign": "^2.0.0",
-    "fbjs": "^0.8.3",
     "hyphenate-style-name": "^1.0.1"
   },
   "devDependencies": {

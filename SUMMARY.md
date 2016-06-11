@@ -1,5 +1,4 @@
 # Summary
-
 * [Read Me](README.md)
 * [1. Introduction](docs/Introduction.md)
    * [1.1. Motivation](docs/introduction/Motivation.md)
@@ -14,9 +13,9 @@
    * [2.4. Renderer](docs/basics/Renderer.md)
 * [3. Advanced](docs/Advanced.md)
    * [3.1. Plugins](docs/advanced/Plugins.md)
-   * [3.2. Middleware](docs/advanced/Middleware.md)
-   * [3.3. Global & Third-Party CSS](docs/advanced/StaticStyle.md)
-   * [3.4. Combined Rules](docs/advanced/CombinedRules.md)
+   * [3.2. Global & Third-Party Styles](docs/advanced/StaticStyle.md)
+   * [3.3. Combined Rules](docs/advanced/CombinedRules.md)
+   * [3.4. Enhancers](docs/advanced/Enhancers.md)
 * [4. Recipes](docs/Recipes.md)
    * [4.1. Configuring your Renderer](docs/recipes/RendererConfiguration.md)
    * [4.2. Server Rendering](docs/recipes/ServerRendering.md)
@@ -25,6 +24,6 @@
    * [5.1. createRenderer](docs/api/createRenderer.md)
    * [5.2. Renderer](docs/api/Renderer.md)
    * [5.5. combineRules](docs/api/combineRules.md)
-   * [5.6. applyMiddleware](docs/api/applyMiddleware.md)
+   * [5.6. enhance](docs/api/enhance.md)
 * [6. FAQ](docs/FAQ.md)
 * [7. Feedback](docs/Feedback.md)
