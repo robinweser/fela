@@ -17,22 +17,20 @@ function compareString(a, b) {
 }
 
 
-export default (options = { }) => {
-  return renderer => {
-    let oldCSS = ''
+export default (options = { }) => renderer => {
+  let oldCSS = ''
 
-    renderer.subscribe(css => {
-      const diff = compareString(oldCSS, css)
-      oldCSS = css
+  renderer.subscribe(css => {
+    const diff = compareString(oldCSS, css)
+    oldCSS = css
 
-      if (options.beautify) {
-        console.log('CSS changed: ') // eslint-disable-line
-        console.log(cssbeautify(diff)) // eslint-disable-line
-      } else {
-        console.log('CSS changed: ' + diff) // eslint-disable-line
-      }
-    })
+    if (options.beautify) {
+      console.log('CSS changed: ') // eslint-disable-line
+      console.log(cssbeautify(diff)) // eslint-disable-line
+    } else {
+      console.log('CSS changed: ' + diff) // eslint-disable-line
+    }
+  })
 
-    return renderer
-  }
+  return renderer
 }
