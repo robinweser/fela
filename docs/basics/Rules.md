@@ -2,7 +2,7 @@
 
 First of all we need understand what a rule actually is and what they're used for. The name comes, as you might already guess, from CSS itself.<br>
 
-In CSS a rule is defined as a pair of selector(s) and style declaration(s) as this image from [MDN](https://developer.mozilla.org/de/docs/Web/CSS/SyntaxW) shows:<br>
+In CSS a rule is defined as a pair of selector(s) and style declaration(s) as this image from [MDN](https://developer.mozilla.org/docs/Web/CSS/Syntax) shows:<br>
 ![MDN - CSS Rules](https://mdn.mozillademos.org/files/3668/css%20syntax%20-%20ruleset.png)
 
 In Fela you do not need to set the selector as it is generated automatically. Also instead of using static style declarations, every rule is just a pure function of `props` that returns a *style object*. <br>
@@ -53,7 +53,7 @@ const rule = props => ({
 ```
 
 #### 3. Media Queries
-Yet another CSS key feature are [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries). They're used to describe what styles are rendered depending on the current screen width/height, aspect ratio, device etc. Just like pseudo classes they can also be nested within your rule. In addition they can even have nested pseudo classes themselves. 
+Yet another CSS key feature are [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries). They're used to describe what styles are rendered depending on the current screen width/height, aspect ratio, device etc. Just like pseudo classes they can also be nested within your rule. In addition they can even have nested pseudo classes themselves.
 
 ```javascript
 const rule = props => ({
