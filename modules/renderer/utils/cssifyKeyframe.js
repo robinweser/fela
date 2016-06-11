@@ -1,5 +1,4 @@
 import cssifyObject from './cssifyObject'
-import validateStyle from './validateStyle'
 
 /**
  * renders keyframes into a CSS string with all prefixes
@@ -11,7 +10,7 @@ import validateStyle from './validateStyle'
  */
 export default function cssifyKeyframe(frames, animationName, prefixes = [ '' ]) {
   const keyframe = Object.keys(frames).reduce((css, percentage) => {
-    return css + percentage + '{' + cssifyObject(validateStyle(frames[percentage])) + '}'
+    return css + percentage + '{' + cssifyObject(frames[percentage]) + '}'
   }, '')
 
   return prefixes.reduce((css, prefix) => {

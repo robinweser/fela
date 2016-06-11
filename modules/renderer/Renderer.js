@@ -2,12 +2,8 @@ import generateContentHash from './utils/generateContentHash'
 import sortedStringify from './utils/sortedStringify'
 import getFontFormat from './utils/getFontFormat'
 
-import validateStyle from './utils/validateStyle'
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
-
-import isMediaQuery from './utils/isMediaQuery'
-import isPseudoClass from './utils/isPseudoClass'
 
 export default function Renderer(config = { }) {
   const renderer = {
@@ -58,7 +54,7 @@ export default function Renderer(config = { }) {
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!this.rendered.hasOwnProperty(className)) {
-        const style = validateStyle(this._processStyle(rule(props)))
+        const style = this._processStyle(rule(props))
         this._renderStyle(className, style, this.base[ruleId])
 
         this.rendered[className] = this._didChange
@@ -236,9 +232,9 @@ export default function Renderer(config = { }) {
         // recursive object iteration in order to render
         // pseudo class and media class declarations
         if (value instanceof Object && !Array.isArray(value)) {
-          if (isPseudoClass(property)) {
+          if (property.charAt(0) === ':') {
             this._renderStyle(className, value, base[property], pseudo + property, media)
-          } else if (isMediaQuery(property)) {
+          } else if (property.substr(0, 6) === '@media') {
             // combine media query rules with an `and`
             const query = property.slice(6).trim()
             const combinedMedia = media.length > 0 ? media + ' and ' + query : query
@@ -246,7 +242,11 @@ export default function Renderer(config = { }) {
           }
         } else {
           // diff styles with the base styles to only extract dynamic styles
-          if (!base.hasOwnProperty(property) || base[property] !== value) {
+          if (value !== undefined && !base.hasOwnProperty(property) || base[property] !== value) {
+            // remove concatenated string values including `undefined`
+            if (typeof value === 'string' && value.indexOf('undefined') > -1) {
+              return ruleset
+            }
             ruleset[property] = value
           }
         }
