@@ -1,16 +1,14 @@
 let warning = () => true
 
 if (process.env.NODE_ENV !== 'production') {
-  warning = function(condition, message) {
+  warning = (condition, message) => {
     if (!condition) {
       if (typeof console !== 'undefined') {
-        console.error(message);
+        console.error(message) // eslint-disable-line
       }
-      try {
-        throw new Error(message);
-      } catch (x) {}
+      throw new Error(message)
     }
-  };
+  }
 }
 
 export default warning

@@ -1,5 +1,3 @@
-import createRenderer from './createRenderer'
+import Renderer from '../renderer/Renderer'
 
-export default {
-  createRenderer
-}
+export default config => Renderer(config)
