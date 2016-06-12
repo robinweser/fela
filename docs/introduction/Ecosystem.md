@@ -17,8 +17,8 @@ Many plugins and even middlewares are already included in the [main repository](
 * [fela-plugin-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-prefixer) - Adds vendor prefixes to the styles
 * [fela-plugin-unit](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-unit) - Automatically adds units to values if needed
 
-### Middleware
-> Most middlewares are only used in development (dev-tools) and should be excluded in production.
+### Enhancers
+> Most enhancers are only used in development (dev-tools) and should be excluded in production.
 
 * [fela-beautifier](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
 * [fela-logger](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs changes (rendered CSS)

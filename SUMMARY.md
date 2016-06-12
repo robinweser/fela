@@ -24,5 +24,6 @@
    * [5.2. Renderer](docs/api/Renderer.md)
    * [5.3. combineRules](docs/api/combineRules.md)
    * [5.4. enhance](docs/api/enhance.md)
+   * [5.5. Server API](docs/api/server/createRenderer.md)
 * [6. FAQ](docs/FAQ.md)
 * [7. Feedback](docs/Feedback.md)
