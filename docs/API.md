@@ -7,6 +7,9 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 * [`combineRules(...rules)`](api/combineRules.md)
 * [`enhance(...enhancers)`](api/enhance.md)
 
+#### fela/server
+* [`createRenderer([config])`](api/createRenderer.md)
+
 ## [Renderer API](api/Renderer.md)
 * [`.renderRule(rule, [props])`](api/Renderer.md#renderrulerule--props)
 * [`.renderKeyframe(keyframe, [props])`](api/Renderer.md#renderkeyframe--props)
