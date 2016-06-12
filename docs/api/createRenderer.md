@@ -3,7 +3,7 @@
 Creates a Fela renderer which renders your selectors, keyframes, fonts and static styles to the DOM. <br>It caches all rendered styles to be able to reuse them on future rendering cycles.<br>
 
 ## Arguments
-1. `mountNode` (*[Element](https://developer.mozilla.org/en-US/docs/Web/API/Element)*): DOM node to render your CSS into. It should be a [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) element. Though in development, all other [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)s will work too, e.g. if you want to render the CSS into a [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) for debugging.
+1. `mountNode` (*[HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)*): DOM node to render your CSS into. It should be a [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) element. Though in development, all other [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)s will work too, e.g. if you want to render the CSS into a [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) for debugging.
 2. `config`(*Object?*): Optional renderer configuration. The most common use case adding [plugins](../advanced/Plugins.md) to process styles before they get rendered into the DOM. *(See [renderer configuration](Renderer.md#configuration) for further information)*.
 
 ### Returns

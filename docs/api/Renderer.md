@@ -37,8 +37,8 @@ const rule = props => ({
   color: 'blue'
 })
 
-renderer.render(rule, { size: '12px' }) // => c0 c0-dzm1d6
-renderer.render(rule) // => c0
+renderer.renderRule(rule, { size: '12px' }) // => c0 c0-dzm1d6
+renderer.renderRule(rule) // => c0
 ```
 
 ---
@@ -67,8 +67,8 @@ const keyframe = props => ({
   '100%': { color: props.initialColor }
 })
 
-renderer.render(keyframe, { initialColor: 'blue' }) // => k0-spqp95
-renderer.render(keyframe, { initialColor: 'black' }) // => k0--x8hdls
+renderer.renderKeyframe(keyframe, { initialColor: 'blue' }) // => k0-spqp95
+renderer.renderKeyframe(keyframe, { initialColor: 'black' }) // => k0--x8hdls
 ```
 
 ---
@@ -94,7 +94,7 @@ const files = [
   '../fonts/Lato.eof'
 ]
 
-renderer.render('Lato', files, { fontWeight: 300 })
+renderer.renderFont('Lato', files, { fontWeight: 300 })
 ```
 ### Caveats
 * If you are using relative paths such as `../fonts/Lato.ttf`, keep in mind that it is relative to your `index.html`.
@@ -116,10 +116,10 @@ import { createSelector } from 'fela'
 const renderer = createRenderer(mountNode)
 
 // string type style
-renderer.render('html,body{box-sizing:border-box;margin:0}').
+renderer.renderStatic('html,body{box-sizing:border-box;margin:0}').
 
 // object type style
-renderer.render({
+renderer.renderStatic({
   boxSizing: 'border-box',
   margin: 0
 }, 'html,body')
@@ -137,7 +137,7 @@ import { createSelector } from 'fela'
 
 const renderer = createRenderer(mountNode)
 
-renderer.render(`
+renderer.renderStatic(`
 html, body {
   box-sizing: border-box;
   margin: 0
@@ -170,8 +170,8 @@ const rule = props => ({
   color: 'blue'
 })
 
-renderer.render('html,body{box-sizing:border-box;margin:0}').
-renderer.render(rule, { fontSize: '12px' })
+renderer.renderStatic('html,body{box-sizing:border-box;margin:0}').
+renderer.renderRule(rule, { fontSize: '12px' })
 
 const markup = renderer.renderToString()
 
@@ -184,12 +184,32 @@ console.log(markup)
 
 ## `subscribe(listener)`
 
+Adds a change `listener` to get notified when changes happen.
+
 ### Arguments
+1. `listener` (*Function*): A callback function that is called on every change. It passes the whole new CSS string as first parameter.
 
 ### Returns
+(*Object*): An object containing the corresponding `unsubscribe`-method.
 
 ### Example
+```javascript
+import { createSelector } from 'fela'
 
+const renderer = createRenderer(mountNode)
+
+const rule = props => ({
+  fontSize: props.fontSize,
+  color: 'blue'
+})
+
+const subscription = renderer.subscribe(css => console.log(css))
+renderer.renderRule(rule, { fontSize: '12px '})
+// html,body{box-sizing:border-box;margin:0}
+
+// Usubscribing removes the event listener
+subscription.unsubscribe()
+```
 ---
 
 ## `clear()`
