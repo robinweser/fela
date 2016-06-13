@@ -33,7 +33,6 @@ export default function Renderer(config = { }) {
      *
      * @param {Function} rule - rule which gets rendered
      * @param {Object?} props - properties used to render
-     * @param {Function[]?} plugins - array of plugins to process style
      * @return {string} className to reference the rendered rule
      */
     renderRule(rule, props = { }) {
