@@ -114,7 +114,7 @@ export default function Renderer(config = { }) {
      * @param {FontFace} fontFace - fontFace which gets rendered
      * @return {string} fontFamily reference
      */
-    renderFont(family, files, properties = { }) {
+    renderFont(family, files, props = { }) {
       if (!r.rendered.hasOwnProperty(family)) {
         const fontFace = {
           fontFamily: '\'' + family + '\'',
@@ -122,7 +122,7 @@ export default function Renderer(config = { }) {
         }
 
         const fontProperties = [ 'fontVariant', 'fontWeight', 'fontStretch', 'fontStyle', 'unicodeRange' ]
-        Object.keys(properties).filter(prop => fontProperties.indexOf(prop) > -1).forEach(fontProp => fontFace[fontProp] = properties[fontProp])
+        Object.keys(props).filter(prop => fontProperties.indexOf(prop) > -1).forEach(fontProp => fontFace[fontProp] = props[fontProp])
 
         const css = '@font-face{' + cssifyObject(fontFace) + '}'
         r.rendered[family] = true
