@@ -271,8 +271,8 @@ export default function Renderer(config = { }) {
   }
 
   // initial setup
-  renderer.keyframePrefixes.push('')
-  renderer.clear()
+  r.keyframePrefixes.push('')
+  r.clear()
 
-  return renderer
+  return r
 }
