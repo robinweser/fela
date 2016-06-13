@@ -6,7 +6,7 @@ import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
 
 export default function Renderer(config = { }) {
-  const renderer = {
+  const r = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || [ '-webkit-', '-moz-' ],
     plugins: config.plugins || [ ],
@@ -15,17 +15,17 @@ export default function Renderer(config = { }) {
      * clears the sheet's cache but keeps all listeners
      */
     clear() {
-      this.fontFaces = ''
-      this.keyframes = ''
-      this.statics = ''
-      this.rules = ''
-      this.mediaRules = { }
-      this.rendered = { }
-      this.base = { }
-      this.ids = [ ]
+      r.fontFaces = ''
+      r.keyframes = ''
+      r.statics = ''
+      r.rules = ''
+      r.mediaRules = { }
+      r.rendered = { }
+      r.base = { }
+      r.ids = [ ]
 
       // emit changes to notify subscribers
-      this._emitChange()
+      r._emitChange()
     },
 
     /**
@@ -39,39 +39,39 @@ export default function Renderer(config = { }) {
     renderRule(rule, props = { }) {
       // rendering a rule for the first time
       // will create an ID reference
-      if (this.ids.indexOf(rule) < 0) {
-        this.ids.push(rule)
+      if (r.ids.indexOf(rule) < 0) {
+        r.ids.push(rule)
 
         // directly render the static base style to be able
         // to diff future dynamic style with those
-        this.renderRule(rule, { })
+        r.renderRule(rule, { })
       }
 
       // uses the reference ID and the props to generate an unique className
-      const ruleId = this.ids.indexOf(rule)
-      const className = 'c' + ruleId + this._generatePropsReference(props)
+      const ruleId = r.ids.indexOf(rule)
+      const className = 'c' + ruleId + r._generatePropsReference(props)
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
-      if (!this.rendered.hasOwnProperty(className)) {
-        const style = this._processStyle(rule(props))
-        this._renderStyle(className, style, this.base[ruleId])
+      if (!r.rendered.hasOwnProperty(className)) {
+        const style = r._processStyle(rule(props))
+        r._renderStyle(className, style, r.base[ruleId])
 
-        this.rendered[className] = this._didChange
+        r.rendered[className] = r._didChange
 
-        if (this._didChange) {
-          this._didChange = false
-          this._emitChange()
+        if (r._didChange) {
+          r._didChange = false
+          r._emitChange()
         }
 
         // keep static style to diff dynamic onces later on
         if (className === 'c' + ruleId) {
-          this.base[ruleId] = style
+          r.base[ruleId] = style
         }
       }
 
       const baseClassName = 'c' + ruleId
-      if (!this.rendered[className]) {
+      if (!r.rendered[className]) {
         return baseClassName
       }
 
@@ -89,21 +89,21 @@ export default function Renderer(config = { }) {
     renderKeyframe(keyframe, props = { }) {
       // rendering a Keyframe for the first time
       // will create cache entries and an ID reference
-      if (this.ids.indexOf(keyframe) < 0) {
-        this.ids.push(keyframe)
+      if (r.ids.indexOf(keyframe) < 0) {
+        r.ids.push(keyframe)
       }
 
-      const propsReference = this._generatePropsReference(props)
-      const animationName = 'k' + this.ids.indexOf(keyframe) + propsReference
+      const propsReference = r._generatePropsReference(props)
+      const animationName = 'k' + r.ids.indexOf(keyframe) + propsReference
 
       // only if the cached keyframe has not already been rendered
       // with a specific set of properties it actually renders
-      if (!this.rendered.hasOwnProperty(animationName)) {
-        const processedKeyframe = this._processStyle(keyframe(props))
-        const css = cssifyKeyframe(processedKeyframe, animationName, this.keyframePrefixes)
-        this.rendered[animationName] = true
-        this.keyframes += css
-        this._emitChange()
+      if (!r.rendered.hasOwnProperty(animationName)) {
+        const processedKeyframe = r._processStyle(keyframe(props))
+        const css = cssifyKeyframe(processedKeyframe, animationName, r.keyframePrefixes)
+        r.rendered[animationName] = true
+        r.keyframes += css
+        r._emitChange()
       }
 
       return animationName
@@ -116,7 +116,7 @@ export default function Renderer(config = { }) {
      * @return {string} fontFamily reference
      */
     renderFont(family, files, properties = { }) {
-      if (!this.rendered.hasOwnProperty(family)) {
+      if (!r.rendered.hasOwnProperty(family)) {
         const fontFace = {
           fontFamily: '\'' + family + '\'',
           src: files.map(src => 'url(\'' + src + '\') format(\'' + getFontFormat(src) + '\')').join(',')
@@ -126,9 +126,9 @@ export default function Renderer(config = { }) {
         Object.keys(properties).filter(prop => fontProperties.indexOf(prop) > -1).forEach(fontProp => fontFace[fontProp] = properties[fontProp])
 
         const css = '@font-face{' + cssifyObject(fontFace) + '}'
-        this.rendered[family] = true
-        this.fontFaces += css
-        this._emitChange()
+        r.rendered[family] = true
+        r.fontFaces += css
+        r._emitChange()
       }
 
       return family
@@ -144,16 +144,16 @@ export default function Renderer(config = { }) {
     renderStatic(style, selector) {
       const reference = typeof style === 'string' ? style : selector
 
-      if (!this.rendered.hasOwnProperty(reference)) {
+      if (!r.rendered.hasOwnProperty(reference)) {
         if (typeof style === 'string') {
           // remove new lines from template strings
-          this.statics += style.replace(/\s{2,}/g, '')
+          r.statics += style.replace(/\s{2,}/g, '')
         } else {
-          this.statics += selector + '{' + cssifyObject(this._processStyle(style)) + '}'
+          r.statics += selector + '{' + cssifyObject(r._processStyle(style)) + '}'
         }
 
-        this.rendered[reference] = true
-        this._emitChange()
+        r.rendered[reference] = true
+        r._emitChange()
       }
     },
 
@@ -164,13 +164,13 @@ export default function Renderer(config = { }) {
      * @return single concatenated CSS string
      */
     renderToString() {
-      let css = this.fontFaces + this.statics + this.rules
+      let css = r.fontFaces + r.statics + r.rules
 
-      for (let media in this.mediaRules) {
-        css += '@media ' + media + '{' + this.mediaRules[media] + '}'
+      for (let media in r.mediaRules) {
+        css += '@media ' + media + '{' + r.mediaRules[media] + '}'
       }
 
-      return css + this.keyframes
+      return css + r.keyframes
     },
 
     /**
@@ -180,9 +180,9 @@ export default function Renderer(config = { }) {
      * @return {Object} equivalent unsubscribe method
      */
     subscribe(callback) {
-      this.listeners.push(callback)
+      r.listeners.push(callback)
       return {
-        unsubscribe: () => this.listeners.splice(this.listeners.indexOf(callback), 1)
+        unsubscribe: () => r.listeners.splice(r.listeners.indexOf(callback), 1)
       }
     },
 
@@ -194,8 +194,8 @@ export default function Renderer(config = { }) {
      * @return {Object} equivalent unsubscribe method
      */
     _emitChange() {
-      const css = this.renderToString()
-      this.listeners.forEach(listener => listener(css))
+      const css = r.renderToString()
+      r.listeners.forEach(listener => listener(css))
     },
 
     /**
@@ -215,7 +215,7 @@ export default function Renderer(config = { }) {
      * @return {Object} processed style
      */
     _processStyle(style) {
-      return this.plugins.reduce((processedStyle, plugin) => plugin(processedStyle), style)
+      return r.plugins.reduce((processedStyle, plugin) => plugin(processedStyle), style)
     },
 
 
@@ -233,12 +233,12 @@ export default function Renderer(config = { }) {
         // pseudo class and media class declarations
         if (value instanceof Object && !Array.isArray(value)) {
           if (property.charAt(0) === ':') {
-            this._renderStyle(className, value, base[property], pseudo + property, media)
+            r._renderStyle(className, value, base[property], pseudo + property, media)
           } else if (property.substr(0, 6) === '@media') {
             // combine media query rules with an `and`
             const query = property.slice(6).trim()
             const combinedMedia = media.length > 0 ? media + ' and ' + query : query
-            this._renderStyle(className, value, base[property], pseudo, combinedMedia)
+            r._renderStyle(className, value, base[property], pseudo, combinedMedia)
           }
         } else {
           // diff styles with the base styles to only extract dynamic styles
@@ -256,16 +256,16 @@ export default function Renderer(config = { }) {
       // add styles to the cache
       if (Object.keys(ruleset).length > 0) {
         const css = '.' + className + pseudo + '{' + cssifyObject(ruleset) + '}'
-        this._didChange = true
+        r._didChange = true
 
         if (media.length > 0) {
-          if (!this.mediaRules.hasOwnProperty(media)) {
-            this.mediaRules[media] = ''
+          if (!r.mediaRules.hasOwnProperty(media)) {
+            r.mediaRules[media] = ''
           }
 
-          this.mediaRules[media] += css
+          r.mediaRules[media] += css
         } else {
-          this.rules += css
+          r.rules += css
         }
       }
     }
