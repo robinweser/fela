@@ -5,7 +5,7 @@ First of all we need understand what a rule actually is and what they're used fo
 In CSS a rule is defined as a pair of selector(s) and style declaration(s) as this image from [MDN](https://developer.mozilla.org/docs/Web/CSS/Syntax) shows:<br>
 ![MDN - CSS Rules](https://mdn.mozillademos.org/files/3668/css%20syntax%20-%20ruleset.png)
 
-In Fela you do not need to set the selector as it is generated automatically. Also instead of using static style declarations, every rule is just a pure function of `props` that returns a *style object*. <br>
+In Fela you do not need to set the selector as it is generated automatically. Also instead of using static style declarations, every rule instead is a pure function of `props` that returns a *style object*. <br>
 ```javascript
 (props) => ({ /* style declarations */ })
 ```
