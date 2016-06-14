@@ -6,10 +6,10 @@ In general, our renderer accepts a config object. The following table shows each
 
 > We might introduce more configuration options with future releases, so be sure to frequently check for updates.
 
-| Option | Value | Default | Description |
-| ------ | ------ | --------- |
-| `plugins` | `function[]` |  | [plugins](../Plugins.md) to process styles before rendering |
-| `keyframePrefixes` | `string[]` | `['-webkit', '-moz-']` | which `@keyframes` prefixes are rendered | 
+| Option | Value | Default |Description |
+| ------ | ------ | ---------|---|
+|`plugins` | `function[]` |  | [plugins](../Plugins.md) to process styles before rendering |
+|`keyframePrefixes` |`string[]` |`['-webkit', '-moz-']` |which `@keyframes` prefixes are rendered |
 
 ## Example
 ```javascript
