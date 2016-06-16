@@ -29,7 +29,7 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 ## Example
 
 ```javascript
-import { createRenderer } from 'fela'
+import { createRenderer, render } from 'fela'
 
 // rules are just plain functions of props
 // returning a valid object of style declarations
@@ -52,8 +52,7 @@ const rule = props => ({
   }
 })
 
-// Binding a new Renderer to a DOM node which
-// automatically updates its CSS content on render
+// Creates a new renderer to render styles
 const renderer = createRenderer(mountNode)
 
 // Rendering the rule returns a className reference
@@ -61,6 +60,9 @@ const renderer = createRenderer(mountNode)
 const className = renderer.renderRule(rule, { fontSize: 12 }))
 
 console.log(className) // => c0 c0-aw22w
+
+// renders all styles into the DOM
+render(renderer, mountNode)
 ```
 
 

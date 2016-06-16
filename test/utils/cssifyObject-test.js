@@ -1,4 +1,4 @@
-import cssifyObject from '../../../modules/renderer/utils/cssifyObject'
+import cssifyObject from '../../modules/utils/cssifyObject'
 
 describe('Cssifying objects', () => {
   it('should generate a valid CSS string', () => {

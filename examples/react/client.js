@@ -1,21 +1,24 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createRenderer } from '../../modules'
+import Fela, { createRenderer, enhance } from '../../modules'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
 import beautifier from '../../modules/enhancers/beautifier'
 import logger from '../../modules/enhancers/logger'
 import perf from '../../modules/enhancers/perf'
-import enhance from '../../modules/enhance'
 
 import App from './app'
 
-const renderer = createRenderer(document.getElementById('stylesheet'), {
+const createEnhancedRenderer = enhance(
+  beautifier(),
+  logger(),
+  perf()
+)(createRenderer)
+
+const enhancedRenderer = createEnhancedRenderer({
   keyframePrefixes: [],
   plugins: [ prefixer(), fallbackValue() ]
 })
-
-const enhancedRenderer = enhance(beautifier(), logger(), perf())(renderer)
 
 enhancedRenderer.renderStatic({
   width: '100%',
@@ -26,5 +29,5 @@ enhancedRenderer.renderStatic({
 
 enhancedRenderer.renderStatic({ display: 'flex' }, 'div')
 
-
+Fela.render(enhancedRenderer, document.getElementById('stylesheet'))
 render(<App renderer={enhancedRenderer} />, document.getElementById('app'))

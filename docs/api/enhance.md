@@ -14,8 +14,6 @@ import { createRenderer, enhance } from 'fela'
 import logger from 'fela-logger'
 import beautifier from 'fela-beautifier'
 
-const mountNode = document.getElementById('stylesheet')
-
 const enhancer = enhance(
   logger({ beautify: false }),
   beautifier()
@@ -23,7 +21,7 @@ const enhancer = enhance(
 
 const createEnhancedRenderer = enhancer(createRenderer)
 
-const enhancedRenderer = createEnhancedRenderer(mountNode)
+const enhancedRenderer = createEnhancedRenderer()
 ```
 You may also directly apply the enhancer using the following short version.
 
@@ -39,5 +37,5 @@ const createEnhancedRenderer = enhance(
 const renderer = enhance(
   logger({ beautify: false }),
   beautifier()
-)(createRenderer)(mountNode)
+)(createRenderer)()
 ```

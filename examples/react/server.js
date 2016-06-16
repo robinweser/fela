@@ -16,24 +16,27 @@ const app = express()
 
 app.get('/', (req, res) => {
   const plugins = [ prefixer(), fallbackValue() ]
-  const renderer = createRenderer({ plugins: plugins })
 
-  const enhancers = [ beautifier(), logger({ beautify: false }) ]
-  const enhancedRenderer = enhance(enhancers)(renderer)
+  const createEnhancedRenderer = enhance(
+    beautifier(),
+    logger({ beautify: false })
+  )(createRenderer)
 
-  enhancedRenderer.renderStatic({
+  const renderer = createEnhancedRenderer({ plugins: plugins })
+
+  renderer.renderStatic({
     width: '100%',
     height: '100%',
     margin: 0,
     padding: 0
   }, 'html, body,#app')
 
-  enhancedRenderer.renderStatic({ display: 'flex' }, 'div')
+  renderer.renderStatic({ display: 'flex' }, 'div')
   const indexHTML = fs.readFileSync(__dirname + '/index.html').toString()
   const appHtml = renderToString(
-    <App renderer={enhancedRenderer} />
+    <App renderer={renderer} />
   )
-  const appCSS = enhancedRenderer.renderToString()
+  const appCSS = renderer.renderToString()
 
   res.write(indexHTML.replace('<!-- {{app}} -->', appHtml).replace('<!-- {{css}} -->', appCSS))
   res.end()

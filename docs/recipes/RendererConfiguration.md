@@ -24,8 +24,8 @@ const config = {
   keyframePrefixes: ['-webkit-']
 }
 
-const mountNode = document.getElementById('stylesheet')
-const renderer = createRenderer(mountNode, config)
+
+const renderer = createRenderer(config)
 
 const keyframe = props => ({
   from: {

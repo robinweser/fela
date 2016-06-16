@@ -1,16 +1,14 @@
 # API Reference
 
-Last but not least this chapter ships the API reference in detail. Despite explaining every single method its arugments and return value, you will also find some tips on some pages.
+Last but not least this chapter ships the API reference in detail. Despite explaining every single method its arguments and return value, you will also find some tips on some pages.
 
 ## Top-Level API
-* [`createRenderer(mountNode, [config])`](api/createRenderer.md)
+* [`createRenderer([config])`](api/createRenderer.md)
+* [`render(renderer, mountNode)`](api/render.md)
 * [`combineRules(...rules)`](api/combineRules.md)
 * [`enhance(...enhancers)`](api/enhance.md)
 
-#### Server API
-* [`createRenderer([config])`](api/createRenderer.md)
-
-## [Renderer API](api/Renderer.md)
+#### [Renderer API](api/Renderer.md)
 * [`.renderRule(rule, [props])`](api/Renderer.md#renderrulerule--props)
 * [`.renderKeyframe(keyframe, [props])`](api/Renderer.md#renderkeyframe--props)
 * [`.renderFont(family, files, [properties])`](api/Renderer.md#renderfontfamily-files--properties)

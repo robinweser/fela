@@ -1,3 +1,3 @@
 export default function enhance(...enhancers) {
-  return renderer => enhancers.reduce((renderer, enhancer) => enhancer(renderer), renderer)
+  return createRenderer => (...args) => enhancers.reduce((renderer, enhancer) => enhancer(renderer), createRenderer(...args))
 }
