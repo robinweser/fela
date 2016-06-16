@@ -4,17 +4,14 @@ We have learned about all basic renderable elements which are rules, keyframes a
 
 As the header tells, we are talking about the renderer. The renderer is a single object that coordinates the whole rendering workflow. It also uses a special caching mechanism to access previously rendered styles faster and to reduce the amount of DOM manipulations.
 
-To actually create a new renderer, Fela provides the [`createRenderer`](../api/createRenderer.md)-method. It expects a valid `mountNode` which must be an actual  [HTMLElement](https://developer.mozilla.org/docs/Web/API/HTMLElement) to be able to render the final CSS markup into.<br>
-Every time new styles get rendered, it automatically updates the `mountNode`.
+To actually create a new renderer, Fela provides the [`createRenderer`](../api/createRenderer.md)-method.
 
 ```javascript
 import { createRenderer } from 'fela'
 
-const mountNode = document.getElementById('stylesheet')
-
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 ```
-Also we can pass a configuration object as second parameter. Read the [Renderer Configuration](../recipes/RendererConfiguration.md) article for further information.
+We may optionally pass a configuration object as second parameter. Read the [Renderer Configuration](../recipes/RendererConfiguration.md) article for further information.
 
 ## Rendering Styles
 The renderer provides dedicated render methods for each of the three renderable components which we introduced in the previous articles.
@@ -30,9 +27,7 @@ It returns the rendered CSS class(es).
 ```javascript
 import { createRenderer } from 'fela'
 
-const mountNode = document.getElementById('stylesheet')
-
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const rule = props => ({
   fontSize: props.fontSize,
@@ -68,9 +63,7 @@ It returns the rendered animation name.
 ```javascript
 import { createRenderer } from 'fela'
 
-const mountNode = document.getElementById('stylesheet')
-
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const keyframe = props => ({
   from: { color: 'green' },
@@ -106,9 +99,7 @@ Rendering [fonts](Fonts.md) is a bit different. It takes the font family and an 
 ```javascript
 import { createRenderer } from 'fela'
 
-const mountNode = document.getElementById('stylesheet')
-
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const files = [
   './fonts/Lato.ttf',
@@ -139,9 +130,7 @@ The renderer also manages subscriptions. We can add a change listener to get upd
 ```javascript
 import { createRenderer } from 'fela'
 
-const mountNode = document.getElementById('stylesheet')
-
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const rule = props => ({
   fontSize: props.fontSize,
@@ -162,14 +151,12 @@ subscription.unsubscribe()
 ```
 
 ## Clearing Styles
-Finally the renderer also provides a `clear`-method to clear the whole cache. This also removes all styles from the `mountNode`.
+Finally the renderer also provides a `clear`-method to clear the whole cache.
 
 ```javascript
 import { createRenderer } from 'fela'
 
-const mountNode = document.getElementById('stylesheet')
-
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const rule = props => ({
   fontSize: props.fontSize,

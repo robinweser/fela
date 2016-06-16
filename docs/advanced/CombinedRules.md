@@ -6,13 +6,14 @@ Basically there is no problem to do this in Fela too as you could just concatena
 
 ```javascript
 import { createRenderer } from 'fela'
+
 const renderer = createRenderer()
 
 const ruleA = props => ({ color: 'red' })
 const ruleB = props => ({ fontWeight: 'bold' })
 
 const classNameA = renderer.renderRule(ruleA)
-const classNameB = renderer.rendeRule(ruleB)
+const classNameB = renderer.renderRule(ruleB)
 
 const element = (
   <div className={classNameA + ' ' + classNameB}>
@@ -37,6 +38,7 @@ So, if we render two rules, both setting a CSS `color`, the last rendered one al
 
 ```javascript
 import { createRenderer } from 'fela'
+
 const renderer = createRenderer()
 
 const ruleA = props => ({ color: 'red' })
@@ -59,6 +61,7 @@ To combine rules, Fela provides the [`combineRules`](../api/combineRules.md) hel
 ### Example
 ```javascript
 import { createRenderer, combineRules } from 'fela'
+
 const renderer = createRenderer()
 
 const ruleA = props => ({ color: 'red' })

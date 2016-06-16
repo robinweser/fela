@@ -19,7 +19,7 @@ export default function render(renderer, mountNode) {
   mountNode.setAttribute('data-fela-stylesheet', '')
 
   // updated the DOM node's textContent with newly rendered markup
-  const subscription = renderer.subscribe(css => mountNode.textContent = css)
+  renderer.subscribe(css => mountNode.textContent = css)
 
   // render currently rendered styles to the DOM once
   mountNode.textContent = renderer.renderToString()
