@@ -164,7 +164,8 @@ const rule = props => ({
   color: 'red'
 })
 
-const subscription = renderer.subscribe(css => console.log(css))
+renderer.subscribe(css => console.log(css))
+
 renderer.renderRule(rule)
 // => '.c0{background-color:blue;color:red}'
 renderer.renderRule(rule, { fontSize: '12px' })
