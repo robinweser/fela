@@ -7,7 +7,7 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 * [`combineRules(...rules)`](api/combineRules.md)
 * [`enhance(...enhancers)`](api/enhance.md)
 
-#### fela/server
+#### Server API
 * [`createRenderer([config])`](api/createRenderer.md)
 
 ## [Renderer API](api/Renderer.md)
