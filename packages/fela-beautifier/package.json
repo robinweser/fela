@@ -1,6 +1,6 @@
 {
   "name": "fela-beautifier",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Beautifier middleware for Fela",
   "main": "index.js",
   "files": [

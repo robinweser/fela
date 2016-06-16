@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-lvha",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Fela plugin that sorts pseudo classes according to LVH(F)A",
   "main": "index.js",
   "files": [

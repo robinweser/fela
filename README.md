@@ -11,7 +11,7 @@ It is dynamic by design and renders your styles depending on your application st
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~2.0kb-brightgreen.svg">
 <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
 
-> [Try it on JSFiddle!](https://jsfiddle.net/53d4ys6n/2/)
+> [Try it on JSFiddle!](https://jsfiddle.net/mzrn1yvy/1/)
 
 ## Installation
 ```sh
