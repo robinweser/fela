@@ -5,12 +5,11 @@ import { renderToString } from 'react-dom/server'
 import fs from 'fs'
 
 import App from './app.js'
-import { createRenderer } from '../../modules/server'
+import { enhance, createRenderer } from '../../modules'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
-import beautifier from '../../modules/enhance/beautifier'
-import logger from '../../modules/enhance/logger'
-import enhance from '../../modules/enhance'
+import beautifier from '../../modules/enhancers/beautifier'
+import logger from '../../modules/enhancers/logger'
 
 const app = express()
 
