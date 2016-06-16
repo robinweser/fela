@@ -46,19 +46,18 @@
     return 0;
   }
 
-  function LVHA() {
-    return function (pluginInterface) {
-      var style = pluginInterface.style;
-
-
-      return Object.keys(style).sort(sortPseudoClasses).reduce(function (out, pseudo) {
-        out[pseudo] = style[pseudo];
-        return out;
-      }, {});
-    };
+  function LVHA(style) {
+    return Object.keys(style).sort(sortPseudoClasses).reduce(function (out, pseudo) {
+      out[pseudo] = style[pseudo];
+      return out;
+    }, {});
   }
 
-  return LVHA;
+  var LVHA$1 = (function () {
+    return LVHA;
+  })
+
+  return LVHA$1;
 
 }));
 //# sourceMappingURL=fela-plugin-lvha.js.map

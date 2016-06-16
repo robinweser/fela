@@ -42,12 +42,10 @@ function bundleConfig(pkg, info, minify) {
 }
 
 function buildPackage(pkg) {
-  [ ].concat(packages[pkg]).forEach(p => {
-    rollup.rollup(rollupConfig(pkg, p, process.env.NODE_ENV === 'production')).then(bundle => {
-      bundle.write(bundleConfig(pkg, p, process.env.NODE_ENV === 'production'))
-      console.log('Successfully bundled ' + p.name + (process.env.NODE_ENV === 'production' ? ' (minified).' : '.'))
-    }).catch(errorOnFail)
-  })
+  rollup.rollup(rollupConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')).then(bundle => {
+    bundle.write(bundleConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production'))
+    console.log('Successfully bundled ' + packages[pkg].name + (process.env.NODE_ENV === 'production' ? ' (minified).' : '.'))
+  }).catch(errorOnFail)
 }
 
 Object.keys(packages).forEach(pkg => buildPackage(pkg))

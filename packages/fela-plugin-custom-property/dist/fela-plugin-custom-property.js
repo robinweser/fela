@@ -27,31 +27,29 @@
 
   babelHelpers;
 
-  function customProperty(properties) {
-    return function (pluginInterface) {
-      var style = pluginInterface.style;
-      var processStyle = pluginInterface.processStyle;
+  function customProperty(style, properties) {
+    Object.keys(style).forEach(function (property) {
+      var value = style[property];
+      if (properties[property]) {
+        Object.assign(style, properties[property](value));
+        delete style[property];
+      }
 
+      if (value instanceof Object && !Array.isArray(value)) {
+        style[property] = customProperty(value, properties);
+      }
+    });
 
-      Object.keys(style).forEach(function (property) {
-        var value = style[property];
-        if (properties[property]) {
-          Object.assign(style, properties[property](value));
-          delete style[property];
-        }
-
-        if (value instanceof Object && !Array.isArray(value)) {
-          style[property] = processStyle(babelHelpers.extends({}, pluginInterface, {
-            style: value
-          }));
-        }
-      });
-
-      return style;
-    };
+    return style;
   }
 
-  return customProperty;
+  var customProperty$1 = (function (properties) {
+    return function (style) {
+      return customProperty(style, properties);
+    };
+  })
+
+  return customProperty$1;
 
 }));
 //# sourceMappingURL=fela-plugin-custom-property.js.map

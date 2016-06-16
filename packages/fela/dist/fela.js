@@ -11,30 +11,6 @@
       return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
     };
 
-    babelHelpers.classCallCheck = function (instance, Constructor) {
-      if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-      }
-    };
-
-    babelHelpers.createClass = function () {
-      function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-          var descriptor = props[i];
-          descriptor.enumerable = descriptor.enumerable || false;
-          descriptor.configurable = true;
-          if ("value" in descriptor) descriptor.writable = true;
-          Object.defineProperty(target, descriptor.key, descriptor);
-        }
-      }
-
-      return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);
-        if (staticProps) defineProperties(Constructor, staticProps);
-        return Constructor;
-      };
-    }();
-
     babelHelpers.extends = Object.assign || function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
@@ -53,110 +29,6 @@
 
 
     function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
-
-    var emptyFunction = __commonjs(function (module) {
-    "use strict";
-
-    /**
-     * Copyright (c) 2013-present, Facebook, Inc.
-     * All rights reserved.
-     *
-     * This source code is licensed under the BSD-style license found in the
-     * LICENSE file in the root directory of this source tree. An additional grant
-     * of patent rights can be found in the PATENTS file in the same directory.
-     *
-     * 
-     */
-
-    function makeEmptyFunction(arg) {
-      return function () {
-        return arg;
-      };
-    }
-
-    /**
-     * This function accepts and discards inputs; it has no side effects. This is
-     * primarily useful idiomatically for overridable function endpoints which
-     * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-     */
-    var emptyFunction = function emptyFunction() {};
-
-    emptyFunction.thatReturns = makeEmptyFunction;
-    emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-    emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-    emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-    emptyFunction.thatReturnsThis = function () {
-      return this;
-    };
-    emptyFunction.thatReturnsArgument = function (arg) {
-      return arg;
-    };
-
-    module.exports = emptyFunction;
-    });
-
-    var require$$0 = (emptyFunction && typeof emptyFunction === 'object' && 'default' in emptyFunction ? emptyFunction['default'] : emptyFunction);
-
-    var warning = __commonjs(function (module) {
-    /**
-     * Copyright 2014-2015, Facebook, Inc.
-     * All rights reserved.
-     *
-     * This source code is licensed under the BSD-style license found in the
-     * LICENSE file in the root directory of this source tree. An additional grant
-     * of patent rights can be found in the PATENTS file in the same directory.
-     *
-     */
-
-    'use strict';
-
-    var emptyFunction = require$$0;
-
-    /**
-     * Similar to invariant but only logs a warning if the condition is not met.
-     * This can be used to log issues in development environments in critical
-     * paths. Removing the logging code for production environments will keep the
-     * same logic and follow the same code paths.
-     */
-
-    var warning = emptyFunction;
-
-    if (true) {
-      warning = function warning(condition, format) {
-        for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-          args[_key - 2] = arguments[_key];
-        }
-
-        if (format === undefined) {
-          throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-        }
-
-        if (format.indexOf('Failed Composite propType: ') === 0) {
-          return; // Ignore CompositeComponent proptype check.
-        }
-
-        if (!condition) {
-          var argIndex = 0;
-          var message = 'Warning: ' + format.replace(/%s/g, function () {
-            return args[argIndex++];
-          });
-          if (typeof console !== 'undefined') {
-            console.error(message);
-          }
-          try {
-            // --- Welcome to debugging React ---
-            // This error was thrown as a convenience so that you can use this stack
-            // to find the callsite that caused this warning to fire.
-            throw new Error(message);
-          } catch (x) {}
-        }
-      };
-    }
-
-    module.exports = warning;
-    });
-
-    var warning$1 = (warning && typeof warning === 'object' && 'default' in warning ? warning['default'] : warning);
 
     /**
      * generates a hashcode from a string
@@ -218,58 +90,6 @@
       }, undefined);
     }
 
-    var isMediaQuery = (function (property) {
-      return property.substr(0, 6) === '@media';
-    })
-
-    var isPseudoClass = (function (property) {
-      return property.charAt(0) === ':';
-    })
-
-    /**
-     * removes every invalid property except pseudo class objects
-     *
-     * @param {Object} style - style to be validated
-     * @return {Object} validated style
-     */
-    function validateStyle(style) {
-      Object.keys(style).forEach(function (property) {
-        var value = style[property];
-        if (value instanceof Object && !Array.isArray(value)) {
-          style[property] = isPseudoClass(property) || isMediaQuery(property) ? validateStyle(value) : {};
-          if (Object.keys(style[property]).length === 0) {
-            delete style[property];
-          }
-        } else if (typeof value !== 'string' && typeof value !== 'number') {
-          delete style[property];
-          // also remove properties including concatenated props valued with undefined
-        } else if (typeof value === 'string' && value.indexOf('undefined') > -1) {
-            delete style[property];
-          }
-      });
-
-      return style;
-    }
-
-    /**
-     * executes each plugin using a predefined plugin interface
-     *
-     * @param {Object} pluginInterface - interface containing relevant processing data
-     * @return {Object} processed style
-     */
-    function processStyle(pluginInterface) {
-      var plugins = pluginInterface.plugins;
-      var style = pluginInterface.style;
-      // pipes each plugin by passes the plugin interface
-      // NOTE: as the style are passed directly they're editable
-      // therefore the plugin order might matter
-
-      plugins.forEach(function (plugin) {
-        return style = plugin(pluginInterface);
-      });
-      return style;
-    }
-
     var index$1 = __commonjs(function (module) {
     'use strict';
 
@@ -315,7 +135,7 @@
       var prefixes = arguments.length <= 2 || arguments[2] === undefined ? [''] : arguments[2];
 
       var keyframe = Object.keys(frames).reduce(function (css, percentage) {
-        return css + percentage + '{' + cssifyObject(validateStyle(frames[percentage])) + '}';
+        return css + percentage + '{' + cssifyObject(frames[percentage]) + '}';
       }, '');
 
       return prefixes.reduce(function (css, prefix) {
@@ -323,102 +143,84 @@
       }, '');
     }
 
-    var Renderer = function () {
-      function Renderer() {
-        var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-        babelHelpers.classCallCheck(this, Renderer);
+    function createRenderer() {
+      var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-        this.listeners = [];
-        this.keyframePrefixes = config.keyframePrefixes || ['-webkit-', '-moz-'];
-        this.keyframePrefixes.push('');
-        this.plugins = config.plugins || [];
-        this.clear();
-      }
+      var renderer = {
+        listeners: [],
+        keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
+        plugins: config.plugins || [],
 
-      /**
-       * clears the sheet's cache but keeps all listeners
-       */
-
-
-      babelHelpers.createClass(Renderer, [{
-        key: 'clear',
-        value: function clear() {
-          this.fontFaces = '';
-          this.keyframes = '';
-          this.statics = '';
-          this.rules = '';
-          this.mediaRules = {};
-          this.rendered = {};
-          this.base = {};
-          this.ids = [];
+        /**
+         * clears the sheet's cache but keeps all listeners
+         */
+        clear: function clear() {
+          renderer.fontFaces = '';
+          renderer.keyframes = '';
+          renderer.statics = '';
+          renderer.rules = '';
+          renderer.mediaRules = {};
+          renderer.rendered = {};
+          renderer.base = {};
+          renderer.ids = [];
 
           // emit changes to notify subscribers
-          this._emitChange();
-        }
+          renderer._emitChange();
+        },
+
 
         /**
          * renders a new rule variation and caches the result
          *
          * @param {Function} rule - rule which gets rendered
          * @param {Object?} props - properties used to render
-         * @param {Function[]?} plugins - array of plugins to process style
          * @return {string} className to reference the rendered rule
          */
-
-      }, {
-        key: 'renderRule',
-        value: function renderRule(rule) {
+        renderRule: function renderRule(rule) {
           var props = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
           // rendering a rule for the first time
           // will create an ID reference
-          if (this.ids.indexOf(rule) < 0) {
-            this.ids.push(rule);
+          if (renderer.ids.indexOf(rule) < 0) {
+            renderer.ids.push(rule);
 
             // directly render the static base style to be able
             // to diff future dynamic style with those
-            this.renderRule(rule, {});
+            renderer.renderRule(rule, {});
           }
 
           // uses the reference ID and the props to generate an unique className
-          var ruleId = this.ids.indexOf(rule);
-          var className = 'c' + ruleId + this._generatePropsReference(props);
+          var ruleId = renderer.ids.indexOf(rule);
+          var className = 'c' + ruleId + renderer._generatePropsReference(props);
 
           // only if the cached rule has not already been rendered
           // with a specific set of properties it actually renders
-          if (!this.rendered.hasOwnProperty(className)) {
+          if (!renderer.rendered.hasOwnProperty(className)) {
+            var style = renderer._processStyle(rule(props));
+            renderer._renderStyle(className, style, renderer.base[ruleId]);
 
-            var pluginInterface = {
-              plugins: this.plugins,
-              processStyle: processStyle,
-              style: rule(props),
-              props: props
-            };
+            renderer.rendered[className] = renderer._didChange;
 
-            var style = validateStyle(processStyle(pluginInterface));
-            this._renderStyle(className, style, this.base[ruleId]);
-
-            this.rendered[className] = this._didChange;
-
-            if (this._didChange) {
-              this._didChange = false;
-              this._emitChange();
+            if (renderer._didChange) {
+              renderer._didChange = false;
+              renderer._emitChange();
             }
 
             // keep static style to diff dynamic onces later on
             if (className === 'c' + ruleId) {
-              this.base[ruleId] = style;
+              renderer.base[ruleId] = style;
             }
           }
 
           var baseClassName = 'c' + ruleId;
-          if (!this.rendered[className]) {
+          if (!renderer.rendered[className]) {
             return baseClassName;
           }
 
           // returns either the base className or both the base and the dynamic part
           return className !== baseClassName ? baseClassName + ' ' + className : className;
-        }
+        },
+
 
         /**
          * renders a new keyframe variation and caches the result
@@ -427,40 +229,31 @@
          * @param {Object?} props - properties used to render
          * @return {string} animationName to reference the rendered keyframe
          */
-
-      }, {
-        key: 'renderKeyframe',
-        value: function renderKeyframe(keyframe) {
+        renderKeyframe: function renderKeyframe(keyframe) {
           var props = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
           // rendering a Keyframe for the first time
           // will create cache entries and an ID reference
-          if (this.ids.indexOf(keyframe) < 0) {
-            this.ids.push(keyframe);
+          if (renderer.ids.indexOf(keyframe) < 0) {
+            renderer.ids.push(keyframe);
           }
 
-          var propsReference = this._generatePropsReference(props);
-          var animationName = 'k' + this.ids.indexOf(keyframe) + propsReference;
+          var propsReference = renderer._generatePropsReference(props);
+          var animationName = 'k' + renderer.ids.indexOf(keyframe) + propsReference;
 
           // only if the cached keyframe has not already been rendered
           // with a specific set of properties it actually renders
-          if (!this.rendered.hasOwnProperty(animationName)) {
-            var pluginInterface = {
-              plugins: this.plugins,
-              processStyle: processStyle,
-              style: keyframe(props),
-              props: props
-            };
-
-            var processedKeyframe = processStyle(pluginInterface);
-            var css = cssifyKeyframe(processedKeyframe, animationName, this.keyframePrefixes);
-            this.rendered[animationName] = true;
-            this.keyframes += css;
-            this._emitChange();
+          if (!renderer.rendered.hasOwnProperty(animationName)) {
+            var processedKeyframe = renderer._processStyle(keyframe(props));
+            var css = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes);
+            renderer.rendered[animationName] = true;
+            renderer.keyframes += css;
+            renderer._emitChange();
           }
 
           return animationName;
-        }
+        },
+
 
         /**
          * renders a new font-face and caches it
@@ -468,15 +261,10 @@
          * @param {FontFace} fontFace - fontFace which gets rendered
          * @return {string} fontFamily reference
          */
-
-      }, {
-        key: 'renderFont',
-        value: function renderFont(family, files) {
-          var _this = this;
-
+        renderFont: function renderFont(family, files) {
           var properties = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
 
-          if (!this.rendered.hasOwnProperty(family)) {
+          if (!renderer.rendered.hasOwnProperty(family)) {
             (function () {
               var fontFace = {
                 fontFamily: '\'' + family + '\'',
@@ -493,14 +281,15 @@
               });
 
               var css = '@font-face{' + cssifyObject(fontFace) + '}';
-              _this.rendered[family] = true;
-              _this.fontFaces += css;
-              _this._emitChange();
+              renderer.rendered[family] = true;
+              renderer.fontFaces += css;
+              renderer._emitChange();
             })();
           }
 
           return family;
-        }
+        },
+
 
         /**
          * renders static style and caches them
@@ -509,48 +298,38 @@
          * @param {string?} selector - selector used to render the styles
          * @return {string} rendered CSS output
          */
-
-      }, {
-        key: 'renderStatic',
-        value: function renderStatic(style, selector) {
+        renderStatic: function renderStatic(style, selector) {
           var reference = typeof style === 'string' ? style : selector;
 
-          if (!this.rendered.hasOwnProperty(reference)) {
+          if (!renderer.rendered.hasOwnProperty(reference)) {
             if (typeof style === 'string') {
               // remove new lines from template strings
-              this.statics += style.replace(/\s{2,}/g, '');
+              renderer.statics += style.replace(/\s{2,}/g, '');
             } else {
-              var pluginInterface = {
-                plugins: this.plugins,
-                processStyle: processStyle,
-                style: style
-              };
-
-              this.statics += selector + '{' + cssifyObject(processStyle(pluginInterface)) + '}';
+              renderer.statics += selector + '{' + cssifyObject(renderer._processStyle(style)) + '}';
             }
 
-            this.rendered[reference] = true;
-            this._emitChange();
+            renderer.rendered[reference] = true;
+            renderer._emitChange();
           }
-        }
+        },
+
 
         /**
          * renders all cached styles into a single valid CSS string
          * clusters media query styles into groups to reduce output size
           * @return single concatenated CSS string
          */
+        renderToString: function renderToString() {
+          var css = renderer.fontFaces + renderer.statics + renderer.rules;
 
-      }, {
-        key: 'renderToString',
-        value: function renderToString() {
-          var css = this.fontFaces + this.statics + this.rules;
-
-          for (var media in this.mediaRules) {
-            css += '@media ' + media + '{' + this.mediaRules[media] + '}';
+          for (var media in renderer.mediaRules) {
+            css += '@media ' + media + '{' + renderer.mediaRules[media] + '}';
           }
 
-          return css + this.keyframes;
-        }
+          return css + renderer.keyframes;
+        },
+
 
         /**
          * Adds a new subscription to get notified on every rerender
@@ -558,19 +337,15 @@
          * @param {Function} callback - callback function which will be executed
          * @return {Object} equivalent unsubscribe method
          */
-
-      }, {
-        key: 'subscribe',
-        value: function subscribe(callback) {
-          var _this2 = this;
-
-          this.listeners.push(callback);
+        subscribe: function subscribe(callback) {
+          renderer.listeners.push(callback);
           return {
             unsubscribe: function unsubscribe() {
-              return _this2.listeners.splice(_this2.listeners.indexOf(callback), 1);
+              return renderer.listeners.splice(renderer.listeners.indexOf(callback), 1);
             }
           };
-        }
+        },
+
 
         /**
          * calls each listener with the current CSS markup of all caches
@@ -579,15 +354,13 @@
          * @param {Function} callback - callback function which will be executed
          * @return {Object} equivalent unsubscribe method
          */
-
-      }, {
-        key: '_emitChange',
-        value: function _emitChange() {
-          var css = this.renderToString();
-          this.listeners.forEach(function (listener) {
+        _emitChange: function _emitChange() {
+          var css = renderer.renderToString();
+          renderer.listeners.forEach(function (listener) {
             return listener(css);
           });
-        }
+        },
+
 
         /**
          * generates an unique reference id by content hashing props
@@ -595,12 +368,23 @@
          * @param {Object} props - props that get hashed
          * @return {string} reference - unique props reference
          */
-
-      }, {
-        key: '_generatePropsReference',
-        value: function _generatePropsReference(props) {
+        _generatePropsReference: function _generatePropsReference(props) {
           return generateHash(sortedStringify(props));
-        }
+        },
+
+
+        /**
+         * pipes a style object through a list of plugins
+         *
+         * @param {Object} style - style object to process
+         * @return {Object} processed style
+         */
+        _processStyle: function _processStyle(style) {
+          return renderer.plugins.reduce(function (processedStyle, plugin) {
+            return plugin(processedStyle);
+          }, style);
+        },
+
 
         /**
          * iterates a style object and renders each rule to the cache
@@ -609,14 +393,8 @@
          * @param {Object} style - style object which is rendered
          * @param {Object`} base - base style subset for diffing
          */
-
-      }, {
-        key: '_renderStyle',
-        value: function _renderStyle(className, style) {
+        _renderStyle: function _renderStyle(className, style) {
           var base = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-
-          var _this3 = this;
-
           var pseudo = arguments.length <= 3 || arguments[3] === undefined ? '' : arguments[3];
           var media = arguments.length <= 4 || arguments[4] === undefined ? '' : arguments[4];
 
@@ -625,17 +403,21 @@
             // recursive object iteration in order to render
             // pseudo class and media class declarations
             if (value instanceof Object && !Array.isArray(value)) {
-              if (isPseudoClass(property)) {
-                _this3._renderStyle(className, value, base[property], pseudo + property, media);
-              } else if (isMediaQuery(property)) {
+              if (property.charAt(0) === ':') {
+                renderer._renderStyle(className, value, base[property], pseudo + property, media);
+              } else if (property.substr(0, 6) === '@media') {
                 // combine media query rules with an `and`
                 var query = property.slice(6).trim();
                 var combinedMedia = media.length > 0 ? media + ' and ' + query : query;
-                _this3._renderStyle(className, value, base[property], pseudo, combinedMedia);
+                renderer._renderStyle(className, value, base[property], pseudo, combinedMedia);
               }
             } else {
               // diff styles with the base styles to only extract dynamic styles
-              if (!base.hasOwnProperty(property) || base[property] !== value) {
+              if (value !== undefined && !base.hasOwnProperty(property) || base[property] !== value) {
+                // remove concatenated string values including `undefined`
+                if (typeof value === 'string' && value.indexOf('undefined') > -1) {
+                  return ruleset;
+                }
                 ruleset[property] = value;
               }
             }
@@ -645,27 +427,93 @@
           // add styles to the cache
           if (Object.keys(ruleset).length > 0) {
             var css = '.' + className + pseudo + '{' + cssifyObject(ruleset) + '}';
-            this._didChange = true;
+            renderer._didChange = true;
 
             if (media.length > 0) {
-              if (!this.mediaRules.hasOwnProperty(media)) {
-                this.mediaRules[media] = '';
+              if (!renderer.mediaRules.hasOwnProperty(media)) {
+                renderer.mediaRules[media] = '';
               }
 
-              this.mediaRules[media] += css;
+              renderer.mediaRules[media] += css;
             } else {
-              this.rules += css;
+              renderer.rules += css;
             }
           }
         }
-      }]);
-      return Renderer;
-    }();
+      };
+
+      // initial setup
+      renderer.keyframePrefixes.push('');
+      renderer.clear();
+
+      return renderer;
+    }
+
+    function assign(base) {
+      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+
+      return args.reduce(function (extend, obj) {
+        for (var property in obj) {
+          var value = obj[property];
+          if (extend[property] instanceof Object && value instanceof Object) {
+            extend[property] = assign({}, extend[property], value);
+          } else {
+            extend[property] = value;
+          }
+        }
+        return extend;
+      }, base);
+    }
+
+    function combineRules() {
+      for (var _len = arguments.length, rules = Array(_len), _key = 0; _key < _len; _key++) {
+        rules[_key] = arguments[_key];
+      }
+
+      return function (props) {
+        return rules.reduce(function (style, rule) {
+          return assign(style, rule(props));
+        }, {});
+      };
+    }
+
+    function enhance() {
+      for (var _len = arguments.length, enhancers = Array(_len), _key = 0; _key < _len; _key++) {
+        enhancers[_key] = arguments[_key];
+      }
+
+      return function (createRenderer) {
+        return function () {
+          return enhancers.reduce(function (renderer, enhancer) {
+            return enhancer(renderer);
+          }, createRenderer.apply(undefined, arguments));
+        };
+      };
+    }
+
+    var warning = function warning() {
+      return true;
+    };
+
+    if (true) {
+      warning = function warning(condition, message) {
+        if (!condition) {
+          if (typeof console !== 'undefined') {
+            console.error(message); // eslint-disable-line
+          }
+          throw new Error(message);
+        }
+      };
+    }
+
+    var warning$1 = warning;
 
     var NODE_TYPE = 1;
     var NODE_NAME = 'STYLE';
 
-    function createRenderer(mountNode, config) {
+    function render(renderer, mountNode) {
       // check if the passed node is a valid element node which allows
       // setting the `textContent` property to update the node's content
       if (!mountNode || mountNode.nodeType !== NODE_TYPE) {
@@ -679,130 +527,21 @@
 
       // mark and clean the DOM node to prevent side-effects
       mountNode.setAttribute('data-fela-stylesheet', '');
-      mountNode.textContent = '';
-
-      var renderer = new Renderer(config);
 
       // updated the DOM node's textContent with newly rendered markup
       renderer.subscribe(function (css) {
         return mountNode.textContent = css;
       });
-      renderer.mountNode = mountNode;
-      return renderer;
-    }
 
-    function applyMiddleware() {
-      var middleware = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-
-      return function (renderer) {
-        middleware.forEach(function (tool) {
-          return renderer = tool(renderer);
-        });
-        return renderer;
-      };
-    }
-
-    var index$3 = __commonjs(function (module) {
-    'use strict';
-
-    module.exports = function (x) {
-    	var type = typeof x === 'undefined' ? 'undefined' : babelHelpers.typeof(x);
-    	return x !== null && (type === 'object' || type === 'function');
-    };
-    });
-
-    var require$$0$1 = (index$3 && typeof index$3 === 'object' && 'default' in index$3 ? index$3['default'] : index$3);
-
-    var index$2 = __commonjs(function (module) {
-    'use strict';
-
-    var isObj = require$$0$1;
-    var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-    function toObject(val) {
-    	if (val === null || val === undefined) {
-    		throw new TypeError('Sources cannot be null or undefined');
-    	}
-
-    	return Object(val);
-    }
-
-    function assignKey(to, from, key) {
-    	var val = from[key];
-
-    	if (val === undefined || val === null) {
-    		return;
-    	}
-
-    	if (hasOwnProperty.call(to, key)) {
-    		if (to[key] === undefined || to[key] === null) {
-    			throw new TypeError('Cannot convert undefined or null to object (' + key + ')');
-    		}
-    	}
-
-    	if (!hasOwnProperty.call(to, key) || !isObj(val)) {
-    		to[key] = val;
-    	} else {
-    		to[key] = assign(Object(to[key]), from[key]);
-    	}
-    }
-
-    function assign(to, from) {
-    	if (to === from) {
-    		return to;
-    	}
-
-    	from = Object(from);
-
-    	for (var key in from) {
-    		if (hasOwnProperty.call(from, key)) {
-    			assignKey(to, from, key);
-    		}
-    	}
-
-    	if (Object.getOwnPropertySymbols) {
-    		var symbols = Object.getOwnPropertySymbols(from);
-
-    		for (var i = 0; i < symbols.length; i++) {
-    			if (propIsEnumerable.call(from, symbols[i])) {
-    				assignKey(to, from, symbols[i]);
-    			}
-    		}
-    	}
-
-    	return to;
-    }
-
-    module.exports = function deepAssign(target) {
-    	target = toObject(target);
-
-    	for (var s = 1; s < arguments.length; s++) {
-    		assign(target, arguments[s]);
-    	}
-
-    	return target;
-    };
-    });
-
-    var deepAssign = (index$2 && typeof index$2 === 'object' && 'default' in index$2 ? index$2['default'] : index$2);
-
-    function combineRules() {
-      for (var _len = arguments.length, rules = Array(_len), _key = 0; _key < _len; _key++) {
-        rules[_key] = arguments[_key];
-      }
-
-      return function (props) {
-        return rules.reduce(function (style, rule) {
-          return deepAssign(style, rule(props));
-        }, {});
-      };
+      // render currently rendered styles to the DOM once
+      mountNode.textContent = renderer.renderToString();
     }
 
     var index = {
       createRenderer: createRenderer,
-      applyMiddleware: applyMiddleware,
-      combineRules: combineRules
+      combineRules: combineRules,
+      enhance: enhance,
+      render: render
     };
 
     return index;

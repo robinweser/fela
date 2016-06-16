@@ -27,35 +27,30 @@
 
   babelHelpers;
 
-  function friendlyPseudoClass() {
-    return function (pluginInterface) {
-      var style = pluginInterface.style;
-      var processStyle = pluginInterface.processStyle;
+  function friendlyPseudoClass(style) {
+    Object.keys(style).forEach(function (property) {
+      var value = style[property];
+      if (value instanceof Object && !Array.isArray(value)) {
+        var regex = new RegExp('^on([A-Z])');
+        if (regex.test(property)) {
+          var pseudo = property.replace(regex, function (match, p1) {
+            return ':' + p1.toLowerCase();
+          });
 
-
-      Object.keys(style).forEach(function (property) {
-        var value = style[property];
-        if (value instanceof Object && !Array.isArray(value)) {
-          var regex = new RegExp('^on([A-Z])');
-          if (regex.test(property)) {
-            var pseudo = property.replace(regex, function (match, p1) {
-              return ':' + p1.toLowerCase();
-            });
-
-            style[pseudo] = processStyle(babelHelpers.extends({}, pluginInterface, {
-              style: value
-            }));
-
-            delete style[property];
-          }
+          style[pseudo] = friendlyPseudoClass(value);
+          delete style[property];
         }
-      });
+      }
+    });
 
-      return style;
-    };
+    return style;
   }
 
-  return friendlyPseudoClass;
+  var friendlyPseudoClass$1 = (function () {
+    return friendlyPseudoClass;
+  })
+
+  return friendlyPseudoClass$1;
 
 }));
 //# sourceMappingURL=fela-plugin-friendly-pseudo-class.js.map
