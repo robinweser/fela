@@ -1,4 +1,4 @@
-import generateContentHash from '../../../modules/renderer/utils/generateContentHash'
+import generateContentHash from '../../modules/utils/generateContentHash'
 
 describe('Generating content hashes', () => {
   it('should return a hash', () => {
