@@ -3,13 +3,12 @@
 Fela was always designed with React in mind, but is **not** bound to React by default. If you want to use it with React, you should also install the official [React bindings for Fela](https://github.com/rofrischmann/react-fela).
 
 ```sh
-npm -i --save react-fela
+npm i --save react-fela
 ```
 ## Presentational Components
 While not required, we highly recommend to split your components into [presentational and container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.67qfcbme5).
-While container components manage the application logic, presentational components should only describe how your application looks like. They get data passed as `props` and return some static HTML markup.<br>
+While container components manage the application logic, presentational components should only describe how your application looks like. They get data passed as `props` and return some static HTML markup.
 **If we strictly separate our components, we actually only use Fela for presentational components.**
-<br>
 
 ## Passing the Renderer
 We like to avoid using a global Fela renderer which is why the React bindings ship the [`<Provider>`](https://github.com/rofrischmann/react-fela/blob/master/docs/api/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.<br>
@@ -80,7 +79,7 @@ Therefore we also provide the `connect` HoC ([Higher-order Component](https://me
 import React from 'react'
 import { connect } from 'react-fela'
 
-let Header = ({ title, styles }) => (
+const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.title}>{title}</h1>
   </header>
@@ -108,7 +107,7 @@ const mapStylesToProps = props => renderer => ({
   })
 })
 
-Header = connect(mapStylesToProps)(Header)
+export default connect(mapStylesToProps)(Header)
 
 // Usage example
 <Header title='Hello' color='red' size={17} />
