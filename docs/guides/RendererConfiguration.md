@@ -1,6 +1,6 @@
 # Renderer Configuration
 
-We already learned that the renderer is configurable with e.g. [plugins](../Plugins.md). Yet there are some more options.
+We already learned that the renderer is configurable with e.g. [plugins](../advanced/Plugins.md). Yet there are some more options.
 
 In general, our renderer accepts a config object. The following table shows each configuration option, its expected values, its default value and what it is used for.
 
@@ -8,8 +8,8 @@ In general, our renderer accepts a config object. The following table shows each
 
 | Option | Value | Default |Description |
 | ------ | ------ | ---------|---|
-|`plugins` | `function[]` |  | [plugins](../Plugins.md) to process styles before rendering |
-|`keyframePrefixes` |`string[]` |`['-webkit', '-moz-']` |which `@keyframes` prefixes are rendered |
+|`plugins` | `function[]` |  | [plugins](../advanced/Plugins.md) to process styles before rendering |
+|`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` |which `@keyframes` prefixes are rendered |
 
 ## Example
 ```javascript

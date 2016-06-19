@@ -1,4 +1,5 @@
 # Summary
+
 * [Read Me](README.md)
 * [1. Introduction](docs/Introduction.md)
    * [1.1. Motivation](docs/introduction/Motivation.md)
@@ -17,9 +18,10 @@
    * [3.3. Global & Third-Party Styles](docs/advanced/StaticStyle.md)
    * [3.4. Combined Rules](docs/advanced/CombinedRules.md)
    * [3.5. Enhancers](docs/advanced/Enhancers.md)
-* [4. Recipes](docs/Recipes.md)
-   * [4.1. Renderer Configuration](docs/recipes/RendererConfiguration.md)
-   * [4.2. Server Rendering](docs/recipes/ServerRendering.md)
+* [4. Usage Guides](docs/UsageGuides.md)
+   * [4.1. Usage with React](docs/guides/UsageWithReact.md)
+   * [4.2. Renderer Configuration](docs/guides/RendererConfiguration.md)
+   * [4.3. Server Rendering](docs/guides/ServerRendering.md)
 * [5. API Reference](docs/API.md)
    * [5.1. createRenderer](docs/api/createRenderer.md)
    * [5.2. Renderer](docs/api/Renderer.md)
