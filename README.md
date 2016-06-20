@@ -15,7 +15,7 @@ It is dynamic by design and renders your styles depending on your application st
 ```sh
 npm i --save fela
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can basically just `npm install` all packages. <br>
+Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can `npm install` all packages. <br>
 Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [npmcdn](https://npmcdn.com/).
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
@@ -41,7 +41,7 @@ const rule = props => ({
     fontSize: props.fontSize + 2 + 'px'
   },
   // nest media queries and pseudo classes
-  // inside the style object as is
+  // inside the style object
   '@media (min-height: 300px)': {
     backgroundColor: 'gray',
     ':hover': {
