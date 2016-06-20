@@ -27,13 +27,13 @@ export default {
     name: 'FelaPluginLVHA',
     entry: 'plugins/LVHA.js'
   },
+  'fela-plugin-logger': {
+    name: 'FelaPluginLogger',
+    entry: 'plugins/logger.js'
+  },
   'fela-beautifier': {
     name: 'FelaBeautifier',
     entry: 'enhancers/beautifier.js'
-  },
-  'fela-logger': {
-    name: 'FelaLogger',
-    entry: 'enhancers/logger.js'
   },
   'fela-perf': {
     name: 'FelaPerf',

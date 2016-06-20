@@ -9,7 +9,6 @@ import { enhance, createRenderer } from '../../modules'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
 import beautifier from '../../modules/enhancers/beautifier'
-import logger from '../../modules/enhancers/logger'
 
 const app = express()
 
@@ -17,8 +16,7 @@ app.get('/', (req, res) => {
   const plugins = [ prefixer(), fallbackValue() ]
 
   const createEnhancedRenderer = enhance(
-    beautifier(),
-    logger({ beautify: false })
+    beautifier()
   )(createRenderer)
 
   const renderer = createEnhancedRenderer({ plugins: plugins })

@@ -63,15 +63,14 @@ console.log(className) // => c0 c0-aw22w
 render(renderer, mountNode)
 ```
 
-
 ## Documentation
-+ [Introduction](/docs/Introduction.md)
-* [Basics](docs/Basics.md)
-* [Advanced](docs/Advanced.md)
-* [Recipes](docs/Recipes.md)
-* [API Reference](docs/API.md)
-* [FAQ](docs/FAQ.md)
-* [Feedback](docs/Feedback.md)
++ [Introduction](http://fela.js.org/docs/Introduction.html)
+* [Basics](http://fela.js.org/docs/Basics.html)
+* [Advanced](http://fela.js.org/docs/Advanced.html)
+* [Usage Guides](http://fela.js.org/docs/UsageGuides.html)
+* [API Reference](http://fela.js.org/docs/API.html)
+* [FAQ](http://fela.js.org/docs/FAQ.html)
+* [Feedback](http://fela.js.org/docs/Feedback.html)
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>

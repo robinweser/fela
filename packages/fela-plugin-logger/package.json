@@ -1,7 +1,7 @@
 {
-  "name": "fela-logger",
+  "name": "fela-plugin-logger",
   "version": "1.0.0-beta.2",
-  "description": "Logging middleware for Fela",
+  "description": "Fela plugin to log rendered styles",
   "main": "index.js",
   "files": [
     "LICENSE",
@@ -12,15 +12,11 @@
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "fela-devtools",
-    "dx",
-    "devtools",
-    "cssinjs",
-    "logger"
+    "fela-plugin",
+    "logger",
+    "logging",
+    "cssinjs"
   ],
   "author": "Robin Frischmann",
-  "license": "MIT",
-  "dependencies": {
-    "cssbeautify": "^0.3.1"
-  }
+  "license": "MIT"
 }
