@@ -1,6 +1,6 @@
 # Keyframes
 
-As the name already suggests, Keyframes are used to render [CSS animation keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
+As the name already suggests, keyframes are used to render [CSS animation keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
 
 Keyframes are very similar to rules, in that they are also defined as functions of `props` and return objects, but the returned objects have a slightly different shape.
 
