@@ -9,15 +9,15 @@ Modern UI libraries such as [React](https://facebook.github.io/react/) provide n
 (state) => view
 ```
 
-This simple concept allows us to compose multiple components into complex and dynamic UI while always keeping our application state in sync with what is displayed.<br>
-Yet a component does not only describe **which** information is displayed, but also **how** it is displayed. In general we use CSS to style our components by creating static selectors that again define a fixed set of style declarations. This approach totally works fine as long as you have static UI which only updates its displayed data, but does not suit dynamic UI which alters its appearance depending on the data.<br>
+This simple concept allows us to compose multiple components into a complex and dynamic UI while always keeping what is displayed in sync with our application state.<br>
+Yet a component does not only describe **which** information is displayed, but also **how** it is displayed. In general we use CSS to style our components by creating static selectors that again define a fixed set of style declarations. This approach totally works fine as long as you have static a UI which only updates its displayed data, but does not suit dynamic a UI which alters its appearance depending on data it receives.<br>
 **If the view is a function of state, your CSS should be too**, as it is part of your view.
 
 ```javascript
 (state) => style
 ```
 
-Your styles are not just a static style declarations anymore. They can automatically adjust oneself to fit the displayed information at any point of time.<br>
+Your styles are not just a static style declarations anymore. They can automatically adjust themselves to fit the displayed information at any point of time.<br>
 We call the relevant parts of the state properties, usually referred to as **props**.
 
 ```javascript
