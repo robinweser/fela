@@ -1,6 +1,6 @@
 # Rules
 
-We need understand what rules actually are and what they're used for. The name comes, as you might have already guessed, from CSS itself.<br>
+We need to understand what rules actually are and what they're used for. The name comes, as you might have already guessed, from CSS itself.<br>
 
 In CSS a rule is defined as a pair of selector(s) and style declaration(s) as this image from [MDN](https://developer.mozilla.org/docs/Web/CSS/Syntax) shows:<br>
 ![MDN - CSS Rules](https://mdn.mozillademos.org/files/3668/css%20syntax%20-%20ruleset.png)
