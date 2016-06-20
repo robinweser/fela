@@ -1,6 +1,6 @@
 # Basics
 
-To start with Fela we first need to explain some core components which build up the whole structure.
+To get started with Fela, we first need to explain the core components.
 
 * [Rules](basics/Rules.md)
 * [Keyframes](basics/Keyframes.md)

@@ -1,10 +1,10 @@
 # Renderer
 
-We have learned about all basic renderable elements which are rules, keyframes and fonts. Now we can finally learn how to actually render and use them within our application.
+We have learned about all basic renderable elements which are rules, keyframes and fonts. Now we can finally learn how to actually render and use them within our application. In order to do so we need a renderer.
 
-As the header tells, we are talking about the renderer. The renderer is a single object that coordinates the whole rendering workflow. It also uses a special caching mechanism to access previously rendered styles faster and to reduce the amount of DOM manipulations.
+The renderer is a single object that coordinates the whole rendering workflow. It also uses a special caching mechanism to access previously rendered styles faster and reduce the amount of DOM manipulations.
 
-To actually create a new renderer, Fela provides the [`createRenderer`](../api/createRenderer.md)-method.
+To create a new renderer, Fela provides the [`createRenderer`](../api/createRenderer.md) function.
 
 ```javascript
 import { createRenderer } from 'fela'
@@ -58,7 +58,7 @@ renderer.renderRule(rule, { fontSize: '15px' }) // => .c0 .c0--w5rs4
 ### renderKeyframe
 Takes a [keyframe](Keyframes.md) and some `props` to resolve the keyframe. If no `props` are passed it defaults to an empty object.
 It returns the rendered animation name.
-> It also adds the keyframe with both `@-webkit-` and `@-moz-` prefixes. We will ignore them here.
+It also adds the keyframe with both `@-webkit-` and `@-moz-` prefixes, but we will ignore them here for brevity.
 
 ```javascript
 import { createRenderer } from 'fela'
@@ -94,7 +94,7 @@ renderer.renderKeyframe(keyframe, { toColor: 'blue' }) // => .k0-mh8wzm
 ```
 
 ### renderFont
-Rendering [fonts](Fonts.md) is a bit different. It takes the font family and an array of font source files. Optionally it takes additional font properties.
+Rendering [fonts](Fonts.md) is a bit different. `renderFont` takes the font family and an array of font source files as mandatory arguments and an optional object containing additional font properties.
 
 ```javascript
 import { createRenderer } from 'fela'

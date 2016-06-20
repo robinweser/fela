@@ -1,11 +1,11 @@
 # Keyframes
 
-As the name might already hint, they are used to render [CSS animation keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
+As the name already suggests, keyframes are used to render [CSS animation keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
 
-Keyframes are very similar to rules. They are also defined as functions of `props` and also return an object but with a slightly different shape, which we like to call *keyframe objects*.
+Keyframes are very similar to rules, in that they are also defined as functions of `props` and return objects, but the returned objects have a slightly different shape.
 
 ## Keyframe Object
-The objects returned by keyframes are called *keyframe objects* if they conform a special shape.<br>Each key in the object must be either a percentage value or one of the keywords `from` and `to` which are equivalent to `0%` and `100%`. Those keys again need to reference objects containing all style declarations that should be animated. They have the same shape as [rule](Rules.md)'s [basic shape](Rules.md#basicshape).
+The objects returned by keyframes are called *keyframe objects* if they conform a special shape.<br>Each key in the object must be either a percentage value or the keywords `from` or `to`, which are equivalent to `0%` and `100%`. Those keys again need to reference objects containing all style declarations that should be animated. The nested objects have to conform to a [rule](Rules.md)'s [basic shape](Rules.md#basicshape).
 
 ```javascript
 const keyframe = props => ({

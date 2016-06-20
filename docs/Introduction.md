@@ -1,6 +1,6 @@
 # Introduction
 
-The documentation starts with some basic introduction. It includes the motivation, principles, gloals, benefit as well as drawbacks behind Fela.
+First we are going to focus on the motivation, principles and gloals behind Fela, as well as its benefits and drawbacks.
 
 * [Motivation](introduction/Motivation.md)
 * [Principles](introduction/Principles.md)
