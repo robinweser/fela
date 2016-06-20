@@ -1,10 +1,10 @@
 # Ecosystem
 
 We decided to keep Fela as small and simple as possible. It only includes the renderer and two simple helpers. Yet it is designed to be highly extendable with both plugins and middleware.
-Plugins are used to process your styles, middleware to enhance your renderer. <br>
-With this approach everyone is able to use their own configurations to fit their needs.
+Plugins are used to process your styles, enhancers to enhance your renderer. <br>
+With this approach everyone is able to create a custom version of Fela fitting their particular needs.
 
-Many plugins and even middlewares are already included in the [main repository](https://github.com/rofrischmann/fela/tree/master/packages).
+Many plugins and enhancers are already included in the [main repository](https://github.com/rofrischmann/fela/tree/master/packages).
 
 ### Bindings
 * [react-fela](https://github.com/rofrischmann/react-fela) - React
@@ -22,4 +22,4 @@ Many plugins and even middlewares are already included in the [main repository](
 
 * [fela-beautifier](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
 * [fela-logger](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs changes (rendered CSS)
-* [fela-perf](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (elapsed time to render)
+* [fela-perf](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
