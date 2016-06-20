@@ -4,20 +4,19 @@ import Fela, { createRenderer, enhance } from '../../modules'
 import prefixer from '../../modules/plugins/prefixer'
 import fallbackValue from '../../modules/plugins/fallbackValue'
 import beautifier from '../../modules/enhancers/beautifier'
-import logger from '../../modules/enhancers/logger'
+import logger from '../../modules/plugins/logger'
 import perf from '../../modules/enhancers/perf'
 
 import App from './app'
 
 const createEnhancedRenderer = enhance(
   beautifier(),
-  logger(),
   perf()
 )(createRenderer)
 
 const enhancedRenderer = createEnhancedRenderer({
   keyframePrefixes: [],
-  plugins: [ prefixer(), fallbackValue() ]
+  plugins: [ prefixer(), fallbackValue(), logger() ]
 })
 
 enhancedRenderer.renderStatic({

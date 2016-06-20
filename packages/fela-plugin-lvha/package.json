@@ -6,8 +6,8 @@
   "files": [
     "LICENSE",
     "README.md",
-    "LVHA.js",
-    "dist"
+    "index.js",
+    "/dist"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
