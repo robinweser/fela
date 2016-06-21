@@ -18,7 +18,7 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <!-- Fela (Development): Unminified version including all warnings -->
 <script src="https://npmcdn.com/fela-plugin-friendly-pseudo-class@1.0.0-beta.2/dist/fela-plugin-friendly-pseudo-class.js"></script>
 <!-- Fela (Production): Minified version -->
-src="https://npmcdn.com/fela-plugin-friendly-pseudo-class@1.0.0-beta.2/dist/fela-plugin-friendly-pseudo-class.min.js"></script>
+<script src="https://npmcdn.com/fela-plugin-friendly-pseudo-class@1.0.0-beta.2/dist/fela-plugin-friendly-pseudo-class.min.js"></script>
 ```
 
 ## Example

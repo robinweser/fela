@@ -8,7 +8,7 @@ function validator(style, options) {
         delete style[property]
       }
       if (logInvalid) {
-        console.log((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid Property', {
+        console.log((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid Property', { // eslint-disable-line
           property,
           value
         })

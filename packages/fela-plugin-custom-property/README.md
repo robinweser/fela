@@ -18,7 +18,7 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <!-- Fela (Development): Unminified version including all warnings -->
 <script src="https://npmcdn.com/fela-plugin-custom-property@1.0.0-beta.2/dist/fela-plugin-custom-property.js"></script>
 <!-- Fela (Production): Minified version -->
-src="https://npmcdn.com/fela-plugin-custom-property@1.0.0-beta.2/dist/fela-plugin-custom-property.min.js"></script>
+<script src="https://npmcdn.com/fela-plugin-custom-property@1.0.0-beta.2/dist/fela-plugin-custom-property.min.js"></script>
 ```
 
 ## Example

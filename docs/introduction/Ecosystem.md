@@ -17,6 +17,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-lvha](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-lvha) - Sorts pseudo classes according to LVH(F)A
 * [fela-plugin-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-prefixer) - Adds vendor prefixes to the styles
 * [fela-plugin-unit](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-unit) - Automatically adds units to values if needed
+* [fela-plugin-validator*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-validator) - Validates, logs & optionally deletes invalid properties
 
 ### Enhancers
 > **Warning**: Enhancers are still experimental and the API might change.
@@ -25,5 +26,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
 
 <br>
----
+
+------
+
 \* Packages are considered dev tools and should therefore not be used in production.

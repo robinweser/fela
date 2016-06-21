@@ -18,7 +18,7 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <!-- Fela (Development): Unminified version including all warnings -->
 <script src="https://npmcdn.com/fela-plugin-prefixer@1.0.0-beta.2/dist/fela-plugin-prefixer.js"></script>
 <!-- Fela (Production): Minified version -->
-src="https://npmcdn.com/fela-plugin-prefixer@1.0.0-beta.2/dist/fela-plugin-prefixer.min.js"></script>
+<script src="https://npmcdn.com/fela-plugin-prefixer@1.0.0-beta.2/dist/fela-plugin-prefixer.min.js"></script>
 ```
 
 ## Example

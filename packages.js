@@ -31,6 +31,10 @@ export default {
     name: 'FelaPluginLogger',
     entry: 'plugins/logger.js'
   },
+  'fela-plugin-validator': {
+    name: 'FelaPluginValidator',
+    entry: 'plugins/validator.js'
+  },
   'fela-beautifier': {
     name: 'FelaBeautifier',
     entry: 'enhancers/beautifier.js'
