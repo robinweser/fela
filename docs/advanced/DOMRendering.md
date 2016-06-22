@@ -1,10 +1,10 @@
 # DOM Rendering
 
-Knowing all the basics, we are already able to build up our whole styling environment. But we still do not know how to actually render all the styles into the DOM. Luckily this is really simple as all we have to do is a single function call.<br>
-Fela provides the `render` method which takes two parameters. Our renderer and a valid DOM node to render our CSS into. In general we will use a `<style>` element, but sometimes it might also be helpful to just render the styles into a `<div>` for instant review.
+Knowing all the basics, we are already able to build up our whole styling environment. But we still do not know how to actually render our styles into the DOM. Luckily this is really simple as all we have to do is call a single function.<br>
+Fela provides a `render` function which takes two parameters: our renderer and a valid DOM node to render our CSS into. In general we will use a `<style>` element, but sometimes it might also be helpful to just render the styles into a `<div>` for instant review.
 
-## Automatic Update
-Once rendered into a DOM node, a change listener will subscribe to the renderer in order to get notified on style changes. The DOM node will automatically be updated on changes.
+## Automatic Updates
+Once rendered into a DOM node, a change listener will subscribe to the renderer and get notified on style changes. The DOM node will automatically be updated on changes.
 
 ## Example
 

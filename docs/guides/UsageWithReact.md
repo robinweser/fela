@@ -7,11 +7,11 @@ npm i --save react-fela
 ```
 ## Presentational Components
 While not required, we highly recommend to split your components into [presentational and container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.67qfcbme5).
-While container components manage the application logic, presentational components should only describe how your application looks like. They get data passed as `props` and return some static HTML markup.
+While container components manage the application logic, presentational components should only describe how your application looks. They get data passed as `props` and return a representation of your view for those props.
 **If we strictly separate our components, we actually only use Fela for presentational components.**
 
 ## Passing the Renderer
-We like to avoid using a global Fela renderer which is why the React bindings ship the [`<Provider>`](https://github.com/rofrischmann/react-fela/blob/master/docs/api/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.<br>
+We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/react-fela/blob/master/docs/api/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.<br>
 It also takes an optional `mountNode` prop which is used to render our final CSS markup into. *(If you use server rendering you do not need to pass a `mountNode`)*.
 
 ### Example
@@ -72,7 +72,7 @@ const Header = ({ title, size, color }, { renderer }) => {
 ```
 
 Yet it is does not really look convincing as we always have to add the `contextTypes`, mix the rendering process with our markup and always have to use the `context` parameter.<br>
-Therefore we also provide the `connect` HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)). It is used to map rendered classNames to the components `props` directly.
+Therefore we also provide a HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) called `connect`. It is used to map the components `props` directly to rendered classNames.
 
 ### Example
 ```javascript

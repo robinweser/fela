@@ -1,11 +1,11 @@
 # Server Rendering
-As [already mentioned](../introduction/Benefits.md), Fela supports server-side rendering from the very beginning.
+As [already mentioned](../introduction/Benefits.md), Fela supports server-side rendering out of the box.
 All you need to to is call `renderToString` once you are finished rendering styles and you will get the final CSS markup.<br>
-Basically that's it. No magic. No extra configuration.
+That's it. No magic. No extra configuration.
 
 Usually you will render all styles on the server and inject the rendered CSS markup into the HTML markup which gets sent to the client.
 ## Example
-The following code shows a simple server example using [express](https://github.com/expressjs/express) and [React](https://github.com/facebook/react). Assuming `app.js` is our root React component and we pass the renderer as a prop to use it.
+The following code shows a simple server example using [express](https://github.com/expressjs/express) and [React](https://github.com/facebook/react).
 ```javascript
 import express from 'express'
 import proxy from 'express-http-proxy'
