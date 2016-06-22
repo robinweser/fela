@@ -1,10 +1,10 @@
 # Renderer Configuration
 
-We already learned that the renderer is configurable with e.g. [plugins](../advanced/Plugins.md). Yet there are some more options.
+We already learned that the renderer is configurable with e.g. [plugins](../advanced/Plugins.md), but there are some more options.
 
-In general, our renderer accepts a config object. The following table shows each configuration option, its expected values, its default value and what it is used for.
+In general, our renderer accepts a config object. The following table shows each configuration option, its expected value, its default value and what it is used for.
 
-> We might introduce more configuration options with future releases, so be sure to frequently check for updates.
+We might introduce more configuration options with future releases, so be sure to frequently check for updates.
 
 | Option | Value | Default |Description |
 | ------ | ------ | ---------|---|
@@ -23,7 +23,6 @@ const config = {
   plugins: [ unit('em'), prefixer(), fallbackValue() ],
   keyframePrefixes: ['-webkit-']
 }
-
 
 const renderer = createRenderer(config)
 
