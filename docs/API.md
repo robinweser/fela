@@ -3,7 +3,7 @@
 Last but not least this chapter ships the API reference in detail. Despite explaining every single method its arguments and return value, you will also find some tips on some pages.
 
 ## Top-Level API
-* [`createRenderer([config])`](api/createRenderer.md)
+* [`createRenderer([config, initialState])`](api/createRenderer.md)
 * [`render(renderer, mountNode)`](api/render.md)
 * [`combineRules(...rules)`](api/combineRules.md)
 * [`enhance(...enhancers)`](api/enhance.md)
