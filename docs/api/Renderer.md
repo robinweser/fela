@@ -14,7 +14,6 @@ You should only have a single renderer which handles all styles of your whole ap
 * [`renderToString()`](#rendertostring)
 * [`subscribe(listener)`](#subscribelistener)
 * [`clear()`](#clear)
-* [`getState()`](#getState)
 
 ## `renderRule(rule, [props])`
 Renders a `rule` using the `props` to resolve it.
@@ -215,6 +214,3 @@ subscription.unsubscribe()
 
 ## `clear()`
 Clears the whole cache.
-
-## `getState()`
-Returns the current state of the renderer. Needed to reuse the renderer state from the server on the client side.

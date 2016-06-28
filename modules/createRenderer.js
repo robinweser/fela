@@ -5,10 +5,8 @@ import getFontFormat from './utils/getFontFormat'
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
 
-export default function createRenderer(config = { }, initialState = { }) {
+export default function createRenderer(config = { }) {
   const renderer = {
-    emitCounter: 0,
-    emitOffset: typeof initialState.emitCounter === 'number' ? parseInt(initialState.emitCounter) : 0,
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || [ '-webkit-', '-moz-' ],
     plugins: config.plugins || [ ],
@@ -188,31 +186,13 @@ export default function createRenderer(config = { }, initialState = { }) {
     },
 
     /**
-     * Returns the current state of the renderer
-     * Can be used to transport the renderer state from server to client
-     *
-     * @return {Object} Containing the renderer state
-     */
-    getState() {
-      return {
-        emitCounter: renderer.emitCounter
-      }
-    },
-
-    /**
      * calls each listener with the current CSS markup of all caches
      * gets only called if the markup actually changes
-     * gets aborted when styles are already rendered on the server
      *
      * @param {Function} callback - callback function which will be executed
      * @return {Object} equivalent unsubscribe method
      */
     _emitChange() {
-      renderer.emitCounter++
-      if(renderer.emitOffset > 0){
-        renderer.emitOffset--
-        return
-      }
       const css = renderer.renderToString()
       renderer.listeners.forEach(listener => listener(css))
     },
