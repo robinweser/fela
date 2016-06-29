@@ -21,8 +21,9 @@ export default function render(renderer, mountNode) {
   // updated the DOM node's textContent with newly rendered markup
   renderer.subscribe(css => mountNode.textContent = css)
 
-  // render currently rendered styles to the DOM once
-  if (mountNode.textContent === '') {
-    mountNode.textContent = renderer.renderToString()
+  // render currently rendered styles to the DOM once when it is not already in DOM
+  const css = renderer.renderToString()
+  if (mountNode.textContent !== css) {
+    mountNode.textContent = css
   }
 }
