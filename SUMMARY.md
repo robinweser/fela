@@ -7,6 +7,7 @@
    * [1.3. Benefits](docs/introduction/Benefits.md)
    * [1.4. Drawbacks](docs/introduction/Drawbacks.md)
    * [1.5. Ecosystem](docs/introduction/Ecosystem.md)
+   * [1.6. Examples](docs/introduction/Examples.md)
 * [2. Basics](docs/Basics.md)
    * [2.1. Rules](docs/basics/Rules.md)
    * [2.2. Keyframes](docs/basics/Keyframes.md)
