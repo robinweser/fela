@@ -22,5 +22,7 @@ export default function render(renderer, mountNode) {
   renderer.subscribe(css => mountNode.textContent = css)
 
   // render currently rendered styles to the DOM once
-  mountNode.textContent = renderer.renderToString()
+  if (mountNode.textContent === '') {
+    mountNode.textContent = renderer.renderToString()
+  }
 }
