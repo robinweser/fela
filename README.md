@@ -71,6 +71,7 @@ render(renderer, mountNode)
 * [API Reference](http://fela.js.org/docs/API.html)
 * [FAQ](http://fela.js.org/docs/FAQ.html)
 * [Feedback](http://fela.js.org/docs/Feedback.html)
+* [Thanks](http://fela.js.org/docs/Thanks.html)
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>

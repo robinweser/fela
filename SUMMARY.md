@@ -31,3 +31,4 @@
    * [5.5. enhance](docs/api/enhance.md)
 * [6. FAQ](docs/FAQ.md)
 * [7. Feedback](docs/Feedback.md)
+* [8. Thanks](docs/Thanks.md)
