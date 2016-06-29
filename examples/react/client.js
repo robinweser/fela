@@ -1,32 +1,31 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Fela, { createRenderer, enhance } from '../../modules'
-import prefixer from '../../modules/plugins/prefixer'
-import fallbackValue from '../../modules/plugins/fallbackValue'
-import beautifier from '../../modules/enhancers/beautifier'
-import logger from '../../modules/plugins/logger'
-import perf from '../../modules/enhancers/perf'
+import { Provider } from 'react-fela'
+import { createRenderer } from 'fela'
+import prefixer from 'fela-plugin-prefixer'
+import fallbackValue from 'fela-plugin-fallback-value'
+import unit from 'fela-plugin-unit'
 
 import App from './app'
 
-const createEnhancedRenderer = enhance(
-  beautifier(),
-  perf()
-)(createRenderer)
+const plugins = [ prefixer(), fallbackValue(), unit() ]
+const renderer = createRenderer({ plugins: plugins })
 
-const enhancedRenderer = createEnhancedRenderer({
-  keyframePrefixes: [],
-  plugins: [ prefixer(), fallbackValue(), logger() ]
-})
-
-enhancedRenderer.renderStatic({
+renderer.renderStatic({
   width: '100%',
   height: '100%',
   margin: 0,
   padding: 0
-}, 'html, body,#app')
+}, 'html,body,#app')
 
-enhancedRenderer.renderStatic({ display: 'flex' }, 'div')
+renderer.renderStatic({ display: 'flex' }, 'div')
 
-Fela.render(enhancedRenderer, document.getElementById('stylesheet'))
-render(<App renderer={enhancedRenderer} />, document.getElementById('app'))
+const mountNode = document.getElementById('stylesheet')
+mountNode.textContent = ''
+
+render(
+  <Provider renderer={renderer} mountNode={mountNode}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+)
