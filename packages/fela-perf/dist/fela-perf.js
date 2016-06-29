@@ -45,7 +45,7 @@
 
       return renderer;
     };
-  })
+  });
 
   return perf;
 

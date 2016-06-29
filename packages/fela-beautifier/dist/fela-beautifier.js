@@ -534,7 +534,7 @@
 
         return renderer;
       };
-    })
+    });
 
     return beautifier;
 

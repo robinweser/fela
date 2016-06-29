@@ -1,12 +1,11 @@
 {
   "name": "fela",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.1",
   "description": "Fast, tiny & dynamic low-level API to handle Styling in JavaScript",
   "main": "index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "server.js",
     "index.js",
     "/lib",
     "/dist"
@@ -20,6 +19,9 @@
     "styling",
     "cssinjs"
   ],
+  "dependencies": {
+    "hyphenate-style-name": "^1.0.1"
+  },
   "author": "Robin Frischmann",
   "license": "MIT"
 }

@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginCustomProperty = factory());
+  (global.FelaPluginValidator = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -27,29 +27,39 @@
 
   babelHelpers;
 
-  function customProperty(style, properties) {
+  function validator(style, options) {
+    var logInvalid = options.logInvalid;
+    var deleteInvalid = options.deleteInvalid;
+
+
     Object.keys(style).forEach(function (property) {
       var value = style[property];
-      if (properties[property]) {
-        Object.assign(style, properties[property](value));
-        delete style[property];
-      }
-
-      if (value instanceof Object && !Array.isArray(value)) {
-        style[property] = customProperty(value, properties);
+      if (value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1) {
+        if (deleteInvalid) {
+          delete style[property];
+        }
+        if (logInvalid) {
+          console.log((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid Property', { // eslint-disable-line
+            property: property,
+            value: value
+          });
+        }
+      } else if (value instanceof Object && !Array.isArray(value)) {
+        style[property] = validator(value, options);
       }
     });
 
     return style;
   }
 
-  var customProperty$1 = (function (properties) {
+  var defaultOptions = { logInvalid: true, deleteInvalid: false };
+  var validator$1 = (function (options) {
     return function (style) {
-      return customProperty(style, properties);
+      return validator(style, babelHelpers.extends({}, defaultOptions, options));
     };
   });
 
-  return customProperty$1;
+  return validator$1;
 
 }));
-//# sourceMappingURL=fela-plugin-custom-property.js.map
+//# sourceMappingURL=fela-plugin-validator.js.map

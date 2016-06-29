@@ -30,109 +30,22 @@
 
     function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
-    var emptyFunction = __commonjs(function (module) {
-    "use strict";
-
-    /**
-     * Copyright (c) 2013-present, Facebook, Inc.
-     * All rights reserved.
-     *
-     * This source code is licensed under the BSD-style license found in the
-     * LICENSE file in the root directory of this source tree. An additional grant
-     * of patent rights can be found in the PATENTS file in the same directory.
-     *
-     * 
-     */
-
-    function makeEmptyFunction(arg) {
-      return function () {
-        return arg;
-      };
-    }
-
-    /**
-     * This function accepts and discards inputs; it has no side effects. This is
-     * primarily useful idiomatically for overridable function endpoints which
-     * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-     */
-    var emptyFunction = function emptyFunction() {};
-
-    emptyFunction.thatReturns = makeEmptyFunction;
-    emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-    emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-    emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-    emptyFunction.thatReturnsThis = function () {
-      return this;
+    var warning = function warning() {
+      return true;
     };
-    emptyFunction.thatReturnsArgument = function (arg) {
-      return arg;
-    };
-
-    module.exports = emptyFunction;
-    });
-
-    var require$$0 = (emptyFunction && typeof emptyFunction === 'object' && 'default' in emptyFunction ? emptyFunction['default'] : emptyFunction);
-
-    var warning = __commonjs(function (module) {
-    /**
-     * Copyright 2014-2015, Facebook, Inc.
-     * All rights reserved.
-     *
-     * This source code is licensed under the BSD-style license found in the
-     * LICENSE file in the root directory of this source tree. An additional grant
-     * of patent rights can be found in the PATENTS file in the same directory.
-     *
-     */
-
-    'use strict';
-
-    var emptyFunction = require$$0;
-
-    /**
-     * Similar to invariant but only logs a warning if the condition is not met.
-     * This can be used to log issues in development environments in critical
-     * paths. Removing the logging code for production environments will keep the
-     * same logic and follow the same code paths.
-     */
-
-    var warning = emptyFunction;
 
     if (true) {
-      warning = function warning(condition, format) {
-        for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-          args[_key - 2] = arguments[_key];
-        }
-
-        if (format === undefined) {
-          throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-        }
-
-        if (format.indexOf('Failed Composite propType: ') === 0) {
-          return; // Ignore CompositeComponent proptype check.
-        }
-
+      warning = function warning(condition, message) {
         if (!condition) {
-          var argIndex = 0;
-          var message = 'Warning: ' + format.replace(/%s/g, function () {
-            return args[argIndex++];
-          });
           if (typeof console !== 'undefined') {
-            console.error(message);
+            console.error(message); // eslint-disable-line
           }
-          try {
-            // --- Welcome to debugging React ---
-            // This error was thrown as a convenience so that you can use this stack
-            // to find the callsite that caused this warning to fire.
-            throw new Error(message);
-          } catch (x) {}
+          throw new Error(message);
         }
       };
     }
 
-    module.exports = warning;
-    });
-
-    var warning$1 = (warning && typeof warning === 'object' && 'default' in warning ? warning['default'] : warning);
+    var warning$1 = warning;
 
     var index$1 = __commonjs(function (module) {
     'use strict';
@@ -147,10 +60,10 @@
     module.exports = hyphenateStyleName;
     });
 
-    var require$$0$1 = (index$1 && typeof index$1 === 'object' && 'default' in index$1 ? index$1['default'] : index$1);
+    var require$$0 = (index$1 && typeof index$1 === 'object' && 'default' in index$1 ? index$1['default'] : index$1);
 
     var index = __commonjs(function (module) {
-    var hyphenateStyleName = require$$0$1;
+    var hyphenateStyleName = require$$0;
 
     var unitlessProperties = {
       borderImageOutset: true,
@@ -259,7 +172,7 @@
       return function (style) {
         return addUnit(style, unit);
       };
-    })
+    });
 
     return unit;
 

@@ -48,7 +48,7 @@
 
   var friendlyPseudoClass$1 = (function () {
     return friendlyPseudoClass;
-  })
+  });
 
   return friendlyPseudoClass$1;
 

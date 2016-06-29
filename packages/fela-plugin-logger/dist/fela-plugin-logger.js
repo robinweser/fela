@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginLVHA = factory());
+  (global.FelaPluginLogger = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -27,37 +27,14 @@
 
   babelHelpers;
 
-  var precedence = {
-    ':link': 4,
-    ':visited': 3,
-    ':hover': 2,
-    ':focus': 1.5,
-    ':active': 1
-  };
-
-  function sortPseudoClasses(left, right) {
-    var precedenceLeft = precedence[left]; // eslint-disable-line
-    var precedenceRight = precedence[right];
-    // Only sort if both properties are listed
-    // This prevents other pseudos from reordering
-    if (precedenceLeft && precedenceRight) {
-      return precedenceLeft < precedenceRight ? 1 : -1;
-    }
-    return 0;
-  }
-
-  function LVHA(style) {
-    return Object.keys(style).sort(sortPseudoClasses).reduce(function (out, pseudo) {
-      out[pseudo] = style[pseudo];
-      return out;
-    }, {});
-  }
-
-  var LVHA$1 = (function () {
-    return LVHA;
+  var logger = (function () {
+    return function (style) {
+      console.log(style); // eslint-disable-line
+      return style;
+    };
   });
 
-  return LVHA$1;
+  return logger;
 
 }));
-//# sourceMappingURL=fela-plugin-lvha.js.map
+//# sourceMappingURL=fela-plugin-logger.js.map

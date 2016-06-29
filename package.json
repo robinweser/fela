@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0-beta.2",
+  "version": "1.0.1",
   "description": "Fast & Dynamic Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
@@ -13,9 +13,6 @@
     "prepare": "npm run lint && npm test && npm run dist && npm run babel && babel-node scripts/preparePackages",
     "release": "npm run prepare && ./scripts/publishPackages.sh",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/_setup/mocha.opts"
-  },
-  "dependencies": {
-    "hyphenate-style-name": "^1.0.1"
   },
   "devDependencies": {
     "babel": "^6.5.2",

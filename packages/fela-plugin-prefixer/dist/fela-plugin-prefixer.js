@@ -635,7 +635,7 @@
     return function (style) {
       return prefix(style);
     };
-  })
+  });
 
   return prefixer;
 

@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-logger",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.1",
   "description": "Fela plugin to log rendered styles",
   "main": "index.js",
   "files": [

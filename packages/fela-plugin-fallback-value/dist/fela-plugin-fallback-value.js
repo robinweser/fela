@@ -60,7 +60,7 @@
 
     var fallbackValue$1 = (function () {
       return fallbackValue;
-    })
+    });
 
     return fallbackValue$1;
 

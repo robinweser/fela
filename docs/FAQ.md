@@ -1,5 +1,7 @@
 # FAQ
 
 ## Table of contents
-
-There are no frequenly asked questions yet.
+#### General
+* [Where does the name "Fela" come from?](#)
+* Can I use it together with CSS files?
+* Can I use it together with inline styles?

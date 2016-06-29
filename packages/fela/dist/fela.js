@@ -533,8 +533,11 @@
         return mountNode.textContent = css;
       });
 
-      // render currently rendered styles to the DOM once
-      mountNode.textContent = renderer.renderToString();
+      // render currently rendered styles to the DOM once when it is not already in DOM
+      var css = renderer.renderToString();
+      if (mountNode.textContent !== css) {
+        mountNode.textContent = css;
+      }
     }
 
     var index = {
