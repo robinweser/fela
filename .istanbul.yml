@@ -1,0 +1,2 @@
+instrumentation:
+  excludes: ['modules/utils/warning.js']
