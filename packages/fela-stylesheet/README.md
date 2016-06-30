@@ -24,7 +24,7 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 ### `create(styles)`
 Transforms a set of either style objects or rules into a set of valid rules.
 #### Arguments
-1. `styles`(*Object?*): An object containing either plain style objects or valid [rules](http://fela.js.org/docs/basics/Rules.html).
+1. `styles` (*Object?*): An object containing either plain style objects or valid [rules](http://fela.js.org/docs/basics/Rules.html).
 
 #### Returns
 (*Object*): An object containing only valid [rules](http://fela.js.org/docs/basics/Rules.html). It uses the same keys which were passed by `styles`.
