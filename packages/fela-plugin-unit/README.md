@@ -15,9 +15,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginUnit` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela-plugin-unit@1.0.1/dist/fela-plugin-unit.js"></script>
+<script src="https://npmcdn.com/fela-plugin-unit@1.0.2/dist/fela-plugin-unit.js"></script>
 <!-- Fela (Production): Minified version -->
-<script  src="https://npmcdn.com/fela-plugin-unit@1.0.1/dist/fela-plugin-unit.min.js"></script>
+<script  src="https://npmcdn.com/fela-plugin-unit@1.0.2/dist/fela-plugin-unit.min.js"></script>
 ```
 
 ## Example

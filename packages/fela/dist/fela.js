@@ -299,7 +299,7 @@
          * @return {string} rendered CSS output
          */
         renderStatic: function renderStatic(style, selector) {
-          var reference = typeof style === 'string' ? style : selector;
+          var reference = typeof style === 'string' ? style : selector + sortedStringify(style);
 
           if (!renderer.rendered.hasOwnProperty(reference)) {
             if (typeof style === 'string') {
