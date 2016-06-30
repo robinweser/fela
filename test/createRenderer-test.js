@@ -208,8 +208,19 @@ describe('Renderer', () => {
       const staticStyle = { margin: 0, fontSize: '12px' }
 
       renderer.renderStatic(staticStyle, 'html,body')
-      expect(renderer.rendered.hasOwnProperty('html,body')).to.eql(true)
+      console.log(renderer.rendered)
+      expect(renderer.rendered.hasOwnProperty('html,bodyfontSize12pxmargin0')).to.eql(true)
       expect(renderer.statics).to.eql('html,body{margin:0;font-size:12px}')
+    })
+
+    it('should allow multiple static styles for a single selector', () => {
+      const renderer = Renderer()
+
+      renderer.renderStatic({ margin: 0, fontSize: '12px' }, 'html,body')
+      renderer.renderStatic({ color: 'red' }, 'html,body')
+      expect(renderer.rendered.hasOwnProperty('html,bodyfontSize12pxmargin0')).to.eql(true)
+      expect(renderer.rendered.hasOwnProperty('html,bodycolorred')).to.eql(true)
+      expect(renderer.statics).to.eql('html,body{margin:0;font-size:12px}html,body{color:red}')
     })
   })
 

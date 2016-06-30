@@ -141,7 +141,7 @@ export default function createRenderer(config = { }) {
      * @return {string} rendered CSS output
      */
     renderStatic(style, selector) {
-      const reference = typeof style === 'string' ? style : selector
+      const reference = typeof style === 'string' ? style : selector + sortedStringify(style)
 
       if (!renderer.rendered.hasOwnProperty(reference)) {
         if (typeof style === 'string') {
