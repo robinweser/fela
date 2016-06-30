@@ -4,7 +4,7 @@
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-stylesheet.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.40kb-brightgreen.svg">
 
-A simple helper to organize multiple rules within one single StyleSheet. It automatically transforms plain style objects into rules.
+A simple helper to organize multiple rules within one single StyleSheet as used e.g. in [React Native](https://github.com/facebook/react-native) or [react-look](https://github.com/rofrischmann/react-look).
 
 ## Installation
 ```sh
@@ -19,13 +19,22 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <script src="https://npmcdn.com/fela-stylesheet@1.0.1/dist/fela-stylesheet.min.js"></script>
 ```
 
-## Example
+## API
 
+### `create(styles)`
+Transforms a set of either style objects or rules into a set of valid rules.
+#### Arguments
+1. `styles`(*Object?*): An object containing either plain style objects or valid [rules](http://fela.js.org/docs/basics/Rules.html).
+
+#### Returns
+(*Object*): An object containing only valid [rules](http://fela.js.org/docs/basics/Rules.html). It uses the same keys which were passed by `styles`.
+
+#### Example
 ```javascript
 import { createRenderer } from 'fela'
-import StyleSheet from 'fela-stylesheet'
+import { create } from 'fela-stylesheet'
 
-const styles = StyleSheet.create({
+const styles = create({
   header: props => ({
     fontSize: props.size,
     color: 'red'
@@ -38,8 +47,8 @@ const styles = StyleSheet.create({
 
 const renderer = createRenderer()
 
-renderer.renderRule(header, { fontSize: '17px' })
-renderer.renderRule(title)
+renderer.renderRule(styles.header, { fontSize: '17px' })
+renderer.renderRule(styles.title)
 ```
 
 ## License
