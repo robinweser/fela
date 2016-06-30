@@ -31,6 +31,21 @@ describe('Rendering into a DOM node', () => {
     expect(node.textContent).to.eql('')
   })
 
+  it('should only update the DOM if it does not match the CSS', () => {
+    const rule = props => ({ color: 'red' })
+
+    const node = DOMNode()
+
+    node.textContent = 'foo'
+
+    const renderer = createRenderer(node)
+    const className = renderer.renderRule(rule)
+
+    render(renderer, node)
+
+    expect(node.textContent).to.eql('.c0{color:red}')
+  })
+
   it('should set the data-fela-stylesheet attribute', () => {
     const node = DOMNode()
 
