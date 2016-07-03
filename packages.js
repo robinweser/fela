@@ -42,9 +42,5 @@ export default {
   'fela-perf': {
     name: 'FelaPerf',
     entry: 'enhancers/perf.js'
-  },
-  'fela-stylesheet': {
-    name: 'FelaStyleSheet',
-    entry: 'tools/StyleSheet.js'
   }
 }
