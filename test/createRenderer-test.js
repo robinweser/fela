@@ -318,6 +318,18 @@ describe('Renderer', () => {
         foo: 'bar'
       })
     })
-  })
 
+    it('should pass meta data', () => {
+      const plugin = (style, meta) => ({
+        ...style,
+        foo: meta.type
+      })
+
+      const renderer = Renderer({ plugins: [ plugin ] })
+
+      expect(renderer.renderRule(() => {
+        width: 20
+      })).to.eql({ width: 20, foo: 'rule' })
+    })
+  })
 })

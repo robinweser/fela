@@ -53,7 +53,13 @@ export default function createRenderer(config = { }) {
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(className)) {
-        const style = renderer._processStyle(rule(props))
+        const style = renderer._processStyle(rule(props), {
+          type: 'rule',
+          className: className,
+          id: ruleId,
+          props: props,
+          rule: rule
+        })
         renderer._renderStyle(className, style, renderer.base[ruleId])
 
         renderer.rendered[className] = renderer._didChange
@@ -98,7 +104,13 @@ export default function createRenderer(config = { }) {
       // only if the cached keyframe has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(animationName)) {
-        const processedKeyframe = renderer._processStyle(keyframe(props))
+        const processedKeyframe = renderer._processStyle(keyframe(props), {
+          type: 'keyframe',
+          keyframe: keyframe,
+          props: props,
+          animationName: animationName,
+          id: renderer.ids.indexOf(keyframe)
+        })
         const css = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
         renderer.rendered[animationName] = true
         renderer.keyframes += css
@@ -148,7 +160,11 @@ export default function createRenderer(config = { }) {
           // remove new lines from template strings
           renderer.statics += style.replace(/\s{2,}/g, '')
         } else {
-          renderer.statics += selector + '{' + cssifyObject(renderer._processStyle(style)) + '}'
+          const processedStyle = renderer._processStyle(style, {
+            selector: selector,
+            type: 'static'
+          })
+          renderer.statics += selector + '{' + cssifyObject(processedStyle) + '}'
         }
 
         renderer.rendered[reference] = true
@@ -211,10 +227,11 @@ export default function createRenderer(config = { }) {
      * pipes a style object through a list of plugins
      *
      * @param {Object} style - style object to process
+     * @param {Object} meta - additional meta data
      * @return {Object} processed style
      */
-    _processStyle(style) {
-      return renderer.plugins.reduce((processedStyle, plugin) => plugin(processedStyle), style)
+    _processStyle(style, meta) {
+      return renderer.plugins.reduce((processedStyle, plugin) => plugin(processedStyle, meta), style)
     },
 
 
