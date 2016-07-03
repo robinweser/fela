@@ -28,11 +28,11 @@ const renderer = createRenderer(config)
 
 ### Example
 
-Lets say we want to automatically add vendor prefixes to all of our style objects. Luckily there is already a package called inline-style-prefix-all which does exactly that.
+Lets say we want to automatically add vendor prefixes to all of our style objects. Luckily there is already a package called [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) which does exactly that.
 It turns out, to create the plugin we just need to create a function that takes our current styles and returns the prefixed styles. That's it.
 
 ```javascript
-import prefixAll from 'inline-style-prefix-all'
+import prefixAll from 'inline-style-prefixer/static'
 import { createRenderer } from 'fela'
 
 const prefixerPlugin = styleObject => prefixAll(styleObject)
@@ -48,7 +48,7 @@ const renderer = createRenderer(config)
 Some advanced plugins might even have some options to configure it. The recommended way to do this is by wrapping the plugin itself in another function accepting those options.
 
 ### Example
-For example if we do not want to use the static inline-style-prefix-all, but rather the more advanced dynamic version called [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer), we need to pass at least the `userAgent`.
+For example if we do not want to use the static `inline-style-prefixer/static`, but rather the more advanced dynamic version, we need to pass at least the `userAgent`.
 
 
 ```javascript

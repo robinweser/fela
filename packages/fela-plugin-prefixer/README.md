@@ -4,7 +4,7 @@
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-prefixer.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.94kb-brightgreen.svg">
 
-Uses [inline-style-prefix-all](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes to both property and value.
+Uses [inline-style-prefixer/static](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes to both property and value.
 
 **Requires to use  [fela-plugin-fallback-value](../fela-plugin-fallback-value/) afterwards** in order to resolve alternative prefix values which get returned as an array by default.
 
