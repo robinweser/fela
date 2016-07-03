@@ -1,11 +1,5 @@
 import React from 'react'
-import { connect } from 'react-fela'
-
-const Label = ({ styles, fontSize }) => (
-  <div className={styles}>
-    {fontSize}
-  </div>
-)
+import { createComponent } from 'react-fela'
 
 const label = props => ({
   fontSize: props.size,
@@ -13,7 +7,4 @@ const label = props => ({
   padding: 20
 })
 
-const mapStylesToProps = props => renderer => renderer.renderRule(label, {
-  size: props.fontSize
-})
-export default connect(mapStylesToProps)(Label)
+export default createComponent(label)

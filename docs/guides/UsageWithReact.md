@@ -112,3 +112,34 @@ export default connect(mapStylesToProps)(Header)
 // Usage example
 <Header title='Hello' color='red' size={17} />
 ```
+
+## Presentational Components from Fela Rules
+A even more convenient way is to create your presentational components from Fela rules directly. react-fela ships the [`createComponent`](https://github.com/rofrischmann/react-fela/blob/master/docs/createComponent.md) method which helps to achieve that.<br> It takes a single Fela rule and optionally a base component type. It pipes all `props` to the underlying DOM element directly.
+
+### Example
+```javascript
+import React from 'react'
+import { createComponent } from 'react-fela'
+
+const container = props => ({
+  textAlign: 'center',
+  padding: '20px',
+  height: '200px'
+})
+
+const title = props => ({
+  lineHeight: 1.2,
+  fontSize: props.fontSize,
+  color: props.color
+})
+
+const Title = createComponent(title, 'h1')
+const Header = createComponent(container, 'header')
+
+// Usage example
+<Header>
+  <Title color='red'size={17}>
+    Hello World
+  </Title>
+</Header>
+```

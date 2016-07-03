@@ -1,3 +1,5 @@
+> This changelog only references changes to the main package `fela`. For other changes such as plugins, enhancers or any other related package, please check the associated `packages/` folder.
+
 # 1.0
 
 ## 1.0.2

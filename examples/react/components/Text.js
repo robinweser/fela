@@ -1,11 +1,5 @@
 import React from 'react'
-import { connect } from 'react-fela'
-
-const Text = ({ children, styles }) => (
-  <div className={styles}>
-    {children}
-  </div>
-)
+import { createComponent } from 'react-fela'
 
 const info = props => ({
   padding: 5,
@@ -14,5 +8,4 @@ const info = props => ({
   flexDirection: 'column'
 })
 
-const mapStylesToProps = () => renderer => renderer.renderRule(info)
-export default connect(mapStylesToProps)(Text)
+export default createComponent(info)
