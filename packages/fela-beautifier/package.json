@@ -22,6 +22,9 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "cssbeautify": "^0.3.1"
+    "cssbeautify": "0.3.1"
+  },
+  "peerDependecies": {
+    "fela": "1.0.2"
   }
 }

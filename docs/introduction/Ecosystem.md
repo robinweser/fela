@@ -26,8 +26,8 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
 
 ### Tools
+* [fela-stylesheet](https://github.com/rofrischmann/fela-stylesheet): Organize your rules in a single StyleSheet
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
-* [fela-stylesheet](https://github.com/rofrischmann/fela/tree/master/packages/fela-stylesheet): Organize your rules in a single StyleSheet
 
 ### Utilities
 * [react-styling](https://github.com/halt-hammerzeit/react-styling): Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
