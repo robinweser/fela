@@ -19,5 +19,5 @@ Just remember that you might again get into specificity problems if you mix diff
 **Yes**. As of version 1.0.0 Fela is production-ready and fully covered with tests. It is already used in many applications in production.
 
 #### Where does the name "Fela" come from?
-Fela actually is the name of a fantasy character in one of the author's favorite novels called ["Kingslayer Chronicles"]() by [Patrick Rothfuss](). [Fela]() is an attractive, wise young woman studying sculpturing among others at the university of Imre. She's one of [Kvothe]()'s, the main protagonist, best friends there.<br>
-There is no deep connection to JavaScript styling in general, except the fact that she studies sculpturing which seems to be kind of similar to what component styling is lately.
+Fela actually is the name of a character in one of the author's favorite fantasy novel called ["Kingslayer Chronicles"](https://en.wikipedia.org/wiki/The_Kingkiller_Chronicle) by [Patrick Rothfuss](http://www.patrickrothfuss.com/content/index.asp). [Fela](http://kingkiller.wikia.com/wiki/Fela) is a young, attractive and smart woman practicing sculpturing among others at the university of Imre. She's one of [Kvothe](http://kingkiller.wikia.com/wiki/Kvothe)'s (the main protagonist), best friends there.<br>
+There is no deep connection to JavaScript styling in general, except the fact that she does sculpturing which seems to be kind of similar to what component styling is lately.
