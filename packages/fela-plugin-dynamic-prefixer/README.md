@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-dynamic-prefixer.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.94kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-9.87kb-brightgreen.svg">
 
 Uses [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes by evaluating the `userAgent`.
 
@@ -51,7 +51,6 @@ It can be configured using the same options as [inline-style-prefixer's Prefixer
 
 ```javascript
 import dynamicPrefixer from 'fela-plugin-dynamic-prefixer'
-
 
 const plugin = dynamicPrefixer({
   userAgent: navigator.userAgent,
