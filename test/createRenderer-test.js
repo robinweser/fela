@@ -326,10 +326,9 @@ describe('Renderer', () => {
       })
 
       const renderer = Renderer({ plugins: [ plugin ] })
+      renderer.renderRule(() => ({ width: 20 }))
 
-      expect(renderer.renderRule(() => {
-        width: 20
-      })).to.eql({ width: 20, foo: 'rule' })
+      expect(renderer.rules).to.eql('.c0{width:20;foo:rule}')
     })
   })
 })
