@@ -16,7 +16,7 @@
     "fela-plugin-unit": "file:../../packages/fela-plugin-unit",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-fela": "^2.0.1"
+    "react-fela": "2.1.0"
   },
   "devDependencies": {
     "babel": "6.5.2",

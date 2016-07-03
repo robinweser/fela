@@ -1,11 +1,5 @@
 import React from 'react'
-import { connect } from 'react-fela'
-
-const Wrapper = ({ children, styles }) => (
-  <div className={styles}>
-    {children}
-  </div>
-)
+import { createComponent } from 'react-fela'
 
 const center = props => ({
   padding: 10,
@@ -16,5 +10,4 @@ const center = props => ({
   flex: props.flex || 1
 })
 
-const mapStylesToProps = props => renderer => renderer.renderRule(center, props)
-export default connect(mapStylesToProps)(Wrapper)
+export default createComponent(center)

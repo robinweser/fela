@@ -21,7 +21,9 @@ export default class Input extends Component {
         <br />
         <Text>Change the input to experience dynamic styling.</Text>
         <input type="number" onInput={this.setSize} defaultValue={this.state.size} />
-        <Label fontSize={this.state.size} />
+        <Label size={this.state.size}>
+          {this.state.size}
+        </Label>
       </Wrapper>
     )
   }
