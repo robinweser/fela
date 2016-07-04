@@ -7,9 +7,9 @@ export default (options = { }) => (style, meta) => {
 
   if (logMetaData) {
     const reference = meta.className || meta.selector || meta.animationName
-    console.log(meta.type.toUpperCase() + ' ' + reference, currentStyle, meta)
+    console.log(meta.type.toUpperCase() + ' ' + reference, currentStyle, meta) // eslint-disable-line
   } else {
-    console.log(currentStyle)
+    console.log(currentStyle) // eslint-disable-line
   }
 
   return style
