@@ -72,6 +72,8 @@ export default function createRenderer(config = { }) {
             renderer._didChange = false
             renderer._emitChange()
           }
+        } else {
+          renderer.rendered[className] = false
         }
 
         // keep static style to diff dynamic onces later on
