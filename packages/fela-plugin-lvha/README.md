@@ -14,9 +14,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginLVHA` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela-plugin-lvha@1.0.2/dist/fela-plugin-lvha.js"></script>
+<script src="https://npmcdn.com/fela-plugin-lvha@1.0.3/dist/fela-plugin-lvha.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://npmcdn.com/fela-plugin-lvha@1.0.2/dist/fela-plugin-lvha.min.js"></script>
+<script src="https://npmcdn.com/fela-plugin-lvha@1.0.3/dist/fela-plugin-lvha.min.js"></script>
 ```
 
 ## Example
