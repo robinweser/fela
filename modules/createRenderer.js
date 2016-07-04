@@ -53,25 +53,30 @@ export default function createRenderer(config = { }) {
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(className)) {
-        const style = renderer._processStyle(rule(props), {
-          type: 'rule',
-          className: className,
-          id: ruleId,
-          props: props,
-          rule: rule
-        })
-        renderer._renderStyle(className, style, renderer.base[ruleId])
+        const diffedStyle = renderer._diffStyle(rule(props), renderer.base[ruleId])
 
-        renderer.rendered[className] = renderer._didChange
+        if (Object.keys(diffedStyle).length > 0) {
+          const style = renderer._processStyle(diffedStyle, {
+            type: 'rule',
+            className: className,
+            id: ruleId,
+            props: props,
+            rule: rule
+          })
 
-        if (renderer._didChange) {
-          renderer._didChange = false
-          renderer._emitChange()
+          renderer._renderStyle(className, style)
+
+          renderer.rendered[className] = renderer._didChange
+
+          if (renderer._didChange) {
+            renderer._didChange = false
+            renderer._emitChange()
+          }
         }
 
         // keep static style to diff dynamic onces later on
         if (className === 'c' + ruleId) {
-          renderer.base[ruleId] = style
+          renderer.base[ruleId] = rule(props)
         }
       }
 
@@ -236,35 +241,57 @@ export default function createRenderer(config = { }) {
 
 
     /**
-     * iterates a style object and renders each rule to the cache
+     * diffs a style object against a base style object
      *
-     * @param {string} className - className reference to be rendered to
-     * @param {Object} style - style object which is rendered
-     * @param {Object`} base - base style subset for diffing
+     * @param {Object} style - style object which is diffed
+     * @param {Object?} base - base style object
      */
-    _renderStyle(className, style, base = { }, pseudo = '', media = '') {
-      const ruleset = Object.keys(style).reduce((ruleset, property) => {
+    _diffStyle(style, base = { }) {
+      return Object.keys(style).reduce((diff, property) => {
         const value = style[property]
         // recursive object iteration in order to render
         // pseudo class and media class declarations
         if (value instanceof Object && !Array.isArray(value)) {
-          if (property.charAt(0) === ':') {
-            renderer._renderStyle(className, value, base[property], pseudo + property, media)
-          } else if (property.substr(0, 6) === '@media') {
-            // combine media query rules with an `and`
-            const query = property.slice(6).trim()
-            const combinedMedia = media.length > 0 ? media + ' and ' + query : query
-            renderer._renderStyle(className, value, base[property], pseudo, combinedMedia)
+          const nestedDiff = this._diffStyle(value, base[property])
+          if (Object.keys(nestedDiff).length > 0) {
+            diff[property] = nestedDiff
           }
         } else {
           // diff styles with the base styles to only extract dynamic styles
           if (value !== undefined && !base.hasOwnProperty(property) || base[property] !== value) {
             // remove concatenated string values including `undefined`
             if (typeof value === 'string' && value.indexOf('undefined') > -1) {
-              return ruleset
+              return diff
             }
-            ruleset[property] = value
+            diff[property] = value
           }
+        }
+        return diff
+      }, { })
+    },
+
+    /**
+     * iterates a style object and renders each rule to the cache
+     *
+     * @param {string} className - className reference to be rendered to
+     * @param {Object} style - style object which is rendered
+     */
+    _renderStyle(className, style, pseudo = '', media = '') {
+      const ruleset = Object.keys(style).reduce((ruleset, property) => {
+        const value = style[property]
+        // recursive object iteration in order to render
+        // pseudo class and media class declarations
+        if (value instanceof Object && !Array.isArray(value)) {
+          if (property.charAt(0) === ':') {
+            renderer._renderStyle(className, value, pseudo + property, media)
+          } else if (property.substr(0, 6) === '@media') {
+            // combine media query rules with an `and`
+            const query = property.slice(6).trim()
+            const combinedMedia = media.length > 0 ? media + ' and ' + query : query
+            renderer._renderStyle(className, value, pseudo, combinedMedia)
+          }
+        } else {
+          ruleset[property] = value
         }
         return ruleset
       }, { })

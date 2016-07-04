@@ -331,4 +331,33 @@ describe('Renderer', () => {
       expect(renderer.rules).to.eql('.c0{width:20;foo:rule}')
     })
   })
+
+  describe('Diffing style objects', () => {
+    it('should process style using data provided via the plugin interface', () => {
+
+      const plugin = style => ({
+        ...style,
+        foo: 'bar'
+      })
+
+      const renderer = Renderer({ plugins: [ plugin ] })
+
+      expect(renderer._processStyle({ width: 20 })).to.eql({
+        width: 20,
+        foo: 'bar'
+      })
+    })
+
+    it('should pass meta data', () => {
+      const plugin = (style, meta) => ({
+        ...style,
+        foo: meta.type
+      })
+
+      const renderer = Renderer({ plugins: [ plugin ] })
+      renderer.renderRule(() => ({ width: 20 }))
+
+      expect(renderer.rules).to.eql('.c0{width:20;foo:rule}')
+    })
+  })
 })
