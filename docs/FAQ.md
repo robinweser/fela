@@ -2,7 +2,7 @@
 
 ## Table of contents
 #### General
-* [Can I use it together with CSS files?](#can-i-use-it-together-with-css)
+* [Can I use it together with CSS files?](#can-i-use-it-together-with-css-files)
 * [Can I use it together with inline styles?](#can-i-use-it-together-with-inline-styles)
 * [Is Fela production-ready?](#is-fela-production-ready)
 * [Where does the name "Fela" come from?](#where-does-the-name-fela-come-from)
