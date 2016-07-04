@@ -19,6 +19,17 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <script src="https://npmcdn.com/fela-plugin-logger@1.0.2/dist/fela-plugin-logger.min.js"></script>
 ```
 
+## Configuration
+By default the logger just logs the rendered style object. Though sometimes we might want to know all the meta data as well. This can be triggered using the `logMetaData` option.
+
+```javascript
+import logger from 'fela-plugin-logger'
+
+const plugin = logger({
+  logMetaData: true
+})
+```
+
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
