@@ -196,19 +196,32 @@
           // only if the cached rule has not already been rendered
           // with a specific set of properties it actually renders
           if (!renderer.rendered.hasOwnProperty(className)) {
-            var style = renderer._processStyle(rule(props));
-            renderer._renderStyle(className, style, renderer.base[ruleId]);
+            var diffedStyle = renderer._diffStyle(rule(props), renderer.base[ruleId]);
 
-            renderer.rendered[className] = renderer._didChange;
+            if (Object.keys(diffedStyle).length > 0) {
+              var style = renderer._processStyle(diffedStyle, {
+                type: 'rule',
+                className: className,
+                id: ruleId,
+                props: props,
+                rule: rule
+              });
 
-            if (renderer._didChange) {
-              renderer._didChange = false;
-              renderer._emitChange();
+              renderer._renderStyle(className, style);
+
+              renderer.rendered[className] = renderer._didChange;
+
+              if (renderer._didChange) {
+                renderer._didChange = false;
+                renderer._emitChange();
+              }
+            } else {
+              renderer.rendered[className] = false;
             }
 
             // keep static style to diff dynamic onces later on
             if (className === 'c' + ruleId) {
-              renderer.base[ruleId] = style;
+              renderer.base[ruleId] = rule(props);
             }
           }
 
@@ -244,7 +257,13 @@
           // only if the cached keyframe has not already been rendered
           // with a specific set of properties it actually renders
           if (!renderer.rendered.hasOwnProperty(animationName)) {
-            var processedKeyframe = renderer._processStyle(keyframe(props));
+            var processedKeyframe = renderer._processStyle(keyframe(props), {
+              type: 'keyframe',
+              keyframe: keyframe,
+              props: props,
+              animationName: animationName,
+              id: renderer.ids.indexOf(keyframe)
+            });
             var css = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes);
             renderer.rendered[animationName] = true;
             renderer.keyframes += css;
@@ -306,7 +325,11 @@
               // remove new lines from template strings
               renderer.statics += style.replace(/\s{2,}/g, '');
             } else {
-              renderer.statics += selector + '{' + cssifyObject(renderer._processStyle(style)) + '}';
+              var processedStyle = renderer._processStyle(style, {
+                selector: selector,
+                type: 'static'
+              });
+              renderer.statics += selector + '{' + cssifyObject(processedStyle) + '}';
             }
 
             renderer.rendered[reference] = true;
@@ -377,12 +400,48 @@
          * pipes a style object through a list of plugins
          *
          * @param {Object} style - style object to process
+         * @param {Object} meta - additional meta data
          * @return {Object} processed style
          */
-        _processStyle: function _processStyle(style) {
+        _processStyle: function _processStyle(style, meta) {
           return renderer.plugins.reduce(function (processedStyle, plugin) {
-            return plugin(processedStyle);
+            return plugin(processedStyle, meta);
           }, style);
+        },
+
+
+        /**
+         * diffs a style object against a base style object
+         *
+         * @param {Object} style - style object which is diffed
+         * @param {Object?} base - base style object
+         */
+        _diffStyle: function _diffStyle(style) {
+          var _this = this;
+
+          var base = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+          return Object.keys(style).reduce(function (diff, property) {
+            var value = style[property];
+            // recursive object iteration in order to render
+            // pseudo class and media class declarations
+            if (value instanceof Object && !Array.isArray(value)) {
+              var nestedDiff = _this._diffStyle(value, base[property]);
+              if (Object.keys(nestedDiff).length > 0) {
+                diff[property] = nestedDiff;
+              }
+            } else {
+              // diff styles with the base styles to only extract dynamic styles
+              if (value !== undefined && !base.hasOwnProperty(property) || base[property] !== value) {
+                // remove concatenated string values including `undefined`
+                if (typeof value === 'string' && value.indexOf('undefined') > -1) {
+                  return diff;
+                }
+                diff[property] = value;
+              }
+            }
+            return diff;
+          }, {});
         },
 
 
@@ -391,12 +450,10 @@
          *
          * @param {string} className - className reference to be rendered to
          * @param {Object} style - style object which is rendered
-         * @param {Object`} base - base style subset for diffing
          */
         _renderStyle: function _renderStyle(className, style) {
-          var base = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-          var pseudo = arguments.length <= 3 || arguments[3] === undefined ? '' : arguments[3];
-          var media = arguments.length <= 4 || arguments[4] === undefined ? '' : arguments[4];
+          var pseudo = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
+          var media = arguments.length <= 3 || arguments[3] === undefined ? '' : arguments[3];
 
           var ruleset = Object.keys(style).reduce(function (ruleset, property) {
             var value = style[property];
@@ -404,22 +461,15 @@
             // pseudo class and media class declarations
             if (value instanceof Object && !Array.isArray(value)) {
               if (property.charAt(0) === ':') {
-                renderer._renderStyle(className, value, base[property], pseudo + property, media);
+                renderer._renderStyle(className, value, pseudo + property, media);
               } else if (property.substr(0, 6) === '@media') {
                 // combine media query rules with an `and`
                 var query = property.slice(6).trim();
                 var combinedMedia = media.length > 0 ? media + ' and ' + query : query;
-                renderer._renderStyle(className, value, base[property], pseudo, combinedMedia);
+                renderer._renderStyle(className, value, pseudo, combinedMedia);
               }
             } else {
-              // diff styles with the base styles to only extract dynamic styles
-              if (value !== undefined && !base.hasOwnProperty(property) || base[property] !== value) {
-                // remove concatenated string values including `undefined`
-                if (typeof value === 'string' && value.indexOf('undefined') > -1) {
-                  return ruleset;
-                }
-                ruleset[property] = value;
-              }
+              ruleset[property] = value;
             }
             return ruleset;
           }, {});

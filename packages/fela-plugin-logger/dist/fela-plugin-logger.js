@@ -27,9 +27,38 @@
 
   babelHelpers;
 
+  function assign(base) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    return args.reduce(function (extend, obj) {
+      for (var property in obj) {
+        var value = obj[property];
+        if (extend[property] instanceof Object && value instanceof Object) {
+          extend[property] = assign({}, extend[property], value);
+        } else {
+          extend[property] = value;
+        }
+      }
+      return extend;
+    }, base);
+  }
+
   var logger = (function () {
-    return function (style) {
-      console.log(style); // eslint-disable-line
+    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    return function (style, meta) {
+      var logMetaData = options.logMetaData || false;
+
+      var currentStyle = assign({}, style);
+
+      if (logMetaData) {
+        var reference = meta.className || meta.selector || meta.animationName;
+        console.log(meta.type.toUpperCase() + ' ' + reference, currentStyle, meta); // eslint-disable-line
+      } else {
+        console.log(currentStyle); // eslint-disable-line
+      }
+
       return style;
     };
   });

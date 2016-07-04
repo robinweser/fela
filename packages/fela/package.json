@@ -1,6 +1,6 @@
 {
   "name": "fela",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Fast & Dynamic Styling in JavaScript",
   "main": "index.js",
   "files": [
