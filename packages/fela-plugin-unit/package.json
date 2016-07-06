@@ -20,7 +20,7 @@
   "dependencies": {
     "unitless-css-property": "1.0.2"
   },
-  "peerDependecies": {
+  "peerDependencies": {
     "fela": "1.0.2"
   }
 }

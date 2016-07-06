@@ -23,7 +23,7 @@
   "dependencies": {
     "inline-style-prefixer": "2.0.0"
   },
-  "peerDependecies": {
+  "peerDependencies": {
     "fela": "1.0.2"
   }
 }

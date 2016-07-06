@@ -24,7 +24,7 @@
   "dependencies": {
     "cssbeautify": "0.3.1"
   },
-  "peerDependecies": {
+  "peerDependencies": {
     "fela": "1.0.2"
   }
 }
