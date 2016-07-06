@@ -3,6 +3,10 @@ export default {
     name: 'Fela',
     entry: 'index.js'
   },
+  'fela-plugin-extend': {
+    name: 'FelaPluginExtend',
+    entry: 'plugins/extend.js'
+  },
   'fela-plugin-dynamic-prefixer': {
     name: 'FelaPluginDynamicPrefixer',
     entry: 'plugins/dynamicPrefixer.js'
