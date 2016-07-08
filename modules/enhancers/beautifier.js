@@ -6,21 +6,9 @@ const defaultOptions = {
   autosemicolon: false
 }
 
-export default (options = { }) => renderer => {
-  // DOM Renderer
-  if (renderer.hasOwnProperty('mountNode')) {
-    renderer.subscribe(css => {
-      renderer.mountNode.textContent = cssbeautify(css, {
-        ...defaultOptions,
-        ...options
-      })
-    })
-
-    return renderer
-  }
-
-  // Server Renderer
+function beautifier(renderer) {
   const existingRenderToString = renderer.renderToString.bind(renderer)
+
   renderer.renderToString = () => {
     const css = existingRenderToString()
     return cssbeautify(css, {
@@ -31,3 +19,5 @@ export default (options = { }) => renderer => {
 
   return renderer
 }
+
+export default options => beautifier
