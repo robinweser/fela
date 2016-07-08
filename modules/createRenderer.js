@@ -6,7 +6,7 @@ import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
 
 export default function createRenderer(config = { }) {
-  const renderer = {
+  let renderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || [ '-webkit-', '-moz-' ],
     plugins: config.plugins || [ ],
@@ -319,6 +319,11 @@ export default function createRenderer(config = { }) {
   // initial setup
   renderer.keyframePrefixes.push('')
   renderer.clear()
+
+  // enhance renderer with passed set of enhancers
+  if (config.enhancers) {
+    config.enhancers.forEach(enhancer => renderer = enhancer(renderer))
+  }
 
   return renderer
 }

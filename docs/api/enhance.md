@@ -1,6 +1,6 @@
 # `enhance(...enhancers)`
 
-Composes a renderer enhancer to enhance the basic `createRenderer` function.
+Composes a renderer enhancer to enhance the basic `createRenderer` function. You can also [pass](../guides/RendererConfiguration.md) `enhancers` to `createRenderer` directly which makes the use of `enhance` optional.
 
 ## Arguments
 1. `...enhancers` (*arguments*): Functions that enhance the basic renderer object. Each function takes the renderer and modifies its abilities.
@@ -11,11 +11,11 @@ Composes a renderer enhancer to enhance the basic `createRenderer` function.
 ## Example
 ```javascript
 import { createRenderer, enhance } from 'fela'
-import logger from 'fela-logger'
+import perf from 'fela-perf'
 import beautifier from 'fela-beautifier'
 
 const enhancer = enhance(
-  logger({ beautify: false }),
+  perf(),
   beautifier()
 )
 
@@ -28,14 +28,14 @@ You may also directly apply the enhancer using the following short version.
 
 ```javascript
 const createEnhancedRenderer = enhance(
-  logger({ beautify: false }),
+  perf(),
   beautifier()
 )(createRenderer)
 
 // or even shorter by directly creating the renderer
 // but this is not very easy to read though
 const renderer = enhance(
-  logger({ beautify: false }),
+  perf(),
   beautifier()
 )(createRenderer)()
 ```

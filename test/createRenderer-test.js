@@ -11,6 +11,16 @@ describe('Renderer', () => {
       expect(renderer.fontFaces).to.eql('')
       expect(renderer.statics).to.eql('')
     })
+
+    it('should apply enhancers directly', () => {
+      const enhancer = renderer => {
+        renderer.foo = 'bar'
+        return renderer
+      }
+      const renderer = createRenderer({ enhancers: [ enhancer ] })
+
+      expect(renderer.foo).to.eql('bar')
+    })
   })
 
 
@@ -72,10 +82,7 @@ describe('Renderer', () => {
     })
 
     it('should reuse cached variations', () => {
-      const rule = props => ({
-        color: props.color,
-        fontSize: '23px'
-      })
+      const rule = props => ({ color: props.color, fontSize: '23px' })
       const renderer = createRenderer()
 
       renderer.renderRule(rule, { color: 'red' })
@@ -91,9 +98,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule, { color: 'red' })
       const className2 = renderer.renderRule(rule, { color: 'red' })
-      const className3 = renderer.renderRule(rule, {
-        color: 'blue'
-      })
+      const className3 = renderer.renderRule(rule, { color: 'blue' })
 
       expect(className).to.eql(className2)
       expect(className).to.eql(className3)

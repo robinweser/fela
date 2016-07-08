@@ -10,6 +10,7 @@ We might introduce more configuration options with future releases, so be sure t
 | ------ | ------ | ---------|---|
 |`plugins` | `function[]` |  | [plugins](../advanced/Plugins.md) to process styles before rendering |
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` |which `@keyframes` prefixes are rendered |
+|`enhancers` | `function[]` |  |  [enhancers](../advanced/Enhancers.md) to enhance the renderer
 
 ## Example
 ```javascript
@@ -19,9 +20,12 @@ import prefixer from 'fela-plugin-prefixer'
 import unit from 'fela-plugin-unit'
 import fallbackValue from 'fela-plugin-fallback-value'
 
+import beautifier from 'fela-beautifier'
+
 const config = {
   plugins: [ unit('em'), prefixer(), fallbackValue() ],
-  keyframePrefixes: ['-webkit-']
+  keyframePrefixes: ['-webkit-'],
+  enhancers: [ beautifer() ]
 }
 
 const renderer = createRenderer(config)
