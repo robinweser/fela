@@ -3,6 +3,9 @@ import babel from 'rollup-plugin-babel'
 import uglify from 'rollup-plugin-uglify'
 import commonjs from 'rollup-plugin-commonjs'
 import nodeResolver from 'rollup-plugin-node-resolve'
+import fs from 'fs-extra'
+
+const gzip = require('gzip-js')
 
 const packages = {
   fela: {
@@ -65,12 +68,18 @@ const packages = {
     entry: 'enhancers/beautifier.js',
     dependencies: true
   },
+  'fela-font-renderer': {
+    name: 'FelaFontRenderer',
+    entry: 'enhancers/fontRenderer.js',
+    dependencies: false
+  },
   'fela-perf': {
     name: 'FelaPerf',
     entry: 'enhancers/perf.js',
     dependencies: false
   }
 }
+
 
 const babelPlugin = babel({
   babelrc: false,
@@ -92,20 +101,86 @@ function rollupConfig(pkg, info, minify) {
 function bundleConfig(pkg, info, minify) {
   return {
     format: 'umd',
+    globals: {
+      fela: 'Fela'
+    },
     moduleName: info.name,
     dest: 'packages/' + pkg + '/dist/' + (info.dest ? info.dest : pkg) + (minify ? '.min' : '') + '.js',
     sourceMap: !minify
   }
 }
 
+// Small helper to error and exit on fail
+const errorOnFail = (err, pkg) => {
+  if (err) {
+    console.error('[' + pkg + ']', err)
+    process.exit(1)
+  }
+}
+
+// Updates the package.json version of a given pkg with the global
+// package.json version
+function updateVersion(pkg) {
+  fs.readFile(__dirname + '/../package.json', 'utf8', (err, data) => {
+    errorOnFail(err, pkg)
+
+    const globalVersion = JSON.parse(data).version
+    const path = __dirname + '/../packages/' + pkg + '/package.json'
+
+    fs.readFile(path, 'utf8', (err, data) => {
+      errorOnFail(err, pkg)
+
+      const packageJSON = JSON.parse(data)
+      packageJSON.version = globalVersion
+
+      if (packageJSON.peerDependencies && packageJSON.peerDependencies.fela) {
+        packageJSON.peerDependencies.fela = globalVersion
+      }
+
+      const newPackageJSON = JSON.stringify(packageJSON, null, 2)
+
+      fs.writeFile(path, newPackageJSON, err => {
+        errorOnFail(err, pkg)
+        console.log('Successfully updated ' + pkg + ' version to ' + globalVersion + '.')
+      })
+    })
+  })
+}
+
+function updateReadme(pkg, bundleSize) {
+  fs.readFile(__dirname + '/../package.json', 'utf8', (err, data) => {
+    errorOnFail(err, pkg)
+
+    const globalVersion = JSON.parse(data).version
+    const path = __dirname + (pkg !== 'fela' ? '/../packages/' + pkg : '/..') + '/README.md'
+
+    fs.readFile(path, 'utf8', (err, data) => {
+      errorOnFail(err, pkg)
+
+      const bundleString = (bundleSize / 1000).toString().split('.')
+      const readme = data.replace(/@[1-9]*[.][0-9]*[.][0-9]*/g, '@' + globalVersion).replace(/gzipped-[0-9]*[.][0-9]*kb/, 'gzipped-' + bundleString[0] + '.' + bundleString[1].substr(0, 2) + 'kb')
+
+      fs.writeFile(path, readme, err => {
+        errorOnFail(err, pkg)
+        console.log('Successfully updated ' + pkg + ' REAMDE.md to ' + globalVersion + '.')
+      })
+    })
+  })
+}
+
+
 function buildPackage(pkg) {
   rollup.rollup(rollupConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')).then(bundle => {
-    bundle.write(bundleConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production'))
+    const config = bundleConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')
+
+    if (process.env.NODE_ENV === 'production') {
+      updateReadme(pkg, gzip.zip(bundle.generate(config).code).length)
+      updateVersion(pkg)
+    }
+
+    bundle.write(config)
     console.log('Successfully bundled ' + packages[pkg].name + (process.env.NODE_ENV === 'production' ? ' (minified).' : '.'))
-  }).catch(err => {
-    console.error(err)
-    process.exit(1)
-  })
+  }).catch(err => errorOnFail(err, pkg))
 }
 
 Object.keys(packages).forEach(pkg => buildPackage(pkg))
