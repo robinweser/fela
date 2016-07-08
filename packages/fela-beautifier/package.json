@@ -1,7 +1,7 @@
 {
   "name": "fela-beautifier",
   "version": "1.0.3",
-  "description": "Beautifier middleware for Fela",
+  "description": "Fela enhancer to beautify CSS output",
   "main": "index.js",
   "files": [
     "LICENSE",
@@ -13,6 +13,7 @@
   "keywords": [
     "fela",
     "fela-devtools",
+    "fela-enhancer",
     "dx",
     "devtools",
     "cssinjs",

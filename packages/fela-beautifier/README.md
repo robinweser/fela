@@ -1,21 +1,21 @@
 # fela-beautifier
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-beautifer.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-beautifier.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.46kb-brightgreen.svg">
 
-The beautifier middleware is a developer tool that automatically formats the rendered CSS markup on every change. It uses [cssbeautify](https://github.com/senchalabs/cssbeautify) to achieve this.
+The beautifier enhancer is a developer tool that automatically formats the rendered CSS markup on every change. It uses [cssbeautify](https://github.com/senchalabs/cssbeautify) to achieve this.
 
 ## Installation
 ```sh
-npm i --save fela-beautifer
+npm i --save fela-beautifier
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaBeautifier` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela-beautifer@1.0.3/dist/fela-beautifer.js"></script>
+<script src="https://npmcdn.com/fela-beautifier@1.0.3/dist/fela-beautifier.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://npmcdn.com/fela-beautifer@1.0.3/dist/fela-beautifer.min.js"></script>
+<script src="https://npmcdn.com/fela-beautifier@1.0.3/dist/fela-beautifier.min.js"></script>
 ```
 
 ## Example
@@ -24,9 +24,9 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 ## Usage
 ```javascript
 import { createRenderer } from 'fela'
-import beautifier from 'fela-beautifer'
+import beautifier from 'fela-beautifier'
 
-const enhancer = beautifer({
+const enhancer = beautifier({
   ident: '  ',
   openbrace: 'separate-line',
   autosemicolon: 'false'
