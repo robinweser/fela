@@ -4,6 +4,7 @@
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.57kb-brightgreen.svg">
 
+Enforces object validation for keyframes and rules.
 Logs invalid properties to the `console`. One might also enable automatic property deletion.
 
 ## Installation
@@ -22,22 +23,54 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 ## Example
 If the `deleteInvalid` option is enabled.
 
+### Keyframe
 #### Input
 ```javascript
 {
-  fontSize: undefined,
-  color: 'red',
-  padding: '20px undefined 0px'
+  '0%': {
+    color: 'red'
+  },
+  '101%': {
+    color: 'blue'
+  },
+  color: 'blue'
 }
 ```
 
 #### Output
 ```javascript
 {
-  color: 'red'
+  '0%': {
+    color: 'red'
+  }
+}
+```
+### Rule
+#### Input
+```javascript
+{
+  color: 'red',
+  ':hover': {
+    color: 'green',
+    foo: {
+      color: 'blue'
+    }
+  },
+  'nested': {
+    color: 'yellow'
+  }
 }
 ```
 
+#### Output
+```javascript
+{
+  color: 'red',
+  ':hover': {
+    color: 'green',
+  }
+}
+```
 ## Configuration
 The validator plugin uses two different option flags to enable/disable features.
 
