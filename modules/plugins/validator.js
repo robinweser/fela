@@ -1,4 +1,3 @@
-
 function validateStyleObject(style, logInvalid, deleteInvalid) {
   Object.keys(style).forEach(property => {
     const value = style[property]
