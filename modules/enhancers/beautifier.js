@@ -6,7 +6,7 @@ const defaultOptions = {
   autosemicolon: false
 }
 
-function beautifier(renderer) {
+function beautifier(renderer, options) {
   const existingRenderToString = renderer.renderToString.bind(renderer)
 
   renderer.renderToString = () => {
@@ -20,4 +20,4 @@ function beautifier(renderer) {
   return renderer
 }
 
-export default options => beautifier
+export default options => renderer => beautifier(renderer, options)
