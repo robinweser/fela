@@ -27,35 +27,72 @@
 
   babelHelpers;
 
-  function validator(style, options) {
+  function validateStyleObject(style, logInvalid, deleteInvalid) {
+    Object.keys(style).forEach(function (property) {
+      var value = style[property];
+      if (value instanceof Object && !Array.isArray(value)) {
+        if (property.indexOf(':') === 0 || property.substr(0, 6) === '@media') {
+          validateStyleObject(value, logInvalid, deleteInvalid);
+        } else {
+          if (deleteInvalid) {
+            delete style[property];
+          }
+          if (logInvalid) {
+            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid nested property. Only use nested `@media` queries or `:` pseudo classes. Maybe you forgot to add a plugin that resolves `' + property + '`.', { // eslint-disable-line
+              property: property,
+              value: value
+            });
+          }
+        }
+      }
+    });
+  }
+
+  function validator(style, meta, options) {
     var logInvalid = options.logInvalid;
     var deleteInvalid = options.deleteInvalid;
 
 
-    Object.keys(style).forEach(function (property) {
-      var value = style[property];
-      if (value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1) {
-        if (deleteInvalid) {
-          delete style[property];
+    if (meta.type === 'keyframe') {
+      Object.keys(style).forEach(function (percentage) {
+        var percentageValue = parseFloat(percentage);
+        var value = style[percentage];
+        if (value instanceof Object === false) {
+          if (logInvalid) {
+            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe value. An object was expected.', { // eslint-disable-line
+              percentage: percentage,
+              style: value
+            });
+          }
+          if (deleteInvalid) {
+            delete style[percentage];
+          }
+        } else {
+          // check for invalid percentage values, it only allows from, to or 0% - 100%
+          if (!percentage.match(/from|to|%/) || percentage.indexOf('%') > -1 && (percentageValue < 0 || percentageValue > 100)) {
+            if (logInvalid) {
+              console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe property. Expected either `to`, `from` or a percentage value between 0 and 100.', { // eslint-disable-line
+                percentage: percentage,
+                style: value
+              });
+            }
+            if (deleteInvalid) {
+              delete style[percentage];
+            }
+          }
         }
-        if (logInvalid) {
-          console.log((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid Property', { // eslint-disable-line
-            property: property,
-            value: value
-          });
-        }
-      } else if (value instanceof Object && !Array.isArray(value)) {
-        style[property] = validator(value, options);
-      }
-    });
+      });
+    } else if (meta.type === 'rule') {
+      validateStyleObject(style, logInvalid, deleteInvalid);
+    }
 
     return style;
   }
 
   var defaultOptions = { logInvalid: true, deleteInvalid: false };
   var validator$1 = (function (options) {
-    return function (style) {
-      return validator(style, babelHelpers.extends({}, defaultOptions, options));
+    return function (style, meta) {
+      return validator(style, meta, babelHelpers.extends({}, defaultOptions, options));
     };
   });
 

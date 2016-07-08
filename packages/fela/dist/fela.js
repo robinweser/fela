@@ -186,7 +186,9 @@
 
             // directly render the static base style to be able
             // to diff future dynamic style with those
-            renderer.renderRule(rule, {});
+            if (Object.keys(props).length > 0) {
+              renderer.renderRule(rule, {});
+            }
           }
 
           // uses the reference ID and the props to generate an unique className
@@ -495,6 +497,13 @@
       // initial setup
       renderer.keyframePrefixes.push('');
       renderer.clear();
+
+      // enhance renderer with passed set of enhancers
+      if (config.enhancers) {
+        config.enhancers.forEach(function (enhancer) {
+          return renderer = enhancer(renderer);
+        });
+      }
 
       return renderer;
     }

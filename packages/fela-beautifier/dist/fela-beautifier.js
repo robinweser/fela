@@ -513,30 +513,24 @@
       autosemicolon: false
     };
 
-    var beautifier = (function () {
-      var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    function beautifier(renderer, options) {
+      var existingRenderToString = renderer.renderToString.bind(renderer);
+
+      renderer.renderToString = function () {
+        var css = existingRenderToString();
+        return cssbeautify$1(css, babelHelpers.extends({}, defaultOptions, options));
+      };
+
+      return renderer;
+    }
+
+    var beautifier$1 = (function (options) {
       return function (renderer) {
-        // DOM Renderer
-        if (renderer.hasOwnProperty('mountNode')) {
-          renderer.subscribe(function (css) {
-            renderer.mountNode.textContent = cssbeautify$1(css, babelHelpers.extends({}, defaultOptions, options));
-          });
-
-          return renderer;
-        }
-
-        // Server Renderer
-        var existingRenderToString = renderer.renderToString.bind(renderer);
-        renderer.renderToString = function () {
-          var css = existingRenderToString();
-          return cssbeautify$1(css, babelHelpers.extends({}, defaultOptions, options));
-        };
-
-        return renderer;
+        return beautifier(renderer, options);
       };
     });
 
-    return beautifier;
+    return beautifier$1;
 
 }));
 //# sourceMappingURL=fela-beautifier.js.map

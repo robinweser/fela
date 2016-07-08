@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-friendly-pseudo-class.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.51kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.47kb-brightgreen.svg">
 
 Writing CSS pseudo classes within a plain JavaScript object sadly is sometimes painful as the default syntax is not really JavaScript-friendly.<br>
 
@@ -16,9 +16,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginFriendlyPseudoClass` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela-plugin-friendly-pseudo-class@1.0.3/dist/fela-plugin-friendly-pseudo-class.js"></script>
+<script src="https://npmcdn.com/fela-plugin-friendly-pseudo-class@1.1.0/dist/fela-plugin-friendly-pseudo-class.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://npmcdn.com/fela-plugin-friendly-pseudo-class@1.0.3/dist/fela-plugin-friendly-pseudo-class.min.js"></script>
+<script src="https://npmcdn.com/fela-plugin-friendly-pseudo-class@1.1.0/dist/fela-plugin-friendly-pseudo-class.min.js"></script>
 ```
 
 ## Example

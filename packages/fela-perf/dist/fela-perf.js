@@ -29,25 +29,28 @@
 
   var counter = 0;
 
-  var perf = (function () {
-    return function (renderer) {
-      var existingRenderRule = renderer.renderRule.bind(renderer);
+  function perf(renderer) {
+    var existingRenderRule = renderer.renderRule.bind(renderer);
 
-      renderer.renderRule = function (rule, props) {
-        var timerCounter = ++counter;
+    renderer.renderRule = function (rule, props) {
+      var timerCounter = '[' + ++counter + ']';
 
-        console.time('[' + timerCounter + '] Elapsed time'); // eslint-disable-line
-        var className = existingRenderRule(rule, props);
-        console.timeEnd('[' + timerCounter + '] Elapsed time'); // eslint-disable-line
+      console.time(timerCounter); // eslint-disable-line
+      var className = existingRenderRule(rule, props);
+      console.log(timerCounter + ' ' + rule.name, props); // eslint-disable-line
+      console.timeEnd(timerCounter); // eslint-disable-line
 
-        return className;
-      };
-
-      return renderer;
+      return className;
     };
+
+    return renderer;
+  }
+
+  var perf$1 = (function () {
+    return perf;
   });
 
-  return perf;
+  return perf$1;
 
 }));
 //# sourceMappingURL=fela-perf.js.map

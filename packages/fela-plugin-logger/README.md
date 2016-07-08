@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-logger.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.37kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.54kb-brightgreen.svg">
 
 Logs all rendered styles to the `console`. There will soon be more configuration options and more information to log.
 
@@ -14,9 +14,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginLogger` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela-plugin-logger@1.0.3/dist/fela-plugin-logger.js"></script>
+<script src="https://npmcdn.com/fela-plugin-logger@1.1.0/dist/fela-plugin-logger.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://npmcdn.com/fela-plugin-logger@1.0.3/dist/fela-plugin-logger.min.js"></script>
+<script src="https://npmcdn.com/fela-plugin-logger@1.1.0/dist/fela-plugin-logger.min.js"></script>
 ```
 
 ## Configuration
