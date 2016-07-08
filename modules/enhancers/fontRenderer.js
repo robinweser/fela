@@ -1,5 +1,4 @@
-import createRenderer from '../createRenderer'
-import render from '../render'
+import { createRenderer, render } from 'fela'
 
 function fontRenderer(renderer, mountNode) {
   renderer.fontRenderer = createRenderer()

@@ -106,6 +106,22 @@ describe('Renderer', () => {
       expect(Object.keys(renderer.rendered).length).to.eql(3)
     })
 
+    it('should only additionally render static styles if not directly rendering those', () => {
+      const rule = props => ({ fontSize: '23px' })
+      const renderer = createRenderer()
+      const spy = sinon.spy()
+
+      const existingRenderRule = renderer.renderRule.bind(this)
+      renderer.renderRule = (rule, props) => {
+        spy()
+        return existingRenderRule(rule, props)
+      }
+
+      renderer.renderRule(rule)
+
+      expect(spy).to.have.been.calledOnce
+    })
+
     it('should generate an incrementing reference id', () => {
       const rule = props => ({ color: 'red' })
       const rule2 = props => ({ color: 'blue' })

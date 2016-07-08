@@ -43,7 +43,9 @@ export default function createRenderer(config = { }) {
 
         // directly render the static base style to be able
         // to diff future dynamic style with those
-        renderer.renderRule(rule, { })
+        if (Object.keys(props).length > 0) {
+          renderer.renderRule(rule, { })
+        }
       }
 
       // uses the reference ID and the props to generate an unique className
