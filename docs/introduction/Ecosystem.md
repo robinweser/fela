@@ -26,6 +26,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 * [fela-beautifier*](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
+* [fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.
 
 ### Tools
 * [fela-stylesheet](https://github.com/rofrischmann/fela-stylesheet): Organize your rules in a single StyleSheet
