@@ -11,6 +11,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 ### Plugins
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
+* [fela-plugin-extend](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend) - Extend style objects based on conditions
 * [fela-plugin-fallback-value](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-fallback-value) - Resolves arrays of fallback values
 * [fela-plugin-friendly-pseudo-class](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-friendly-pseudo-class) - Transforms javascript-friendly pseudo class into valid syntax
 * [fela-plugin-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-logger) - Logs rendered style objects

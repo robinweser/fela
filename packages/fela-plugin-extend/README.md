@@ -11,7 +11,7 @@ Allows styles to be extended with other style objects. Supports a condition-base
 npm i --save fela-plugin-extend
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginCustomProperty` global.
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginExtend` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
 <script src="https://npmcdn.com/fela-plugin-extend@1.0.3/dist/fela-plugin-extend.js"></script>
