@@ -1,17 +1,20 @@
 let counter = 0
 
-export default () => renderer => {
+function perf(renderer) {
   const existingRenderRule = renderer.renderRule.bind(renderer)
 
   renderer.renderRule = (rule, props) => {
-    const timerCounter = ++counter
+    const timerCounter = '[' + ++counter + ']'
 
-    console.time('[' + timerCounter + '] Elapsed time') // eslint-disable-line
+    console.time(timerCounter) // eslint-disable-line
     const className = existingRenderRule(rule, props)
-    console.timeEnd('[' + timerCounter + '] Elapsed time') // eslint-disable-line
+    console.log(timerCounter + ' ' + rule.name, props)
+    console.timeEnd(timerCounter) // eslint-disable-line
 
     return className
   }
 
   return renderer
 }
+
+export default () => perf
