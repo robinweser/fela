@@ -1,8 +1,7 @@
 # Changelog
 
-## 1
+## 1.0
 
-### 1.1
 #### 1.1.0
 ##### API Changes
 * enhancers can now be passed to `createRenderer` via config ( [#63](https://github.com/rofrischmann/fela/issues/63) )
@@ -20,7 +19,7 @@
   * using a single entry now
 
 ------
-### 1.0
+
 #### 1.0.3
 * updated [fela-plugin-prefixer](packages/fela-plugin-prefixer) to use [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) version 2.0.0 ( [#57](https://github.com/rofrischmann/fela/issues/57) ) 
 * added [fela-plugin-dynamic-prefixer](packages/fela-plugin-dynamic-prefixer)
