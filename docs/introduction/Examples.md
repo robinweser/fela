@@ -35,6 +35,7 @@ npm run client
 #### Covers
 * Rules
 * Keyframes
+* Fonts
 * Static Styles
 * React Bindings
 * Dynamic Rules

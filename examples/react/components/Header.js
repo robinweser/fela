@@ -17,6 +17,11 @@ const welcome = props => ({
   },
   '@media (max-width: 800px)': {
     fontSize: '40px'
+  },
+
+  // validation test
+  invalid: {
+    color: 'blue'
   }
 })
 
@@ -32,6 +37,11 @@ const animation = props => ({
   },
   '100%': {
     color: props.color
+  },
+
+  // validation test
+  invalid: {
+    color: 'blue'
   }
 })
 
