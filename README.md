@@ -3,6 +3,10 @@
 **Fela** is a fast and modular library to handle styling in JavaScript.<br>
 It is dynamic by design and renders your styles depending on your application state.
 
+It supports all common CSS features such as media queries, pseudo classes, keyframes and font-faces. It also renders on server-side with ease and ships with a powerful plugin API adding e.g. [automatic vendor prefixing](packages/fela-plugin-prefixer) or [fallback value](packages/fela-plugin-fallback-value) support.
+
+Fela can be used with [React](https://github.com/rofrischmann/react-fela) or with any other view library.
+
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
@@ -24,8 +28,7 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 <script src="https://npmcdn.com/fela@1.1.0/dist/fela.min.js"></script>
 ```
 
-## Example
-
+## Usage
 ```javascript
 import { createRenderer, render } from 'fela'
 
@@ -73,6 +76,10 @@ render(renderer, mountNode)
 * [FAQ](http://fela.js.org/docs/FAQ.html)
 * [Feedback](http://fela.js.org/docs/Feedback.html)
 * [Thanks](http://fela.js.org/docs/Thanks.html)
+
+## Examples
+* [Vanilla JavaScript](http://fela.js.org/docs/introduction/Examples.html#vanilla) ([source](examples/vanilla))
+* [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/react))
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>
