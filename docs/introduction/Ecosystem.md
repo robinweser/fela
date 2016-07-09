@@ -37,6 +37,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [react-styling](https://github.com/halt-hammerzeit/react-styling): Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
 * [inline-style-transformer](https://github.com/rofrischmann/inline-style-transformer): CSS & style object transformation tools
 * [stile](https://github.com/bloodyowl/stile): Handle units and string values
+* [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js): Transform your CSS to JavaScript at compile time.
 
 <br>
 
