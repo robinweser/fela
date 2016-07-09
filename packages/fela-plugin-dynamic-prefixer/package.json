@@ -21,9 +21,9 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "inline-style-prefixer": "2.0.0"
+    "inline-style-prefixer": "^2.0.1"
   },
-  "peerDependecies": {
-    "fela": "1.0.2"
+  "peerDependencies": {
+    "fela": "1.1.0"
   }
 }

@@ -48,7 +48,7 @@
     "express-http-proxy": "^0.6.0",
     "fs-extra": "^0.30.0",
     "gzip-js": "^0.3.2",
-    "inline-style-prefixer": "^2.0.0",
+    "inline-style-prefixer": "^2.0.1",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.4.5",
     "rollup": "0.26.3",
