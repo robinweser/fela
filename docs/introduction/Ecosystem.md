@@ -8,6 +8,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 ### Bindings
 * [react-fela](https://github.com/rofrischmann/react-fela) - React
+* [inferno-fela](https://github.com/rofrischmann/inferno-fela) - Inferno
 
 ### Plugins
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties

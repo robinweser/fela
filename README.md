@@ -1,6 +1,6 @@
 # Fela
 
-**Fela** is a fast and modular library to handle styling in JavaScript.<br>
+Fela is a fast and modular library to handle styling in JavaScript.<br>
 It is dynamic by design and renders your styles depending on your application state.
 
 It generates CSS and therefore supports all common CSS features such as media queries, pseudo classes, keyframes and font-faces. It also renders on server-side with ease and ships with a powerful plugin API adding e.g. [automatic vendor prefixing](packages/fela-plugin-prefixer) or [fallback value](packages/fela-plugin-fallback-value) support.
