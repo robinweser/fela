@@ -80,6 +80,7 @@ render(renderer, mountNode)
 ## Examples
 * [Vanilla JavaScript](http://fela.js.org/docs/introduction/Examples.html#vanilla) ([source](examples/vanilla))
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/react))
+* [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>

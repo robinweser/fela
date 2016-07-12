@@ -1,6 +1,6 @@
 # Usage with Inferno
 
-Inferno is a modern React-like UI library which ships an almost identical API, but tries to achieve a much better performance.
+Inferno is a modern React-like UI library which ships an almost identical API, but claims to be much faster.
 Due to the fact it is really similar to React's API, the [Inferno bindings for Fela](https://github.com/rofrischmann/inferno-fela) are basically the same as the [React bindings for Fela](https://github.com/rofrischmann/react-fela).
 
 ```sh
