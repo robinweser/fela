@@ -74,19 +74,19 @@ export class FelaRendererService {
 ```
 
 
-:red_circle: Note that **fela is already shipped with TypeScript typings** which reside in `node_modules/fela/index.d.ts` and are automatically referenced.
+:red_circle: Note that **fela is already shipped with TypeScript typings** which reside in `node_modules/fela/index.d.ts` and are automatically referenced. Depending on your buildchain you might need to configure some additional things. See step 5.
 
 ### 4. Styling your Componnt with Fela
 
 What is happening here is basically:
 
   * Import the `FelaRendererService` which we created earlier with 
-    * `impot { FelaRendererService } from './felaRenderer.service';`.
+    * `import { FelaRendererService } from './felaRenderer.service';`.
   * Register the service as Provider with 
     * `providers: [ FelaRendererService ],`
   * Inject the Service into your Component via the constructror with 
     * `constructor(private felaRendererService: FelaRendererService)`
-  * Use render rules and get the CSS-Classname and use it in your template with
+  * Render rules and get the CSS-Classname and use it in your template with
     * `className = this.felaRendererService.renderRule(..)`
     * The Service takes care that in the background the generated CSS is added to the DOM.
 
@@ -133,14 +133,14 @@ export class AppComponent extends Type implements OnInit {
 If you are using the buildchain from the official [Angular 5 min Quickstart Tutorial](https://angular.io/docs/ts/latest/quickstart.html)
 you might need to **adjust your buildchain so that the Fela typings can be found**.
 
-You need to add to lines:
+You need to add two lines:
 
   * map-Array:
     * `'fela': 'node_modules/fela'`
   * packages-Arry:
     * `'fela': { main: 'dist/fela.js', defaultExtension: 'js' },`
     
-:file_folder: `app.component.ts`
+:file_folder: `systemjs.config.js`
 
 ```typescript
 ...
