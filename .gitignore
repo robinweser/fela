@@ -2,6 +2,7 @@
 ._*
 .DS_Store
 Thumbs.db
+.idea
 
 # Files that might appear on external disks
 .Spotlight-V100
