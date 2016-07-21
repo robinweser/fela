@@ -1,4 +1,9 @@
-export declare function createRenderer(config?:Object): Object;
-export declare function combineRules(...rules:Object[]): Function;
-export declare function enhance(...enhancers:Object[]): Function;
-export declare function render(renderer:Object, mountNode:Object): void;
+interface Renderer {
+    renderRule(rule: Function, props?: any): string
+}
+
+export declare function createRenderer(config?:any): Renderer;
+export declare function combineRules(...rules:any[]): Function;
+export declare function enhance(...enhancers:any[]): Function;
+export declare function render(renderer:any, mountNode:any): void;
+
