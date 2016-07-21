@@ -1,4 +1,4 @@
-import { Component, OnInit, Type, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { FelaRendererService } from './felaRenderer.service';
 
 @Component({
