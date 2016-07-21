@@ -148,7 +148,7 @@ You need to add two lines:
         'app':            'app', // 'dist',
 ...
         'rxjs':           'node_modules/rxjs',
-        'fela':                       'node_modules/fela'
+        'fela':           'node_modules/fela'
     };
     var packages = {
         'app':            { main: 'main.js',  defaultExtension: 'js' },
