@@ -1,7 +1,7 @@
 # Usage with Angular 2 and TypeScript
 
 Fela was always designed with React in mind, but is **not** bound to React by default. 
-To use it with Angular 2 and TypeScript you just need to install the normal fela library.
+To use it with Angular 2 and TypeScript you just need to install the normal Fela library.
 
 ## Example Project
 

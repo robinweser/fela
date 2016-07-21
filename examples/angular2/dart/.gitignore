@@ -1,3 +1,5 @@
 .idea
 .pub
 packages
+.packages
+*.lock
