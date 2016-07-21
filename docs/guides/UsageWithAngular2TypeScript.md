@@ -76,7 +76,7 @@ export class FelaRendererService {
 
 :red_circle: Note that **fela is already shipped with TypeScript typings** which reside in `node_modules/fela/index.d.ts` and are automatically referenced. Depending on your buildchain you might need to configure some additional things. See step 5.
 
-### 4. Styling your Componnt with Fela
+### 4. Styling your Component with Fela
 
 What is happening here is basically:
 
