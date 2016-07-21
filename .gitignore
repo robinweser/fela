@@ -23,7 +23,7 @@ Thumbs.db
 *.js.map
 node_modules/
 npm-debug.log
-lib/
+./lib/
 coverage
 _book
 examples/react/bundle.js
