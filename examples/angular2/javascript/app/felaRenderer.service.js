@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { createRenderer, render } from 'fela';
 
+@Injectable()
 export class FelaRendererService {
     static renderer = null;
 
