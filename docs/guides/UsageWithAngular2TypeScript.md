@@ -51,7 +51,7 @@ As you can see it requires a DOMElement with id *felaStyles* to be present. We c
  
 :file_folder: `felaRenderer.service.ts`
 
-```javascript
+```typescript
 import { Injectable } from '@angular/core';
 import { createRenderer, render, Renderer } from 'fela';
 

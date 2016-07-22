@@ -3,7 +3,7 @@
 Fela was always designed with React in mind, but is **not** bound to React by default. 
 To use it with Angular 2 and Dart you just need to install the normal Fela library.
 
-:bangbang: **CURRENTLY NOT WORKING DUE TO PROBLEMS WITH JS BRIDGE** :bangbang:
+:bangbang: **CURRENTLY NOT WORKING DUE TO PROBLEMS WITH JS INTEROPERABILITY** :bangbang:
 
 ## Example Project
 

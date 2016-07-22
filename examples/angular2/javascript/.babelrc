@@ -1,0 +1,4 @@
+{
+  "presets": ["es2015", "angular2"],
+  "plugins": ["transform-class-properties"]
+}
