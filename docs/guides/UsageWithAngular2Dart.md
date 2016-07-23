@@ -29,7 +29,7 @@ Add don't forget to [add `pub` to `PATH`](https://www.dartlang.org/tools/pub/ins
 
 Add the [js interoperability dependency](https://pub.dartlang.org/packages/js) to your `pubspec.yml`.
 
-:file_folder: `pubspec.yml`
+:file_folder: [`pubspec.yml`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/dart/pubspec.yml)
 ```yml
 dependencies:
   js: ^0.6.0
@@ -43,7 +43,7 @@ Run `pub get` again.
 
 Locate your index.html and place a `<style>` element with an unique id in your code like so.
 
-:file_folder: `web/index.html`
+:file_folder: [`web/index.html`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/dart/web/index.html)
 ```html
 <html>
 <head>
@@ -61,7 +61,7 @@ Note that id you used because we will need it in next step.
 You should create a `FelaRendererService` in your application which can be **Injected into your Components**. 
 As you can see it requires a DOMElement with id *felaStyles* to be present. We created that in the previous step in our `index.html`
  
-:file_folder: `lib/fela_renderer_service.dart`
+:file_folder: [`lib/fela_renderer_service.dart`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/dart/lib/fela_renderer_service.dart)
 
 ```dart
 import 'package:angular2/core.dart';
@@ -86,7 +86,7 @@ class FelaRendererService {
 }
 ```
 
-:file_folder: `lib/fela_js_bridge.dart`
+:file_folder: [`lib/fela_js_bridge.dart`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/dart/lib/fela_js_bridge.dart)
 
 ```dart
 @JS()
@@ -116,9 +116,10 @@ external render(Renderer renderer, HtmlElement mountNode);
 
 ### 4. Styling your Component with Fela
 
-:bangbang: WRITE DOC HERE
+The styling works the same as in the other Angular 2 examples.
+Dart does not support JSON-Like-Object syntax therefore the rules are represented in a array-like syntax.
 
-:file_folder: `lib/app_component.dart`
+:file_folder: [`lib/app_component.dart`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/dart/lib/app_component.dart)
 
 ```dart
 import 'package:angular2/core.dart';

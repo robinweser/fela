@@ -32,7 +32,7 @@ npm i --save fela
 
 Locate your index.html and place a `<style>` element with an unique id in your code like so.
 
-:file_folder: `index.html`
+:file_folder: [`index.html`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/typescript/index.html)
 ```html
 <html>
 <head>
@@ -49,7 +49,7 @@ Note that id you used because we will need it in next step.
 You should create a `FelaRendererService` in your application which can be **Injected into your Components**. 
 As you can see it requires a DOMElement with id *felaStyles* to be present. We created that in the previous step in our `index.html`
  
-:file_folder: `felaRenderer.service.ts`
+:file_folder: [`app/felaRenderer.service.ts`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/typescript/app/felaRenderer.service.ts)
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -90,7 +90,7 @@ What is happening here is basically:
     * `className = this.felaRendererService.renderRule(..)`
     * The Service takes care that in the background the generated CSS is added to the DOM.
 
-:file_folder: `app.component.ts`
+:file_folder: [`app/app.component.ts`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/typescript/app/app.component.ts)
 
 ```typescript
 import { Component, OnInit, Type } from '@angular/core';
@@ -140,7 +140,7 @@ You need to add two lines:
   * packages-Arry:
     * `'fela': { main: 'dist/fela.js', defaultExtension: 'js' },`
     
-:file_folder: `systemjs.config.js`
+:file_folder: [`systemjs.config.js`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/typescript/systemjs.config.js)
 
 ```typescript
 ...

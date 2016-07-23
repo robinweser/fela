@@ -33,7 +33,7 @@ npm i --save fela
 Locate your index.html and place a `<style>` element with an unique id in your code like so.
 Depending on your buildchain either add fela dependnecy here or somewhere else.
 
-:file_folder: `index.html`
+:file_folder: [`index.html`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/javascript/index.html)
 ```html
 <html>
 <head>
@@ -51,7 +51,7 @@ Note that id you used because we will need it in next step.
 You should create a `FelaRendererService` in your application which can be **Injected into your Components**. 
 As you can see it requires a DOMElement with id *felaStyles* to be present. We created that in the previous step in our `index.html`
  
-:file_folder: `app/felaRenderer.service.js`
+:file_folder: [`app/felaRenderer.service.js`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/javascript/app/felaRenderer.service.js)
 
 ```javascript
 import { Injectable } from '@angular/core';
@@ -88,7 +88,7 @@ What is happening here is basically:
     * `className = this.felaRendererService.renderRule(..)`
     * The Service takes care that in the background the generated CSS is added to the DOM.
 
-:file_folder: `app/app.component.js`
+:file_folder: [`app/app.component.js`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/javascript/app/app.component.js)
 
 ```javascript
 import { Component } from '@angular/core';
@@ -122,7 +122,7 @@ export class AppComponent {
 }
 ```
 
-:file_folder: `app/app.component.html`
+:file_folder: [`app/app.component.html`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/javascript/app/app.component.html)
 ```html
 <h1 class="{{ headlineClass }}">My First Angular 2 App</h1>
 <div class="{{ infoBoxClass }}">Foo Bar</div>
@@ -138,7 +138,7 @@ We extended the build chain by the following. You do not need to do anything, we
 npm i --save-dev babel-plugin-transform-class-properties
 ```
 
-`.babelrc`
+:file_folder: [`.babelrc`](https://github.com/rofrischmann/fela/blob/master/examples/angular2/javascript/.babelrc)
 
 ```
 {
