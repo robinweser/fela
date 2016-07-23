@@ -81,6 +81,9 @@ render(renderer, mountNode)
 * [Vanilla JavaScript](http://fela.js.org/docs/introduction/Examples.html#vanilla) ([source](examples/vanilla))
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/react))
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
+* [Fela + Angular 2 TypeScript](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/typescript))
+* [Fela + Angular 2 JavaScript](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
+* [Fela + Angular 2 Dart](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/dart))
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>

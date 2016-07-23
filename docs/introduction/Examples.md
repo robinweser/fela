@@ -58,3 +58,11 @@ npm start
 # starts the client-side application at localhost:8080
 npm run client
 ```
+
+## Angular 2
+
+See the following documentation:
+
+ * [Usage with Angular 2 TypeScript](../guides/UsageWithAngular2TypeScript.md)
+ * [Usage with Angular 2 JavaScript](../guides/UsageWithAngular2JavaScript.md)
+ * [Usage with Angular 2 Dart](../guides/UsageWithAngular2Dart.md)

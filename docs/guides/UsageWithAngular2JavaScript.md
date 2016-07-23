@@ -14,7 +14,7 @@ npm install
 npm run start
 ```
 
-The **Code Level of the example is ES6**.
+The **Code Level of the example is ECMAScript 6**.
 
 
 ## Configure Fela in your Angular 2 Project

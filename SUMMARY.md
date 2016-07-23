@@ -26,6 +26,7 @@
    * [4.4. Server Rendering](docs/guides/ServerRendering.md)
    * [4.5. Usage with Angular 2 TypeScript](docs/guides/UsageWithAngular2TypeScript.md)
    * [4.6. Usage with Angular 2 JavaScript](docs/guides/UsageWithAngular2JavaScript.md)
+   * [4.7. Usage with Angular 2 Dart](docs/guides/UsageWithAngular2Dart.md)
 * [5. API Reference](docs/API.md)
    * [5.1. createRenderer](docs/api/createRenderer.md)
    * [5.2. Renderer](docs/api/Renderer.md)
