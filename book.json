@@ -4,7 +4,7 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "description": "Official documentation for Fela",
   "language": "en",
-  "plugins": ["edit-link", "prism", "-highlight", "github", "anker-enable"],
+  "plugins": ["edit-link", "prism", "-highlight", "github", "anker-enable", "advanced-emoji"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/rofrischmann/fela/tree/master",
