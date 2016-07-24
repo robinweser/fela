@@ -1,12 +1,15 @@
 import { Component, OnInit, Type } from '@angular/core';
 import { FelaRendererService } from './felaRenderer.service';
+import { DummyComponent } from './dummy.component';
 
 @Component({
   selector: 'sg-app',
   providers: [ FelaRendererService ],
+  directives: [ DummyComponent ],
   template: `
     <h1 class="{{ headlineClass }}">My First Angular 2 App</h1>
     <div class="{{ infoBoxClass }}">Foo Bar</div>
+    <sg-dummy></sg-dummy>
     `
 })
 export class AppComponent extends Type implements OnInit {
