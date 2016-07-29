@@ -24,6 +24,8 @@
    * [4.2. Usage with Inferno](docs/guides/UsageWithInferno.md)
    * [4.3. Renderer Configuration](docs/guides/RendererConfiguration.md)
    * [4.4. Server Rendering](docs/guides/ServerRendering.md)
+   * [4.5. Usage with Angular 2 TypeScript](docs/guides/UsageWithAngular2TypeScript.md)
+   * [4.6. Usage with Angular 2 JavaScript](docs/guides/UsageWithAngular2JavaScript.md)
 * [5. API Reference](docs/API.md)
    * [5.1. createRenderer](docs/api/createRenderer.md)
    * [5.2. Renderer](docs/api/Renderer.md)
