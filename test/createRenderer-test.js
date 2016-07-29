@@ -82,7 +82,10 @@ describe('Renderer', () => {
     })
 
     it('should reuse cached variations', () => {
-      const rule = props => ({ color: props.color, fontSize: '23px' })
+      const rule = props => ({
+        color: props.color,
+        fontSize: '23px'
+      })
       const renderer = createRenderer()
 
       renderer.renderRule(rule, { color: 'red' })
@@ -98,7 +101,9 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule, { color: 'red' })
       const className2 = renderer.renderRule(rule, { color: 'red' })
-      const className3 = renderer.renderRule(rule, { color: 'blue' })
+      const className3 = renderer.renderRule(rule, {
+        color: 'blue'
+      })
 
       expect(className).to.eql(className2)
       expect(className).to.eql(className3)
@@ -300,31 +305,6 @@ describe('Renderer', () => {
   })
 
 
-  describe('Generating the props reference', () => {
-    it('should always return the same className with the same props', () => {
-      const renderer = createRenderer()
-
-      const className1 = renderer._generatePropsReference('foobar')
-      const className2 = renderer._generatePropsReference('foobar')
-      expect(className1).to.eql(className2)
-    })
-
-    it('should sort props before', () => {
-      const renderer = createRenderer()
-
-      const className1 = renderer._generatePropsReference({
-        foo: 'bar',
-        fontSize: 12
-      })
-      const className2 = renderer._generatePropsReference({
-        fontSize: 12,
-        foo: 'bar'
-      })
-      expect(className1).to.eql(className2)
-    })
-  })
-
-
   describe('Subscribing to the Renderer', () => {
     it('should call the callback each time it emits changes', () => {
       const rule = props => ({
@@ -351,150 +331,6 @@ describe('Renderer', () => {
 
       expect(unsubscriber.unsubscribe).to.be.a.function
       expect(renderer.listeners.length).to.eql(0)
-    })
-  })
-
-
-  describe('Processing style', () => {
-    it('should process style using data provided via the plugin interface', () => {
-
-      const plugin = style => ({
-        ...style,
-        foo: 'bar'
-      })
-
-      const renderer = createRenderer({ plugins: [ plugin ] })
-
-      expect(renderer._processStyle({ width: 20 })).to.eql({
-        width: 20,
-        foo: 'bar'
-      })
-    })
-
-    it('should pass meta data', () => {
-      const plugin = (style, meta) => ({
-        ...style,
-        foo: meta.type
-      })
-
-      const renderer = createRenderer({ plugins: [ plugin ] })
-      renderer.renderRule(() => ({ width: 20 }))
-
-      expect(renderer.rules).to.eql('.c0{width:20;foo:rule}')
-    })
-  })
-
-  describe('Diffing style objects', () => {
-    it('should only return new/dynamic values', () => {
-
-      const base = { color: 'blue', fontSize: '12px' }
-
-      const style = {
-        color: 'blue',
-        fontSize: '12px',
-        lineHeight: 1.2
-      }
-
-      const renderer = createRenderer()
-      expect(renderer._diffStyle(style, base)).to.eql({
-        lineHeight: 1.2
-      })
-    })
-
-    it('should return modified values', () => {
-
-      const base = { color: 'blue', fontSize: '12px' }
-      const style = { color: 'red', fontSize: '12px' }
-
-      const renderer = createRenderer()
-      expect(renderer._diffStyle(style, base)).to.eql({
-        color: 'red'
-      })
-    })
-
-    it('should ignore additional base properties', () => {
-
-      const base = {
-        color: 'blue',
-        fontSize: '12px',
-        lineHeight: 1.2
-      }
-      const style = { color: 'red', fontSize: '12px' }
-
-      const renderer = createRenderer()
-      expect(renderer._diffStyle(style, base)).to.eql({
-        color: 'red'
-      })
-    })
-
-    it('should also diff nested objects', () => {
-      const base = {
-        color: 'blue',
-        fontSize: '12px',
-        ':hover': {
-          color: 'red',
-          lineHeight: 1.2
-        }
-      }
-      const style = {
-        color: 'red',
-        fontSize: '12px',
-        ':hover': {
-          color: 'red',
-          fontSize: '12px',
-          lineHeight: 1.5
-        }
-      }
-
-      const renderer = createRenderer()
-      expect(renderer._diffStyle(style, base)).to.eql({
-        color: 'red',
-        ':hover': {
-          fontSize: '12px',
-          lineHeight: 1.5
-        }
-      })
-    })
-
-    it('should remove empty nested objects', () => {
-
-      const base = {
-        color: 'blue',
-        fontSize: '12px',
-        ':hover': {
-          color: 'red',
-          lineHeight: 1.2
-        }
-      }
-      const style = {
-        color: 'red',
-        fontSize: '12px',
-        ':hover': {
-          color: 'red',
-          lineHeight: 1.2
-        }
-      }
-
-      const renderer = createRenderer()
-      expect(renderer._diffStyle(style, base)).to.eql({
-        color: 'red'
-      })
-    })
-
-    it('should remove undefined values', () => {
-      const base = { color: 'blue', fontSize: '12px' }
-
-      const style = {
-        color: 'red',
-        fontSize: '12px',
-        lineHeight: undefined,
-        animation: 'undefined 2s infinite'
-      }
-
-      const renderer = createRenderer()
-      expect(renderer._diffStyle(style, base)).to.eql({
-        color: 'red'
-      })
     })
   })
 })
