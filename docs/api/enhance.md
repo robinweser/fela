@@ -1,6 +1,6 @@
 # `enhance(...enhancers)`
 
-Composes a renderer enhancer to enhance the basic `createRenderer` function. You can also [pass](../guides/RendererConfiguration.md) `enhancers` to `createRenderer` directly which makes the use of `enhance` optional.
+Composes a renderer enhancer to enhance the basic `createRenderer` function. You can also [pass](../advanced/RendererConfiguration.md) `enhancers` to `createRenderer` directly which makes the use of `enhance` optional.
 
 ## Arguments
 1. `...enhancers` (*arguments*): Functions that enhance the basic renderer object. Each function takes the renderer and modifies its abilities.

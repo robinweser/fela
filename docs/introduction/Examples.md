@@ -42,6 +42,29 @@ npm run client
 * Plugins
 * Server-side Rendering
 
+## Angular 2
+The code examples are based on the build-chain as used in [Angular 2 ESNext TodoMVC](https://github.com/blacksonic/angular2-esnext-todomvc).
+
+```sh
+git clone https://github.com/rofrischmann/fela.git
+cd fela/examples/angular2/javascript
+npm install
+npm run start
+```
+
+#### Covers
+* Rules
+* Angular Service
+* Dynamic Rules
+
+### TypeScript
+The same example is also available in TypeScript. It also covers Fela typings.
+```sh
+git clone https://github.com/rofrischmann/fela.git
+cd fela/examples/angular2/typescript
+npm install
+npm run start
+```
 
 ## Inferno
 A simple example application using the [Inferno bindings](https://github.com/rofrischmann/inferno-fela).
@@ -58,10 +81,3 @@ npm start
 # starts the client-side application at localhost:8080
 npm run client
 ```
-
-## Angular 2
-
-See the following documentation:
-
- * [Usage with Angular 2 TypeScript](../guides/UsageWithAngular2TypeScript.md)
- * [Usage with Angular 2 JavaScript](../guides/UsageWithAngular2JavaScript.md)

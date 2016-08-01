@@ -11,7 +11,7 @@ import { createRenderer } from 'fela'
 
 const renderer = createRenderer()
 ```
-We may optionally pass a configuration object as second parameter. Read the [Renderer Configuration](../guides/RendererConfiguration.md) article for further information.
+We may optionally pass a configuration object as second parameter. Read the [Renderer Configuration](../advanced/RendererConfiguration.md) article for further information.
 
 ## Rendering Styles
 The renderer provides dedicated render methods for each of the three renderable components which we introduced in the previous articles.

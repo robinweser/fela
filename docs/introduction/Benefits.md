@@ -14,3 +14,5 @@ In contrast to many other JavaScript-based styling solutions, Fela is not tied t
 
 #### 5. Minimal Markup
 Fela uses a special diffing mechanism to extract dynamic styles on the fly. It enables reuse of all all static style declarations in order to produce as little CSS markup as possible.
+
+#### 6. High Performance
