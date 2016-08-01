@@ -1,28 +1,27 @@
 {
-  "name": "fela",
-  "version": "1.1.0",
-  "description": "Fast & Dynamic Styling in JavaScript",
+  "name": "fela-native",
+  "version": "1.0.0",
+  "description": "Fela Renderer for React Native",
   "main": "index.js",
-  "typings": "index.d.ts",
   "files": [
     "LICENSE",
     "README.md",
-    "index.js",
-    "/lib",
-    "/dist"
-  ],
+    "index.js"
+   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
+    "react-native",
     "dynamic styling",
     "stylesheet",
     "css",
     "styling",
     "cssinjs"
   ],
-  "dependencies": {
-    "hyphenate-style-name": "1.0.1"
-  },
   "author": "Robin Frischmann",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "1.1.0",
+    "react-native": "^0.30.0"
+  }
 }
