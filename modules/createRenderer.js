@@ -58,7 +58,8 @@ export default function createRenderer(config = { }) {
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(className)) {
-        const diffedStyle = diffStyle(rule(props), renderer.base[ruleId])
+        const resolvedStyle = renderer._resolveStyle(rule, props)
+        const diffedStyle = diffStyle(resolvedStyle, renderer.base[ruleId])
 
         if (Object.keys(diffedStyle).length > 0) {
           const style = processStyle(diffedStyle, {
@@ -83,7 +84,7 @@ export default function createRenderer(config = { }) {
 
         // keep static style to diff dynamic onces later on
         if (className === 'c' + ruleId) {
-          renderer.base[ruleId] = rule(props)
+          renderer.base[ruleId] = resolvedStyle
         }
       }
 
@@ -116,7 +117,7 @@ export default function createRenderer(config = { }) {
       // only if the cached keyframe has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(animationName)) {
-        const processedKeyframe = processStyle(keyframe(props), {
+        const processedKeyframe = processStyle(renderer._resolveStyle(keyframe, props), {
           type: 'keyframe',
           keyframe: keyframe,
           props: props,
@@ -212,6 +213,17 @@ export default function createRenderer(config = { }) {
       return {
         unsubscribe: () => renderer.listeners.splice(renderer.listeners.indexOf(callback), 1)
       }
+    },
+
+    /**
+     * Encapsulated style resolving method
+     *
+     * @param {Function} style - rule or keyframe to be resolved
+     * @param {Object} props - props used to resolve style
+     * @return {Object} resolved style
+     */
+    _resolveStyle(style, props) {
+      return style(props)
     },
 
     /**

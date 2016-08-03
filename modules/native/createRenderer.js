@@ -47,7 +47,7 @@ export default function createRenderer(config = { }) {
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rules.hasOwnProperty(ref)) {
-        const diffedStyle = diffStyle(rule(props), renderer.base[ruleId])
+        const diffedStyle = diffStyle(renderer._resolveStyle(rule, props), renderer.base[ruleId])
 
         if (Object.keys(diffedStyle).length > 0) {
           const style = processStyle(diffedStyle, {
@@ -71,6 +71,17 @@ export default function createRenderer(config = { }) {
       }
 
       return renderer.rules[ref]
+    },
+
+    /**
+     * Encapsulated style resolving method
+     *
+     * @param {Function} style - rule or keyframe to be resolved
+     * @param {Object} props - props used to resolve style
+     * @return {Object} resolved style
+     */
+    _resolveStyle(style, props) {
+      return style(props)
     }
   }
 
