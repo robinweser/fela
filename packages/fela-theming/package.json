@@ -1,0 +1,27 @@
+{
+  "name": "fela-perf",
+  "version": "1.1.0",
+  "description": "Fela enhancer to log performance information",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-devtools",
+    "fela-enhancer",
+    "dx",
+    "devtools",
+    "cssinjs",
+    "performance"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "1.1.0"
+  }
+}
