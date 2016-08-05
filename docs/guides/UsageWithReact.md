@@ -114,7 +114,7 @@ export default connect(mapStylesToProps)(Header)
 ```
 
 ## Presentational Components from Fela Rules
-A even more convenient way is to create your presentational components from Fela rules directly. react-fela ships the [`createComponent`](https://github.com/rofrischmann/react-fela/blob/master/docs/createComponent.md) method which helps to achieve that.<br> It takes a single Fela rule and optionally a base component type. It pipes all `props` to the underlying DOM element directly.
+An even more convenient way to create your presentational components is from Fela rules directly. react-fela ships with the [`createComponent`](https://github.com/rofrischmann/react-fela/blob/master/docs/createComponent.md) method which helps to achieve that.<br> It takes a single Fela rule and optionally a base component type. It pipes all `props` to the underlying DOM element directly.
 
 ### Example
 ```javascript
