@@ -1,4 +1,5 @@
 import createRenderer from '../modules/createRenderer'
+import generatePropsReference from '../modules/utils/generatePropsReference'
 
 describe('Renderer', () => {
   describe('Instantiating a new Renderer', () => {
@@ -285,12 +286,18 @@ describe('Renderer', () => {
   describe('Rendering Fonts', () => {
     it('should cache the font-face', () => {
       const renderer = createRenderer()
-
-      const family = renderer.renderFont('Arial', [ '../fonts/Arial.ttf', '../fonts/Arial.woff' ], {
+      const family = 'Arial'
+      const properties = {
         fontWeight: 300
-      })
+      }
 
-      expect(renderer.rendered.hasOwnProperty(family)).to.eql(true)
+      renderer.renderFont(family, [
+        '../fonts/Arial.ttf',
+        '../fonts/Arial.woff'
+      ], properties)
+
+      const key = family + generatePropsReference(properties)
+      expect(renderer.rendered.hasOwnProperty(key)).to.eql(true)
     })
 
     it('should return the font family', () => {
