@@ -141,7 +141,9 @@ export default function createRenderer(config = { }) {
      * @return {string} fontFamily reference
      */
     renderFont(family, files, properties = { }) {
-      if (!renderer.rendered.hasOwnProperty(family)) {
+      const key = family + generatePropsReference(properties)
+      
+      if (!renderer.rendered.hasOwnProperty(key)) {
         const fontFace = {
           fontFamily: '\'' + family + '\'',
           src: files.map(src => 'url(\'' + src + '\') format(\'' + getFontFormat(src) + '\')').join(',')
@@ -151,7 +153,7 @@ export default function createRenderer(config = { }) {
         Object.keys(properties).filter(prop => fontProperties.indexOf(prop) > -1).forEach(fontProp => fontFace[fontProp] = properties[fontProp])
 
         const css = '@font-face{' + cssifyObject(fontFace) + '}'
-        renderer.rendered[family] = true
+        renderer.rendered[key] = true
         renderer.fontFaces += css
         renderer._emitChange()
       }
