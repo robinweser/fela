@@ -2,7 +2,7 @@ function validateStyleObject(style, logInvalid, deleteInvalid) {
   Object.keys(style).forEach(property => {
     const value = style[property]
     if (value instanceof Object && !Array.isArray(value)) {
-      if (property.indexOf(':') === 0 || property.substr(0, 6) === '@media') {
+      if (/^(@media|:|\[)/.test(property)) {
         validateStyleObject(value, logInvalid, deleteInvalid)
       } else {
         if (deleteInvalid) {
