@@ -12,12 +12,12 @@ It is aware of unitless properties such as `lineHeight` and also adds units to m
 npm i --save fela-plugin-unit
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginUnit` global.
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaPluginUnit` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela-plugin-unit@1.1.0/dist/fela-plugin-unit.js"></script>
+<script src="https://unpkg.com/fela-plugin-unit@1.1.0/dist/fela-plugin-unit.js"></script>
 <!-- Fela (Production): Minified version -->
-<script  src="https://npmcdn.com/fela-plugin-unit@1.1.0/dist/fela-plugin-unit.min.js"></script>
+<script  src="https://unpkg.com/fela-plugin-unit@1.1.0/dist/fela-plugin-unit.min.js"></script>
 ```
 
 ## Example

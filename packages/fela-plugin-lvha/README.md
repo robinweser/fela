@@ -11,12 +11,12 @@ LVHA (sometimes known as LVHFA) stands for **L**ink **V**isited **H**over (**F**
 npm i --save fela-plugin-lvha
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginLVHA` global.
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaPluginLVHA` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela-plugin-lvha@1.1.0/dist/fela-plugin-lvha.js"></script>
+<script src="https://unpkg.com/fela-plugin-lvha@1.1.0/dist/fela-plugin-lvha.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://npmcdn.com/fela-plugin-lvha@1.1.0/dist/fela-plugin-lvha.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-lvha@1.1.0/dist/fela-plugin-lvha.min.js"></script>
 ```
 
 ## Example
