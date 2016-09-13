@@ -59,18 +59,21 @@ export default function createRenderer(config = { }) {
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(className)) {
         const resolvedStyle = renderer._resolveStyle(rule, props)
-        const diffedStyle = diffStyle(resolvedStyle, renderer.base[ruleId])
+
+        // process style using each plugin
+        const style = processStyle(resolvedStyle, {
+          type: 'rule',
+          className: className,
+          id: ruleId,
+          props: props,
+          rule: rule
+        }, renderer.plugins)
+
+        // diff style objects with base styles
+        const diffedStyle = diffStyle(style, renderer.base[ruleId])
 
         if (Object.keys(diffedStyle).length > 0) {
-          const style = processStyle(diffedStyle, {
-            type: 'rule',
-            className: className,
-            id: ruleId,
-            props: props,
-            rule: rule
-          }, renderer.plugins)
-
-          renderer._renderStyle(className, style)
+          renderer._renderStyle(className, diffedStyle)
 
           renderer.rendered[className] = renderer._didChange
 
@@ -84,7 +87,7 @@ export default function createRenderer(config = { }) {
 
         // keep static style to diff dynamic onces later on
         if (className === 'c' + ruleId) {
-          renderer.base[ruleId] = resolvedStyle
+          renderer.base[ruleId] = diffedStyle
         }
       }
 
@@ -142,7 +145,7 @@ export default function createRenderer(config = { }) {
      */
     renderFont(family, files, properties = { }) {
       const key = family + generatePropsReference(properties)
-      
+
       if (!renderer.rendered.hasOwnProperty(key)) {
         const fontFace = {
           fontFamily: '\'' + family + '\'',
