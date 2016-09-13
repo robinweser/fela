@@ -20,12 +20,12 @@ Fela can be used with [React](https://github.com/rofrischmann/react-fela) or wit
 npm i --save fela
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can `npm install` all packages. <br>
-Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [npmcdn](https://npmcdn.com/).
+Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [unpkg](https://unpkg.com/).
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela@1.1.0/dist/fela.js"></script>
+<script src="https://unpkg.com/fela@1.1.0/dist/fela.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://npmcdn.com/fela@1.1.0/dist/fela.min.js"></script>
+<script src="https://unpkg.com/fela@1.1.0/dist/fela.min.js"></script>
 ```
 
 ## Usage

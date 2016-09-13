@@ -13,12 +13,12 @@ Uses [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefix
 npm i --save fela-plugin-dynamic-prefixer
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [npmcdn](https://npmcdn.com/). It registers a  `FelaPluginDynamicPrefixer` global.
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaPluginDynamicPrefixer` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://npmcdn.com/fela-plugin-dynamic-prefixer@1.1.0/dist/fela-plugin-dynamic-prefixer.js"></script>
+<script src="https://unpkg.com/fela-plugin-dynamic-prefixer@1.1.0/dist/fela-plugin-dynamic-prefixer.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://npmcdn.com/fela-plugin-dynamic-prefixer@1.1.0/dist/fela-plugin-dynamic-prefixer.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-dynamic-prefixer@1.1.0/dist/fela-plugin-dynamic-prefixer.min.js"></script>
 ```
 
 ## Example
