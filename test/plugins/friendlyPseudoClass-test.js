@@ -34,4 +34,32 @@ describe('Friendly pseudo class plugin', () => {
       }
     })
   })
+
+  it('should resolve nested media objects', () => {
+    const style = {
+      width: 20,
+      '@media (min-height: 300px)': {
+        width: 30,
+        onFocus: {
+          color: 'red',
+          onHover: {
+            color: 'blue'
+          }
+        }
+      }
+    }
+
+    expect(friendlyPseudoClass()(style)).to.eql({
+      width: 20,
+      '@media (min-height: 300px)': {
+        width: 30,
+        ':focus': {
+          color: 'red',
+          ':hover': {
+            color: 'blue'
+          }
+        }
+      }
+    })
+  })
 })

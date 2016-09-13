@@ -1,13 +1,18 @@
+const regex = new RegExp('^on([A-Z])')
+
 function friendlyPseudoClass(style) {
   Object.keys(style).forEach(property => {
     const value = style[property]
     if (value instanceof Object && !Array.isArray(value)) {
-      const regex = new RegExp('^on([A-Z])')
+      const resolvedValue = friendlyPseudoClass(value)
+
       if (regex.test(property)) {
         const pseudo = property.replace(regex, (match, p1) => ':' + p1.toLowerCase())
 
-        style[pseudo] = friendlyPseudoClass(value)
+        style[pseudo] = resolvedValue
         delete style[property]
+      } else {
+        style[property] = resolvedValue
       }
     }
   })
