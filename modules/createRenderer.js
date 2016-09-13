@@ -255,7 +255,8 @@ export default function createRenderer(config = { }) {
         // recursive object iteration in order to render
         // pseudo class and media class declarations
         if (value instanceof Object && !Array.isArray(value)) {
-          if (property.charAt(0) === ':') {
+          // allow pseudo classes, attribute selectors and the child selector
+          if (property.charAt(0) === ':' || property.charAt(0) === '[' || property.charAt(0) === '>') {
             renderer._renderStyle(className, value, pseudo + property, media)
           } else if (property.substr(0, 6) === '@media') {
             // combine media query rules with an `and`

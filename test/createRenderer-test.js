@@ -83,10 +83,7 @@ describe('Renderer', () => {
     })
 
     it('should reuse cached variations', () => {
-      const rule = props => ({
-        color: props.color,
-        fontSize: '23px'
-      })
+      const rule = props => ({ color: props.color, fontSize: '23px' })
       const renderer = createRenderer()
 
       renderer.renderRule(rule, { color: 'red' })
@@ -102,9 +99,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule, { color: 'red' })
       const className2 = renderer.renderRule(rule, { color: 'red' })
-      const className3 = renderer.renderRule(rule, {
-        color: 'blue'
-      })
+      const className3 = renderer.renderRule(rule, { color: 'blue' })
 
       expect(className).to.eql(className2)
       expect(className).to.eql(className3)
@@ -176,6 +171,34 @@ describe('Renderer', () => {
       const className = renderer.renderRule(rule)
 
       expect(renderer.rules).to.eql('.c0:hover{color:blue}.c0{color:red}')
+    })
+
+    it('should render attribute selectors', () => {
+      const rule = props => ({
+        color: 'red',
+        '[bool=true]': {
+          color: 'blue'
+        }
+      })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule)
+
+      expect(renderer.rules).to.eql('.c0[bool=true]{color:blue}.c0{color:red}')
+    })
+
+    it('should render child selectors', () => {
+      const rule = props => ({
+        color: 'red',
+        '> h1': {
+          color: 'blue'
+        }
+      })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule)
+
+      expect(renderer.rules).to.eql('.c0> h1{color:blue}.c0{color:red}')
     })
 
     it('should render media queries', () => {
@@ -287,9 +310,7 @@ describe('Renderer', () => {
     it('should cache the font-face', () => {
       const renderer = createRenderer()
       const family = 'Arial'
-      const properties = {
-        fontWeight: 300
-      }
+      const properties = { fontWeight: 300 }
 
       renderer.renderFont(family, [
         '../fonts/Arial.ttf',
