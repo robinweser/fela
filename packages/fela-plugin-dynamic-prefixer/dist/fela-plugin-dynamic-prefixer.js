@@ -30,6 +30,22 @@
 
     function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
+    var getPrefixedValue = __commonjs(function (module, exports) {
+    "use strict";
+
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+
+    exports.default = function (prefixedValue, value, keepUnprefixed) {
+      return keepUnprefixed ? [prefixedValue, value] : prefixedValue;
+    };
+
+    module.exports = exports["default"];
+    });
+
+    var require$$0$1 = (getPrefixedValue && typeof getPrefixedValue === 'object' && 'default' in getPrefixedValue ? getPrefixedValue['default'] : getPrefixedValue);
+
     var flexboxOld = __commonjs(function (module, exports) {
     'use strict';
 
@@ -37,6 +53,14 @@
       value: true
     });
     exports.default = flexboxOld;
+
+    var _getPrefixedValue = require$$0$1;
+
+    var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
+
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
 
     function _defineProperty(obj, key, value) {
       if (key in obj) {
@@ -64,11 +88,7 @@
     };
 
     var otherProps = ['alignContent', 'alignSelf', 'order', 'flexGrow', 'flexShrink', 'flexBasis', 'flexDirection'];
-
-    var properties = Object.keys(alternativeProps).concat(otherProps).reduce(function (result, prop) {
-      result[prop] = true;
-      return result;
-    }, {});
+    var properties = Object.keys(alternativeProps).concat(otherProps);
 
     function flexboxOld(_ref) {
       var property = _ref.property;
@@ -80,8 +100,8 @@
       var css = _ref.prefix.css;
       var keepUnprefixed = _ref.keepUnprefixed;
 
-      if ((properties[property] || property === 'display' && typeof value === 'string' && value.indexOf('flex') > -1) && (browser === 'firefox' && version < 22 || browser === 'chrome' && version < 21 || (browser === 'safari' || browser === 'ios_saf') && version <= 6.1 || browser === 'android' && version < 4.4 || browser === 'and_uc')) {
-        if (!keepUnprefixed) {
+      if ((properties.indexOf(property) > -1 || property === 'display' && typeof value === 'string' && value.indexOf('flex') > -1) && (browser === 'firefox' && version < 22 || browser === 'chrome' && version < 21 || (browser === 'safari' || browser === 'ios_saf') && version <= 6.1 || browser === 'android' && version < 4.4 || browser === 'and_uc')) {
+        if (!keepUnprefixed && !Array.isArray(styles[property])) {
           delete styles[property];
         }
         if (property === 'flexDirection') {
@@ -91,9 +111,8 @@
           };
         }
         if (property === 'display' && alternativeValues[value]) {
-          var prefixedValue = css + alternativeValues[value];
           return {
-            display: keepUnprefixed ? [prefixedValue, value] : prefixedValue
+            display: (0, _getPrefixedValue2.default)(css + alternativeValues[value], value, keepUnprefixed)
           };
         }
         if (alternativeProps[property]) {
@@ -113,6 +132,14 @@
       value: true
     });
     exports.default = flexboxIE;
+
+    var _getPrefixedValue = require$$0$1;
+
+    var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
+
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
 
     function _defineProperty(obj, key, value) {
       if (key in obj) {
@@ -141,11 +168,6 @@
       flexBasis: 'msPreferredSize'
     };
 
-    var properties = Object.keys(alternativeProps).reduce(function (result, prop) {
-      result[prop] = true;
-      return result;
-    }, {});
-
     function flexboxIE(_ref) {
       var property = _ref.property;
       var value = _ref.value;
@@ -156,14 +178,13 @@
       var css = _ref.prefix.css;
       var keepUnprefixed = _ref.keepUnprefixed;
 
-      if ((properties[property] || property === 'display' && typeof value === 'string' && value.indexOf('flex') > -1) && (browser === 'ie_mob' || browser === 'ie') && version == 10) {
-        if (!keepUnprefixed) {
+      if ((alternativeProps[property] || property === 'display' && typeof value === 'string' && value.indexOf('flex') > -1) && (browser === 'ie_mob' || browser === 'ie') && version == 10) {
+        if (!keepUnprefixed && !Array.isArray(styles[property])) {
           delete styles[property];
         }
         if (property === 'display' && alternativeValues[value]) {
-          var prefixedValue = css + alternativeValues[value];
           return {
-            display: keepUnprefixed ? [prefixedValue, value] : prefixedValue
+            display: (0, _getPrefixedValue2.default)(css + alternativeValues[value], value, keepUnprefixed)
           };
         }
         if (alternativeProps[property]) {
@@ -191,7 +212,7 @@
     module.exports = exports['default'];
     });
 
-    var require$$0$1 = (unprefixProperty && typeof unprefixProperty === 'object' && 'default' in unprefixProperty ? unprefixProperty['default'] : unprefixProperty);
+    var require$$0$2 = (unprefixProperty && typeof unprefixProperty === 'object' && 'default' in unprefixProperty ? unprefixProperty['default'] : unprefixProperty);
 
     var capitalizeString = __commonjs(function (module, exports) {
     "use strict";
@@ -248,7 +269,7 @@
 
     var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-    var _unprefixProperty = require$$0$1;
+    var _unprefixProperty = require$$0$2;
 
     var _unprefixProperty2 = _interopRequireDefault(_unprefixProperty);
 
@@ -278,6 +299,7 @@
 
       if (typeof value === 'string' && properties[unprefixedProperty]) {
         var _ret = function () {
+          // TODO: memoize this array
           var requiresPrefixDashCased = Object.keys(requiresPrefix).map(function (prop) {
             return (0, _hyphenateStyleName2.default)(prop);
           });
@@ -314,6 +336,14 @@
     });
     exports.default = gradient;
 
+    var _getPrefixedValue = require$$0$1;
+
+    var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
+
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+
     function _defineProperty(obj, key, value) {
       if (key in obj) {
         Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
@@ -334,8 +364,7 @@
       var keepUnprefixed = _ref.keepUnprefixed;
 
       if (typeof value === 'string' && value.match(values) !== null && (browser === 'firefox' && version < 16 || browser === 'chrome' && version < 26 || (browser === 'safari' || browser === 'ios_saf') && version < 7 || (browser === 'opera' || browser === 'op_mini') && version < 12.1 || browser === 'android' && version < 4.4 || browser === 'and_uc')) {
-        var prefixedValue = css + value;
-        return _defineProperty({}, property, keepUnprefixed ? [prefixedValue, value] : prefixedValue);
+        return _defineProperty({}, property, (0, _getPrefixedValue2.default)(css + value, value, keepUnprefixed));
       }
     }
     module.exports = exports['default'];
@@ -350,6 +379,14 @@
       value: true
     });
     exports.default = sizing;
+
+    var _getPrefixedValue = require$$0$1;
+
+    var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
+
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
 
     function _defineProperty(obj, key, value) {
       if (key in obj) {
@@ -385,8 +422,7 @@
       // This might change in the future
       // Keep an eye on it
       if (properties[property] && values[value]) {
-        var prefixedValue = css + value;
-        return _defineProperty({}, property, keepUnprefixed ? [prefixedValue, value] : prefixedValue);
+        return _defineProperty({}, property, (0, _getPrefixedValue2.default)(css + value, value, keepUnprefixed));
       }
     }
     module.exports = exports['default'];
@@ -401,6 +437,15 @@
       value: true
     });
     exports.default = flex;
+
+    var _getPrefixedValue = require$$0$1;
+
+    var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
+
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+
     var values = { flex: true, 'inline-flex': true };
 
     function flex(_ref) {
@@ -413,9 +458,8 @@
       var keepUnprefixed = _ref.keepUnprefixed;
 
       if (property === 'display' && values[value] && (browser === 'chrome' && version < 29 && version > 20 || (browser === 'safari' || browser === 'ios_saf') && version < 9 && version > 6 || browser === 'opera' && (version == 15 || version == 16))) {
-        var prefixedValue = css + value;
         return {
-          display: keepUnprefixed ? [prefixedValue, value] : prefixedValue
+          display: (0, _getPrefixedValue2.default)(css + value, value, keepUnprefixed)
         };
       }
     }
@@ -431,6 +475,15 @@
       value: true
     });
     exports.default = grabCursor;
+
+    var _getPrefixedValue = require$$0$1;
+
+    var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
+
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+
     var values = { grab: true, grabbing: true };
 
     function grabCursor(_ref) {
@@ -444,9 +497,8 @@
 
       // adds prefixes for firefox, chrome, safari, and opera regardless of version until a reliable brwoser support info can be found (see: https://github.com/rofrischmann/inline-style-prefixer/issues/79)
       if (property === 'cursor' && values[value] && (browser === 'firefox' || browser === 'chrome' || browser === 'safari' || browser === 'opera')) {
-        var prefixedValue = css + value;
         return {
-          cursor: keepUnprefixed ? [prefixedValue, value] : prefixedValue
+          cursor: (0, _getPrefixedValue2.default)(css + value, value, keepUnprefixed)
         };
       }
     }
@@ -462,6 +514,15 @@
       value: true
     });
     exports.default = zoomCursor;
+
+    var _getPrefixedValue = require$$0$1;
+
+    var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
+
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+
     var values = { 'zoom-in': true, 'zoom-out': true };
 
     function zoomCursor(_ref) {
@@ -474,9 +535,8 @@
       var keepUnprefixed = _ref.keepUnprefixed;
 
       if (property === 'cursor' && values[value] && (browser === 'firefox' && version < 24 || browser === 'chrome' && version < 37 || browser === 'safari' && version < 9 || browser === 'opera' && version < 24)) {
-        var prefixedValue = css + value;
         return {
-          cursor: keepUnprefixed ? [prefixedValue, value] : prefixedValue
+          cursor: (0, _getPrefixedValue2.default)(css + value, value, keepUnprefixed)
         };
       }
     }
@@ -492,6 +552,14 @@
       value: true
     });
     exports.default = calc;
+
+    var _getPrefixedValue = require$$0$1;
+
+    var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
+
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
 
     function _defineProperty(obj, key, value) {
       if (key in obj) {
@@ -511,8 +579,7 @@
       var keepUnprefixed = _ref.keepUnprefixed;
 
       if (typeof value === 'string' && value.indexOf('calc(') > -1 && (browser === 'firefox' && version < 15 || browser === 'chrome' && version < 25 || browser === 'safari' && version < 6.1 || browser === 'ios_saf' && version < 7)) {
-        var prefixedValue = value.replace(/calc\(/g, css + 'calc(');
-        return _defineProperty({}, property, keepUnprefixed ? [prefixedValue, value] : prefixedValue);
+        return _defineProperty({}, property, (0, _getPrefixedValue2.default)(value.replace(/calc\(/g, css + 'calc('), value, keepUnprefixed));
       }
     }
     module.exports = exports['default'];
@@ -531,27 +598,6 @@
     });
 
     var require$$9 = (prefixProps && typeof prefixProps === 'object' && 'default' in prefixProps ? prefixProps['default'] : prefixProps);
-
-    var assign = __commonjs(function (module, exports) {
-    "use strict";
-
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    // light polyfill for Object.assign
-
-    exports.default = function (base) {
-      var extend = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-      return Object.keys(extend).reduce(function (out, key) {
-        out[key] = extend[key];
-        return out;
-      }, base);
-    };
-
-    module.exports = exports["default"];
-    });
-
-    var require$$8$1 = (assign && typeof assign === 'object' && 'default' in assign ? assign['default'] : assign);
 
     var getPrefixedKeyframes = __commonjs(function (module, exports) {
     'use strict';
@@ -576,7 +622,7 @@
     module.exports = exports['default'];
     });
 
-    var require$$12 = (getPrefixedKeyframes && typeof getPrefixedKeyframes === 'object' && 'default' in getPrefixedKeyframes ? getPrefixedKeyframes['default'] : getPrefixedKeyframes);
+    var require$$11 = (getPrefixedKeyframes && typeof getPrefixedKeyframes === 'object' && 'default' in getPrefixedKeyframes ? getPrefixedKeyframes['default'] : getPrefixedKeyframes);
 
     var bowser = __commonjs(function (module) {
     /*!
@@ -1038,12 +1084,11 @@
           if (minVersions.hasOwnProperty(browser)) {
             if (_bowser[browser]) {
               // browser version and min supported version.
-              if (compareVersions([version, minVersions[browser]]) < 0) {
-                return true; // unsupported
-              }
+              return compareVersions([version, minVersions[browser]]) < 0;
             }
           }
         }
+
         return strictMode; // not found
       }
 
@@ -1052,10 +1097,11 @@
        *
        * @param  {Object} minVersions map of minimal version to browser
        * @param  {Boolean} [strictMode = false] flag to return false if browser wasn't found in map
+       * @param  {String}  [ua] user agent string
        * @return {Boolean}
        */
-      function check(minVersions, strictMode) {
-        return !isUnsupportedBrowser(minVersions, strictMode);
+      function check(minVersions, strictMode, ua) {
+        return !isUnsupportedBrowser(minVersions, strictMode, ua);
       }
 
       bowser.isUnsupportedBrowser = isUnsupportedBrowser;
@@ -1073,7 +1119,7 @@
     });
     });
 
-    var require$$0$2 = (bowser && typeof bowser === 'object' && 'default' in bowser ? bowser['default'] : bowser);
+    var require$$0$3 = (bowser && typeof bowser === 'object' && 'default' in bowser ? bowser['default'] : bowser);
 
     var getBrowserInformation = __commonjs(function (module, exports) {
     'use strict';
@@ -1082,7 +1128,7 @@
       value: true
     });
 
-    var _bowser = require$$0$2;
+    var _bowser = require$$0$3;
 
     var _bowser2 = _interopRequireDefault(_bowser);
 
@@ -1173,7 +1219,7 @@
     module.exports = exports['default'];
     });
 
-    var require$$13 = (getBrowserInformation && typeof getBrowserInformation === 'object' && 'default' in getBrowserInformation ? getBrowserInformation['default'] : getBrowserInformation);
+    var require$$12 = (getBrowserInformation && typeof getBrowserInformation === 'object' && 'default' in getBrowserInformation ? getBrowserInformation['default'] : getBrowserInformation);
 
     var flexboxOld$1 = __commonjs(function (module, exports) {
     'use strict';
@@ -1220,7 +1266,7 @@
     module.exports = exports['default'];
     });
 
-    var require$$0$3 = (flexboxOld$1 && typeof flexboxOld$1 === 'object' && 'default' in flexboxOld$1 ? flexboxOld$1['default'] : flexboxOld$1);
+    var require$$0$4 = (flexboxOld$1 && typeof flexboxOld$1 === 'object' && 'default' in flexboxOld$1 ? flexboxOld$1['default'] : flexboxOld$1);
 
     var flexboxIE$1 = __commonjs(function (module, exports) {
     'use strict';
@@ -1275,7 +1321,7 @@
     module.exports = exports["default"];
     });
 
-    var require$$0$4 = (prefixProps$1 && typeof prefixProps$1 === 'object' && 'default' in prefixProps$1 ? prefixProps$1['default'] : prefixProps$1);
+    var require$$0$5 = (prefixProps$1 && typeof prefixProps$1 === 'object' && 'default' in prefixProps$1 ? prefixProps$1['default'] : prefixProps$1);
 
     var isPrefixedValue = __commonjs(function (module, exports) {
     'use strict';
@@ -1293,7 +1339,7 @@
     module.exports = exports['default'];
     });
 
-    var require$$0$5 = (isPrefixedValue && typeof isPrefixedValue === 'object' && 'default' in isPrefixedValue ? isPrefixedValue['default'] : isPrefixedValue);
+    var require$$0$6 = (isPrefixedValue && typeof isPrefixedValue === 'object' && 'default' in isPrefixedValue ? isPrefixedValue['default'] : isPrefixedValue);
 
     var transition$1 = __commonjs(function (module, exports) {
     'use strict';
@@ -1311,11 +1357,11 @@
 
     var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-    var _isPrefixedValue = require$$0$5;
+    var _isPrefixedValue = require$$0$6;
 
     var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
-    var _prefixProps = require$$0$4;
+    var _prefixProps = require$$0$5;
 
     var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
@@ -1390,7 +1436,7 @@
 
     var require$$2$2 = (transition$1 && typeof transition$1 === 'object' && 'default' in transition$1 ? transition$1['default'] : transition$1);
 
-    var joinPrefixedRules = __commonjs(function (module, exports) {
+    var joinPrefixedValue = __commonjs(function (module, exports) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -1419,7 +1465,7 @@
     module.exports = exports['default'];
     });
 
-    var require$$1$2 = (joinPrefixedRules && typeof joinPrefixedRules === 'object' && 'default' in joinPrefixedRules ? joinPrefixedRules['default'] : joinPrefixedRules);
+    var require$$1$2 = (joinPrefixedValue && typeof joinPrefixedValue === 'object' && 'default' in joinPrefixedValue ? joinPrefixedValue['default'] : joinPrefixedValue);
 
     var gradient$1 = __commonjs(function (module, exports) {
     'use strict';
@@ -1429,11 +1475,11 @@
     });
     exports.default = gradient;
 
-    var _joinPrefixedRules = require$$1$2;
+    var _joinPrefixedValue = require$$1$2;
 
-    var _joinPrefixedRules2 = _interopRequireDefault(_joinPrefixedRules);
+    var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
-    var _isPrefixedValue = require$$0$5;
+    var _isPrefixedValue = require$$0$6;
 
     var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -1444,12 +1490,8 @@
     var values = /linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/;
 
     function gradient(property, value) {
-      if (typeof value === 'string' && value.match(values) !== null) {
-        if ((0, _isPrefixedValue2.default)(value)) {
-          return;
-        }
-
-        return (0, _joinPrefixedRules2.default)(property, value);
+      if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.match(values) !== null) {
+        return (0, _joinPrefixedValue2.default)(property, value);
       }
     }
     module.exports = exports['default'];
@@ -1465,9 +1507,9 @@
     });
     exports.default = sizing;
 
-    var _joinPrefixedRules = require$$1$2;
+    var _joinPrefixedValue = require$$1$2;
 
-    var _joinPrefixedRules2 = _interopRequireDefault(_joinPrefixedRules);
+    var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
     function _interopRequireDefault(obj) {
       return obj && obj.__esModule ? obj : { default: obj };
@@ -1492,7 +1534,7 @@
 
     function sizing(property, value) {
       if (properties[property] && values[value]) {
-        return (0, _joinPrefixedRules2.default)(property, value);
+        return (0, _joinPrefixedValue2.default)(property, value);
       }
     }
     module.exports = exports['default'];
@@ -1529,9 +1571,9 @@
     });
     exports.default = cursor;
 
-    var _joinPrefixedRules = require$$1$2;
+    var _joinPrefixedValue = require$$1$2;
 
-    var _joinPrefixedRules2 = _interopRequireDefault(_joinPrefixedRules);
+    var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
     function _interopRequireDefault(obj) {
       return obj && obj.__esModule ? obj : { default: obj };
@@ -1546,7 +1588,7 @@
 
     function cursor(property, value) {
       if (property === 'cursor' && values[value]) {
-        return (0, _joinPrefixedRules2.default)(property, value);
+        return (0, _joinPrefixedValue2.default)(property, value);
       }
     }
     module.exports = exports['default'];
@@ -1562,11 +1604,11 @@
     });
     exports.default = calc;
 
-    var _joinPrefixedRules = require$$1$2;
+    var _joinPrefixedValue = require$$1$2;
 
-    var _joinPrefixedRules2 = _interopRequireDefault(_joinPrefixedRules);
+    var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
-    var _isPrefixedValue = require$$0$5;
+    var _isPrefixedValue = require$$0$6;
 
     var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -1575,12 +1617,8 @@
     }
 
     function calc(property, value) {
-      if (typeof value === 'string' && value.indexOf('calc(') > -1) {
-        if ((0, _isPrefixedValue2.default)(value)) {
-          return;
-        }
-
-        return (0, _joinPrefixedRules2.default)(property, value, function (prefix, value) {
+      if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('calc(') > -1) {
+        return (0, _joinPrefixedValue2.default)(property, value, function (prefix, value) {
           return value.replace(/calc\(/g, prefix + 'calc(');
         });
       }
@@ -1598,17 +1636,13 @@
     });
     exports.default = prefixAll;
 
-    var _prefixProps = require$$0$4;
+    var _prefixProps = require$$0$5;
 
     var _prefixProps2 = _interopRequireDefault(_prefixProps);
 
     var _capitalizeString = require$$2$1;
 
     var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
-
-    var _assign = require$$8$1;
-
-    var _assign2 = _interopRequireDefault(_assign);
 
     var _calc = require$$7$1;
 
@@ -1638,7 +1672,7 @@
 
     var _flexboxIE2 = _interopRequireDefault(_flexboxIE);
 
-    var _flexboxOld = require$$0$3;
+    var _flexboxOld = require$$0$4;
 
     var _flexboxOld2 = _interopRequireDefault(_flexboxOld);
 
@@ -1647,6 +1681,7 @@
     }
 
     // special flexbox specifications
+
 
     var plugins = [_calc2.default, _cursor2.default, _sizing2.default, _gradient2.default, _transition2.default, _flexboxIE2.default, _flexboxOld2.default, _flex2.default];
 
@@ -1661,9 +1696,6 @@
         if (value instanceof Object && !Array.isArray(value)) {
           // recurse through nested style objects
           styles[property] = prefixAll(value);
-        } else if (Array.isArray(value)) {
-          // prefix fallback arrays
-          (0, _assign2.default)(styles, prefixArray(property, value));
         } else {
           Object.keys(_prefixProps2.default).forEach(function (prefix) {
             var properties = _prefixProps2.default[prefix];
@@ -1676,51 +1708,39 @@
       });
 
       Object.keys(styles).forEach(function (property) {
-        var value = styles[property];
-        // resolve every special plugins
-        plugins.forEach(function (plugin) {
-          return (0, _assign2.default)(styles, plugin(property, value));
+        [].concat(styles[property]).forEach(function (value, index) {
+          // resolve every special plugins
+          plugins.forEach(function (plugin) {
+            return assignStyles(styles, plugin(property, value));
+          });
         });
       });
 
       return styles;
     }
 
-    function prefixArray(property, valueArray) {
-      var result = {};
-      valueArray.forEach(function (value) {
-        plugins.forEach(function (plugin) {
-          var prefixed = plugin(property, value);
-          if (prefixed) {
-            Object.keys(prefixed).forEach(function (prop) {
-              var entry = prefixed[prop];
-              result[prop] = result[prop] ? mergeValues(result[prop], entry) : entry;
-            });
-          }
-        });
-        if (!result[property]) {
-          result[property] = value;
-        }
-      });
-      return result;
-    }
+    function assignStyles(base) {
+      var extend = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
-    function mergeValues(existing, toMerge) {
-      var merged = existing;
-      var valuesToMerge = Array.isArray(toMerge) ? toMerge : [toMerge];
-      valuesToMerge.forEach(function (value) {
-        if (Array.isArray(merged) && merged.indexOf(value) === -1) {
-          merged.push(value);
-        } else if (merged !== value) {
-          merged = [merged, value];
+      Object.keys(extend).forEach(function (property) {
+        var baseValue = base[property];
+        if (Array.isArray(baseValue)) {
+          [].concat(extend[property]).forEach(function (value) {
+            var valueIndex = baseValue.indexOf(value);
+            if (valueIndex > -1) {
+              base[property].splice(valueIndex, 1);
+            }
+            base[property].push(value);
+          });
+        } else {
+          base[property] = extend[property];
         }
       });
-      return merged;
     }
     module.exports = exports['default'];
     });
 
-    var require$$14 = (prefixAll && typeof prefixAll === 'object' && 'default' in prefixAll ? prefixAll['default'] : prefixAll);
+    var require$$13 = (prefixAll && typeof prefixAll === 'object' && 'default' in prefixAll ? prefixAll['default'] : prefixAll);
 
     var Prefixer = __commonjs(function (module, exports) {
     'use strict';
@@ -1740,25 +1760,22 @@
     }();
     // special flexbox specifications
 
-    var _prefixAll2 = require$$14;
+
+    var _prefixAll2 = require$$13;
 
     var _prefixAll3 = _interopRequireDefault(_prefixAll2);
 
-    var _getBrowserInformation = require$$13;
+    var _getBrowserInformation = require$$12;
 
     var _getBrowserInformation2 = _interopRequireDefault(_getBrowserInformation);
 
-    var _getPrefixedKeyframes = require$$12;
+    var _getPrefixedKeyframes = require$$11;
 
     var _getPrefixedKeyframes2 = _interopRequireDefault(_getPrefixedKeyframes);
 
     var _capitalizeString = require$$2$1;
 
     var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
-
-    var _assign = require$$8$1;
-
-    var _assign2 = _interopRequireDefault(_assign);
 
     var _prefixProps = require$$9;
 
@@ -1881,11 +1898,9 @@
             return styles;
           }
 
-          styles = (0, _assign2.default)({}, styles);
-
           Object.keys(styles).forEach(function (property) {
             var value = styles[property];
-            if (value instanceof Object) {
+            if (value instanceof Object && !Array.isArray(value)) {
               // recurse through nested style objects
               styles[property] = _this2.prefix(value);
             } else {
@@ -1900,24 +1915,24 @@
           });
 
           Object.keys(styles).forEach(function (property) {
-            var value = styles[property];
-            // resolve plugins
-            plugins.forEach(function (plugin) {
-              // generates a new plugin interface with current data
-              var resolvedStyles = plugin({
-                property: property,
-                value: value,
-                styles: styles,
-                browserInfo: _this2._browserInfo,
-                prefix: {
-                  js: _this2.jsPrefix,
-                  css: _this2.cssPrefix,
-                  keyframes: _this2.prefixedKeyframes
-                },
-                keepUnprefixed: _this2._keepUnprefixed,
-                requiresPrefix: _this2._requiresPrefix
+            [].concat(styles[property]).forEach(function (value) {
+              // resolve plugins
+              plugins.forEach(function (plugin) {
+                // generates a new plugin interface with current data
+                assignStyles(styles, plugin({
+                  property: property,
+                  value: value,
+                  styles: styles,
+                  browserInfo: _this2._browserInfo,
+                  prefix: {
+                    js: _this2.jsPrefix,
+                    css: _this2.cssPrefix,
+                    keyframes: _this2.prefixedKeyframes
+                  },
+                  keepUnprefixed: _this2._keepUnprefixed,
+                  requiresPrefix: _this2._requiresPrefix
+                }), value, _this2._keepUnprefixed);
               });
-              (0, _assign2.default)(styles, resolvedStyles);
             });
           });
 
@@ -1941,6 +1956,25 @@
     }();
 
     exports.default = Prefixer;
+
+    function assignStyles(base) {
+      var extend = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+      var value = arguments[2];
+      var keepUnprefixed = arguments[3];
+
+      Object.keys(extend).forEach(function (property) {
+        var baseValue = base[property];
+        if (Array.isArray(baseValue)) {
+          [].concat(extend[property]).forEach(function (val) {
+            if (base[property].indexOf(val) === -1) {
+              base[property].splice(baseValue.indexOf(value), keepUnprefixed ? 0 : 1, val);
+            }
+          });
+        } else {
+          base[property] = extend[property];
+        }
+      });
+    }
     module.exports = exports['default'];
     });
 

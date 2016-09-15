@@ -277,7 +277,7 @@
 
     var require$$2 = (transition && typeof transition === 'object' && 'default' in transition ? transition['default'] : transition);
 
-    var joinPrefixedRules = __commonjs(function (module, exports) {
+    var joinPrefixedValue = __commonjs(function (module, exports) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -306,7 +306,7 @@
     module.exports = exports['default'];
     });
 
-    var require$$1$1 = (joinPrefixedRules && typeof joinPrefixedRules === 'object' && 'default' in joinPrefixedRules ? joinPrefixedRules['default'] : joinPrefixedRules);
+    var require$$1$1 = (joinPrefixedValue && typeof joinPrefixedValue === 'object' && 'default' in joinPrefixedValue ? joinPrefixedValue['default'] : joinPrefixedValue);
 
     var gradient = __commonjs(function (module, exports) {
     'use strict';
@@ -316,9 +316,9 @@
     });
     exports.default = gradient;
 
-    var _joinPrefixedRules = require$$1$1;
+    var _joinPrefixedValue = require$$1$1;
 
-    var _joinPrefixedRules2 = _interopRequireDefault(_joinPrefixedRules);
+    var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
     var _isPrefixedValue = require$$0$3;
 
@@ -331,12 +331,8 @@
     var values = /linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/;
 
     function gradient(property, value) {
-      if (typeof value === 'string' && value.match(values) !== null) {
-        if ((0, _isPrefixedValue2.default)(value)) {
-          return;
-        }
-
-        return (0, _joinPrefixedRules2.default)(property, value);
+      if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.match(values) !== null) {
+        return (0, _joinPrefixedValue2.default)(property, value);
       }
     }
     module.exports = exports['default'];
@@ -352,9 +348,9 @@
     });
     exports.default = sizing;
 
-    var _joinPrefixedRules = require$$1$1;
+    var _joinPrefixedValue = require$$1$1;
 
-    var _joinPrefixedRules2 = _interopRequireDefault(_joinPrefixedRules);
+    var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
     function _interopRequireDefault(obj) {
       return obj && obj.__esModule ? obj : { default: obj };
@@ -379,7 +375,7 @@
 
     function sizing(property, value) {
       if (properties[property] && values[value]) {
-        return (0, _joinPrefixedRules2.default)(property, value);
+        return (0, _joinPrefixedValue2.default)(property, value);
       }
     }
     module.exports = exports['default'];
@@ -416,9 +412,9 @@
     });
     exports.default = cursor;
 
-    var _joinPrefixedRules = require$$1$1;
+    var _joinPrefixedValue = require$$1$1;
 
-    var _joinPrefixedRules2 = _interopRequireDefault(_joinPrefixedRules);
+    var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
     function _interopRequireDefault(obj) {
       return obj && obj.__esModule ? obj : { default: obj };
@@ -433,7 +429,7 @@
 
     function cursor(property, value) {
       if (property === 'cursor' && values[value]) {
-        return (0, _joinPrefixedRules2.default)(property, value);
+        return (0, _joinPrefixedValue2.default)(property, value);
       }
     }
     module.exports = exports['default'];
@@ -449,9 +445,9 @@
     });
     exports.default = calc;
 
-    var _joinPrefixedRules = require$$1$1;
+    var _joinPrefixedValue = require$$1$1;
 
-    var _joinPrefixedRules2 = _interopRequireDefault(_joinPrefixedRules);
+    var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
 
     var _isPrefixedValue = require$$0$3;
 
@@ -462,12 +458,8 @@
     }
 
     function calc(property, value) {
-      if (typeof value === 'string' && value.indexOf('calc(') > -1) {
-        if ((0, _isPrefixedValue2.default)(value)) {
-          return;
-        }
-
-        return (0, _joinPrefixedRules2.default)(property, value, function (prefix, value) {
+      if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('calc(') > -1) {
+        return (0, _joinPrefixedValue2.default)(property, value, function (prefix, value) {
           return value.replace(/calc\(/g, prefix + 'calc(');
         });
       }
@@ -476,27 +468,6 @@
     });
 
     var require$$7 = (calc && typeof calc === 'object' && 'default' in calc ? calc['default'] : calc);
-
-    var assign = __commonjs(function (module, exports) {
-    "use strict";
-
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    // light polyfill for Object.assign
-
-    exports.default = function (base) {
-      var extend = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-      return Object.keys(extend).reduce(function (out, key) {
-        out[key] = extend[key];
-        return out;
-      }, base);
-    };
-
-    module.exports = exports["default"];
-    });
-
-    var require$$8 = (assign && typeof assign === 'object' && 'default' in assign ? assign['default'] : assign);
 
     var prefixAll = __commonjs(function (module, exports) {
     'use strict';
@@ -513,10 +484,6 @@
     var _capitalizeString = require$$2$1;
 
     var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
-
-    var _assign = require$$8;
-
-    var _assign2 = _interopRequireDefault(_assign);
 
     var _calc = require$$7;
 
@@ -556,6 +523,7 @@
 
     // special flexbox specifications
 
+
     var plugins = [_calc2.default, _cursor2.default, _sizing2.default, _gradient2.default, _transition2.default, _flexboxIE2.default, _flexboxOld2.default, _flex2.default];
 
     /**
@@ -569,9 +537,6 @@
         if (value instanceof Object && !Array.isArray(value)) {
           // recurse through nested style objects
           styles[property] = prefixAll(value);
-        } else if (Array.isArray(value)) {
-          // prefix fallback arrays
-          (0, _assign2.default)(styles, prefixArray(property, value));
         } else {
           Object.keys(_prefixProps2.default).forEach(function (prefix) {
             var properties = _prefixProps2.default[prefix];
@@ -584,46 +549,34 @@
       });
 
       Object.keys(styles).forEach(function (property) {
-        var value = styles[property];
-        // resolve every special plugins
-        plugins.forEach(function (plugin) {
-          return (0, _assign2.default)(styles, plugin(property, value));
+        [].concat(styles[property]).forEach(function (value, index) {
+          // resolve every special plugins
+          plugins.forEach(function (plugin) {
+            return assignStyles(styles, plugin(property, value));
+          });
         });
       });
 
       return styles;
     }
 
-    function prefixArray(property, valueArray) {
-      var result = {};
-      valueArray.forEach(function (value) {
-        plugins.forEach(function (plugin) {
-          var prefixed = plugin(property, value);
-          if (prefixed) {
-            Object.keys(prefixed).forEach(function (prop) {
-              var entry = prefixed[prop];
-              result[prop] = result[prop] ? mergeValues(result[prop], entry) : entry;
-            });
-          }
-        });
-        if (!result[property]) {
-          result[property] = value;
-        }
-      });
-      return result;
-    }
+    function assignStyles(base) {
+      var extend = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
-    function mergeValues(existing, toMerge) {
-      var merged = existing;
-      var valuesToMerge = Array.isArray(toMerge) ? toMerge : [toMerge];
-      valuesToMerge.forEach(function (value) {
-        if (Array.isArray(merged) && merged.indexOf(value) === -1) {
-          merged.push(value);
-        } else if (merged !== value) {
-          merged = [merged, value];
+      Object.keys(extend).forEach(function (property) {
+        var baseValue = base[property];
+        if (Array.isArray(baseValue)) {
+          [].concat(extend[property]).forEach(function (value) {
+            var valueIndex = baseValue.indexOf(value);
+            if (valueIndex > -1) {
+              base[property].splice(valueIndex, 1);
+            }
+            base[property].push(value);
+          });
+        } else {
+          base[property] = extend[property];
         }
       });
-      return merged;
     }
     module.exports = exports['default'];
     });

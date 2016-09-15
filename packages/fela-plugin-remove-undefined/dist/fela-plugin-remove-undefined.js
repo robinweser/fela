@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginFriendlyPseudoClass = factory());
+  (global.FelaPluginRemoveUndefined = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -27,23 +27,22 @@
 
   babelHelpers;
 
-  var regex = new RegExp('^on([A-Z])');
+  function isInvalid(value) {
+    return value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1;
+  }
 
-  function friendlyPseudoClass(style) {
+  function removeUndefined(style) {
     Object.keys(style).forEach(function (property) {
       var value = style[property];
       if (value instanceof Object && !Array.isArray(value)) {
-        var resolvedValue = friendlyPseudoClass(value);
-
-        if (regex.test(property)) {
-          var pseudo = property.replace(regex, function (match, p1) {
-            return ':' + p1.toLowerCase();
-          });
-
-          style[pseudo] = resolvedValue;
+        style[property] = removeUndefined(value);
+      } else if (Array.isArray(value)) {
+        style[property] = value.filter(function (val) {
+          return !isInvalid(val);
+        });
+      } else {
+        if (isInvalid(value)) {
           delete style[property];
-        } else {
-          style[property] = resolvedValue;
         }
       }
     });
@@ -51,11 +50,11 @@
     return style;
   }
 
-  var friendlyPseudoClass$1 = (function () {
-    return friendlyPseudoClass;
+  var removeUndefined$1 = (function () {
+    return removeUndefined;
   });
 
-  return friendlyPseudoClass$1;
+  return removeUndefined$1;
 
 }));
-//# sourceMappingURL=fela-plugin-friendly-pseudo-class.js.map
+//# sourceMappingURL=fela-plugin-remove-undefined.js.map

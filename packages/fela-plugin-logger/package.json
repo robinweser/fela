@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-logger",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Fela plugin to log rendered styles",
   "main": "index.js",
   "files": [
@@ -20,6 +20,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "1.1.0"
+    "fela": "1.2.0"
   }
 }

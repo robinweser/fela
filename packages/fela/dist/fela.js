@@ -73,6 +73,16 @@
       }, '');
     }
 
+    /**
+     * generates an unique reference id by content hashing props
+     *
+     * @param {Object} props - props that get hashed
+     * @return {string} reference - unique props reference
+     */
+    var generatePropsReference = (function (props) {
+      return generateHash(sortedStringify(props));
+    });
+
     var formats = {
       '.woff': 'woff',
       '.eof': 'eof',
@@ -88,6 +98,52 @@
         }
         return format; // eslint-disable-line
       }, undefined);
+    }
+
+    /**
+     * pipes a style object through a list of plugins
+     *
+     * @param {Object} style - style object to process
+     * @param {Object} meta - additional meta data
+     * @param {Function[]} plugins - plugins used to process style
+     * @return {Object} processed style
+     */
+    function processStyle(style, meta, plugins) {
+      return plugins.reduce(function (processedStyle, plugin) {
+        return plugin(processedStyle, meta);
+      }, style);
+    }
+
+    /**
+     * diffs a style object against a base style object
+     *
+     * @param {Object} style - style object which is diffed
+     * @param {Object?} base - base style object
+     */
+    function diffStyle(style) {
+      var base = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+      return Object.keys(style).reduce(function (diff, property) {
+        var value = style[property];
+        // recursive object iteration in order to render
+        // pseudo class and media class declarations
+        if (value instanceof Object && !Array.isArray(value)) {
+          var nestedDiff = diffStyle(value, base[property]);
+          if (Object.keys(nestedDiff).length > 0) {
+            diff[property] = nestedDiff;
+          }
+        } else {
+          // diff styles with the base styles to only extract dynamic styles
+          if (value !== undefined && !base.hasOwnProperty(property) || base[property] !== value) {
+            // remove concatenated string values including `undefined`
+            if (typeof value === 'string' && value.indexOf('undefined') > -1) {
+              return diff;
+            }
+            diff[property] = value;
+          }
+        }
+        return diff;
+      }, {});
     }
 
     var index$1 = __commonjs(function (module) {
@@ -193,23 +249,27 @@
 
           // uses the reference ID and the props to generate an unique className
           var ruleId = renderer.ids.indexOf(rule);
-          var className = 'c' + ruleId + renderer._generatePropsReference(props);
+          var className = 'c' + ruleId + generatePropsReference(props);
 
           // only if the cached rule has not already been rendered
           // with a specific set of properties it actually renders
           if (!renderer.rendered.hasOwnProperty(className)) {
-            var diffedStyle = renderer._diffStyle(rule(props), renderer.base[ruleId]);
+            var resolvedStyle = renderer._resolveStyle(rule, props);
+
+            // process style using each plugin
+            var style = processStyle(resolvedStyle, {
+              type: 'rule',
+              className: className,
+              id: ruleId,
+              props: props,
+              rule: rule
+            }, renderer.plugins);
+
+            // diff style objects with base styles
+            var diffedStyle = diffStyle(style, renderer.base[ruleId]);
 
             if (Object.keys(diffedStyle).length > 0) {
-              var style = renderer._processStyle(diffedStyle, {
-                type: 'rule',
-                className: className,
-                id: ruleId,
-                props: props,
-                rule: rule
-              });
-
-              renderer._renderStyle(className, style);
+              renderer._renderStyle(className, diffedStyle);
 
               renderer.rendered[className] = renderer._didChange;
 
@@ -223,7 +283,7 @@
 
             // keep static style to diff dynamic onces later on
             if (className === 'c' + ruleId) {
-              renderer.base[ruleId] = rule(props);
+              renderer.base[ruleId] = diffedStyle;
             }
           }
 
@@ -253,19 +313,20 @@
             renderer.ids.push(keyframe);
           }
 
-          var propsReference = renderer._generatePropsReference(props);
+          var propsReference = generatePropsReference(props);
           var animationName = 'k' + renderer.ids.indexOf(keyframe) + propsReference;
 
           // only if the cached keyframe has not already been rendered
           // with a specific set of properties it actually renders
           if (!renderer.rendered.hasOwnProperty(animationName)) {
-            var processedKeyframe = renderer._processStyle(keyframe(props), {
+            var processedKeyframe = processStyle(renderer._resolveStyle(keyframe, props), {
               type: 'keyframe',
               keyframe: keyframe,
               props: props,
               animationName: animationName,
               id: renderer.ids.indexOf(keyframe)
-            });
+            }, renderer.plugins);
+
             var css = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes);
             renderer.rendered[animationName] = true;
             renderer.keyframes += css;
@@ -285,7 +346,9 @@
         renderFont: function renderFont(family, files) {
           var properties = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
 
-          if (!renderer.rendered.hasOwnProperty(family)) {
+          var key = family + generatePropsReference(properties);
+
+          if (!renderer.rendered.hasOwnProperty(key)) {
             (function () {
               var fontFace = {
                 fontFamily: '\'' + family + '\'',
@@ -302,7 +365,7 @@
               });
 
               var css = '@font-face{' + cssifyObject(fontFace) + '}';
-              renderer.rendered[family] = true;
+              renderer.rendered[key] = true;
               renderer.fontFaces += css;
               renderer._emitChange();
             })();
@@ -327,10 +390,10 @@
               // remove new lines from template strings
               renderer.statics += style.replace(/\s{2,}/g, '');
             } else {
-              var processedStyle = renderer._processStyle(style, {
+              var processedStyle = processStyle(style, {
                 selector: selector,
                 type: 'static'
-              });
+              }, renderer.plugins);
               renderer.statics += selector + '{' + cssifyObject(processedStyle) + '}';
             }
 
@@ -373,6 +436,18 @@
 
 
         /**
+         * Encapsulated style resolving method
+         *
+         * @param {Function} style - rule or keyframe to be resolved
+         * @param {Object} props - props used to resolve style
+         * @return {Object} resolved style
+         */
+        _resolveStyle: function _resolveStyle(style, props) {
+          return style(props);
+        },
+
+
+        /**
          * calls each listener with the current CSS markup of all caches
          * gets only called if the markup actually changes
          *
@@ -384,66 +459,6 @@
           renderer.listeners.forEach(function (listener) {
             return listener(css);
           });
-        },
-
-
-        /**
-         * generates an unique reference id by content hashing props
-         *
-         * @param {Object} props - props that get hashed
-         * @return {string} reference - unique props reference
-         */
-        _generatePropsReference: function _generatePropsReference(props) {
-          return generateHash(sortedStringify(props));
-        },
-
-
-        /**
-         * pipes a style object through a list of plugins
-         *
-         * @param {Object} style - style object to process
-         * @param {Object} meta - additional meta data
-         * @return {Object} processed style
-         */
-        _processStyle: function _processStyle(style, meta) {
-          return renderer.plugins.reduce(function (processedStyle, plugin) {
-            return plugin(processedStyle, meta);
-          }, style);
-        },
-
-
-        /**
-         * diffs a style object against a base style object
-         *
-         * @param {Object} style - style object which is diffed
-         * @param {Object?} base - base style object
-         */
-        _diffStyle: function _diffStyle(style) {
-          var _this = this;
-
-          var base = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-          return Object.keys(style).reduce(function (diff, property) {
-            var value = style[property];
-            // recursive object iteration in order to render
-            // pseudo class and media class declarations
-            if (value instanceof Object && !Array.isArray(value)) {
-              var nestedDiff = _this._diffStyle(value, base[property]);
-              if (Object.keys(nestedDiff).length > 0) {
-                diff[property] = nestedDiff;
-              }
-            } else {
-              // diff styles with the base styles to only extract dynamic styles
-              if (value !== undefined && !base.hasOwnProperty(property) || base[property] !== value) {
-                // remove concatenated string values including `undefined`
-                if (typeof value === 'string' && value.indexOf('undefined') > -1) {
-                  return diff;
-                }
-                diff[property] = value;
-              }
-            }
-            return diff;
-          }, {});
         },
 
 
@@ -462,7 +477,8 @@
             // recursive object iteration in order to render
             // pseudo class and media class declarations
             if (value instanceof Object && !Array.isArray(value)) {
-              if (property.charAt(0) === ':') {
+              // allow pseudo classes, attribute selectors and the child selector
+              if (property.charAt(0) === ':' || property.charAt(0) === '[' || property.charAt(0) === '>') {
                 renderer._renderStyle(className, value, pseudo + property, media);
               } else if (property.substr(0, 6) === '@media') {
                 // combine media query rules with an `and`
