@@ -53,6 +53,11 @@ const packages = {
     entry: 'plugins/LVHA.js',
     dependencies: false
   },
+  'fela-plugin-remove-undefined': {
+    name: 'FelaPluginRemoveUndefined',
+    entry: 'plugins/removeUndefined.js',
+    dependencies: false
+  },
   'fela-plugin-logger': {
     name: 'FelaPluginLogger',
     entry: 'plugins/logger.js',
