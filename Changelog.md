@@ -2,6 +2,17 @@
 
 ## 1.0
 
+#### 1.2.0
+##### API Changes
+* Diffing style objects is done **after** processing with plugins ( [#81](https://github.com/rofrischmann/fela/issues/81) )
+* Added attribute and child selectors to rules ( [#69](https://github.com/rofrischmann/fela/issues/69) ) ( [#75](https://github.com/rofrischmann/fela/pull/75) )
+
+##### Improvements
+* [fela-plugin-friendly-pseudo-class](packages/fela-plugin-friendly-pseudo-class) supports nested pseudo classes
+* added TypeScript Bindings and Angular support ( [#67](https://github.com/rofrischmann/fela/pull/67) )
+* added support for multiple font family declarations ( [#76](https://github.com/rofrischmann/fela/pull/67) )
+* added [fela-plugin-remove-undefined](packages/fela-plugin-remove-undefined)
+
 #### 1.1.0
 ##### API Changes
 * enhancers can now be passed to `createRenderer` via config ( [#63](https://github.com/rofrischmann/fela/issues/63) )
@@ -21,7 +32,7 @@
 ------
 
 #### 1.0.3
-* updated [fela-plugin-prefixer](packages/fela-plugin-prefixer) to use [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) version 2.0.0 ( [#57](https://github.com/rofrischmann/fela/issues/57) ) 
+* updated [fela-plugin-prefixer](packages/fela-plugin-prefixer) to use [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) version 2.0.0 ( [#57](https://github.com/rofrischmann/fela/issues/57) )
 * added [fela-plugin-dynamic-prefixer](packages/fela-plugin-dynamic-prefixer)
 * added `logMetaData` option to [fela-plugin-logger](packages/fela-plugin-logger)
 * improved dynamic style extraction (diffing)

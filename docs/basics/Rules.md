@@ -75,6 +75,65 @@ const rule = props => ({
 })
 ```
 
+#### 4. Attribute Selectors
+To be able to style elements according to their attributes, Fela introduces a special syntax for nested attribute selectors. It allows dynamic styles depending on passed attributes which adds another level of precise element selection.
+
+The API reflects the original [CSS attribute selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Attribute_selectors) and therefore allows the following operators:
+* `=`: attributes **equal** to a value
+* `~=`: attributes **containing** a value
+* `^=`: attributes **beginning** with a value
+* `|=`: attributes **starting** with a value (whole word)
+* `$=`: attributes **ending** with a value
+
+Only passing the attributes checks if the attribute is present at all.
+
+> **Note**: Use attribute selectors with caution as they add complexity to your styling and have higher specificity as other selectors.
+
+```javascript
+const rule = props => ({
+  color: 'red',
+  '[checked="true"]': {
+    color: 'yellow',
+    // they can be nested to achieve e.g.
+    // [checked="true"][traget]
+    '[target]': {
+      color: 'purple'
+    }
+  },
+  '[data-name^="A"]': {
+    color: 'black'
+  }
+})
+```
+
+#### 5. Child Selector
+Fela also supports a special syntax for child element styling know as [child selectors](https://developer.mozilla.org/es/docs/Web/CSS/Child_selectors) in CSS.
+They should only be used for third-party class manipulation or semantic problems e.g. *parent component which defines how child components are ordered depending on some state.*
+
+> **Note**: Use child selectors with caution as they add complexity to your styling and have higher specificity as other selectors.
+
+```javascript
+const rule = props => ({
+  color: 'red',
+  '> h1': {
+    color: 'blue',
+    // they can contain nested objects e.g.
+    // > h1:hover
+    ':hover': {
+      color: 'black'
+    }
+  },
+  '> #hardcoded': {
+    color: 'yellow',
+    // they can be nested to achieve e.g.
+    // > #hardcoded > .third-party
+    '.third-party': {
+      color: 'purple'
+    }
+  }
+})
+```
+
 ## Tips & Tricks
 To write more advanced and/or simpler rules there are some helpful tips & tricks you might want to know and use:
 

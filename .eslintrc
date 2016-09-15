@@ -1,0 +1,11 @@
+{
+  "extends": "eslint-config-rackt",
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  },
+  "rules": {
+    "eol-last": 0
+  }
+}
