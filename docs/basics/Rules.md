@@ -163,9 +163,22 @@ Some values might only be applied, if a certain condition is fulfilled. Instead 
 
 ```javascript
 const rule = ({ type } = {}) => ({
-  color: type === 'error' ? 'red' : 'black'
+  color: type === 'error' ? 'red' : 'green'
 })
 
 rule({ type: 'error' }) // => { color: 'red' }
 rule({ }) // => { color: 'green' }
 ```
+
+* **Nested props**:<br>
+Try not to use nested props at all as the renderer initially triggers rule rendering with an empty props object. Nested props would fail to evaluate if they do not get precisely checked within your rule. If one still wants to use nested props be sure to verify each level separately.
+
+```javascript
+const rule = ({ nested }) => ({
+  color: nested && nested.is && nested.is.bad || 'green'
+})
+
+rule({ nested: { is: { bad: 'red' }} }) // => { color: 'red' }
+rule({ }) // => { color: 'green' }
+```
+
