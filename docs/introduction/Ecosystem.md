@@ -23,6 +23,9 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-unit](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-unit) - Automatically adds units to values if needed
 * [fela-plugin-validator*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-validator) - Validates, logs & optionally deletes invalid properties for keyframes and rules
 
+#### Plugin-Presets
+* [fela-preset-web](https://github.com/rofrischmann/fela/tree/master/packages/fela-preset-web) - Preset for cross-browser web applications
+* [fela-preset-dev](https://github.com/rofrischmann/fela/tree/master/packages/fela-preset-dev) - Preset for development mode
 ### Enhancers
 > **Warning**: Enhancers are still experimental and the API might change.
 
@@ -31,7 +34,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.
 
 ### Tools
-* [fela-stylesheet](https://github.com/rofrischmann/fela-stylesheet): Organize your rules in a single StyleSheet
+* [fela-stylesheet](https://github.com/rofrischmann/fela-stylesheet): Organize your rules grouped StyleSheets
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
 
 ### Utilities
