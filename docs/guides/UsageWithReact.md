@@ -67,6 +67,8 @@ const Header = ({ title, size, color }, { renderer }) => {
   )
 }
 
+Header.contextTypes = { renderer: PropTypes.object }
+
 // Usage example
 <Header title='Hello' color='red' size={17} />
 ```
