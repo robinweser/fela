@@ -5,7 +5,7 @@ function extendStyle(style, extension) {
   // extend conditional style objects
   if (extension.hasOwnProperty('condition')) {
     if (extension.condition) {
-      assign(style, extension.style)
+      assign(style, extend(extension.style))
     }
   } else {
     // extend basic style objects
