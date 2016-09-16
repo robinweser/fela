@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-dynamic-prefixer.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-9.76kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-9.71kb-brightgreen.svg">
 
 Uses [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes by evaluating the `userAgent`.
 
@@ -13,7 +13,7 @@ Uses [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefix
 npm i --save fela-plugin-dynamic-prefixer
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaPluginDynamicPrefixer` global.
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginDynamicPrefixer` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
 <script src="https://unpkg.com/fela-plugin-dynamic-prefixer@1.2.0/dist/fela-plugin-dynamic-prefixer.js"></script>

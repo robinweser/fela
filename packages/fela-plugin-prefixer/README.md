@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-prefixer.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.89kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.86kb-brightgreen.svg">
 
 Uses [inline-style-prefixer/static](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes to both property and value.
 
@@ -13,7 +13,7 @@ Uses [inline-style-prefixer/static](https://github.com/rofrischmann/inline-style
 npm i --save fela-plugin-prefixer
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaPluginPrefixer` global.
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginPrefixer` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
 <script src="https://unpkg.com/fela-plugin-prefixer@1.2.0/dist/fela-plugin-prefixer.js"></script>

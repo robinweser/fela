@@ -10,7 +10,7 @@ Performance devTool to be used with Fela. It logs elapsed time during render cyc
 npm i --save fela-perf
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaPerf` global.>
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPerf` global.>
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
 <script src="https://unpkg.com/fela-perf@1.2.0/dist/fela-perf.js"></script>

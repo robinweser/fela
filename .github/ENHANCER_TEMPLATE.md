@@ -10,7 +10,7 @@ DESCRIPTION
 npm i --save enhancer-name
 ```
 Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `EnhancerName` global.
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `EnhancerName` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
 <script src="https://unpkg.com/enhancer-name@1.0.3/dist/enhancer-name.js"></script>
