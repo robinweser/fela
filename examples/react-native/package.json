@@ -1,0 +1,18 @@
+{
+  "name": "FelaNative",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "fela": "^1.2.0",
+    "fela-native": "file:///Users/Grindelwald/Code/fela/packages/fela-native",
+    "fela-plugin-extend": "^1.2.0",
+    "fela-stylesheet": "^1.0.3",
+    "react": "15.3.1",
+    "react-fela": "^3.0.0",
+    "react-native": "0.33.0"
+  }
+}
