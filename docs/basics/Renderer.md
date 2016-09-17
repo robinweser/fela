@@ -20,6 +20,8 @@ The renderer provides dedicated render methods for each of the three renderable 
 * [renderKeyframe](../api/Renderer.md#renderkeyframe--props)
 * [renderFont](../api/Renderer.md#renderfontfamily-files--properties)
 
+> **Tip**: Read the tips and tricks of each render method first. Especially the [renderRule](../api/Renderer.md#renderrulerule--props) tips are very helpful for beginners as well as advanced users.
+
 ### renderRule
 Takes a [rule](Rules.md) and some `props` to resolve the rule. If no `props` are passed it defaults to an empty object. It reuses the static subset of a rule to produce less markup.<br>
 It returns the rendered CSS class(es).
