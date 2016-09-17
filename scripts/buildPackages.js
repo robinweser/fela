@@ -199,3 +199,4 @@ function buildPackage(pkg) {
 }
 
 Object.keys(packages).forEach(pkg => buildPackage(pkg))
+updateVersion('fela-native')
