@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native'
 
 import generatePropsReference from '../utils/generatePropsReference'
 import processStyle from '../utils/processStyle'
-import diffStyle from '../utils/diffStyle'
 
 export default function createRenderer(config = { }) {
   let renderer = {
@@ -14,10 +13,7 @@ export default function createRenderer(config = { }) {
      */
     clear() {
       renderer.rules = { }
-      renderer.base = { }
       renderer.ids = [ ]
-
-      this._emitChange()
     },
 
     /**
@@ -32,12 +28,6 @@ export default function createRenderer(config = { }) {
       // will create an ID reference
       if (renderer.ids.indexOf(rule) < 0) {
         renderer.ids.push(rule)
-
-        // directly render the static base style to be able
-        // to diff future dynamic style with those
-        if (Object.keys(props).length > 0) {
-          renderer.renderRule(rule, { })
-        }
       }
 
       // uses the reference ID and the props to generate an unique className
@@ -47,26 +37,19 @@ export default function createRenderer(config = { }) {
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rules.hasOwnProperty(ref)) {
-        const diffedStyle = diffStyle(renderer._resolveStyle(rule, props), renderer.base[ruleId])
+        const style = processStyle(renderer._resolveStyle(rule, props), {
+          type: 'rule',
+          id: ruleId,
+          props: props,
+          rule: rule
+        }, renderer.plugins)
 
-        if (Object.keys(diffedStyle).length > 0) {
-          const style = processStyle(diffedStyle, {
-            type: 'rule',
-            id: ruleId,
-            props: props,
-            rule: rule
-          }, renderer.plugins)
-
+        if (Object.keys(style).length > 0) {
           renderer.rules[ref] = StyleSheet.create({
             style: style
           }).style
         } else {
           renderer.rules[ref] = undefined
-        }
-
-        // keep static style to diff dynamic onces later on
-        if (ref === ruleId.toString()) {
-          renderer.base[ruleId] = rule(props)
         }
       }
 
