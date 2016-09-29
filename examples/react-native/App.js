@@ -1,9 +1,6 @@
-import React, { Component } from 'react'
-import { createRenderer } from 'fela-native'
+import React, { Component, PropTypes } from 'react'
 import { create } from 'fela-stylesheet'
 import { Text, View } from 'react-native'
-
-const renderer = createRenderer()
 
 class Ticker extends Component {
   constructor() {
@@ -24,6 +21,8 @@ class Ticker extends Component {
   }
 
   render() {
+    const { renderer } = this.context
+
     return (
       <Text style={renderer.renderRule(rules.ticker, { color: this.state.color })}>
         I am &nbsp;
@@ -33,7 +32,9 @@ class Ticker extends Component {
   }
 }
 
-const App = () => (
+Ticker.contextTypes = { renderer: PropTypes.object }
+
+const App = (_, { renderer }) => (
   <View style={renderer.renderRule(rules.container, { bgColor: 'gray' })}>
     <Text style={renderer.renderRule(rules.welcome)}>
       Welcome to Fela Native!
@@ -68,5 +69,7 @@ const rules = create({
   },
   ticker: props => ({ color: props.color })
 })
+
+App.contextTypes = { renderer: PropTypes.object }
 
 export default App
