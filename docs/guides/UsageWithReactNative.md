@@ -15,6 +15,8 @@ As mentioned above, the only difference to Fela for Web is the renderer itself. 
 import { createRenderer } from 'fela-native'
 ```
 
+> **Note**: Other APIs such as `combineRules` and `enhance` are still imported from `fela` directly. The `fela-native` package **only** ships the `createRenderer` method.
+
 We can use the `<Provider>` Component shipped with `react-fela` to pass the renderer via `context`.
 
 ```javascript
