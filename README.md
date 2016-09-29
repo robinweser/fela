@@ -5,7 +5,8 @@ It is dynamic by design and renders your styles depending on your application st
 
 It generates CSS and therefore supports all common CSS features such as media queries, pseudo classes, keyframes and font-faces. It also renders on server-side with ease and ships with a powerful plugin API adding e.g. [automatic vendor prefixing](packages/fela-plugin-prefixer) or [fallback value](packages/fela-plugin-fallback-value) support.
 
-Fela can be used with [React](https://github.com/rofrischmann/react-fela) or with any other view library.
+Fela can be used with [React](https://github.com/rofrischmann/react-fela) or with any other view library.<br>
+Also ships a [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html) version.
 
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
@@ -80,6 +81,7 @@ render(renderer, mountNode)
 ## Examples
 * [Vanilla JavaScript](http://fela.js.org/docs/introduction/Examples.html#vanilla) ([source](examples/vanilla))
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/react))
+* [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](examples/react-native))
 * [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
 

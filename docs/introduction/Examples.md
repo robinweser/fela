@@ -25,6 +25,7 @@ A simple example application using the [React bindings](https://github.com/rofri
 git clone https://github.com/rofrischmann/fela.git
 
 cd fela/examples/react
+npm install
 # starts the universal rendered application at localhost:8080
 npm start
 
@@ -41,6 +42,26 @@ npm run client
 * Dynamic Rules
 * Plugins
 * Server-side Rendering
+
+## React Native
+A simple example application using the [React bindings](https://github.com/rofrischmann/react-fela) and the [React Native renderer](http://fela.js.org/docs/guides/UsageWithReactNative.html#native-renderer).
+
+```sh
+git clone https://github.com/rofrischmann/fela.git
+
+cd fela/examples/react-native
+npm install
+npm start
+```
+
+Afterwards open one of the platform specific native projects and run with a simulator.
+
+#### Covers
+* React Native
+* Rules
+* React Bindings
+* Dynamic Rules
+* Plugins
 
 ## Angular 2
 The code examples are based on the build-chain as used in [Angular 2 ESNext TodoMVC](https://github.com/blacksonic/angular2-esnext-todomvc).
@@ -75,6 +96,7 @@ Sadly some features are not yet perfectly working with Inferno which we believe 
 git clone https://github.com/rofrischmann/fela.git
 
 cd fela/examples/inferno
+npm install
 # starts the universal rendered application at localhost:8080
 npm start
 
