@@ -12,6 +12,7 @@ Also ships a [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.23kb-brightgreen.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela.svg">
 <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
 
 > [Try it on JSFiddle!](https://jsfiddle.net/mzrn1yvy/1/)
@@ -29,7 +30,7 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 <script src="https://unpkg.com/fela@2.0.0/dist/fela.min.js"></script>
 ```
 
-## Usage
+## The Gist
 ```javascript
 import { createRenderer, render } from 'fela'
 
@@ -84,6 +85,33 @@ render(renderer, mountNode)
 * [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](examples/react-native))
 * [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
+
+## Packages
+This repository is made of several separate packages including the core package. For convenience sake, we keep the package versions in sync. Therefore every package gets updated along with the core package, even if nothing changed within a particular package.
+<br><br>
+The following list shows a quick overview of all existing packages.<br>
+External packages such as bindings are **not** included.
+
+| Package | Dependencies | Downloads |
+| --- | --- | --- |
+| <a href="https://www.npmjs.com/package/fela">fela</a> | <img src="https://david-dm.org/rofrischmann/fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> |
+| <a href="https://www.npmjs.com/package/fela-native">fela-native</a> | <img src="https://david-dm.org/rofrischmann/fela-native"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-native.svg"> |
+| <a href="https://www.npmjs.com/package/fela-beautifier">fela-beautifier</a> | <img src="https://david-dm.org/rofrischmann/fela-beautifier"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-beautifier.svg"> |
+| <a href="https://www.npmjs.com/package/fela-font-renderer">fela-font-renderer</a> | <img src="https://david-dm.org/rofrischmann/fela-font-renderer"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-font-renderer.svg"> |
+| <a href="https://www.npmjs.com/package/fela-perf">fela-perf</a> | <img src="https://david-dm.org/rofrischmann/fela-perf"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-perf.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-custom-property">fela-plugin-custom-property</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-custom-property"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-custom-property.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-dynamic-prefixer">fela-plugin-dynamic-prefixer</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-dynamic-prefixer"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-dynamic-prefixer.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-extend">fela-plugin-extend</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-extend"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-extend.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-fallback-value">fela-plugin-fallback-value</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-fallback-value"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-fallback-value.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-friendly-pseudo-class">fela-plugin-friendly-pseudo-class</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-friendly-pseudo-class"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-friendly-pseudo-class.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-logger">fela-plugin-logger</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-logger"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-logger.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-lvha">fela-plugin-lvha</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-lvha"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-lvha.svg"> |
+| <a href="https://www.npmjs.com/package/fela-prefixer">fela-prefixer</a> | <img src="https://david-dm.org/rofrischmann/fela-prefixer"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-prefixer.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-remove-undefined">fela-plugin-remove-undefined</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-remove-undefined"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-remove-undefined.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-unit">fela-plugin-unit</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-unit"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-unit.svg"> |
+| <a href="https://www.npmjs.com/package/fela-plugin-validator">fela-plugin-validator</a> | <img src="https://david-dm.org/rofrischmann/fela-plugin-validator"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg"> |
+| <a href="https://www.npmjs.com/package/fela-preset-dev">fela-preset-dev</a> | <img src="https://david-dm.org/rofrischmann/fela-preset-dev"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-preset-dev.svg"> |
+| <a href="https://www.npmjs.com/package/fela-preset-web">fela-preset-web</a> | <img src="https://david-dm.org/rofrischmann/fela-preset-web"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-preset-web.svg"> |
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>
