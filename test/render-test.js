@@ -9,12 +9,15 @@ describe('Rendering into a DOM node', () => {
     const node = DOMNode()
 
     const renderer = createRenderer(node)
+
+    process.env.NODE_ENV = 'production'
+
     render(renderer, node)
 
     const className = renderer.renderRule(rule)
 
 
-    expect(node.textContent).to.eql('.c0{color:red}')
+    expect(node.sheet.cssRules).to.eql([ '.c0{color:red}' ])
   })
 
   it('should clear the DOM node', () => {

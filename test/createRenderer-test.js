@@ -347,7 +347,36 @@ describe('Renderer', () => {
       renderer.subscribe(subscriber)
       const staticClassName = renderer.renderRule(rule)
 
-      expect(subscriber).to.have.been.calledOnce
+      expect(subscriber).to.have.been.calledTwice
+    })
+
+    it('should call the callback with a change object', () => {
+      const rule = props => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          color: 'blue'
+        }
+      })
+
+      const renderer = createRenderer()
+
+      const changes = [ ]
+      const subscriber = change => changes.push(change)
+
+      renderer.subscribe(subscriber)
+      const staticClassName = renderer.renderRule(rule)
+
+      expect(changes).to.eql([ {
+        type: 'rule',
+        selector: '.c0',
+        style: 'color:blue',
+        media: '(min-height: 300px)'
+      }, {
+        type: 'rule',
+        selector: '.c0',
+        style: 'color:red',
+        media: ''
+      } ])
     })
 
     it('should return a unsubscribe method', () => {
