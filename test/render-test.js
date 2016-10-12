@@ -5,33 +5,16 @@ import DOMNode from './_mocks/DOMNode'
 describe('Rendering into a DOM node', () => {
   it('should subscribe to changes', () => {
     const rule = props => ({ color: 'red' })
-
     const node = DOMNode()
-
     const renderer = createRenderer(node)
 
     process.env.NODE_ENV = 'production'
 
     render(renderer, node)
-
     const className = renderer.renderRule(rule)
-
 
     expect(node.sheet.cssRules).to.eql([ '.c0{color:red}' ])
-  })
-
-  it('should clear the DOM node', () => {
-    const rule = props => ({ color: 'red' })
-
-    const node = DOMNode()
-
-    const renderer = createRenderer(node)
-    render(renderer, node)
-
-    const className = renderer.renderRule(rule)
-    renderer.clear()
-
-    expect(node.textContent).to.eql('')
+    expect(renderer.listeners.length).to.eql(1)
   })
 
   it('should only update the DOM if it does not match the CSS', () => {

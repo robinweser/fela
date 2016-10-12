@@ -8,7 +8,14 @@ import diffStyle from './utils/diffStyle'
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
 
+/**
+ * creates a new renderer instance
+ *
+ * @param {Object} config - renderer configuration
+ * @return {Object} new renderer instance
+ */
 export default function createRenderer(config = { }) {
+  // the renderer is the key
   let renderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || [ '-webkit-', '-moz-' ],
@@ -234,11 +241,15 @@ export default function createRenderer(config = { }) {
     rehydrate() {
       const callStack = renderer.callStack.slice(0)
 
+      // clears the current callStack
       renderer.clear()
 
-      // renderer._emitChange({ type: 'rehydrate', done: false })
-      renderer.callStack.forEach(fn => fn())
-      // renderer._emitChange({ type: 'rehydrate', done: true })
+      renderer._emitChange({ type: 'rehydrate', done: false })
+      callStack.forEach(fn => fn())
+      renderer._emitChange({ type: 'rehydrate', done: true })
+
+      // run a full reload after every style is rerendered
+      renderer._emitFullReload()
     },
 
     /**
@@ -249,7 +260,7 @@ export default function createRenderer(config = { }) {
      * @return {Object} equivalent unsubscribe method
      */
     _emitChange(change) {
-      renderer.listeners.forEach(listener => listener(change))
+      renderer.listeners.forEach(listener => listener(change, renderer))
     },
 
     /**

@@ -1,5 +1,5 @@
 export default function DOMNode() {
-  const cssRules = [ ]
+  let cssRules = [ ]
 
   return {
     textContent: '',
@@ -13,7 +13,7 @@ export default function DOMNode() {
     },
     sheet: {
       cssRules: cssRules,
-      insertRule: rule => cssRules.push(rule)
+      insertRule: (rule, id) => cssRules.splice(id, 0, rule)
     }
   }
 }

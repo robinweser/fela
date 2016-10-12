@@ -1,5 +1,5 @@
 import warning from './utils/warning'
-import DOMInterface from './utils/DOMInterface'
+import createDOMInterface from './utils/DOMInterface'
 
 export default function render(renderer, mountNode) {
   // check if the passed node is a valid element node which allows
@@ -16,9 +16,11 @@ export default function render(renderer, mountNode) {
   // mark and clean the DOM node to prevent side-effects
   mountNode.setAttribute('data-fela-stylesheet', '')
 
-  renderer.subscribe(change => DOMInterface.updateNode(mountNode, change, renderer))
+  const DOMInterface = createDOMInterface(renderer, mountNode)
+  renderer.subscribe(DOMInterface.updateNode)
 
-  // render currently rendered styles to the DOM once when it is not already in DOM
+  // render currently rendered styles to the DOM once
+  // if it is not already in DOM
   const css = renderer.renderToString()
 
   if (mountNode.textContent !== css) {
