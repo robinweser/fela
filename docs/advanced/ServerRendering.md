@@ -7,13 +7,24 @@ Usually you will render all styles on the server and inject the rendered CSS mar
 ## Example
 The following code shows a simple server example using [express](https://github.com/expressjs/express) and [React](https://github.com/facebook/react).
 ```javascript
-import express from 'express'
-import proxy from 'express-http-proxy'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { createRenderer } from 'fela'
-import App from './app.js'
-const server = express()
+
+import express from 'express'
+
+const rule = props => ({
+    color: props.color,
+    fontSize: '15px'
+})
+
+// simplified demo app
+const App = ({ renderer }) => (
+  <div className={renderer.renderRule(rule, { color: 'blue' })}>
+    Hello World
+  </div>
+)
+
 // Our initial html template
 const appHTML = `
 <!DOCTYPE html>
@@ -31,8 +42,12 @@ const appHTML = `
 </body>
 </html>
 `
+
+const server = express()
+
 server.get('/', (req, res) => {
   const renderer = createRenderer()
+
   const htmlMarkup = renderToString(
     <App renderer={renderer} />
   )
@@ -44,4 +59,24 @@ server.get('/', (req, res) => {
 })
 // provide the content via localhost:8080
 server.listen(8080, 'localhost')
+```
+
+#### Output *(localhost:8080)*
+```HTML
+<!DOCTYPE html>
+<html>
+<head>
+  <style id="stylesheet">
+    .c0{font-size:15px}.c0-foo{color:blue}
+  </style>
+  <title>Fela - Server Rendering</title>
+</head>
+<body>
+  <div id="app">
+    <div class="c0 c0-foo">
+      Hello World
+    </div>
+  </div>
+</body>
+</html>
 ```

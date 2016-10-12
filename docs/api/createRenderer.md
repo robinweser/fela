@@ -26,5 +26,6 @@ renderer.render(rule, { size: '12px' }) // => c0 c0-dzm1d6
 
 
 console.log(renderer.renderToString())
-// .c0{background-color:red;color:blue}.c0-dzm1d6{font-size:12px}
+// .c0{background-color:red;color:blue}
+// .c0-dzm1d6{font-size:12px}
 ```

@@ -6,7 +6,7 @@ It is dynamic by design and renders your styles depending on your application st
 It generates CSS and therefore supports all common CSS features such as media queries, pseudo classes, keyframes and font-faces. It also renders on server-side with ease and ships with a powerful plugin API adding e.g. [automatic vendor prefixing](packages/fela-plugin-prefixer) or [fallback value](packages/fela-plugin-fallback-value) support.
 
 Fela can be used with [React](https://github.com/rofrischmann/react-fela) or with any other view library.<br>
-Also ships a [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html) version.
+It also ships a [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html) version.
 
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
@@ -31,6 +31,8 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 ```
 
 ## The Gist
+Fela is all about rendering styles, especially so called rules. A universal renderer will help us to render styles of all kind. Once rendered into a DOM node, a change listener will subscribe to changes and automatically add new rules.<br>
+The following example illustrates the key parts of Fela though it only shows the very basics.
 ```javascript
 import { createRenderer, render } from 'fela'
 
