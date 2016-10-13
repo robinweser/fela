@@ -19,3 +19,16 @@ const keyframe = props => ({
 ## Tips & Tricks
 * Be sure to only use [animateable properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties). Other properties will be ignored.
 * Keyframe objects **must** at least have the steps `0%` and `100%` or rather `from` and `to`. Otherwise it might not be used at all.
+
+<br>
+
+---
+
+### Related
+* [Rendering keyframes](Renderer.md#renderkeyframe)
+* [API reference - `Renderer.renderKeyframe` ](../api/Renderer.md#renderkeyframe-props)
+* [FAQ - Keyframes](../FAQ.md#keyframes)
+
+#### Tools
+**[FormidableLabs/react-animations](https://github.com/FormidableLabs/react-animations)**<br>
+CSS animations to be used with CSS in JS solutions

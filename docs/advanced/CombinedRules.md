@@ -83,3 +83,11 @@ const elementBA = (
 )
 ```
 It does not matter whether `ruleA` and `ruleB` get rendered later or if they won't get rendered at all. `ruleAB` and `ruleBA` are completely new rules which are not dependent on their base rules.
+
+
+<br>
+
+---
+
+### Related
+* [API reference - `combineRules`](../api/combineRules.md)

@@ -87,3 +87,18 @@ Below there are some key differences comparing Fela for React and Fela for React
 * `createComponent` always requires the second parameter
 * Length values do **not** have units
 * Only supported style properties are possible *(It's not CSS!)*
+
+
+<br>
+
+---
+
+### Related
+* [react-fela](https://github.com/rofrischmann/react-fela)
+* [API reference - `Provider` ](https://github.com/rofrischmann/react-fela/blob/master/docs/Provider.md)
+* [API reference - `connect` ](https://github.com/rofrischmann/react-fela/blob/master/docs/connect.md)
+* [API reference - `createComponent` ](https://github.com/rofrischmann/react-fela/blob/master/docs/createComponent.md)
+
+#### Tools
+**[fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native)**<br>
+Renderer for React Native

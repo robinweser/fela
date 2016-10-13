@@ -201,3 +201,16 @@ const someProps = {
 rule({ fontSize: nested.expression ? baseSize + 2 : baseSize }) // => { fontSize: 17px }
 rule({ }) // => { color: 10px }
 ```
+
+<br>
+
+---
+
+### Related
+* [Combined rules](../advanced/CombinedRules.md)
+* [API reference - `Renderer.renderRule`](../api/createRenderer.md)
+* [FAQ - Rules](../FAQ.md#rules)
+
+#### Tools
+**[fela-stylesheet](https://github.com/rofrischmann/fela-stylesheet)**<br>
+Organize your rules grouped StyleSheets

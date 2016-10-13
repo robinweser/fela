@@ -78,3 +78,12 @@ console.log(renderer.renderToString())
   }
 }
 ```
+
+<br>
+
+---
+
+### Related
+* [Plugins](Plugins.md)
+* [Enhancers](Enhancers.md)
+* [API reference - `createRenderer`](../api/createRenderer.md)

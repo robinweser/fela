@@ -45,3 +45,11 @@ server.get('/', (req, res) => {
 // provide the content via localhost:8080
 server.listen(8080, 'localhost')
 ```
+
+
+<br>
+
+---
+
+### Related
+* [API reference - `Renderer.renderToString`](../api/Renderer.md#rendertostring)

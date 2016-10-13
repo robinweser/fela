@@ -32,3 +32,10 @@ const styleObject = {
 
 renderer.renderStatic(styleObject, 'html,body,#app')
 ```
+
+<br>
+
+---
+
+### Related
+* [API reference - `Renderer.renderStatic`](../api/Renderer.md#renderstaticstyle-selector)

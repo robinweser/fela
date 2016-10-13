@@ -35,3 +35,10 @@ renderer.renderRule(rule, { size: '15px '}) // => c0 c0-dzm3l9
 console.log(mountNode.textContent)
 // .c0{background-color:red;color:blue}.c0-dzm1d6{font-size:12px}.c0-dzm3l9{font-size:15px}
 ```
+
+<br>
+
+---
+
+### Related
+* [API reference - `render`](../api/render.md)
