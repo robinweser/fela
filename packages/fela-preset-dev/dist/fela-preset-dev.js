@@ -8,7 +8,7 @@
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
     return typeof obj;
   } : function (obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
   };
 
   babelHelpers.extends = Object.assign || function (target) {
@@ -49,7 +49,7 @@
   }
 
   var logger = (function () {
-    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     return function (style, meta) {
       var logMetaData = options.logMetaData || false;
 
@@ -135,7 +135,7 @@
     };
   });
 
-  var dev = [logger(), validator$1()];
+  var dev = [logger({ logMetaData: true }), validator$1()];
 
   return dev;
 

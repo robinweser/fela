@@ -8,7 +8,7 @@
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
     return typeof obj;
   } : function (obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
   };
 
   babelHelpers.extends = Object.assign || function (target) {
@@ -37,7 +37,7 @@
 
       console.time(timerCounter); // eslint-disable-line
       var className = existingRenderRule(rule, props);
-      console.log(timerCounter + ' ' + rule.name, props); // eslint-disable-line
+      console.log(timerCounter + ' ' + (rule.name || 'anonym'), props); // eslint-disable-line
       console.timeEnd(timerCounter); // eslint-disable-line
 
       return className;

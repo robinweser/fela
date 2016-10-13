@@ -8,7 +8,7 @@
     babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
       return typeof obj;
     } : function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
 
     babelHelpers.extends = Object.assign || function (target) {
@@ -62,7 +62,7 @@
     };
 
     function flexboxOld(property, value) {
-      if (property === 'flexDirection') {
+      if (property === 'flexDirection' && typeof value === 'string') {
         return {
           WebkitBoxOrient: value.indexOf('column') > -1 ? 'vertical' : 'horizontal',
           WebkitBoxDirection: value.indexOf('reverse') > -1 ? 'reverse' : 'normal'

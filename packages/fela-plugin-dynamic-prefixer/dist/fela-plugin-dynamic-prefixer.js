@@ -8,7 +8,7 @@
     babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
       return typeof obj;
     } : function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
 
     babelHelpers.extends = Object.assign || function (target) {
@@ -104,7 +104,7 @@
         if (!keepUnprefixed && !Array.isArray(styles[property])) {
           delete styles[property];
         }
-        if (property === 'flexDirection') {
+        if (property === 'flexDirection' && typeof value === 'string') {
           return {
             WebkitBoxOrient: value.indexOf('column') > -1 ? 'vertical' : 'horizontal',
             WebkitBoxDirection: value.indexOf('reverse') > -1 ? 'reverse' : 'normal'
@@ -668,11 +668,19 @@
             xbox = /xbox/i.test(ua),
             result;
 
-        if (/opera|opr|opios/i.test(ua)) {
+        if (/opera/i.test(ua)) {
+          //  an old Opera
           result = {
             name: 'Opera',
             opera: t,
             version: versionIdentifier || getFirstMatch(/(?:opera|opr|opios)[\s\/](\d+(\.\d+)?)/i)
+          };
+        } else if (/opr|opios/i.test(ua)) {
+          // a new Opera
+          result = {
+            name: 'Opera',
+            opera: t,
+            version: getFirstMatch(/(?:opr|opios)[\s\/](\d+(\.\d+)?)/i) || versionIdentifier
           };
         } else if (/SamsungBrowser/i.test(ua)) {
           result = {
@@ -1269,7 +1277,7 @@
     };
 
     function flexboxOld(property, value) {
-      if (property === 'flexDirection') {
+      if (property === 'flexDirection' && typeof value === 'string') {
         return {
           WebkitBoxOrient: value.indexOf('column') > -1 ? 'vertical' : 'horizontal',
           WebkitBoxDirection: value.indexOf('reverse') > -1 ? 'reverse' : 'normal'

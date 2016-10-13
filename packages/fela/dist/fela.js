@@ -8,7 +8,7 @@
     babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
       return typeof obj;
     } : function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
 
     babelHelpers.extends = Object.assign || function (target) {
@@ -121,7 +121,7 @@
      * @param {Object?} base - base style object
      */
     function diffStyle(style) {
-      var base = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+      var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       return Object.keys(style).reduce(function (diff, property) {
         var value = style[property];
@@ -188,7 +188,7 @@
      * @return {string} valid CSS string
      */
     function cssifyKeyframe(frames, animationName) {
-      var prefixes = arguments.length <= 2 || arguments[2] === undefined ? [''] : arguments[2];
+      var prefixes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [''];
 
       var keyframe = Object.keys(frames).reduce(function (css, percentage) {
         return css + percentage + '{' + cssifyObject(frames[percentage]) + '}';
@@ -199,9 +199,16 @@
       }, '');
     }
 
+    /**
+     * creates a new renderer instance
+     *
+     * @param {Object} config - renderer configuration
+     * @return {Object} new renderer instance
+     */
     function createRenderer() {
-      var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+      // the renderer is the key
       var renderer = {
         listeners: [],
         keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
@@ -219,9 +226,10 @@
           renderer.rendered = {};
           renderer.base = {};
           renderer.ids = [];
+          renderer.callStack = [];
 
           // emit changes to notify subscribers
-          renderer._emitChange();
+          renderer._emitFullReload();
         },
 
 
@@ -233,7 +241,7 @@
          * @return {string} className to reference the rendered rule
          */
         renderRule: function renderRule(rule) {
-          var props = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+          var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
           // rendering a rule for the first time
           // will create an ID reference
@@ -254,10 +262,8 @@
           // only if the cached rule has not already been rendered
           // with a specific set of properties it actually renders
           if (!renderer.rendered.hasOwnProperty(className)) {
-            var resolvedStyle = renderer._resolveStyle(rule, props);
-
             // process style using each plugin
-            var style = processStyle(resolvedStyle, {
+            var style = processStyle(rule(props), {
               type: 'rule',
               className: className,
               id: ruleId,
@@ -268,17 +274,10 @@
             // diff style objects with base styles
             var diffedStyle = diffStyle(style, renderer.base[ruleId]);
 
+            renderer.rendered[className] = false;
+
             if (Object.keys(diffedStyle).length > 0) {
               renderer._renderStyle(className, diffedStyle);
-
-              renderer.rendered[className] = renderer._didChange;
-
-              if (renderer._didChange) {
-                renderer._didChange = false;
-                renderer._emitChange();
-              }
-            } else {
-              renderer.rendered[className] = false;
             }
 
             // keep static style to diff dynamic onces later on
@@ -291,6 +290,8 @@
           if (!renderer.rendered[className]) {
             return baseClassName;
           }
+
+          renderer.callStack.push(renderer.renderRule.bind(renderer, rule, props));
 
           // returns either the base className or both the base and the dynamic part
           return className !== baseClassName ? baseClassName + ' ' + className : className;
@@ -305,7 +306,7 @@
          * @return {string} animationName to reference the rendered keyframe
          */
         renderKeyframe: function renderKeyframe(keyframe) {
-          var props = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+          var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
           // rendering a Keyframe for the first time
           // will create cache entries and an ID reference
@@ -319,7 +320,7 @@
           // only if the cached keyframe has not already been rendered
           // with a specific set of properties it actually renders
           if (!renderer.rendered.hasOwnProperty(animationName)) {
-            var processedKeyframe = processStyle(renderer._resolveStyle(keyframe, props), {
+            var processedKeyframe = processStyle(keyframe(props), {
               type: 'keyframe',
               keyframe: keyframe,
               props: props,
@@ -330,7 +331,9 @@
             var css = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes);
             renderer.rendered[animationName] = true;
             renderer.keyframes += css;
-            renderer._emitChange();
+
+            renderer.callStack.push(renderer.renderKeyframe.bind(renderer, keyframe, props));
+            renderer._emitFullReload();
           }
 
           return animationName;
@@ -344,7 +347,7 @@
          * @return {string} fontFamily reference
          */
         renderFont: function renderFont(family, files) {
-          var properties = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+          var properties = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
           var key = family + generatePropsReference(properties);
 
@@ -365,9 +368,12 @@
               });
 
               var css = '@font-face{' + cssifyObject(fontFace) + '}';
+
               renderer.rendered[key] = true;
               renderer.fontFaces += css;
-              renderer._emitChange();
+
+              renderer.callStack.push(renderer.renderFont.bind(renderer, family, files, properties));
+              renderer._emitFullReload();
             })();
           }
 
@@ -389,16 +395,25 @@
             if (typeof style === 'string') {
               // remove new lines from template strings
               renderer.statics += style.replace(/\s{2,}/g, '');
+              renderer._emitFullReload();
             } else {
               var processedStyle = processStyle(style, {
                 selector: selector,
                 type: 'static'
               }, renderer.plugins);
-              renderer.statics += selector + '{' + cssifyObject(processedStyle) + '}';
+
+              var css = cssifyObject(processedStyle);
+              renderer.statics += selector + '{' + css + '}';
+
+              renderer.callStack.push(renderer.renderStatic.bind(renderer, style, selector));
+              renderer._emitChange({
+                selector: selector,
+                style: css,
+                type: 'rule'
+              });
             }
 
             renderer.rendered[reference] = true;
-            renderer._emitChange();
           }
         },
 
@@ -436,28 +451,46 @@
 
 
         /**
-         * Encapsulated style resolving method
-         *
-         * @param {Function} style - rule or keyframe to be resolved
-         * @param {Object} props - props used to resolve style
-         * @return {Object} resolved style
+         * rehydrates the whole cache using the callStack
          */
-        _resolveStyle: function _resolveStyle(style, props) {
-          return style(props);
+        rehydrate: function rehydrate() {
+          var callStack = renderer.callStack.slice(0);
+
+          // clears the current callStack
+          renderer.clear();
+
+          renderer._emitChange({ type: 'rehydrate', done: false });
+          callStack.forEach(function (fn) {
+            return fn();
+          });
+          renderer._emitChange({ type: 'rehydrate', done: true });
+
+          // run a full reload after every style is rerendered
+          renderer._emitFullReload();
         },
 
 
         /**
-         * calls each listener with the current CSS markup of all caches
-         * gets only called if the markup actually changes
+         * calls each listener with a change object
+         * gets only called if something actually changes
          *
          * @param {Function} callback - callback function which will be executed
          * @return {Object} equivalent unsubscribe method
          */
-        _emitChange: function _emitChange() {
-          var css = renderer.renderToString();
+        _emitChange: function _emitChange(change) {
           renderer.listeners.forEach(function (listener) {
-            return listener(css);
+            return listener(change, renderer);
+          });
+        },
+
+
+        /**
+         * emits change object to trigger full css reload
+         */
+        _emitFullReload: function _emitFullReload() {
+          renderer._emitChange({
+            css: renderer.renderToString(),
+            type: 'static'
           });
         },
 
@@ -469,8 +502,8 @@
          * @param {Object} style - style object which is rendered
          */
         _renderStyle: function _renderStyle(className, style) {
-          var pseudo = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
-          var media = arguments.length <= 3 || arguments[3] === undefined ? '' : arguments[3];
+          var pseudo = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+          var media = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
 
           var ruleset = Object.keys(style).reduce(function (ruleset, property) {
             var value = style[property];
@@ -478,7 +511,7 @@
             // pseudo class and media class declarations
             if (value instanceof Object && !Array.isArray(value)) {
               // allow pseudo classes, attribute selectors and the child selector
-              if (property.charAt(0) === ':' || property.charAt(0) === '[' || property.charAt(0) === '>') {
+              if (property.match(/^(:|\[|>)/) !== null) {
                 renderer._renderStyle(className, value, pseudo + property, media);
               } else if (property.substr(0, 6) === '@media') {
                 // combine media query rules with an `and`
@@ -494,18 +527,28 @@
 
           // add styles to the cache
           if (Object.keys(ruleset).length > 0) {
-            var css = '.' + className + pseudo + '{' + cssifyObject(ruleset) + '}';
-            renderer._didChange = true;
+            renderer.rendered[className] = true;
+
+            var css = cssifyObject(ruleset);
+            var selector = '.' + className + pseudo;
+            var cssRule = selector + '{' + css + '}';
 
             if (media.length > 0) {
               if (!renderer.mediaRules.hasOwnProperty(media)) {
                 renderer.mediaRules[media] = '';
               }
 
-              renderer.mediaRules[media] += css;
+              renderer.mediaRules[media] += cssRule;
             } else {
-              renderer.rules += css;
+              renderer.rules += cssRule;
             }
+
+            renderer._emitChange({
+              selector: selector,
+              style: css,
+              media: media,
+              type: 'rule'
+            });
           }
         }
       };
@@ -585,31 +628,82 @@
 
     var warning$1 = warning;
 
-    var NODE_TYPE = 1;
-    var NODE_NAME = 'STYLE';
+    function createDOMInterface(renderer, node) {
+      // this counter is used to cache the amount of @media rules
+      // rendered using insertRule since the last full rerender with textContent
+      // using the counter enables to insert rules and @media rules separately
+      // which helps to ensure correct order and prevents rule order issue
+      var mediaRules = 0;
+      var isHydrating = false;
+
+      var DOMInterface = {
+        /**
+         * updates DOM node styles performantly
+         *
+         * @param {Function} node - DOM node
+         * @param {Object} change - object describing the changes
+         * @param {Object} renderer - the renderer which triggered the change
+         */
+        updateNode: function updateNode() {
+          var change = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+          // setting the hydration flag to prevent DOM updates will immediately
+          // get unset as soon as the rehydration process is done
+          if (change.type === 'hydrate') {
+            isHydrating = !change.done;
+            return true;
+          }
+
+          // only update DOM if the renderer is not hydrating at the moment
+          if (!isHydrating) {
+            switch (change.type) {
+              case 'rule':
+                // only use insertRule in production as browser devtools might have
+                // weird behavior if used together with insertRule at runtime
+                if (true) {
+                  node.textContent = renderer.renderToString();
+                  // the @media rules counter gets reset as the
+                  // full rerender also includes all @media rules
+                  mediaRules = 0;
+                } else {}
+                break;
+              case 'static':
+                // rules that cannot be dynamically added with insertRule
+                // which are @font-face, @keyframes and static string assets
+                // need to use textContent to apply styles
+                node.textContent = change.css;
+                mediaRules = 0;
+                break;
+            }
+          }
+        }
+      };
+
+      return DOMInterface;
+    }
 
     function render(renderer, mountNode) {
       // check if the passed node is a valid element node which allows
       // setting the `textContent` property to update the node's content
-      if (!mountNode || mountNode.nodeType !== NODE_TYPE) {
+      if (!mountNode || mountNode.nodeType !== 1) {
         throw new Error('You need to specify a valid element node (nodeType = 1) to render into.');
       }
 
       // warns if the DOM node either is not a valid <style> element thus the styles do not get applied as Expected
       // or if the node already got the data-fela-stylesheet attribute applied suggesting it is already used by another Renderer
-      warning$1(mountNode.nodeName === NODE_NAME, 'You are using a node other than `<style>`. Your styles might not get applied correctly.');
+      warning$1(mountNode.nodeName === 'STYLE', 'You are using a node other than `<style>`. Your styles might not get applied correctly.');
       warning$1(!mountNode.hasAttribute('data-fela-stylesheet'), 'This node is already used by another renderer. Rendering might overwrite other styles.');
 
       // mark and clean the DOM node to prevent side-effects
       mountNode.setAttribute('data-fela-stylesheet', '');
 
-      // updated the DOM node's textContent with newly rendered markup
-      renderer.subscribe(function (css) {
-        return mountNode.textContent = css;
-      });
+      var DOMInterface = createDOMInterface(renderer, mountNode);
+      renderer.subscribe(DOMInterface.updateNode);
 
-      // render currently rendered styles to the DOM once when it is not already in DOM
+      // render currently rendered styles to the DOM once
+      // if it is not already in DOM
       var css = renderer.renderToString();
+
       if (mountNode.textContent !== css) {
         mountNode.textContent = css;
       }

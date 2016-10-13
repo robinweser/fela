@@ -8,7 +8,7 @@
     babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
       return typeof obj;
     } : function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
 
     babelHelpers.extends = Object.assign || function (target) {
@@ -114,7 +114,7 @@
     };
 
     function flexboxOld(property, value) {
-      if (property === 'flexDirection') {
+      if (property === 'flexDirection' && typeof value === 'string') {
         return {
           WebkitBoxOrient: value.indexOf('column') > -1 ? 'vertical' : 'horizontal',
           WebkitBoxDirection: value.indexOf('reverse') > -1 ? 'reverse' : 'normal'
@@ -814,7 +814,7 @@
     }
 
     var unit = (function () {
-      var unit = arguments.length <= 0 || arguments[0] === undefined ? 'px' : arguments[0];
+      var unit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'px';
 
       warning$1(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`. Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
 

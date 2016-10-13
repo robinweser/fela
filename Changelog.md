@@ -1,9 +1,24 @@
 # Changelog
 
+## 3.0
+#### 3.0.0
+##### API Changes
+* `Renderer.subscribe` no longer receives the whole CSS string, but rather a change object describing what has been changed. However it gets the renderer passed as its second parameter which will let you get the whole CSS string using `.renderToString` anyway.
+
+* **Rehydration** ( [#71](https://github.com/rofrischmann/fela/issues/71) )<br>
+Rehydration has been added to the renderer which enables full style rehydration at runtime to evaluate rules again (e.g. when your application theming changes). It can be triggered using `Renderer.rehydrate`.<br>
+While rehydrating, no DOM updates will happen. This happens with a single manipulation as soon as the full rehydration process is done.
+
+##### Improvements
+* Faster rule rendering in production using `CSSStyleSheet.insertRule`
+* Added tons of new documentation content as well as 'Related' sections most of the articles
+
+##### Bug Fixes
+* fixed the `fela-preset-web` npm package which accidently contained the `fela-preset-dev` ( [#87](https://github.com/rofrischmann/fela/issues/87) )
+
 ## 2.0
 #### 2.0.0
-##### API Changes
-* Added React Native support
+##### React Native support
 
 ## 1.0
 

@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-remove-undefined.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.45kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.46kb-brightgreen.svg">
 
 Removes any `undefined` value or string values containing `undefined`.
 It also checks array values.
@@ -15,9 +15,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginRemoveUndefined` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-remove-undefined@2.0.0/dist/fela-plugin-remove-undefined.js"></script>
+<script src="https://unpkg.com/fela-plugin-remove-undefined@3.0.0/dist/fela-plugin-remove-undefined.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-remove-undefined@2.0.0/dist/fela-plugin-remove-undefined.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-remove-undefined@3.0.0/dist/fela-plugin-remove-undefined.min.js"></script>
 ```
 
 ## Example
