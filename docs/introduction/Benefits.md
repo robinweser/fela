@@ -16,3 +16,4 @@ In contrast to many other JavaScript-based styling solutions, Fela is not tied t
 Fela uses a special diffing mechanism to extract dynamic styles on the fly. It enables reuse of all all static style declarations in order to produce as little CSS markup as possible.
 
 #### 6. High Performance
+Fela uses optimized rendering mechanisms to be high performant especially in production. Also there are several performance benefits rendering styles with JavaScript. First of all, CSS is only generated and attached as soon as it is needed. Every style gets cached to be reused and therefore is only rendered once at all by using a simple diffing algorithm. Last but not least it mostly uses single class selectors with are among the fastest CSS selectors available.
