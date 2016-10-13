@@ -16,6 +16,8 @@ const classNameA = renderer.renderRule(ruleA)
 const classNameB = renderer.renderRule(ruleB)
 
 const element = (
+  // we use jsx syntax for abstraction & simplicity
+  // yet this issues appears with any view library
   <div className={classNameA + ' ' + classNameB}>
     I am red and bold.
   </div>

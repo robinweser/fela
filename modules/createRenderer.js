@@ -8,7 +8,14 @@ import diffStyle from './utils/diffStyle'
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
 
+/**
+ * creates a new renderer instance
+ *
+ * @param {Object} config - renderer configuration
+ * @return {Object} new renderer instance
+ */
 export default function createRenderer(config = { }) {
+  // the renderer is the key
   let renderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || [ '-webkit-', '-moz-' ],
@@ -26,9 +33,10 @@ export default function createRenderer(config = { }) {
       renderer.rendered = { }
       renderer.base = { }
       renderer.ids = [ ]
+      renderer.callStack = [ ]
 
       // emit changes to notify subscribers
-      renderer._emitChange()
+      renderer._emitFullReload()
     },
 
     /**
@@ -58,10 +66,8 @@ export default function createRenderer(config = { }) {
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(className)) {
-        const resolvedStyle = renderer._resolveStyle(rule, props)
-
         // process style using each plugin
-        const style = processStyle(resolvedStyle, {
+        const style = processStyle(rule(props), {
           type: 'rule',
           className: className,
           id: ruleId,
@@ -72,17 +78,10 @@ export default function createRenderer(config = { }) {
         // diff style objects with base styles
         const diffedStyle = diffStyle(style, renderer.base[ruleId])
 
+        renderer.rendered[className] = false
+
         if (Object.keys(diffedStyle).length > 0) {
           renderer._renderStyle(className, diffedStyle)
-
-          renderer.rendered[className] = renderer._didChange
-
-          if (renderer._didChange) {
-            renderer._didChange = false
-            renderer._emitChange()
-          }
-        } else {
-          renderer.rendered[className] = false
         }
 
         // keep static style to diff dynamic onces later on
@@ -95,6 +94,8 @@ export default function createRenderer(config = { }) {
       if (!renderer.rendered[className]) {
         return baseClassName
       }
+
+      renderer.callStack.push(renderer.renderRule.bind(renderer, rule, props))
 
       // returns either the base className or both the base and the dynamic part
       return className !== baseClassName ? baseClassName + ' ' + className : className
@@ -120,7 +121,7 @@ export default function createRenderer(config = { }) {
       // only if the cached keyframe has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(animationName)) {
-        const processedKeyframe = processStyle(renderer._resolveStyle(keyframe, props), {
+        const processedKeyframe = processStyle(keyframe(props), {
           type: 'keyframe',
           keyframe: keyframe,
           props: props,
@@ -131,7 +132,9 @@ export default function createRenderer(config = { }) {
         const css = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
         renderer.rendered[animationName] = true
         renderer.keyframes += css
-        renderer._emitChange()
+
+        renderer.callStack.push(renderer.renderKeyframe.bind(renderer, keyframe, props))
+        renderer._emitFullReload()
       }
 
       return animationName
@@ -156,9 +159,12 @@ export default function createRenderer(config = { }) {
         Object.keys(properties).filter(prop => fontProperties.indexOf(prop) > -1).forEach(fontProp => fontFace[fontProp] = properties[fontProp])
 
         const css = '@font-face{' + cssifyObject(fontFace) + '}'
+
         renderer.rendered[key] = true
         renderer.fontFaces += css
-        renderer._emitChange()
+
+        renderer.callStack.push(renderer.renderFont.bind(renderer, family, files, properties))
+        renderer._emitFullReload()
       }
 
       return family
@@ -178,16 +184,25 @@ export default function createRenderer(config = { }) {
         if (typeof style === 'string') {
           // remove new lines from template strings
           renderer.statics += style.replace(/\s{2,}/g, '')
+          renderer._emitFullReload()
         } else {
           const processedStyle = processStyle(style, {
             selector: selector,
             type: 'static'
           }, renderer.plugins)
-          renderer.statics += selector + '{' + cssifyObject(processedStyle) + '}'
+
+          const css = cssifyObject(processedStyle)
+          renderer.statics += selector + '{' + css + '}'
+
+          renderer.callStack.push(renderer.renderStatic.bind(renderer, style, selector))
+          renderer._emitChange({
+            selector: selector,
+            style: css,
+            type: 'rule'
+          })
         }
 
         renderer.rendered[reference] = true
-        renderer._emitChange()
       }
     },
 
@@ -221,26 +236,41 @@ export default function createRenderer(config = { }) {
     },
 
     /**
-     * Encapsulated style resolving method
-     *
-     * @param {Function} style - rule or keyframe to be resolved
-     * @param {Object} props - props used to resolve style
-     * @return {Object} resolved style
+     * rehydrates the whole cache using the callStack
      */
-    _resolveStyle(style, props) {
-      return style(props)
+    rehydrate() {
+      const callStack = renderer.callStack.slice(0)
+
+      // clears the current callStack
+      renderer.clear()
+
+      renderer._emitChange({ type: 'rehydrate', done: false })
+      callStack.forEach(fn => fn())
+      renderer._emitChange({ type: 'rehydrate', done: true })
+
+      // run a full reload after every style is rerendered
+      renderer._emitFullReload()
     },
 
     /**
-     * calls each listener with the current CSS markup of all caches
-     * gets only called if the markup actually changes
+     * calls each listener with a change object
+     * gets only called if something actually changes
      *
      * @param {Function} callback - callback function which will be executed
      * @return {Object} equivalent unsubscribe method
      */
-    _emitChange() {
-      const css = renderer.renderToString()
-      renderer.listeners.forEach(listener => listener(css))
+    _emitChange(change) {
+      renderer.listeners.forEach(listener => listener(change, renderer))
+    },
+
+    /**
+     * emits change object to trigger full css reload
+     */
+    _emitFullReload() {
+      renderer._emitChange({
+        css: renderer.renderToString(),
+        type: 'static'
+      })
     },
 
     /**
@@ -256,7 +286,7 @@ export default function createRenderer(config = { }) {
         // pseudo class and media class declarations
         if (value instanceof Object && !Array.isArray(value)) {
           // allow pseudo classes, attribute selectors and the child selector
-          if (property.charAt(0) === ':' || property.charAt(0) === '[' || property.charAt(0) === '>') {
+          if (property.match(/^(:|\[|>)/) !== null) {
             renderer._renderStyle(className, value, pseudo + property, media)
           } else if (property.substr(0, 6) === '@media') {
             // combine media query rules with an `and`
@@ -272,18 +302,28 @@ export default function createRenderer(config = { }) {
 
       // add styles to the cache
       if (Object.keys(ruleset).length > 0) {
-        const css = '.' + className + pseudo + '{' + cssifyObject(ruleset) + '}'
-        renderer._didChange = true
+        renderer.rendered[className] = true
+
+        const css = cssifyObject(ruleset)
+        const selector = '.' + className + pseudo
+        const cssRule = selector + '{' + css + '}'
 
         if (media.length > 0) {
           if (!renderer.mediaRules.hasOwnProperty(media)) {
             renderer.mediaRules[media] = ''
           }
 
-          renderer.mediaRules[media] += css
+          renderer.mediaRules[media] += cssRule
         } else {
-          renderer.rules += css
+          renderer.rules += cssRule
         }
+
+        renderer._emitChange({
+          selector: selector,
+          style: css,
+          media: media,
+          type: 'rule'
+        })
       }
     }
   }

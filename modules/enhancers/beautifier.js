@@ -11,6 +11,7 @@ function beautifier(renderer, options) {
 
   renderer.renderToString = () => {
     const css = existingRenderToString()
+
     return cssbeautify(css, {
       ...defaultOptions,
       ...options

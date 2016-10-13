@@ -16,11 +16,11 @@ We may optionally pass a configuration object as second parameter. Read the [Ren
 ## Rendering Styles
 The renderer provides dedicated render methods for each of the three renderable components which we introduced in the previous articles.
 
-* [renderRule](../api/Renderer.md#renderrulerule--props)
-* [renderKeyframe](../api/Renderer.md#renderkeyframe--props)
-* [renderFont](../api/Renderer.md#renderfontfamily-files--properties)
+* [renderRule](../api/Renderer.md#renderrulerule-props)
+* [renderKeyframe](../api/Renderer.md#renderkeyframe-props)
+* [renderFont](../api/Renderer.md#renderfontfamily-files-properties)
 
-> **Tip**: Read the tips and tricks of each render method first. Especially the [renderRule](../api/Renderer.md#renderrulerule--props) tips are very helpful for beginners as well as advanced users.
+> **Tip**: Read the tips and tricks of each render method first. Especially the [renderRule](../api/Renderer.md#renderrulerule-props) tips are very helpful for beginners as well as advanced users.
 
 ### renderRule
 Takes a [rule](Rules.md) and some `props` to resolve the rule. If no `props` are passed it defaults to an empty object. It reuses the static subset of a rule to produce less markup.<br>
@@ -33,13 +33,13 @@ const renderer = createRenderer()
 
 const rule = props => ({
   fontSize: props.fontSize,
-  background-color: 'blue',
+  backgroundColor: 'blue',
   color: 'red'
 })
 
-renderer.renderRule(rule) // => .c0
-renderer.renderRule(rule, { fontSize: '12px' }) // => .c0 .c0--w5u07
-renderer.renderRule(rule, { fontSize: '15px' }) // => .c0 .c0--w5rs4
+renderer.renderRule(rule) // => c0
+renderer.renderRule(rule, { fontSize: '12px' }) // => c0 c0--w5u07
+renderer.renderRule(rule, { fontSize: '15px' }) // => c0 c0--w5rs4
 ```
 ```CSS
 .c0 {
@@ -72,8 +72,8 @@ const keyframe = props => ({
   to: { color: props.toColor }
 })
 
-renderer.renderKeyframe(keyframe, { toColor: 'red' }) // => .k0--aqbnkn
-renderer.renderKeyframe(keyframe, { toColor: 'blue' }) // => .k0-mh8wzm
+renderer.renderKeyframe(keyframe, { toColor: 'red' }) // => k0--aqbnkn
+renderer.renderKeyframe(keyframe, { toColor: 'blue' }) // => k0-mh8wzm
 ```
 ```CSS
 @keyframes k0--aqbnkn {
@@ -126,56 +126,8 @@ renderer.renderFont('Lato-Bold', files, { fontWeight: 'bold' })
 }
 ```
 
-## Subscription
-The renderer also manages subscriptions. We can add a change listener to get updated every time an actual change is emitted. Though not every render necessarily emits a change as we can often reuse previously rendered styles from the cache.
-
-```javascript
-import { createRenderer } from 'fela'
-
-const renderer = createRenderer()
-
-const rule = props => ({
-  fontSize: props.fontSize,
-  background-color: 'blue',
-  color: 'red'
-})
-
-// subscribing returns an subscription object including
-// the unsubscribe method to later remove the change listener
-const subscription = renderer.subscribe(css => console.log(css))
-renderer.renderRule(rule)
-// => '.c0{background-color:blue;color:red}'
-renderer.renderRule(rule, { fontSize: '12px' })
-// => '.c0{background-color:blue;color:red}.c0--w5u07{font-size:12px}'
-
-// stops logging changes
-subscription.unsubscribe()
-```
-
-## Clearing Styles
-Finally the renderer also provides a `clear`-method to clear the whole cache.
-
-```javascript
-import { createRenderer } from 'fela'
-
-const renderer = createRenderer()
-
-const rule = props => ({
-  fontSize: props.fontSize,
-  background-color: 'blue',
-  color: 'red'
-})
-
-renderer.subscribe(css => console.log(css))
-
-renderer.renderRule(rule)
-// => '.c0{background-color:blue;color:red}'
-renderer.renderRule(rule, { fontSize: '12px' })
-// => '.c0{background-color:blue;color:red}.c0--w5u07{font-size:12px}'
-
-renderer.clear()
-// => ''
-```
+## Advanced API
+Check out the [API reference - Renderer](../api/Renderer.md) to learn about all of its methods. This article only describes the basic rendering methods. It does not include `clear`, `subscribe`, `rehydrate` or even `renderStatic`.
 
 <br>
 

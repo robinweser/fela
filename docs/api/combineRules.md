@@ -30,7 +30,7 @@ renderer.render(rule, { fontSize: '12px '}) // => c0 c0-dzm1d6
 renderer.render(anotherRule) // => c1
 renderer.render(superRule, { fontSize: '12px' }) // c2 c2-dzm1d6
 
-console.log(mountNode.textContent)
+console.log(renderer.renderToString())
 // .c0{color:red}.c0-dzm1d6{font-size:12px}
 // .c1{color:blue}
 // .c2{color:blue}.c2-dzm1d6{font-size:12px}

@@ -1,18 +1,18 @@
 # Renderer
 
-A renderer is the core class providing methods to render your styles. It caches every single style that is rendered at any time. Therefore it always has an up-to-date snapshot of your current CSS environment.<br>
+The renderer is the most important utility providing methods to render your styles. It caches every single style that is rendered at any time. Therefore it always has an up-to-date snapshot of your current CSS environment.<br>
 
 You should only have a single renderer which handles all styles of your whole application.
+To create a new renderer instance, simply use the `createRenderer` method to actually get a renderer instance.
 
-> **Note**: It is not instantiated directly. You have to use one of the `createRenderer` methods to actually get a renderer instance.
-
-## Renderer Methods
-* [`renderRule(rule, [props])`](#renderrulerule--props)
-* [`renderKeyframe(keyframe, [props])`](#renderkeyframe--props)
-* [`renderFont(family, files, [properties])`](#renderfontfamily-files--properties)
-* [`renderStatic(style, [selector])`](#renderstaticstyle--reference)
+## Methods
+* [`renderRule(rule, [props])`](#renderrulerule-props)
+* [`renderKeyframe(keyframe, [props])`](#renderkeyframe-props)
+* [`renderFont(family, files, [properties])`](#renderfontfamily-files-properties)
+* [`renderStatic(style, [selector])`](#renderstaticstyle-reference)
 * [`renderToString()`](#rendertostring)
 * [`subscribe(listener)`](#subscribelistener)
+* [`rehydrate()`](#rehydrate)
 * [`clear()`](#clear)
 
 ## `renderRule(rule, [props])`
@@ -27,7 +27,7 @@ Renders a `rule` using the `props` to resolve it.
 
 ### Example
 ```javascript
-import { createSelector } from 'fela'
+import { createRenderer } from 'fela'
 
 const renderer = createRenderer(mountNode)
 
@@ -40,6 +40,76 @@ const rule = props => ({
 renderer.renderRule(rule, { size: '12px' }) // => c0 c0-dzm1d6
 renderer.renderRule(rule) // => c0
 ```
+
+
+### Tips & Tricks
+To write more advanced and/or simpler rules there are some helpful tips & tricks you might want to know and use:
+
+* **Optional props & Default values**<br>
+Sometimes you do not pass all props required to completely resolve all style declarations, but want to use a default value in order to not produce any invalid CSS markup. You can achieve this in two ways. Either with ECMA2015 [default function parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters) or with the logical OR (`||`) operator.
+
+```javascript
+// default parameters
+const rule = ({ color = 'red' } = {}) => ({
+  color: color
+})
+
+// OR operator
+const rule = props => {
+  props = props || {}
+  return {
+    color: props.color || 'red'
+  }
+}
+
+rule({ color: 'blue' }) // => { color: 'blue' }
+rule({ }) // => { color: 'red' }
+```
+
+* **Conditional values**<br>
+Some values might only be applied, if a certain condition is fulfilled. Instead of complex and big `if` statements you can use the ternary operator.
+
+```javascript
+const rule = ({ type } = {}) => ({
+  color: type === 'error' ? 'red' : 'green'
+})
+
+rule({ type: 'error' }) // => { color: 'red' }
+rule({ }) // => { color: 'green' }
+```
+
+* **Flat & Nested props**:<br>
+Try not to use nested props at all as the renderer initially triggers rule rendering with an empty props object. Nested props would fail to evaluate if they do not get precisely checked within your rule. If one still wants to use nested props be sure to verify each level separately.
+
+```javascript
+const rule = ({ nested }) => ({
+  color: nested && nested.is && nested.is.bad || 'green'
+})
+
+rule({ nested: { is: { bad: 'red' }} }) // => { color: 'red' }
+rule({ }) // => { color: 'green' }
+```
+
+* **Calculating and evaluating props:**<br>
+Whenever you need to calculate values using the props or use props within expressions, try to do this within the associated render method. It then passes the final props to the rule only.<br>
+Doing this keeps your rules clean and declarative and helps preventing issues such as undefined nested props.
+
+```javascript
+const rule = ({ fontSize }) => ({
+  fontSize: fontSize + 'px' || '10px'
+})
+
+const someProps = {
+  nested: {
+    expression: true
+  },
+  baseSize: 15
+}
+
+rule({ fontSize: nested.expression ? baseSize + 2 : baseSize }) // => { fontSize: 17px }
+rule({ }) // => { color: 10px }
+```
+
 
 ---
 
@@ -56,7 +126,7 @@ Renders a `keyframe` using the `props` to resolve it.
 
 ### Example
 ```javascript
-import { createSelector } from 'fela'
+import { createRenderer } from 'fela'
 
 const renderer = createRenderer(mountNode)
 
@@ -71,6 +141,10 @@ renderer.renderKeyframe(keyframe, { initialColor: 'blue' }) // => k0-spqp95
 renderer.renderKeyframe(keyframe, { initialColor: 'black' }) // => k0--x8hdls
 ```
 
+### Tips & Tricks
+* Be sure to only use [animateable properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties). Other properties will be ignored.
+* Keyframe objects **must** at least have the steps `0%` and `100%` or rather `from` and `to`. Otherwise it might not be used at all.
+
 ---
 
 ## `renderFont(family, files, [properties])`
@@ -84,7 +158,7 @@ Renders a `@font-face` rule using the `family` as reference.
 
 ### Example
 ```javascript
-import { createSelector } from 'fela'
+import { createRenderer } from 'fela'
 
 const renderer = createRenderer(mountNode)
 
@@ -101,7 +175,7 @@ renderer.renderFont('Lato', files, { fontWeight: 300 })
 
 ---
 
-# `renderStatic(style, [selector])`
+## `renderStatic(style, [selector])`
 
 Renders static styles.
 
@@ -111,7 +185,7 @@ Renders static styles.
 
 ### Example
 ```javascript
-import { createSelector } from 'fela'
+import { createRenderer } from 'fela'
 
 const renderer = createRenderer(mountNode)
 
@@ -125,7 +199,7 @@ renderer.renderStatic({
 }, 'html,body')
 ```
 
-### Tips
+### Tips & Tricks
 * Only use static styles for global CSS rules such as resets.
 * Use string styles to include legacy and third-party CSS.
 
@@ -133,7 +207,7 @@ renderer.renderStatic({
 You can even reuse existing formatted CSS using [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/) [template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings).
 
 ```javascript
-import { createSelector } from 'fela'
+import { createRenderer } from 'fela'
 
 const renderer = createRenderer(mountNode)
 
@@ -141,12 +215,19 @@ renderer.renderStatic(`
 html, body {
   box-sizing: border-box;
   margin: 0
-}`)
+}
+
+div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex
+}
+`)
 ```
 
 ---
 
-# `renderToString()`
+## `renderToString()`
 
 Renders all cached styles into a single CSS string. Styles are grouped in the following order:
 
@@ -161,7 +242,7 @@ Renders all cached styles into a single CSS string. Styles are grouped in the fo
 
 ### Example
 ```javascript
-import { createSelector } from 'fela'
+import { createRenderer } from 'fela'
 
 const renderer = createRenderer(mountNode)
 
@@ -187,14 +268,14 @@ console.log(markup)
 Adds a change `listener` to get notified when changes happen.
 
 ### Arguments
-1. `listener` (*Function*): A callback function that is called on every change. It passes the whole new CSS string as first parameter.
+1. `listener` (*Function*): A callback function that is called on every change. It passes a change object containing information on what actually got rendered or changed. Every change object at least has a unique `type` and optionally some meta data. In addition it passes the `renderer` that triggered the change.
 
 ### Returns
 (*Object*): An object containing the corresponding `unsubscribe`-method.
 
 ### Example
 ```javascript
-import { createSelector } from 'fela'
+import { createRenderer } from 'fela'
 
 const renderer = createRenderer(mountNode)
 
@@ -203,14 +284,47 @@ const rule = props => ({
   color: 'blue'
 })
 
-const subscription = renderer.subscribe(css => console.log(css))
+const subscription = renderer.subscribe(console.log)
 renderer.renderRule(rule, { fontSize: '12px '})
-// html,body{box-sizing:border-box;margin:0}
+// { type: 'rule', style: 'color:blue', selector: 'c0', media: '' }
+// { type: 'rule', style: 'font-size:12px', selector: 'c0-foo', media: '' }
 
 // Usubscribing removes the event listener
 subscription.unsubscribe()
 ```
 ---
 
+## `rehydrate()`
+
+Rehydrates the whole style cache by rerunning every single render call. Subscribing change listener will receive two change objects of type `rehydrate` and a `done` flag. One before the rehydration gets trigger and the second right after the rehydration process has finished.
+
+### Example
+```javascript
+import { createRenderer } from 'fela'
+
+const renderer = createRenderer(mountNode)
+
+const theme = {
+  defaultColor: 'blue'
+}
+
+const rule = props => ({
+  color: theme.defaultColor
+})
+
+const className = renderer.renderRule(rule) // c0
+console.log(renderer.renderToString())
+// .c0{color:blue}
+
+// some changes which need rehydration
+theme.defaultColor = 'red'
+renderer.rehydrate()
+
+console.log(renderer.renderToString())
+// .c0{color:red}
+```
+
+---
+
 ## `clear()`
-Clears the whole cache.
+Clears the whole cache and updates the DOM node to remove all CSS rules.
