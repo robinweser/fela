@@ -10,8 +10,12 @@
 #### Rules
 * [Why do my nested props throw?](#why-do-my-nested-props-throw)
 
+#### Keyframes
+
 #### Fonts
 * [Why do my fonts flicker?](#why-do-my-fonts-flicker)
+
+#### Renderer
 
 #### Convenience
 * [Can I write my styles as CSS?](#can-i-write-my-styles-as-css)
@@ -35,8 +39,12 @@ There is no deep connection to JavaScript styling in general, except the fact th
 #### Why do my nested props throw?
 If you are using nested props objects you might have already seen errors like `Cannot read property 'nesting' of undefined` although you always pass the correct props. This is because the renderer initially renders the static subset of each rule using an empty props object. Try not to use nested props at all or read the [Rules - Tips & Tricks](api/Renderer.md#renderrulerule-props) to learn how to solve the issue.
 
+## Keyframes
+
 ## Fonts
 #### Why do my fonts flicker?
+
+## Renderer
 
 ## Convenience
 #### Can I write my styles as CSS?

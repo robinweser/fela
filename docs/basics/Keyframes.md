@@ -15,3 +15,15 @@ const keyframe = props => ({
   '100%': { color: 'black' }
 })
 ```
+<br>
+
+---
+
+### Related
+* [Rendering keyframes](Renderer.md#renderkeyframe)
+* [API reference - `Renderer.renderKeyframe` ](../api/Renderer.md#renderkeyframe-props)
+* [FAQ - Keyframes](../FAQ.md#keyframes)
+
+#### Tools
+**[FormidableLabs/react-animations](https://github.com/FormidableLabs/react-animations)**<br>
+CSS animations to be used with CSS in JS solutions

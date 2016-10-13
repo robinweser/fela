@@ -60,7 +60,6 @@ server.get('/', (req, res) => {
 // provide the content via localhost:8080
 server.listen(8080, 'localhost')
 ```
-
 #### Output *(localhost:8080)*
 ```HTML
 <!DOCTYPE html>
@@ -80,3 +79,10 @@ server.listen(8080, 'localhost')
 </body>
 </html>
 ```
+
+<br>
+
+---
+
+### Related
+* [API reference - `Renderer.renderToString`](../api/Renderer.md#rendertostring)

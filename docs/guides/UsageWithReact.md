@@ -145,3 +145,13 @@ const Header = createComponent(container, 'header')
   </Title>
 </Header>
 ```
+
+<br>
+
+---
+
+### Related
+* [react-fela](https://github.com/rofrischmann/react-fela)
+* [API reference - `Provider` ](https://github.com/rofrischmann/react-fela/blob/master/docs/Provider.md)
+* [API reference - `connect` ](https://github.com/rofrischmann/react-fela/blob/master/docs/connect.md)
+* [API reference - `createComponent` ](https://github.com/rofrischmann/react-fela/blob/master/docs/createComponent.md)

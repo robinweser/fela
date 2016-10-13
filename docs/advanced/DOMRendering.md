@@ -36,3 +36,10 @@ render(renderer, mountNode)
 // automatically adds the rule to the mountNode
 renderer.renderRule(rule, { size: '15px '}) // => c0 c0-dzm3l9
 ```
+
+<br>
+
+---
+
+### Related
+* [API reference - `render`](../api/render.md)

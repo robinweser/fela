@@ -30,3 +30,11 @@ import createElement from 'inferno-create-element'
 import { renderToString } from 'react-dom/server'
 import { renderToString } from 'inferno-server'
 ```
+
+
+<br>
+
+---
+
+### Related
+* [inferno-fela](https://github.com/rofrischmann/inferno-fela)

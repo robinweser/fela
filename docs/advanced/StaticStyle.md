@@ -58,3 +58,10 @@ renderer.renderStatic(`
   }
 `)
 ```
+
+<br>
+
+---
+
+### Related
+* [API reference - `Renderer.renderStatic`](../api/Renderer.md#renderstaticstyle-selector)

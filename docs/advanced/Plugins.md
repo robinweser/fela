@@ -74,3 +74,13 @@ Fela already ships with some official plugins. Check out [Introduction - Ecosyst
 ## Plugin Presets
 In additional to each single plugin, we also provide plugin presets which should simplify the configuration process.<br>
 Right now there are two different presets available, a basic web preset [fela-preset-web](https://github.com/rofrischmann/fela/tree/master/packages/fela-preset-web) and one development-only preset [fela-preset-dev](https://github.com/rofrischmann/fela/tree/master/packages/fela-preset-dev).
+
+
+<br>
+
+---
+
+### Related
+* [Renderer Configuration](RendererConfiguration.md)
+* [List of plugins](../introduction/Ecosystem.md#plugins)
+* [List of plugin presets](../introduction/Ecosystem.md#plugin-presets)
