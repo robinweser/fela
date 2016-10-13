@@ -33,7 +33,7 @@ There is no deep connection to JavaScript styling in general, except the fact th
 
 ## Rules
 #### Why do my nested props throw?
-If you are using nested props objects you might have already seen errors like `Cannot read property 'nesting' of undefined` although you always pass the correct props. This is because the renderer initially renders the static subset of each rule using an empty props object. Try not to use nested props at all or read the [Rules - Tips & Tricks](basics/Rules.md#tips--tricks) to learn how to solve the issue.
+If you are using nested props objects you might have already seen errors like `Cannot read property 'nesting' of undefined` although you always pass the correct props. This is because the renderer initially renders the static subset of each rule using an empty props object. Try not to use nested props at all or read the [Rules - Tips & Tricks](api/Renderer.md#renderrulerule-props) to learn how to solve the issue.
 
 ## Fonts
 #### Why do my fonts flicker?

@@ -11,6 +11,7 @@ describe('Renderer', () => {
       expect(renderer.keyframes).to.eql('')
       expect(renderer.fontFaces).to.eql('')
       expect(renderer.statics).to.eql('')
+      expect(renderer.callStack).to.eql([ ])
     })
 
     it('should apply enhancers directly', () => {
@@ -39,6 +40,7 @@ describe('Renderer', () => {
       expect(renderer.fontFaces).to.eql('')
       expect(renderer.statics).to.eql('')
       expect(renderer.ids).to.eql([ ])
+      expect(renderer.callStack).to.eql([ ])
     })
   })
 
@@ -347,7 +349,36 @@ describe('Renderer', () => {
       renderer.subscribe(subscriber)
       const staticClassName = renderer.renderRule(rule)
 
-      expect(subscriber).to.have.been.calledOnce
+      expect(subscriber).to.have.been.calledTwice
+    })
+
+    it('should call the callback with a change object', () => {
+      const rule = props => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          color: 'blue'
+        }
+      })
+
+      const renderer = createRenderer()
+
+      const changes = [ ]
+      const subscriber = change => changes.push(change)
+
+      renderer.subscribe(subscriber)
+      const staticClassName = renderer.renderRule(rule)
+
+      expect(changes).to.eql([ {
+        type: 'rule',
+        selector: '.c0',
+        style: 'color:blue',
+        media: '(min-height: 300px)'
+      }, {
+        type: 'rule',
+        selector: '.c0',
+        style: 'color:red',
+        media: ''
+      } ])
     })
 
     it('should return a unsubscribe method', () => {
@@ -359,6 +390,47 @@ describe('Renderer', () => {
 
       expect(unsubscriber.unsubscribe).to.be.a.function
       expect(renderer.listeners.length).to.eql(0)
+    })
+  })
+
+
+  describe('Rehydration', () => {
+    it('should add to the callstack on renders', () => {
+      const renderer = createRenderer()
+
+      const rule = props => ({ color: 'red' })
+      const className = renderer.renderRule(rule)
+
+      expect(renderer.callStack.length).to.eql(1)
+      expect(className).to.eql(renderer.callStack[0]())
+    })
+
+    it('should clear the old call stack after rehydration', () => {
+      const renderer = createRenderer()
+
+      const rule = props => ({ color: 'red' })
+      const className = renderer.renderRule(rule)
+
+      renderer.rehydrate()
+
+      expect(renderer.callStack.length).to.eql(1)
+      expect(className).to.eql(renderer.callStack[0]())
+    })
+
+    it('should rerender every rule', () => {
+      const renderer = createRenderer()
+
+      let color = 'red'
+      const rule = props => ({ color: color })
+      const className = renderer.renderRule(rule)
+
+      const oldRules = renderer.rules + ''
+
+      color = 'blue'
+      renderer.rehydrate()
+
+      expect(renderer.rules).to.eql('.c0{color:blue}')
+      expect(oldRules).to.eql('.c0{color:red}')
     })
   })
 })
