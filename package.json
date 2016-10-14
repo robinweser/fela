@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Universal & Dynamic Styling in JavaScript (generates CSS)",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
@@ -8,6 +8,7 @@
   "scripts": {
     "babel": "babel -d packages/fela/lib modules",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
+    "docs": "gitbook install && gitbook build && gh-pages -d _book",
     "lint": "eslint modules",
     "precommit": "npm run lint && npm test",
     "prepare": "npm run precommit && npm run babel && npm run dist",
@@ -47,6 +48,7 @@
     "express": "^4.13.4",
     "express-http-proxy": "^0.6.0",
     "fs-extra": "^0.30.0",
+    "gh-pages": "^0.11.0",
     "gzip-js": "^0.3.2",
     "inline-style-prefixer": "^2.0.1",
     "istanbul": "^1.0.0-alpha.2",
