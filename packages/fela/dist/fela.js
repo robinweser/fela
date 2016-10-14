@@ -263,7 +263,6 @@
           var ruleId = renderer.ids.indexOf(rule);
 
           var classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '_' : 'c';
-
           var className = classNamePrefix + ruleId + generatePropsReference(props);
 
           // only if the cached rule has not already been rendered
@@ -322,7 +321,8 @@
           }
 
           var propsReference = generatePropsReference(props);
-          var animationName = 'k' + renderer.ids.indexOf(keyframe) + propsReference;
+          var prefix = renderer.prettySelectors && keyframe.name ? keyframe.name + '_' : 'k';
+          var animationName = prefix + renderer.ids.indexOf(keyframe) + propsReference;
 
           // only if the cached keyframe has not already been rendered
           // with a specific set of properties it actually renders
