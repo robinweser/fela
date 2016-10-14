@@ -8,10 +8,10 @@ We might introduce more configuration options with future releases, so be sure t
 
 | Option | Value | Default |Description |
 | ------ | ------ | ---------|---|
-|`plugins` | `function[]` |  | [plugins](../advanced/Plugins.md) to process styles before rendering |
-|`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` |which `@keyframes` prefixes are rendered |
-|`enhancers` | `function[]` |  |  [enhancers](../advanced/Enhancers.md) to enhance the renderer
-|`prettySelectors` | `boolean` | `false` |  Setting this option to `true` will output class selectors based on the function name of the style rule.  For example `menuBar: () => ...` will create a selector like `.menuBar_123`. Always off when `NODE_ENV=production` |
+|`plugins` | `function[]` |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
+|`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
+|`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
+|`prettySelectors`<br>*(development only)* | `boolean` | `false`<br> *(always in production)*|  Renders class selectors based on the function name of the style rule. *e.g. `const menuBar = () => ({})` will output `menuBar_xxx`* |
 
 ## Example
 ```javascript

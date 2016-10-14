@@ -67,7 +67,6 @@ export default function createRenderer(config = { }) {
       const ruleId = renderer.ids.indexOf(rule)
 
       const classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '_' : 'c'
-
       const className = classNamePrefix + ruleId + generatePropsReference(props)
 
       // only if the cached rule has not already been rendered
@@ -123,7 +122,8 @@ export default function createRenderer(config = { }) {
       }
 
       const propsReference = generatePropsReference(props)
-      const animationName = 'k' + renderer.ids.indexOf(keyframe) + propsReference
+      const prefix = renderer.prettySelectors && keyframe.name ? keyframe.name + '_' : 'k'
+      const animationName = prefix + renderer.ids.indexOf(keyframe) + propsReference
 
       // only if the cached keyframe has not already been rendered
       // with a specific set of properties it actually renders

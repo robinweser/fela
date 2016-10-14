@@ -1,6 +1,11 @@
 # Changelog
 
 ## 3.0
+#### 3.0.1
+##### Improvements
+* added `prettySelectors` option to the renderer to enable human readable classNames while in a development environment. ( [#89](https://github.com/rofrischmann/fela/pull/89) )
+* added [fela-plugin-debug-layout](packages/fela-plugin-debug-layout) which adds colored outlines to every element to debug styles
+
 #### 3.0.0
 ##### API Changes
 * `Renderer.subscribe` no longer receives the whole CSS string, but rather a change object describing what has been changed. However it gets the renderer passed as its second parameter which will let you get the whole CSS string using `.renderToString` anyway.
