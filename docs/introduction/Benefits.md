@@ -13,7 +13,7 @@ Fela only adds styles to your CSS that have actively been rendered. Unused style
 In contrast to many other JavaScript-based styling solutions, Fela is not tied to any framework or library. It has been designed with [React](https://facebook.github.io/react/) in mind, but can be used as a stand-alone solution or with any other framework. We do provide [bindings](https://github.com/rofrischmann/react-fela) for React though.
 
 #### 5. Minimal Markup Size
-Fela uses a special diffing mechanism to extract dynamic styles on the fly. It enables reuse of all all static style declarations in order to produce as little CSS markup as possible.
+Fela uses a special diffing mechanism to extract dynamic styles on the fly. It enables reuse of all static style declarations in order to produce as little CSS markup as possible.
 
 #### 6. High Performance
 Fela uses optimized rendering mechanisms to be high performant especially in production. Also there are several performance benefits rendering styles with JavaScript. First of all, CSS is only generated and attached as soon as it is needed. Every style gets cached to be reused and therefore is only rendered once at all by using a simple diffing algorithm. Last but not least it mostly uses single class selectors with are among the fastest CSS selectors available.
