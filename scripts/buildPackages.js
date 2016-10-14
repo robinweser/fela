@@ -68,6 +68,11 @@ const packages = {
     entry: 'plugins/validator.js',
     dependencies: false
   },
+  'fela-plugin-debug-layout': {
+    name: 'FelaPluginDebugLayout',
+    entry: 'plugins/debugLayout.js',
+    dependencies: false
+  },
   'fela-preset-web': {
     name: 'FelaPresetWeb',
     entry: 'presets/web.js',

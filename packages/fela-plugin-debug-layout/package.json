@@ -1,0 +1,25 @@
+{
+  "name": "fela-plugin-debug-layout",
+  "version": "3.0.1",
+  "description": "Fela plugin to debug app layouts",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "devTool",
+    "debugger",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "3.0.1"
+  }
+}
