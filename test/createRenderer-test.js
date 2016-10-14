@@ -217,6 +217,60 @@ describe('Renderer', () => {
       expect(renderer.rules).to.eql('.c0{color:red}')
       expect(renderer.mediaRules['(min-height:300px)']).to.eql('.c0{color:blue}')
     })
+
+    it('should name classes after their rule when prettySelectors is true', () => {
+      const nicelyNamedRule = props => ({
+        color: 'red'
+      })
+
+      process.env.NODE_ENV = 'development'
+
+      const renderer = createRenderer({ prettySelectors: true })
+
+      const className = renderer.renderRule(nicelyNamedRule)
+
+      expect(className).to.eql('nicelyNamedRule_0')
+    })
+
+    it('should name classes correctly when the rule name cannot be inferred', () => {
+      const renderer = createRenderer({ prettySelectors: true })
+
+      process.env.NODE_ENV = 'development'
+
+      const className = renderer.renderRule(() => ({
+        color: 'red'
+      }))
+
+      expect(className).to.eql('c0')
+    })
+
+    it('should not name classes after their rule when prettySelectors is false', () => {
+      const nicelyNamedRule = props => ({
+        color: 'red'
+      })
+
+      process.env.NODE_ENV = 'development'
+
+      const renderer = createRenderer({ prettySelectors: false })
+
+      const className = renderer.renderRule(nicelyNamedRule)
+
+      expect(className).to.eql('c0')
+    })
+
+    it('should not name classes after their rule when in prod', () => {
+      const nicelyNamedRule = props => ({
+        color: 'red'
+      })
+
+      process.env.NODE_ENV = 'production'
+
+      const renderer = createRenderer({ prettySelectors: true })
+
+      const className = renderer.renderRule(nicelyNamedRule)
+
+      expect(className).to.eql('c0')
+    })
   })
 
 

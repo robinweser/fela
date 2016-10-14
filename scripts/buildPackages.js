@@ -177,7 +177,7 @@ function updateReadme(pkg, bundleSize) {
 
       fs.writeFile(path, readme, err => {
         errorOnFail(err, pkg)
-        console.log('Successfully updated ' + pkg + ' REAMDE.md to ' + globalVersion + '.')
+        console.log('Successfully updated ' + pkg + ' README.md to ' + globalVersion + '.')
       })
     })
   })

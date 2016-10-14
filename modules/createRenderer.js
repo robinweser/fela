@@ -21,6 +21,10 @@ export default function createRenderer(config = { }) {
     keyframePrefixes: config.keyframePrefixes || [ '-webkit-', '-moz-' ],
     plugins: config.plugins || [ ],
 
+    // try and use readable selectors when
+    // prettySelectors is on and not in a prod environment
+    prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
+
     /**
      * clears the sheet's cache but keeps all listeners
      */
@@ -61,7 +65,10 @@ export default function createRenderer(config = { }) {
 
       // uses the reference ID and the props to generate an unique className
       const ruleId = renderer.ids.indexOf(rule)
-      const className = 'c' + ruleId + generatePropsReference(props)
+
+      const classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '_' : 'c'
+
+      const className = classNamePrefix + ruleId + generatePropsReference(props)
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
@@ -85,12 +92,12 @@ export default function createRenderer(config = { }) {
         }
 
         // keep static style to diff dynamic onces later on
-        if (className === 'c' + ruleId) {
+        if (className === classNamePrefix + ruleId) {
           renderer.base[ruleId] = diffedStyle
         }
       }
 
-      const baseClassName = 'c' + ruleId
+      const baseClassName = classNamePrefix + ruleId
       if (!renderer.rendered[className]) {
         return baseClassName
       }
