@@ -3,8 +3,8 @@
   Please read the guide-lines at the bottom.
 ------------------------------------------->
 
-**Version**: 1.0.0
-**Environment**: DOM / Server
+**Version**: 3.0.x
+**Environment**: DOM / Server / Both
 **Type**: Bug / Feature / Infrastructure / Docs / General
 
 -------------------
