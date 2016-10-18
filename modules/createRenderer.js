@@ -40,7 +40,7 @@ export default function createRenderer(config = { }) {
       renderer.callStack = [ ]
 
       // emit changes to notify subscribers
-      renderer._emitFullReload()
+      renderer._emitChange({ type: 'clear' })
     },
 
     /**
@@ -97,14 +97,21 @@ export default function createRenderer(config = { }) {
       }
 
       const baseClassName = classNamePrefix + ruleId
+      // if current className is empty
+      // return either the static class or empty string
       if (!renderer.rendered[className]) {
-        return baseClassName
+        return renderer.rendered[baseClassName] ? baseClassName : ''
       }
 
       renderer.callStack.push(renderer.renderRule.bind(renderer, rule, props))
 
-      // returns either the base className or both the base and the dynamic part
-      return className !== baseClassName ? baseClassName + ' ' + className : className
+      // if the current className is a dynamic rule
+      // return both classNames if static subset is not empty
+      if (className !== baseClassName) {
+        return (renderer.rendered[baseClassName] ? baseClassName + ' ' : '') + className
+      }
+
+      return className
     },
 
     /**
@@ -141,7 +148,12 @@ export default function createRenderer(config = { }) {
         renderer.keyframes += css
 
         renderer.callStack.push(renderer.renderKeyframe.bind(renderer, keyframe, props))
-        renderer._emitFullReload()
+        renderer._emitChange({
+          name: animationName,
+          style: processedKeyframe,
+          css: css,
+          type: 'keyframe'
+        })
       }
 
       return animationName
@@ -171,7 +183,12 @@ export default function createRenderer(config = { }) {
         renderer.fontFaces += css
 
         renderer.callStack.push(renderer.renderFont.bind(renderer, family, files, properties))
-        renderer._emitFullReload()
+        renderer._emitChange({
+          fontFamily: family,
+          fontFace: fontFace,
+          css: css,
+          type: 'font'
+        })
       }
 
       return family
@@ -189,9 +206,14 @@ export default function createRenderer(config = { }) {
 
       if (!renderer.rendered.hasOwnProperty(reference)) {
         if (typeof style === 'string') {
+          const css = style.replace(/\s{2,}/g, '')
           // remove new lines from template strings
-          renderer.statics += style.replace(/\s{2,}/g, '')
-          renderer._emitFullReload()
+          renderer.statics += css
+          renderer._emitChange({
+            selector: selector,
+            type: 'static',
+            css: css
+          })
         } else {
           const processedStyle = processStyle(style, {
             selector: selector,
@@ -204,7 +226,8 @@ export default function createRenderer(config = { }) {
           renderer.callStack.push(renderer.renderStatic.bind(renderer, style, selector))
           renderer._emitChange({
             selector: selector,
-            style: css,
+            style: processedStyle,
+            css: css,
             type: 'rule'
           })
         }
@@ -254,9 +277,6 @@ export default function createRenderer(config = { }) {
       renderer._emitChange({ type: 'rehydrate', done: false })
       callStack.forEach(fn => fn())
       renderer._emitChange({ type: 'rehydrate', done: true })
-
-      // run a full reload after every style is rerendered
-      renderer._emitFullReload()
     },
 
     /**
@@ -268,16 +288,6 @@ export default function createRenderer(config = { }) {
      */
     _emitChange(change) {
       renderer.listeners.forEach(listener => listener(change, renderer))
-    },
-
-    /**
-     * emits change object to trigger full css reload
-     */
-    _emitFullReload() {
-      renderer._emitChange({
-        css: renderer.renderToString(),
-        type: 'static'
-      })
     },
 
     /**
@@ -327,7 +337,8 @@ export default function createRenderer(config = { }) {
 
         renderer._emitChange({
           selector: selector,
-          style: css,
+          style: ruleset,
+          css: css,
           media: media,
           type: 'rule'
         })

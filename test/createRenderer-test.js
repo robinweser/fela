@@ -109,7 +109,25 @@ describe('Renderer', () => {
       expect(Object.keys(renderer.rendered).length).to.eql(3)
     })
 
-    it('should only additionally render static styles if not directly rendering those', () => {
+    it('should return an empty string if the style is empty', () => {
+      const rule = props => ({ color: props.color })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule, { color: 'red' })
+
+      expect(className).to.eql('c0--aedinm')
+    })
+
+    it('should only return a dynamic className', () => {
+      const rule = props => ({ })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule)
+
+      expect(className).to.eql('')
+    })
+
+    it('should only render static styles if not directly rendering those', () => {
       const rule = props => ({ fontSize: '23px' })
       const renderer = createRenderer()
       const spy = sinon.spy()
@@ -219,9 +237,7 @@ describe('Renderer', () => {
     })
 
     it('should name classes after their rule when prettySelectors is true', () => {
-      const nicelyNamedRule = props => ({
-        color: 'red'
-      })
+      const nicelyNamedRule = props => ({ color: 'red' })
 
       process.env.NODE_ENV = 'development'
 
@@ -237,17 +253,13 @@ describe('Renderer', () => {
 
       process.env.NODE_ENV = 'development'
 
-      const className = renderer.renderRule(() => ({
-        color: 'red'
-      }))
+      const className = renderer.renderRule(() => ({ color: 'red' }))
 
       expect(className).to.eql('c0')
     })
 
     it('should not name classes after their rule when prettySelectors is false', () => {
-      const nicelyNamedRule = props => ({
-        color: 'red'
-      })
+      const nicelyNamedRule = props => ({ color: 'red' })
 
       process.env.NODE_ENV = 'development'
 
@@ -259,9 +271,7 @@ describe('Renderer', () => {
     })
 
     it('should not name classes after their rule when in prod', () => {
-      const nicelyNamedRule = props => ({
-        color: 'red'
-      })
+      const nicelyNamedRule = props => ({ color: 'red' })
 
       process.env.NODE_ENV = 'production'
 
@@ -425,12 +435,18 @@ describe('Renderer', () => {
       expect(changes).to.eql([ {
         type: 'rule',
         selector: '.c0',
-        style: 'color:blue',
+        css: 'color:blue',
+        style: {
+          color: 'blue'
+        },
         media: '(min-height: 300px)'
       }, {
         type: 'rule',
         selector: '.c0',
-        style: 'color:red',
+        css: 'color:red',
+        style: {
+          color: 'red'
+        },
         media: ''
       } ])
     })

@@ -6,7 +6,7 @@ describe('Rendering into a DOM node', () => {
   it('should subscribe to changes', () => {
     const rule = props => ({ color: 'red' })
     const node = DOMNode()
-    const renderer = createRenderer(node)
+    const renderer = createRenderer()
 
     process.env.NODE_ENV = 'production'
 
@@ -24,7 +24,7 @@ describe('Rendering into a DOM node', () => {
 
     node.textContent = 'foo'
 
-    const renderer = createRenderer(node)
+    const renderer = createRenderer()
     const className = renderer.renderRule(rule)
 
     render(renderer, node)
@@ -35,7 +35,7 @@ describe('Rendering into a DOM node', () => {
   it('should set the data-fela-stylesheet attribute', () => {
     const node = DOMNode()
 
-    const renderer = createRenderer(node)
+    const renderer = createRenderer()
     render(renderer, node)
 
     expect(node.hasAttribute('data-fela-stylesheet')).to.eql(true)
