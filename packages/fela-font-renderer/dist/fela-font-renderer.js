@@ -27,9 +27,18 @@
 
   babelHelpers;
 
-  function fontRenderer(renderer, mountNode) {
+  /**
+   * adds a special renderer only used for font rendering
+   * to prevent flickering on changes
+   *
+   * @param {Object} renderer - renderer which gets enhanced
+   * @param {DOMElement} mountNode - stylesheet to render fonts into
+   * @return {Object} enhanced renderer
+   */
+  function addFontRenderer(renderer, mountNode) {
     renderer.fontRenderer = fela.createRenderer();
 
+    // mount font styles into the mountNode
     if (mountNode) {
       fela.render(renderer.fontRenderer, mountNode);
     }
@@ -41,13 +50,13 @@
     return renderer;
   }
 
-  var fontRenderer$1 = (function (mountNode) {
+  var fontRenderer = (function (mountNode) {
     return function (renderer) {
-      return fontRenderer(renderer, mountNode);
+      return addFontRenderer(renderer, mountNode);
     };
   });
 
-  return fontRenderer$1;
+  return fontRenderer;
 
 }));
 //# sourceMappingURL=fela-font-renderer.js.map

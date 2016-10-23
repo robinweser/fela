@@ -29,7 +29,13 @@
 
   var counter = 0;
 
-  function perf(renderer) {
+  /**
+   * adds a performance profiler to renderRule calls
+   *
+   * @param {Object} renderer - renderer which gets enhanced
+   * @return {Object} enhanced renderer
+   */
+  function addPerfTool(renderer) {
     var existingRenderRule = renderer.renderRule.bind(renderer);
 
     renderer.renderRule = function (rule, props) {
@@ -46,11 +52,13 @@
     return renderer;
   }
 
-  var perf$1 = (function () {
-    return perf;
+  var perf = (function () {
+    return function (renderer) {
+      return addPerfTool(renderer);
+    };
   });
 
-  return perf$1;
+  return perf;
 
 }));
 //# sourceMappingURL=fela-perf.js.map

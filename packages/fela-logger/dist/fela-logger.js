@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
-    (global.FelaBeautifier = factory());
+    (global.FelaLogger = factory());
 }(this, function () { 'use strict';
 
     var babelHelpers = {};
@@ -508,36 +508,56 @@
     var cssbeautify$1 = (cssbeautify && typeof cssbeautify === 'object' && 'default' in cssbeautify ? cssbeautify['default'] : cssbeautify);
 
     /**
-     * beautifies CSS output of renderToString
+     * adds a logging tool which listens to renderer changes
      *
      * @param {Object} renderer - renderer which gets enhanced
-     * @param {Object} options - beautifier options
+     * @param {Object} options - logging options
      * @return {Object} enhanced renderer
      */
-    function addBeautifier(renderer, options) {
-      var existingRenderToString = renderer.renderToString.bind(renderer);
+    function addLogger(renderer, options) {
+      renderer.subscribe(function (change) {
+        // log clearing
+        if (change.type === 'clear') {
+          console.log('Cleared renderer cache.'); // eslint-disable-line
+          return true;
+        }
 
-      renderer.renderToString = function () {
-        var css = existingRenderToString();
-        return cssbeautify$1(css, options);
-      };
+        // log status of rehydration
+        if (change.type === 'rehydrate') {
+          console.log('Renderer rehydration ' + (change.done ? 'finished' : 'started') + '.'); // eslint-disable-line
+          return true;
+        }
+
+        var selector = change.selector || change.font || change.name;
+        var style = change.style || change.fontFace;
+        var css = options.format ? cssbeautify$1(change.css) : change.css;
+        var isMedia = change.media && change.media.length > 0;
+
+        // logs all information in a group
+        console.group(selector); // eslint-disable-line
+        isMedia && console.log(change.media); // eslint-disable-line
+        options.logStyleObject && console.log(style); // eslint-disable-line
+        options.logCSS && console.log(css); // eslint-disable-line
+        console.groupEnd(selector); // eslint-disable-line
+      });
 
       return renderer;
     }
 
     var defaultOptions = {
-      indent: '  ',
-      openbrace: 'end-of-line',
-      autosemicolon: false
+      logStyleObject: true,
+      logCSS: false,
+      formatCSS: false
     };
-    var beautifier = (function () {
+
+    var logger = (function () {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       return function (renderer) {
-        return addBeautifier(renderer, babelHelpers.extends({}, defaultOptions, options));
+        return addLogger(renderer, babelHelpers.extends({}, defaultOptions, options));
       };
     });
 
-    return beautifier;
+    return logger;
 
 }));
-//# sourceMappingURL=fela-beautifier.js.map
+//# sourceMappingURL=fela-logger.js.map
