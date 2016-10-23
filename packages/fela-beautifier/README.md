@@ -18,31 +18,45 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <script src="https://unpkg.com/fela-beautifier@3.0.1/dist/fela-beautifier.min.js"></script>
 ```
 
-## Example
-![Preview](preview.png)
-
 ## Usage
 ```javascript
 import { createRenderer } from 'fela'
 import beautifier from 'fela-beautifier'
 
-const enhancer = beautifier({
-  ident: '  ',
-  openbrace: 'separate-line',
-  autosemicolon: 'false'
+const renderer = createRenderer({
+  enhancers: [ beautifier() ]
 })
-
-const renderer = createRenderer({ enhancers: [enhancer] })
 ```
 
-## Configuration
+### Configuration
+##### Options
+
 Uses the same options as [cssbeautify](https://github.com/senchalabs/cssbeautify) does.
 
-| option | value | default |description |
+| Option | Value | Default | Description |
 | ------ | --- | ------------ | --- |
-|ident| `string` |`  ` (2 spaces)| a string used for the indentation of the declaration |
+|ident| *(string)* |`  ` (2 spaces)| a string used for the indentation of the declaration |
 |openbrace| `end-of-line`, `separate-line` |`end-of-line`| placement of open curly brace |
-| autosemicolon | `boolean`| `false` | insert semicolon after the last rule |
+| autosemicolon | *(boolean)* | `false` | insert semicolon after the last rule |
+
+##### Example
+```javascript
+import { createRenderer } from 'fela'
+import beautifier from 'fela-beautifier'
+
+const beautifyEnhancer = beautifier({
+  openbrace: 'separate-line',
+  autosemicolon: 'false',
+  ident: '  ',
+})
+
+const renderer = createRenderer({
+  enhancers: [ beautifyEnhancer ]
+})
+```
+
+## Example
+![Preview](preview.png)
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

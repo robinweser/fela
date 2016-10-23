@@ -1,24 +1,29 @@
 import cssbeautify from 'cssbeautify'
 
-const defaultOptions = {
-  indent: '  ',
-  openbrace: 'end-of-line',
-  autosemicolon: false
-}
-
-function beautifier(renderer, options) {
+/**
+ * beautifies CSS output of renderToString
+ *
+ * @param {Object} renderer - renderer which gets enhanced
+ * @param {Object} options - beautifier options
+ * @return {Object} enhanced renderer
+ */
+function addBeautifier(renderer, options) {
   const existingRenderToString = renderer.renderToString.bind(renderer)
 
   renderer.renderToString = () => {
     const css = existingRenderToString()
-
-    return cssbeautify(css, {
-      ...defaultOptions,
-      ...options
-    })
+    return cssbeautify(css, options)
   }
 
   return renderer
 }
 
-export default options => renderer => beautifier(renderer, options)
+const defaultOptions = {
+  indent: '  ',
+  openbrace: 'end-of-line',
+  autosemicolon: false
+}
+export default (options = { }) => renderer => addBeautifier(renderer, {
+  ...defaultOptions,
+  ...options
+})

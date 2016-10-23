@@ -1,8 +1,17 @@
 import { createRenderer, render } from 'fela'
 
-function fontRenderer(renderer, mountNode) {
+/**
+ * adds a special renderer only used for font rendering
+ * to prevent flickering on changes
+ *
+ * @param {Object} renderer - renderer which gets enhanced
+ * @param {DOMElement} mountNode - stylesheet to render fonts into
+ * @return {Object} enhanced renderer
+ */
+function addFontRenderer(renderer, mountNode) {
   renderer.fontRenderer = createRenderer()
 
+  // mount font styles into the mountNode
   if (mountNode) {
     render(renderer.fontRenderer, mountNode)
   }
@@ -14,4 +23,4 @@ function fontRenderer(renderer, mountNode) {
   return renderer
 }
 
-export default mountNode => renderer => fontRenderer(renderer, mountNode)
+export default mountNode => renderer => addFontRenderer(renderer, mountNode)

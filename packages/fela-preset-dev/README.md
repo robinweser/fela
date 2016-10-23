@@ -29,14 +29,12 @@ Simply use the spread operator to add the preset.
 import { createRenderer } from 'fela'
 import devPreset from 'fela-preset-dev'
 
-const config = {
+const renderer = createRenderer({
   plugins: [
     // other plugins,
     ...devPreset
   ]
-}
-
-const renderer = createRenderer(config)
+})
 ```
 
 ## License

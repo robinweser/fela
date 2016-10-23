@@ -31,14 +31,12 @@ Simply use the spread operator to add the preset.
 import { createRenderer } from 'fela'
 import webPreset from 'fela-preset-web'
 
-const config = {
+const renderer = createRenderer({
   plugins: [
     ...webPreset,
     // other plugins
   ]
-}
-
-const renderer = createRenderer(config)
+})
 ```
 
 ## License

@@ -1,7 +1,7 @@
 {
   "name": "fela-plugin-logger",
   "version": "3.0.1",
-  "description": "Fela plugin to log rendered styles",
+  "description": "Fela plugin to log processed style objects",
   "main": "index.js",
   "files": [
     "LICENSE",

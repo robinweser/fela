@@ -6,7 +6,7 @@
 
 Uses [inline-style-prefixer/static](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes to both property and value.
 
-**Requires to use  [fela-plugin-fallback-value](../fela-plugin-fallback-value/) afterwards** in order to resolve alternative prefix values which get returned as an array by default.
+**Requires to use [fela-plugin-fallback-value](../fela-plugin-fallback-value/) afterwards** in order to resolve alternative prefix values which get returned as an array by default.
 
 ## Installation
 ```sh
@@ -21,6 +21,18 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <script src="https://unpkg.com/fela-plugin-prefixer@3.0.1/dist/fela-plugin-prefixer.min.js"></script>
 ```
 
+## Usage
+Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+```javascript
+import { createRenderer } from 'fela'
+import prefixer from 'fela-plugin-prefixer'
+
+const renderer = createRenderer({
+  plugins: [ prefixer() ]
+})
+```
+
 ## Example
 
 #### Input
@@ -33,7 +45,7 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 #### Output
 ```javascript
 {
-  display: ['webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+  display: [ 'webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex' ],
   WebkitAppearance: 'none',
   MozAppearance: 'none',
   appearance: 'none'

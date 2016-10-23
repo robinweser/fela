@@ -5,7 +5,7 @@
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.46kb-brightgreen.svg">
 
 Removes any `undefined` value or string values containing `undefined`.
-It also checks array values.
+It also checks array values. This plugin has been used to ensure auto prefixing to work. It is not necessary anymore as Fela automatically strips all undefined values.
 
 ## Installation
 ```sh
@@ -19,6 +19,20 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <!-- Fela (Production): Minified version -->
 <script src="https://unpkg.com/fela-plugin-remove-undefined@3.0.1/dist/fela-plugin-remove-undefined.min.js"></script>
 ```
+
+
+## Usage
+Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+```javascript
+import { createRenderer } from 'fela'
+import removeUndefined from 'fela-plugin-remove-undefined'
+
+const renderer = createRenderer({
+  plugins: [ removeUndefined() ]
+})
+```
+
 
 ## Example
 

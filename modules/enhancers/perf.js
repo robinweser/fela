@@ -1,6 +1,12 @@
 let counter = 0
 
-function perf(renderer) {
+/**
+ * adds a performance profiler to renderRule calls
+ *
+ * @param {Object} renderer - renderer which gets enhanced
+ * @return {Object} enhanced renderer
+ */
+function addPerfTool(renderer) {
   const existingRenderRule = renderer.renderRule.bind(renderer)
 
   renderer.renderRule = (rule, props) => {
@@ -17,4 +23,4 @@ function perf(renderer) {
   return renderer
 }
 
-export default () => perf
+export default () => renderer => addPerfTool(renderer)

@@ -21,6 +21,19 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <script src="https://unpkg.com/fela-plugin-friendly-pseudo-class@3.0.1/dist/fela-plugin-friendly-pseudo-class.min.js"></script>
 ```
 
+## Usage
+Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+```javascript
+import { createRenderer } from 'fela'
+import friendlyPseudoClass from 'fela-plugin-friendly-pseudo-class'
+
+const renderer = createRenderer({
+  plugins: [ friendlyPseudoClass() ]
+})
+```
+
+
 ## Example
 
 #### Input

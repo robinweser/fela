@@ -20,6 +20,38 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <script  src="https://unpkg.com/fela-plugin-unit@3.0.1/dist/fela-plugin-unit.min.js"></script>
 ```
 
+
+## Usage
+Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+```javascript
+import { createRenderer } from 'fela'
+import unit from 'fela-plugin-unit'
+
+const renderer = createRenderer({
+  plugins: [ unit() ]
+})
+```
+
+### Configuration
+##### Parameters
+| Parameter | Value | Default | Description |
+| --- | --- | --- | --- |
+| unit | `ch`, `em`, `ex`, `rem`, `vh`, `vw`, `vmin`, `vmax`, `px`, `cm`, `mm`, `in`, `pc`, `pt`, `mozmm` | `px` | unit which gets applied |
+
+##### Example
+```javascript
+import { createRenderer } from 'fela'
+import unit from 'fela-plugin-unit'
+
+const unitPlugin = unit('em')
+
+const renderer = createRenderer({
+  plugins: [ unitPlugin ]
+})
+```
+
+
 ## Example
 Let's say we want to have a custom property `size` that accepts a single number which will then be transformed into both `width` and `height` with a `px` unit applied.
 
@@ -38,14 +70,6 @@ Let's say we want to have a custom property `size` that accepts a single number 
   lineHeight: 1.4,
   height: '53px'
 }
-```
-## Configuration
-
-By default it adds `px` to the value, but you may use units other than that.
-```javascript
-import unit from 'fela-plugin-unit'
-
-const plugin = unit('em')
 ```
 
 ## License

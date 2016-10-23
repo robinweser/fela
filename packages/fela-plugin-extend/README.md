@@ -19,6 +19,18 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 <script src="https://unpkg.com/fela-plugin-extend@3.0.1/dist/fela-plugin-extend.min.js"></script>
 ```
 
+## Usage
+Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+```javascript
+import { createRenderer } from 'fela'
+import extend from 'fela-plugin-extend'
+
+const renderer = createRenderer({
+  plugins: [ extend() ]
+})
+```
+
 ## Example
 
 ### `extend: styleObject`
