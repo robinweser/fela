@@ -1,6 +1,11 @@
 # Changelog
 
 ## 3.0
+#### 3.0.2
+##### Improvements
+* added additional information to change objects that get emitted
+* added [fela-logger](packages/fela-logger) which provides advanced logging ( [#93](https://github.com/rofrischmann/fela/issues/93) )
+
 #### 3.0.1
 ##### Improvements
 * added `prettySelectors` option to the renderer to enable human readable classNames while in a development environment. ( [#89](https://github.com/rofrischmann/fela/pull/89) )
