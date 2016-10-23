@@ -1,0 +1,27 @@
+{
+  "name": "fela-logger",
+  "version": "3.0.1",
+  "description": "Logging tool for Fela",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-devtools",
+    "fela-logger",
+    "dx",
+    "devtools",
+    "cssinjs",
+    "logging"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "3.0.1"
+  }
+}
