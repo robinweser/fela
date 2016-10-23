@@ -97,6 +97,11 @@ const packages = {
     name: 'FelaPerf',
     entry: 'enhancers/perf.js',
     dependencies: false
+  },
+  'fela-logger': {
+    name: 'FelaLogger',
+    entry: 'enhancers/logger.js',
+    dependencies: true
   }
 }
 

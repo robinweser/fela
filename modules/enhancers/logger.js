@@ -11,13 +11,13 @@ function addLogger(renderer, options) {
   renderer.subscribe(change => {
     // log clearing
     if (change.type === 'clear') {
-      console.log('Cleared renderer cache.')
+      console.log('Cleared renderer cache.') // eslint-disable-line
       return true
     }
 
     // log status of rehydration
     if (change.type === 'rehydrate') {
-      console.log('Renderer rehydration ' + (change.done ? 'finished' : 'started') + '.')
+      console.log('Renderer rehydration ' + (change.done ? 'finished' : 'started') + '.') // eslint-disable-line
       return true
     }
 
@@ -28,11 +28,11 @@ function addLogger(renderer, options) {
 
 
     // logs all information in a group
-    console.group(selector)
-    isMedia && console.log(change.media)
-    options.logStyleObject && console.log(style)
-    options.logCSS && console.log(change.css)
-    console.groupEnd(selector)
+    console.group(selector) // eslint-disable-line
+    isMedia && console.log(change.media) // eslint-disable-line
+    options.logStyleObject && console.log(style) // eslint-disable-line
+    options.logCSS && console.log(css) // eslint-disable-line
+    console.groupEnd(selector) // eslint-disable-line
   })
 
   return renderer
