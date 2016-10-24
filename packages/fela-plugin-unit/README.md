@@ -38,13 +38,17 @@ const renderer = createRenderer({
 | Parameter | Value | Default | Description |
 | --- | --- | --- | --- |
 | unit | `ch`, `em`, `ex`, `rem`, `vh`, `vw`, `vmin`, `vmax`, `px`, `cm`, `mm`, `in`, `pc`, `pt`, `mozmm` | `px` | unit which gets applied |
+| unitPerProperty | *(Object)* | `{}` | Default units per property |
 
 ##### Example
 ```javascript
 import { createRenderer } from 'fela'
 import unit from 'fela-plugin-unit'
 
-const unitPlugin = unit('em')
+const unitPlugin = unit('em', {
+  margin: '%',
+  fontSize: 'pt'
+})
 
 const renderer = createRenderer({
   plugins: [ unitPlugin ]
@@ -53,22 +57,26 @@ const renderer = createRenderer({
 
 
 ## Example
-Let's say we want to have a custom property `size` that accepts a single number which will then be transformed into both `width` and `height` with a `px` unit applied.
+Using the above example code:
 
 #### Input
 ```javascript
 {
   width: 25,
   lineHeight: 1.4,
-  height: '53'
+  height: '53',
+  fontSize: 15,
+  margin: 10
 }
 ```
 #### Output
 ```javascript
 {
-  width: '25px',
+  width: '25em',
   lineHeight: 1.4,
-  height: '53px'
+  height: '53em',
+  fontSize: '15pt',
+  margin: '10%'
 }
 ```
 
