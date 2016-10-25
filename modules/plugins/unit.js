@@ -17,11 +17,11 @@ function addUnit(style, unit, propertyMap) {
       const value = style[property]
       const propertyUnit = propertyMap[property] || unit
       if (Array.isArray(value)) {
-        style[property] = value.map(value => addUnitIfNeeded(property, propertyUnit, unit))
+        style[property] = value.map(value => addUnitIfNeeded(property, value, propertyUnit))
       } else if (value instanceof Object) {
         style[property] = addUnit(value, unit, propertyMap)
       } else {
-        style[property] = addUnitIfNeeded(property, propertyUnit, unit)
+        style[property] = addUnitIfNeeded(property, value, propertyUnit)
       }
     }
   })

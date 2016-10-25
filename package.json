@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "babel": "babel -d packages/fela/lib modules",
+    "check": "mocha --opts test/_setup/mocha.opts",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
     "lint": "eslint modules",

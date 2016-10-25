@@ -43,4 +43,19 @@ describe('Unit plugin', () => {
     const style = { width: 46 }
     expect(unit('em')(style)).to.eql({ width: '46em' })
   })
+
+  it('should add property specific units', () => {
+    const style = {
+      width: 46,
+      height: 50,
+      margin: 10,
+      fontSize: 15
+    }
+    expect(unit('px', { margin: '%', fontSize: 'pt' })(style)).to.eql({
+      width: '46px',
+      height: '50px',
+      margin: '10%',
+      fontSize: '15pt'
+    })
+  })
 })
