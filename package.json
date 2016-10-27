@@ -1,7 +1,7 @@
 {
   "private": true,
   "version": "3.0.2",
-  "description": "Universal & Dynamic Styling in JavaScript (generates CSS)",
+  "description": "Universal & Dynamic Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
   "license": "MIT",
