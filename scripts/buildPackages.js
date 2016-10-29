@@ -28,6 +28,11 @@ const packages = {
     entry: 'plugins/prefixer.js',
     dependencies: true
   },
+  'fela-plugin-placeholder-prefixer': {
+    name: 'FelaPluginPlaceholderPrefixer',
+    entry: 'plugins/placeholderPrefixer.js',
+    dependencies: false
+  },
   'fela-plugin-fallback-value': {
     name: 'FelaPluginFallbackValue',
     entry: 'plugins/fallbackValue.js',
