@@ -1,7 +1,7 @@
 {
   "private": true,
-  "version": "3.0.2",
-  "description": "Universal & Dynamic Styling in JavaScript (generates CSS)",
+  "version": "3.0.3",
+  "description": "Universal & Dynamic Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "lint": "eslint modules",
     "precommit": "npm run lint && npm test",
     "prepare": "npm run precommit && npm run babel && npm run dist",
-    "release": "npm run prepare && ./scripts/publishPackages.sh",
+    "release": "npm run prepare && ./scripts/publishPackages.sh && npm run docs",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/_setup/mocha.opts"
   },
   "devDependencies": {
