@@ -10,17 +10,18 @@ function addUnitIfNeeded(property, value, unit) {
   return value
 }
 
-function addUnit(style, unit) {
+function addUnit(style, unit, propertyMap) {
   Object.keys(style).forEach(property => {
     if (!isUnitlessCSSProperty(property)) {
 
       const value = style[property]
+      const propertyUnit = propertyMap[property] || unit
       if (Array.isArray(value)) {
-        style[property] = value.map(value => addUnitIfNeeded(property, value, unit))
+        style[property] = value.map(value => addUnitIfNeeded(property, value, propertyUnit))
       } else if (value instanceof Object) {
-        style[property] = addUnit(value, unit)
+        style[property] = addUnit(value, unit, propertyMap)
       } else {
-        style[property] = addUnitIfNeeded(property, value, unit)
+        style[property] = addUnitIfNeeded(property, value, propertyUnit)
       }
     }
   })
@@ -28,8 +29,8 @@ function addUnit(style, unit) {
   return style
 }
 
-export default (unit = 'px') => {
+export default (unit = 'px', propertyMap = { }) => {
   warning(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`. Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.')
 
-  return style => addUnit(style, unit)
+  return style => addUnit(style, unit, propertyMap)
 }

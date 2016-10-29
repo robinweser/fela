@@ -1,12 +1,13 @@
 {
   "private": true,
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Universal & Dynamic Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
   "license": "MIT",
   "scripts": {
     "babel": "babel -d packages/fela/lib modules",
+    "check": "mocha --opts test/_setup/mocha.opts",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
     "lint": "eslint modules",

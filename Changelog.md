@@ -1,7 +1,7 @@
 # Changelog
 
 ## 3.0
-#### 3.0.3
+#### 3.0.4
 ##### Improvements
 * added [fela-plugin-placeholder-prefixer](packages/fela-plugin-placeholder-prefixer) which adds all prefixes to the `::placeholder` pseudo element ( [#95](https://github.com/rofrischmann/fela/issues/95) )
 * added unit per property option to [fela-plugin-unit](packages/fela-plugin-placeholder-unit) ( [#96](https://github.com/rofrischmann/fela/issues/96) )
