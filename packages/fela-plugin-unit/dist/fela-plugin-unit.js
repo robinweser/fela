@@ -144,20 +144,23 @@
       return value;
     }
 
-    function addUnit(style, unit) {
+    function addUnit(style, unit, propertyMap) {
       Object.keys(style).forEach(function (property) {
         if (!isUnitlessCSSProperty(property)) {
+          (function () {
 
-          var value = style[property];
-          if (Array.isArray(value)) {
-            style[property] = value.map(function (value) {
-              return addUnitIfNeeded(property, value, unit);
-            });
-          } else if (value instanceof Object) {
-            style[property] = addUnit(value, unit);
-          } else {
-            style[property] = addUnitIfNeeded(property, value, unit);
-          }
+            var value = style[property];
+            var propertyUnit = propertyMap[property] || unit;
+            if (Array.isArray(value)) {
+              style[property] = value.map(function (value) {
+                return addUnitIfNeeded(property, value, propertyUnit);
+              });
+            } else if (value instanceof Object) {
+              style[property] = addUnit(value, unit, propertyMap);
+            } else {
+              style[property] = addUnitIfNeeded(property, value, propertyUnit);
+            }
+          })();
         }
       });
 
@@ -166,11 +169,12 @@
 
     var unit = (function () {
       var unit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'px';
+      var propertyMap = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       warning$1(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`. Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
 
       return function (style) {
-        return addUnit(style, unit);
+        return addUnit(style, unit, propertyMap);
       };
     });
 

@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-extend",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Fela plugin to extend style objects",
   "main": "index.js",
   "files": [
@@ -18,6 +18,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "3.0.3"
+    "fela": "3.0.4"
   }
 }
