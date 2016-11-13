@@ -1,4 +1,5 @@
 import createRenderer from '../modules/createRenderer'
+import combineRules from '../modules/combineRules'
 import generatePropsReference from '../modules/utils/generatePropsReference'
 
 describe('Renderer', () => {
@@ -256,6 +257,33 @@ describe('Renderer', () => {
       const className = renderer.renderRule(() => ({ color: 'red' }))
 
       expect(className).to.eql('c0')
+    })
+
+    it('should name classes correctly when a classPrefix is passed via props', () => {
+      const renderer = createRenderer({ prettySelectors: true })
+
+      process.env.NODE_ENV = 'development'
+
+      const text = props => ({ color: 'red' })
+
+      const className = renderer.renderRule(text, { }, 'Header_')
+
+      expect(className).to.eql('Header_text_0')
+    })
+
+    it('should name classes correctly when rules are combined', () => {
+      const renderer = createRenderer({ prettySelectors: true })
+
+      const rule1 = props => ({ color: 'red' })
+      const rule2 = props => ({ fontSize: 'green' })
+
+      const rule = combineRules(rule1, rule2)
+
+      process.env.NODE_ENV = 'development'
+
+      const className = renderer.renderRule(rule)
+
+      expect(className).to.eql('combined_0')
     })
 
     it('should not name classes after their rule when prettySelectors is false', () => {

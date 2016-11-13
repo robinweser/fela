@@ -1,6 +1,11 @@
 # Changelog
 
 ## 3.0
+#### 3.0.5
+##### Improvements
+* proper className prefixing abilities ( [#96](https://github.com/rofrischmann/fela/issues/96) )
+* combined rules are named `combined` with `prettySelectors` set to `true`
+
 #### 3.0.4
 ##### Improvements
 * added [fela-plugin-placeholder-prefixer](packages/fela-plugin-placeholder-prefixer) which adds all prefixes to the `::placeholder` pseudo element ( [#95](https://github.com/rofrischmann/fela/issues/95) )
