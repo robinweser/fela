@@ -19,7 +19,7 @@ open index.html
 * Plugins
 
 ## React
-A simple example application using the [React bindings](https://github.com/rofrischmann/react-fela).
+A simple example application using the [React bindings](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
 
 ```sh
 git clone https://github.com/rofrischmann/fela.git
@@ -44,7 +44,7 @@ npm run client
 * Server-side Rendering
 
 ## React Native
-A simple example application using the [React bindings](https://github.com/rofrischmann/react-fela) and the [React Native renderer](http://fela.js.org/docs/guides/UsageWithReactNative.html#native-renderer).
+A simple example application using the [React bindings](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) and the [React Native renderer](http://fela.js.org/docs/guides/UsageWithReactNative.html#native-renderer).
 
 ```sh
 git clone https://github.com/rofrischmann/fela.git

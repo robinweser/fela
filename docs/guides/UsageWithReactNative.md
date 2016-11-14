@@ -1,6 +1,6 @@
 # Usage with React Native
 
-Fela is designed to be very modular and abstract. The renderer is the only platform specific component. With version 2.0.0 a new native renderer has been added which adds support for React Native. It can be used together with the existing  official [React bindings for Fela](https://github.com/rofrischmann/react-fela).
+Fela is designed to be very modular and abstract. The renderer is the only platform specific component. With version 2.0.0 a new native renderer has been added which adds support for React Native. It can be used together with the existing  official [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
 
 ```sh
 npm i --save fela-native react-fela
@@ -94,10 +94,10 @@ Below there are some key differences comparing Fela for React and Fela for React
 ---
 
 ### Related
-* [react-fela](https://github.com/rofrischmann/react-fela)
-* [API reference - `Provider` ](https://github.com/rofrischmann/react-fela/blob/master/docs/Provider.md)
-* [API reference - `connect` ](https://github.com/rofrischmann/react-fela/blob/master/docs/connect.md)
-* [API reference - `createComponent` ](https://github.com/rofrischmann/react-fela/blob/master/docs/createComponent.md)
+* [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela)
+* [API reference - `Provider` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/Provider.md)
+* [API reference - `connect` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/connect.md)
+* [API reference - `createComponent` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md)
 
 #### Tools
 **[fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native)**<br>

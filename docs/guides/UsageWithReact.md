@@ -1,6 +1,6 @@
 # Usage with React
 
-Fela was always designed with React in mind, but is **not** bound to React by default. If you want to use it with React, you should also install the official [React bindings for Fela](https://github.com/rofrischmann/react-fela).
+Fela was always designed with React in mind, but is **not** bound to React by default. If you want to use it with React, you should also install the official [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
 
 ```sh
 npm i --save react-fela
@@ -11,7 +11,7 @@ While container components manage the application logic, presentational componen
 **If we strictly separate our components, we actually only use Fela for presentational components.**
 
 ## Passing the Renderer
-We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/react-fela/blob/master/docs/api/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.<br>
+We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/api/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.<br>
 It also takes an optional `mountNode` prop which is used to render our final CSS markup into. *(If you use server rendering you do not need to pass a `mountNode`)*.
 
 ### Example
@@ -116,7 +116,7 @@ export default connect(mapStylesToProps)(Header)
 ```
 
 ## Presentational Components from Fela Rules
-An even more convenient way to create your presentational components is from Fela rules directly. react-fela ships with the [`createComponent`](https://github.com/rofrischmann/react-fela/blob/master/docs/createComponent.md) method which helps to achieve that.<br> It takes a single Fela rule and optionally a base component type.
+An even more convenient way to create your presentational components is from Fela rules directly. react-fela ships with the [`createComponent`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md) method which helps to achieve that.<br> It takes a single Fela rule and optionally a base component type.
 
 ### Example
 ```javascript
@@ -151,7 +151,7 @@ const Header = createComponent(container, 'header')
 ---
 
 ### Related
-* [react-fela](https://github.com/rofrischmann/react-fela)
-* [API reference - `Provider` ](https://github.com/rofrischmann/react-fela/blob/master/docs/Provider.md)
-* [API reference - `connect` ](https://github.com/rofrischmann/react-fela/blob/master/docs/connect.md)
-* [API reference - `createComponent` ](https://github.com/rofrischmann/react-fela/blob/master/docs/createComponent.md)
+* [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela)
+* [API reference - `Provider` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/Provider.md)
+* [API reference - `connect` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/connect.md)
+* [API reference - `createComponent` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md)

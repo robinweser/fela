@@ -6,6 +6,12 @@
     "node": true
   },
   "rules": {
-    "eol-last": 0
-  }
+    "eol-last": 0,
+    "react/jsx-uses-react": 1,
+    "react/jsx-no-undef": 2,
+    "no-console": 2
+  },
+  "plugins": [
+    "react"
+  ]
 }

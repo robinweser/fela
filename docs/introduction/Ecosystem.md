@@ -10,7 +10,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native) - React Native
 
 ### Bindings
-* [react-fela](https://github.com/rofrischmann/react-fela) - React & React Native
+* [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) - React & React Native
 * [inferno-fela](https://github.com/rofrischmann/inferno-fela) - Inferno
 
 ### Plugins
@@ -41,7 +41,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.
 
 ### Tools
-* [fela-stylesheet](https://github.com/rofrischmann/fela-stylesheet): Organize your rules grouped StyleSheets
+* [fela-stylesheet](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-stylesheet): Organize your rules grouped StyleSheets
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
 
 ### Utilities
