@@ -107,13 +107,18 @@ const packages = {
     name: 'FelaLogger',
     entry: 'enhancers/logger.js',
     dependencies: true
+  },
+  'react-fela': {
+    name: 'ReactFela',
+    entry: 'bindings/react/index.js',
+    dependencies: true
   }
 }
 
 
 const babelPlugin = babel({
   babelrc: false,
-  presets: [ 'es2015-rollup', 'stage-0' ],
+  presets: [ 'es2015-rollup', 'stage-0', 'react' ],
   plugins: [ 'transform-class-properties', 'transform-dev-warning', 'transform-node-env-inline' ]
 })
 const nodeResolverPlugin = nodeResolver({ jsnext: true, main: true })
