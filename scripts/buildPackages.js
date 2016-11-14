@@ -108,6 +108,11 @@ const packages = {
     entry: 'enhancers/logger.js',
     dependencies: true
   },
+  'fela-stylesheet': {
+    name: 'FelaStyleSheet',
+    entry: 'tools/StyleSheet.js',
+    dependencies: false
+  },
   'react-fela': {
     name: 'ReactFela',
     entry: 'bindings/react/index.js',

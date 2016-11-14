@@ -1,6 +1,14 @@
 # Changelog
 
 ## 3.0
+#### 3.0.6
+##### Infrastructure
+With this version, all packages have been moved to the main repository. Moved packages are **react-fela**, **inferno-fela** and **fela-stylesheet**. This helps to maintain the library and all its packages in a single place.
+
+##### react-fela
+* `createComponent` auto passes `style`, `id` and `className`
+* `connect` invokes the component name for improved CSS debugging
+
 #### 3.0.5
 ##### Improvements
 * proper className prefixing abilities ( [#96](https://github.com/rofrischmann/fela/issues/96) )

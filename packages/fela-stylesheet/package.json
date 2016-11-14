@@ -1,0 +1,23 @@
+{
+  "name": "fela-stylesheet",
+  "version": "3.0.5",
+  "description": "Fela tool to organize multiple rules in StyleSheets",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-tool",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "3.0.5"
+  }
+}
