@@ -247,6 +247,8 @@
         renderRule: function renderRule(rule) {
           var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
+          var _selectorPrefix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+
           // rendering a rule for the first time
           // will create an ID reference
           if (renderer.ids.indexOf(rule) < 0) {
@@ -255,7 +257,7 @@
             // directly render the static base style to be able
             // to diff future dynamic style with those
             if (Object.keys(props).length > 0) {
-              renderer.renderRule(rule, {});
+              renderer.renderRule(rule, {}, _selectorPrefix);
             }
           }
 
@@ -263,7 +265,7 @@
           var ruleId = renderer.ids.indexOf(rule);
 
           var classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '_' : 'c';
-          var className = classNamePrefix + ruleId + generatePropsReference(props);
+          var className = _selectorPrefix + classNamePrefix + ruleId + generatePropsReference(props);
 
           // only if the cached rule has not already been rendered
           // with a specific set of properties it actually renders
@@ -607,7 +609,7 @@
         rules[_key] = arguments[_key];
       }
 
-      return function (props) {
+      return function combined(props) {
         return rules.reduce(function (style, rule) {
           return assign(style, rule(props));
         }, {});

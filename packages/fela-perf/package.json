@@ -1,6 +1,6 @@
 {
   "name": "fela-perf",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Fela enhancer to log performance information",
   "main": "index.js",
   "files": [
@@ -22,6 +22,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "3.0.4"
+    "fela": "3.0.5"
   }
 }
