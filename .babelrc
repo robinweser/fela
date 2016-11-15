@@ -1,10 +1,12 @@
 {
   "presets": [
     "es2015",
-    "stage-0"
+    "stage-0",
+    "react"
   ],
   "plugins": [
     "add-module-exports",
+    "transform-class-properties",
     "transform-dev-warning"
   ]
 }

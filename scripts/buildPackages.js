@@ -126,7 +126,11 @@ const babelPlugin = babel({
   presets: [ 'es2015-rollup', 'stage-0', 'react' ],
   plugins: [ 'transform-class-properties', 'transform-dev-warning', 'transform-node-env-inline' ]
 })
-const nodeResolverPlugin = nodeResolver({ jsnext: true, main: true })
+const nodeResolverPlugin = nodeResolver({
+  jsnext: true,
+  main: true,
+  skip: [ 'react' ]
+})
 const commonJSPlugin = commonjs({ include: 'node_modules/**' })
 const uglifyPlugin = uglify()
 
@@ -142,6 +146,7 @@ function bundleConfig(pkg, info, minify) {
   return {
     format: 'umd',
     globals: {
+      react: 'React',
       fela: 'Fela'
     },
     moduleName: info.name,

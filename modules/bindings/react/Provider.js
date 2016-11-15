@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react'
-import { render } from 'fela'
+import render from '../../render'
 
 export default class Provider extends Component {
   static propTypes =  { renderer: PropTypes.object };

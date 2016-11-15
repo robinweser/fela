@@ -1,7 +1,7 @@
 # fela-beautifier
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-beautifier.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.51kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.88kb-brightgreen.svg">
 
 The beautifier enhancer is a developer tool that automatically formats the rendered CSS markup on every change. It uses [cssbeautify](https://github.com/senchalabs/cssbeautify) to achieve this.
 
@@ -13,9 +13,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaBeautifier` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-beautifier@3.0.5/dist/fela-beautifier.js"></script>
+<script src="https://unpkg.com/fela-beautifier@3.0.6/dist/fela-beautifier.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-beautifier@3.0.5/dist/fela-beautifier.min.js"></script>
+<script src="https://unpkg.com/fela-beautifier@3.0.6/dist/fela-beautifier.min.js"></script>
 ```
 
 ## Usage

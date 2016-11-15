@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-stylesheet.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.45kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.37kb-brightgreen.svg">
 
 Organize multiple Fela Rules in StyleSheets.
 A simple helper to organize multiple rules within one single StyleSheet as used e.g. in [React Native](https://github.com/facebook/react-native) or [react-look](https://github.com/rofrischmann/react-look).
@@ -15,9 +15,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaStyleSheet` global.
 ```HTML
 <!-- (Development) Unminified version -->
-<script src="https://unpkg.com/fela-stylesheety@1.0.2/dist/fela-stylesheet.js"></script>
+<script src="https://unpkg.com/fela-stylesheety@3.0.6/dist/fela-stylesheet.js"></script>
 <!-- (Production) Minified version -->
-<script src="https://unpkg.com/fela-stylesheet@1.0.2/dist/fela-stylesheet.min.js"></script>
+<script src="https://unpkg.com/fela-stylesheet@3.0.6/dist/fela-stylesheet.min.js"></script>
 ```
 
 ## API

@@ -3,7 +3,7 @@
 Official [React](https://github.com/facebook/react) bindings for Fela.
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.68kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.65kb-brightgreen.svg">
 
 This package only includes React bindings for [Fela](http://github.com/rofrischmann/fela).<br>
 It assumes you already know about Fela and how to use it.
@@ -19,9 +19,9 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 
 ```HTML
 <!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/react-fela@3.0.1/dist/react-fela.js"></script>
+<script src="https://unpkg.com/react-fela@3.0.6/dist/react-fela.js"></script>
 <!-- Production build (minified)  -->
-<script src="https://unpkg.com/react-fela@3.0.1/dist/react-fela.min.js"></script>
+<script src="https://unpkg.com/react-fela@3.0.6/dist/react-fela.min.js"></script>
 ```
 
 ## Documentation
@@ -29,7 +29,7 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 * [`<Provider renderer [mountNode]>`](docs/Provider.md)
 * [`connect(mapStylesToProps)`](docs/connect.md)
 * [`createComponent(rule, [type], [passThroughProps])`](docs/createComponent.md)
-
+* [`<ThemeProvider theme>`](docs/ThemeProvider.md)
 ## Usage
 For more information and best practices on how to effectively use this package, please check out the main [Fela Documention - Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html). There you will also find some usage examples. This package only contains the pure API reference documentation.
 

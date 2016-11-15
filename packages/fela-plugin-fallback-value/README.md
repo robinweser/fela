@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-fallback-value.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.52kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.88kb-brightgreen.svg">
 
 Sometimes you want to provide alternative values also know as *fallback values*. <br>
 For example in Internet Explorer 8 there is no `rgba` compatibility for colors which means just passing *e.g. `color: rgba(0, 0, 0, 0.5)`* would not be applied correctly.
@@ -16,9 +16,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginFallbackValue` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-fallback-value@3.0.5/dist/fela-plugin-fallback-value.js"></script>
+<script src="https://unpkg.com/fela-plugin-fallback-value@3.0.6/dist/fela-plugin-fallback-value.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-fallback-value@3.0.5/dist/fela-plugin-fallback-value.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-fallback-value@3.0.6/dist/fela-plugin-fallback-value.min.js"></script>
 ```
 
 ## Usage
