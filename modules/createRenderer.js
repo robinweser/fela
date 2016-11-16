@@ -67,7 +67,7 @@ export default function createRenderer(config = { }) {
       const ruleId = renderer.ids.indexOf(rule)
 
       const classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '__' : 'c'
-      const className = renderer._selectorPrefix + classNamePrefix + ruleId + generatePropsReference(props)
+      const className = (renderer._selectorPrefix || '') + classNamePrefix + ruleId + generatePropsReference(props)
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders

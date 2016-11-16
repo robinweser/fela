@@ -21,7 +21,7 @@ export default function connect(mapStylesToProps) {
 
       // remove the component name after rendering
       if (process.env.NODE_ENV !== 'production') {
-        this.context.renderer._selectorPrefix = ''
+        this.context.renderer._selectorPrefix = undefined
       }
 
       return <Comp {...this.props} styles={styles} />
