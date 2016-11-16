@@ -11,17 +11,18 @@ export default function connect(mapStylesToProps) {
     };
 
     render() {
-      const { renderer } = this.context
-
       // invoke the component name for better CSS debugging
       if (process.env.NODE_ENV !== 'production') {
-        const displayName = Comp.displayName || Comp.name || 'ConnectedFelaComponent'
-        const oldRenderRule = renderer.renderRule.bind(renderer)
-        renderer.renderRule = (rule, props) => oldRenderRule(rule, props, displayName)
+        this.context.renderer._selectorPrefix = (Comp.displayName || Comp.name || 'ConnectedFelaComponent') + '__'
       }
 
       // invoke props and renderer to render all styles
-      const styles = mapStylesToProps(this.props)(renderer)
+      const styles = mapStylesToProps(this.props)(this.context.renderer)
+
+      // remove the component name after rendering
+      if (process.env.NODE_ENV !== 'production') {
+        this.context.renderer._selectorPrefix = ''
+      }
 
       return <Comp {...this.props} styles={styles} />
     }

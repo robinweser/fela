@@ -50,7 +50,7 @@ export default function createRenderer(config = { }) {
      * @param {Object?} props - properties used to render
      * @return {string} className to reference the rendered rule
      */
-    renderRule(rule, props = { }, _selectorPrefix = '') {
+    renderRule(rule, props = { }) {
       // rendering a rule for the first time
       // will create an ID reference
       if (renderer.ids.indexOf(rule) < 0) {
@@ -59,15 +59,15 @@ export default function createRenderer(config = { }) {
         // directly render the static base style to be able
         // to diff future dynamic style with those
         if (Object.keys(props).length > 0) {
-          renderer.renderRule(rule, { }, _selectorPrefix)
+          renderer.renderRule(rule, { })
         }
       }
 
       // uses the reference ID and the props to generate an unique className
       const ruleId = renderer.ids.indexOf(rule)
 
-      const classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '_' : 'c'
-      const className = _selectorPrefix + classNamePrefix + ruleId + generatePropsReference(props)
+      const classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '__' : 'c'
+      const className = renderer._selectorPrefix + classNamePrefix + ruleId + generatePropsReference(props)
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
