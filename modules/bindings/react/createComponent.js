@@ -1,6 +1,6 @@
 import { createElement, PropTypes } from 'react'
 
-export default function createComponent(rule, type = 'div', passThroughProps = {}, _displayName) {
+export default function createComponent(rule, type = 'div', passThroughProps = {}) {
   const component = ({ children, className, style, id, ...felaProps }, { renderer }) => {
 
     // filter props to extract props to pass through
@@ -16,7 +16,7 @@ export default function createComponent(rule, type = 'div', passThroughProps = {
     componentProps.style = style
 
     const cls = className ? className + ' ' : ''
-    componentProps.className = cls + renderer.renderRule(rule, felaProps, _displayName)
+    componentProps.className = cls + renderer.renderRule(rule, felaProps)
 
     return createElement(type, componentProps, children)
   }
