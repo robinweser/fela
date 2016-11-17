@@ -22,5 +22,9 @@ export default function createComponent(rule, type = 'div', passThroughProps = {
   }
 
   component.contextTypes = { renderer: PropTypes.object }
+
+  // use the rule name as display name to better debug with react inspector ( see #99 )
+  component.displayName = rule.name && rule.name || 'FelaComponent'
+
   return component
 }
