@@ -68,13 +68,18 @@ export default function createRenderer(config = { }) {
 
 
       let classNamePrefix = 'c'
+      let propsReference = generatePropsReference(props)
+
       // extend the className with prefixes in development
       // this enables better debugging and className readability
       if (process.env.NODE_ENV !== 'production') {
         classNamePrefix = (renderer._selectorPrefix ? (renderer._selectorPrefix + '__') : '') + ((renderer.prettySelectors && rule.name) ? rule.name + '__' : '') + 'c'
+        // replace the cryptic hash reference with a concatenated and simplyfied version of the props object itself
+        propsReference = renderer.prettySelectors ? ((Object.keys(props).length > 0 ? '--' : '') + Object.keys(props).sort().map(prop => prop + '-' + props[prop]).join('---').replace(/ /g, '_').match(/[-_a-zA-Z0-9]*/g).join('')) : propsReference
       }
 
-      const className = classNamePrefix + ruleId + generatePropsReference(props)
+
+      const className = classNamePrefix + ruleId + propsReference
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders

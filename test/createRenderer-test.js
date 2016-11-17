@@ -249,6 +249,24 @@ describe('Renderer', () => {
       expect(className).to.eql('nicelyNamedRule__c0')
     })
 
+    it('should produce readable props references', () => {
+      const nicelyNamedRule = props => ({
+        color: props.color,
+        fontSize: props.fontSize
+      })
+
+      process.env.NODE_ENV = 'development'
+
+      const renderer = createRenderer({ prettySelectors: true })
+
+      const className = renderer.renderRule(nicelyNamedRule, {
+        color: '#ffffff',
+        fontSize: 15
+      })
+
+      expect(className).to.eql('nicelyNamedRule__c0--color-ffffff---fontSize-15')
+    })
+
     it('should name classes correctly when the rule name cannot be inferred', () => {
       const renderer = createRenderer({ prettySelectors: true })
 
