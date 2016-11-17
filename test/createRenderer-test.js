@@ -264,7 +264,7 @@ describe('Renderer', () => {
         fontSize: 15
       })
 
-      expect(className).to.eql('nicelyNamedRule__c0--color-ffffff---fontSize-15')
+      expect(className).to.eql('nicelyNamedRule__c0--bd3amk__color-ffffff---fontSize-15')
     })
 
     it('should name classes correctly when the rule name cannot be inferred', () => {

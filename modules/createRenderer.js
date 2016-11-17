@@ -75,7 +75,9 @@ export default function createRenderer(config = { }) {
       if (process.env.NODE_ENV !== 'production') {
         classNamePrefix = (renderer._selectorPrefix ? (renderer._selectorPrefix + '__') : '') + ((renderer.prettySelectors && rule.name) ? rule.name + '__' : '') + 'c'
         // replace the cryptic hash reference with a concatenated and simplyfied version of the props object itself
-        propsReference = renderer.prettySelectors ? ((Object.keys(props).length > 0 ? '--' : '') + Object.keys(props).sort().map(prop => prop + '-' + props[prop]).join('---').replace(/ /g, '_').match(/[-_a-zA-Z0-9]*/g).join('')) : propsReference
+        if (renderer.prettySelectors && Object.keys(props).length > 0) {
+          propsReference += '__' + Object.keys(props).sort().map(prop => prop + '-' + props[prop]).join('---').replace(/ /g, '_').match(/[-_a-zA-Z0-9]*/g).join('')
+        }
       }
 
 
