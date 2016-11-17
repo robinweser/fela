@@ -98,12 +98,12 @@ export default function createRenderer(config = { }) {
         }
 
         // keep static style to diff dynamic onces later on
-        if (className === classNamePrefix + ruleId) {
+        if (className === renderer._classNamePrefix + ruleId) {
           renderer.base[ruleId] = diffedStyle
         }
       }
 
-      const baseClassName = classNamePrefix + ruleId
+      const baseClassName = renderer._classNamePrefix + ruleId
       // if current className is empty
       // return either the static class or empty string
       if (!renderer.rendered[className]) {
