@@ -13,7 +13,7 @@ export default function connect(mapStylesToProps) {
     render() {
       // invoke the component name for better CSS debugging
       if (process.env.NODE_ENV !== 'production') {
-        this.context.renderer._selectorPrefix = (Comp.displayName || Comp.name || 'ConnectedFelaComponent') + '__'
+        this.context.renderer._selectorPrefix = Comp.displayName || Comp.name || 'ConnectedFelaComponent'
       }
 
       // invoke props and renderer to render all styles
