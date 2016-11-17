@@ -57,10 +57,6 @@ describe('Creating Components from Fela rules', () => {
     const Button = props => ({ color: 'red', fontSize: 16 })
     const component = createComponent(Button)
 
-    const renderer = createRenderer()
-
-    const element = component({ }, { renderer })
-    console.log(element)
-    expect(element.displayName).to.eql('Button')
+    expect(component.displayName).to.eql('Button')
   })
 })

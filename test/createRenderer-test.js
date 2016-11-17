@@ -246,7 +246,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(nicelyNamedRule)
 
-      expect(className).to.eql('nicelyNamedRule__0')
+      expect(className).to.eql('nicelyNamedRule__c0')
     })
 
     it('should name classes correctly when the rule name cannot be inferred', () => {
@@ -271,7 +271,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(className).to.eql('combined__0')
+      expect(className).to.eql('combined__c0')
     })
 
     it('should not name classes after their rule when prettySelectors is false', () => {

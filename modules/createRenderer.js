@@ -24,7 +24,6 @@ export default function createRenderer(config = { }) {
     // try and use readable selectors when
     // prettySelectors is on and not in a prod environment
     prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
-    _classNamePrefix: '',
 
     /**
      * clears the sheet's cache but keeps all listeners
@@ -68,13 +67,14 @@ export default function createRenderer(config = { }) {
       const ruleId = renderer.ids.indexOf(rule)
 
 
+      let classNamePrefix = 'c'
       // extend the className with prefixes in development
       // this enables better debugging and className readability
       if (process.env.NODE_ENV !== 'production') {
-        renderer._classNamePrefix = (renderer._selectorPrefix + '__' || '') + renderer.prettySelectors && rule.name ? rule.name + '__' : ''
+        classNamePrefix = (renderer._selectorPrefix ? (renderer._selectorPrefix + '__') : '') + ((renderer.prettySelectors && rule.name) ? rule.name + '__' : '') + 'c'
       }
 
-      const className = renderer._classNamePrefix + 'c' + ruleId + generatePropsReference(props)
+      const className = classNamePrefix + ruleId + generatePropsReference(props)
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
@@ -98,12 +98,12 @@ export default function createRenderer(config = { }) {
         }
 
         // keep static style to diff dynamic onces later on
-        if (className === renderer._classNamePrefix + ruleId) {
+        if (className === classNamePrefix + ruleId) {
           renderer.base[ruleId] = diffedStyle
         }
       }
 
-      const baseClassName = renderer._classNamePrefix + ruleId
+      const baseClassName = classNamePrefix + ruleId
       // if current className is empty
       // return either the static class or empty string
       if (!renderer.rendered[className]) {
