@@ -24,6 +24,7 @@ export default function createRenderer(config = { }) {
     // try and use readable selectors when
     // prettySelectors is on and not in a prod environment
     prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
+    _classNamePrefix: '',
 
     /**
      * clears the sheet's cache but keeps all listeners
@@ -66,8 +67,14 @@ export default function createRenderer(config = { }) {
       // uses the reference ID and the props to generate an unique className
       const ruleId = renderer.ids.indexOf(rule)
 
-      const classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '__' : 'c'
-      const className = (renderer._selectorPrefix || '') + classNamePrefix + ruleId + generatePropsReference(props)
+
+      // extend the className with prefixes in development
+      // this enables better debugging and className readability
+      if (process.env.NODE_ENV !== 'production') {
+        renderer._classNamePrefix = (renderer._selectorPrefix + '__' || '') + renderer.prettySelectors && rule.name ? rule.name + '__' : ''
+      }
+
+      const className = renderer._classNamePrefix + 'c' + ruleId + generatePropsReference(props)
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
