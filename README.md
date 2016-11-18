@@ -106,8 +106,7 @@ render(renderer, mountNode)
 ## Packages
 This repository is made of several separate packages including the core package. For convenience sake, we keep the package versions in sync. Therefore every package gets updated along with the core package, even if nothing changed within a particular package.
 <br><br>
-The following list shows a quick overview of all existing packages.<br>
-External packages such as bindings are **not** included.
+The following list shows a quick overview of all existing packages.
 
 | Package | Dependencies | Downloads |
 | --- | --- | --- |
