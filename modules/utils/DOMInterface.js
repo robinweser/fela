@@ -34,11 +34,11 @@ export default function createDOMInterface(renderer, node) {
 
           if (media && media.length > 0) {
             // insert @media rules after basic rules, newest first
-            sheet.insertRule('@media ' + media + '{' + cssRule + '}', ruleLength - mediaRules)
+            sheet.insertRule('@media ' + media + '{' + cssRule + '}', ruleLength)
             mediaRules += 1
           } else {
-            // directly append new rules before everything else
-            sheet.insertRule(cssRule, 0)
+            // directly append new rules before media rules
+            sheet.insertRule(cssRule, ruleLength - mediaRules)
           }
         } else {
           node.textContent = renderer.renderToString()
