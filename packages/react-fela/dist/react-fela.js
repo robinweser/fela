@@ -250,22 +250,18 @@
 
           // reuse the initial displayName name
           value: function render() {
-            var renderer = this.context.renderer;
-
             // invoke the component name for better CSS debugging
-
             if (true) {
-              (function () {
-                var displayName = Comp.displayName || Comp.name || 'ConnectedFelaComponent';
-                var oldRenderRule = renderer.renderRule.bind(renderer);
-                renderer.renderRule = function (rule, props) {
-                  return oldRenderRule(rule, props, displayName);
-                };
-              })();
+              this.context.renderer._selectorPrefix = Comp.displayName || Comp.name || 'ConnectedFelaComponent';
             }
 
             // invoke props and renderer to render all styles
-            var styles = mapStylesToProps(this.props)(renderer);
+            var styles = mapStylesToProps(this.props)(this.context.renderer);
+
+            // remove the component name after rendering
+            if (true) {
+              this.context.renderer._selectorPrefix = undefined;
+            }
 
             return React__default.createElement(Comp, babelHelpers.extends({}, this.props, { styles: styles }));
           }
@@ -280,14 +276,12 @@
   function createComponent(rule) {
     var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'div';
     var passThroughProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var _displayName = arguments[3];
 
     var component = function component(_ref, _ref2) {
       var children = _ref.children;
       var className = _ref.className;
       var style = _ref.style;
-      var id = _ref.id;
-      var felaProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style', 'id']);
+      var felaProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style']);
       var renderer = _ref2.renderer;
 
 
@@ -300,16 +294,19 @@
         return output;
       }, {});
 
-      componentProps.id = id;
       componentProps.style = style;
 
       var cls = className ? className + ' ' : '';
-      componentProps.className = cls + renderer.renderRule(rule, felaProps, _displayName);
+      componentProps.className = cls + renderer.renderRule(rule, felaProps);
 
       return React.createElement(type, componentProps, children);
     };
 
     component.contextTypes = { renderer: React.PropTypes.object };
+
+    // use the rule name as display name to better debug with react inspector ( see #99 )
+    component.displayName = rule.name && rule.name || 'FelaComponent';
+
     return component;
   }
 

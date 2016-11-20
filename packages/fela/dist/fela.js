@@ -307,8 +307,6 @@
         renderRule: function renderRule(rule) {
           var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-          var _selectorPrefix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
-
           // rendering a rule for the first time
           // will create an ID reference
           if (renderer.ids.indexOf(rule) < 0) {
@@ -317,15 +315,29 @@
             // directly render the static base style to be able
             // to diff future dynamic style with those
             if (Object.keys(props).length > 0) {
-              renderer.renderRule(rule, {}, _selectorPrefix);
+              renderer.renderRule(rule, {});
             }
           }
 
           // uses the reference ID and the props to generate an unique className
           var ruleId = renderer.ids.indexOf(rule);
 
-          var classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '_' : 'c';
-          var className = _selectorPrefix + classNamePrefix + ruleId + generatePropsReference(props);
+          var classNamePrefix = 'c';
+          var propsReference = generatePropsReference(props);
+
+          // extend the className with prefixes in development
+          // this enables better debugging and className readability
+          if (true) {
+            classNamePrefix = (renderer._selectorPrefix ? renderer._selectorPrefix + '__' : '') + (renderer.prettySelectors && rule.name ? rule.name + '__' : '') + 'c';
+            // replace the cryptic hash reference with a concatenated and simplyfied version of the props object itself
+            if (renderer.prettySelectors && Object.keys(props).length > 0) {
+              propsReference += '__' + Object.keys(props).sort().map(function (prop) {
+                return prop + '-' + props[prop];
+              }).join('---').replace(/ /g, '_').match(/[-_a-zA-Z0-9]*/g).join('');
+            }
+          }
+
+          var className = classNamePrefix + ruleId + propsReference;
 
           // only if the cached rule has not already been rendered
           // with a specific set of properties it actually renders
