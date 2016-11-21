@@ -265,7 +265,10 @@ export default function createRenderer(config = { }) {
       let css = renderer.fontFaces + renderer.statics + renderer.rules
 
       for (let media in renderer.mediaRules) {
-        css += '@media ' + media + '{' + renderer.mediaRules[media] + '}'
+        const rules = renderer.mediaRules[media]
+        if (rules.length > 0) {
+          css += '@media ' + media + '{' + rules + '}'
+        }
       }
 
       return css + renderer.keyframes

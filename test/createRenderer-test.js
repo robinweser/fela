@@ -24,6 +24,17 @@ describe('Renderer', () => {
 
       expect(renderer.foo).to.eql('bar')
     })
+
+    it('should prefill media queries in correct order', () => {
+      const renderer = createRenderer({
+        mediaQueryOrder: [ '(min-height: 300px)', '(min-height: 500px)' ]
+      })
+
+      expect(renderer.mediaRules).to.eql({
+        '(min-height: 300px)': '',
+        '(min-height: 500px)': ''
+      })
+    })
   })
 
 
