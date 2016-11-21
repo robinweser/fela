@@ -103,10 +103,10 @@ describe('Updating DOM nodes', () => {
       media: ''
     })
 
-    expect(node.sheet.cssRules).to.eql([ '.bar{color:blue}', '.foo{color:red}' ])
+    expect(node.sheet.cssRules).to.eql([ '.foo{color:red}', '.bar{color:blue}' ])
   })
 
-  it('should add new media rules before other media rules', () => {
+  it('should add new media rules after other media rules', () => {
     process.env.NODE_ENV = 'production'
     const node = DOMNode()
     const DOMInterface = createDOMInterface(undefined, node)
@@ -131,10 +131,10 @@ describe('Updating DOM nodes', () => {
       media: '(min-width: 500px)'
     })
 
-    expect(node.sheet.cssRules).to.eql([ '@media (min-width: 500px){.foo{color:blue}}', '@media (min-width: 300px){.foo{color:red}}' ])
+    expect(node.sheet.cssRules).to.eql([ '@media (min-width: 300px){.foo{color:red}}', '@media (min-width: 500px){.foo{color:blue}}' ])
   })
 
-  it('should add new media rules before other media rules but after basic rules', () => {
+  it('should add new media rules after other media rules and after basic rules', () => {
     process.env.NODE_ENV = 'production'
     const node = DOMNode()
     const DOMInterface = createDOMInterface(undefined, node)
@@ -189,6 +189,6 @@ describe('Updating DOM nodes', () => {
       media: ''
     })
 
-    expect(node.sheet.cssRules).to.eql([ '.baz{color:red}', '.bar{color:blue}', '.foo{color:red}', '@media (min-width: 500px){.foo{color:blue}}', '@media (min-width: 300px){.foo{color:red}}' ])
+    expect(node.sheet.cssRules).to.eql([ '.foo{color:red}', '.bar{color:blue}', '.baz{color:red}', '@media (min-width: 300px){.foo{color:red}}', '@media (min-width: 500px){.foo{color:blue}}' ])
   })
 })
