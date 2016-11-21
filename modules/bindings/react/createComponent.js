@@ -1,10 +1,13 @@
 import { createElement, PropTypes } from 'react'
 
 export default function createComponent(rule, type = 'div', passThroughProps = {}) {
-  const component = ({ children, className, style, ...felaProps }, { renderer }) => {
+  const component = ({ children, className, style, passThrough, ...felaProps }, { renderer }) => {
 
     // filter props to extract props to pass through
-    const componentProps = Object.keys(passThroughProps).reduce((output, prop) => {
+    const componentProps = Object.keys({
+      ...passThroughProps,
+      ...passThrough
+    }).reduce((output, prop) => {
       output[prop] = felaProps[prop]
       if (!passThroughProps[prop]) {
         delete felaProps[prop]
@@ -22,7 +25,7 @@ export default function createComponent(rule, type = 'div', passThroughProps = {
 
   component.contextTypes = { renderer: PropTypes.object }
 
-  // use the rule name as display name to better debug with react inspector ( see #99 )
+  // use the rule name as display name to better debug with react inspector
   component.displayName = rule.name && rule.name || 'FelaComponent'
 
   return component
