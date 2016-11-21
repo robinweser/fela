@@ -24,6 +24,7 @@ export default function createRenderer(config = { }) {
     // try and use readable selectors when
     // prettySelectors is on and not in a prod environment
     prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
+    mediaQueryOrder: config.mediaQueryOrder || [ ],
 
     /**
      * clears the sheet's cache but keeps all listeners
@@ -33,7 +34,11 @@ export default function createRenderer(config = { }) {
       renderer.keyframes = ''
       renderer.statics = ''
       renderer.rules = ''
-      renderer.mediaRules = { }
+      renderer.mediaRules = renderer.mediaQueryOrder.reduce((rules, media) => {
+        rules[media] = ''
+        return rules
+      }, { })
+
       renderer.rendered = { }
       renderer.base = { }
       renderer.ids = [ ]
