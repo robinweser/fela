@@ -1,20 +1,24 @@
 # Changelog
 
 ## 3.0
+
+#### 3.0.8
+* fixed rendering order in production ( [#108](https://github.com/rofrischmann/fela/issues/108), [#111](https://github.com/rofrischmann/fela/issues/111) )
+* added ability to order media queries explicitly ( [#110](https://github.com/rofrischmann/fela/issues/110) )
+* **[react-fela]** added `passThrough` prop to `createComponent` to dynamically pass props to the underlaying element
+
 #### 3.0.7
+##### Improvements
 * Improved className readability when using `prettySelectors` ( [#98](https://github.com/rofrischmann/fela/issues/98) )
+* *[react-fela]* `createComponent` now uses the `rule.name` as `displayName` ( [#99](https://github.com/rofrischmann/fela/issues/99) )
 
-**react-fela**
-* `createComponent` now uses the `rule.name` as `displayName` ( [#99](https://github.com/rofrischmann/fela/issues/99) )
-
-## 3.0
 #### 3.0.6
 ##### Infrastructure
 With this version, all packages have been moved to the main repository. Moved packages are **react-fela**, **inferno-fela** and **fela-stylesheet**. This helps to maintain the library and all its packages in a single place.
 
-##### react-fela
-* `createComponent` auto passes `style`, `id` and `className`
-* `connect` invokes the component name for improved CSS debugging
+#### Improvements
+* **[react-fela]** `createComponent` auto passes `style`, `id` and `className`
+* **[react-fela]** `connect` invokes the component name for improved CSS debugging
 
 #### 3.0.5
 ##### Improvements

@@ -110,11 +110,6 @@
   var warning$1 = warning;
 
   function createDOMInterface(renderer, node) {
-    // this counter is used to cache the amount of @media rules
-    // rendered using insertRule since the last full rerender with textContent
-    // using the counter enables to insert rules and @media rules separately
-    // which helps to ensure correct order and prevents rule order issue
-    var mediaRules = 0;
     var isHydrating = false;
 
     var DOMInterface = {
@@ -138,29 +133,12 @@
         if (!isHydrating) {
           // only use insertRule in production as browser devtools might have
           // weird behavior if used together with insertRule at runtime
-          if (change.type === 'rule' && false) {
-            var selector = change.selector;
-            var css = change.css;
-            var media = change.media;
-
-            var cssRule = selector + '{' + css + '}';
-
+          if (change.type === 'rule' && !change.media && false) {
             var sheet = node.sheet;
-            var ruleLength = sheet.cssRules.length;
-
-            if (media && media.length > 0) {
-              // insert @media rules after basic rules, newest first
-              sheet.insertRule('@media ' + media + '{' + cssRule + '}', ruleLength - mediaRules);
-              mediaRules += 1;
-            } else {
-              // directly append new rules before everything else
-              sheet.insertRule(cssRule, 0);
-            }
+            // directly append new rules before media rules
+            sheet.insertRule(change.selector + '{' + change.css + '}', sheet.cssRules.length);
           } else {
             node.textContent = renderer.renderToString();
-            // the @media rules counter gets reset as the
-            // full rerender also includes all @media rules
-            mediaRules = 0;
           }
         }
       }
@@ -281,12 +259,13 @@
       var children = _ref.children;
       var className = _ref.className;
       var style = _ref.style;
-      var felaProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style']);
+      var passThrough = _ref.passThrough;
+      var felaProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style', 'passThrough']);
       var renderer = _ref2.renderer;
 
 
       // filter props to extract props to pass through
-      var componentProps = Object.keys(passThroughProps).reduce(function (output, prop) {
+      var componentProps = Object.keys(babelHelpers.extends({}, passThroughProps, passThrough)).reduce(function (output, prop) {
         output[prop] = felaProps[prop];
         if (!passThroughProps[prop]) {
           delete felaProps[prop];
@@ -304,7 +283,7 @@
 
     component.contextTypes = { renderer: React.PropTypes.object };
 
-    // use the rule name as display name to better debug with react inspector ( see #99 )
+    // use the rule name as display name to better debug with react inspector
     component.displayName = rule.name && rule.name || 'FelaComponent';
 
     return component;

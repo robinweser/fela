@@ -277,6 +277,7 @@
         // try and use readable selectors when
         // prettySelectors is on and not in a prod environment
         prettySelectors: config.prettySelectors && true,
+        mediaQueryOrder: config.mediaQueryOrder || [],
 
         /**
          * clears the sheet's cache but keeps all listeners
@@ -286,7 +287,11 @@
           renderer.keyframes = '';
           renderer.statics = '';
           renderer.rules = '';
-          renderer.mediaRules = {};
+          renderer.mediaRules = renderer.mediaQueryOrder.reduce(function (rules, media) {
+            rules[media] = '';
+            return rules;
+          }, {});
+
           renderer.rendered = {};
           renderer.base = {};
           renderer.ids = [];
@@ -531,7 +536,10 @@
           var css = renderer.fontFaces + renderer.statics + renderer.rules;
 
           for (var media in renderer.mediaRules) {
-            css += '@media ' + media + '{' + renderer.mediaRules[media] + '}';
+            var rules = renderer.mediaRules[media];
+            if (rules.length > 0) {
+              css += '@media ' + media + '{' + rules + '}';
+            }
           }
 
           return css + renderer.keyframes;
@@ -720,11 +728,6 @@
     var warning$1 = warning;
 
     function createDOMInterface(renderer, node) {
-      // this counter is used to cache the amount of @media rules
-      // rendered using insertRule since the last full rerender with textContent
-      // using the counter enables to insert rules and @media rules separately
-      // which helps to ensure correct order and prevents rule order issue
-      var mediaRules = 0;
       var isHydrating = false;
 
       var DOMInterface = {
@@ -748,29 +751,12 @@
           if (!isHydrating) {
             // only use insertRule in production as browser devtools might have
             // weird behavior if used together with insertRule at runtime
-            if (change.type === 'rule' && false) {
-              var selector = change.selector;
-              var css = change.css;
-              var media = change.media;
-
-              var cssRule = selector + '{' + css + '}';
-
+            if (change.type === 'rule' && !change.media && false) {
               var sheet = node.sheet;
-              var ruleLength = sheet.cssRules.length;
-
-              if (media && media.length > 0) {
-                // insert @media rules after basic rules, newest first
-                sheet.insertRule('@media ' + media + '{' + cssRule + '}', ruleLength - mediaRules);
-                mediaRules += 1;
-              } else {
-                // directly append new rules before everything else
-                sheet.insertRule(cssRule, 0);
-              }
+              // directly append new rules before media rules
+              sheet.insertRule(change.selector + '{' + change.css + '}', sheet.cssRules.length);
             } else {
               node.textContent = renderer.renderToString();
-              // the @media rules counter gets reset as the
-              // full rerender also includes all @media rules
-              mediaRules = 0;
             }
           }
         }

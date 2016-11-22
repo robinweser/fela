@@ -16,9 +16,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginCustomProperty` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-custom-property@3.0.7/dist/fela-plugin-custom-property.js"></script>
+<script src="https://unpkg.com/fela-plugin-custom-property@3.0.8/dist/fela-plugin-custom-property.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-custom-property@3.0.7/dist/fela-plugin-custom-property.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-custom-property@3.0.8/dist/fela-plugin-custom-property.min.js"></script>
 ```
 
 ## Usage
