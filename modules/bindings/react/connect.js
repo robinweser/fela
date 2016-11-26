@@ -8,11 +8,12 @@ export default function connect(mapStylesToProps) {
     static contextTypes = {
       ...Comp.contextTypes,
       renderer: PropTypes.object,
-      theme: PropTypes.object
+      theme: PropTypes.object,
+      flat: PropTypes.bool
     };
 
     render() {
-      const { renderer, theme } = this.context
+      const { renderer, theme, flat } = this.context
 
       // invoke the component name for better CSS debugging
       if (process.env.NODE_ENV !== 'production') {
@@ -23,8 +24,9 @@ export default function connect(mapStylesToProps) {
 
       // invoke props and renderer to render all styles
       const styles = mapStylesToProps({
+        ...(flat && theme),
         ...this.props,
-        theme
+        theme: (!flat && theme) || { }
       })(renderer)
 
       return <Comp {...this.props} styles={styles} />

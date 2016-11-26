@@ -1,7 +1,7 @@
 import { createElement, PropTypes } from 'react'
 
 export default function createComponent(rule, type = 'div', passThroughProps = {}, _displayName) {
-  const component = ({ children, className, style, id, ...felaProps }, { renderer, theme }) => {
+  const component = ({ children, className, style, id, ...felaProps }, { renderer, theme, flat }) => {
 
     // filter props to extract props to pass through
     const componentProps = Object.keys(passThroughProps).reduce((output, prop) => {
@@ -17,8 +17,9 @@ export default function createComponent(rule, type = 'div', passThroughProps = {
 
     const cls = className ? className + ' ' : ''
     componentProps.className = cls + renderer.renderRule(rule, {
+      ...(flat && theme),
       ...felaProps,
-      theme
+      theme: (!flat && theme) || { }
     }, _displayName)
 
     return createElement(type, componentProps, children)
@@ -26,7 +27,8 @@ export default function createComponent(rule, type = 'div', passThroughProps = {
 
   component.contextTypes = {
     renderer: PropTypes.object,
-    theme: PropTypes.object
+    theme: PropTypes.object,
+    flat: PropTypes.bool
   }
 
   return component
