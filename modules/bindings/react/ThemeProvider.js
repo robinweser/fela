@@ -9,7 +9,7 @@ export default class ThemeProvider extends Component {
     return {
       flat: this.props.flat || this.props.flat,
       theme: {
-        ...(!overwrite && this.context.theme),
+        ...(!this.props.overwrite && this.context.theme),
         ...this.props.theme
       }
     }
