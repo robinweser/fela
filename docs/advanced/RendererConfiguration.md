@@ -11,7 +11,8 @@ We might introduce more configuration options with future releases, so be sure t
 |`plugins` | `function[]` |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
-|`prettySelectors`<br>*(development only)* | `boolean` | `false`<br> *(always in production)*|  Renders class selectors based on the function name of the style rule. *e.g. `const menuBar = () => ({})` will output `menuBar_xxx`* |
+|`prettySelectors`<br>*(development only)* | `boolean` | `false`<br> *(always in production)*|  Renders class selectors based on the function name of the style rule. *e.g. `const menuBar = () => ({})` will output `menuBar_xxx`*.<br>Is also generates human-readable dynamic postfixes of the passed props |
+|`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
 
 ## Example
 ```javascript
@@ -27,6 +28,10 @@ const config = {
   plugins: [ unit('em'), prefixer(), fallbackValue() ],
   keyframePrefixes: ['-webkit-'],
   enhancers: [ beautifer() ],
+  mediaQueryOrder: [
+    '(min-height: 300px)',
+    '(min-height: 500px)'
+  ],
   prettySelectors: true
 }
 
@@ -43,7 +48,18 @@ const keyframe = props => ({
   }
 })
 
+const prettyRule = props => ({
+  color: 'red',
+  '@media (min-height: 500px)': {
+    color: 'green'
+  },
+  '@media (min-height: 300px)': {
+    color: 'blue'
+  }
+})
+
 renderer.renderKeyframe(keyframe, { height: 100 })
+renderer.renderRule(prettyRule)
 
 console.log(renderer.renderToString())
 ```
@@ -77,6 +93,22 @@ console.log(renderer.renderToString())
     width: -moz-calc(50% - 50px);
     width: calc(50% - 50px);
     height: 100em
+  }
+}
+
+.prettyRule__c0 {
+  color: red  
+}
+
+@media (min-height: 300px) {
+  .prettyRule__c0 {
+    color: blue  
+  }
+}
+
+@media (min-height: 500px) {
+  .prettyRule__c0 {
+    color: green  
   }
 }
 ```

@@ -110,11 +110,6 @@
   var warning$1 = warning;
 
   function createDOMInterface(renderer, node) {
-    // this counter is used to cache the amount of @media rules
-    // rendered using insertRule since the last full rerender with textContent
-    // using the counter enables to insert rules and @media rules separately
-    // which helps to ensure correct order and prevents rule order issue
-    var mediaRules = 0;
     var isHydrating = false;
 
     var DOMInterface = {
@@ -138,29 +133,12 @@
         if (!isHydrating) {
           // only use insertRule in production as browser devtools might have
           // weird behavior if used together with insertRule at runtime
-          if (change.type === 'rule' && false) {
-            var selector = change.selector;
-            var css = change.css;
-            var media = change.media;
-
-            var cssRule = selector + '{' + css + '}';
-
+          if (change.type === 'rule' && !change.media && false) {
             var sheet = node.sheet;
-            var ruleLength = sheet.cssRules.length;
-
-            if (media && media.length > 0) {
-              // insert @media rules after basic rules, newest first
-              sheet.insertRule('@media ' + media + '{' + cssRule + '}', ruleLength - mediaRules);
-              mediaRules += 1;
-            } else {
-              // directly append new rules before everything else
-              sheet.insertRule(cssRule, 0);
-            }
+            // directly append new rules before media rules
+            sheet.insertRule(change.selector + '{' + change.css + '}', sheet.cssRules.length);
           } else {
             node.textContent = renderer.renderToString();
-            // the @media rules counter gets reset as the
-            // full rerender also includes all @media rules
-            mediaRules = 0;
           }
         }
       }
@@ -250,22 +228,18 @@
 
           // reuse the initial displayName name
           value: function render() {
-            var renderer = this.context.renderer;
-
             // invoke the component name for better CSS debugging
-
             if (true) {
-              (function () {
-                var displayName = Comp.displayName || Comp.name || 'ConnectedFelaComponent';
-                var oldRenderRule = renderer.renderRule.bind(renderer);
-                renderer.renderRule = function (rule, props) {
-                  return oldRenderRule(rule, props, displayName);
-                };
-              })();
+              this.context.renderer._selectorPrefix = Comp.displayName || Comp.name || 'ConnectedFelaComponent';
             }
 
             // invoke props and renderer to render all styles
-            var styles = mapStylesToProps(this.props)(renderer);
+            var styles = mapStylesToProps(this.props)(this.context.renderer);
+
+            // remove the component name after rendering
+            if (true) {
+              this.context.renderer._selectorPrefix = undefined;
+            }
 
             return React__default.createElement(Comp, babelHelpers.extends({}, this.props, { styles: styles }));
           }
@@ -280,19 +254,18 @@
   function createComponent(rule) {
     var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'div';
     var passThroughProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var _displayName = arguments[3];
 
     var component = function component(_ref, _ref2) {
       var children = _ref.children;
       var className = _ref.className;
       var style = _ref.style;
-      var id = _ref.id;
-      var felaProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style', 'id']);
+      var passThrough = _ref.passThrough;
+      var felaProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style', 'passThrough']);
       var renderer = _ref2.renderer;
 
 
       // filter props to extract props to pass through
-      var componentProps = Object.keys(passThroughProps).reduce(function (output, prop) {
+      var componentProps = Object.keys(babelHelpers.extends({}, passThroughProps, passThrough)).reduce(function (output, prop) {
         output[prop] = felaProps[prop];
         if (!passThroughProps[prop]) {
           delete felaProps[prop];
@@ -300,16 +273,19 @@
         return output;
       }, {});
 
-      componentProps.id = id;
       componentProps.style = style;
 
       var cls = className ? className + ' ' : '';
-      componentProps.className = cls + renderer.renderRule(rule, felaProps, _displayName);
+      componentProps.className = cls + renderer.renderRule(rule, felaProps);
 
       return React.createElement(type, componentProps, children);
     };
 
     component.contextTypes = { renderer: React.PropTypes.object };
+
+    // use the rule name as display name to better debug with react inspector
+    component.displayName = rule.name && rule.name || 'FelaComponent';
+
     return component;
   }
 

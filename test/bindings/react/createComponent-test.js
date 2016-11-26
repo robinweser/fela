@@ -1,5 +1,5 @@
-import createComponent from '../../modules/bindings/react/createComponent'
-import createRenderer from '../../modules/createRenderer'
+import createComponent from '../../../modules/bindings/react/createComponent'
+import createRenderer from '../../../modules/createRenderer'
 
 describe('Creating Components from Fela rules', () => {
   it('should return a Component', () => {
@@ -51,5 +51,12 @@ describe('Creating Components from Fela rules', () => {
 
     expect(element.props.foo).to.eql(true)
     expect(renderer.rules).to.eql('.c0{color:red;font-size:16}.c0--1u3zxk{color:black}')
+  })
+
+  it('should only use the rule name as displayName', () => {
+    const Button = props => ({ color: 'red', fontSize: 16 })
+    const component = createComponent(Button)
+
+    expect(component.displayName).to.eql('Button')
   })
 })

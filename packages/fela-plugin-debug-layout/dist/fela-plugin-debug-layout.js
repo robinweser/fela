@@ -29,7 +29,7 @@
 
   function debugLayout(style, meta, options) {
     if (meta.type === 'rule') {
-      var ruleName = meta.rule.name;
+      var ruleName = meta.rule.name || 'foobar';
       var color = (ruleName + ruleName).length * 17 * ruleName.length;
 
       if (options.backgroundColor) {

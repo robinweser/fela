@@ -12,3 +12,18 @@ export default function sortedStringify(obj) {
     return str + prop + obj[prop]
   }, '')
 }
+
+function getFlatValue(value) {
+  // join arrays
+  if (Array.isArray(value)) {
+    return value.join('-')
+  }
+
+  // stringify objects
+  if (value instanceof Object) {
+    return sortedStringify(value)
+  }
+
+  // return the basic value
+  return value
+}

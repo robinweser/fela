@@ -24,6 +24,17 @@ describe('Renderer', () => {
 
       expect(renderer.foo).to.eql('bar')
     })
+
+    it('should prefill media queries in correct order', () => {
+      const renderer = createRenderer({
+        mediaQueryOrder: [ '(min-height: 300px)', '(min-height: 500px)' ]
+      })
+
+      expect(renderer.mediaRules).to.eql({
+        '(min-height: 300px)': '',
+        '(min-height: 500px)': ''
+      })
+    })
   })
 
 
@@ -246,7 +257,25 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(nicelyNamedRule)
 
-      expect(className).to.eql('nicelyNamedRule_0')
+      expect(className).to.eql('nicelyNamedRule__c0')
+    })
+
+    it('should produce readable props references', () => {
+      const nicelyNamedRule = props => ({
+        color: props.color,
+        fontSize: props.fontSize
+      })
+
+      process.env.NODE_ENV = 'development'
+
+      const renderer = createRenderer({ prettySelectors: true })
+
+      const className = renderer.renderRule(nicelyNamedRule, {
+        color: '#ffffff',
+        fontSize: 15
+      })
+
+      expect(className).to.eql('nicelyNamedRule__c0--bd3amk__color-ffffff---fontSize-15')
     })
 
     it('should name classes correctly when the rule name cannot be inferred', () => {
@@ -257,18 +286,6 @@ describe('Renderer', () => {
       const className = renderer.renderRule(() => ({ color: 'red' }))
 
       expect(className).to.eql('c0')
-    })
-
-    it('should name classes correctly when a classPrefix is passed via props', () => {
-      const renderer = createRenderer({ prettySelectors: true })
-
-      process.env.NODE_ENV = 'development'
-
-      const text = props => ({ color: 'red' })
-
-      const className = renderer.renderRule(text, { }, 'Header_')
-
-      expect(className).to.eql('Header_text_0')
     })
 
     it('should name classes correctly when rules are combined', () => {
@@ -283,7 +300,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(className).to.eql('combined_0')
+      expect(className).to.eql('combined__c0')
     })
 
     it('should not name classes after their rule when prettySelectors is false', () => {

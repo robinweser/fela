@@ -1,6 +1,6 @@
 function debugLayout(style, meta, options) {
   if (meta.type === 'rule') {
-    const ruleName = meta.rule.name
+    const ruleName = meta.rule.name || 'foobar'
     const color = (ruleName + ruleName).length * 17 * ruleName.length
 
     if (options.backgroundColor) {

@@ -10,14 +10,6 @@ This HoCs ([Higher-order Components](https://medium.com/@dan_abramov/mixins-are-
 ## Returns
 (*Function*): Stateless functional React component.
 
-## Passing props
-Using the `passThroughProps` parameter allows us to pass props to the underlying DOM element. This is helpful if you want to pass e.g. events such as `onClick`. There are some props that are automatically passed and thus do not need to be specified explicitly:
-* `className`
-* `style`
-* `id`
-
-If passing a className, it will automatically be concatenated with the Fela generated className.
-
 ## Example
 ```javascript
 import { createComponent } from 'react-fela'
@@ -42,4 +34,34 @@ ReactDOM.render(
   document.getElementById('app')
 )
 // => <div className="c0 c0-xxxx" data-foo="bar" onclick="...">Hello World</div>
+```
+
+## Passing props
+Using the `passThroughProps` parameter allows us to pass props to the underlying DOM element. This is helpful if you want to pass e.g. events such as `onClick`. There are some props that are automatically passed and thus do not need to be specified explicitly:
+* `className`
+* `style`
+
+If passing a className, it will automatically be concatenated with the Fela generated className. This allows composing multiple Fela Components.
+
+#### Dynamically passing props
+This use case is especially important for library owners. Instead of passing the `passThroughProps` to the `createComponent` call directly, one can also use the `passThrough` prop on the created component to achieve the same effect.
+
+##### Example
+```javascript
+import { createComponent } from 'react-fela'
+
+const title = props => ({
+  color: 'red'
+})
+
+const Title = createComponent(title)
+})
+
+const greet = () => alert('Hello World')
+
+ReactDOM.render(
+  <Title onClick={greet} passThrough={{ 'onClick': false }}>Hello World</Title>,
+  document.getElementById('app')
+)
+// => <div className="c0" onclick="...">Hello World</div>
 ```

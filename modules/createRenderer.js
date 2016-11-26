@@ -24,6 +24,7 @@ export default function createRenderer(config = { }) {
     // try and use readable selectors when
     // prettySelectors is on and not in a prod environment
     prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
+    mediaQueryOrder: config.mediaQueryOrder || [ ],
 
     /**
      * clears the sheet's cache but keeps all listeners
@@ -33,7 +34,11 @@ export default function createRenderer(config = { }) {
       renderer.keyframes = ''
       renderer.statics = ''
       renderer.rules = ''
-      renderer.mediaRules = { }
+      renderer.mediaRules = renderer.mediaQueryOrder.reduce((rules, media) => {
+        rules[media] = ''
+        return rules
+      }, { })
+
       renderer.rendered = { }
       renderer.base = { }
       renderer.ids = [ ]
@@ -50,7 +55,7 @@ export default function createRenderer(config = { }) {
      * @param {Object?} props - properties used to render
      * @return {string} className to reference the rendered rule
      */
-    renderRule(rule, props = { }, _selectorPrefix = '') {
+    renderRule(rule, props = { }) {
       // rendering a rule for the first time
       // will create an ID reference
       if (renderer.ids.indexOf(rule) < 0) {
@@ -59,15 +64,29 @@ export default function createRenderer(config = { }) {
         // directly render the static base style to be able
         // to diff future dynamic style with those
         if (Object.keys(props).length > 0) {
-          renderer.renderRule(rule, { }, _selectorPrefix)
+          renderer.renderRule(rule, { })
         }
       }
 
       // uses the reference ID and the props to generate an unique className
       const ruleId = renderer.ids.indexOf(rule)
 
-      const classNamePrefix = renderer.prettySelectors && rule.name ? rule.name + '_' : 'c'
-      const className = _selectorPrefix + classNamePrefix + ruleId + generatePropsReference(props)
+
+      let classNamePrefix = 'c'
+      let propsReference = generatePropsReference(props)
+
+      // extend the className with prefixes in development
+      // this enables better debugging and className readability
+      if (process.env.NODE_ENV !== 'production') {
+        classNamePrefix = (renderer._selectorPrefix ? (renderer._selectorPrefix + '__') : '') + ((renderer.prettySelectors && rule.name) ? rule.name + '__' : '') + 'c'
+        // replace the cryptic hash reference with a concatenated and simplyfied version of the props object itself
+        if (renderer.prettySelectors && Object.keys(props).length > 0) {
+          propsReference += '__' + Object.keys(props).sort().map(prop => prop + '-' + props[prop]).join('---').replace(/ /g, '_').match(/[-_a-zA-Z0-9]*/g).join('')
+        }
+      }
+
+
+      const className = classNamePrefix + ruleId + propsReference
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
@@ -246,7 +265,10 @@ export default function createRenderer(config = { }) {
       let css = renderer.fontFaces + renderer.statics + renderer.rules
 
       for (let media in renderer.mediaRules) {
-        css += '@media ' + media + '{' + renderer.mediaRules[media] + '}'
+        const rules = renderer.mediaRules[media]
+        if (rules.length > 0) {
+          css += '@media ' + media + '{' + rules + '}'
+        }
       }
 
       return css + renderer.keyframes
