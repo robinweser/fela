@@ -20,12 +20,18 @@ export default function connect(mapStylesToProps) {
         this.context.renderer._selectorPrefix = Comp.displayName || Comp.name || 'ConnectedFelaComponent'
       }
 
-      // invoke props and renderer to render all styles
-      const styles = mapStylesToProps({
+      const ruleProps = {
         ...(flat && theme),
-        ...this.props,
-        theme: (!flat && theme) || { }
-      })(renderer)
+        ...this.props
+      }
+
+      // add the theme to props if theme is not flat
+      if (flat === false) {
+        ruleProps.theme = theme || { }
+      }
+
+      // invoke props and renderer to render all styles
+      const styles = mapStylesToProps(ruleProps)(renderer)
 
       // remove the component name after rendering
       if (process.env.NODE_ENV !== 'production') {
