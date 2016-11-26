@@ -9,11 +9,11 @@ export default function sortedStringify(obj) {
   return Object.keys(obj).sort().reduce((str, prop) => {
     // only concatenate property and value
     // without any special characters
-    return str + prop + obj[prop]
+    return str + prop + getFlatValue(obj[prop])
   }, '')
 }
 
-function getFlatValue(value) {
+export function getFlatValue(value) {
   // join arrays
   if (Array.isArray(value)) {
     return value.join('-')

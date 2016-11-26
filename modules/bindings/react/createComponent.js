@@ -35,6 +35,5 @@ export default function createComponent(rule, type = 'div', passThroughProps = {
 
   // use the rule name as display name to better debug with react inspector
   FelaComponent.displayName = rule.name && rule.name || 'FelaComponent'
-
-  return component
+  return FelaComponent
 }
