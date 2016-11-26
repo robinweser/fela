@@ -73,6 +73,11 @@ const packages = {
     entry: 'plugins/validator.js',
     dependencies: false
   },
+  'fela-plugin-isolation': {
+    name: 'FelaPluginIsolation',
+    entry: 'plugins/isolation.js',
+    dependencies: false
+  },
   'fela-plugin-debug-layout': {
     name: 'FelaPluginDebugLayout',
     entry: 'plugins/debugLayout.js',

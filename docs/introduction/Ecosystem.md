@@ -19,6 +19,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-extend](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend) - Extend style objects based on conditions
 * [fela-plugin-fallback-value](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-fallback-value) - Resolves arrays of fallback values
 * [fela-plugin-friendly-pseudo-class](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-friendly-pseudo-class) - Transforms javascript-friendly pseudo class into valid syntax
+* [fela-plugin-isolation](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-isolation) - Adds style isolation to every rule
 * [fela-plugin-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-logger) - Logs processed style objects
 * [fela-plugin-lvha](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-lvha) - Sorts pseudo classes according to LVH(F)A
 * [fela-plugin-placeholder-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-placeholder-prefixer) - Adds all `::placeholder` prefixes
@@ -36,22 +37,22 @@ Many plugins and enhancers are already included in the [main repository](https:/
 > **Warning**: Enhancers are still experimental and the API might change.
 
 * [fela-beautifier*](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
+* [fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
-* [fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.
 
 ### Tools
 * [fela-stylesheet](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-stylesheet): Organize your rules grouped StyleSheets
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
 
 ### Utilities
+* [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js): Transform your CSS to JavaScript at compile time
 * [classnames](https://github.com/JedWatson/classnames): Manage and combine multiple className values safely
 * [css-functions](https://github.com/cssinjs/css-functions): Functional API to create CSS functions including value validation
+* [inline-style-transformer](https://github.com/rofrischmann/inline-style-transformer): CSS & style object transformation tools
 * [react-animations](https://github.com/FormidableLabs/react-animations): CSS animations to be used with CSS in JS solutions
 * [react-styling](https://github.com/halt-hammerzeit/react-styling): Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
-* [inline-style-transformer](https://github.com/rofrischmann/inline-style-transformer): CSS & style object transformation tools
 * [stile](https://github.com/bloodyowl/stile): Handle units and string values
-* [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js): Transform your CSS to JavaScript at compile time
 
 <br>
 
