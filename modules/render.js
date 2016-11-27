@@ -1,3 +1,4 @@
+/* @flow weak */
 import warning from './utils/warning'
 import createDOMInterface from './utils/DOMInterface'
 

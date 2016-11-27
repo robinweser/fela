@@ -1,3 +1,4 @@
+/* @flow weak */
 /**
  * diffs a style object against a base style object
  *

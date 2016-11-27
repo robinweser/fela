@@ -1,3 +1,4 @@
+/* @flow weak */
 /**
  * pipes a style object through a list of plugins
  *

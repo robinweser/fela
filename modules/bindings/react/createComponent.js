@@ -1,3 +1,4 @@
+/* @flow weak */
 import { createElement, PropTypes } from 'react'
 
 export default function createComponent(rule, type = 'div', passThroughProps = {}) {

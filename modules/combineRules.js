@@ -1,3 +1,4 @@
+/* @flow weak */
 import assign from './utils/assign'
 
 export default function combineRules(...rules) {

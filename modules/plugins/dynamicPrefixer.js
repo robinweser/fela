@@ -1,3 +1,4 @@
+/* @flow weak */
 import Prefixer from 'inline-style-prefixer'
 
 export default options => {

@@ -1,3 +1,4 @@
+/* @flow weak */
 /**
  * generates a hashcode from a string
  * taken from http://stackoverflow.com/a/7616484

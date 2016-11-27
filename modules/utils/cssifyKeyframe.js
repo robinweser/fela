@@ -1,3 +1,4 @@
+/* @flow weak */
 import cssifyObject from './cssifyObject'
 
 /**

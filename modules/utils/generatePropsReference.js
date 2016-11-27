@@ -1,3 +1,4 @@
+/* @flow weak */
 import generateContentHash from './generateContentHash'
 import sortedStringify from './sortedStringify'
 

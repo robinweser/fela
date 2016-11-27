@@ -1,3 +1,4 @@
+/* @flow weak */
 export default {
   create(styles) {
     return Object.keys(styles).reduce((rules, rule) => {

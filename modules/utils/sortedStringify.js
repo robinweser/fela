@@ -1,3 +1,4 @@
+/* @flow weak */
 /**
  * stringifies an object without any special character
  * uses a sort version of the obj to get same hash codes

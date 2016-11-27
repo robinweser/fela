@@ -1,3 +1,4 @@
+/* @flow weak */
 import logger from '../plugins/logger'
 import validator from '../plugins/validator'
 

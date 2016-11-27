@@ -1,3 +1,4 @@
+/* @flow weak */
 function customProperty(style, properties) {
   Object.keys(style).forEach(property => {
     const value = style[property]

@@ -1,3 +1,4 @@
+/* @flow weak */
 function addIsolation(style) {
   if (style.isolation === false) {
     // remove the isolation prop to

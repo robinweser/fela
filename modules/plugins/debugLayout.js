@@ -1,3 +1,4 @@
+/* @flow weak */
 function debugLayout(style, meta, options) {
   if (meta.type === 'rule') {
     const ruleName = meta.rule.name || 'foobar'
