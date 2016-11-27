@@ -25,7 +25,7 @@ Make sure to read the documentation on [how to use plugins](http://fela.js.org/d
 
 ```javascript
 import { createRenderer } from 'fela'
-import unit from 'fela-plugin-validator'
+import validator from 'fela-plugin-validator'
 
 const renderer = createRenderer({
   plugins: [ validator() ]
