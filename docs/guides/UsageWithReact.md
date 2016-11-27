@@ -5,6 +5,7 @@ Fela was always designed with React in mind, but is **not** bound to React by de
 ```sh
 npm i --save react-fela
 ```
+
 ## Presentational Components
 While not required, we highly recommend to split your components into [presentational and container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.67qfcbme5).
 While container components manage the application logic, presentational components should only describe how your application looks. They get data passed as `props` and return a representation of your view for those props.
@@ -146,6 +147,8 @@ const Header = createComponent(container, 'header')
 </Header>
 ```
 
+## Component Theming
+Coming soon. For now refer to the [`<ThemeProvider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md) documentation.
 <br>
 
 ---
@@ -155,3 +158,4 @@ const Header = createComponent(container, 'header')
 * [API reference - `Provider` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/Provider.md)
 * [API reference - `connect` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/connect.md)
 * [API reference - `createComponent` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md)
+* [API reference - `ThemeProvider`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md)
