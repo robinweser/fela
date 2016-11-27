@@ -1,3 +1,4 @@
+/* @flow weak */
 import generatePropsReference from './utils/generatePropsReference'
 import sortedStringify from './utils/sortedStringify'
 import getFontFormat from './utils/getFontFormat'
@@ -81,7 +82,14 @@ export default function createRenderer(config = { }) {
         classNamePrefix = (renderer._selectorPrefix ? (renderer._selectorPrefix + '__') : '') + ((renderer.prettySelectors && rule.name) ? rule.name + '__' : '') + 'c'
         // replace the cryptic hash reference with a concatenated and simplyfied version of the props object itself
         if (renderer.prettySelectors && Object.keys(props).length > 0) {
-          propsReference += '__' + Object.keys(props).sort().map(prop => prop + '-' + props[prop]).join('---').replace(/ /g, '_').match(/[-_a-zA-Z0-9]*/g).join('')
+          const match = Object
+            .keys(props)
+            .sort()
+            .map(prop => prop + '-' + props[prop])
+            .join('---')
+            .replace(/ /g, '_')
+            .match(/[-_a-zA-Z0-9]*/g);
+          propsReference += '__' + (match ? match.join('') : '');
         }
       }
 
