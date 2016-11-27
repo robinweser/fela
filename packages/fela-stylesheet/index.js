@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/presets/web')
+module.exports = require('fela/lib/tools/StyleSheet')
