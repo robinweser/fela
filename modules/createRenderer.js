@@ -88,8 +88,8 @@ export default function createRenderer(config = { }) {
             .map(prop => prop + '-' + props[prop])
             .join('---')
             .replace(/ /g, '_')
-            .match(/[-_a-zA-Z0-9]*/g);
-          propsReference += '__' + (match ? match.join('') : '');
+            .match(/[-_a-zA-Z0-9]*/g)
+          propsReference += '__' + (match ? match.join('') : '')
         }
       }
 
