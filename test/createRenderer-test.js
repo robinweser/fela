@@ -104,33 +104,10 @@ describe('Renderer', () => {
       renderer.renderRule(rule, { color: 'red' })
       renderer.renderRule(rule, { color: 'blue' })
 
-      expect(Object.keys(renderer.rendered).length).to.eql(3)
-    })
-
-    it('should reuse static style', () => {
-      const rule = props => ({ fontSize: '23px' })
-      const renderer = createRenderer()
-
-      const className = renderer.renderRule(rule, { color: 'red' })
-      const className2 = renderer.renderRule(rule, { color: 'red' })
-      const className3 = renderer.renderRule(rule, { color: 'blue' })
-
-      expect(className).to.eql(className2)
-      expect(className).to.eql(className3)
-      expect(renderer.rules).to.eql('.c0{font-size:23px}')
-      expect(Object.keys(renderer.rendered).length).to.eql(3)
+      expect(Object.keys(renderer.rendered).length).to.eql(2)
     })
 
     it('should return an empty string if the style is empty', () => {
-      const rule = props => ({ color: props.color })
-      const renderer = createRenderer()
-
-      const className = renderer.renderRule(rule, { color: 'red' })
-
-      expect(className).to.eql('c0--aedinm')
-    })
-
-    it('should only return a dynamic className', () => {
       const rule = props => ({ })
       const renderer = createRenderer()
 
@@ -139,20 +116,17 @@ describe('Renderer', () => {
       expect(className).to.eql('')
     })
 
-    it('should only render static styles if not directly rendering those', () => {
-      const rule = props => ({ fontSize: '23px' })
+    it('should allow nested props', () => {
+      const rule = props => ({ color: props.theme.color })
       const renderer = createRenderer()
-      const spy = sinon.spy()
 
-      const existingRenderRule = renderer.renderRule.bind(this)
-      renderer.renderRule = (rule, props) => {
-        spy()
-        return existingRenderRule(rule, props)
-      }
+      const className = renderer.renderRule(rule, {
+        theme: {
+          color: 'red'
+        }
+      })
 
-      renderer.renderRule(rule)
-
-      expect(spy).to.have.been.calledOnce
+      expect(className).to.eql('c0-lsovtj')
     })
 
     it('should generate an incrementing reference id', () => {
@@ -178,17 +152,6 @@ describe('Renderer', () => {
       })
       expect(staticClassName).to.not.eql(dynamicClassName)
       expect(staticClassName.substr(0, 2)).to.eql(dynamicClassName.substr(0, 2))
-    })
-
-    it('should keep base styles as an object for diffing', () => {
-      const rule = props => ({ color: 'red' })
-      const renderer = createRenderer()
-
-      const className = renderer.renderRule(rule)
-
-      expect(renderer.base[renderer.ids.indexOf(rule)]).to.eql({
-        color: 'red'
-      })
     })
 
     it('should render pseudo classes', () => {
