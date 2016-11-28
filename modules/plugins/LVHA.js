@@ -1,3 +1,4 @@
+/* @flow weak */
 const precedence = {
   ':link': 4,
   ':visited': 3,

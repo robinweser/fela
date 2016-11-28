@@ -1,3 +1,4 @@
+/* @flow weak */
 let counter = 0
 
 /**

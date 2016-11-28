@@ -1,3 +1,4 @@
+/* @flow weak */
 import React, { Component, PropTypes } from 'react'
 
 export default function connect(mapStylesToProps) {

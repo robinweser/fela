@@ -1,3 +1,4 @@
+/* @flow weak */
 export default function createDOMInterface(renderer, node) {
   let isHydrating = false
 

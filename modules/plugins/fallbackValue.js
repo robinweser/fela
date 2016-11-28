@@ -1,3 +1,4 @@
+/* @flow weak */
 import hypenateStyleName from 'hyphenate-style-name'
 
 function fallbackValue(style) {

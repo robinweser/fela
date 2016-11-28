@@ -1,3 +1,4 @@
+/* @flow weak */
 const formats = {
   '.woff': 'woff',
   '.eof': 'eof',

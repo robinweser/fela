@@ -1,3 +1,4 @@
+/* @flow weak */
 function isInvalid(value) {
   return value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1
 }

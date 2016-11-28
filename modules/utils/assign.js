@@ -1,3 +1,4 @@
+/* @flow weak */
 export default function assign(base, ...args) {
   return args.reduce((extend, obj) => {
     for (let property in obj) {

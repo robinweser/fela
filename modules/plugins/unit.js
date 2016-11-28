@@ -1,3 +1,4 @@
+/* @flow weak */
 import warning from '../utils/warning'
 import isUnitlessCSSProperty from 'unitless-css-property'
 

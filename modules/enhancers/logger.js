@@ -1,3 +1,4 @@
+/* @flow weak */
 import cssbeautify from 'cssbeautify'
 
 /**

@@ -1,3 +1,4 @@
+/* @flow weak */
 import extend from '../plugins/extend'
 import prefixer from '../plugins/prefixer'
 import fallbackValue from '../plugins/fallbackValue'

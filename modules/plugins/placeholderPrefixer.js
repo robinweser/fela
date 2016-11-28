@@ -1,3 +1,4 @@
+/* @flow weak */
 import customProperty from './customProperty'
 
 const placeholderPrefixes = [ '::-webkit-input-placeholder', '::-moz-placeholder', ':-ms-input-placeholder', ':-moz-placeholder', '::placeholder' ]
