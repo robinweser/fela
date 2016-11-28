@@ -7,7 +7,7 @@ export default class ThemeProvider extends Component {
 
   getChildContext() {
     return {
-      flat: this.props.flat || this.props.flat,
+      flat: this.props.flat || false,
       theme: {
         ...(!this.props.overwrite && this.context.theme),
         ...this.props.theme
