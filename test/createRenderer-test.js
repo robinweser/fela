@@ -1,6 +1,6 @@
 import createRenderer from '../modules/createRenderer'
 import combineRules from '../modules/combineRules'
-import generatePropsReference from '../modules/utils/generatePropsReference'
+import generateStyleHash from '../modules/utils/generateStyleHash'
 
 describe('Renderer', () => {
   describe('Instantiating a new Renderer', () => {
@@ -126,35 +126,7 @@ describe('Renderer', () => {
         }
       })
 
-      expect(className).to.eql('c0--wrg8o2')
-    })
-
-    it('should generate an incrementing reference id', () => {
-      const rule = props => ({ color: 'red' })
-      const rule2 = props => ({ color: 'blue' })
-      const renderer = createRenderer()
-
-      renderer.renderRule(rule)
-      renderer.renderRule(rule2)
-
-      expect(renderer.ids.indexOf(rule)).to.be.greaterThan(-1)
-      expect(renderer.ids.indexOf(rule2)).to.be.greaterThan(-1)
-      expect(renderer.ids.indexOf(rule2)).to.be.greaterThan(renderer.ids.indexOf(rule))
-    })
-
-    it('should always return the same className prefix', () => {
-      const rule = props => ({
-        color: 'red',
-        fontSize: props.size || 15
-      })
-      const renderer = createRenderer()
-
-      const staticClassName = renderer.renderRule(rule)
-      const dynamicClassName = renderer.renderRule(rule, {
-        size: 20
-      })
-      expect(staticClassName).to.not.eql(dynamicClassName)
-      expect(staticClassName.substr(0, 2)).to.eql(dynamicClassName.substr(0, 2))
+      expect(className).to.eql('c0')
     })
 
     it('should render pseudo classes', () => {
@@ -224,24 +196,6 @@ describe('Renderer', () => {
       const className = renderer.renderRule(nicelyNamedRule)
 
       expect(className).to.eql('nicelyNamedRule__c0')
-    })
-
-    it('should produce readable props references', () => {
-      const nicelyNamedRule = props => ({
-        color: props.color,
-        fontSize: props.fontSize
-      })
-
-      process.env.NODE_ENV = 'development'
-
-      const renderer = createRenderer({ prettySelectors: true })
-
-      const className = renderer.renderRule(nicelyNamedRule, {
-        color: '#ffffff',
-        fontSize: 15
-      })
-
-      expect(className).to.eql('nicelyNamedRule__c0-udqq8e__color-ffffff---fontSize-15')
     })
 
     it('should name classes correctly when the rule name cannot be inferred', () => {
@@ -367,7 +321,7 @@ describe('Renderer', () => {
       const staticStyle = { margin: 0, fontSize: '12px' }
 
       renderer.renderStatic(staticStyle, 'html,body')
-      expect(renderer.rendered.hasOwnProperty('html,bodyfontSize12pxmargin0')).to.eql(true)
+      expect(renderer.rendered.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')).to.eql(true)
       expect(renderer.statics).to.eql('html,body{margin:0;font-size:12px}')
     })
 
@@ -376,8 +330,8 @@ describe('Renderer', () => {
 
       renderer.renderStatic({ margin: 0, fontSize: '12px' }, 'html,body')
       renderer.renderStatic({ color: 'red' }, 'html,body')
-      expect(renderer.rendered.hasOwnProperty('html,bodyfontSize12pxmargin0')).to.eql(true)
-      expect(renderer.rendered.hasOwnProperty('html,bodycolorred')).to.eql(true)
+      expect(renderer.rendered.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')).to.eql(true)
+      expect(renderer.rendered.hasOwnProperty('html,body{"color":"red"}')).to.eql(true)
       expect(renderer.statics).to.eql('html,body{margin:0;font-size:12px}html,body{color:red}')
     })
   })
@@ -394,7 +348,7 @@ describe('Renderer', () => {
         '../fonts/Arial.woff'
       ], properties)
 
-      const key = family + generatePropsReference(properties)
+      const key = family + generateStyleHash(properties)
       expect(renderer.rendered.hasOwnProperty(key)).to.eql(true)
     })
 

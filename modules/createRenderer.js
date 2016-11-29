@@ -1,6 +1,5 @@
 /* @flow weak */
-import generatePropsReference from './utils/generatePropsReference'
-import sortedStringify from './utils/sortedStringify'
+import generateStyleHash from './utils/generateStyleHash'
 import getFontFormat from './utils/getFontFormat'
 
 import processStyle from './utils/processStyle'
@@ -55,55 +54,42 @@ export default function createRenderer(config = { }) {
      * @return {string} className to reference the rendered rule
      */
     renderRule(rule, props = { }) {
-      // rendering a rule for the first time
-      // will create an ID reference
-      if (renderer.ids.indexOf(rule) < 0) {
-        renderer.ids.push(rule)
+      const style = rule(props)
+
+      // if the style is empty simply return an empty className
+      if (Object.keys(style).length === 0) {
+        return ''
       }
 
-      // uses the reference ID and the props to generate an unique className
-      const ruleId = renderer.ids.indexOf(rule)
-      const styleOutput = rule(props)
+      const styleHash = generateStyleHash(style)
 
-      let classNamePrefix = 'c'
-      let propsReference = Object.keys(props).length > 0
-        ? generatePropsReference(styleOutput)
-        : ''
+      if (renderer.ids.indexOf(styleHash) === -1) {
+        renderer.ids.push(styleHash)
+      }
+
+      let className = 'c' + renderer.ids.indexOf(styleHash).toString(36)
+
 
       // extend the className with prefixes in development
       // this enables better debugging and className readability
       if (process.env.NODE_ENV !== 'production') {
-        classNamePrefix = (renderer._selectorPrefix ? (renderer._selectorPrefix + '__') : '') + ((renderer.prettySelectors && rule.name) ? rule.name + '__' : '') + 'c'
-        // replace the cryptic hash reference with a concatenated and simplyfied version of the props object itself
-        if (renderer.prettySelectors && Object.keys(props).length > 0) {
-          const match = Object
-            .keys(props)
-            .sort()
-            .map(prop => prop + '-' + props[prop])
-            .join('---')
-            .replace(/ /g, '_')
-            .match(/[-_a-zA-Z0-9]*/g)
-          propsReference += '__' + (match ? match.join('') : '')
-        }
+        className = (renderer._selectorPrefix ? (renderer._selectorPrefix + '__') : '') + ((renderer.prettySelectors && rule.name) ? rule.name + '__' : '') + className
       }
 
-      const className = classNamePrefix + ruleId + propsReference
-
-      // only if the cached rule has not already been rendered
+      // only if the rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(className)) {
         // process style using each plugin
-        const style = processStyle(styleOutput, {
+        const processedStyle = processStyle(style, {
           type: 'rule',
           className: className,
-          id: ruleId,
           props: props,
           rule: rule
         }, renderer.plugins)
 
 
         renderer.rendered[className] = false
-        renderer._renderStyle(className, style)
+        renderer._renderStyle(className, processedStyle)
       }
 
       renderer.callStack.push(renderer.renderRule.bind(renderer, rule, props))
@@ -128,7 +114,7 @@ export default function createRenderer(config = { }) {
 
       const styleOutput = keyframe(props)
       const propsReference = Object.keys(props).length > 0
-        ? generatePropsReference(styleOutput)
+        ? generateStyleHash(styleOutput)
         : ''
 
       const prefix = renderer.prettySelectors && keyframe.name ? keyframe.name + '_' : 'k'
@@ -168,7 +154,7 @@ export default function createRenderer(config = { }) {
      * @return {string} fontFamily reference
      */
     renderFont(family, files, properties = { }) {
-      const key = family + generatePropsReference(properties)
+      const key = family + generateStyleHash(properties)
 
       if (!renderer.rendered.hasOwnProperty(key)) {
         const fontFace = {
@@ -205,7 +191,7 @@ export default function createRenderer(config = { }) {
      * @return {string} rendered CSS output
      */
     renderStatic(style, selector) {
-      const reference = typeof style === 'string' ? style : selector + sortedStringify(style)
+      const reference = typeof style === 'string' ? style : selector + JSON.stringify(style)
 
       if (!renderer.rendered.hasOwnProperty(reference)) {
         if (typeof style === 'string') {
@@ -227,6 +213,7 @@ export default function createRenderer(config = { }) {
           renderer.statics += selector + '{' + css + '}'
 
           renderer.callStack.push(renderer.renderStatic.bind(renderer, style, selector))
+
           renderer._emitChange({
             selector: selector,
             style: processedStyle,
