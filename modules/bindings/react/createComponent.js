@@ -2,7 +2,7 @@
 import { createElement, PropTypes } from 'react'
 
 export default function createComponent(rule, type = 'div', passThroughProps = []) {
-  const FelaComponent = ({ children, className, style, passThrough, ...ruleProps }, { renderer, theme, flat }) => {
+  const FelaComponent = ({ children, className, style, passThrough = [], ...ruleProps }, { renderer, theme, flat }) => {
 
     // filter props to extract props to pass through
     const componentProps = [ ...passThroughProps, ...passThrough ].reduce((output, prop) => {
