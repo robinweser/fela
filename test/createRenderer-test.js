@@ -298,8 +298,8 @@ describe('Renderer', () => {
         color: 'red'
       })
 
-      expect(animationName).to.eql('k0-exrjx8')
-      expect(renderer.keyframes).to.eql('@-webkit-keyframes k0-exrjx8{from{color:red}to{color:blue}}@-moz-keyframes k0-exrjx8{from{color:red}to{color:blue}}@keyframes k0-exrjx8{from{color:red}to{color:blue}}')
+      expect(animationName).to.eql('k0')
+      expect(renderer.keyframes).to.eql('@-webkit-keyframes k0{from{color:red}to{color:blue}}@-moz-keyframes k0{from{color:red}to{color:blue}}@keyframes k0{from{color:red}to{color:blue}}')
     })
   })
 

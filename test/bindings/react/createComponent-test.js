@@ -29,7 +29,7 @@ describe('Creating Components from Fela rules', () => {
       color: props.color || 'red',
       fontSize: 16
     })
-    const component = createComponent(rule, 'div', { onClick: false })
+    const component = createComponent(rule, 'div', [ 'onClick' ])
 
     const renderer = createRenderer()
 
@@ -46,7 +46,7 @@ describe('Creating Components from Fela rules', () => {
       color: props.foo && props.color || 'red',
       fontSize: 16
     })
-    const component = createComponent(rule, 'div', { foo: true })
+    const component = createComponent(rule, 'div', [ 'foo' ])
 
     const renderer = createRenderer()
 

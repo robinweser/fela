@@ -55,20 +55,9 @@ export default function createRenderer(config = { }) {
      */
     renderRule(rule, props = { }) {
       const style = rule(props)
+      const styleId = renderer._generateStyleId(style)
 
-      // if the style is empty simply return an empty className
-      if (Object.keys(style).length === 0) {
-        return ''
-      }
-
-      const styleHash = generateStyleHash(style)
-
-      if (renderer.ids.indexOf(styleHash) === -1) {
-        renderer.ids.push(styleHash)
-      }
-
-      let className = 'c' + renderer.ids.indexOf(styleHash).toString(36)
-
+      let className = 'c' + styleId
 
       // extend the className with prefixes in development
       // this enables better debugging and className readability
@@ -106,29 +95,25 @@ export default function createRenderer(config = { }) {
      * @return {string} animationName to reference the rendered keyframe
      */
     renderKeyframe(keyframe, props = { }) {
-      // rendering a Keyframe for the first time
-      // will create cache entries and an ID reference
-      if (renderer.ids.indexOf(keyframe) < 0) {
-        renderer.ids.push(keyframe)
+      const style = keyframe(props)
+      const styleId = renderer._generateStyleId(style)
+
+      let animationName = 'k' + styleId
+
+      // extend the animationName with prefixes in development
+      // this enables better debugging and className readability
+      if (process.env.NODE_ENV !== 'production') {
+        animationName = ((renderer.prettySelectors && keyframe.name) ? keyframe.name + '__' : '') + animationName
       }
 
-      const styleOutput = keyframe(props)
-      const propsReference = Object.keys(props).length > 0
-        ? generateStyleHash(styleOutput)
-        : ''
-
-      const prefix = renderer.prettySelectors && keyframe.name ? keyframe.name + '_' : 'k'
-      const animationName = prefix + renderer.ids.indexOf(keyframe) + propsReference
-
-      // only if the cached keyframe has not already been rendered
+      // only if the keyframe has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(animationName)) {
-        const processedKeyframe = processStyle(styleOutput, {
+        const processedKeyframe = processStyle(style, {
           type: 'keyframe',
           keyframe: keyframe,
           props: props,
-          animationName: animationName,
-          id: renderer.ids.indexOf(keyframe)
+          animationName: animationName
         }, renderer.plugins)
 
         const css = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
@@ -270,6 +255,16 @@ export default function createRenderer(config = { }) {
       renderer._emitChange({ type: 'rehydrate', done: false })
       callStack.forEach(fn => fn())
       renderer._emitChange({ type: 'rehydrate', done: true })
+    },
+
+    _generateStyleId(style) {
+      const styleHash = generateStyleHash(style)
+
+      if (renderer.ids.indexOf(styleHash) === -1) {
+        renderer.ids.push(styleHash)
+      }
+
+      return renderer.ids.indexOf(styleHash).toString(36)
     },
 
     /**
