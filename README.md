@@ -76,7 +76,7 @@ const renderer = createRenderer()
 // which can be attached to any element
 const className = renderer.renderRule(rule, { fontSize: 12 }))
 
-console.log(className) // => c0 c0-aw22w
+console.log(className) // => c0-aw22w
 
 // renders all styles into the DOM
 render(renderer, mountNode)

@@ -66,13 +66,13 @@ server.listen(8080, 'localhost')
 <html>
 <head>
   <style id="stylesheet">
-    .c0{font-size:15px}.c0-foo{color:blue}
+    .c0-foo{color:blue;font-size:15px}
   </style>
   <title>Fela - Server Rendering</title>
 </head>
 <body>
   <div id="app">
-    <div class="c0 c0-foo">
+    <div class="c0-foo">
       Hello World
     </div>
   </div>

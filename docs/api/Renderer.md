@@ -37,7 +37,7 @@ const rule = props => ({
   color: 'blue'
 })
 
-renderer.renderRule(rule, { size: '12px' }) // => c0 c0-dzm1d6
+renderer.renderRule(rule, { size: '12px' }) // => c0-dzm1d6
 renderer.renderRule(rule) // => c0
 ```
 
@@ -77,39 +77,6 @@ const rule = ({ type } = {}) => ({
 rule({ type: 'error' }) // => { color: 'red' }
 rule({ }) // => { color: 'green' }
 ```
-
-* **Flat & Nested props**:<br>
-Try not to use nested props at all as the renderer initially triggers rule rendering with an empty props object. Nested props would fail to evaluate if they do not get precisely checked within your rule. If one still wants to use nested props be sure to verify each level separately.
-
-```javascript
-const rule = ({ nested }) => ({
-  color: nested && nested.is && nested.is.bad || 'green'
-})
-
-rule({ nested: { is: { bad: 'red' }} }) // => { color: 'red' }
-rule({ }) // => { color: 'green' }
-```
-
-* **Calculating and evaluating props:**<br>
-Whenever you need to calculate values using the props or use props within expressions, try to do this within the associated render method. It then passes the final props to the rule only.<br>
-Doing this keeps your rules clean and declarative and helps preventing issues such as undefined nested props.
-
-```javascript
-const rule = ({ fontSize }) => ({
-  fontSize: fontSize + 'px' || '10px'
-})
-
-const someProps = {
-  nested: {
-    expression: true
-  },
-  baseSize: 15
-}
-
-rule({ fontSize: nested.expression ? baseSize + 2 : baseSize }) // => { fontSize: 17px }
-rule({ }) // => { color: 10px }
-```
-
 
 ---
 
@@ -258,7 +225,7 @@ const markup = renderer.renderToString()
 
 console.log(markup)
 // html,body{box-sizing:border-box;margin:0}
-// .c0{color:blue}.c0--w5u07{font-size:12px}
+// .c0--w5u07{font-size:12px;color:blue}
 ```
 
 ---
@@ -286,8 +253,7 @@ const rule = props => ({
 
 const subscription = renderer.subscribe(console.log)
 renderer.renderRule(rule, { fontSize: '12px '})
-// { type: 'rule', style: 'color:blue', selector: 'c0', media: '' }
-// { type: 'rule', style: 'font-size:12px', selector: 'c0-foo', media: '' }
+// { type: 'rule', style: 'font-size:12px;color:blue', selector: 'c0-foo', media: '' }
 
 // Usubscribing removes the event listener
 subscription.unsubscribe()
