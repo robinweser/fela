@@ -32,12 +32,17 @@ export default function createRenderer(config = { }) {
 
       // uses the reference ID and the props to generate an unique className
       const ruleId = renderer.ids.indexOf(rule)
-      const ref = ruleId + generatePropsReference(props)
+      const styleOutput = renderer._resolveStyle(rule, props)
+      const propsReference = Object.keys(props).length > 0
+        ? generatePropsReference(styleOutput)
+        : ''
+
+      const ref = ruleId + propsReference
 
       // only if the cached rule has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rules.hasOwnProperty(ref)) {
-        const style = processStyle(renderer._resolveStyle(rule, props), {
+        const style = processStyle(styleOutput, {
           type: 'rule',
           id: ruleId,
           props: props,

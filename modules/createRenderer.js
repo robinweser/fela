@@ -63,9 +63,12 @@ export default function createRenderer(config = { }) {
 
       // uses the reference ID and the props to generate an unique className
       const ruleId = renderer.ids.indexOf(rule)
+      const styleOutput = rule(props)
 
       let classNamePrefix = 'c'
-      let propsReference = generatePropsReference(props)
+      let propsReference = Object.keys(props).length > 0
+        ? generatePropsReference(styleOutput)
+        : ''
 
       // extend the className with prefixes in development
       // this enables better debugging and className readability
@@ -90,7 +93,7 @@ export default function createRenderer(config = { }) {
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(className)) {
         // process style using each plugin
-        const style = processStyle(rule(props), {
+        const style = processStyle(styleOutput, {
           type: 'rule',
           className: className,
           id: ruleId,
@@ -123,14 +126,18 @@ export default function createRenderer(config = { }) {
         renderer.ids.push(keyframe)
       }
 
-      const propsReference = generatePropsReference(props)
+      const styleOutput = keyframe(props)
+      const propsReference = Object.keys(props).length > 0
+        ? generatePropsReference(styleOutput)
+        : ''
+
       const prefix = renderer.prettySelectors && keyframe.name ? keyframe.name + '_' : 'k'
       const animationName = prefix + renderer.ids.indexOf(keyframe) + propsReference
 
       // only if the cached keyframe has not already been rendered
       // with a specific set of properties it actually renders
       if (!renderer.rendered.hasOwnProperty(animationName)) {
-        const processedKeyframe = processStyle(keyframe(props), {
+        const processedKeyframe = processStyle(styleOutput, {
           type: 'keyframe',
           keyframe: keyframe,
           props: props,

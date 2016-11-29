@@ -126,7 +126,7 @@ describe('Renderer', () => {
         }
       })
 
-      expect(className).to.eql('c0-lsovtj')
+      expect(className).to.eql('c0--wrg8o2')
     })
 
     it('should generate an incrementing reference id', () => {
@@ -241,7 +241,7 @@ describe('Renderer', () => {
         fontSize: 15
       })
 
-      expect(className).to.eql('nicelyNamedRule__c0--bd3amk__color-ffffff---fontSize-15')
+      expect(className).to.eql('nicelyNamedRule__c0-udqq8e__color-ffffff---fontSize-15')
     })
 
     it('should name classes correctly when the rule name cannot be inferred', () => {
@@ -344,8 +344,8 @@ describe('Renderer', () => {
         color: 'red'
       })
 
-      expect(animationName).to.eql('k0--aedinm')
-      expect(renderer.keyframes).to.eql('@-webkit-keyframes k0--aedinm{from{color:red}to{color:blue}}@-moz-keyframes k0--aedinm{from{color:red}to{color:blue}}@keyframes k0--aedinm{from{color:red}to{color:blue}}')
+      expect(animationName).to.eql('k0-exrjx8')
+      expect(renderer.keyframes).to.eql('@-webkit-keyframes k0-exrjx8{from{color:red}to{color:blue}}@-moz-keyframes k0-exrjx8{from{color:red}to{color:blue}}@keyframes k0-exrjx8{from{color:red}to{color:blue}}')
     })
   })
 

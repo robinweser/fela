@@ -6,16 +6,4 @@ describe('Generating the props reference', () => {
     const className2 = generatePropsReference('foobar')
     expect(className1).to.eql(className2)
   })
-
-  it('should sort props before', () => {
-    const className1 = generatePropsReference({
-      foo: 'bar',
-      fontSize: 12
-    })
-    const className2 = generatePropsReference({
-      fontSize: 12,
-      foo: 'bar'
-    })
-    expect(className1).to.eql(className2)
-  })
 })
