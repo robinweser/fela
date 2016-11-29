@@ -38,6 +38,7 @@ export default function createRenderer(config = { }) {
         return rules
       }, { })
 
+      renderer.renderRef = ('WeakMap' in global) && new WeakMap()
       renderer.rendered = { }
       renderer.ids = [ ]
       renderer.callStack = [ ]
@@ -54,6 +55,11 @@ export default function createRenderer(config = { }) {
      * @return {string} className to reference the rendered rule
      */
     renderRule(rule, props = { }) {
+      const cachedRef = renderer.renderRef && renderer.renderRef.get(props)
+      if (cachedRef) {
+        return cachedRef
+      }
+
       const style = rule(props)
       const styleId = renderer._generateStyleId(style)
 
@@ -82,6 +88,14 @@ export default function createRenderer(config = { }) {
       }
 
       renderer.callStack.push(renderer.renderRule.bind(renderer, rule, props))
+
+      // cache className to props object reference
+      // this cache is only hit if the same exact
+      // object is passed to renderRule
+      // cleanup is automatic thanks to WeakMap
+      if (renderer.renderRef) {
+        renderer.renderRef.set(props, className)
+      }
 
       // only return the className if it is not empty
       return renderer.rendered[className] ? className : ''
