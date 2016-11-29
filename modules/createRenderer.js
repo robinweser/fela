@@ -39,7 +39,7 @@ export default function createRenderer(config = { }) {
         return rules
       }, { })
 
-      renderer.renderRef = ('WeakMap' in global) && new WeakMap();
+      renderer.renderRef = ('WeakMap' in global) && new WeakMap()
       renderer.rendered = { }
       renderer.ids = [ ]
       renderer.callStack = [ ]
@@ -64,7 +64,7 @@ export default function createRenderer(config = { }) {
 
       const cachedRef = renderer.renderRef && renderer.renderRef.get(props)
       if (cachedRef) {
-        return cachedRef;
+        return cachedRef
       }
 
       // uses the reference ID and the props to generate an unique className
