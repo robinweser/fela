@@ -4,7 +4,6 @@ import sortedStringify from './utils/sortedStringify'
 import getFontFormat from './utils/getFontFormat'
 
 import processStyle from './utils/processStyle'
-import diffStyle from './utils/diffStyle'
 
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
@@ -41,7 +40,6 @@ export default function createRenderer(config = { }) {
       }, { })
 
       renderer.rendered = { }
-      renderer.base = { }
       renderer.ids = [ ]
       renderer.callStack = [ ]
 
@@ -61,12 +59,6 @@ export default function createRenderer(config = { }) {
       // will create an ID reference
       if (renderer.ids.indexOf(rule) < 0) {
         renderer.ids.push(rule)
-
-        // directly render the static base style to be able
-        // to diff future dynamic style with those
-        if (Object.keys(props).length > 0) {
-          renderer.renderRule(rule, { })
-        }
       }
 
       // uses the reference ID and the props to generate an unique className
@@ -95,7 +87,6 @@ export default function createRenderer(config = { }) {
         }
       }
 
-
       const className = classNamePrefix + ruleId + propsReference
 
       // only if the cached rule has not already been rendered
@@ -110,37 +101,15 @@ export default function createRenderer(config = { }) {
           rule: rule
         }, renderer.plugins)
 
-        // diff style objects with base styles
-        const diffedStyle = diffStyle(style, renderer.base[ruleId])
 
         renderer.rendered[className] = false
-
-        if (Object.keys(diffedStyle).length > 0) {
-          renderer._renderStyle(className, diffedStyle)
-        }
-
-        // keep static style to diff dynamic onces later on
-        if (className === classNamePrefix + ruleId) {
-          renderer.base[ruleId] = diffedStyle
-        }
-      }
-
-      const baseClassName = classNamePrefix + ruleId
-      // if current className is empty
-      // return either the static class or empty string
-      if (!renderer.rendered[className]) {
-        return renderer.rendered[baseClassName] ? baseClassName : ''
+        renderer._renderStyle(className, style)
       }
 
       renderer.callStack.push(renderer.renderRule.bind(renderer, rule, props))
 
-      // if the current className is a dynamic rule
-      // return both classNames if static subset is not empty
-      if (className !== baseClassName) {
-        return (renderer.rendered[baseClassName] ? baseClassName + ' ' : '') + className
-      }
-
-      return className
+      // only return the className if it is not empty
+      return renderer.rendered[className] ? className : ''
     },
 
     /**
@@ -216,6 +185,7 @@ export default function createRenderer(config = { }) {
         renderer.fontFaces += css
 
         renderer.callStack.push(renderer.renderFont.bind(renderer, family, files, properties))
+
         renderer._emitChange({
           fontFamily: family,
           fontFace: fontFace,

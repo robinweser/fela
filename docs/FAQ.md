@@ -8,8 +8,6 @@
 * [Where does the name "Fela" come from?](#where-does-the-name-fela-come-from)
 
 #### Rules
-* [Why do my nested props throw?](#why-do-my-nested-props-throw)
-
 #### Keyframes
 
 #### Fonts
@@ -36,8 +34,6 @@ Fela actually is the name of a character in one of the author's favorite fantasy
 There is no deep connection to JavaScript styling in general, except the fact that she does sculpturing which seems to be kind of similar to what component styling is lately.
 
 ## Rules
-#### Why do my nested props throw?
-If you are using nested props objects you might have already seen errors like `Cannot read property 'nesting' of undefined` although you always pass the correct props. This is because the renderer initially renders the static subset of each rule using an empty props object. Try not to use nested props at all or read the [Rules - Tips & Tricks](api/Renderer.md#renderrulerule-props) to learn how to solve the issue.
 
 ## Keyframes
 
