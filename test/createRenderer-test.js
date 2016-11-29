@@ -118,7 +118,7 @@ describe('Renderer', () => {
       expect(className).to.eql(className2)
       expect(className).to.eql(className3)
       expect(renderer.rules).to.eql('.c0{font-size:23px}')
-      expect(Object.keys(renderer.rendered).length).to.eql(3)
+      expect(Object.keys(renderer.rendered).length).to.eql(2)
     })
 
     it('should return an empty string if the style is empty', () => {
@@ -127,7 +127,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule, { color: 'red' })
 
-      expect(className).to.eql('c0--aedinm')
+      expect(className).to.eql('c0--wrg8o2')
     })
 
     it('should only return a dynamic className', () => {
@@ -275,7 +275,7 @@ describe('Renderer', () => {
         fontSize: 15
       })
 
-      expect(className).to.eql('nicelyNamedRule__c0--bd3amk__color-ffffff---fontSize-15')
+      expect(className).to.eql('nicelyNamedRule__c0-udqq8e__color-ffffff---fontSize-15')
     })
 
     it('should name classes correctly when the rule name cannot be inferred', () => {
@@ -378,8 +378,8 @@ describe('Renderer', () => {
         color: 'red'
       })
 
-      expect(animationName).to.eql('k0--aedinm')
-      expect(renderer.keyframes).to.eql('@-webkit-keyframes k0--aedinm{from{color:red}to{color:blue}}@-moz-keyframes k0--aedinm{from{color:red}to{color:blue}}@keyframes k0--aedinm{from{color:red}to{color:blue}}')
+      expect(animationName).to.eql('k0-exrjx8')
+      expect(renderer.keyframes).to.eql('@-webkit-keyframes k0-exrjx8{from{color:red}to{color:blue}}@-moz-keyframes k0-exrjx8{from{color:red}to{color:blue}}@keyframes k0-exrjx8{from{color:red}to{color:blue}}')
     })
   })
 
