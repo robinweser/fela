@@ -3,12 +3,15 @@ import Prefixer from 'inline-style-prefixer'
 
 export default options => {
   const prefixer = new Prefixer(options)
-  const index = new WeakMap()
+  const weakMapSupported = ('WeakMap' in global)
+  const index = weakMapSupported && new WeakMap()
   return style => {
-    let ret = index.get(style)
+    let ret = index && index.get(style)
     if (!ret) {
       ret = prefixer.prefix(style)
-      index.set(style, ret)
+      if (index) {
+        index.set(style, ret)
+      }
     }
     return ret
   }

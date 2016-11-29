@@ -2,12 +2,14 @@
 import prefix from 'inline-style-prefixer/static'
 
 export default () => {
-  const index = new WeakMap()
+  const index = ('WeakMap' in global) && new WeakMap()
   return style => {
-    let ret = index.get(style)
+    let ret = index && index.get(style)
     if (!ret) {
       ret = prefix(style)
-      index.set(style, ret)
+      if (index) {
+        index.set(style, ret)
+      }
     }
     return ret
   }

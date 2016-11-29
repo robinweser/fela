@@ -39,7 +39,7 @@ export default function createRenderer(config = { }) {
         return rules
       }, { })
 
-      renderer.propsObjectRef = new WeakMap();
+      renderer.renderRef = ('WeakMap' in global) && new WeakMap();
       renderer.rendered = { }
       renderer.ids = [ ]
       renderer.callStack = [ ]
@@ -62,7 +62,7 @@ export default function createRenderer(config = { }) {
         renderer.ids.push(rule)
       }
 
-      const cachedRef = renderer.propsObjectRef.get(props)
+      const cachedRef = renderer.renderRef && renderer.renderRef.get(props)
       if (cachedRef) {
         return cachedRef;
       }
@@ -118,7 +118,9 @@ export default function createRenderer(config = { }) {
       // this cache is only hit if the same exact
       // object is passed to renderRule
       // cleanup is automatic thanks to WeakMap
-      renderer.propsObjectRef.set(props, className)
+      if (renderer.renderRef) {
+        renderer.renderRef.set(props, className)
+      }
 
       // only return the className if it is not empty
       return renderer.rendered[className] ? className : ''
