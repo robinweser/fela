@@ -157,7 +157,7 @@ export default function createRenderer(config = { }) {
         renderer.ids.push(keyframe)
       }
 
-      const styleOutput = keyframe(props);
+      const styleOutput = keyframe(props)
       const propsReference = Object.keys(props).length > 0
         ? generatePropsReference(styleOutput)
         : ''
