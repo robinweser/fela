@@ -23,7 +23,10 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should only pass explicit props to the element', () => {
-    const rule = props => ({ color: props.color, fontSize: 16 })
+    const rule = props => ({
+      color: props.color || 'red',
+      fontSize: 16
+    })
     const component = createComponent(rule, 'div', { onClick: false })
 
     const renderer = createRenderer()

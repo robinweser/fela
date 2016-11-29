@@ -143,12 +143,15 @@ describe('Renderer', () => {
     })
 
     it('should always return the same className prefix', () => {
-      const rule = props => ({ color: 'red', foo: props.foo })
+      const rule = props => ({
+        color: 'red',
+        fontSize: props.size || 15
+      })
       const renderer = createRenderer()
 
       const staticClassName = renderer.renderRule(rule)
       const dynamicClassName = renderer.renderRule(rule, {
-        foo: 'bar'
+        size: 20
       })
       expect(staticClassName).to.not.eql(dynamicClassName)
       expect(staticClassName.substr(0, 2)).to.eql(dynamicClassName.substr(0, 2))
