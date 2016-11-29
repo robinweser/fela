@@ -22,7 +22,7 @@ In addition to the required parameters, each font face accepts five other proper
 ### Related
 * [Rendering fonts](Renderer.md#renderfont)
 * [Problems with fonts](../Troubleshooting.md#1-rendering-fonts)
-* [API reference - `Renderer.renderFont` ](../api/Renderer.md#renderfontfamily-files-properties)
+* [API reference - `Renderer.renderFont` ](../api/Renderer.md#renderfontfontfamily-files-properties)
 * [FAQ - Fonts](../FAQ.md#fonts)
 
 #### Tools

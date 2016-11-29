@@ -23,8 +23,8 @@ The renderer provides dedicated render methods for each of the three renderable 
 > **Tip**: Read the tips and tricks of each render method first. Especially the [renderRule](../api/Renderer.md#renderrulerule-props) tips are very helpful for beginners as well as advanced users.
 
 ### renderRule
-Takes a [rule](Rules.md) and some `props` to resolve the rule. If no `props` are passed it defaults to an empty object. It reuses the static subset of a rule to produce less markup.<br>
-It returns the rendered CSS class(es).
+Takes a [rule](Rules.md) and some `props` to resolve the rule. If no `props` are passed it defaults to an empty object.<br>
+It returns the rendered CSS class.
 
 ```javascript
 import { createRenderer } from 'fela'
@@ -38,8 +38,8 @@ const rule = props => ({
 })
 
 renderer.renderRule(rule) // => c0
-renderer.renderRule(rule, { fontSize: '12px' }) // => c0 c0--w5u07
-renderer.renderRule(rule, { fontSize: '15px' }) // => c0 c0--w5rs4
+renderer.renderRule(rule, { fontSize: '12px' }) // => c0--w5u07
+renderer.renderRule(rule, { fontSize: '15px' }) // => c0--w5rs4
 ```
 ```CSS
 .c0 {
@@ -48,11 +48,15 @@ renderer.renderRule(rule, { fontSize: '15px' }) // => c0 c0--w5rs4
 }
 
 .c0--w5u07 {
-  font-size: 12px
+  font-size: 12px;
+  background-color: blue;
+  color: red
 }
 
 .c0--w5rs4 {
-  font-size: 15px
+  font-size: 15px;
+  background-color: blue;
+  color: red
 }
 ```
 
@@ -69,7 +73,7 @@ const renderer = createRenderer()
 
 const keyframe = props => ({
   from: { color: 'green' },
-  to: { color: props.toColor }
+  to: { color: props.toColor || 'yellow' }
 })
 
 renderer.renderKeyframe(keyframe, { toColor: 'red' }) // => k0--aqbnkn

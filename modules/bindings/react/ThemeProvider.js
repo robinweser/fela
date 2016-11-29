@@ -1,4 +1,5 @@
-import { Component, PropTypes } from 'react'
+/* @flow weak */
+import { Component, PropTypes, Children } from 'react'
 
 export default class ThemeProvider extends Component {
   static propTypes =  { theme: PropTypes.object, flat: PropTypes.bool, overwrite: PropTypes.bool };
@@ -9,13 +10,13 @@ export default class ThemeProvider extends Component {
     return {
       flat: this.props.flat || false,
       theme: {
-        ...(!this.props.overwrite && this.context.theme),
+        ...(!this.props.overwrite && this.context.theme || {}),
         ...this.props.theme
       }
     }
   }
 
   render() {
-    return this.props.children
+    return Children.only(this.props.children)
   }
 }
