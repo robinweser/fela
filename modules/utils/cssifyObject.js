@@ -10,6 +10,13 @@ import warning from './warning'
  */
 export default function cssifyObject(style) {
   return Object.keys(style).reduce((css, prop) => {
+    const value = style[prop]
+
+    // automatically remove undefined values
+    if (value === undefined || (typeof value === 'string' && value.indexOf('undefined') > -1)) {
+      return css
+    }
+
     // warn if invalid values are rendered
     warning(typeof style[prop] === 'string' || typeof style[prop] === 'number', 'An invalid value "' + style[prop] + '" has been used as "' + prop + '".')
 
