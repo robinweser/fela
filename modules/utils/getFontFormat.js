@@ -1,7 +1,7 @@
 /* @flow weak */
 const formats = {
   '.woff': 'woff',
-  '.eof': 'eof',
+  '.eot': 'eot',
   '.ttf': 'truetype',
   '.svg': 'svg'
 }
