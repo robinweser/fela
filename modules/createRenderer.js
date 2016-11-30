@@ -3,9 +3,12 @@ import generateStyleHash from './utils/generateStyleHash'
 import getFontFormat from './utils/getFontFormat'
 
 import processStyle from './utils/processStyle'
+import diffStyle from './utils/diffStyle'
 
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyObject from './utils/cssifyObject'
+
+import warning from './utils/warning'
 
 /**
  * creates a new renderer instance
@@ -38,9 +41,10 @@ export default function createRenderer(config = { }) {
         return rules
       }, { })
 
-      renderer.renderRef = ('WeakMap' in global) && new WeakMap()
       renderer.rendered = { }
+      renderer.base = [ ]
       renderer.ids = [ ]
+      renderer.baseClassName = [ ]
       renderer.callStack = [ ]
 
       // emit changes to notify subscribers
@@ -52,15 +56,32 @@ export default function createRenderer(config = { }) {
      *
      * @param {Function} rule - rule which gets rendered
      * @param {Object?} props - properties used to render
+     * @param {Object?} defaultProps - properties used to render the static style
      * @return {string} className to reference the rendered rule
      */
-    renderRule(rule, props = { }) {
-      const cachedRef = renderer.renderRef && renderer.renderRef.get(props)
-      if (cachedRef) {
-        return cachedRef
+    renderRule(rule, props = { }, defaultProps = { }) {
+      // rendering a rule for the first time
+      // will create an ID reference
+      if (renderer.ids.indexOf(rule) === -1) {
+        renderer.ids.push(rule)
+
+        // directly render the static base style to be able
+        // to diff future dynamic style with those
+        try {
+          renderer.renderRule(rule, defaultProps, defaultProps)
+        } catch (error) {
+          warning(true, 'Nested props have been used without passing `defaultProps`. This will disable static style splitting for this rule.')
+        }
       }
 
-      const style = rule(props)
+      const ruleId = renderer.ids.indexOf(rule)
+
+      const ruleProps = {
+        ...defaultProps,
+        ...props
+      }
+
+      const style = rule(ruleProps)
       const styleId = renderer._generateStyleId(style)
 
       let className = 'c' + styleId
@@ -78,27 +99,44 @@ export default function createRenderer(config = { }) {
         const processedStyle = processStyle(style, {
           type: 'rule',
           className: className,
-          props: props,
+          props: ruleProps,
           rule: rule
         }, renderer.plugins)
 
 
+        // diff style objects with base styles
+        const diffedStyle = diffStyle(processedStyle, renderer.base[ruleId])
         renderer.rendered[className] = false
-        renderer._renderStyle(className, processedStyle)
+
+        if (Object.keys(diffedStyle).length > 0) {
+          renderer._renderStyle(className, diffedStyle)
+        }
+
+        renderer.callStack.push(renderer.renderRule.bind(renderer, rule, props, defaultProps))
+
+        // keep static style to diff dynamic onces later on
+        if (props === defaultProps) {
+          renderer.base[ruleId] = diffedStyle
+          renderer.baseClassName[ruleId] = className
+          return renderer.rendered[className] ? className : ''
+        }
       }
 
-      renderer.callStack.push(renderer.renderRule.bind(renderer, rule, props))
+      const baseClassName = renderer.baseClassName[ruleId]
 
-      // cache className to props object reference
-      // this cache is only hit if the same exact
-      // object is passed to renderRule
-      // cleanup is automatic thanks to WeakMap
-      if (renderer.renderRef) {
-        renderer.renderRef.set(props, className)
+      // if current className is empty
+      // return either the static class or empty string
+      if (!renderer.rendered[className]) {
+        return renderer.rendered[baseClassName] ? baseClassName : ''
       }
 
-      // only return the className if it is not empty
-      return renderer.rendered[className] ? className : ''
+      // if the current className is a dynamic rule
+      // return both classNames if static subset is not empty
+      if (className !== baseClassName) {
+        return (renderer.rendered[baseClassName] ? baseClassName + ' ' : '') + className
+      }
+
+      return className
     },
 
     /**
@@ -271,6 +309,12 @@ export default function createRenderer(config = { }) {
       renderer._emitChange({ type: 'rehydrate', done: true })
     },
 
+    /**
+     * generates a unique style id
+     *
+     * @param {Object} style - style object
+     * @return {string} minimal string id
+     */
     _generateStyleId(style) {
       const styleHash = generateStyleHash(style)
 
