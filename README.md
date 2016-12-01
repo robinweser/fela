@@ -117,7 +117,6 @@ The following list shows a quick overview of all existing packages.
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/react-fela">react-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/react-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg"> |
 | **Tools** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-stylesheet">fela-stylesheet</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-stylesheet"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-stylesheet.svg"> |
-
 | **Plugins** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-debug-layout">fela-plugin-debug-layout</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-debug-layout"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-debug-layout.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property">fela-plugin-custom-property</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-custom-property"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-custom-property.svg"> |
