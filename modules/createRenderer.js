@@ -70,7 +70,7 @@ export default function createRenderer(config = { }) {
         try {
           renderer.renderRule(rule, defaultProps, defaultProps)
         } catch (error) {
-          warning(true, 'Nested props have been used without passing `defaultProps`. This will disable static style splitting for this rule.')
+          warning(false, `Nested props have been used without passing 'defaultProps'. This will disable static style splitting for '${rule.name ? rule.name : 'unkown_rule'}'.`)
         }
       }
 
