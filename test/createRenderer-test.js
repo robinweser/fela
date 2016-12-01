@@ -51,7 +51,6 @@ describe('Renderer', () => {
       expect(renderer.keyframes).to.eql('')
       expect(renderer.fontFaces).to.eql('')
       expect(renderer.statics).to.eql('')
-      expect(renderer.ids).to.eql([ ])
       expect(renderer.callStack).to.eql([ ])
     })
   })
@@ -104,7 +103,21 @@ describe('Renderer', () => {
       renderer.renderRule(rule, { color: 'red' })
       renderer.renderRule(rule, { color: 'blue' })
 
-      expect(Object.keys(renderer.rendered).length).to.eql(2)
+      expect(Object.keys(renderer.rendered).length).to.eql(3)
+    })
+
+    it('should reuse static style', () => {
+      const rule = props => ({ fontSize: '23px' })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule, { color: 'red' })
+      const className2 = renderer.renderRule(rule, { color: 'red' })
+      const className3 = renderer.renderRule(rule, { color: 'blue' })
+
+      expect(className).to.eql(className2)
+      expect(className).to.eql(className3)
+      expect(renderer.rules).to.eql('.c1{font-size:23px}')
+      expect(Object.keys(renderer.rendered).length).to.eql(1)
     })
 
     it('should return an empty string if the style is empty', () => {
@@ -117,7 +130,10 @@ describe('Renderer', () => {
     })
 
     it('should allow nested props', () => {
-      const rule = props => ({ color: props.theme.color })
+      const rule = props => ({
+        color: props.theme.color,
+        fontSize: 15
+      })
       const renderer = createRenderer()
 
       const className = renderer.renderRule(rule, {
@@ -126,7 +142,24 @@ describe('Renderer', () => {
         }
       })
 
-      expect(className).to.eql('c0')
+      expect(className).to.eql('c1')
+    })
+
+    it('should accept defaultProps for static styles', () => {
+      const rule = props => ({
+        color: props.color,
+        transition: props.duration + ' all linear',
+        fontSize: 15
+      })
+
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule, { }, {
+        color: 'red',
+        duration: 200
+      })
+
+      expect(className).to.eql('c1')
     })
 
     it('should render pseudo classes', () => {
@@ -140,7 +173,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(renderer.rules).to.eql('.c0:hover{color:blue}.c0{color:red}')
+      expect(renderer.rules).to.eql('.c1:hover{color:blue}.c1{color:red}')
     })
 
     it('should render attribute selectors', () => {
@@ -154,7 +187,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(renderer.rules).to.eql('.c0[bool=true]{color:blue}.c0{color:red}')
+      expect(renderer.rules).to.eql('.c1[bool=true]{color:blue}.c1{color:red}')
     })
 
     it('should render child selectors', () => {
@@ -168,7 +201,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(renderer.rules).to.eql('.c0> h1{color:blue}.c0{color:red}')
+      expect(renderer.rules).to.eql('.c1> h1{color:blue}.c1{color:red}')
     })
 
     it('should render media queries', () => {
@@ -182,8 +215,8 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(renderer.rules).to.eql('.c0{color:red}')
-      expect(renderer.mediaRules['(min-height:300px)']).to.eql('.c0{color:blue}')
+      expect(renderer.rules).to.eql('.c1{color:red}')
+      expect(renderer.mediaRules['(min-height:300px)']).to.eql('.c1{color:blue}')
     })
 
     it('should name classes after their rule when prettySelectors is true', () => {
@@ -195,7 +228,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(nicelyNamedRule)
 
-      expect(className).to.eql('nicelyNamedRule__c0')
+      expect(className).to.eql('nicelyNamedRule__c1')
     })
 
     it('should name classes correctly when the rule name cannot be inferred', () => {
@@ -205,7 +238,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(() => ({ color: 'red' }))
 
-      expect(className).to.eql('c0')
+      expect(className).to.eql('c1')
     })
 
     it('should name classes correctly when rules are combined', () => {
@@ -220,7 +253,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(className).to.eql('combined__c0')
+      expect(className).to.eql('combined__c1')
     })
 
     it('should not name classes after their rule when prettySelectors is false', () => {
@@ -232,7 +265,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(nicelyNamedRule)
 
-      expect(className).to.eql('c0')
+      expect(className).to.eql('c1')
     })
 
     it('should not name classes after their rule when in prod', () => {
@@ -244,7 +277,7 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(nicelyNamedRule)
 
-      expect(className).to.eql('c0')
+      expect(className).to.eql('c1')
     })
   })
 
@@ -399,7 +432,7 @@ describe('Renderer', () => {
 
       expect(changes).to.eql([ {
         type: 'rule',
-        selector: '.c0',
+        selector: '.c1',
         css: 'color:blue',
         style: {
           color: 'blue'
@@ -407,7 +440,7 @@ describe('Renderer', () => {
         media: '(min-height: 300px)'
       }, {
         type: 'rule',
-        selector: '.c0',
+        selector: '.c1',
         css: 'color:red',
         style: {
           color: 'red'
@@ -433,23 +466,26 @@ describe('Renderer', () => {
     it('should add to the callstack on renders', () => {
       const renderer = createRenderer()
 
-      const rule = props => ({ color: 'red' })
+      const rule = props => ({ color: 'red', fontSize: props.size })
       const className = renderer.renderRule(rule)
+      const className2 = renderer.renderRule(rule, { size: '12px' })
 
-      expect(renderer.callStack.length).to.eql(1)
+      expect(renderer.callStack.length).to.eql(2)
       expect(className).to.eql(renderer.callStack[0]())
+      expect(className2).to.eql(renderer.callStack[1]())
+
     })
 
     it('should clear the old call stack after rehydration', () => {
       const renderer = createRenderer()
 
-      const rule = props => ({ color: 'red' })
-      const className = renderer.renderRule(rule)
+      const rule = props => ({ color: 'red', fontSize: props.size })
+      const className = renderer.renderRule(rule, { size: '12px' })
 
       renderer.rehydrate()
 
-      expect(renderer.callStack.length).to.eql(1)
-      expect(className).to.eql(renderer.callStack[0]())
+      expect(renderer.callStack.length).to.eql(2)
+      expect(className).to.eql(renderer.callStack[1]())
     })
 
     it('should rerender every rule', () => {
@@ -464,8 +500,8 @@ describe('Renderer', () => {
       color = 'blue'
       renderer.rehydrate()
 
-      expect(renderer.rules).to.eql('.c0{color:blue}')
-      expect(oldRules).to.eql('.c0{color:red}')
+      expect(renderer.rules).to.eql('.c1{color:blue}')
+      expect(oldRules).to.eql('.c1{color:red}')
     })
   })
 })

@@ -29,7 +29,7 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 * [`<Provider renderer [mountNode]>`](docs/Provider.md)
 * [`connect(mapStylesToProps)`](docs/connect.md)
 * [`createComponent(rule, [type], [passThroughProps])`](docs/createComponent.md)
-* [`<ThemeProvider theme [flat] [overwrite]>`](docs/ThemeProvider.md)
+* [`<ThemeProvider theme [overwrite]>`](docs/ThemeProvider.md)
 
 ## Usage
 For more information and best practices on how to effectively use this package, please check out the main [Fela Documention - Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html). There you will also find some usage examples. This package only contains the pure API reference documentation.

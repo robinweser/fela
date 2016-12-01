@@ -13,7 +13,7 @@ describe('Rendering into a DOM node', () => {
     render(renderer, node)
     const className = renderer.renderRule(rule)
 
-    expect(node.sheet.cssRules).to.eql([ '.c0{color:red}' ])
+    expect(node.sheet.cssRules).to.eql([ '.c1{color:red}' ])
     expect(renderer.listeners.length).to.eql(1)
   })
 
@@ -29,7 +29,7 @@ describe('Rendering into a DOM node', () => {
 
     render(renderer, node)
 
-    expect(node.textContent).to.eql('.c0{color:red}')
+    expect(node.textContent).to.eql('.c1{color:red}')
   })
 
   it('should set the data-fela-stylesheet attribute', () => {

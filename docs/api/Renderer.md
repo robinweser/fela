@@ -6,7 +6,7 @@ You should only have a single renderer which handles all styles of your whole ap
 To create a new renderer instance, simply use the `createRenderer` method to actually get a renderer instance.
 
 ## Methods
-* [`renderRule(rule, [props])`](#renderrulerule-props)
+* [`renderRule(rule, [props], [defaultProps])`](#renderrulerule-props-defaultprops)
 * [`renderKeyframe(keyframe, [props])`](#renderkeyframe-props)
 * [`renderFont(family, files, [properties])`](#renderfontfamily-files-properties)
 * [`renderStatic(style, [selector])`](#renderstaticstyle-reference)
@@ -15,12 +15,13 @@ To create a new renderer instance, simply use the `createRenderer` method to act
 * [`rehydrate()`](#rehydrate)
 * [`clear()`](#clear)
 
-## `renderRule(rule, [props])`
+## `renderRule(rule, [props], [defaultProps])`
 Renders a `rule` using the `props` to resolve it.
+
 ### Arguments
 1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
 2. `props` (*Object?*): An object containing properties to resolve dynamic rule values. *Defaults to an empty object.*
-
+2. `defaultProps` (*Object?*): An object containing properties used as props when rendering the static subset. *Defaults to an empty object.*
 
 ### Returns
 (*string*): The CSS class name used to render the `rule`.
@@ -37,8 +38,8 @@ const rule = props => ({
   color: 'blue'
 })
 
-renderer.renderRule(rule, { size: '12px' }) // => c0-dzm1d6
-renderer.renderRule(rule) // => c0
+renderer.renderRule(rule, { size: '12px' }) // => c1 c2
+renderer.renderRule(rule) // => c1
 ```
 
 
@@ -104,8 +105,8 @@ const keyframe = props => ({
   '100%': { color: props.initialColor }
 })
 
-renderer.renderKeyframe(keyframe, { initialColor: 'blue' }) // => k0-spqp95
-renderer.renderKeyframe(keyframe, { initialColor: 'black' }) // => k0--x8hdls
+renderer.renderKeyframe(keyframe, { initialColor: 'blue' }) // => k1
+renderer.renderKeyframe(keyframe, { initialColor: 'black' }) // => k2
 ```
 
 ### Tips & Tricks
@@ -225,7 +226,7 @@ const markup = renderer.renderToString()
 
 console.log(markup)
 // html,body{box-sizing:border-box;margin:0}
-// .c0--w5u07{font-size:12px;color:blue}
+// .c1{color:blue}.c2{font-size:12px}
 ```
 
 ---
@@ -253,7 +254,8 @@ const rule = props => ({
 
 const subscription = renderer.subscribe(console.log)
 renderer.renderRule(rule, { fontSize: '12px '})
-// { type: 'rule', style: 'font-size:12px;color:blue', selector: 'c0-foo', media: '' }
+// { type: 'rule', style: 'color:blue', selector: 'c1', media: '' }
+// { type: 'rule', style: 'font-size:12px', selector: 'c2', media: '' }
 
 // Usubscribing removes the event listener
 subscription.unsubscribe()
@@ -278,16 +280,16 @@ const rule = props => ({
   color: theme.defaultColor
 })
 
-const className = renderer.renderRule(rule) // c0
+const className = renderer.renderRule(rule) // c1
 console.log(renderer.renderToString())
-// .c0{color:blue}
+// .c1{color:blue}
 
 // some changes which need rehydration
 theme.defaultColor = 'red'
 renderer.rehydrate()
 
 console.log(renderer.renderToString())
-// .c0{color:red}
+// .c1{color:red}
 ```
 
 ---

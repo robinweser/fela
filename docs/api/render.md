@@ -23,11 +23,11 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => c0 c0-dzm1d6
+renderer.render(rule, { size: '12px' }) // => c1 c2
 
 render(renderer, mountNode)
 console.log(mountNode.textContent)
 
 // automatically adds the rule to the stylesheet
-renderer.renderRule(rule, { size: '15px '}) // => c0 c0-dzm3l9
+renderer.renderRule(rule, { size: '15px '}) // => c1 c3
 ```

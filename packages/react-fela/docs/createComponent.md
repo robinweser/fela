@@ -5,7 +5,8 @@ This HoCs ([Higher-order Components](https://medium.com/@dan_abramov/mixins-are-
 ## Arguments
 1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
 2. `type` (*string?|[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?*): React Component or HTML element which is used as the render base element. Defaults to `div`.
-3. `passThroughProps` (*Object?*): An object where the keys are props which get passed to the underlaying element. The value determines whether the prop gets passed to the `renderRule` call (`true`) or not (`false`).
+3. `passThroughProps` (*Array?*): A list of props that get passed to the underlying element.
+3. `defaultProps` (*Object?*): An object containing props used to render the static subset. *(Themes get automatically included)*
 
 ## Returns
 (*Function*): Stateless functional React component.
@@ -20,12 +21,7 @@ const title = props => ({
   color: props.color
 })
 
-const Title = createComponent(title, 'div', {
-  // will also be passed to the fela rule
-  'data-foo': true,
-  // will only be passed to the component
-  onClick: false
-})
+const Title = createComponent(title, 'div', [ 'data-foo', 'onClick' ])
 
 const greet = () => alert('Hello World')
 
@@ -33,7 +29,7 @@ ReactDOM.render(
   <Title fontSize={23} color='red' data-foo='bar' onClick={greet}>Hello World</Title>,
   document.getElementById('app')
 )
-// => <div className="c0 c0-xxxx" data-foo="bar" onclick="...">Hello World</div>
+// => <div className="c1 c2" data-foo="bar" onclick="...">Hello World</div>
 ```
 
 ## Passing props
@@ -60,7 +56,7 @@ const Title = createComponent(title)
 const greet = () => alert('Hello World')
 
 ReactDOM.render(
-  <Title onClick={greet} passThrough={{ 'onClick': false }}>Hello World</Title>,
+  <Title onClick={greet} passThrough={ [ 'onClick' ]}>Hello World</Title>,
   document.getElementById('app')
 )
 // => <div className="c0" onclick="...">Hello World</div>

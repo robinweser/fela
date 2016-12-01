@@ -9,7 +9,6 @@ Nested themes automatically get combined if not explicitly prevented. This helps
 
 ## Props
 1. `theme` (*Object*): theme object with any information
-2. `flat` (*boolean*): pass the theme as flat props to `createComponent` and `connect`
 3. `overwrite` (*boolean*): overwrite all previous theme properties
 
 ## Example
@@ -17,12 +16,10 @@ Nested themes automatically get combined if not explicitly prevented. This helps
 import React from 'react'
 import { createComponent, ThemeProvider } from 'react-fela'
 
-// we need to deconstruct the theme and add a default value
-// to prevent errors while rendering static subsets
-const text = ({ theme = {}, ...props }) => ({
-  fontSize: theme.fontSize,
-  color: theme.color,
-  backgroundColor: theme.bgColor
+const text = props => ({
+  fontSize: props.theme.fontSize,
+  color: props.theme.color,
+  backgroundColor: props.theme.bgColor
 })
 
 const Text = createComponent(text)
@@ -40,27 +37,6 @@ const RenderTreeFragment = (
 )
 ```
 
-#### Flat themes
-The `flat` option basically bypasses the nested theme prop. It flattens the whole theme object into the props. Doing this you can use themes to set default props for a given subtree of your application. <br><br>
-But **be aware**, that it might be overwritten by additionally passed props.
-```javascript
-import React from 'react'
-import { createComponent, ThemeProvider } from 'react-fela'
-
-const text = props => ({
-  fontSize: props.fontSize,
-  color: props.color
-})
-
-const Text = createComponent(text)
-
-const RenderTreeFragment = (
-  <ThemeProvider flat theme={{ color: 'red', fontSize: 15 }}>
-    <Text>I am red and 15px sized</Text>
-  </ThemeProvider>
-)
-```
-
 #### Overwriting themes
 The `overwrite` options help to prevent theme inheritance for nested `<ThemeProvider>` instances.
 
@@ -69,8 +45,8 @@ import React from 'react'
 import { createComponent, ThemeProvider } from 'react-fela'
 
 const text = props => ({
-  fontSize: props.fontSize,
-  color: props.color || 'red'
+  fontSize: props.theme.fontSize,
+  color: props.theme.color || 'red'
 })
 
 const Text = createComponent(text)
