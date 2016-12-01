@@ -1,11 +1,26 @@
 # Changelog
 
+## 4.0
+
+#### 4.0.0
+While the changes in this version won't provide any "visible" improvements, actually a lot has happened under the hood. We are proud to introduce a much faster rendering mechanism. It now fully supports nested props and even returns even smaller classes. That way it is now possible to work with complex themes and advanced conditions.
+
+##### API Changes
+* `renderRule` now accepts a third parameter `defaultProps` (  [#140](https://github.com/rofrischmann/fela/issues/140) )
+* *[react-fela]* `createComponent` now uses an array for `passThroughProps` (  [#148](https://github.com/rofrischmann/fela/issues/148) )
+* *[react-fela]* `createComponent` also accepts a fourth parameter `defaultProps` (  [#140](https://github.com/rofrischmann/fela/issues/140) )
+* *[react-fela]* Introducing `<ThemeProvider>` for component theming (  [#84](https://github.com/rofrischmann/fela/issues/84) )
+
+##### Improvements
+* hashing the style output rather than the input props
+* added [fela-plugin-isolation](packages/fela-plugin-isolation) which provides true rule isolation ( [#118](https://github.com/rofrischmann/fela/issues/118) ) *(still experimental)*
+
 ## 3.0
 
 #### 3.0.8
 * fixed rendering order in production ( [#108](https://github.com/rofrischmann/fela/issues/108), [#111](https://github.com/rofrischmann/fela/issues/111) )
 * added ability to order media queries explicitly ( [#110](https://github.com/rofrischmann/fela/issues/110) )
-* **[react-fela]** added `passThrough` prop to `createComponent` to dynamically pass props to the underlaying element
+* *[react-fela]* added `passThrough` prop to `createComponent` to dynamically pass props to the underlaying element
 
 #### 3.0.7
 ##### Improvements
@@ -17,8 +32,8 @@
 With this version, all packages have been moved to the main repository. Moved packages are **react-fela**, **inferno-fela** and **fela-stylesheet**. This helps to maintain the library and all its packages in a single place.
 
 #### Improvements
-* **[react-fela]** `createComponent` auto passes `style`, `id` and `className`
-* **[react-fela]** `connect` invokes the component name for improved CSS debugging
+* *[react-fela]* `createComponent` auto passes `style`, `id` and `className`
+* *[react-fela]* `connect` invokes the component name for improved CSS debugging
 
 #### 3.0.5
 ##### Improvements
