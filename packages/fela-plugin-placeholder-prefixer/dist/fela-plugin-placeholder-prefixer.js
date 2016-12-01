@@ -27,6 +27,7 @@
 
   babelHelpers;
 
+  /*  weak */
   function customProperty(style, properties) {
     Object.keys(style).forEach(function (property) {
       var value = style[property];

@@ -27,6 +27,7 @@
 
   babelHelpers;
 
+  /*  weak */
   var counter = 0;
 
   /**

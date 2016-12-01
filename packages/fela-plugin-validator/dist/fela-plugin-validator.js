@@ -27,6 +27,7 @@
 
   babelHelpers;
 
+  /*  weak */
   function validateStyleObject(style, logInvalid, deleteInvalid) {
     Object.keys(style).forEach(function (property) {
       var value = style[property];
@@ -49,8 +50,8 @@
   }
 
   function validator(style, meta, options) {
-    var logInvalid = options.logInvalid;
-    var deleteInvalid = options.deleteInvalid;
+    var logInvalid = options.logInvalid,
+        deleteInvalid = options.deleteInvalid;
 
 
     if (meta.type === 'keyframe') {

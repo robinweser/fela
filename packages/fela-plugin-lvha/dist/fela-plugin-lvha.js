@@ -27,6 +27,7 @@
 
   babelHelpers;
 
+  /*  weak */
   var precedence = {
     ':link': 4,
     ':visited': 3,

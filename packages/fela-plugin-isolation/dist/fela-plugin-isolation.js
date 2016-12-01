@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginCustomProperty = factory());
+  (global.FelaPluginIsolation = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -28,29 +28,24 @@
   babelHelpers;
 
   /*  weak */
-  function customProperty(style, properties) {
-    Object.keys(style).forEach(function (property) {
-      var value = style[property];
-      if (properties[property]) {
-        Object.assign(style, properties[property](value));
-        delete style[property];
-      }
+  function addIsolation(style) {
+    if (style.isolation === false) {
+      // remove the isolation prop to
+      // prevent false CSS properties
+      delete style.isolation;
+      return style;
+    }
 
-      if (value instanceof Object && !Array.isArray(value)) {
-        style[property] = customProperty(value, properties);
-      }
-    });
-
-    return style;
+    return babelHelpers.extends({ all: 'initial' }, style);
   }
 
-  var customProperty$1 = (function (properties) {
+  var isolation = (function () {
     return function (style) {
-      return customProperty(style, properties);
+      return addIsolation(style);
     };
   });
 
-  return customProperty$1;
+  return isolation;
 
 }));
-//# sourceMappingURL=fela-plugin-custom-property.js.map
+//# sourceMappingURL=fela-plugin-isolation.js.map

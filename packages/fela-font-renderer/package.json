@@ -1,6 +1,6 @@
 {
   "name": "fela-font-renderer",
-  "version": "3.0.8",
+  "version": "4.0.0",
   "description": "Fela enhancer to render fonts into a separate stylesheet",
   "main": "index.js",
   "files": [
@@ -21,6 +21,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "3.0.8"
+    "fela": "4.0.0"
   }
 }

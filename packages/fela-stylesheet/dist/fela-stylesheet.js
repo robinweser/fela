@@ -27,6 +27,7 @@
 
   babelHelpers;
 
+  /*  weak */
   var StyleSheet = {
     create: function create(styles) {
       return Object.keys(styles).reduce(function (rules, rule) {

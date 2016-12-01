@@ -87,11 +87,22 @@
     return call && (typeof call === "object" || typeof call === "function") ? call : self;
   };
 
+  babelHelpers.toConsumableArray = function (arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+      return arr2;
+    } else {
+      return Array.from(arr);
+    }
+  };
+
   babelHelpers;
 
 
   function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
+  /*  weak */
   var warning = function warning() {
     return true;
   };
@@ -102,13 +113,13 @@
         if (typeof console !== 'undefined') {
           console.error(message); // eslint-disable-line
         }
-        throw new Error(message);
       }
     };
   }
 
   var warning$1 = warning;
 
+  /*  weak */
   function createDOMInterface(renderer, node) {
     var isHydrating = false;
 
@@ -185,9 +196,9 @@
     babelHelpers.createClass(Provider, [{
       key: 'componentDidMount',
       value: function componentDidMount() {
-        var _props = this.props;
-        var mountNode = _props.mountNode;
-        var renderer = _props.renderer;
+        var _props = this.props,
+            mountNode = _props.mountNode,
+            renderer = _props.renderer;
 
 
         if (mountNode) {
@@ -202,7 +213,7 @@
     }, {
       key: 'render',
       value: function render() {
-        return this.props.children;
+        return React.Children.only(this.props.children);
       }
     }]);
     return Provider;
@@ -228,13 +239,20 @@
 
           // reuse the initial displayName name
           value: function render() {
+            var _context = this.context,
+                renderer = _context.renderer,
+                theme = _context.theme;
+
             // invoke the component name for better CSS debugging
+
             if (true) {
               this.context.renderer._selectorPrefix = Comp.displayName || Comp.name || 'ConnectedFelaComponent';
             }
 
             // invoke props and renderer to render all styles
-            var styles = mapStylesToProps(this.props)(this.context.renderer);
+            var styles = mapStylesToProps(babelHelpers.extends({}, this.props, {
+              theme: theme || {}
+            }))(renderer);
 
             // remove the component name after rendering
             if (true) {
@@ -246,53 +264,87 @@
         }]);
         return EnhancedComponent;
       }(React.Component), _class.displayName = Comp.displayName || Comp.name || 'ConnectedFelaComponent', _class.contextTypes = babelHelpers.extends({}, Comp.contextTypes, {
-        renderer: React.PropTypes.object
+        renderer: React.PropTypes.object,
+        theme: React.PropTypes.object
       }), _temp;
     };
   }
 
   function createComponent(rule) {
     var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'div';
-    var passThroughProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var passThroughProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var defaultProps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
-    var component = function component(_ref, _ref2) {
-      var children = _ref.children;
-      var className = _ref.className;
-      var style = _ref.style;
-      var passThrough = _ref.passThrough;
-      var felaProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style', 'passThrough']);
-      var renderer = _ref2.renderer;
+    var FelaComponent = function FelaComponent(_ref, _ref2) {
+      var renderer = _ref2.renderer,
+          theme = _ref2.theme;
+      var children = _ref.children,
+          className = _ref.className,
+          style = _ref.style,
+          _ref$passThrough = _ref.passThrough,
+          passThrough = _ref$passThrough === undefined ? [] : _ref$passThrough,
+          ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style', 'passThrough']);
 
 
       // filter props to extract props to pass through
-      var componentProps = Object.keys(babelHelpers.extends({}, passThroughProps, passThrough)).reduce(function (output, prop) {
-        output[prop] = felaProps[prop];
-        if (!passThroughProps[prop]) {
-          delete felaProps[prop];
-        }
+      var componentProps = [].concat(babelHelpers.toConsumableArray(passThroughProps), babelHelpers.toConsumableArray(passThrough)).reduce(function (output, prop) {
+        output[prop] = ruleProps[prop];
         return output;
       }, {});
 
       componentProps.style = style;
 
       var cls = className ? className + ' ' : '';
-      componentProps.className = cls + renderer.renderRule(rule, felaProps);
+      defaultProps.theme = theme || {};
+
+      componentProps.className = cls + renderer.renderRule(rule, ruleProps, defaultProps);
 
       return React.createElement(type, componentProps, children);
     };
 
-    component.contextTypes = { renderer: React.PropTypes.object };
+    FelaComponent.contextTypes = {
+      renderer: React.PropTypes.object,
+      theme: React.PropTypes.object
+    };
 
     // use the rule name as display name to better debug with react inspector
-    component.displayName = rule.name && rule.name || 'FelaComponent';
-
-    return component;
+    FelaComponent.displayName = rule.name && rule.name || 'FelaComponent';
+    return FelaComponent;
   }
+
+  var ThemeProvider = function (_Component) {
+    babelHelpers.inherits(ThemeProvider, _Component);
+
+    function ThemeProvider() {
+      babelHelpers.classCallCheck(this, ThemeProvider);
+      return babelHelpers.possibleConstructorReturn(this, (ThemeProvider.__proto__ || Object.getPrototypeOf(ThemeProvider)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(ThemeProvider, [{
+      key: 'getChildContext',
+      value: function getChildContext() {
+        return {
+          theme: babelHelpers.extends({}, !this.props.overwrite && this.context.theme || {}, this.props.theme)
+        };
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        return React.Children.only(this.props.children);
+      }
+    }]);
+    return ThemeProvider;
+  }(React.Component);
+
+  ThemeProvider.propTypes = { theme: React.PropTypes.object, overwrite: React.PropTypes.bool };
+  ThemeProvider.childContextTypes = { theme: React.PropTypes.object };
+  ThemeProvider.contextTypes = { theme: React.PropTypes.object };
 
   var index = {
     Provider: Provider,
     connect: connect,
-    createComponent: createComponent
+    createComponent: createComponent,
+    ThemeProvider: ThemeProvider
   };
 
   return index;

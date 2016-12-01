@@ -27,6 +27,7 @@
 
   babelHelpers;
 
+  /*  weak */
   function debugLayout(style, meta, options) {
     if (meta.type === 'rule') {
       var ruleName = meta.rule.name || 'foobar';

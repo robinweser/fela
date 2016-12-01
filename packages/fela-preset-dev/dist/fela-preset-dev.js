@@ -78,6 +78,7 @@
 
   function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
+  /*  weak */
   function assign(base) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
@@ -114,6 +115,7 @@
     };
   });
 
+  /*  weak */
   function validateStyleObject(style, logInvalid, deleteInvalid) {
     Object.keys(style).forEach(function (property) {
       var value = style[property];
@@ -136,8 +138,8 @@
   }
 
   function validator(style, meta, options) {
-    var logInvalid = options.logInvalid;
-    var deleteInvalid = options.deleteInvalid;
+    var logInvalid = options.logInvalid,
+        deleteInvalid = options.deleteInvalid;
 
 
     if (meta.type === 'keyframe') {

@@ -27,6 +27,7 @@
 
   babelHelpers;
 
+  /*  weak */
   var regex = new RegExp('^on([A-Z])');
 
   function friendlyPseudoClass(style) {

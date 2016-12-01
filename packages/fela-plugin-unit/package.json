@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-unit",
-  "version": "3.0.8",
+  "version": "4.0.0",
   "description": "Fela plugin to automatically add units if required",
   "main": "index.js",
   "files": [
@@ -21,6 +21,6 @@
     "unitless-css-property": "1.0.2"
   },
   "peerDependencies": {
-    "fela": "3.0.8"
+    "fela": "4.0.0"
   }
 }
