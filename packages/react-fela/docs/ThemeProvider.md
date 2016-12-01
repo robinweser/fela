@@ -17,9 +17,9 @@ import React from 'react'
 import { createComponent, ThemeProvider } from 'react-fela'
 
 const text = props => ({
-  fontSize: theme.fontSize,
-  color: theme.color,
-  backgroundColor: theme.bgColor
+  fontSize: props.theme.fontSize,
+  color: props.theme.color,
+  backgroundColor: props.theme.bgColor
 })
 
 const Text = createComponent(text)
@@ -45,8 +45,8 @@ import React from 'react'
 import { createComponent, ThemeProvider } from 'react-fela'
 
 const text = props => ({
-  fontSize: props.fontSize,
-  color: props.color || 'red'
+  fontSize: props.theme.fontSize,
+  color: props.theme.color || 'red'
 })
 
 const Text = createComponent(text)

@@ -4,6 +4,7 @@ All you need to to is call `renderToString` once you are finished rendering styl
 That's it. No magic. No extra configuration.
 
 Usually you will render all styles on the server and inject the rendered CSS markup into the HTML markup which gets sent to the client.
+
 ## Example
 The following code shows a simple server example using [express](https://github.com/expressjs/express) and [React](https://github.com/facebook/react).
 ```javascript
@@ -14,8 +15,8 @@ import { createRenderer } from 'fela'
 import express from 'express'
 
 const rule = props => ({
-    color: props.color,
-    fontSize: '15px'
+  color: props.color,
+  fontSize: '15px'
 })
 
 // simplified demo app
@@ -66,13 +67,13 @@ server.listen(8080, 'localhost')
 <html>
 <head>
   <style id="stylesheet">
-    .c0-foo{color:blue;font-size:15px}
+    .c1{font-size:15px}.c2{color:blue}
   </style>
   <title>Fela - Server Rendering</title>
 </head>
 <body>
   <div id="app">
-    <div class="c0-foo">
+    <div class="c1 c2">
       Hello World
     </div>
   </div>

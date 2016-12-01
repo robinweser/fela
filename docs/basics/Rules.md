@@ -140,7 +140,7 @@ const rule = props => ({
 
 ### Related
 * [Combined rules](../advanced/CombinedRules.md)
-* [API reference - `Renderer.renderRule`](../api/Renderer.md#renderrulerule-props)
+* [API reference - `Renderer.renderRule`](../api/Renderer.md#renderrulerule-props-defaultprops)
 * [FAQ - Rules](../FAQ.md#rules)
 
 #### Tools

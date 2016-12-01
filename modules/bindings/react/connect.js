@@ -21,7 +21,10 @@ export default function connect(mapStylesToProps) {
       }
 
       // invoke props and renderer to render all styles
-      const styles = mapStylesToProps(ruleProps)(renderer)
+      const styles = mapStylesToProps({
+        ...this.props,
+        theme: theme || { }
+      })(renderer)
 
       // remove the component name after rendering
       if (process.env.NODE_ENV !== 'production') {

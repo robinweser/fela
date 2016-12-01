@@ -11,7 +11,7 @@ We might introduce more configuration options with future releases, so be sure t
 |`plugins` | `function[]` |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
-|`prettySelectors`<br>*(development only)* | `boolean` | `false`<br> *(always in production)*|  Renders class selectors based on the function name of the style rule. *e.g. `const menuBar = () => ({})` will output `menuBar_xxx`*.<br>Is also generates human-readable dynamic postfixes of the passed props |
+|`prettySelectors`<br>*(development only)* | `boolean` | `false`<br> *(always in production)*|  Renders class selectors based on the function name of the style rule. *e.g. `const menuBar = () => ({})` will output `menuBar__c1`*. |
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
 
 ## Example
@@ -64,7 +64,7 @@ renderer.renderRule(prettyRule)
 console.log(renderer.renderToString())
 ```
 ```CSS
-@-webkit-keyframes k0--qp8wpi {
+@-webkit-keyframes k1 {
   from {
     width: -webkit-calc(100% - 50px);
     width: -moz-calc(100% - 50px);
@@ -80,7 +80,7 @@ console.log(renderer.renderToString())
   }
 }
 
-@keyframes k0--qp8wpi {
+@keyframes k1 {
   from {
     width: -webkit-calc(100% - 50px);
     width: -moz-calc(100% - 50px);
@@ -96,18 +96,18 @@ console.log(renderer.renderToString())
   }
 }
 
-.prettyRule__c0 {
+.prettyRule__c2 {
   color: red  
 }
 
 @media (min-height: 300px) {
-  .prettyRule__c0 {
-    color: blue  
+  .prettyRule__c2 {
+    color: blue
   }
 }
 
 @media (min-height: 500px) {
-  .prettyRule__c0 {
+  .prettyRule__c2 {
     color: green  
   }
 }

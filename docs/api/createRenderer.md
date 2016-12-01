@@ -4,7 +4,7 @@ Creates a Fela renderer which renders your selectors, keyframes, fonts and stati
 It caches all rendered styles to be able to reuse them on future rendering cycles.<br>
 
 ## Arguments
-1. `config`(*Object?*): Optional renderer configuration. The most common use case adding [plugins](../advanced/Plugins.md) to process styles before they get cached. *(See [Advanced - Renderer Configuration](../advanced/RendererConfiguration.md) for further information)*.
+1. `config` (*Object?*): Optional renderer configuration. The most common use case adding [plugins](../advanced/Plugins.md) to process styles before they get cached. *(See [Advanced - Renderer Configuration](../advanced/RendererConfiguration.md) for further information)*.
 
 ## Returns
 ([Renderer](Renderer.md)): A Renderer instance.
@@ -22,10 +22,10 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => c0 c0-dzm1d6
+renderer.render(rule, { size: '12px' }) // => c1 c2
 
 
 console.log(renderer.renderToString())
-// .c0{background-color:red;color:blue}
-// .c0-dzm1d6{font-size:12px}
+// .c1{background-color:red;color:blue}
+// .c2{font-size:12px}
 ```
