@@ -1,15 +1,17 @@
 # Changelog
 
 ## 4.0
+#### 4.0.1
+* fixed a bug where dynamic rules missed the static className in return ( [#151](https://github.com/rofrischmann/fela/issues/151) )
 
 #### 4.0.0
 While the changes in this version won't provide any "visible" improvements, actually a lot has happened under the hood. We are proud to introduce a much faster rendering mechanism. It now fully supports nested props and even returns even smaller classes. That way it is now possible to work with complex themes and advanced conditions.
 
 ##### API Changes
-* `renderRule` now accepts a third parameter `defaultProps` (  [#140](https://github.com/rofrischmann/fela/issues/140) )
-* *[react-fela]* `createComponent` now uses an array for `passThroughProps` (  [#148](https://github.com/rofrischmann/fela/issues/148) )
-* *[react-fela]* `createComponent` also accepts a fourth parameter `defaultProps` (  [#140](https://github.com/rofrischmann/fela/issues/140) )
-* *[react-fela]* Introducing `<ThemeProvider>` for component theming (  [#84](https://github.com/rofrischmann/fela/issues/84) )
+* `renderRule` now accepts a third parameter `defaultProps` ( [#140](https://github.com/rofrischmann/fela/issues/140) )
+* *[react-fela]* `createComponent` now uses an array for `passThroughProps` ( [#148](https://github.com/rofrischmann/fela/issues/148) )
+* *[react-fela]* `createComponent` also accepts a fourth parameter `defaultProps` ( [#140](https://github.com/rofrischmann/fela/issues/140) )
+* *[react-fela]* Introducing `<ThemeProvider>` for component theming ( [#84](https://github.com/rofrischmann/fela/issues/84) )
 
 ##### Improvements
 * hashing the style output rather than the input props

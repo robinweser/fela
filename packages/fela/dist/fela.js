@@ -315,7 +315,7 @@
         renderer.rendered = {};
         renderer.base = [];
         renderer.ids = [];
-        renderer.baseClassName = [];
+        renderer.baseClassName = {};
         renderer.callStack = [];
 
         // emit changes to notify subscribers
@@ -349,8 +349,6 @@
           }
         }
 
-        var ruleId = renderer.ids.indexOf(rule);
-
         var ruleProps = babelHelpers.extends({}, defaultProps, props);
 
         var style = rule(ruleProps);
@@ -375,6 +373,8 @@
             rule: rule
           }, renderer.plugins);
 
+          var ruleId = renderer.ids.indexOf(rule);
+
           // diff style objects with base styles
           var diffedStyle = diffStyle(processedStyle, renderer.base[ruleId]);
           renderer.rendered[className] = false;
@@ -390,10 +390,12 @@
             renderer.base[ruleId] = diffedStyle;
             renderer.baseClassName[ruleId] = className;
             return renderer.rendered[className] ? className : '';
+          } else {
+            renderer.baseClassName[styleId] = renderer.baseClassName[ruleId];
           }
         }
 
-        var baseClassName = renderer.baseClassName[ruleId];
+        var baseClassName = renderer.baseClassName[styleId];
 
         // if current className is empty
         // return either the static class or empty string

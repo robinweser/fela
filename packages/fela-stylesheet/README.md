@@ -15,9 +15,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package mananger you
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaStyleSheet` global.
 ```HTML
 <!-- (Development) Unminified version -->
-<script src="https://unpkg.com/fela-stylesheety@4.0.0/dist/fela-stylesheet.js"></script>
+<script src="https://unpkg.com/fela-stylesheety@4.0.1/dist/fela-stylesheet.js"></script>
 <!-- (Production) Minified version -->
-<script src="https://unpkg.com/fela-stylesheet@4.0.0/dist/fela-stylesheet.min.js"></script>
+<script src="https://unpkg.com/fela-stylesheet@4.0.1/dist/fela-stylesheet.min.js"></script>
 ```
 
 ## API

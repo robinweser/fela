@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-web",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Fela plugin preset for web applications",
   "main": "index.js",
   "files": [
@@ -22,6 +22,6 @@
     "unitless-css-property": "1.0.2"
   },
   "peerDependencies": {
-    "fela": "4.0.0"
+    "fela": "4.0.1"
   }
 }
