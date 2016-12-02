@@ -44,7 +44,7 @@ export default function createRenderer(config = { }) {
       renderer.rendered = { }
       renderer.base = [ ]
       renderer.ids = [ ]
-      renderer.baseClassName = [ ]
+      renderer.baseClassName = { }
       renderer.callStack = [ ]
 
       // emit changes to notify subscribers
@@ -74,8 +74,6 @@ export default function createRenderer(config = { }) {
         }
       }
 
-      const ruleId = renderer.ids.indexOf(rule)
-
       const ruleProps = {
         ...defaultProps,
         ...props
@@ -103,6 +101,7 @@ export default function createRenderer(config = { }) {
           rule: rule
         }, renderer.plugins)
 
+        const ruleId = renderer.ids.indexOf(rule)
 
         // diff style objects with base styles
         const diffedStyle = diffStyle(processedStyle, renderer.base[ruleId])
@@ -119,10 +118,12 @@ export default function createRenderer(config = { }) {
           renderer.base[ruleId] = diffedStyle
           renderer.baseClassName[ruleId] = className
           return renderer.rendered[className] ? className : ''
+        } else {
+          renderer.baseClassName[styleId] = renderer.baseClassName[ruleId]
         }
       }
 
-      const baseClassName = renderer.baseClassName[ruleId]
+      const baseClassName = renderer.baseClassName[styleId]
 
       // if current className is empty
       // return either the static class or empty string

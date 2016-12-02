@@ -120,6 +120,23 @@ describe('Renderer', () => {
       expect(Object.keys(renderer.rendered).length).to.eql(1)
     })
 
+    it('should always render static style', () => {
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(props => ({
+        fontSize: '23px',
+        color: props.color
+      }), { color: 'red' })
+      const className2 = renderer.renderRule(props => ({
+        fontSize: '23px',
+        color: props.color
+      }), { color: 'red' })
+
+      expect(className).to.eql(className2)
+      expect(className).to.eql('c1 c2')
+      expect(renderer.rules).to.eql('.c1{font-size:23px}.c2{color:red}')
+    })
+
     it('should return an empty string if the style is empty', () => {
       const rule = props => ({ })
       const renderer = createRenderer()
