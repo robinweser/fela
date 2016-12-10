@@ -1,6 +1,6 @@
 /* @flow weak */
-import warning from './utils/warning'
-import createDOMInterface from './utils/DOMInterface'
+import warning from '../utils/warning'
+import createDOMInterface from './DOMInterface'
 
 export default function render(renderer, mountNode) {
   // check if the passed node is a valid element node which allows
