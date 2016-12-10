@@ -2,7 +2,13 @@
 import assign from './utils/assign'
 
 export default function combineRules(...rules) {
-  return function combined(props) {
-    return rules.reduce((style, rule) => assign(style, rule(props)), { })
+  return props => {
+    const style = { }
+
+    for (let i = 0, len = rules.length; i < len; ++i) {
+      assign(style, rules[i](props))
+    }
+
+    return style
   }
 }

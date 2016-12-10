@@ -19,8 +19,8 @@ describe('Creating Components from Fela rules', () => {
 
     expect(element.type).to.eql('div')
 
-    expect(element.props.className).to.eql('c1 c2')
-    expect(renderer.rules).to.eql('.c1{font-size:16}.c2{color:black}')
+    expect(element.props.className).to.eql('a b')
+    expect(renderer.rules).to.eql('.a{color:black}.b{font-size:16}')
   })
 
   it('should use the theme for static rendering by default', () => {
@@ -40,8 +40,8 @@ describe('Creating Components from Fela rules', () => {
 
     expect(element.type).to.eql('div')
 
-    expect(element.props.className).to.eql('c1')
-    expect(renderer.rules).to.eql('.c1{color:red;font-size:16}')
+    expect(element.props.className).to.eql('a b')
+    expect(renderer.rules).to.eql('.a{color:red}.b{font-size:16}')
   })
 
   it('should only pass explicit props to the element', () => {
@@ -72,7 +72,7 @@ describe('Creating Components from Fela rules', () => {
     })
 
     expect(element.props.foo).to.eql(true)
-    expect(renderer.rules).to.eql('.c1{font-size:16}.c2{color:black}')
+    expect(renderer.rules).to.eql('.a{color:black}.b{font-size:16}')
   })
 
   it('should only use the rule name as displayName', () => {

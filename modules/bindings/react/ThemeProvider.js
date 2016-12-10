@@ -7,10 +7,13 @@ export default class ThemeProvider extends Component {
   static contextTypes = { theme: PropTypes.object };
 
   getChildContext() {
+    const { overwrite, theme } = this.props
+    const previousTheme = this.context.theme
+
     return {
       theme: {
-        ...(!this.props.overwrite && this.context.theme || {}),
-        ...this.props.theme
+        ...(!overwrite && previousTheme || {}),
+        ...theme
       }
     }
   }
