@@ -2,39 +2,27 @@ import assign from '../../modules/utils/assign'
 
 describe('Assigning objects', () => {
   it('should merge properties', () => {
-    const ob1 = { color: 'red' }
-    const ob2 = { fontSize: 12 }
-    const ob3 = { lineHeight: 1 }
-
-    expect(assign(ob1, ob2, ob3)).to.eql({
-      color: 'red',
-      fontSize: 12,
-      lineHeight: 1
-    })
+    expect(assign(
+      { color: 'red' },
+      { fontSize: 12 },
+      { lineHeight: 1 })
+    ).to.eql({ color: 'red', fontSize: 12, lineHeight: 1 })
   })
 
   it('should overwrite properties from right to left', () => {
-    const ob1 = { fontSize: 12 }
-    const ob2 = { fontSize: 16 }
-    const ob3 = { fontSize: 11 }
-
-    expect(assign(ob1, ob2, ob3)).to.eql({ fontSize: 11 })
+    expect(assign(
+      { fontSize: 12 },
+      { fontSize: 16 },
+      { fontSize: 11 })
+    ).to.eql({ fontSize: 11 })
   })
 
   it('should merge nested objects', () => {
-    const ob1 = {
-      fontSize: 12,
-      ob2: {
-        color: 'red'
-      },
-      ob3: {
-        color: 'red'
-      }
-    }
-    const ob2 = { fontSize: 16, ob2: { fontSize: 12 } }
-    const ob3 = { fontSize: 11, ob3: { color: 'blue' } }
-
-    expect(assign(ob1, ob2, ob3)).to.eql({
+    expect(assign(
+      { fontSize: 12, ob2: { color: 'red' }, ob3: { color: 'red' } },
+      { fontSize: 16, ob2: { fontSize: 12 } },
+      { fontSize: 11, ob3: { color: 'blue' } })
+    ).to.eql({
       fontSize: 11,
       ob2: {
         color: 'red',

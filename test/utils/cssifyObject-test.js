@@ -2,7 +2,6 @@ import cssifyObject from '../../modules/utils/cssifyObject'
 
 describe('Cssifying objects', () => {
   it('should generate a valid CSS string', () => {
-    const styles = { color: 'red' }
     expect(cssifyObject({ color: 'red' })).to.eql('color:red')
   })
 
