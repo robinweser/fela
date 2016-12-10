@@ -31,7 +31,7 @@ To understand the problem, we need to understand what specificity in CSS is. Acc
 > Specificity is the means by which browsers decide which CSS property values are the most relevant to an element and, therefore, will be applied. Specificity is based on the matching rules which are composed of CSS selectors of different sorts.
 
 The browser calculates a weight for each CSS property to figure out which properties finally get applied to which element. <br>
-Fela already simplifies the problem a lot, becauseit only renders flat CSS classes and leaves out all the combinators such as `+`, `>`, `~` or ` `. Still there is one thing we need to consider.
+Fela already simplifies the problem a lot, because it only renders flat CSS classes and leaves out all the combinators such as `+`, `>`, `~` or ` `. Still there is one thing we need to consider.
 
 ### Problem: Order Matters
 > When specificity is equal to any of the multiple declarations, the last declaration found in the CSS is applied to the element.
@@ -47,7 +47,7 @@ const ruleA = props => ({ color: 'red' })
 const ruleB = props => ({ color: 'blue' })
 
 const classNameA = renderer.renderRule(ruleA)
-const classNameB = renderer.rendeRule(ruleB)
+const classNameB = renderer.renderRule(ruleB)
 
 const element = (
   <div className={classNameA + ' ' + classNameB}>

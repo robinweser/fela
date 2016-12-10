@@ -22,10 +22,11 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => c1 c2
+renderer.render(rule, { size: '12px' }) // => a b c
 
 
 console.log(renderer.renderToString())
-// .c1{background-color:red;color:blue}
-// .c2{font-size:12px}
+// .a{background-color:red}
+// .b{font-size:12px}
+// .c{color:blue}
 ```

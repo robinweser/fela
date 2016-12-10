@@ -29,12 +29,12 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => c1
+renderer.render(rule, { size: '12px' }) // => a b c
 
 render(renderer, mountNode)
 
 // automatically adds the rule to the mountNode
-renderer.renderRule(rule, { size: '15px '}) // => c2
+renderer.renderRule(rule, { size: '15px '}) // => a d c
 ```
 
 <br>

@@ -16,16 +16,15 @@ We may optionally pass a configuration object as second parameter. Read the [Ren
 ## Rendering Styles
 The renderer provides dedicated render methods for each of the three renderable components which we introduced in the previous articles.
 
-* [renderRule](../api/Renderer.md#renderrulerule-props-defaultprops)
+* [renderRule](../api/Renderer.md#renderrulerule-props)
 * [renderKeyframe](../api/Renderer.md#renderkeyframe-props)
 * [renderFont](../api/Renderer.md#renderfontfamily-files-properties)
 
-> **Tip**: Read the tips and tricks of each render method first. Especially the [renderRule](../api/Renderer.md#renderrulerule-props-defaultprops) tips are very helpful for beginners as well as advanced users.
+> **Tip**: Read the tips and tricks of each render method first. Especially the [renderRule](../api/Renderer.md#renderrulerule-props) tips are very helpful for beginners as well as advanced users.
 
 ### renderRule
 Takes a [rule](Rules.md) and some `props` to resolve the rule. If no `props` are passed it defaults to an empty object.<br>
-It reuses the static subset of a rule to produce less markup.
-It returns the rendered CSS class(es).
+It maps each declaration to unique atomic CSS classes and returns them combined.
 
 ```javascript
 import { createRenderer } from 'fela'
@@ -38,23 +37,15 @@ const rule = props => ({
   color: 'red'
 })
 
-renderer.renderRule(rule) // => c1
-renderer.renderRule(rule, { fontSize: '12px' }) // => c1 c2
-renderer.renderRule(rule, { fontSize: '15px' }) // => c1 c3
+renderer.renderRule(rule) // => a b
+renderer.renderRule(rule, { fontSize: '12px' }) // => a b c
+renderer.renderRule(rule, { fontSize: '15px' }) // => a b d
 ```
 ```CSS
-.c1 {
-  background-color: blue;
-  color: red
-}
-
-.c2 {
-  font-size: 12px
-}
-
-.c3 {
-  font-size: 15px
-}
+.a { background-color: blue }
+.b { color: red }
+.c { font-size: 12px }
+.d { font-size: 15px }
 ```
 
 

@@ -6,7 +6,7 @@ In general, our renderer accepts a config object. The following table shows each
 
 We might introduce more configuration options with future releases, so be sure to frequently check for updates.
 
-| Option | Value | Default |Description |
+| Option | Value | Default | Description |
 | ------ | ------ | ---------|---|
 |`plugins` | `function[]` |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
@@ -96,18 +96,18 @@ console.log(renderer.renderToString())
   }
 }
 
-.prettyRule__c2 {
+.color_red {
   color: red  
 }
 
 @media (min-height: 300px) {
-  .prettyRule__c2 {
+  .color_blue {
     color: blue
   }
 }
 
 @media (min-height: 500px) {
-  .prettyRule__c2 {
+  .color_green {
     color: green  
   }
 }

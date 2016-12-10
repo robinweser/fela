@@ -6,8 +6,8 @@ You should only have a single renderer which handles all styles of your whole ap
 To create a new renderer instance, simply use the `createRenderer` method to actually get a renderer instance.
 
 ## Methods
-* [`renderRule(rule, [props], [defaultProps])`](#renderrulerule-props-defaultprops)
-* [`renderKeyframe(keyframe, [props])`](#renderkeyframe-props)
+* [`renderRule(rule, [props])`](#renderrulerule-props)
+* [`renderKeyframe(keyframe, [props])`](#renderkeyframekeyframe-props)
 * [`renderFont(family, files, [properties])`](#renderfontfamily-files-properties)
 * [`renderStatic(style, [selector])`](#renderstaticstyle-reference)
 * [`renderToString()`](#rendertostring)
@@ -15,13 +15,12 @@ To create a new renderer instance, simply use the `createRenderer` method to act
 * [`rehydrate()`](#rehydrate)
 * [`clear()`](#clear)
 
-## `renderRule(rule, [props], [defaultProps])`
+## `renderRule(rule, [props])`
 Renders a `rule` using the `props` to resolve it.
 
 ### Arguments
 1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
 2. `props` (*Object?*): An object containing properties to resolve dynamic rule values. *Defaults to an empty object.*
-2. `defaultProps` (*Object?*): An object containing properties used as props when rendering the static subset. *Defaults to an empty object.*
 
 ### Returns
 (*string*): The CSS class name used to render the `rule`.
@@ -38,8 +37,8 @@ const rule = props => ({
   color: 'blue'
 })
 
-renderer.renderRule(rule, { size: '12px' }) // => c1 c2
-renderer.renderRule(rule) // => c1
+renderer.renderRule(rule, { size: '12px' }) // => a b c
+renderer.renderRule(rule) // => a c
 ```
 
 
@@ -226,7 +225,7 @@ const markup = renderer.renderToString()
 
 console.log(markup)
 // html,body{box-sizing:border-box;margin:0}
-// .c1{color:blue}.c2{font-size:12px}
+// .a{font-size:12px}.b{color:blue}
 ```
 
 ---
@@ -254,42 +253,11 @@ const rule = props => ({
 
 const subscription = renderer.subscribe(console.log)
 renderer.renderRule(rule, { fontSize: '12px '})
-// { type: 'rule', style: 'color:blue', selector: 'c1', media: '' }
-// { type: 'rule', style: 'font-size:12px', selector: 'c2', media: '' }
+// { type: 'rule', style: 'font-size:12px', selector: 'a', media: '' }
+// { type: 'rule', style: 'color:blue', selector: 'b', media: '' }
 
-// Usubscribing removes the event listener
+// Unsubscribing removes the event listener
 subscription.unsubscribe()
-```
----
-
-## `rehydrate()`
-
-Rehydrates the whole style cache by rerunning every single render call. Subscribing change listener will receive two change objects of type `rehydrate` and a `done` flag. One before the rehydration gets trigger and the second right after the rehydration process has finished.
-
-### Example
-```javascript
-import { createRenderer } from 'fela'
-
-const renderer = createRenderer(mountNode)
-
-const theme = {
-  defaultColor: 'blue'
-}
-
-const rule = props => ({
-  color: theme.defaultColor
-})
-
-const className = renderer.renderRule(rule) // c1
-console.log(renderer.renderToString())
-// .c1{color:blue}
-
-// some changes which need rehydration
-theme.defaultColor = 'red'
-renderer.rehydrate()
-
-console.log(renderer.renderToString())
-// .c1{color:red}
 ```
 
 ---
