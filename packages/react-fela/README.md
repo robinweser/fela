@@ -13,7 +13,7 @@ It assumes you already know about Fela and how to use it.
 npm i --save react-fela
 ```
 
-Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can basically just `npm install` all packages. <br>
+Assuming you are using [npm](https://www.npmjs.com) as your package manager you can basically just `npm install` all packages. <br>
 Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [unpkg](https://unpkg.com/).
 > **Caution**: You need to include both React and Fela on your own as well.
 

@@ -11,7 +11,7 @@ Logs invalid properties to the `console`. One might also enable automatic proper
 ```sh
 npm i --save fela-plugin-validator
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
+Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginValidator` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
