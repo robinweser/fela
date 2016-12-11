@@ -1,11 +1,12 @@
 /* @flow weak */
-import warning from '../utils/warning'
 import createDOMInterface from './DOMInterface'
+import warning from '../utils/warning'
+import isValidHTMLElement from '../utils/isValidHTMLElement'
 
 export default function render(renderer, mountNode) {
-  // check if the passed node is a valid element node which allows
-  // setting the `textContent` property to update the node's content
-  if (!mountNode || mountNode.nodeType !== 1) {
+  // mountNode must be a valid HTML element to be able
+  // to set mountNode.textContent later on
+  if (!isValidHTMLElement(mountNode)) {
     throw new Error('You need to specify a valid element node (nodeType = 1) to render into.')
   }
 
@@ -17,14 +18,13 @@ export default function render(renderer, mountNode) {
   // mark and clean the DOM node to prevent side-effects
   mountNode.setAttribute('data-fela-stylesheet', '')
 
-  const DOMInterface = createDOMInterface(renderer, mountNode)
-  renderer.subscribe(DOMInterface.updateNode)
+  const updateNode = createDOMInterface(renderer, mountNode)
+  renderer.subscribe(updateNode)
 
-  // render currently rendered styles to the DOM once
-  // if it is not already in DOM
   const css = renderer.renderToString()
 
   if (mountNode.textContent !== css) {
+    // render currently rendered styles to the DOM once
     mountNode.textContent = css
   }
 }
