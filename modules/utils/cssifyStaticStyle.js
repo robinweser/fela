@@ -1,3 +1,4 @@
+/* @flow weak */
 import minifyCSSString from './minifyCSSString'
 import cssifyObject from './cssifyObject'
 import processStyleWithPlugins from './processStyleWithPlugins'

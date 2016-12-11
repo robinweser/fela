@@ -11,7 +11,6 @@ We might introduce more configuration options with future releases, so be sure t
 |`plugins` | `function[]` |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
-|`prettySelectors`<br>*(development only)* | `boolean` | `false`<br> *(always in production)*|  Renders class selectors based on the function name of the style rule. *e.g. `const menuBar = () => ({})` will output `menuBar__c1`*. |
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
 
 ## Example

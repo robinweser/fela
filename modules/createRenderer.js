@@ -21,7 +21,7 @@ import processStyleWithPlugins from './utils/processStyleWithPlugins'
 import toCSSString from './utils/toCSSString'
 import checkFontFormat from './utils/checkFontFormat'
 
-import { STATIC_TYPE, RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE } from './utils/styleTypes'
+import { STATIC_TYPE, RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, CLEAR_TYPE } from './utils/styleTypes'
 
 export default function createRenderer(config = { }) {
   let renderer = {
@@ -29,7 +29,8 @@ export default function createRenderer(config = { }) {
     keyframePrefixes: config.keyframePrefixes || [ '-webkit-', '-moz-' ],
     plugins: config.plugins || [ ],
 
-    prettySelectors: config.prettySelectors,
+    // prettySelectors is currently useless, might reimplement better DX classNames later
+    // prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
     mediaQueryOrder: config.mediaQueryOrder || [ ],
 
     clear() {
@@ -48,7 +49,7 @@ export default function createRenderer(config = { }) {
       renderer.cache = { }
 
       // initial change emit to enforce a clear start
-      renderer._emitChange({ type: 'clear' })
+      renderer._emitChange({ type: CLEAR_TYPE })
     },
 
     renderRule(rule, props = { }) {
@@ -73,7 +74,7 @@ export default function createRenderer(config = { }) {
         } else {
           const delcarationReference = media + pseudo + property + value
           if (!renderer.cache[delcarationReference]) {
-            let className = generateClassName(++renderer.uniqueRuleIdentifier)
+            const className = generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[delcarationReference] = className
 

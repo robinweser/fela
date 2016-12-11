@@ -1,6 +1,8 @@
 /* @flow weak */
+import { RULE_TYPE, KEYFRAME_TYPE } from '../utils/styleTypes'
+
 function validateStyleObject(style, logInvalid, deleteInvalid) {
-  Object.keys(style).forEach(property => {
+  for (let property in style) {
     const value = style[property]
     if (value instanceof Object && !Array.isArray(value)) {
       if (/^(@media|:|\[|>)/.test(property)) {
@@ -17,14 +19,14 @@ function validateStyleObject(style, logInvalid, deleteInvalid) {
         }
       }
     }
-  })
+  }
 }
 
-function validator(style, meta, options) {
+function validator(style, type, options) {
   const { logInvalid, deleteInvalid } = options
 
-  if (meta.type === 'keyframe') {
-    Object.keys(style).forEach(percentage => {
+  if (type === KEYFRAME_TYPE) {
+    for (let percentage in style) {
       const percentageValue = parseFloat(percentage)
       const value = style[percentage]
       if (value instanceof Object === false) {
@@ -51,8 +53,9 @@ function validator(style, meta, options) {
           }
         }
       }
-    })
-  } else if (meta.type === 'rule') {
+    }
+
+  } else if (type === RULE_TYPE) {
     validateStyleObject(style, logInvalid, deleteInvalid)
   }
 
@@ -60,7 +63,7 @@ function validator(style, meta, options) {
 }
 
 const defaultOptions = { logInvalid: true, deleteInvalid: false }
-export default (options) => (style, meta) => validator(style, meta, {
+export default (options) => (style, type) => validator(style, type, {
   ...defaultOptions,
   ...options
 })

@@ -1,12 +1,6 @@
 /* @flow weak */
 let counter = 0
 
-/**
- * adds a performance profiler to renderRule calls
- *
- * @param {Object} renderer - renderer which gets enhanced
- * @return {Object} enhanced renderer
- */
 function addPerfTool(renderer) {
   const existingRenderRule = renderer.renderRule.bind(renderer)
 

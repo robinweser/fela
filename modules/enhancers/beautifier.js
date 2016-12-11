@@ -1,13 +1,6 @@
 /* @flow weak */
 import cssbeautify from 'cssbeautify'
 
-/**
- * beautifies CSS output of renderToString
- *
- * @param {Object} renderer - renderer which gets enhanced
- * @param {Object} options - beautifier options
- * @return {Object} enhanced renderer
- */
 function addBeautifier(renderer, options) {
   const existingRenderToString = renderer.renderToString.bind(renderer)
 

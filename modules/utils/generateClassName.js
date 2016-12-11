@@ -1,3 +1,4 @@
+/* @flow weak */
 const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 export default function generateClassName(id, className = '') {

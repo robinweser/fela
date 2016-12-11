@@ -4,18 +4,18 @@ function isInvalid(value) {
 }
 
 function removeUndefined(style) {
-  Object.keys(style).forEach(property => {
+  for (let property in style) {
     const value = style[property]
-    if (value instanceof Object && !Array.isArray(value)) {
-      style[property] = removeUndefined(value)
-    } else if (Array.isArray(value)) {
+    if (Array.isArray(value)) {
       style[property] = value.filter(val => !isInvalid(val))
+    } else if (value instanceof Object) {
+      style[property] = removeUndefined(value)
     } else {
       if (isInvalid(value)) {
         delete style[property]
       }
     }
-  })
+  }
 
   return style
 }

@@ -1,3 +1,4 @@
+/* @flow weak */
 import hyphenateStyleName from 'hyphenate-style-name'
 
 import warning from './warning'

@@ -2,7 +2,7 @@
 const regex = new RegExp('^on([A-Z])')
 
 function friendlyPseudoClass(style) {
-  Object.keys(style).forEach(property => {
+  for (let property in style) {
     const value = style[property]
     if (value instanceof Object && !Array.isArray(value)) {
       const resolvedValue = friendlyPseudoClass(value)
@@ -16,7 +16,7 @@ function friendlyPseudoClass(style) {
         style[property] = resolvedValue
       }
     }
-  })
+  }
 
   return style
 }
