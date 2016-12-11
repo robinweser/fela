@@ -18,7 +18,7 @@ export default function createRenderer(config = { }) {
       const reference = JSON.stringify(style)
 
       if (!renderer.cache[reference]) {
-        const processedStyle = processWithPlugins(style, renderer.plugins, RULE_TYPE)
+        const processedStyle = processStyleWithPlugins(style, renderer.plugins, RULE_TYPE)
         renderer.cache[reference] = StyleSheet.create({
           style: processedStyle
         })

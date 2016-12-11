@@ -5,7 +5,7 @@ import enhance from './enhance'
 import render from './dom/render'
 
 function deprecatedRender(renderer, mountNode) {
-  console.warn('Importing `render` from `fela` is deprecated. Use `fela-dom` to import `render` instead.')
+  console.warn('Importing `render` from `fela` is deprecated. Use `fela-dom` to import `render` instead.') // eslint-disable-line
   return render(renderer, mountNode)
 }
 
