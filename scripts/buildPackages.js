@@ -13,6 +13,11 @@ const packages = {
     entry: 'index.js',
     dependencies: true
   },
+  'fela-dom': {
+    name: 'FelaDOM',
+    entry: 'dom/index.js',
+    dependencies: false
+  },
   'fela-plugin-extend': {
     name: 'FelaPluginExtend',
     entry: 'plugins/extend.js',

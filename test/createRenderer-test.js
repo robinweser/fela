@@ -152,54 +152,6 @@ describe('Renderer', () => {
       expect(renderer.rules).to.eql('.a{color:red}')
       expect(renderer.mediaRules['(min-height:300px)']).to.eql('.b{color:blue}')
     })
-
-    it('should use property and value as className with prettySelectors', () => {
-      const rule = props => ({ color: 'red' })
-
-      process.env.NODE_ENV = 'development'
-
-      const renderer = createRenderer({ prettySelectors: true })
-      const className = renderer.renderRule(rule)
-
-      expect(className).to.eql('color_red')
-    })
-
-
-    it('should name classes correctly when rules are combined', () => {
-      const renderer = createRenderer({ prettySelectors: true })
-
-      const rule1 = props => ({ color: 'red' })
-      const rule2 = props => ({ fontSize: 'green' })
-      const rule = combineRules(rule1, rule2)
-
-      process.env.NODE_ENV = 'development'
-
-      const className = renderer.renderRule(rule)
-      expect(className).to.eql('color_red fontSize_green')
-    })
-
-    it('should not use property and value as className when prettySelectors is false', () => {
-      const rule = props => ({ color: 'red' })
-
-      process.env.NODE_ENV = 'development'
-
-      const renderer = createRenderer({ prettySelectors: false })
-
-      const className = renderer.renderRule(rule)
-
-      expect(className).to.eql('a')
-    })
-
-    it('should not use property and value as className in production', () => {
-      const rule = props => ({ color: 'red' })
-
-      process.env.NODE_ENV = 'production'
-
-      const renderer = createRenderer({ prettySelectors: true })
-      const className = renderer.renderRule(rule)
-
-      expect(className).to.eql('a')
-    })
   })
 
 

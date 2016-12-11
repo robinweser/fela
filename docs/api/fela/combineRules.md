@@ -4,7 +4,7 @@ A common pattern when styling elements is to have some base styles which get app
 To solve this issue, `combineRules` allows you to compose multiple rules into a single super selector.
 
 ## Arguments
-1. `...rules` (*arguments*): Functions returning valid [style objects](../basics/Rules.md#styleobject).
+1. `...rules` (*arguments*): Functions returning valid [style objects](../../basics/Rules.md#styleobject).
 
 ## Returns
 (*Function*) A super selector which composes all `rules` from left to right.

@@ -6,7 +6,7 @@ import cssifyObject from '../utils/cssifyObject'
 
 // TODO: refactor this messy piece of code
 // into clean, performant equivalent
-function addVendorPrefixes(style) {
+export function addVendorPrefixes(style) {
   const prefixedStyle = { }
 
   for (let property in style) {

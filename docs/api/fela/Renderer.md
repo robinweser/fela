@@ -12,14 +12,13 @@ To create a new renderer instance, simply use the `createRenderer` method to act
 * [`renderStatic(style, [selector])`](#renderstaticstyle-reference)
 * [`renderToString()`](#rendertostring)
 * [`subscribe(listener)`](#subscribelistener)
-* [`rehydrate()`](#rehydrate)
 * [`clear()`](#clear)
 
 ## `renderRule(rule, [props])`
 Renders a `rule` using the `props` to resolve it.
 
 ### Arguments
-1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
+1. `rule` (*Function*): A function which satisfies the [rule](../../basics/Rules.md) behavior. It **must** return a valid [style object](../../basics/Rules.md#styleobject).
 2. `props` (*Object?*): An object containing properties to resolve dynamic rule values. *Defaults to an empty object.*
 
 ### Returns
@@ -85,7 +84,7 @@ rule({ }) // => { color: 'green' }
 Renders a `keyframe` using the `props` to resolve it.
 
 ### Arguments
-1. `keyframe` (*Function*): A function which satisfies the [keyframe](../basics/Keyframes.md) behavior. It **must** return a valid [keyframe object](../basics/Keyframes.md#keyframeobject).
+1. `keyframe` (*Function*): A function which satisfies the [keyframe](../../basics/Keyframes.md) behavior. It **must** return a valid [keyframe object](../../basics/Keyframes.md#keyframeobject).
 2. `props` (*Object?*): An object containing properties to resolve dynamic keyframe values. *Defaults to an empty object.*
 
 ### Returns

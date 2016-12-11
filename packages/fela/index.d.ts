@@ -11,4 +11,3 @@ export interface Renderer {
 export declare function createRenderer(config?:any): Renderer;
 export declare function combineRules(...rules:any[]): Function;
 export declare function enhance(...enhancers:any[]): Function;
-export declare function render(renderer:Renderer, mountNode:HTMLElement): void;

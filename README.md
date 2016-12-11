@@ -47,7 +47,8 @@ Fela is all about rendering styles, especially so called rules. A universal rend
 The following example illustrates the key parts of Fela though it only shows the very basics.
 
 ```javascript
-import { createRenderer, render } from 'fela'
+import { createRenderer } from 'fela'
+import { render } from 'fela-dom'
 
 // rules are just plain functions of props
 // returning a valid object of style declarations
@@ -70,13 +71,15 @@ const rule = props => ({
   }
 })
 
-// Creates a new renderer to render styles
+// creates a new renderer to render styles
 const renderer = createRenderer()
 
-// Rendering the rule returns a className reference
+// rendering the rule returns a className reference
 // which can be attached to any element
 const className = renderer.renderRule(rule, { fontSize: 12 }))
 
+// it uses atomic css design to reuse styles
+// on declaration base and to keep the markup minimal
 console.log(className) // => a b c d e f h
 
 // renders all styles into the DOM
@@ -112,6 +115,7 @@ The following list shows a quick overview of all existing packages.
 | Package | Dependencies | Downloads |
 | --- | --- | --- |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela">fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-dom">fela-dom</a> | <img src="https://david-dm.org/rofrischmann/fela-dom.svg"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-dom.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-native">fela-native</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-native"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-native.svg"> |
 | **Bindings** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/react-fela">react-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/react-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg"> |
