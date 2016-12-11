@@ -1,7 +1,7 @@
-# fela-plugin-debug-layout
+# fela-layout-debugger
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-debug-layout.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-layout-debugger.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.50kb-brightgreen.svg">
 
 Adds either colored outlines or a almost transparent background color to debug the application layout.<br>
@@ -9,26 +9,24 @@ Same rules will always have the same color.
 
 ## Installation
 ```sh
-npm i --save fela-plugin-debug-layout
+npm i --save fela-layout-debugger
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginDebugLayout` global.
+Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
+Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaLayoutDebugger` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-debug-layout@4.0.1/dist/fela-plugin-debug-layout.js"></script>
+<script src="https://unpkg.com/fela-layout-debugger@4.0.1/dist/fela-layout-debugger.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-debug-layout@4.0.1/dist/fela-plugin-debug-layout.min.js"></script>
+<script src="https://unpkg.com/fela-layout-debugger@4.0.1/dist/fela-layout-debugger.min.js"></script>
 ```
 
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
-
 ```javascript
 import { createRenderer } from 'fela'
-import debugLayout from 'fela-plugin-debug-layout'
+import layoutDebugger from 'fela-layout-debugger'
 
 const renderer = createRenderer({
-  plugins: [ debugLayout() ]
+  enhancers: [ layoutDebugger() ]
 })
 ```
 
@@ -43,15 +41,15 @@ const renderer = createRenderer({
 ##### Example
 ```javascript
 import { createRenderer } from 'fela'
-import debugLayout from 'fela-plugin-debug-layout'
+import layoutDebugger from 'fela-layout-debugger'
 
-const debugLayoutPlugin = debugLayout({
+const layoutDebuggerEnhancer = layoutDebugger({
   mode: 'outline',
   thickness: 4
 })
 
 const renderer = createRenderer({
-  plugins: [ debugLayoutPlugin ]
+  enhancers: [ layoutDebuggerEnhancer ]
 })
 ```
 

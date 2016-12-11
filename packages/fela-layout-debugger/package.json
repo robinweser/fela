@@ -1,7 +1,7 @@
 {
-  "name": "fela-plugin-debug-layout",
+  "name": "fela-layout-debugger",
   "version": "4.0.1",
-  "description": "Fela plugin to debug app layouts",
+  "description": "Fela enhancer to debug app layouts",
   "main": "index.js",
   "files": [
     "LICENSE",
@@ -12,7 +12,7 @@
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "fela-plugin",
+    "fela-enhancer",
     "devTool",
     "debugger",
     "cssinjs"
