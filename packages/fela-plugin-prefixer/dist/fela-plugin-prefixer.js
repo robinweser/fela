@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginPrefixer = factory());
-}(this, function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.FelaPluginPrefixer = global.FelaPluginPrefixer || {})));
+}(this, function (exports) { 'use strict';
 
   var babelHelpers = {};
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -34,6 +34,21 @@
       return Constructor;
     };
   }();
+
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
 
   babelHelpers.extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -251,7 +266,7 @@
   module.exports = hyphenateStyleName;
   });
 
-  var require$$3 = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
+  var hyphenateStyleName = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
 
   var transition = __commonjs(function (module, exports) {
   'use strict';
@@ -261,7 +276,7 @@
   });
   exports.default = transition;
 
-  var _hyphenateStyleName = require$$3;
+  var _hyphenateStyleName = hyphenateStyleName;
 
   var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
 
@@ -409,7 +424,7 @@
   module.exports = exports['default'];
   });
 
-  var require$$3$1 = (gradient && typeof gradient === 'object' && 'default' in gradient ? gradient['default'] : gradient);
+  var require$$3 = (gradient && typeof gradient === 'object' && 'default' in gradient ? gradient['default'] : gradient);
 
   var sizing = __commonjs(function (module, exports) {
   'use strict';
@@ -647,7 +662,7 @@
 
   var _sizing2 = _interopRequireDefault(_sizing);
 
-  var _gradient = require$$3$1;
+  var _gradient = require$$3;
 
   var _gradient2 = _interopRequireDefault(_gradient);
 
@@ -735,13 +750,88 @@
 
   var prefix = (_static && typeof _static === 'object' && 'default' in _static ? _static['default'] : _static);
 
-  var prefixer = (function () {
-    return function (style) {
-      return prefix(style);
+  function resolveFallbackValues(style) {
+    for (var property in style) {
+      var value = style[property];
+      if (Array.isArray(value)) {
+        style[property] = value.join(';' + hyphenateStyleName(property) + ':');
+      } else if (value instanceof Object) {
+        style[property] = resolveFallbackValues(value);
+      }
+    }
+
+    return style;
+  }
+
+  function generateCSSDeclaration(property, value) {
+    return hyphenateStyleName(property) + ':' + value;
+  }
+
+  /*  weak */
+  var warning = function warning() {
+    return true;
+  };
+
+  if (true) {
+    warning = function warning(condition, message) {
+      if (!condition) {
+        if (typeof console !== 'undefined') {
+          console.error(message); // eslint-disable-line
+        }
+      }
     };
+  }
+
+  var warning$1 = warning;
+
+  function cssifyObject(style) {
+    var css = '';
+
+    for (var property in style) {
+      warning$1(typeof style[property] === 'string' || typeof style[property] === 'number', 'The invalid value `' + style[property] + '` has been used as `' + property + '`.');
+
+      // prevents the semicolon after
+      // the last rule declaration
+      if (css) {
+        css += ';';
+      }
+
+      css += generateCSSDeclaration(property, style[property]);
+    }
+
+    return css;
+  }
+
+  // TODO: refactor this messy piece of code
+  // into clean, performant equivalent
+  function addVendorPrefixes(style) {
+    var prefixedStyle = {};
+
+    for (var property in style) {
+      var value = style[property];
+      if (value instanceof Object && !Array.isArray(value)) {
+        prefixedStyle[property] = addVendorPrefixes(value);
+      } else {
+        var declaration = babelHelpers.defineProperty({}, property, style[property]);
+        var prefixedDeclaration = resolveFallbackValues(prefix(declaration));
+
+        var referenceProperty = Object.keys(prefixedDeclaration)[0];
+        var referenceValue = prefixedDeclaration[referenceProperty];
+        delete prefixedDeclaration[referenceProperty];
+        var inlinedProperties = cssifyObject(prefixedDeclaration);
+        prefixedStyle[referenceProperty] = referenceValue + (inlinedProperties ? ';' + inlinedProperties : '');
+      }
+    }
+
+    return prefixedStyle;
+  }
+
+  var prefixer = (function () {
+    return addVendorPrefixes;
   });
 
-  return prefixer;
+  exports.addVendorPrefixes = addVendorPrefixes;
+  exports['default'] = prefixer;
 
 }));
 //# sourceMappingURL=fela-plugin-prefixer.js.map

@@ -37,6 +37,21 @@
     };
   }();
 
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
+
   babelHelpers.extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -103,6 +118,19 @@
   function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
   /*  weak */
+  var RULE_TYPE = 1;
+
+  function createDOMInterface(renderer, node) {
+    return function (change) {
+      // only use insertRule in production as browser devtools might have
+      // weird behavior if used together with insertRule at runtime
+      if (false && change.type === RULE_TYPE && !change.media) {} else {
+        node.textContent = renderer.renderToString();
+      }
+    };
+  }
+
+  /*  weak */
   var warning = function warning() {
     return true;
   };
@@ -119,49 +147,14 @@
 
   var warning$1 = warning;
 
-  /*  weak */
-  function createDOMInterface(renderer, node) {
-    var isHydrating = false;
-
-    var DOMInterface = {
-      /**
-       * updates DOM node styles performantly
-       *
-       * @param {Function} node - DOM node
-       * @param {Object} change - object describing the changes
-       * @param {Object} renderer - the renderer which triggered the change
-       */
-      updateNode: function updateNode() {
-        var change = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-        // setting the hydration flag to prevent DOM updates will immediately
-        // get unset as soon as the rehydration process is done
-        if (change.type === 'hydrate') {
-          isHydrating = !change.done;
-        }
-
-        // only update DOM if the renderer is not hydrating at the moment
-        if (!isHydrating) {
-          // only use insertRule in production as browser devtools might have
-          // weird behavior if used together with insertRule at runtime
-          if (change.type === 'rule' && !change.media && false) {
-            var sheet = node.sheet;
-            // directly append new rules before media rules
-            sheet.insertRule(change.selector + '{' + change.css + '}', sheet.cssRules.length);
-          } else {
-            node.textContent = renderer.renderToString();
-          }
-        }
-      }
-    };
-
-    return DOMInterface;
+  function isValidHTMLElement(mountNode) {
+    return mountNode && mountNode.nodeType === 1;
   }
 
   function render(renderer, mountNode) {
-    // check if the passed node is a valid element node which allows
-    // setting the `textContent` property to update the node's content
-    if (!mountNode || mountNode.nodeType !== 1) {
+    // mountNode must be a valid HTML element to be able
+    // to set mountNode.textContent later on
+    if (!isValidHTMLElement(mountNode)) {
       throw new Error('You need to specify a valid element node (nodeType = 1) to render into.');
     }
 
@@ -173,14 +166,13 @@
     // mark and clean the DOM node to prevent side-effects
     mountNode.setAttribute('data-fela-stylesheet', '');
 
-    var DOMInterface = createDOMInterface(renderer, mountNode);
-    renderer.subscribe(DOMInterface.updateNode);
+    var updateNode = createDOMInterface(renderer, mountNode);
+    renderer.subscribe(updateNode);
 
-    // render currently rendered styles to the DOM once
-    // if it is not already in DOM
     var css = renderer.renderToString();
 
     if (mountNode.textContent !== css) {
+      // render currently rendered styles to the DOM once
       mountNode.textContent = css;
     }
   }
@@ -243,21 +235,10 @@
                 renderer = _context.renderer,
                 theme = _context.theme;
 
-            // invoke the component name for better CSS debugging
 
-            if (true) {
-              this.context.renderer._selectorPrefix = Comp.displayName || Comp.name || 'ConnectedFelaComponent';
-            }
-
-            // invoke props and renderer to render all styles
             var styles = mapStylesToProps(babelHelpers.extends({}, this.props, {
               theme: theme || {}
             }))(renderer);
-
-            // remove the component name after rendering
-            if (true) {
-              this.context.renderer._selectorPrefix = undefined;
-            }
 
             return React__default.createElement(Comp, babelHelpers.extends({}, this.props, { styles: styles }));
           }
@@ -273,7 +254,6 @@
   function createComponent(rule) {
     var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'div';
     var passThroughProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var defaultProps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
     var FelaComponent = function FelaComponent(_ref, _ref2) {
       var renderer = _ref2.renderer,
@@ -295,10 +275,9 @@
       componentProps.style = style;
 
       var cls = className ? className + ' ' : '';
-      defaultProps.theme = theme || {};
+      ruleProps.theme = theme || {};
 
-      componentProps.className = cls + renderer.renderRule(rule, ruleProps, defaultProps);
-
+      componentProps.className = cls + renderer.renderRule(rule, ruleProps);
       return React.createElement(type, componentProps, children);
     };
 
@@ -323,8 +302,14 @@
     babelHelpers.createClass(ThemeProvider, [{
       key: 'getChildContext',
       value: function getChildContext() {
+        var _props = this.props,
+            overwrite = _props.overwrite,
+            theme = _props.theme;
+
+        var previousTheme = this.context.theme;
+
         return {
-          theme: babelHelpers.extends({}, !this.props.overwrite && this.context.theme || {}, this.props.theme)
+          theme: babelHelpers.extends({}, !overwrite && previousTheme || {}, theme)
         };
       }
     }, {

@@ -35,6 +35,21 @@
     };
   }();
 
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
+
   babelHelpers.extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -80,44 +95,45 @@
 
   /*  weak */
   function assign(base) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
+    for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      extendingStyles[_key - 1] = arguments[_key];
     }
 
-    return args.reduce(function (extend, obj) {
-      for (var property in obj) {
-        var value = obj[property];
-        if (extend[property] instanceof Object && value instanceof Object) {
-          extend[property] = assign({}, extend[property], value);
+    for (var i = 0, len = extendingStyles.length; i < len; ++i) {
+      var style = extendingStyles[i];
+
+      for (var property in style) {
+        var value = style[property];
+
+        if (base[property] instanceof Object && value instanceof Object) {
+          base[property] = assign({}, base[property], value);
         } else {
-          extend[property] = value;
+          base[property] = value;
         }
       }
-      return extend;
-    }, base);
+    }
+
+    return base;
+  }
+
+  function addLogger(style, type) {
+    if (true) {
+      console.log(type, assign({}, style)); // eslint-disable-line
+    }
+
+    return style;
   }
 
   var logger = (function () {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return function (style, meta) {
-      var logMetaData = options.logMetaData || false;
-
-      var currentStyle = assign({}, style);
-
-      if (logMetaData) {
-        var reference = meta.className || meta.selector || meta.animationName;
-        console.log(meta.type.toUpperCase() + ' ' + reference, currentStyle, meta); // eslint-disable-line
-      } else {
-        console.log(currentStyle); // eslint-disable-line
-      }
-
-      return style;
-    };
+    return addLogger;
   });
 
   /*  weak */
+  var RULE_TYPE = 1;
+  var KEYFRAME_TYPE = 2;
+
   function validateStyleObject(style, logInvalid, deleteInvalid) {
-    Object.keys(style).forEach(function (property) {
+    for (var property in style) {
       var value = style[property];
       if (value instanceof Object && !Array.isArray(value)) {
         if (/^(@media|:|\[|>)/.test(property)) {
@@ -134,16 +150,16 @@
           }
         }
       }
-    });
+    }
   }
 
-  function validator(style, meta, options) {
+  function validator(style, type, options) {
     var logInvalid = options.logInvalid,
         deleteInvalid = options.deleteInvalid;
 
 
-    if (meta.type === 'keyframe') {
-      Object.keys(style).forEach(function (percentage) {
+    if (type === KEYFRAME_TYPE) {
+      for (var percentage in style) {
         var percentageValue = parseFloat(percentage);
         var value = style[percentage];
         if (value instanceof Object === false) {
@@ -170,8 +186,8 @@
             }
           }
         }
-      });
-    } else if (meta.type === 'rule') {
+      }
+    } else if (type === RULE_TYPE) {
       validateStyleObject(style, logInvalid, deleteInvalid);
     }
 
@@ -180,8 +196,8 @@
 
   var defaultOptions = { logInvalid: true, deleteInvalid: false };
   var validator$1 = (function (options) {
-    return function (style, meta) {
-      return validator(style, meta, babelHelpers.extends({}, defaultOptions, options));
+    return function (style, type) {
+      return validator(style, type, babelHelpers.extends({}, defaultOptions, options));
     };
   });
 

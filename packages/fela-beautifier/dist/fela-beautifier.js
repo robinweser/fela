@@ -35,6 +35,21 @@
       };
     }();
 
+    babelHelpers.defineProperty = function (obj, key, value) {
+      if (key in obj) {
+        Object.defineProperty(obj, key, {
+          value: value,
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      } else {
+        obj[key] = value;
+      }
+
+      return obj;
+    };
+
     babelHelpers.extends = Object.assign || function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
@@ -555,13 +570,6 @@
 
     var cssbeautify$1 = (cssbeautify && typeof cssbeautify === 'object' && 'default' in cssbeautify ? cssbeautify['default'] : cssbeautify);
 
-    /**
-     * beautifies CSS output of renderToString
-     *
-     * @param {Object} renderer - renderer which gets enhanced
-     * @param {Object} options - beautifier options
-     * @return {Object} enhanced renderer
-     */
     function addBeautifier(renderer, options) {
       var existingRenderToString = renderer.renderToString.bind(renderer);
 

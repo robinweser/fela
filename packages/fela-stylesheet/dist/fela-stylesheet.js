@@ -11,6 +11,21 @@
     return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
   };
 
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
+
   babelHelpers.extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -30,7 +45,9 @@
   /*  weak */
   var StyleSheet = {
     create: function create(styles) {
-      return Object.keys(styles).reduce(function (rules, rule) {
+      var rules = {};
+
+      var _loop = function _loop(rule) {
         if (typeof styles[rule] !== 'function') {
           rules[rule] = function () {
             return styles[rule];
@@ -38,9 +55,13 @@
         } else {
           rules[rule] = styles[rule];
         }
+      };
 
-        return rules;
-      }, {});
+      for (var rule in styles) {
+        _loop(rule);
+      }
+
+      return rules;
     }
   };
 

@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-logger",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Fela plugin to log processed style objects",
   "main": "index.js",
   "files": [
@@ -20,6 +20,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.0.1"
+    "fela": "4.1.0"
   }
 }
