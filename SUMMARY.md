@@ -29,10 +29,10 @@
   * [4.4. Usage with Inferno](docs/guides/UsageWithInferno.md)
 * [5. API Reference](docs/API.md)
   * 5.1. fela
-    * [5.1.1. createRenderer](docs/api/createRenderer.md)
-    * [5.1.2. Renderer](docs/api/Renderer.md)
-    * [5.1.3. combineRules](docs/api/combineRules.md)
-    * [5.1.4. enhance](docs/api/enhance.md)
+    * [5.1.1. createRenderer](docs/api/fela/createRenderer.md)
+    * [5.1.2. Renderer](docs/api/fela/Renderer.md)
+    * [5.1.3. combineRules](docs/api/fela/combineRules.md)
+    * [5.1.4. enhance](docs/api/fela/enhance.md)
   * 5.2. fela-dom
     * [5.2.1. render](docs/api/fela-dom/render.md)
 * [6. Troubleshooting](docs/Troubleshooting.md)

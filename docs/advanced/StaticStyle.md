@@ -64,4 +64,4 @@ renderer.renderStatic(`
 ---
 
 ### Related
-* [API reference - `Renderer.renderStatic`](../api/Renderer.md#renderstaticstyle-selector)
+* [API reference - `Renderer.renderStatic`](../api/fela/Renderer.md#renderstaticstyle-selector)

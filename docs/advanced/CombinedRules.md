@@ -58,7 +58,7 @@ const element = (
 
 ## Solution: Combined Rules
 By using combined rules we can merge multiple rules into a single one. Again, the order matters. But this time we can determine the order on our own.
-To combine rules, Fela provides the [`combineRules`](../api/combineRules.md) helper.
+To combine rules, Fela provides the [`combineRules`](../api/fela/combineRules.md) helper.
 
 ### Example
 ```javascript
@@ -92,4 +92,4 @@ It does not matter whether `ruleA` and `ruleB` get rendered later or if they won
 ---
 
 ### Related
-* [API reference - `combineRules`](../api/combineRules.md)
+* [API reference - `combineRules`](../api/fela/combineRules.md)

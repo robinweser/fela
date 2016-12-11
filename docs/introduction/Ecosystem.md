@@ -7,6 +7,8 @@ With this approach everyone is able to create a custom version of Fela fitting t
 Many plugins and enhancers are already included in the [main repository](https://github.com/rofrischmann/fela/tree/master/packages).
 
 ### Renderers
+* [fela](https://github.com/rofrischmann/fela/tree/master/packages/fela) - Web *(universal)*
+* [fela-dom](https://github.com/rofrischmann/fela/tree/master/packages/fela-dom) - Web *(client-side DOM bindings)*
 * [fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native) - React Native
 
 ### Bindings
@@ -14,12 +16,11 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [inferno-fela](https://github.com/rofrischmann/inferno-fela) - Inferno
 
 ### Plugins
-* [fela-plugin-debug-layout*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-debug-layout) - Adds colored outlines or backgroundColors to debug layouts
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
 * [fela-plugin-extend](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend) - Extend style objects based on conditions
 * [fela-plugin-fallback-value](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-fallback-value) - Resolves arrays of fallback values
 * [fela-plugin-friendly-pseudo-class](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-friendly-pseudo-class) - Transforms javascript-friendly pseudo class into valid syntax
-* [fela-plugin-isolation](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-isolation) <img src="https://github.com/rofrischmann/doc-badges/blob/master/png/experimental.png" height="17px"> - Adds style isolation to every rule
+* [fela-plugin-isolation](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-isolation) - Adds style isolation to every rule
 * [fela-plugin-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-logger) - Logs processed style objects
 * [fela-plugin-lvha](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-lvha) - Sorts pseudo classes according to LVH(F)A
 * [fela-plugin-placeholder-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-placeholder-prefixer) - Adds all `::placeholder` prefixes
@@ -38,6 +39,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 * [fela-beautifier*](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
 * [fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.
+* [fela-layout-debugger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-layout-debugger) - Adds colored outlines or backgroundColors to debug layouts
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
 

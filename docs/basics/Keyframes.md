@@ -21,7 +21,7 @@ const keyframe = props => ({
 
 ### Related
 * [Rendering keyframes](Renderer.md#renderkeyframe)
-* [API reference - `Renderer.renderKeyframe` ](../api/Renderer.md#renderkeyframekeyframe-props)
+* [API reference - `Renderer.renderKeyframe` ](../api/fela/Renderer.md#renderkeyframekeyframe-props)
 * [FAQ - Keyframes](../FAQ.md#keyframes)
 
 #### Tools

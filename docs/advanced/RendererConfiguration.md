@@ -47,18 +47,7 @@ const keyframe = props => ({
   }
 })
 
-const prettyRule = props => ({
-  color: 'red',
-  '@media (min-height: 500px)': {
-    color: 'green'
-  },
-  '@media (min-height: 300px)': {
-    color: 'blue'
-  }
-})
-
 renderer.renderKeyframe(keyframe, { height: 100 })
-renderer.renderRule(prettyRule)
 
 console.log(renderer.renderToString())
 ```
@@ -94,22 +83,6 @@ console.log(renderer.renderToString())
     height: 100em
   }
 }
-
-.color_red {
-  color: red  
-}
-
-@media (min-height: 300px) {
-  .color_blue {
-    color: blue
-  }
-}
-
-@media (min-height: 500px) {
-  .color_green {
-    color: green  
-  }
-}
 ```
 
 <br>
@@ -119,4 +92,4 @@ console.log(renderer.renderToString())
 ### Related
 * [Plugins](Plugins.md)
 * [Enhancers](Enhancers.md)
-* [API reference - `createRenderer`](../api/createRenderer.md)
+* [API reference - `createRenderer`](../api/fela/createRenderer.md)

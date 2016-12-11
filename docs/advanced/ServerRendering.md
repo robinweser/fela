@@ -86,4 +86,4 @@ server.listen(8080, 'localhost')
 ---
 
 ### Related
-* [API reference - `Renderer.renderToString`](../api/Renderer.md#rendertostring)
+* [API reference - `Renderer.renderToString`](../api/fela/Renderer.md#rendertostring)
