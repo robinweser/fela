@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginFallbackValue = factory());
-}(this, function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.FelaPluginFallbackValue = global.FelaPluginFallbackValue || {})));
+}(this, function (exports) { 'use strict';
 
   var babelHelpers = {};
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -34,6 +34,21 @@
       return Constructor;
     };
   }();
+
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
 
   babelHelpers.extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -92,26 +107,27 @@
   module.exports = hyphenateStyleName;
   });
 
-  var hypenateStyleName = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
+  var hyphenateStyleName = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
 
-  function fallbackValue(style) {
-    Object.keys(style).forEach(function (property) {
+  function resolveFallbackValues(style) {
+    for (var property in style) {
       var value = style[property];
       if (Array.isArray(value)) {
-        style[property] = value.join(';' + hypenateStyleName(property) + ':');
+        style[property] = value.join(';' + hyphenateStyleName(property) + ':');
       } else if (value instanceof Object) {
-        style[property] = fallbackValue(value);
+        style[property] = resolveFallbackValues(value);
       }
-    });
+    }
 
     return style;
   }
 
-  var fallbackValue$1 = (function () {
-    return fallbackValue;
+  var fallbackValue = (function () {
+    return resolveFallbackValues;
   });
 
-  return fallbackValue$1;
+  exports.resolveFallbackValues = resolveFallbackValues;
+  exports['default'] = fallbackValue;
 
 }));
 //# sourceMappingURL=fela-plugin-fallback-value.js.map

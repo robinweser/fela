@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPerf = factory());
+  (global.FelaLayoutDebugger = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -43,32 +43,41 @@
   babelHelpers;
 
   /*  weak */
-  var counter = 0;
-
-  function addPerfTool(renderer) {
+  function addLayoutDebugger(renderer, options) {
     var existingRenderRule = renderer.renderRule.bind(renderer);
 
     renderer.renderRule = function (rule, props) {
-      var timerCounter = '[' + ++counter + ']';
-
-      console.time(timerCounter); // eslint-disable-line
       var className = existingRenderRule(rule, props);
-      console.log(timerCounter + ' ' + (rule.name || 'anonym'), props); // eslint-disable-line
-      console.timeEnd(timerCounter); // eslint-disable-line
 
-      return className;
+      var ruleName = rule.name || 'debug_layout';
+      var color = (ruleName + ruleName).length * 17 * ruleName.length;
+
+      var debugLayoutClassName = 'fela-debug-layout_' + ruleName;
+
+      if (options.backgroundColor) {
+        renderer.renderStatic({
+          backgroundColor: 'hsla(' + color + ', 100%, 25%, 0.1) !important'
+        }, '.' + debugLayoutClassName);
+      } else {
+        renderer.renderStatic({
+          outline: options.thickness + 'px solid hsl(' + color + ', 100%, 50%) !important'
+        }, '.' + debugLayoutClassName);
+      }
+
+      return debugLayoutClassName + ' ' + className;
     };
 
     return renderer;
   }
 
-  var perf = (function () {
+  var defaultOptions = { backgroundColor: false, thickness: 1 };
+  var layoutDebugger = (function (options) {
     return function (renderer) {
-      return addPerfTool(renderer);
+      return addLayoutDebugger(renderer, babelHelpers.extends({}, defaultOptions, options));
     };
   });
 
-  return perf;
+  return layoutDebugger;
 
 }));
-//# sourceMappingURL=fela-perf.js.map
+//# sourceMappingURL=fela-layout-debugger.js.map

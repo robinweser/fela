@@ -11,6 +11,21 @@
     return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
   };
 
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
+
   babelHelpers.extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -29,21 +44,25 @@
 
   /*  weak */
   function assign(base) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
+    for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      extendingStyles[_key - 1] = arguments[_key];
     }
 
-    return args.reduce(function (extend, obj) {
-      for (var property in obj) {
-        var value = obj[property];
-        if (extend[property] instanceof Object && value instanceof Object) {
-          extend[property] = assign({}, extend[property], value);
+    for (var i = 0, len = extendingStyles.length; i < len; ++i) {
+      var style = extendingStyles[i];
+
+      for (var property in style) {
+        var value = style[property];
+
+        if (base[property] instanceof Object && value instanceof Object) {
+          base[property] = assign({}, base[property], value);
         } else {
-          extend[property] = value;
+          base[property] = value;
         }
       }
-      return extend;
-    }, base);
+    }
+
+    return base;
   }
 
   function extendStyle(style, extension) {
@@ -59,19 +78,20 @@
   }
 
   function extend(style) {
-    Object.keys(style).forEach(function (property) {
+    for (var property in style) {
       var value = style[property];
       if (property === 'extend') {
         // arrayify to loop each extension to support arrays and single extends
-        [].concat(value).forEach(function (extension) {
-          return extendStyle(style, extension);
-        });
+        var extensions = [].concat(value);
+        for (var i = 0, len = extensions.length; i < len; ++i) {
+          extendStyle(style, extensions[i]);
+        }
         delete style[property];
       } else if (value instanceof Object && !Array.isArray(value)) {
         // support nested extend as well
         style[property] = extend(value);
       }
-    });
+    }
 
     return style;
   }

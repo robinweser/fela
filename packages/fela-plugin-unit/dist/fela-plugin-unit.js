@@ -35,6 +35,21 @@
     };
   }();
 
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
+
   babelHelpers.extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -194,7 +209,7 @@
   }
 
   function addUnit(style, unit, propertyMap) {
-    Object.keys(style).forEach(function (property) {
+    var _loop = function _loop(property) {
       if (!isUnitlessCSSProperty(property)) {
         (function () {
 
@@ -211,7 +226,11 @@
           }
         })();
       }
-    });
+    };
+
+    for (var property in style) {
+      _loop(property);
+    }
 
     return style;
   }

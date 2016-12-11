@@ -35,6 +35,21 @@
     };
   }();
 
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
+
   babelHelpers.extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -102,21 +117,25 @@
 
   /*  weak */
   function assign(base) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
+    for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      extendingStyles[_key - 1] = arguments[_key];
     }
 
-    return args.reduce(function (extend, obj) {
-      for (var property in obj) {
-        var value = obj[property];
-        if (extend[property] instanceof Object && value instanceof Object) {
-          extend[property] = assign({}, extend[property], value);
+    for (var i = 0, len = extendingStyles.length; i < len; ++i) {
+      var style = extendingStyles[i];
+
+      for (var property in style) {
+        var value = style[property];
+
+        if (base[property] instanceof Object && value instanceof Object) {
+          base[property] = assign({}, base[property], value);
         } else {
-          extend[property] = value;
+          base[property] = value;
         }
       }
-      return extend;
-    }, base);
+    }
+
+    return base;
   }
 
   function extendStyle(style, extension) {
@@ -132,19 +151,20 @@
   }
 
   function extend(style) {
-    Object.keys(style).forEach(function (property) {
+    for (var property in style) {
       var value = style[property];
       if (property === 'extend') {
         // arrayify to loop each extension to support arrays and single extends
-        [].concat(value).forEach(function (extension) {
-          return extendStyle(style, extension);
-        });
+        var extensions = [].concat(value);
+        for (var i = 0, len = extensions.length; i < len; ++i) {
+          extendStyle(style, extensions[i]);
+        }
         delete style[property];
       } else if (value instanceof Object && !Array.isArray(value)) {
         // support nested extend as well
         style[property] = extend(value);
       }
-    });
+    }
 
     return style;
   }
@@ -788,27 +808,88 @@
 
   var prefix = (_static && typeof _static === 'object' && 'default' in _static ? _static['default'] : _static);
 
-  var prefixer = (function () {
-    return function (style) {
-      return prefix(style);
-    };
-  });
-
-  function fallbackValue(style) {
-    Object.keys(style).forEach(function (property) {
+  function resolveFallbackValues(style) {
+    for (var property in style) {
       var value = style[property];
       if (Array.isArray(value)) {
         style[property] = value.join(';' + require$$0$4(property) + ':');
       } else if (value instanceof Object) {
-        style[property] = fallbackValue(value);
+        style[property] = resolveFallbackValues(value);
       }
-    });
+    }
 
     return style;
   }
 
-  var fallbackValue$1 = (function () {
-    return fallbackValue;
+  var fallbackValue = (function () {
+    return resolveFallbackValues;
+  });
+
+  function generateCSSDeclaration(property, value) {
+    return require$$0$4(property) + ':' + value;
+  }
+
+  /*  weak */
+  var warning = function warning() {
+    return true;
+  };
+
+  if (true) {
+    warning = function warning(condition, message) {
+      if (!condition) {
+        if (typeof console !== 'undefined') {
+          console.error(message); // eslint-disable-line
+        }
+      }
+    };
+  }
+
+  var warning$1 = warning;
+
+  function cssifyObject(style) {
+    var css = '';
+
+    for (var property in style) {
+      warning$1(typeof style[property] === 'string' || typeof style[property] === 'number', 'The invalid value `' + style[property] + '` has been used as `' + property + '`.');
+
+      // prevents the semicolon after
+      // the last rule declaration
+      if (css) {
+        css += ';';
+      }
+
+      css += generateCSSDeclaration(property, style[property]);
+    }
+
+    return css;
+  }
+
+  // TODO: refactor this messy piece of code
+  // into clean, performant equivalent
+  function addVendorPrefixes(style) {
+    var prefixedStyle = {};
+
+    for (var property in style) {
+      var value = style[property];
+      if (value instanceof Object && !Array.isArray(value)) {
+        prefixedStyle[property] = addVendorPrefixes(value);
+      } else {
+        var declaration = babelHelpers.defineProperty({}, property, style[property]);
+        var prefixedDeclaration = resolveFallbackValues(prefix(declaration));
+
+        var referenceProperty = Object.keys(prefixedDeclaration)[0];
+        var referenceValue = prefixedDeclaration[referenceProperty];
+        delete prefixedDeclaration[referenceProperty];
+        var inlinedProperties = cssifyObject(prefixedDeclaration);
+        prefixedStyle[referenceProperty] = referenceValue + (inlinedProperties ? ';' + inlinedProperties : '');
+      }
+    }
+
+    return prefixedStyle;
+  }
+
+  var prefixer = (function () {
+    return addVendorPrefixes;
   });
 
   /*  weak */
@@ -841,23 +922,6 @@
   var LVHA$1 = (function () {
     return LVHA;
   });
-
-  /*  weak */
-  var warning = function warning() {
-    return true;
-  };
-
-  if (true) {
-    warning = function warning(condition, message) {
-      if (!condition) {
-        if (typeof console !== 'undefined') {
-          console.error(message); // eslint-disable-line
-        }
-      }
-    };
-  }
-
-  var warning$1 = warning;
 
   var index$1 = __commonjs(function (module) {
   var hyphenateStyleName = require$$0$4;
@@ -942,7 +1006,7 @@
   }
 
   function addUnit(style, unit, propertyMap) {
-    Object.keys(style).forEach(function (property) {
+    var _loop = function _loop(property) {
       if (!isUnitlessCSSProperty(property)) {
         (function () {
 
@@ -959,7 +1023,11 @@
           }
         })();
       }
-    });
+    };
+
+    for (var property in style) {
+      _loop(property);
+    }
 
     return style;
   }
@@ -975,7 +1043,7 @@
     };
   });
 
-  var web = [extend$1(), prefixer(), fallbackValue$1(), LVHA$1(), unit()];
+  var web = [extend$1(), prefixer(), fallbackValue(), LVHA$1(), unit()];
 
   return web;
 

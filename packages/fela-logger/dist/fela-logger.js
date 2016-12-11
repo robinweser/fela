@@ -35,6 +35,21 @@
       };
     }();
 
+    babelHelpers.defineProperty = function (obj, key, value) {
+      if (key in obj) {
+        Object.defineProperty(obj, key, {
+          value: value,
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      } else {
+        obj[key] = value;
+      }
+
+      return obj;
+    };
+
     babelHelpers.extends = Object.assign || function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
@@ -555,49 +570,32 @@
 
     var cssbeautify$1 = (cssbeautify && typeof cssbeautify === 'object' && 'default' in cssbeautify ? cssbeautify['default'] : cssbeautify);
 
-    /**
-     * adds a logging tool which listens to renderer changes
-     *
-     * @param {Object} renderer - renderer which gets enhanced
-     * @param {Object} options - logging options
-     * @return {Object} enhanced renderer
-     */
+    var CLEAR_TYPE = 5;
+
     function addLogger(renderer, options) {
       renderer.subscribe(function (change) {
         // log clearing
-        if (change.type === 'clear') {
+        if (change.type === CLEAR_TYPE) {
           console.log('Cleared renderer cache.'); // eslint-disable-line
           return true;
         }
 
-        // log status of rehydration
-        if (change.type === 'rehydrate') {
-          console.log('Renderer rehydration ' + (change.done ? 'finished' : 'started') + '.'); // eslint-disable-line
-          return true;
-        }
-
-        var selector = change.selector || change.font || change.name;
-        var style = change.style || change.fontFace;
-        var css = options.format ? cssbeautify$1(change.css) : change.css;
+        var selector = change.selector || change.fontFamily || change.name;
+        var css = change.cssDeclaration || change.keyframe || change.fontFace || change.css;
+        var formattedCSS = options.format ? cssbeautify$1(css) : css;
         var isMedia = change.media && change.media.length > 0;
 
         // logs all information in a group
         console.group(selector); // eslint-disable-line
         isMedia && console.log(change.media); // eslint-disable-line
-        options.logStyleObject && console.log(style); // eslint-disable-line
-        options.logCSS && console.log(css); // eslint-disable-line
+        options.logCSS && console.log(formattedCSS); // eslint-disable-line
         console.groupEnd(selector); // eslint-disable-line
       });
 
       return renderer;
     }
 
-    var defaultOptions = {
-      logStyleObject: true,
-      logCSS: false,
-      formatCSS: false
-    };
-
+    var defaultOptions = { logCSS: false, formatCSS: false };
     var logger = (function () {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       return function (renderer) {
