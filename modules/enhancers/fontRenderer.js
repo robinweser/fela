@@ -1,13 +1,7 @@
-import { createRenderer, render } from 'fela'
+/* @flow weak */
+import createRenderer from '../createRenderer'
+import render from '../dom/render'
 
-/**
- * adds a special renderer only used for font rendering
- * to prevent flickering on changes
- *
- * @param {Object} renderer - renderer which gets enhanced
- * @param {DOMElement} mountNode - stylesheet to render fonts into
- * @return {Object} enhanced renderer
- */
 function addFontRenderer(renderer, mountNode) {
   renderer.fontRenderer = createRenderer()
 

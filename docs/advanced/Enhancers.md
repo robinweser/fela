@@ -10,4 +10,4 @@ Coming soon.
 ### Related
 * [Renderer Configuration](RendererConfiguration.md)
 * [List of enhancers](../introduction/Ecosystem.md#enhancers)
-* [API reference - `enhance`](../api/enhance.md)
+* [API reference - `enhance`](../api/fela/enhance.md)

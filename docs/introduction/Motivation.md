@@ -18,9 +18,10 @@ Like many powerful and widely adopted libaries such as [React](https://github.co
 There is one important feature of react-look which turned out to be really useful in real applications: **dynamic styling**.
 There it seems quite logical that Fela is designed to be dynamic by default.
 
-Despite many benefical [side effects](Benefits.md), Fela actually only has two major goals.
+Despite many benefical [side effects](Benefits.md), Fela actually only has three major goals.
 
 1. Make styling **dynamic by default**
 2. Be **framework-agnostic**, that is being used with any view library
+3. Be **high performant** 
 
 Read about the [principles](Principles.md) to understand how and why Fela is dynamic by default.

@@ -6,12 +6,11 @@ In general, our renderer accepts a config object. The following table shows each
 
 We might introduce more configuration options with future releases, so be sure to frequently check for updates.
 
-| Option | Value | Default |Description |
+| Option | Value | Default | Description |
 | ------ | ------ | ---------|---|
 |`plugins` | `function[]` |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
-|`prettySelectors`<br>*(development only)* | `boolean` | `false`<br> *(always in production)*|  Renders class selectors based on the function name of the style rule. *e.g. `const menuBar = () => ({})` will output `menuBar__c1`*. |
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
 
 ## Example
@@ -48,18 +47,7 @@ const keyframe = props => ({
   }
 })
 
-const prettyRule = props => ({
-  color: 'red',
-  '@media (min-height: 500px)': {
-    color: 'green'
-  },
-  '@media (min-height: 300px)': {
-    color: 'blue'
-  }
-})
-
 renderer.renderKeyframe(keyframe, { height: 100 })
-renderer.renderRule(prettyRule)
 
 console.log(renderer.renderToString())
 ```
@@ -95,22 +83,6 @@ console.log(renderer.renderToString())
     height: 100em
   }
 }
-
-.prettyRule__c2 {
-  color: red  
-}
-
-@media (min-height: 300px) {
-  .prettyRule__c2 {
-    color: blue
-  }
-}
-
-@media (min-height: 500px) {
-  .prettyRule__c2 {
-    color: green  
-  }
-}
 ```
 
 <br>
@@ -120,4 +92,4 @@ console.log(renderer.renderToString())
 ### Related
 * [Plugins](Plugins.md)
 * [Enhancers](Enhancers.md)
-* [API reference - `createRenderer`](../api/createRenderer.md)
+* [API reference - `createRenderer`](../api/fela/createRenderer.md)

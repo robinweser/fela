@@ -1,0 +1,25 @@
+{
+  "name": "fela-layout-debugger",
+  "version": "4.0.1",
+  "description": "Fela enhancer to debug app layouts",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-enhancer",
+    "devTool",
+    "debugger",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "4.0.1"
+  }
+}

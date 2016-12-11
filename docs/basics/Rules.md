@@ -106,41 +106,13 @@ const rule = props => ({
 })
 ```
 
-#### 5. Child Selector
-Fela also supports a special syntax for child element styling know as [child selectors](https://developer.mozilla.org/es/docs/Web/CSS/Child_selectors) in CSS.
-They should only be used for third-party class manipulation or semantic problems e.g. *parent component which defines how child components are ordered depending on some state.*
-
-> **Note**: Use child selectors with caution as they add complexity to your styling and have higher specificity as other selectors.
-
-```javascript
-const rule = props => ({
-  color: 'red',
-  '> h1': {
-    color: 'blue',
-    // they can contain nested objects e.g.
-    // > h1:hover
-    ':hover': {
-      color: 'black'
-    }
-  },
-  '> #hardcoded': {
-    color: 'yellow',
-    // they can be nested to achieve e.g.
-    // > #hardcoded > .third-party
-    '.third-party': {
-      color: 'purple'
-    }
-  }
-})
-```
-
 <br>
 
 ---
 
 ### Related
 * [Combined rules](../advanced/CombinedRules.md)
-* [API reference - `Renderer.renderRule`](../api/Renderer.md#renderrulerule-props-defaultprops)
+* [API reference - `Renderer.renderRule`](../api/fela/Renderer.md#renderrulerule-props-defaultprops)
 * [FAQ - Rules](../FAQ.md#rules)
 
 #### Tools

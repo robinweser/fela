@@ -67,13 +67,13 @@ server.listen(8080, 'localhost')
 <html>
 <head>
   <style id="stylesheet">
-    .c1{font-size:15px}.c2{color:blue}
+    .a{color:blue}.b{font-size:15px}
   </style>
   <title>Fela - Server Rendering</title>
 </head>
 <body>
   <div id="app">
-    <div class="c1 c2">
+    <div class="a b">
       Hello World
     </div>
   </div>
@@ -86,4 +86,4 @@ server.listen(8080, 'localhost')
 ---
 
 ### Related
-* [API reference - `Renderer.renderToString`](../api/Renderer.md#rendertostring)
+* [API reference - `Renderer.renderToString`](../api/fela/Renderer.md#rendertostring)

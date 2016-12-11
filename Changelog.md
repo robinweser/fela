@@ -1,6 +1,19 @@
 # Changelog
 
 ## 4.0
+
+#### 4.1.0
+This release ships a lot of refactored code which lead to smaller package sizes, simpler and more readable code as well as higher performance.
+
+* moved `render` into separate `fela-dom` package
+* use atomic CSS design to improve performance and reuse styles on declaration base
+* added [fela-style-debugger](packages/fela-style-debugger) which replaces  [fela-plugin-debug-layout](packages/fela-plugin-debug-layout)
+* removed `defaultProps` from `renderRule` as they now are obsolete
+* added `exclude` option to `fela-plugin-isolation` ( [#126](https://github.com/rofrischmann/fela/issues/126) )
+
+
+------
+
 #### 4.0.1
 * fixed a bug where dynamic rules missed the static className in return ( [#151](https://github.com/rofrischmann/fela/issues/151) )
 
@@ -25,7 +38,6 @@ While the changes in this version won't provide any "visible" improvements, actu
 * *[react-fela]* added `passThrough` prop to `createComponent` to dynamically pass props to the underlaying element
 
 #### 3.0.7
-##### Improvements
 * Improved className readability when using `prettySelectors` ( [#98](https://github.com/rofrischmann/fela/issues/98) )
 * *[react-fela]* `createComponent` now uses the `rule.name` as `displayName` ( [#99](https://github.com/rofrischmann/fela/issues/99) )
 
@@ -33,27 +45,23 @@ While the changes in this version won't provide any "visible" improvements, actu
 ##### Infrastructure
 With this version, all packages have been moved to the main repository. Moved packages are **react-fela**, **inferno-fela** and **fela-stylesheet**. This helps to maintain the library and all its packages in a single place.
 
-#### Improvements
+##### Improvements
 * *[react-fela]* `createComponent` auto passes `style`, `id` and `className`
 * *[react-fela]* `connect` invokes the component name for improved CSS debugging
 
 #### 3.0.5
-##### Improvements
 * proper className prefixing abilities ( [#96](https://github.com/rofrischmann/fela/issues/96) )
 * combined rules are named `combined` with `prettySelectors` set to `true`
 
 #### 3.0.4
-##### Improvements
 * added [fela-plugin-placeholder-prefixer](packages/fela-plugin-placeholder-prefixer) which adds all prefixes to the `::placeholder` pseudo element ( [#95](https://github.com/rofrischmann/fela/issues/95) )
 * added unit per property option to [fela-plugin-unit](packages/fela-plugin-placeholder-unit) ( [#96](https://github.com/rofrischmann/fela/issues/96) )
 
 #### 3.0.2
-##### Improvements
 * added additional information to change objects that get emitted
 * added [fela-logger](packages/fela-logger) which provides advanced logging ( [#93](https://github.com/rofrischmann/fela/issues/93) )
 
 #### 3.0.1
-##### Improvements
 * added `prettySelectors` option to the renderer to enable human readable classNames while in a development environment. ( [#89](https://github.com/rofrischmann/fela/pull/89) )
 * added [fela-plugin-debug-layout](packages/fela-plugin-debug-layout) which adds colored outlines to every element to debug styles
 

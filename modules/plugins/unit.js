@@ -12,7 +12,7 @@ function addUnitIfNeeded(property, value, unit) {
 }
 
 function addUnit(style, unit, propertyMap) {
-  Object.keys(style).forEach(property => {
+  for (let property in style) {
     if (!isUnitlessCSSProperty(property)) {
 
       const value = style[property]
@@ -25,7 +25,7 @@ function addUnit(style, unit, propertyMap) {
         style[property] = addUnitIfNeeded(property, value, propertyUnit)
       }
     }
-  })
+  }
 
   return style
 }

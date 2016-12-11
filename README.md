@@ -10,7 +10,7 @@ Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/p
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-3.06kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.54kb-brightgreen.svg">
 <img alt="npm version" src="https://badge.fury.io/js/fela.svg">
 <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
 
@@ -20,7 +20,7 @@ Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/p
 ```sh
 npm i --save fela
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can `npm install` all packages. <br>
+Assuming you are using [npm](https://www.npmjs.com) as your package manager you can `npm install` all packages. <br>
 Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [unpkg](https://unpkg.com/).
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
@@ -47,7 +47,8 @@ Fela is all about rendering styles, especially so called rules. A universal rend
 The following example illustrates the key parts of Fela though it only shows the very basics.
 
 ```javascript
-import { createRenderer, render } from 'fela'
+import { createRenderer } from 'fela'
+import { render } from 'fela-dom'
 
 // rules are just plain functions of props
 // returning a valid object of style declarations
@@ -70,14 +71,16 @@ const rule = props => ({
   }
 })
 
-// Creates a new renderer to render styles
+// creates a new renderer to render styles
 const renderer = createRenderer()
 
-// Rendering the rule returns a className reference
+// rendering the rule returns a className reference
 // which can be attached to any element
 const className = renderer.renderRule(rule, { fontSize: 12 }))
 
-console.log(className) // => c1 c2
+// it uses atomic css design to reuse styles
+// on declaration base and to keep the markup minimal
+console.log(className) // => a b c d e f h
 
 // renders all styles into the DOM
 render(renderer, mountNode)
@@ -112,19 +115,19 @@ The following list shows a quick overview of all existing packages.
 | Package | Dependencies | Downloads |
 | --- | --- | --- |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela">fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-dom">fela-dom</a> | <img src="https://david-dm.org/rofrischmann/fela-dom.svg"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-dom.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-native">fela-native</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-native"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-native.svg"> |
 | **Bindings** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/react-fela">react-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/react-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg"> |
 | **Tools** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-stylesheet">fela-stylesheet</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-stylesheet"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-stylesheet.svg"> |
 | **Plugins** |  |  |
-| <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-debug-layout">fela-plugin-debug-layout</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-debug-layout"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-debug-layout.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property">fela-plugin-custom-property</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-custom-property"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-custom-property.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-dynamic-prefixer">fela-plugin-dynamic-prefixer</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-dynamic-prefixer"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-dynamic-prefixer.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend">fela-plugin-extend</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-extend"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-extend.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-fallback-value">fela-plugin-fallback-value</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-fallback-value"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-fallback-value.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-friendly-pseudo-class">fela-plugin-friendly-pseudo-class</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-friendly-pseudo-class"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-friendly-pseudo-class.svg"> |
-| <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-isolation">fela-plugin-isolation</a><br><img src="https://github.com/rofrischmann/doc-badges/blob/master/png/experimental.png" height="17px"> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-isolation"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-isolation.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-isolation">fela-plugin-isolation</a>| <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-isolation"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-isolation.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-logger">fela-plugin-logger</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-logger"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-logger.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-lvha">fela-plugin-lvha</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-lvha"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-lvha.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-placeholder-prefixer">fela-plugin-placeholder-prefixer</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-plugin-placeholder-prefixer"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-placeholder-prefixer.svg"> |
@@ -138,6 +141,7 @@ The following list shows a quick overview of all existing packages.
 | **Enhancers** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier">fela-beautifier</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-beautifier"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-beautifier.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer">fela-font-renderer</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-font-renderer"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-font-renderer.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-layout-debugger">fela-layout-debugger</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-layout-debugger"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-layout-debugger.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-logger">fela-logger</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-logger"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-logger.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-perf">fela-perf</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-perf"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-perf.svg"> |
 

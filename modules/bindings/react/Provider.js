@@ -1,6 +1,6 @@
 /* @flow weak */
 import { Component, PropTypes, Children } from 'react'
-import render from '../../render'
+import render from '../../dom/render'
 
 export default class Provider extends Component {
   static propTypes =  { renderer: PropTypes.object };

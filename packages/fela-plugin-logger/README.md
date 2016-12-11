@@ -13,7 +13,7 @@ This plugin is intended to be used to debug style processing steps.
 ```sh
 npm i --save fela-plugin-logger
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package mananger you can just `npm install`.<br>
+Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginLogger` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
@@ -31,26 +31,6 @@ import logger from 'fela-plugin-logger'
 
 const renderer = createRenderer({
   plugins: [ logger() ]
-})
-```
-
-### Configuration
-##### Options
-| Option | Value | Default | Description |
-| --- | --- | --- | --- |
-| `logMetaData` | *(boolean)* | `false` | also logs available meta data |
-
-##### Example
-```javascript
-import { createRenderer } from 'fela'
-import logger from 'fela-plugin-logger'
-
-const loggerPlugin = logger({
-  logMetaData: true
-})
-
-const renderer = createRenderer({
-  plugins: [ loggerPlugin ]
 })
 ```
 

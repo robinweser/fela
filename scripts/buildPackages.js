@@ -13,6 +13,11 @@ const packages = {
     entry: 'index.js',
     dependencies: true
   },
+  'fela-dom': {
+    name: 'FelaDOM',
+    entry: 'dom/index.js',
+    dependencies: false
+  },
   'fela-plugin-extend': {
     name: 'FelaPluginExtend',
     entry: 'plugins/extend.js',
@@ -78,11 +83,6 @@ const packages = {
     entry: 'plugins/isolation.js',
     dependencies: false
   },
-  'fela-plugin-debug-layout': {
-    name: 'FelaPluginDebugLayout',
-    entry: 'plugins/debugLayout.js',
-    dependencies: false
-  },
   'fela-preset-web': {
     name: 'FelaPresetWeb',
     entry: 'presets/web.js',
@@ -92,6 +92,11 @@ const packages = {
     name: 'FelaPresetDev',
     entry: 'presets/dev.js',
     dependencies: true
+  },
+  'fela-layout-debugger': {
+    name: 'FelaLayoutDebugger',
+    entry: 'enhancers/layoutDebugger.js',
+    dependencies: false
   },
   'fela-beautifier': {
     name: 'FelaBeautifier',

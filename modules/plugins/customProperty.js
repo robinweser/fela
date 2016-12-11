@@ -1,6 +1,6 @@
 /* @flow weak */
 function customProperty(style, properties) {
-  Object.keys(style).forEach(property => {
+  for (let property in style) {
     const value = style[property]
     if (properties[property]) {
       Object.assign(style, properties[property](value))
@@ -10,7 +10,7 @@ function customProperty(style, properties) {
     if (value instanceof Object && !Array.isArray(value)) {
       style[property] = customProperty(value, properties)
     }
-  })
+  }
 
   return style
 }
