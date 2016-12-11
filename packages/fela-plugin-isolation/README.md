@@ -31,7 +31,31 @@ const renderer = createRenderer({
 })
 ```
 
+### Configuration
+##### Parameters
+| Parameter | Value | Default | Description |
+| --- | --- | --- | --- |
+| exclude | *(Array*) | `[]` | CSS properties that will not be isolated |
+
+##### Example
+```javascript
+import { createRenderer } from 'fela'
+import isolation from 'fela-plugin-isolation'
+
+const isolationPlugin = isolation({
+  exclude: [
+    'boxSizing',
+    'display'
+  ]
+})
+
+const renderer = createRenderer({
+  plugins: [ isolationPlugin ]
+})
+```
+
 ## Example
+Using the above example code:
 #### Input
 ```javascript
 {
@@ -43,6 +67,8 @@ const renderer = createRenderer({
 ```javascript
 {
   all: 'initial',
+  boxSizing: 'inherit',
+  display: 'inherit',
   fontSize: 15,
   color: 'red'
 }
@@ -54,9 +80,9 @@ To disable style isolation for single rules, simply add the `isolation: false` p
 ##### Example
 ```javascript
 const rule = props => ({
+  isolation: false,
   fontSize: 15,
-  color: 'red',
-  isolation: false
+  color: 'red'
 })
 ```
 
