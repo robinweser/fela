@@ -9,6 +9,8 @@ This release ships a lot of refactored code which lead to smaller package sizes,
 * use atomic CSS design to improve performance and reuse styles on declaration base
 * added [fela-style-debugger](packages/fela-style-debugger) which replaces  [fela-plugin-debug-layout](packages/fela-plugin-debug-layout)
 * removed `defaultProps` from `renderRule` as they now are obsolete
+* added `exclude` option to `fela-plugin-isolation` ( [#126](https://github.com/rofrischmann/fela/issues/126) )
+
 
 ------
 
