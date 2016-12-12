@@ -58,5 +58,5 @@ ReactDOM.render(
   <Title onClick={greet} passThrough={ [ 'onClick' ]}>Hello World</Title>,
   document.getElementById('app')
 )
-// => <div className="c0" onclick="...">Hello World</div>
+// => <div className="a" onclick="...">Hello World</div>
 ```
