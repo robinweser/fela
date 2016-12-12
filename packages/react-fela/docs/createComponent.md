@@ -6,7 +6,6 @@ This HoCs ([Higher-order Components](https://medium.com/@dan_abramov/mixins-are-
 1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
 2. `type` (*string?|[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?*): React Component or HTML element which is used as the render base element. Defaults to `div`.
 3. `passThroughProps` (*Array?*): A list of props that get passed to the underlying element.
-3. `defaultProps` (*Object?*): An object containing props used to render the static subset. *(Themes get automatically included)*
 
 ## Returns
 (*Function*): Stateless functional React component.
@@ -29,7 +28,7 @@ ReactDOM.render(
   <Title fontSize={23} color='red' data-foo='bar' onClick={greet}>Hello World</Title>,
   document.getElementById('app')
 )
-// => <div className="c1 c2" data-foo="bar" onclick="...">Hello World</div>
+// => <div className="a b c" data-foo="bar" onclick="...">Hello World</div>
 ```
 
 ## Passing props
