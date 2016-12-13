@@ -43,6 +43,8 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
 
+### Components
+* [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components
 ### Tools
 * [fela-stylesheet](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-stylesheet): Organize your rules grouped StyleSheets
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles

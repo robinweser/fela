@@ -44,7 +44,20 @@ renderer.renderRule(rule) // => a c
 ### Tips & Tricks
 To write more advanced and/or simpler rules there are some helpful tips & tricks you might want to know and use:
 
-* **Optional props & Default values**<br>
+* **Optional props**<br>
+Many rules define CSS declarations that semantically belong together e.g. `alignItems` and `justifyContent`. Still, you might not want to use both every time. Therefore, Fela supports optional props. If a value is not set and thus `undefined` or a string containing `undefined` it is simply removed by default.
+
+```javascript
+const rule = props => ({
+  justifyContent: props.justify,
+  alignItems: props.align
+})
+
+renderer.renderRule(rule, { justifyContent: 'center' }) // => a
+// .a{justify-content:center}
+```
+
+* **Default declarations**<br>
 Sometimes you do not pass all props required to completely resolve all style declarations, but want to use a default value in order to not produce any invalid CSS markup. You can achieve this in two ways. Either with ECMA2015 [default function parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters) or with the logical OR (`||`) operator.
 
 ```javascript
@@ -54,12 +67,9 @@ const rule = ({ color = 'red' } = {}) => ({
 })
 
 // OR operator
-const rule = props => {
-  props = props || {}
-  return {
-    color: props.color || 'red'
-  }
-}
+const rule = props => ({
+  color: props.color || 'red'
+})
 
 rule({ color: 'blue' }) // => { color: 'blue' }
 rule({ }) // => { color: 'red' }
@@ -69,7 +79,7 @@ rule({ }) // => { color: 'red' }
 Some values might only be applied, if a certain condition is fulfilled. Instead of complex and big `if` statements you can use the ternary operator.
 
 ```javascript
-const rule = ({ type } = {}) => ({
+const rule = ({ type }) => ({
   color: type === 'error' ? 'red' : 'green'
 })
 

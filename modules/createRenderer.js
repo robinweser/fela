@@ -15,6 +15,7 @@ import generateStaticReference from './utils/generateStaticReference'
 import isAttributeSelector from './utils/isAttributeSelector'
 import isPseudoSelector from './utils/isPseudoSelector'
 import isMediaQuery from './utils/isMediaQuery'
+import isUndefinedValue from './utils/isUndefinedValue'
 
 import applyMediaRulesInOrder from './utils/applyMediaRulesInOrder'
 import processStyleWithPlugins from './utils/processStyleWithPlugins'
@@ -72,11 +73,18 @@ export default function createRenderer(config = { }) {
             // TODO: warning
           }
         } else {
-          const delcarationReference = media + pseudo + property + value
-          if (!renderer.cache[delcarationReference]) {
+          const declarationReference = media + pseudo + property + value
+          if (!renderer.cache[declarationReference]) {
+            // we remove undefined values to enable
+            // usage of optional props without side-effects
+            if (isUndefinedValue(value)) {
+              renderer.cache[declarationReference] = ''
+              continue;
+            }
+
             const className = generateClassName(++renderer.uniqueRuleIdentifier)
 
-            renderer.cache[delcarationReference] = className
+            renderer.cache[declarationReference] = className
 
             const cssDeclaration = generateCSSDeclaration(property, value)
             const selector = generateCSSSelector(className, pseudo)
@@ -99,7 +107,7 @@ export default function createRenderer(config = { }) {
             })
           }
 
-          classNames += ' ' + renderer.cache[delcarationReference]
+          classNames += ' ' + renderer.cache[declarationReference]
         }
       }
 
