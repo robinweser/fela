@@ -1,12 +1,14 @@
 /* @flow weak */
 import prefix from 'inline-style-prefixer/static'
 
-import { resolveFallbackValues } from './fallbackValue'
+import fallbackValue from './fallbackValue'
 import cssifyObject from '../utils/cssifyObject'
+
+const resolveFallbackValues = fallbackValue()
 
 // TODO: refactor this messy piece of code
 // into clean, performant equivalent
-export function addVendorPrefixes(style) {
+function addVendorPrefixes(style) {
   const prefixedStyle = { }
 
   for (let property in style) {

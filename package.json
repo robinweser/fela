@@ -1,7 +1,7 @@
 {
   "private": true,
-  "version": "4.1.0",
-  "description": "Universal & Dynamic Styling in JavaScript",
+  "version": "4.1.1",
+  "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
   "license": "MIT",

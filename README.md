@@ -14,7 +14,7 @@ Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/p
 <img alt="npm version" src="https://badge.fury.io/js/fela.svg">
 <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
 
-> [Try it on JSFiddle!](https://jsfiddle.net/mzrn1yvy/16/)
+> [Try it on JSFiddle!](https://jsfiddle.net/mzrn1yvy/18/)
 
 ## Installation
 ```sh
