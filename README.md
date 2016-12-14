@@ -31,16 +31,17 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 
 ## Features
 * Dynamic styling
-* Pseudo classes & Media queries
-* Vendor prefixing
-* Component theming
-* Many useful plugins
 * Universal rendering
-* Local namespace
 * Dead code elimination
 * High performance
 * Minimal CSS output
 * Framework-agnostic
+* Pseudo classes & Media queries
+* Child & Attribute selectors
+* Vendor prefixing
+* Component theming
+* Many useful plugins
+* Local namespace
 
 ## The Gist
 Fela is all about rendering styles, especially so called rules. A universal renderer will help us to render styles of all kind. Once rendered into a DOM node, a change listener will subscribe to changes and automatically add new rules.<br>

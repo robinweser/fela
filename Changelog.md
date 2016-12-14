@@ -2,6 +2,12 @@
 
 ## 4.0
 
+#### 4.1.1
+* added support for optional declarations by automatically removing `undefined` values and string values including `undefined` to support
+* fixed a typo that lead to false logs using [fela-logger](packages/fela-logger)
+* safe support for child selectors using the `>` special key
+* *[react-fela]* treating id as a first class attribute which is passed through by default ( [#158](https://github.com/rofrischmann/fela/issues/158) )
+
 #### 4.1.0
 This release ships a lot of refactored code which lead to smaller package sizes, simpler and more readable code as well as higher performance.
 
