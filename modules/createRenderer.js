@@ -14,6 +14,7 @@ import generateStaticReference from './utils/generateStaticReference'
 
 import isAttributeSelector from './utils/isAttributeSelector'
 import isPseudoSelector from './utils/isPseudoSelector'
+import isChildSelector from './utils/isChildSelector'
 import isMediaQuery from './utils/isMediaQuery'
 import isUndefinedValue from './utils/isUndefinedValue'
 
@@ -64,7 +65,7 @@ export default function createRenderer(config = { }) {
       for (let property in style) {
         const value = style[property]
         if (value instanceof Object) {
-          if (isPseudoSelector(property) || isAttributeSelector(property)) {
+          if (isPseudoSelector(property) || isAttributeSelector(property) || isChildSelector(property)) {
             classNames += renderer._renderStyleToClassNames(value, pseudo + property, media)
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
@@ -79,7 +80,7 @@ export default function createRenderer(config = { }) {
             // usage of optional props without side-effects
             if (isUndefinedValue(value)) {
               renderer.cache[declarationReference] = ''
-              continue;
+              continue
             }
 
             const className = generateClassName(++renderer.uniqueRuleIdentifier)

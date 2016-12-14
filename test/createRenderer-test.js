@@ -94,6 +94,16 @@ describe('Renderer', () => {
       expect(className).to.eql('')
     })
 
+    it('should remove undefined values', () => {
+      const rule = props => ({ color: props.color, fontSize: '15px' })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule)
+
+      expect(className).to.eql('a')
+      expect(renderer.rules).to.eql('.a{font-size:15px}')
+    })
+
     it('should allow nested props', () => {
       const rule = props => ({
         color: props.theme.color,
@@ -136,6 +146,20 @@ describe('Renderer', () => {
       const className = renderer.renderRule(rule)
 
       expect(renderer.rules).to.eql('.a{color:red}.b[bool=true]{color:blue}')
+    })
+
+    it('should render attribute selectors', () => {
+      const rule = props => ({
+        color: 'red',
+        '>div': {
+          color: 'blue'
+        }
+      })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule)
+
+      expect(renderer.rules).to.eql('.a{color:red}.b>div{color:blue}')
     })
 
     it('should render media queries', () => {
