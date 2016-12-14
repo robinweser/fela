@@ -260,10 +260,11 @@
           theme = _ref2.theme;
       var children = _ref.children,
           className = _ref.className,
+          id = _ref.id,
           style = _ref.style,
           _ref$passThrough = _ref.passThrough,
           passThrough = _ref$passThrough === undefined ? [] : _ref$passThrough,
-          ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'style', 'passThrough']);
+          ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'id', 'style', 'passThrough']);
 
 
       // filter props to extract props to pass through
@@ -273,6 +274,7 @@
       }, {});
 
       componentProps.style = style;
+      componentProps.id = id;
 
       var cls = className ? className + ' ' : '';
       ruleProps.theme = theme || {};

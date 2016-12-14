@@ -280,8 +280,17 @@
   }
 
   /*  weak */
+  function isChildSelector(property) {
+    return property.charAt(0) === '>';
+  }
+
+  /*  weak */
   function isMediaQuery(property) {
     return property.substr(0, 6) === '@media';
+  }
+
+  function isUndefinedValue(value) {
+    return value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1;
   }
 
   /*  weak */
@@ -369,7 +378,7 @@
         for (var property in style) {
           var value = style[property];
           if (value instanceof Object) {
-            if (isPseudoSelector(property) || isAttributeSelector(property)) {
+            if (isPseudoSelector(property) || isAttributeSelector(property) || isChildSelector(property)) {
               classNames += renderer._renderStyleToClassNames(value, pseudo + property, media);
             } else if (isMediaQuery(property)) {
               var combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim());
@@ -378,11 +387,18 @@
               // TODO: warning
             }
           } else {
-            var delcarationReference = media + pseudo + property + value;
-            if (!renderer.cache[delcarationReference]) {
+            var declarationReference = media + pseudo + property + value;
+            if (!renderer.cache[declarationReference]) {
+              // we remove undefined values to enable
+              // usage of optional props without side-effects
+              if (isUndefinedValue(value)) {
+                renderer.cache[declarationReference] = '';
+                continue;
+              }
+
               var className = generateClassName(++renderer.uniqueRuleIdentifier);
 
-              renderer.cache[delcarationReference] = className;
+              renderer.cache[declarationReference] = className;
 
               var cssDeclaration = generateCSSDeclaration(property, value);
               var selector = getCSSSelector(className, pseudo);
@@ -405,7 +421,7 @@
               });
             }
 
-            classNames += ' ' + renderer.cache[delcarationReference];
+            classNames += ' ' + renderer.cache[declarationReference];
           }
         }
 

@@ -33,8 +33,10 @@ ReactDOM.render(
 
 ## Passing props
 Using the `passThroughProps` parameter allows us to pass props to the underlying DOM element. This is helpful if you want to pass e.g. events such as `onClick`. There are some props that are automatically passed and thus do not need to be specified explicitly:
+
 * `className`
 * `style`
+* `id`
 
 If passing a className, it will automatically be concatenated with the Fela generated className. This allows composing multiple Fela Components.
 

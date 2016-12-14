@@ -1,6 +1,6 @@
 {
   "name": "fela-beautifier",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Fela enhancer to beautify CSS output",
   "main": "index.js",
   "files": [
@@ -26,6 +26,6 @@
     "cssbeautify": "0.3.1"
   },
   "peerDependencies": {
-    "fela": "4.1.0"
+    "fela": "4.1.1"
   }
 }

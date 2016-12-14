@@ -581,7 +581,7 @@
         }
 
         var selector = change.selector || change.fontFamily || change.name;
-        var css = change.cssDeclaration || change.keyframe || change.fontFace || change.css;
+        var css = change.declaration || change.keyframe || change.fontFace || change.css;
         var formattedCSS = options.format ? cssbeautify$1(css) : css;
         var isMedia = change.media && change.media.length > 0;
 

@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.FelaPluginPrefixer = global.FelaPluginPrefixer || {})));
-}(this, function (exports) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global.FelaPluginPrefixer = factory());
+}(this, function () { 'use strict';
 
   var babelHelpers = {};
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -750,18 +750,22 @@
 
   var prefix = (_static && typeof _static === 'object' && 'default' in _static ? _static['default'] : _static);
 
-  function resolveFallbackValues(style) {
+  function resolveFallbackValues$1(style) {
     for (var property in style) {
       var value = style[property];
       if (Array.isArray(value)) {
         style[property] = value.join(';' + hyphenateStyleName(property) + ':');
       } else if (value instanceof Object) {
-        style[property] = resolveFallbackValues(value);
+        style[property] = resolveFallbackValues$1(value);
       }
     }
 
     return style;
   }
+
+  var fallbackValue = (function () {
+    return resolveFallbackValues$1;
+  });
 
   function generateCSSDeclaration(property, value) {
     return hyphenateStyleName(property) + ':' + value;
@@ -802,6 +806,8 @@
     return css;
   }
 
+  var resolveFallbackValues = fallbackValue();
+
   // TODO: refactor this messy piece of code
   // into clean, performant equivalent
   function addVendorPrefixes(style) {
@@ -830,8 +836,7 @@
     return addVendorPrefixes;
   });
 
-  exports.addVendorPrefixes = addVendorPrefixes;
-  exports['default'] = prefixer;
+  return prefixer;
 
 }));
 //# sourceMappingURL=fela-plugin-prefixer.js.map

@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.FelaPluginFallbackValue = global.FelaPluginFallbackValue || {})));
-}(this, function (exports) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global.FelaPluginFallbackValue = factory());
+}(this, function () { 'use strict';
 
   var babelHelpers = {};
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -126,8 +126,7 @@
     return resolveFallbackValues;
   });
 
-  exports.resolveFallbackValues = resolveFallbackValues;
-  exports['default'] = fallbackValue;
+  return fallbackValue;
 
 }));
 //# sourceMappingURL=fela-plugin-fallback-value.js.map

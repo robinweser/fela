@@ -808,13 +808,13 @@
 
   var prefix = (_static && typeof _static === 'object' && 'default' in _static ? _static['default'] : _static);
 
-  function resolveFallbackValues(style) {
+  function resolveFallbackValues$1(style) {
     for (var property in style) {
       var value = style[property];
       if (Array.isArray(value)) {
         style[property] = value.join(';' + require$$0$4(property) + ':');
       } else if (value instanceof Object) {
-        style[property] = resolveFallbackValues(value);
+        style[property] = resolveFallbackValues$1(value);
       }
     }
 
@@ -822,7 +822,7 @@
   }
 
   var fallbackValue = (function () {
-    return resolveFallbackValues;
+    return resolveFallbackValues$1;
   });
 
   function generateCSSDeclaration(property, value) {
@@ -863,6 +863,8 @@
 
     return css;
   }
+
+  var resolveFallbackValues = fallbackValue();
 
   // TODO: refactor this messy piece of code
   // into clean, performant equivalent
