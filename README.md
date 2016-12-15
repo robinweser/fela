@@ -77,7 +77,7 @@ const renderer = createRenderer()
 
 // rendering the rule returns a className reference
 // which can be attached to any element
-const className = renderer.renderRule(rule, { fontSize: 12 }))
+const className = renderer.renderRule(rule, { fontSize: 12 })
 
 // it uses atomic css design to reuse styles
 // on declaration base and to keep the markup minimal
