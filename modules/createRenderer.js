@@ -34,6 +34,7 @@ export default function createRenderer(config = { }) {
     // prettySelectors is currently useless, might reimplement better DX classNames later
     // prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
     mediaQueryOrder: config.mediaQueryOrder || [ ],
+    selectorPrefix: config.selectorPrefix || '',
 
     clear() {
       renderer.fontFaces = ''
@@ -83,7 +84,7 @@ export default function createRenderer(config = { }) {
               continue
             }
 
-            const className = generateClassName(++renderer.uniqueRuleIdentifier)
+            const className = renderer.selectorPrefix + generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className
 

@@ -12,6 +12,7 @@ We might introduce more configuration options with future releases, so be sure t
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
+|`selectorPrefix`| `string` | `''`| Prepend a static prefix to every every generated class and keyframe |
 
 ## Example
 ```javascript
@@ -31,7 +32,7 @@ const config = {
     '(min-height: 300px)',
     '(min-height: 500px)'
   ],
-  prettySelectors: true
+  selectorPrefix: 'fela_'
 }
 
 const renderer = createRenderer(config)
@@ -47,12 +48,18 @@ const keyframe = props => ({
   }
 })
 
+const rule = props => ({
+  color: props.color,
+  fontSize: 12
+})
+
+renderer.renderRule(rule, { color: 'red '})
 renderer.renderKeyframe(keyframe, { height: 100 })
 
 console.log(renderer.renderToString())
 ```
 ```CSS
-@-webkit-keyframes k1 {
+@-webkit-keyframes fela_k1 {
   from {
     width: -webkit-calc(100% - 50px);
     width: -moz-calc(100% - 50px);
@@ -68,7 +75,7 @@ console.log(renderer.renderToString())
   }
 }
 
-@keyframes k1 {
+@keyframes fela_k1 {
   from {
     width: -webkit-calc(100% - 50px);
     width: -moz-calc(100% - 50px);
@@ -82,6 +89,14 @@ console.log(renderer.renderToString())
     width: calc(50% - 50px);
     height: 100em
   }
+}
+
+.fela_a {
+  color: red
+}
+
+.fela_b {
+  font-size: 12px
 }
 ```
 

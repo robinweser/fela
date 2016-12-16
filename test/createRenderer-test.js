@@ -134,6 +134,16 @@ describe('Renderer', () => {
       expect(renderer.rules).to.eql('.a{color:red}.b:hover{color:blue}')
     })
 
+    it('should prefix classNames', () => {
+      const rule = props => ({ color: 'red' })
+
+      const renderer = createRenderer({ selectorPrefix: 'fela_' })
+      const className = renderer.renderRule(rule)
+
+      expect(renderer.rules).to.eql('.fela_a{color:red}')
+      expect(className).to.eql('fela_a')
+    })
+
     it('should render attribute selectors', () => {
       const rule = props => ({
         color: 'red',
