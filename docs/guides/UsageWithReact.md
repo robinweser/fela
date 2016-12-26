@@ -54,7 +54,7 @@ const title = props => ({
   color: props.color
 })
 
-const Header = ({ title, size, color }, { renderer }) => {
+const Header = ({ titleText, size, color }, { renderer }) => {
   const containerClassName = renderer.renderRule(container)
   const titleClassName = renderer.renderRule(title, {
     fontSize: size + 'px',
@@ -63,7 +63,7 @@ const Header = ({ title, size, color }, { renderer }) => {
 
   return (
     <header className={containerClassName}>
-      <h1 className={titleClassName}>{title}</h1>
+      <h1 className={titleClassName}>{titleText}</h1>
     </header>
   )
 }
@@ -71,7 +71,7 @@ const Header = ({ title, size, color }, { renderer }) => {
 Header.contextTypes = { renderer: PropTypes.object }
 
 // Usage example
-<Header title='Hello' color='red' size={17} />
+<Header titleText='Hello' color='red' size={17} />
 ```
 
 Yet it is does not really look convincing as we always have to add the `contextTypes`, mix the rendering process with our markup and always have to use the `context` parameter.<br>
