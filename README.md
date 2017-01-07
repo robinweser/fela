@@ -150,6 +150,8 @@ The following list shows a quick overview of all existing packages.
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>
 We also love to get feedback.
 
+## Community
+* [Aesthetic](https://github.com/milesj/aesthetic) - A React style and theme layer with Fela support.
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
