@@ -10,7 +10,7 @@ Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/p
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
 <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.92kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.90kb-brightgreen.svg">
 <img alt="npm version" src="https://badge.fury.io/js/fela.svg">
 <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
 
@@ -24,9 +24,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [unpkg](https://unpkg.com/).
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela@4.1.1/dist/fela.js"></script>
+<script src="https://unpkg.com/fela@4.1.2/dist/fela.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela@4.1.1/dist/fela.min.js"></script>
+<script src="https://unpkg.com/fela@4.1.2/dist/fela.min.js"></script>
 ```
 
 ## Features
@@ -108,6 +108,9 @@ render(renderer, mountNode)
 * [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
 
+## Community
+* [Aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
+
 ## Packages
 This repository is made of several separate packages including the core package. For convenience sake, we keep the package versions in sync. Therefore every package gets updated along with the core package, even if nothing changed within a particular package.
 <br><br>
@@ -149,9 +152,6 @@ The following list shows a quick overview of all existing packages.
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>
 We also love to get feedback.
-
-## Community
-* [Aesthetic](https://github.com/milesj/aesthetic) - A React style and theme layer with Fela support.
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

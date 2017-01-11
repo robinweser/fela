@@ -17,9 +17,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginLogger` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-logger@4.1.1/dist/fela-plugin-logger.js"></script>
+<script src="https://unpkg.com/fela-plugin-logger@4.1.2/dist/fela-plugin-logger.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-logger@4.1.1/dist/fela-plugin-logger.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-logger@4.1.2/dist/fela-plugin-logger.min.js"></script>
 ```
 
 ## Usage

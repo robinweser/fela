@@ -45,11 +45,13 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 ### Components
 * [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components
+
 ### Tools
 * [fela-stylesheet](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-stylesheet): Organize your rules grouped StyleSheets
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
 
 ### Utilities
+* [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
 * [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js): Transform your CSS to JavaScript at compile time
 * [classnames](https://github.com/JedWatson/classnames): Manage and combine multiple className values safely
 * [css-functions](https://github.com/cssinjs/css-functions): Functional API to create CSS functions including value validation
