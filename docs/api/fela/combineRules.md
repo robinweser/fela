@@ -1,7 +1,9 @@
 # `combineRules(...rules)`
 
 A common pattern when styling elements is to have some base styles which get applied to every instance as well as some extended styles which get added based on some condition. Just concatenating classNames may lead to specificity problems as the last rendered rule always wins.<br>
-To solve this issue, `combineRules` allows you to compose multiple rules into a single super selector.
+To solve this issue, `combineRules` allows you to compose multiple rules into a single super selector.<br>
+
+Combining rules actually is the best practice in terms of style composition as it prevents property specificity issues by default.
 
 ## Arguments
 1. `...rules` (*arguments*): Functions returning valid [style objects](../../basics/Rules.md#styleobject).
@@ -35,7 +37,3 @@ console.log(renderer.renderToString())
 // .c3{color:blue}
 // .c4{color:blue}.c5{font-size:12px}
 ```
-
-## Tips
-* Try to avoid `combineRules` if possible. If you are using `combineRules` excessively you might have to rethink and refactor your styling technique to achieve a more modular and simple one.
-* `combineRules` will always create a new rule which prevents using already cached sub-rules. Therefore it might negatively affect the rendering performance if you are using multiple combined rules.
