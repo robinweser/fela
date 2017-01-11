@@ -2,6 +2,10 @@
 
 ## 4.0
 
+#### 4.1.2
+* only use lowercase classNames to prevent issues in case sensitive modes ( [#167](https://github.com/rofrischmann/fela/issues/167) )
+* added `selectorPrefix` option to renderer ( [#162](https://github.com/rofrischmann/fela/issues/162) )
+
 #### 4.1.1
 * added support for optional declarations by automatically removing `undefined` values and string values including `undefined` to support
 * fixed a typo that lead to false logs using [fela-logger](packages/fela-logger)
