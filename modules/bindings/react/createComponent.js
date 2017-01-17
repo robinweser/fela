@@ -10,7 +10,7 @@ const getProps = (arrOrFunc, ruleProps) => {
       return output
     }, {});
   }
-  return typeof arrOrObj === 'object' ? arrOrObj : {}
+  return arrOrObj && typeof arrOrObj === 'object' ? arrOrObj : {}
 };
 
 export default function createComponent(rule, type = 'div', passThroughProps = []) {
