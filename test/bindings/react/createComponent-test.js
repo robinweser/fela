@@ -58,6 +58,20 @@ describe('Creating Components from Fela rules', () => {
     expect(element.props.onHover).to.eql(undefined)
   })
 
+  it('should pass all props to the element', () => {
+    const rule = props => ({ color: props.color, fontSize: 16 })
+    const component = createComponent(rule, 'div', props => props)
+
+    const renderer = createRenderer()
+
+    const element = component({ onClick: false, onHover: true }, {
+      renderer
+    })
+
+    expect(element.props.onClick).to.eql(false)
+    expect(element.props.onHover).to.not.eql(undefined)
+  })
+
   it('should only use passed props to render Fela rules', () => {
     const rule = props => ({
       color: props.foo && props.color,
