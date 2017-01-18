@@ -2,23 +2,24 @@
 import { createElement, PropTypes } from 'react'
 
 // Extract props by either an array ['key1', 'key2'] or a function props => { key1: props.key1 }
-const getProps = (arrOrFunc, ruleProps) => {
-  const arrOrObj = typeof arrOrFunc === 'function' ? arrOrFunc(ruleProps) : arrOrFunc
-  if (Array.isArray(arrOrObj)) {
-    return arrOrObj.reduce((output, prop) => {
+const getProps = (arg, ruleProps) => {
+  if (typeof arg === 'function') { // arg is a function
+    return getProps(arg(ruleProps), ruleProps)
+  } else if (Array.isArray(arg)) { // arg is an array
+    return arg.reduce((output, prop) => {
       output[prop] = ruleProps[prop]
       return output
-    }, {});
-  }
-  return arrOrObj && typeof arrOrObj === 'object' ? arrOrObj : {}
-};
+    }, {})
+  } else if (arg && typeof arg === 'object') { // arg is an obj
+    return arg
+  } return {} // arg is null or something else
+}
 
-export default function createComponent(rule, type = 'div', passThroughProps = []) {
-  const FelaComponent = ({ children, className, id, style, passThrough = [], ...ruleProps }, { renderer, theme }) => {
+export default function createComponent(rule, type = 'div', passThroughProps) {
+  const FelaComponent = ({ children, className, id, style, passThrough, ...ruleProps }, { renderer, theme }) => {
 
     // compose props from arrays or functions
-    const componentProps = { ...getProps(passThroughProps), ...getProps(passThrough) }
- 
+    const componentProps = { ...getProps(passThroughProps, ruleProps), ...getProps(passThrough, ruleProps) }
     componentProps.style = style
     componentProps.id = id
 
