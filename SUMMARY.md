@@ -21,6 +21,7 @@
   * [3.5. Global & Third-Party Styles](docs/advanced/StaticStyle.md)
   * [3.6. Combined Rules](docs/advanced/CombinedRules.md)
   * [3.7. Enhancers](docs/advanced/Enhancers.md)
+  * [3.8. Hot Reloading](docs/advanced/HotReloading.md)
 * [4. Usage Guides](docs/UsageGuides.md)
   * [4.1. Usage with React](docs/guides/UsageWithReact.md)
   * [4.2. Usage with React Native](docs/guides/UsageWithReactNative.md)

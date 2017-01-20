@@ -22,6 +22,6 @@ Despite many benefical [side effects](Benefits.md), Fela actually only has three
 
 1. Make styling **dynamic by default**
 2. Be **framework-agnostic**, that is being used with any view library
-3. Be **high performant** 
+3. Be **high performant**
 
 Read about the [principles](Principles.md) to understand how and why Fela is dynamic by default.
