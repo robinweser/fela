@@ -270,7 +270,6 @@ describe('Renderer', () => {
       renderer.renderStatic({ margin: 0, fontSize: '12px' }, 'html,body')
       renderer.renderStatic({ color: 'red' }, 'html,body')
 
-      console.log(renderer.cache)
       expect(renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')).to.eql(true)
       expect(renderer.cache.hasOwnProperty('html,body{"color":"red"}')).to.eql(true)
       expect(renderer.statics).to.eql('html,body{margin:0;font-size:12px}html,body{color:red}')
