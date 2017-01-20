@@ -1,6 +1,6 @@
 # Combined Rules
 
-Until now we only saw simple examples, each using only one rule per element, but in reality you often see multiple different CSS classes applied to a single element.
+Until now, we only saw simple examples, each using only one rule per element. In reality you often see multiple different CSS classes applied to a single element.
 
 Basically you can do the same with Fela too as you could just concatenate multiple rendered rules.
 
@@ -84,7 +84,7 @@ const elementBA = (
   </div>
 )
 ```
-It does not matter whether `ruleA` and `ruleB` get rendered later or if they won't get rendered at all. `ruleAB` and `ruleBA` are completely new rules which are not dependent on their base rules.
+It does not matter whether `ruleA` and `ruleB` get rendered first or if they won't get rendered at all. `ruleAB` and `ruleBA` are completely new rules which are not dependent on their base rules.
 
 
 <br>

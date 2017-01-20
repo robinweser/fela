@@ -6,7 +6,7 @@ It accepts either a valid CSS string or a basic style object with a custom selec
 
 ### Style Object
 If you prefer using style objects, do not forget to provide a selector as well.
-> **Note**: Style objects will also be processed by all applied plugins.
+> **Note**: Style objects will also be processed with all applied plugins.
 
 ```javascript
 import { createRenderer } from 'fela'
@@ -24,7 +24,7 @@ renderer.renderStatic(styleObject, 'html,body,#app')
 
 ### CSS String
 Rendering CSS strings is especially helpful if you want to use third-party or legacy styles written in CSS.<br>
-This method is **not recommended** as no further processing with plugins is done. It only be used to insert large third-party CSS files.
+This method is **not recommended as no further processing with plugins** is done. It only be used to insert large third-party CSS files.
 
 ```javascript
 import { createRenderer } from 'fela'

@@ -4,7 +4,7 @@ We have learned that the renderer is the universal interface to render basic sty
 Plugins are functions that take a style object, alter its shape and return a new style object, which in most cases is the mutated input itself.
 Before the resolved style object gets cached and transformed to CSS, it is piped through each plugin.
 
-### Use Cases
+### Use Case
 They are especially helpful to automate certain aspects of styling such as auto-prefixing. They are also very handy to improve the developer experience e.g. by automatically adding a unit like `px` to dimension values.
 
 ### Order Matters
@@ -12,7 +12,7 @@ Your style objects get piped from left to right. Always remember that the plugin
 
 
 ## Using Plugins
-To use plugins we need to add them to the renderer configuration directly. You can do this by passing a configuration object with the `plugins` key while creating your renderer.
+To use plugins we need to add them to the renderer configuration directly. You can do this by passing a configuration object using the `plugins` key while creating your renderer.
 
 ```javascript
 import { createRenderer } from 'fela'
@@ -27,7 +27,6 @@ const renderer = createRenderer(config)
 ```
 
 ### Example
-
 Lets say we want to automatically add vendor prefixes to all of our style objects. Luckily there is already a package called [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) which does exactly that.
 It turns out, to create the plugin we just need to create a function that takes our current styles and returns the prefixed styles. That's it.
 

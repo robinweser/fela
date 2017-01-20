@@ -95,7 +95,7 @@ const rule = props => ({
   '[checked="true"]': {
     color: 'yellow',
     // they can be nested to achieve e.g.
-    // [checked="true"][traget]
+    // [checked="true"][target]
     '[target]': {
       color: 'purple'
     }
@@ -106,7 +106,7 @@ const rule = props => ({
 })
 ```
 
-#### 5. Child Selector
+#### 5. Child Selectors
 Fela also supports a special syntax for child element styling know as [child selectors](https://developer.mozilla.org/es/docs/Web/CSS/Child_selectors) in CSS.
 They should only be used for third-party class manipulation or semantic problems e.g. *parent component which defines how child components are ordered depending on some state.*
 
@@ -127,8 +127,28 @@ const rule = props => ({
     color: 'yellow',
     // they can be nested to achieve e.g.
     // > #hardcoded > .third-party
-    '.third-party': {
+    '> .third-party': {
       color: 'purple'
+    }
+  }
+})
+```
+
+#### 6. Other Selectors
+If you are familiar with CSS, you may have noticed that this was just very small subset of CSS selectors. While we only support the above selectors for a reason, we also understand that there might be some edge cases (mostly with third-party libraries) where you want to use other selectors as well. Therefore we provide the `&`-prefix for nested selectors.
+
+> Warning: This is experimental. It basically renders the selector without any further validation.
+
+```javascript
+const rule = props => ({
+  color: 'red',
+  // .a .sub-class
+  '& .sub-class': {
+    color: 'blue',
+    // they can contain nested objects e.g.
+    // .a .sub-class:hover
+    ':hover': {
+      color: 'black'
     }
   }
 })
