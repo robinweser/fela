@@ -12,12 +12,11 @@ import generateCSSSelector from './utils/generateCSSSelector'
 import cssifyStaticStyle from './utils/cssifyStaticStyle'
 import generateStaticReference from './utils/generateStaticReference'
 
-import isAttributeSelector from './utils/isAttributeSelector'
-import isPseudoSelector from './utils/isPseudoSelector'
-import isChildSelector from './utils/isChildSelector'
 import isMediaQuery from './utils/isMediaQuery'
+import isNestedSelector from './utils/isNestedSelector'
 import isUndefinedValue from './utils/isUndefinedValue'
 
+import normalizeNestedProperty from './utils/normalizeNestedProperty'
 import applyMediaRulesInOrder from './utils/applyMediaRulesInOrder'
 import processStyleWithPlugins from './utils/processStyleWithPlugins'
 import toCSSString from './utils/toCSSString'
@@ -66,8 +65,8 @@ export default function createRenderer(config = { }) {
       for (let property in style) {
         const value = style[property]
         if (value instanceof Object) {
-          if (isPseudoSelector(property) || isAttributeSelector(property) || isChildSelector(property)) {
-            classNames += renderer._renderStyleToClassNames(value, pseudo + property, media)
+          if (isNestedSelector(property)) {
+            classNames += renderer._renderStyleToClassNames(value, pseudo + normalizeNestedProperty(property), media)
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
             classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery)
