@@ -158,7 +158,7 @@ describe('Renderer', () => {
       expect(renderer.rules).to.eql('.a{color:red}.b[bool=true]{color:blue}')
     })
 
-    it('should render attribute selectors', () => {
+    it('should render child selectors', () => {
       const rule = props => ({
         color: 'red',
         '>div': {
@@ -170,6 +170,38 @@ describe('Renderer', () => {
       const className = renderer.renderRule(rule)
 
       expect(renderer.rules).to.eql('.a{color:red}.b>div{color:blue}')
+    })
+
+    it('should render pseudo class selectors', () => {
+      const rule = props => ({
+        color: 'red',
+        ':hover': {
+          color: 'blue'
+        }
+      })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule)
+
+      expect(renderer.rules).to.eql('.a{color:red}.b:hover{color:blue}')
+    })
+
+
+    it('should render any nested selector with the &-prefix', () => {
+      const rule = props => ({
+        color: 'red',
+        '&~#foo': {
+          color: 'blue'
+        },
+        '& .bar': {
+          color: 'green'
+        }
+      })
+      const renderer = createRenderer()
+
+      const className = renderer.renderRule(rule)
+
+      expect(renderer.rules).to.eql('.a{color:red}.b~#foo{color:blue}.c .bar{color:green}')
     })
 
     it('should render media queries', () => {
