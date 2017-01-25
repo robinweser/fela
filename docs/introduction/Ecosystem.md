@@ -47,7 +47,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components
 
 ### Tools
-* [fela-stylesheet](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-stylesheet): Organize your rules grouped StyleSheets
+* [fela-tools](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
 
 ### Utilities

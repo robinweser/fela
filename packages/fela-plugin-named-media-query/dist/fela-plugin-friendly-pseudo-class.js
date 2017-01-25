@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaStyleSheet = factory());
+  (global.FelaPluginFriendlyPseudoClass = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -43,29 +43,35 @@
   babelHelpers;
 
   /*  weak */
-  var StyleSheet = {
-    create: function create(styles) {
-      var rules = {};
+  var regex = new RegExp('^on([A-Z])');
 
-      var _loop = function _loop(rule) {
-        if (typeof styles[rule] !== 'function') {
-          rules[rule] = function () {
-            return styles[rule];
-          };
+  function friendlyPseudoClass(style) {
+    for (var property in style) {
+      var value = style[property];
+      if (value instanceof Object && !Array.isArray(value)) {
+        var resolvedValue = friendlyPseudoClass(value);
+
+        if (regex.test(property)) {
+          var pseudo = property.replace(regex, function (match, p1) {
+            return ':' + p1.toLowerCase();
+          });
+
+          style[pseudo] = resolvedValue;
+          delete style[property];
         } else {
-          rules[rule] = styles[rule];
+          style[property] = resolvedValue;
         }
-      };
-
-      for (var rule in styles) {
-        _loop(rule);
       }
-
-      return rules;
     }
-  };
 
-  return StyleSheet;
+    return style;
+  }
+
+  var friendlyPseudoClass$1 = (function () {
+    return friendlyPseudoClass;
+  });
+
+  return friendlyPseudoClass$1;
 
 }));
-//# sourceMappingURL=fela-stylesheet.js.map
+//# sourceMappingURL=fela-plugin-friendly-pseudo-class.js.map

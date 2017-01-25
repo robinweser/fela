@@ -18,6 +18,11 @@ const packages = {
     entry: 'dom/index.js',
     dependencies: false
   },
+  'fela-tools': {
+    name: 'FelaTools',
+    entry: 'tools/index.js',
+    dependencies: false
+  },
   'fela-plugin-extend': {
     name: 'FelaPluginExtend',
     entry: 'plugins/extend.js',
@@ -118,11 +123,6 @@ const packages = {
     entry: 'enhancers/logger.js',
     dependencies: true
   },
-  'fela-stylesheet': {
-    name: 'FelaStyleSheet',
-    entry: 'tools/StyleSheet.js',
-    dependencies: false
-  },
   'react-fela': {
     name: 'ReactFela',
     entry: 'bindings/react/index.js',
@@ -130,24 +130,25 @@ const packages = {
   }
 }
 
-
 const babelPlugin = babel({
   babelrc: false,
-  presets: [ 'es2015-rollup', 'stage-0', 'react' ],
-  plugins: [ 'transform-class-properties', 'transform-dev-warning', 'transform-node-env-inline' ]
+  presets: ['es2015-rollup', 'stage-0', 'react'],
+  plugins: ['transform-class-properties', 'transform-dev-warning', 'transform-node-env-inline']
 })
 const nodeResolverPlugin = nodeResolver({
   jsnext: true,
   main: true,
-  skip: [ 'react' ]
+  skip: ['react']
 })
 const commonJSPlugin = commonjs({ include: 'node_modules/**' })
 const uglifyPlugin = uglify()
 
 function rollupConfig(pkg, info, minify) {
-  const plugins = info.dependencies ? [ babelPlugin, nodeResolverPlugin, commonJSPlugin ] : [ babelPlugin ]
+  const plugins = info.dependencies
+    ? [babelPlugin, nodeResolverPlugin, commonJSPlugin]
+    : [babelPlugin]
   return {
-    entry: 'modules/' + info.entry,
+    entry: `modules/${info.entry}`,
     plugins: minify ? plugins.concat(uglifyPlugin) : plugins
   }
 }
@@ -160,7 +161,7 @@ function bundleConfig(pkg, info, minify) {
       fela: 'Fela'
     },
     moduleName: info.name,
-    dest: 'packages/' + pkg + '/dist/' + (info.dest ? info.dest : pkg) + (minify ? '.min' : '') + '.js',
+    dest: `packages/${pkg}/dist/${info.dest ? info.dest : pkg}${minify ? '.min' : ''}.js`,
     sourceMap: !minify
   }
 }
@@ -168,7 +169,7 @@ function bundleConfig(pkg, info, minify) {
 // Small helper to error and exit on fail
 const errorOnFail = (err, pkg) => {
   if (err) {
-    console.error('[' + pkg + ']', err)
+    console.error(`[${pkg}]`, err)
     process.exit(1)
   }
 }
@@ -176,11 +177,11 @@ const errorOnFail = (err, pkg) => {
 // Updates the package.json version of a given pkg with the global
 // package.json version
 function updateVersion(pkg) {
-  fs.readFile(__dirname + '/../package.json', 'utf8', (err, data) => {
+  fs.readFile(`${__dirname}/../package.json`, 'utf8', (err, data) => {
     errorOnFail(err, pkg)
 
     const globalVersion = JSON.parse(data).version
-    const path = __dirname + '/../packages/' + pkg + '/package.json'
+    const path = `${__dirname}/../packages/${pkg}/package.json`
 
     fs.readFile(path, 'utf8', (err, data) => {
       errorOnFail(err, pkg)
@@ -194,48 +195,59 @@ function updateVersion(pkg) {
 
       const newPackageJSON = JSON.stringify(packageJSON, null, 2)
 
-      fs.writeFile(path, newPackageJSON, err => {
+      fs.writeFile(path, newPackageJSON, (err) => {
         errorOnFail(err, pkg)
-        console.log('Successfully updated ' + pkg + ' version to ' + globalVersion + '.')
+        console.log(`Successfully updated ${pkg} version to ${globalVersion}.`)
       })
     })
   })
 }
 
 function updateReadme(pkg, bundleSize) {
-  fs.readFile(__dirname + '/../package.json', 'utf8', (err, data) => {
+  fs.readFile(`${__dirname}/../package.json`, 'utf8', (err, data) => {
     errorOnFail(err, pkg)
 
     const globalVersion = JSON.parse(data).version
-    const path = __dirname + (pkg !== 'fela' ? '/../packages/' + pkg : '/..') + '/README.md'
+    const path = `${__dirname + (pkg !== 'fela' ? `/../packages/${pkg}` : '/..')}/README.md`
 
     fs.readFile(path, 'utf8', (err, data) => {
       errorOnFail(err, pkg)
 
       const bundleString = (bundleSize / 1000).toString().split('.')
-      const readme = data.replace(/@[1-9]*[.][0-9]*[.][0-9]*/g, '@' + globalVersion).replace(/gzipped-[0-9]*[.][0-9]*kb/, 'gzipped-' + bundleString[0] + '.' + bundleString[1].substr(0, 2) + 'kb')
+      const readme = data
+        .replace(/@[1-9]*[.][0-9]*[.][0-9]*/g, `@${globalVersion}`)
+        .replace(
+          /gzipped-[0-9]*[.][0-9]*kb/,
+          `gzipped-${bundleString[0]}.${bundleString[1].substr(0, 2)}kb`
+        )
 
-      fs.writeFile(path, readme, err => {
+      fs.writeFile(path, readme, (err) => {
         errorOnFail(err, pkg)
-        console.log('Successfully updated ' + pkg + ' README.md to ' + globalVersion + '.')
+        console.log(`Successfully updated ${pkg} README.md to ${globalVersion}.`)
       })
     })
   })
 }
 
-
 function buildPackage(pkg) {
-  rollup.rollup(rollupConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')).then(bundle => {
-    const config = bundleConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')
+  rollup
+    .rollup(rollupConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production'))
+    .then((bundle) => {
+      const config = bundleConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')
 
-    if (process.env.NODE_ENV === 'production') {
-      updateReadme(pkg, gzip.zip(bundle.generate(config).code).length)
-      updateVersion(pkg)
-    }
+      if (process.env.NODE_ENV === 'production') {
+        updateReadme(pkg, gzip.zip(bundle.generate(config).code).length)
+        updateVersion(pkg)
+      }
 
-    bundle.write(config)
-    console.log('Successfully bundled ' + packages[pkg].name + (process.env.NODE_ENV === 'production' ? ' (minified).' : '.'))
-  }).catch(err => errorOnFail(err, pkg))
+      bundle.write(config)
+      console.log(
+        `Successfully bundled ${packages[pkg].name}${process.env.NODE_ENV === 'production'
+          ? ' (minified).'
+          : '.'}`
+      )
+    })
+    .catch(err => errorOnFail(err, pkg))
 }
 
 Object.keys(packages).forEach(pkg => buildPackage(pkg))

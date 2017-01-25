@@ -24,8 +24,7 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 <script src="https://unpkg.com/react-fela@4.1.2/dist/react-fela.min.js"></script>
 ```
 
-## Documentation
-#### API reference
+## API Reference
 * [`<Provider renderer [mountNode]>`](docs/Provider.md)
 * [`connect(mapStylesToProps)`](docs/connect.md)
 * [`createComponent(rule, [type], [passThroughProps])`](docs/createComponent.md)

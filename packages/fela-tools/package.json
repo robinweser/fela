@@ -1,12 +1,14 @@
 {
-  "name": "fela-stylesheet",
+  "name": "fela-tools",
   "version": "4.1.2",
-  "description": "Fela tool to organize multiple rules in StyleSheets",
+  "description": "Useful tools for working with Fela",
   "main": "index.js",
   "files": [
     "LICENSE",
     "README.md",
     "index.js",
+    "StyleSheet.js",
+    "mapValueToMediaQuery.js",
     "/dist"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
