@@ -1,7 +1,7 @@
 /* @flow weak */
 import Prefixer from 'inline-style-prefixer'
 
-export default options => {
+export default (options) => {
   const prefixer = new Prefixer(options)
 
   return style => prefixer.prefix(style)

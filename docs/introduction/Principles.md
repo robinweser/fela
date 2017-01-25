@@ -30,3 +30,5 @@ const rule = props => ({
   display: 'flex'
 })
 ```
+
+### 2. 

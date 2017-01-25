@@ -4,7 +4,8 @@ import isUnitlessCSSProperty from 'unitless-css-property'
 
 function addUnitIfNeeded(property, value, unit) {
   const valueType = typeof value
-  if (valueType === 'number' || valueType === 'string' && value == parseFloat(value)) { // eslint-disable-line
+  if (valueType === 'number' || valueType === 'string' && value == parseFloat(value)) {
+    // eslint-disable-line
     value += unit
   }
 
@@ -12,9 +13,8 @@ function addUnitIfNeeded(property, value, unit) {
 }
 
 function addUnit(style, unit, propertyMap) {
-  for (let property in style) {
+  for (const property in style) {
     if (!isUnitlessCSSProperty(property)) {
-
       const value = style[property]
       const propertyUnit = propertyMap[property] || unit
       if (Array.isArray(value)) {
@@ -30,8 +30,13 @@ function addUnit(style, unit, propertyMap) {
   return style
 }
 
-export default (unit = 'px', propertyMap = { }) => {
-  warning(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`. Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.')
+export default (unit = 'px', propertyMap = {}) => {
+  warning(
+    unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null,
+    `You are using an invalid unit \`${
+      unit
+      }\`. Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.`
+  )
 
   return style => addUnit(style, unit, propertyMap)
 }

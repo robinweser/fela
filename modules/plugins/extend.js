@@ -14,11 +14,11 @@ function extendStyle(style, extension) {
 }
 
 function extend(style) {
-  for (let property in style) {
+  for (const property in style) {
     const value = style[property]
     if (property === 'extend') {
       // arrayify to loop each extension to support arrays and single extends
-      const extensions = [ ].concat(value)
+      const extensions = [].concat(value)
       for (let i = 0, len = extensions.length; i < len; ++i) {
         extendStyle(style, extensions[i])
       }

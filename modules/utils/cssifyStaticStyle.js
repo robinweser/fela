@@ -10,6 +10,6 @@ export default function cssifyStaticStyle(staticStyle, plugins) {
     return minifyCSSString(staticStyle)
   }
 
-  const processedStaticStyle = processStyleWithPlugins(staticStyle, plugins, STATIC_TYPE)
+  const processedStaticStyle = processStyleWithPlugins(plugins, staticStyle, STATIC_TYPE)
   return cssifyObject(processedStaticStyle)
 }

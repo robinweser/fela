@@ -8,25 +8,30 @@ function addLayoutDebugger(renderer, options) {
     const ruleName = rule.name || 'debug_layout'
     const color = (ruleName + ruleName).length * 17 * ruleName.length
 
-    const debugLayoutClassName = 'fela-debug-layout_' + ruleName
+    const debugLayoutClassName = `fela-debug-layout_${ruleName}`
 
     if (options.backgroundColor) {
-      renderer.renderStatic({
-        backgroundColor: 'hsla(' + color + ', 100%, 25%, 0.1) !important'
-      }, '.' + debugLayoutClassName)
+      renderer.renderStatic(
+        { backgroundColor: `hsla(${color}, 100%, 25%, 0.1) !important` },
+        `.${debugLayoutClassName}`
+      )
     } else {
-      renderer.renderStatic({
-        outline: options.thickness + 'px solid hsl(' + color + ', 100%, 50%) !important'
-      }, '.' + debugLayoutClassName)
+      renderer.renderStatic(
+        { outline: `${options.thickness}px solid hsl(${color}, 100%, 50%) !important` },
+        `.${debugLayoutClassName}`
+      )
     }
 
-    return debugLayoutClassName + ' ' + className
+    return `${debugLayoutClassName} ${className}`
   }
 
   return renderer
 }
 
-const defaultOptions = { backgroundColor: false, thickness: 1 }
+const defaultOptions = {
+  backgroundColor: false,
+  thickness: 1
+}
 export default options => renderer => addLayoutDebugger(renderer, {
   ...defaultOptions,
   ...options

@@ -1,9 +1,9 @@
-/* @flow weak */
+/* @flow */
 export default {
-  create(styles) {
-    const rules = { }
+  create(styles: Object) {
+    const rules = {}
 
-    for (let rule in styles) {
+    for (const rule in styles) {
       if (typeof styles[rule] !== 'function') {
         rules[rule] = () => styles[rule]
       } else {
