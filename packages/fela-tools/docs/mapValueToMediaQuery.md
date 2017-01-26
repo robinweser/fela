@@ -40,6 +40,6 @@ style === {
 ```
 
 #### Tips & Tricks
-This plugin is best used within the `extend` value provided by [fela-plugin-extend](../../fela-plugin-extend), because it merges nested objects (such as media queries) instead of overwriting them.
+It is best used within the `extend` value provided by [fela-plugin-extend](../../fela-plugin-extend), because it merges nested objects (such as media queries) instead of overwriting them.
 
 It can also be combined with the [fela-plugin-named-media-query](../../fela-plugin-named-media-query) to have short query keys.
