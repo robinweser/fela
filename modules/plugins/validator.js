@@ -15,7 +15,8 @@ function validateStyleObject(style, logInvalid, deleteInvalid) {
           console.error(
             `${deleteInvalid
               ? '[Deleted] '
-              : ' '}Invalid nested property. Only use nested \`@media\` queries or \`:\` pseudo classes. Maybe you forgot to add a plugin that resolves \`${property}\`.`,
+              : ' '}Invalid nested property. Only use nested \`@media\` queries or \`:\` pseudo classes.
+              Maybe you forgot to add a plugin that resolves \`${property}\`.`,
             {
               // eslint-disable-line
               property,
@@ -37,14 +38,11 @@ function validator(style, type, options) {
       const value = style[percentage]
       if (value instanceof Object === false) {
         if (logInvalid) {
-          console.error(
-            `${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe value. An object was expected.`,
-            {
-              // eslint-disable-line
-              percentage,
-              style: value
-            }
-          )
+          console.error(`${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe value. An object was expected.`, {
+            // eslint-disable-line
+            percentage,
+            style: value
+          })
         }
         if (deleteInvalid) {
           delete style[percentage]
@@ -57,11 +55,9 @@ function validator(style, type, options) {
         ) {
           if (logInvalid) {
             console.error(
-              `${deleteInvalid
-                ? '[Deleted] '
-                : ' '}Invalid keyframe property. Expected either \`to\`, \`from\` or a percentage value between 0 and 100.`,
+              `${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe property.
+                Expected either \`to\`, \`from\` or a percentage value between 0 and 100.`,
               {
-                // eslint-disable-line
                 percentage,
                 style: value
               }
@@ -84,8 +80,7 @@ const defaultOptions = {
   logInvalid: true,
   deleteInvalid: false
 }
-export default options =>
-  (style, props, type) => validator(style, type, {
-    ...defaultOptions,
-    ...options
-  })
+export default options => (style, props, type) => validator(style, type, {
+  ...defaultOptions,
+  ...options
+})

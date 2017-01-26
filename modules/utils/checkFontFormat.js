@@ -16,4 +16,5 @@ export default function checkFontFormat(src) {
     }
   }
   // TODO: warning: wrong font format
+  return false
 }

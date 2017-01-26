@@ -1,4 +1,6 @@
 /* @flow weak */
+/* eslint-disable no-use-before-define */
+
 import assign from '../utils/assign'
 
 function extendStyle(style, extension) {

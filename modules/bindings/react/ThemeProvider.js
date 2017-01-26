@@ -2,9 +2,13 @@
 import { Component, PropTypes, Children } from 'react'
 
 export default class ThemeProvider extends Component {
-  static propTypes =  { theme: PropTypes.object, overwrite: PropTypes.bool };
+  static propTypes = {
+    theme: PropTypes.object.isRequired,
+    overwrite: PropTypes.bool
+  };
   static childContextTypes = { theme: PropTypes.object };
   static contextTypes = { theme: PropTypes.object };
+  static defaultProps = { overwrite: false };
 
   getChildContext() {
     const { overwrite, theme } = this.props
@@ -12,7 +16,7 @@ export default class ThemeProvider extends Component {
 
     return {
       theme: {
-        ...(!overwrite && previousTheme || {}),
+        ...(!overwrite ? previousTheme || {} : {}),
         ...theme
       }
     }

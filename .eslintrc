@@ -21,6 +21,18 @@
     }],
     "import/no-extraneous-dependencies": [ 0 ],
     "react/prop-types": [ 0 ],
-    "no-confusing-arrow": [ 0 ]
+    "no-confusing-arrow": [ 0 ],
+    "no-underscore-dangle": [ 0 ],
+    "no-param-reassign": [ 1 ],
+    "react/forbid-prop-types": [ 0 ],
+    "no-plusplus": [ 0 ],
+    "guard-for-in": [ 0 ],
+    "no-restricted-syntax": [ 1 ],
+    "no-continue": [ 1 ],
+    "no-prototype-builtins": [ 1 ],
+    "max-len": [ 2, 120 ],
+    "no-mixed-operators": [ 1 ],
+    "no-lonely-if": [ 1 ],
+    "no-bitwise": [ 0 ]
   }
 }

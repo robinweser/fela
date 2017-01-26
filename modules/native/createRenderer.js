@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved, import/extensions */
 import { StyleSheet } from 'react-native'
 
 import processStyleWithPlugins from '../utils/processStyleWithPlugins'
