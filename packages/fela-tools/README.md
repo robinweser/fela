@@ -35,6 +35,7 @@ import StyleSheet from 'fela-tools/StyleSheet'
 
 * [`mapValueToMediaQuery(queryValueMap, mapper)`](docs/mapValueToMediaQuery.md)
 * [StyleSheet](docs/StyleSheet.md)
+
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
