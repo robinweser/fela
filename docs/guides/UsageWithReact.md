@@ -8,8 +8,77 @@ npm i --save react-fela
 
 ## Presentational Components
 While not required, we highly recommend to split your components into [presentational and container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.67qfcbme5).
-While container components manage the application logic, presentational components should only describe how your application looks. They get data passed as `props` and return a representation of your view for those props.
+Where container components manage the application logic, presentational components should only describe how your application is displayed (markup & styling). They get data passed as `props` and return a representation of your view for those props.
 **If we strictly separate our components, we actually only use Fela for presentational components.**
+
+### Presentational Components from Rules
+From the very beginning, react-fela ships the [`createComponent`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md) API. It basically creates primitive React components using the passed rule to style it. This works as easy as e.g. [styled-components](https://github.com/styled-components/styled-components).
+
+```javascript
+import { createComponent } from 'react-fela'
+
+const container = ({ padding }) => ({
+  textAlign: 'center',
+  padding: padding + 'px',
+  height: '200px'
+})
+
+const Container = createComponent(title)
+
+// <div class="a b c"></div>
+<Container padding={20} />
+```
+
+#### Custom element/component
+`createComponent` renders into a `div` by default, but is also able to render into any other HTML element or React component.<br>
+Simply pass either a string (HTML element) or function/class (React component) as a second argument.
+
+```javascript
+import { createComponent } from 'react-fela'
+
+const title = props => ({
+  fontSize: props.fontSize,
+  color: props.color
+})
+
+const Title = createComponent(title, 'h1')
+
+// <h1 class="a b"></h1>
+<Title fontSize={20} color='red' />
+```
+
+#### Composition
+It also supports automatic style composition for multiple composed Fela components.
+
+```javascript
+import { createComponent } from 'react-fela'
+
+const title = props => ({
+  fontSize: props.fontSize,
+  color: props.color
+})
+
+const bordered = ({ borderWidth }) => ({
+  borderRight: borderWidth + 'px solid green',
+  borderLeft: borderWidth + 'px solid yellow'
+})
+
+const Title = createComponent(title, 'h1')
+const BorderedTitle = createComponent(bordered, Title)
+
+// <h1 class="a b c d"></h1>
+<BorderedTitle fontSize={20} color='red' borderWidth={2} />
+```
+
+For advanced API documentation, please check out the [`createComponent`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md) API docs.<br>
+Amongst other things, you can learn how to pass props to the underlying element.
+
+
+## Component Theming
+Coming soon. For now refer to the [`<ThemeProvider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md) documentation.
+<br>
+
+
 
 ## Passing the Renderer
 We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/api/fela/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.<br>
@@ -35,121 +104,6 @@ render(
   document.getElementById('app')
 )
 ```
-
-## Rendering Styles
-Only using the `<Provider>` we actually got everything ready to fully use Fela within our presentational components. We can just use the renderer passed via `context`.
-
-```javascript
-import React, { PropTypes } from 'react'
-
-const container = props => ({
-  textAlign: 'center',
-  padding: '20px',
-  height: '200px'
-})
-
-const title = props => ({
-  lineHeight: 1.2,
-  fontSize: props.fontSize,
-  color: props.color
-})
-
-const Header = ({ titleText, size, color }, { renderer }) => {
-  const containerClassName = renderer.renderRule(container)
-  const titleClassName = renderer.renderRule(title, {
-    fontSize: size + 'px',
-    color: color
-  })
-
-  return (
-    <header className={containerClassName}>
-      <h1 className={titleClassName}>{titleText}</h1>
-    </header>
-  )
-}
-
-Header.contextTypes = { renderer: PropTypes.object }
-
-// Usage example
-<Header titleText='Hello' color='red' size={17} />
-```
-
-Yet it is does not really look convincing as we always have to add the `contextTypes`, mix the rendering process with our markup and always have to use the `context` parameter.<br>
-Therefore we also provide a HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) called `connect`. It is used to map the components `props` directly to rendered classNames.
-
-### Example
-```javascript
-import React from 'react'
-import { connect } from 'react-fela'
-
-const Header = ({ title, styles }) => (
-  <header className={styles.container}>
-    <h1 className={styles.title}>{title}</h1>
-  </header>
-)
-
-const container = props => ({
-  textAlign: 'center',
-  padding: '20px',
-  height: '200px'
-})
-
-const title = props => ({
-  lineHeight: 1.2,
-  fontSize: props.fontSize,
-  color: props.color
-})
-
-// We use both the components props and
-// the renderer to compose our classNames
-const mapStylesToProps = props => renderer => ({
-  container: renderer.renderRule(container),
-  title: renderer.renderRule(title, {
-    fontSize: props.size + 'px',
-    color: props.color
-  })
-})
-
-export default connect(mapStylesToProps)(Header)
-
-// Usage example
-<Header title='Hello' color='red' size={17} />
-```
-
-## Presentational Components from Fela Rules
-An even more convenient way to create your presentational components is from Fela rules directly. react-fela ships with the [`createComponent`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md) method which helps to achieve that.<br> It takes a single Fela rule and optionally a base component type.
-
-### Example
-```javascript
-import React from 'react'
-import { createComponent } from 'react-fela'
-
-const container = props => ({
-  textAlign: 'center',
-  padding: '20px',
-  height: '200px'
-})
-
-const title = props => ({
-  lineHeight: 1.2,
-  fontSize: props.fontSize,
-  color: props.color
-})
-
-const Title = createComponent(title, 'h1')
-const Header = createComponent(container, 'header')
-
-// Usage example
-<Header>
-  <Title color='red' size={17}>
-    Hello World
-  </Title>
-</Header>
-```
-
-## Component Theming
-Coming soon. For now refer to the [`<ThemeProvider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md) documentation.
-<br>
 
 ---
 

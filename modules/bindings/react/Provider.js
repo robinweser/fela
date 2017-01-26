@@ -3,8 +3,12 @@ import { Component, PropTypes, Children } from 'react'
 import render from '../../dom/render'
 
 export default class Provider extends Component {
-  static propTypes =  { renderer: PropTypes.object };
+  static propTypes = { renderer: PropTypes.object.isRequired };
   static childContextTypes = { renderer: PropTypes.object };
+
+  getChildContext() {
+    return { renderer: this.props.renderer }
+  }
 
   componentDidMount() {
     const { mountNode, renderer } = this.props
@@ -12,10 +16,6 @@ export default class Provider extends Component {
     if (mountNode) {
       render(renderer, mountNode)
     }
-  }
-
-  getChildContext() {
-    return { renderer: this.props.renderer }
   }
 
   render() {

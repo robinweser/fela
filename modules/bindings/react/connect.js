@@ -1,4 +1,5 @@
 /* @flow weak */
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component, PropTypes } from 'react'
 
 export default function connect(mapStylesToProps) {
@@ -17,7 +18,7 @@ export default function connect(mapStylesToProps) {
 
       const styles = mapStylesToProps({
         ...this.props,
-        theme: theme || { }
+        theme: theme || {}
       })(renderer)
 
       return <Comp {...this.props} styles={styles} />

@@ -3,5 +3,5 @@ export default function generateCombinedMediaQuery(currentMediaQuery, nestedMedi
   if (currentMediaQuery.length === 0) {
     return nestedMediaQuery
   }
-  return currentMediaQuery + ' and ' + nestedMediaQuery
+  return `${currentMediaQuery} and ${nestedMediaQuery}`
 }

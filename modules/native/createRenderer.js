@@ -1,27 +1,24 @@
+/* eslint-disable import/no-unresolved, import/extensions */
 import { StyleSheet } from 'react-native'
 
 import processStyleWithPlugins from '../utils/processStyleWithPlugins'
 import { RULE_TYPE } from '../utils/styleTypes'
 
-export default function createRenderer(config = { }) {
+export default function createRenderer(config = {}) {
   let renderer = {
     listeners: [],
-    plugins: config.plugins || [ ],
-
+    plugins: config.plugins || [],
     clear() {
-      renderer.cache = { }
-      renderer.ids = [ ]
+      renderer.cache = {}
+      renderer.ids = []
     },
-
-    renderRule(rule, props = { }) {
+    renderRule(rule, props = {}) {
       const style = rule(props)
       const reference = JSON.stringify(style)
 
       if (!renderer.cache[reference]) {
-        const processedStyle = processStyleWithPlugins(style, renderer.plugins, RULE_TYPE)
-        renderer.cache[reference] = StyleSheet.create({
-          style: processedStyle
-        })
+        const processedStyle = processStyleWithPlugins(renderer.plugins, style, RULE_TYPE)
+        renderer.cache[reference] = StyleSheet.create({ style: processedStyle })
       }
 
       return renderer.cache[reference].style

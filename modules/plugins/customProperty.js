@@ -1,6 +1,6 @@
 /* @flow weak */
 function customProperty(style, properties) {
-  for (let property in style) {
+  for (const property in style) {
     const value = style[property]
     if (properties[property]) {
       Object.assign(style, properties[property](value))

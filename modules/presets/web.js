@@ -5,10 +5,4 @@ import fallbackValue from '../plugins/fallbackValue'
 import LVHA from '../plugins/LVHA'
 import unit from '../plugins/unit'
 
-export default [
-  extend(),
-  prefixer(),
-  fallbackValue(),
-  LVHA(),
-  unit()
-]
+export default [extend(), prefixer(), fallbackValue(), LVHA(), unit()]

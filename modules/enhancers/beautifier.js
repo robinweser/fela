@@ -17,7 +17,8 @@ const defaultOptions = {
   openbrace: 'end-of-line',
   autosemicolon: false
 }
-export default (options = { }) => renderer => addBeautifier(renderer, {
-  ...defaultOptions,
-  ...options
-})
+export default (options = {}) =>
+  renderer => addBeautifier(renderer, {
+    ...defaultOptions,
+    ...options
+  })

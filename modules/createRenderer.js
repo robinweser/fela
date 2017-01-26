@@ -24,17 +24,15 @@ import checkFontFormat from './utils/checkFontFormat'
 
 import { STATIC_TYPE, RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, CLEAR_TYPE } from './utils/styleTypes'
 
-export default function createRenderer(config = { }) {
+export default function createRenderer(config = {}) {
   let renderer = {
     listeners: [],
-    keyframePrefixes: config.keyframePrefixes || [ '-webkit-', '-moz-' ],
-    plugins: config.plugins || [ ],
-
+    keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
+    plugins: config.plugins || [],
     // prettySelectors is currently useless, might reimplement better DX classNames later
     // prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
-    mediaQueryOrder: config.mediaQueryOrder || [ ],
+    mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
-
     clear() {
       renderer.fontFaces = ''
       renderer.keyframes = ''
@@ -43,30 +41,32 @@ export default function createRenderer(config = { }) {
       // apply media rules in an explicit order to ensure
       // correct media query execution order
       renderer.mediaRules = applyMediaRulesInOrder(renderer.mediaQueryOrder)
-      renderer.rendered = [ ]
+      renderer.rendered = []
       renderer.uniqueRuleIdentifier = 0
       renderer.uniqueKeyframeIdentifier = 0
       // use a flat cache object with pure string references
       // to achieve maximal lookup performance and memoization speed
-      renderer.cache = { }
+      renderer.cache = {}
 
       // initial change emit to enforce a clear start
       renderer._emitChange({ type: CLEAR_TYPE })
     },
-
-    renderRule(rule, props = { }) {
-      const processedStyle = processStyleWithPlugins(rule(props), renderer.plugins, RULE_TYPE)
+    renderRule(rule, props = {}) {
+      const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE)
       return renderer._renderStyleToClassNames(processedStyle).slice(1)
     },
-
     _renderStyleToClassNames(style, pseudo = '', media = '') {
       let classNames = ''
 
-      for (let property in style) {
+      for (const property in style) {
         const value = style[property]
         if (value instanceof Object) {
           if (isNestedSelector(property)) {
-            classNames += renderer._renderStyleToClassNames(value, pseudo + normalizeNestedProperty(property), media)
+            classNames += renderer._renderStyleToClassNames(
+              value,
+              pseudo + normalizeNestedProperty(property),
+              media
+            )
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
             classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery)
@@ -83,7 +83,8 @@ export default function createRenderer(config = { }) {
               continue
             }
 
-            const className = renderer.selectorPrefix + generateClassName(++renderer.uniqueRuleIdentifier)
+            const className = renderer.selectorPrefix +
+              generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className
 
@@ -101,22 +102,20 @@ export default function createRenderer(config = { }) {
             }
 
             renderer._emitChange({
-              selector: selector,
+              selector,
               declaration: cssDeclaration,
-              media: media,
+              media,
               type: RULE_TYPE
             })
           }
 
-          classNames += ' ' + renderer.cache[declarationReference]
+          classNames += ` ${renderer.cache[declarationReference]}`
         }
       }
 
       return classNames
     },
-
-
-    renderKeyframe(keyframe, props = { }) {
+    renderKeyframe(keyframe, props = {}) {
       const resolvedKeyframe = keyframe(props)
       const keyframeReference = JSON.stringify(resolvedKeyframe)
 
@@ -124,8 +123,16 @@ export default function createRenderer(config = { }) {
         // use another unique identifier to ensure minimal css markup
         const animationName = generateAnimationName(++renderer.uniqueKeyframeIdentifier)
 
-        const processedKeyframe = processStyleWithPlugins(resolvedKeyframe, renderer.plugins, KEYFRAME_TYPE)
-        const cssKeyframe = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
+        const processedKeyframe = processStyleWithPlugins(
+          renderer.plugins,
+          resolvedKeyframe,
+          KEYFRAME_TYPE
+        )
+        const cssKeyframe = cssifyKeyframe(
+          processedKeyframe,
+          animationName,
+          renderer.keyframePrefixes
+        )
         renderer.cache[keyframeReference] = animationName
         renderer.keyframes += cssKeyframe
 
@@ -138,8 +145,7 @@ export default function createRenderer(config = { }) {
 
       return renderer.cache[keyframeReference]
     },
-
-    renderFont(family, files, properties = { }) {
+    renderFont(family, files, properties = {}) {
       const fontReference = family + JSON.stringify(properties)
 
       if (!renderer.cache[fontReference]) {
@@ -148,8 +154,8 @@ export default function createRenderer(config = { }) {
         // TODO: proper font family generation with error proofing
         const fontFace = {
           ...properties,
-          src: files.map(src => 'url(\'' + src + '\') format(\'' + checkFontFormat(src) + '\')').join(','),
-          fontFamily: fontFamily
+          src: files.map(src => `url('${src}') format('${checkFontFormat(src)}')`).join(','),
+          fontFamily
         }
 
         const cssFontFace = cssifyFontFace(fontFace)
@@ -157,7 +163,7 @@ export default function createRenderer(config = { }) {
         renderer.fontFaces += cssFontFace
 
         renderer._emitChange({
-          fontFamily: fontFamily,
+          fontFamily,
           fontFace: cssFontFace,
           type: FONT_TYPE
         })
@@ -165,7 +171,6 @@ export default function createRenderer(config = { }) {
 
       return renderer.cache[fontReference]
     },
-
     renderStatic(staticStyle, selector) {
       const staticReference = generateStaticReference(staticStyle, selector)
 
@@ -182,7 +187,7 @@ export default function createRenderer(config = { }) {
         } else {
           renderer.statics += generateCSSRule(selector, cssDeclarations)
           renderer._emitChange({
-            selector: selector,
+            selector,
             declaration: cssDeclarations,
             type: RULE_TYPE,
             media: ''
@@ -190,24 +195,19 @@ export default function createRenderer(config = { }) {
         }
       }
     },
-
     renderToString() {
       let css = renderer.fontFaces + renderer.statics + renderer.keyframes + renderer.rules
 
-      for (let media in renderer.mediaRules) {
+      for (const media in renderer.mediaRules) {
         css += cssifyMediaQueryRules(media, renderer.mediaRules[media])
       }
 
       return css
     },
-
     subscribe(callback) {
       renderer.listeners.push(callback)
-      return {
-        unsubscribe: () => renderer.listeners.splice(renderer.listeners.indexOf(callback), 1)
-      }
+      return { unsubscribe: () => renderer.listeners.splice(renderer.listeners.indexOf(callback), 1) }
     },
-
     _emitChange(change) {
       for (let i = 0, len = renderer.listeners.length; i < len; ++i) {
         renderer.listeners[i](change)

@@ -15,6 +15,6 @@ export default function checkFontFormat(src) {
       return formats[extension]
     }
   }
-
   // TODO: warning: wrong font format
+  return undefined
 }
