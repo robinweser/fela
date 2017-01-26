@@ -37,7 +37,7 @@ Simply pass either a string (HTML element) or function/class (React component) a
 import { createComponent } from 'react-fela'
 
 const title = props => ({
-  fontSize: props.fontSize,
+  fontSize: props.fontSize + 'px',
   color: props.color
 })
 
@@ -54,7 +54,7 @@ It also supports automatic style composition for multiple composed Fela componen
 import { createComponent } from 'react-fela'
 
 const title = props => ({
-  fontSize: props.fontSize,
+  fontSize: props.fontSize + 'px',
   color: props.color
 })
 
@@ -75,16 +75,40 @@ Amongst other things, you can learn how to pass props to the underlying element.
 
 
 ## Component Theming
-Coming soon. For now refer to the [`<ThemeProvider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md) documentation.
+For flexible and yet simple component theming, react-fela ships the  [`<ThemeProvider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md) component.
+It leverages React's context to pass the theme to all child elements.
 <br>
 
+The theme can then be accessed via `props.theme` within `createComponent`.
+
+```javascript
+import { createComponent, ThemeProvider } from 'react-fela'
+
+
+const theme = {
+  fontColor: 'green',
+  fontSize: '15px'
+}
+
+const title = props => ({
+  fontSize: props.theme.fontSize,
+  color: props.theme.fontColor
+})
+
+const Title = createComponent(title, 'h1')
+
+// <h1 class="a b"></h1>
+<ThemeProvider theme={theme}>
+  <Title />
+</ThemeProvider>
+```
+
+You may also nest multiple `<ThemeProvider>`. The `theme` object will then automatically get merged to extend the previous theme. To force overwrite the `theme` (without merging) you may pass a `overwrite` prop.
 
 
 ## Passing the Renderer
 We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/api/fela/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.<br>
 It also takes an optional `mountNode` prop which is used to render our final CSS markup into. *(If you use server rendering you do not need to pass a `mountNode`)*.
-
-### Example
 
 ```javascript
 import { createRenderer } from 'fela'
