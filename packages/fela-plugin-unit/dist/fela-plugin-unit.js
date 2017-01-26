@@ -93,23 +93,6 @@
 
   function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
-  /*  weak */
-  var warning = function warning() {
-    return true;
-  };
-
-  if (true) {
-    warning = function warning(condition, message) {
-      if (!condition) {
-        if (typeof console !== 'undefined') {
-          console.error(message); // eslint-disable-line
-        }
-      }
-    };
-  }
-
-  var warning$1 = warning;
-
   var index$1 = __commonjs(function (module) {
   'use strict';
 
@@ -198,13 +181,31 @@
 
   var isUnitlessCSSProperty = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
 
+  /*  weak */
+  /* eslint-disable import/no-mutable-exports */
+  var warning = function warning() {
+    return true;
+  };
+
+  if (true) {
+    warning = function warning(condition, message) {
+      if (!condition) {
+        if (typeof console !== 'undefined') {
+          console.error(message); // eslint-disable-line
+        }
+      }
+    };
+  }
+
+  var warning$1 = warning;
+
   function addUnitIfNeeded(property, value, unit) {
     var valueType = typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value);
+    /* eslint-disable eqeqeq */
     if (valueType === 'number' || valueType === 'string' && value == parseFloat(value)) {
-      // eslint-disable-line
       value += unit;
     }
-
+    /* eslint-enable */
     return value;
   }
 
@@ -212,17 +213,16 @@
     var _loop = function _loop(property) {
       if (!isUnitlessCSSProperty(property)) {
         (function () {
-
-          var value = style[property];
+          var cssValue = style[property];
           var propertyUnit = propertyMap[property] || unit;
-          if (Array.isArray(value)) {
-            style[property] = value.map(function (value) {
-              return addUnitIfNeeded(property, value, propertyUnit);
+          if (Array.isArray(cssValue)) {
+            style[property] = cssValue.map(function (val) {
+              return addUnitIfNeeded(property, val, propertyUnit);
             });
-          } else if (value instanceof Object) {
-            style[property] = addUnit(value, unit, propertyMap);
+          } else if (cssValue instanceof Object) {
+            style[property] = addUnit(cssValue, unit, propertyMap);
           } else {
-            style[property] = addUnitIfNeeded(property, value, propertyUnit);
+            style[property] = addUnitIfNeeded(property, cssValue, propertyUnit);
           }
         })();
       }
@@ -239,7 +239,7 @@
     var unit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'px';
     var propertyMap = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    warning$1(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`. Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
+    warning$1(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`.\n    Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
 
     return function (style) {
       return addUnit(style, unit, propertyMap);

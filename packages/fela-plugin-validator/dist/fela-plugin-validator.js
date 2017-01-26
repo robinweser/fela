@@ -57,7 +57,8 @@
             delete style[property];
           }
           if (logInvalid) {
-            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid nested property. Only use nested `@media` queries or `:` pseudo classes. Maybe you forgot to add a plugin that resolves `' + property + '`.', { // eslint-disable-line
+            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid nested property. Only use nested `@media` queries or `:` pseudo classes.\n              Maybe you forgot to add a plugin that resolves `' + property + '`.', {
+              // eslint-disable-line
               property: property,
               value: value
             });
@@ -78,7 +79,8 @@
         var value = style[percentage];
         if (value instanceof Object === false) {
           if (logInvalid) {
-            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe value. An object was expected.', { // eslint-disable-line
+            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe value. An object was expected.', {
+              // eslint-disable-line
               percentage: percentage,
               style: value
             });
@@ -90,7 +92,7 @@
           // check for invalid percentage values, it only allows from, to or 0% - 100%
           if (!percentage.match(/from|to|%/) || percentage.indexOf('%') > -1 && (percentageValue < 0 || percentageValue > 100)) {
             if (logInvalid) {
-              console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe property. Expected either `to`, `from` or a percentage value between 0 and 100.', { // eslint-disable-line
+              console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe property.\n                Expected either `to`, `from` or a percentage value between 0 and 100.', {
                 percentage: percentage,
                 style: value
               });
@@ -108,9 +110,12 @@
     return style;
   }
 
-  var defaultOptions = { logInvalid: true, deleteInvalid: false };
+  var defaultOptions = {
+    logInvalid: true,
+    deleteInvalid: false
+  };
   var validator$1 = (function (options) {
-    return function (style, type) {
+    return function (style, props, type) {
       return validator(style, type, babelHelpers.extends({}, defaultOptions, options));
     };
   });

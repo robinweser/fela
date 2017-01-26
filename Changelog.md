@@ -2,6 +2,20 @@
 
 ## 4.0
 
+#### 4.2.0
+##### API Changes
+* Rules support any extending (child) selectors using the `&`-prefix ( [#169](https://github.com/rofrischmann/fela/issues/169) )
+* `createComponent` now automatically composes Fela Rules ( [#176](https://github.com/rofrischmann/fela/issues/176) )
+* `createComponent`'s *passThrough* & *passThroughProps* now also accept a function ( [#174](https://github.com/rofrischmann/fela/issues/174) )
+
+
+##### Improvements
+* added [fela-plugin-named-media-query](packages/fela-style-debugger) which transforms named media queries into valid media query syntax ( [#182](https://github.com/rofrischmann/fela/issues/182) )
+* added [fela-tools](packages/fela-tools) which provides useful tools for working with Fela (e.g. `StyleSheet` and `mapValueToMediaQuery`) ( [#183](https://github.com/rofrischmann/fela/issues/183) )
+
+
+------
+
 #### 4.1.2
 * only use lowercase classNames to prevent issues in case sensitive modes ( [#167](https://github.com/rofrischmann/fela/issues/167) )
 * added `selectorPrefix` option to renderer ( [#162](https://github.com/rofrischmann/fela/issues/162) )

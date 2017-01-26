@@ -131,6 +131,7 @@
   }
 
   /*  weak */
+  /* eslint-disable import/no-mutable-exports */
   var warning = function warning() {
     return true;
   };
@@ -158,10 +159,11 @@
       throw new Error('You need to specify a valid element node (nodeType = 1) to render into.');
     }
 
-    // warns if the DOM node either is not a valid <style> element thus the styles do not get applied as Expected
-    // or if the node already got the data-fela-stylesheet attribute applied suggesting it is already used by another Renderer
+    // warns if the DOM node either is not a valid <style> element
+    // thus the styles do not get applied as Expected
+    // or if the node already got the data-fela-stylesheet attribute applied
+    // suggesting it is already used by another Renderer
     warning$1(mountNode.nodeName === 'STYLE', 'You are using a node other than `<style>`. Your styles might not get applied correctly.');
-    warning$1(!mountNode.hasAttribute('data-fela-stylesheet'), 'This node is already used by another renderer. Rendering might overwrite other styles.');
 
     // mark and clean the DOM node to prevent side-effects
     mountNode.setAttribute('data-fela-stylesheet', '');
@@ -186,6 +188,11 @@
     }
 
     babelHelpers.createClass(Provider, [{
+      key: 'getChildContext',
+      value: function getChildContext() {
+        return { renderer: this.props.renderer };
+      }
+    }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
         var _props = this.props,
@@ -198,11 +205,6 @@
         }
       }
     }, {
-      key: 'getChildContext',
-      value: function getChildContext() {
-        return { renderer: this.props.renderer };
-      }
-    }, {
       key: 'render',
       value: function render() {
         return React.Children.only(this.props.children);
@@ -211,7 +213,7 @@
     return Provider;
   }(React.Component);
 
-  Provider.propTypes = { renderer: React.PropTypes.object };
+  Provider.propTypes = { renderer: React.PropTypes.object.isRequired };
   Provider.childContextTypes = { renderer: React.PropTypes.object };
 
   function connect(mapStylesToProps) {
@@ -251,6 +253,62 @@
     };
   }
 
+  /*  weak */
+  function extractPassThroughProps(passThrough, ruleProps) {
+    return passThrough.reduce(function (output, prop) {
+      output[prop] = ruleProps[prop];
+      return output;
+    }, {});
+  }
+
+  /*  weak */
+  function resolvePassThrough(passThrough, ruleProps) {
+    if (passThrough instanceof Function) {
+      return Object.keys(passThrough(ruleProps));
+    }
+
+    return passThrough;
+  }
+
+  /*  weak */
+  function assign(base) {
+    for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      extendingStyles[_key - 1] = arguments[_key];
+    }
+
+    for (var i = 0, len = extendingStyles.length; i < len; ++i) {
+      var style = extendingStyles[i];
+
+      for (var property in style) {
+        var value = style[property];
+
+        if (base[property] instanceof Object && value instanceof Object) {
+          base[property] = assign({}, base[property], value);
+        } else {
+          base[property] = value;
+        }
+      }
+    }
+
+    return base;
+  }
+
+  function combineRules() {
+    for (var _len = arguments.length, rules = Array(_len), _key = 0; _key < _len; _key++) {
+      rules[_key] = arguments[_key];
+    }
+
+    return function (props) {
+      var style = {};
+
+      for (var i = 0, len = rules.length; i < len; ++i) {
+        assign(style, rules[i](props));
+      }
+
+      return style;
+    };
+  }
+
   function createComponent(rule) {
     var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'div';
     var passThroughProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -259,27 +317,34 @@
       var renderer = _ref2.renderer,
           theme = _ref2.theme;
       var children = _ref.children,
-          className = _ref.className,
-          id = _ref.id,
-          style = _ref.style,
+          _felaRule = _ref._felaRule,
           _ref$passThrough = _ref.passThrough,
           passThrough = _ref$passThrough === undefined ? [] : _ref$passThrough,
-          ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', 'className', 'id', 'style', 'passThrough']);
+          ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', '_felaRule', 'passThrough']);
 
+      var combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule;
 
-      // filter props to extract props to pass through
-      var componentProps = [].concat(babelHelpers.toConsumableArray(passThroughProps), babelHelpers.toConsumableArray(passThrough)).reduce(function (output, prop) {
-        output[prop] = ruleProps[prop];
-        return output;
-      }, {});
+      // compose passThrough props from arrays or functions
+      var resolvedPassThrough = [].concat(babelHelpers.toConsumableArray(resolvePassThrough(passThroughProps, ruleProps)), babelHelpers.toConsumableArray(resolvePassThrough(passThrough, ruleProps)));
 
-      componentProps.style = style;
-      componentProps.id = id;
+      // if the component renders into another Fela component
+      // we pass down the combinedRule as well as both
+      if (type._isFelaComponent) {
+        return React.createElement(type, babelHelpers.extends({
+          _felaRule: combinedRule,
+          passThrough: resolvedPassThrough
+        }, ruleProps), children);
+      }
 
-      var cls = className ? className + ' ' : '';
+      var componentProps = extractPassThroughProps(resolvedPassThrough, ruleProps);
+
+      componentProps.style = ruleProps.style;
+      componentProps.id = ruleProps.id;
+
+      var cls = ruleProps.className ? ruleProps.className + ' ' : '';
       ruleProps.theme = theme || {};
 
-      componentProps.className = cls + renderer.renderRule(rule, ruleProps);
+      componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
       return React.createElement(type, componentProps, children);
     };
 
@@ -289,7 +354,9 @@
     };
 
     // use the rule name as display name to better debug with react inspector
-    FelaComponent.displayName = rule.name && rule.name || 'FelaComponent';
+    FelaComponent.displayName = rule.name ? rule.name : 'FelaComponent';
+    FelaComponent._isFelaComponent = true;
+
     return FelaComponent;
   }
 
@@ -311,7 +378,7 @@
         var previousTheme = this.context.theme;
 
         return {
-          theme: babelHelpers.extends({}, !overwrite && previousTheme || {}, theme)
+          theme: babelHelpers.extends({}, !overwrite ? previousTheme || {} : {}, theme)
         };
       }
     }, {
@@ -323,9 +390,13 @@
     return ThemeProvider;
   }(React.Component);
 
-  ThemeProvider.propTypes = { theme: React.PropTypes.object, overwrite: React.PropTypes.bool };
+  ThemeProvider.propTypes = {
+    theme: React.PropTypes.object.isRequired,
+    overwrite: React.PropTypes.bool
+  };
   ThemeProvider.childContextTypes = { theme: React.PropTypes.object };
   ThemeProvider.contextTypes = { theme: React.PropTypes.object };
+  ThemeProvider.defaultProps = { overwrite: false };
 
   var index = {
     Provider: Provider,

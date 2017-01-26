@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "4.1.2",
+  "version": "4.2.0",
   "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
@@ -10,8 +10,9 @@
     "check": "mocha --opts test/_setup/mocha.opts",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
+    "flow": "flow",
     "lint": "eslint modules",
-    "precommit": "npm run lint && npm test",
+    "precommit": "npm run lint && npm test && npm run flow",
     "prepare": "npm run precommit && npm run babel && npm run dist",
     "release": "npm run prepare && ./scripts/publishPackages.sh && npm run docs",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/_setup/mocha.opts"

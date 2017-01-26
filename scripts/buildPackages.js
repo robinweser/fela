@@ -149,9 +149,7 @@ const commonJSPlugin = commonjs({ include: 'node_modules/**' })
 const uglifyPlugin = uglify()
 
 function rollupConfig(pkg, info, minify) {
-  const plugins = info.dependencies
-    ? [babelPlugin, nodeResolverPlugin, commonJSPlugin]
-    : [babelPlugin]
+  const plugins = info.dependencies ? [babelPlugin, nodeResolverPlugin, commonJSPlugin] : [babelPlugin]
   return {
     entry: `modules/${info.entry}`,
     plugins: minify ? plugins.concat(uglifyPlugin) : plugins
@@ -221,10 +219,7 @@ function updateReadme(pkg, bundleSize) {
       const bundleString = (bundleSize / 1000).toString().split('.')
       const readme = data
         .replace(/@[1-9]*[.][0-9]*[.][0-9]*/g, `@${globalVersion}`)
-        .replace(
-          /gzipped-[0-9]*[.][0-9]*kb/,
-          `gzipped-${bundleString[0]}.${bundleString[1].substr(0, 2)}kb`
-        )
+        .replace(/gzipped-[0-9]*[.][0-9]*kb/, `gzipped-${bundleString[0]}.${bundleString[1].substr(0, 2)}kb`)
 
       fs.writeFile(path, readme, (err) => {
         errorOnFail(err, pkg)
@@ -247,9 +242,7 @@ function buildPackage(pkg) {
 
       bundle.write(config)
       console.log(
-        `Successfully bundled ${packages[pkg].name}${process.env.NODE_ENV === 'production'
-          ? ' (minified).'
-          : '.'}`
+        `Successfully bundled ${packages[pkg].name}${process.env.NODE_ENV === 'production' ? ' (minified).' : '.'}`
       )
     })
     .catch(err => errorOnFail(err, pkg))

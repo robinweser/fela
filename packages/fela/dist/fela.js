@@ -136,6 +136,7 @@
   }
 
   /*  weak */
+  /* eslint-disable import/no-mutable-exports */
   var warning = function warning() {
     return true;
   };
@@ -188,12 +189,16 @@
 
   /*  weak */
   function cssifyMediaQueryRules(mediaQuery, mediaQueryRules) {
-    return '@media ' + mediaQuery + '{' + mediaQueryRules + '}';
+    if (mediaQueryRules) {
+      return '@media ' + mediaQuery + '{' + mediaQueryRules + '}';
+    }
+
+    return '';
   }
 
   /*  weak */
   function generateAnimationName(id) {
-    return 'k' + id;
+    return "k" + id;
   }
 
   /*  weak */
@@ -216,12 +221,12 @@
     if (currentMediaQuery.length === 0) {
       return nestedMediaQuery;
     }
-    return currentMediaQuery + ' and ' + nestedMediaQuery;
+    return currentMediaQuery + " and " + nestedMediaQuery;
   }
 
   /*  weak */
   function generateCSSRule(selector, cssDeclaration) {
-    return selector + '{' + cssDeclaration + '}';
+    return selector + "{" + cssDeclaration + "}";
   }
 
   /*  weak */
@@ -236,8 +241,7 @@
     return style.replace(/\s{2,}/g, '');
   }
 
-  /*  weak */
-  function processStyleWithPlugins(style, plugins, type) {
+  function processStyleWithPlugins(plugins, style, type) {
     for (var i = 0; i < plugins.length; ++i) {
       style = plugins[i](style, type);
     }
@@ -257,7 +261,7 @@
       return minifyCSSString(staticStyle);
     }
 
-    var processedStaticStyle = processStyleWithPlugins(staticStyle, plugins, STATIC_TYPE);
+    var processedStaticStyle = processStyleWithPlugins(plugins, staticStyle, STATIC_TYPE);
     return cssifyObject(processedStaticStyle);
   }
 
@@ -271,27 +275,26 @@
   }
 
   /*  weak */
-  function isAttributeSelector(property) {
-    return property.charAt(0) === '[';
-  }
-
-  /*  weak */
-  function isPseudoSelector(property) {
-    return property.charAt(0) === ':';
-  }
-
-  /*  weak */
-  function isChildSelector(property) {
-    return property.charAt(0) === '>';
-  }
-
-  /*  weak */
   function isMediaQuery(property) {
     return property.substr(0, 6) === '@media';
   }
 
+  /*  weak */
+  function isNestedSelector(property) {
+    return property.match(/^(:|\[|>|&)/g) !== null;
+  }
+
   function isUndefinedValue(value) {
     return value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1;
+  }
+
+  /*  weak */
+  function normalizeNestedProperty(nestedProperty) {
+    if (nestedProperty.charAt(0) === '&') {
+      return nestedProperty.slice(1);
+    }
+
+    return nestedProperty;
   }
 
   /*  weak */
@@ -330,8 +333,8 @@
         return formats[extension];
       }
     }
-
     // TODO: warning: wrong font format
+    return undefined;
   }
 
   function createRenderer() {
@@ -341,12 +344,10 @@
       listeners: [],
       keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
       plugins: config.plugins || [],
-
       // prettySelectors is currently useless, might reimplement better DX classNames later
       // prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
       mediaQueryOrder: config.mediaQueryOrder || [],
       selectorPrefix: config.selectorPrefix || '',
-
       clear: function clear() {
         renderer.fontFaces = '';
         renderer.keyframes = '';
@@ -368,7 +369,7 @@
       renderRule: function renderRule(rule) {
         var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-        var processedStyle = processStyleWithPlugins(rule(props), renderer.plugins, RULE_TYPE);
+        var processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE);
         return renderer._renderStyleToClassNames(processedStyle).slice(1);
       },
       _renderStyleToClassNames: function _renderStyleToClassNames(style) {
@@ -380,8 +381,8 @@
         for (var property in style) {
           var value = style[property];
           if (value instanceof Object) {
-            if (isPseudoSelector(property) || isAttributeSelector(property) || isChildSelector(property)) {
-              classNames += renderer._renderStyleToClassNames(value, pseudo + property, media);
+            if (isNestedSelector(property)) {
+              classNames += renderer._renderStyleToClassNames(value, pseudo + normalizeNestedProperty(property), media);
             } else if (isMediaQuery(property)) {
               var combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim());
               classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery);
@@ -439,7 +440,7 @@
           // use another unique identifier to ensure minimal css markup
           var animationName = generateAnimationName(++renderer.uniqueKeyframeIdentifier);
 
-          var processedKeyframe = processStyleWithPlugins(resolvedKeyframe, renderer.plugins, KEYFRAME_TYPE);
+          var processedKeyframe = processStyleWithPlugins(renderer.plugins, resolvedKeyframe, KEYFRAME_TYPE);
           var cssKeyframe = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes);
           renderer.cache[keyframeReference] = animationName;
           renderer.keyframes += cssKeyframe;
@@ -517,11 +518,9 @@
       },
       subscribe: function subscribe(callback) {
         renderer.listeners.push(callback);
-        return {
-          unsubscribe: function unsubscribe() {
+        return { unsubscribe: function unsubscribe() {
             return renderer.listeners.splice(renderer.listeners.indexOf(callback), 1);
-          }
-        };
+          } };
       },
       _emitChange: function _emitChange(change) {
         for (var i = 0, len = renderer.listeners.length; i < len; ++i) {
@@ -622,10 +621,11 @@
       throw new Error('You need to specify a valid element node (nodeType = 1) to render into.');
     }
 
-    // warns if the DOM node either is not a valid <style> element thus the styles do not get applied as Expected
-    // or if the node already got the data-fela-stylesheet attribute applied suggesting it is already used by another Renderer
+    // warns if the DOM node either is not a valid <style> element
+    // thus the styles do not get applied as Expected
+    // or if the node already got the data-fela-stylesheet attribute applied
+    // suggesting it is already used by another Renderer
     warning$1(mountNode.nodeName === 'STYLE', 'You are using a node other than `<style>`. Your styles might not get applied correctly.');
-    warning$1(!mountNode.hasAttribute('data-fela-stylesheet'), 'This node is already used by another renderer. Rendering might overwrite other styles.');
 
     // mark and clean the DOM node to prevent side-effects
     mountNode.setAttribute('data-fela-stylesheet', '');
@@ -642,7 +642,8 @@
   }
 
   function deprecatedRender(renderer, mountNode) {
-    console.warn('Importing `render` from `fela` is deprecated. Use `fela-dom` to import `render` instead.'); // eslint-disable-line
+    console.warn('Importing `render` from `fela` is deprecated. Use `fela-dom` to import `render` instead.');
+    // eslint-disable-line
     return render(renderer, mountNode);
   }
 

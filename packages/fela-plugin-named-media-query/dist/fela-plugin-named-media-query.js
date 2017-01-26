@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginLogger = factory());
+  (global.FelaPluginNamedMediaQuery = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -42,42 +42,29 @@
 
   babelHelpers;
 
-  /*  weak */
-  function assign(base) {
-    for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      extendingStyles[_key - 1] = arguments[_key];
-    }
+  function resolveNamedMediaQuery(style, mediaQueryMap) {
+    for (var property in style) {
+      var value = style[property];
+      if (value instanceof Object && !Array.isArray(value)) {
+        var resolvedValue = resolveNamedMediaQuery(value, mediaQueryMap);
 
-    for (var i = 0, len = extendingStyles.length; i < len; ++i) {
-      var style = extendingStyles[i];
-
-      for (var property in style) {
-        var value = style[property];
-
-        if (base[property] instanceof Object && value instanceof Object) {
-          base[property] = assign({}, base[property], value);
-        } else {
-          base[property] = value;
+        if (mediaQueryMap[property]) {
+          style[mediaQueryMap[property]] = resolvedValue;
+          delete style[property];
         }
       }
-    }
-
-    return base;
-  }
-
-  function addLogger(style, props, type) {
-    if (true) {
-      console.log(type, assign({}, style)); // eslint-disable-line
     }
 
     return style;
   }
 
-  var logger = (function () {
-    return addLogger;
+  var namedMediaQuery = (function (mediaQueryMap) {
+    return function (style) {
+      return resolveNamedMediaQuery(style, mediaQueryMap);
+    };
   });
 
-  return logger;
+  return namedMediaQuery;
 
 }));
-//# sourceMappingURL=fela-plugin-logger.js.map
+//# sourceMappingURL=fela-plugin-named-media-query.js.map

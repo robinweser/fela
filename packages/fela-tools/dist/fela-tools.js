@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginLogger = factory());
+  (global.FelaTools = factory());
 }(this, function () { 'use strict';
 
   var babelHelpers = {};
@@ -42,42 +42,47 @@
 
   babelHelpers;
 
-  /*  weak */
-  function assign(base) {
-    for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      extendingStyles[_key - 1] = arguments[_key];
-    }
+  var StyleSheet = {
+    create: function create(styles) {
+      var rules = {};
 
-    for (var i = 0, len = extendingStyles.length; i < len; ++i) {
-      var style = extendingStyles[i];
-
-      for (var property in style) {
-        var value = style[property];
-
-        if (base[property] instanceof Object && value instanceof Object) {
-          base[property] = assign({}, base[property], value);
+      var _loop = function _loop(rule) {
+        if (typeof styles[rule] !== 'function') {
+          rules[rule] = function () {
+            return styles[rule];
+          };
         } else {
-          base[property] = value;
+          rules[rule] = styles[rule];
         }
+      };
+
+      for (var rule in styles) {
+        _loop(rule);
       }
+
+      return rules;
     }
+  };
 
-    return base;
-  }
+  function mapValueToMediaQuery() {
+    var queryValueMap = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var mapper = arguments[1];
 
-  function addLogger(style, props, type) {
-    if (true) {
-      console.log(type, assign({}, style)); // eslint-disable-line
+    var style = {};
+
+    for (var query in queryValueMap) {
+      style[query] = mapper(queryValueMap[query]);
     }
 
     return style;
   }
 
-  var logger = (function () {
-    return addLogger;
-  });
+  var index = {
+    StyleSheet: StyleSheet,
+    mapValueToMediaQuery: mapValueToMediaQuery
+  };
 
-  return logger;
+  return index;
 
 }));
-//# sourceMappingURL=fela-plugin-logger.js.map
+//# sourceMappingURL=fela-tools.js.map

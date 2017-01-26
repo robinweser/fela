@@ -56,10 +56,8 @@
         });
       } else if (value instanceof Object) {
         style[property] = removeUndefined(value);
-      } else {
-        if (isInvalid(value)) {
-          delete style[property];
-        }
+      } else if (isInvalid(value)) {
+        delete style[property];
       }
     }
 

@@ -52,7 +52,8 @@
   };
 
   function sortPseudoClasses(left, right) {
-    var precedenceLeft = precedence[left]; // eslint-disable-line
+    var precedenceLeft = precedence[left];
+    // eslint-disable-line
     var precedenceRight = precedence[right];
     // Only sort if both properties are listed
     // This prevents other pseudos from reordering

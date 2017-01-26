@@ -51,11 +51,14 @@
     renderer.renderRule = function (rule, props) {
       var timerCounter = '[' + ++counter + ']';
 
-      console.time(timerCounter); // eslint-disable-line
+      console.time(timerCounter);
+      // eslint-disable-line
       var className = existingRenderRule(rule, props);
-      console.log(timerCounter + ' ' + (rule.name || 'anonym'), props); // eslint-disable-line
-      console.timeEnd(timerCounter); // eslint-disable-line
+      console.log(timerCounter + ' ' + (rule.name || 'anonym'), props);
+      // eslint-disable-line
+      console.timeEnd(timerCounter);
 
+      // eslint-disable-line
       return className;
     };
 

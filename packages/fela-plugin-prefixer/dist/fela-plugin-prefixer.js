@@ -772,6 +772,7 @@
   }
 
   /*  weak */
+  /* eslint-disable import/no-mutable-exports */
   var warning = function warning() {
     return true;
   };

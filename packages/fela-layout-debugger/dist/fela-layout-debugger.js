@@ -55,13 +55,9 @@
       var debugLayoutClassName = 'fela-debug-layout_' + ruleName;
 
       if (options.backgroundColor) {
-        renderer.renderStatic({
-          backgroundColor: 'hsla(' + color + ', 100%, 25%, 0.1) !important'
-        }, '.' + debugLayoutClassName);
+        renderer.renderStatic({ backgroundColor: 'hsla(' + color + ', 100%, 25%, 0.1) !important' }, '.' + debugLayoutClassName);
       } else {
-        renderer.renderStatic({
-          outline: options.thickness + 'px solid hsl(' + color + ', 100%, 50%) !important'
-        }, '.' + debugLayoutClassName);
+        renderer.renderStatic({ outline: options.thickness + 'px solid hsl(' + color + ', 100%, 50%) !important' }, '.' + debugLayoutClassName);
       }
 
       return debugLayoutClassName + ' ' + className;
@@ -70,7 +66,10 @@
     return renderer;
   }
 
-  var defaultOptions = { backgroundColor: false, thickness: 1 };
+  var defaultOptions = {
+    backgroundColor: false,
+    thickness: 1
+  };
   var layoutDebugger = (function (options) {
     return function (renderer) {
       return addLayoutDebugger(renderer, babelHelpers.extends({}, defaultOptions, options));
