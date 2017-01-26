@@ -58,6 +58,11 @@ const packages = {
     entry: 'plugins/friendlyPseudoClass.js',
     dependencies: false
   },
+  'fela-plugin-named-media-query': {
+    name: 'FelaPluginNamedMediaQuery',
+    entry: 'plugins/namedMediaQuery.js',
+    dependencies: false
+  },
   'fela-plugin-unit': {
     name: 'FelaPluginUnit',
     entry: 'plugins/unit.js',
