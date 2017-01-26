@@ -1,14 +1,15 @@
 
-### `mapValueToMediaQuery(queryValueMap, mapper)`
+# `mapValueToMediaQuery(queryValueMap, mapper)`
 Transforms a set of mediaQuery-value pairs into valid style object media queries.
-#### Arguments
+
+## Arguments
 1. `queryValueMap` (*Object*): An object consisting of mediaQuery-value pairs.
 2. `mapper` (*Function*): A function that takes each value and returns a style object which is mapped to the media query.
 
-#### Returns
+## Returns
 (*Object*): An object containing only valid media queries.
 
-#### Example
+## Example
 ```javascript
 import { mapValueToMediaQuery } from 'fela-tools'
 
@@ -39,7 +40,7 @@ style === {
 }
 ```
 
-#### Tips & Tricks
+## Tips & Tricks
 It is best used within the `extend` value provided by [fela-plugin-extend](../../fela-plugin-extend), because it merges nested objects (such as media queries) instead of overwriting them.
 
 It can also be combined with the [fela-plugin-named-media-query](../../fela-plugin-named-media-query) to have short query keys.
