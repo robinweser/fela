@@ -37,36 +37,6 @@ const wrappedApp = props => (
 AppRegistry.registerComponent('FelaNative', () => wrappedApp)
 ```
 
-## Rendering Styles
-Only using the `<Provider>` we actually got everything ready to fully use Fela within our presentational components. We can just use the renderer passed via `context`.
-
-```javascript
-import React, { PropTypes } from 'react'
-import { View } from 'react-native'
-
-const container = props => ({
-  color: props.color,
-  padding: 20,
-  height: 200
-})
-
-
-const ColoredText = ({ title, size, color }, { renderer }) => {
-  const containerStyle = renderer.renderRule(container, { color: color })
-
-  return (
-    <View style={containerStyle}>
-      I am {props.color}
-    </View>
-  )
-}
-
-ColoredText.contextTypes = { renderer: PropTypes.object }
-
-// Usage example
-<ColoredText color='red' />
-```
-
 ## Advanced Usage
 After passing the native renderer, we can use Fela and the React bindings just as shown within the [Usage with React](UsageWithReact.md) section.
 
@@ -98,7 +68,8 @@ Below there are some key differences comparing Fela for React and Fela for React
 * [API reference - `Provider` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/Provider.md)
 * [API reference - `connect` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/connect.md)
 * [API reference - `createComponent` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md)
+* [API reference - `ThemeProvider`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md)
 
-#### Tools
+#### Renderer
 **[fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native)**<br>
 Renderer for React Native
