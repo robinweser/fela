@@ -5,7 +5,7 @@ export default function cssifyObject(style) {
   let css = ''
 
   for (const property in style) {
-    if (style[property] !== 'string' && typeof style[property] !== 'number') {
+    if (typeof style[property] !== 'string' && typeof style[property] !== 'number') {
       continue
     }
 
