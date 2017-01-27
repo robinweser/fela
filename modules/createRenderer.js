@@ -62,11 +62,7 @@ export default function createRenderer(config = {}) {
         const value = style[property]
         if (value instanceof Object) {
           if (isNestedSelector(property)) {
-            classNames += renderer._renderStyleToClassNames(
-              value,
-              pseudo + normalizeNestedProperty(property),
-              media
-            )
+            classNames += renderer._renderStyleToClassNames(value, pseudo + normalizeNestedProperty(property), media)
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
             classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery)
@@ -83,8 +79,7 @@ export default function createRenderer(config = {}) {
               continue
             }
 
-            const className = renderer.selectorPrefix +
-              generateClassName(++renderer.uniqueRuleIdentifier)
+            const className = renderer.selectorPrefix + generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className
 
@@ -123,16 +118,8 @@ export default function createRenderer(config = {}) {
         // use another unique identifier to ensure minimal css markup
         const animationName = generateAnimationName(++renderer.uniqueKeyframeIdentifier)
 
-        const processedKeyframe = processStyleWithPlugins(
-          renderer.plugins,
-          resolvedKeyframe,
-          KEYFRAME_TYPE
-        )
-        const cssKeyframe = cssifyKeyframe(
-          processedKeyframe,
-          animationName,
-          renderer.keyframePrefixes
-        )
+        const processedKeyframe = processStyleWithPlugins(renderer.plugins, resolvedKeyframe, KEYFRAME_TYPE)
+        const cssKeyframe = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
         renderer.cache[keyframeReference] = animationName
         renderer.keyframes += cssKeyframe
 

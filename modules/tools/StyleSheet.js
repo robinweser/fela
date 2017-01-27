@@ -1,6 +1,6 @@
 /* @flow */
 export default {
-  create(styles: Object) {
+  create(styles: Object): Object {
     const rules = {}
 
     for (const rule in styles) {
