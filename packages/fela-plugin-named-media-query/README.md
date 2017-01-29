@@ -1,4 +1,4 @@
-  # fela-plugin-named-media-query
+# fela-plugin-named-media-query
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-named-media-query.svg">
