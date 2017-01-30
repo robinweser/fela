@@ -22,6 +22,6 @@
   "license": "MIT",
   "peerDependencies": {
     "fela": "4.2.0",
-    "react-native": "^0.30.0"
+    "react-native": "*"
   }
 }
