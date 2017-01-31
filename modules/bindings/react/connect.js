@@ -3,13 +3,13 @@
 import React, { Component, PropTypes } from 'react'
 
 const generateDisplayName = (Comp) => {
-  const displayName = Comp.displayName || Comp.name;
+  const displayName = Comp.displayName || Comp.name
   if (displayName) {
-    return `Themed${displayName}`;
+    return `Themed${displayName}`
   }
-  
-  return 'ConnectedFelaComponent';
-};
+
+  return 'ConnectedFelaComponent'
+}
 
 export default function connect(mapStylesToProps) {
   return Comp => class EnhancedComponent extends Component {
