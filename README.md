@@ -99,8 +99,8 @@ render(renderer, mountNode)
 * [Thanks](http://fela.js.org/docs/Thanks.html)
 
 ## Posts
-* [Style as a Function of State](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - by [@rofrischmann](https://twitter.com/rofrischmann)
-* [CSS in JS: The Argument Refined](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - by [@steida](https://twitter.com/steida)
+* [Style as a Function of State](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch) (by [@rofrischmann](https://twitter.com/rofrischmann)
+* [CSS in JS: The Argument Refined](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4) (by [@steida](https://twitter.com/steida))
 
 ## Examples
 * [Vanilla JavaScript](http://fela.js.org/docs/introduction/Examples.html#vanilla) ([source](examples/vanilla))
