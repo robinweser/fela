@@ -14,9 +14,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginExtend` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-extend@4.2.0/dist/fela-plugin-extend.js"></script>
+<script src="https://unpkg.com/fela-plugin-extend@4.2.1/dist/fela-plugin-extend.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-extend@4.2.0/dist/fela-plugin-extend.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-extend@4.2.1/dist/fela-plugin-extend.min.js"></script>
 ```
 
 ## Usage

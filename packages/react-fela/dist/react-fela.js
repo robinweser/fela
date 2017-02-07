@@ -340,6 +340,7 @@
 
       componentProps.style = ruleProps.style;
       componentProps.id = ruleProps.id;
+      componentProps.ref = ruleProps.innerRef;
 
       var cls = ruleProps.className ? ruleProps.className + ' ' : '';
       ruleProps.theme = theme || {};

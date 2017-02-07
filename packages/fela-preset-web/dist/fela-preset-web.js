@@ -829,29 +829,13 @@
     return require$$0$4(property) + ':' + value;
   }
 
-  /*  weak */
-  /* eslint-disable import/no-mutable-exports */
-  var warning = function warning() {
-    return true;
-  };
-
-  if (true) {
-    warning = function warning(condition, message) {
-      if (!condition) {
-        if (typeof console !== 'undefined') {
-          console.error(message); // eslint-disable-line
-        }
-      }
-    };
-  }
-
-  var warning$1 = warning;
-
   function cssifyObject(style) {
     var css = '';
 
     for (var property in style) {
-      warning$1(typeof style[property] === 'string' || typeof style[property] === 'number', 'The invalid value `' + style[property] + '` has been used as `' + property + '`.');
+      if (typeof style[property] !== 'string' && typeof style[property] !== 'number') {
+        continue;
+      }
 
       // prevents the semicolon after
       // the last rule declaration
@@ -998,6 +982,24 @@
   });
 
   var isUnitlessCSSProperty = (index$1 && typeof index$1 === 'object' && 'default' in index$1 ? index$1['default'] : index$1);
+
+  /*  weak */
+  /* eslint-disable import/no-mutable-exports */
+  var warning = function warning() {
+    return true;
+  };
+
+  if (true) {
+    warning = function warning(condition, message) {
+      if (!condition) {
+        if (typeof console !== 'undefined') {
+          console.error(message); // eslint-disable-line
+        }
+      }
+    };
+  }
+
+  var warning$1 = warning;
 
   function addUnitIfNeeded(property, value, unit) {
     var valueType = typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value);

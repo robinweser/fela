@@ -16,9 +16,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginFriendlyPseudoClass` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-friendly-pseudo-class@4.2.0/dist/fela-plugin-friendly-pseudo-class.js"></script>
+<script src="https://unpkg.com/fela-plugin-friendly-pseudo-class@4.2.1/dist/fela-plugin-friendly-pseudo-class.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-friendly-pseudo-class@4.2.0/dist/fela-plugin-friendly-pseudo-class.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-friendly-pseudo-class@4.2.1/dist/fela-plugin-friendly-pseudo-class.min.js"></script>
 ```
 
 ## Usage

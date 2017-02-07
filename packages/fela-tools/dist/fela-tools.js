@@ -71,7 +71,11 @@
     var style = {};
 
     for (var query in queryValueMap) {
-      style[query] = mapper(queryValueMap[query]);
+      if (typeof mapper === 'string') {
+        style[query] = babelHelpers.defineProperty({}, mapper, queryValueMap[query]);
+      } else {
+        style[query] = mapper(queryValueMap[query]);
+      }
     }
 
     return style;

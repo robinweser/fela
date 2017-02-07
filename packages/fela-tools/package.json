@@ -1,6 +1,6 @@
 {
   "name": "fela-tools",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Useful tools for working with Fela",
   "main": "index.js",
   "files": [
@@ -20,6 +20,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.2.0"
+    "fela": "4.2.1"
   }
 }

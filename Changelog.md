@@ -3,9 +3,10 @@
 ## 4.0
 
 #### 4.2.1
-* using `try-catch` to catch unsupported rules inside `insertRule`
+* removed deprecated `render` from [fela](packages/fela) in favor of [fela-dom](packages/fela-dom)
+* using *try-catch* to catch unsupported rules inside `insertRule`
 * removed a deprecated error for `undefined` values
-* added the `innerRef` prop to pass a `ref` to `createComponent` components ( [#190](https://github.com/rofrischmann/fela/issues/190) )
+* added the `innerRef` prop to pass a `ref` directly to `createComponent` components ( [#190](https://github.com/rofrischmann/fela/issues/190) )
 
 #### 4.2.0
 ##### API Changes
@@ -15,7 +16,7 @@
 
 
 ##### Improvements
-* added [fela-plugin-named-media-query](packages/fela-style-debugger) which transforms named media queries into valid media query syntax ( [#182](https://github.com/rofrischmann/fela/issues/182) )
+* added [fela-plugin-named-media-query](packages/fela-plugin-named-media-query) which transforms named media queries into valid media query syntax ( [#182](https://github.com/rofrischmann/fela/issues/182) )
 * added [fela-tools](packages/fela-tools) which provides useful tools for working with Fela (e.g. `StyleSheet` and `mapValueToMediaQuery`) ( [#183](https://github.com/rofrischmann/fela/issues/183) )
 
 
