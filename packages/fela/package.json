@@ -1,7 +1,7 @@
 {
   "name": "fela",
   "version": "4.2.0",
-  "description": "Fast & Dynamic Styling in JavaScript",
+  "description": "Full-Featured Universal, Dynamic & High-Performance Styling in JavaScript",
   "main": "index.js",
   "typings": "index.d.ts",
   "files": [

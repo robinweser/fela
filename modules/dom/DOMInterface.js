@@ -6,11 +6,7 @@ export default function createDOMInterface(renderer, node) {
     // only use insertRule in production as browser devtools might have
     // weird behavior if used together with insertRule at runtime
     if (process.env.NODE_ENV === 'production' && change.type === RULE_TYPE && !change.media) {
-      try {
-        node.sheet.insertRule(`${change.selector}{${change.declaration}}`, node.sheet.cssRules.length)
-      } catch (e) {
-        // basically we do nothing?
-      }
+      node.sheet.insertRule(`${change.selector}{${change.declaration}}`, node.sheet.cssRules.length)
     } else {
       node.textContent = renderer.renderToString()
     }

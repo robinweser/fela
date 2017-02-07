@@ -6,36 +6,30 @@ import resolvePassThrough from '../../utils/resolvePassThrough'
 import combineRules from '../../combineRules'
 
 export default function createComponent(rule, type = 'div', passThroughProps = []) {
-  const FelaComponent = (
-    { children, _felaRule, passThrough = [], ...ruleProps },
-    { renderer, theme }
-  ) => {
+  const FelaComponent = ({ children, _felaRule, passThrough = [], ...ruleProps }, { renderer, theme }) => {
     const combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule
 
-      // compose passThrough props from arrays or functions
+    // compose passThrough props from arrays or functions
     const resolvedPassThrough = [
       ...resolvePassThrough(passThroughProps, ruleProps),
       ...resolvePassThrough(passThrough, ruleProps)
     ]
 
-      // if the component renders into another Fela component
-      // we pass down the combinedRule as well as both
+    // if the component renders into another Fela component
+    // we pass down the combinedRule as well as both
     if (type._isFelaComponent) {
-      return createElement(
-          type,
-        {
-          _felaRule: combinedRule,
-          passThrough: resolvedPassThrough,
-          ...ruleProps
-        },
-          children
-        )
+      return createElement(type, {
+        _felaRule: combinedRule,
+        passThrough: resolvedPassThrough,
+        ...ruleProps
+      }, children)
     }
 
     const componentProps = extractPassThroughProps(resolvedPassThrough, ruleProps)
 
     componentProps.style = ruleProps.style
     componentProps.id = ruleProps.id
+    componentProps.ref = ruleProps.innerRef
 
     const cls = ruleProps.className ? `${ruleProps.className} ` : ''
     ruleProps.theme = theme || {}
