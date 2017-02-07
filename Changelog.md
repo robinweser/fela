@@ -3,6 +3,7 @@
 ## 4.0
 
 #### 4.2.1
+* using `try-catch` to catch unsupported rules inside `insertRule`
 * removed a deprecated error for `undefined` values
 * added the `innerRef` prop to pass a `ref` to `createComponent` components ( [#190](https://github.com/rofrischmann/fela/issues/190) )
 
