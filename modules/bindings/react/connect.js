@@ -2,10 +2,19 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component, PropTypes } from 'react'
 
+const generateDisplayName = (Comp) => {
+  const displayName = Comp.displayName || Comp.name
+  if (displayName) {
+    return `Fela${displayName}`
+  }
+
+  return 'ConnectedFelaComponent'
+}
+
 export default function connect(mapStylesToProps) {
   return Comp => class EnhancedComponent extends Component {
     // reuse the initial displayName name
-    static displayName = Comp.displayName || Comp.name || 'ConnectedFelaComponent';
+    static displayName = generateDisplayName(Comp);
 
     static contextTypes = {
       ...Comp.contextTypes,
