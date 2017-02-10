@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react'
 const generateDisplayName = (Comp) => {
   const displayName = Comp.displayName || Comp.name
   if (displayName) {
-    return `Themed${displayName}`
+    return `Fela${displayName}`
   }
 
   return 'ConnectedFelaComponent'
