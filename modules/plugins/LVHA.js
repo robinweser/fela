@@ -1,29 +1,33 @@
 /* @flow weak */
 const precedence = {
-  ':link': 4,
-  ':visited': 3,
+  ':link': 0,
+  ':visited': 1,
   ':hover': 2,
-  ':focus': 1.5,
-  ':active': 1
+  ':focus': 3,
+  ':active': 4
 }
 
-function sortPseudoClasses(left, right) {
-  const precedenceLeft = precedence[left]
-  // eslint-disable-line
-  const precedenceRight = precedence[right]
-  // Only sort if both properties are listed
-  // This prevents other pseudos from reordering
-  if (precedenceLeft && precedenceRight) {
-    return precedenceLeft < precedenceRight ? 1 : -1
-  }
-  return 0
-}
+const pseudoClasses = Object.keys(precedence)
 
 function LVHA(style) {
-  return Object.keys(style).sort(sortPseudoClasses).reduce((out, pseudo) => {
-    out[pseudo] = style[pseudo]
-    return out
-  }, {})
+  const pseudoList = []
+
+  for (const property in style) {
+    if (precedence[property]) {
+      pseudoList[precedence[property]] = style[property]
+      delete style[property]
+    }
+  }
+
+  for (let i = 0, len = pseudoList.length; i < len; ++i) {
+    const pseudoStyle = pseudoList[i]
+
+    if (pseudoStyle) {
+      style[pseudoClasses[i]] = pseudoStyle
+    }
+  }
+
+  return style
 }
 
 export default () => LVHA
