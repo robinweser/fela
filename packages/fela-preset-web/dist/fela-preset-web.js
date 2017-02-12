@@ -881,30 +881,34 @@
 
   /*  weak */
   var precedence = {
-    ':link': 4,
-    ':visited': 3,
+    ':link': 0,
+    ':visited': 1,
     ':hover': 2,
-    ':focus': 1.5,
-    ':active': 1
+    ':focus': 3,
+    ':active': 4
   };
 
-  function sortPseudoClasses(left, right) {
-    var precedenceLeft = precedence[left];
-    // eslint-disable-line
-    var precedenceRight = precedence[right];
-    // Only sort if both properties are listed
-    // This prevents other pseudos from reordering
-    if (precedenceLeft && precedenceRight) {
-      return precedenceLeft < precedenceRight ? 1 : -1;
-    }
-    return 0;
-  }
+  var pseudoClasses = Object.keys(precedence);
 
   function LVHA(style) {
-    return Object.keys(style).sort(sortPseudoClasses).reduce(function (out, pseudo) {
-      out[pseudo] = style[pseudo];
-      return out;
-    }, {});
+    var pseudoList = [];
+
+    for (var property in style) {
+      if (precedence[property]) {
+        pseudoList[precedence[property]] = style[property];
+        delete style[property];
+      }
+    }
+
+    for (var i = 0, len = pseudoList.length; i < len; ++i) {
+      var pseudoStyle = pseudoList[i];
+
+      if (pseudoStyle) {
+        style[pseudoClasses[i]] = pseudoStyle;
+      }
+    }
+
+    return style;
   }
 
   var LVHA$1 = (function () {

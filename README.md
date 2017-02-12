@@ -24,9 +24,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [unpkg](https://unpkg.com/).
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela@4.2.1/dist/fela.js"></script>
+<script src="https://unpkg.com/fela@4.2.2/dist/fela.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela@4.2.1/dist/fela.min.js"></script>
+<script src="https://unpkg.com/fela@4.2.2/dist/fela.min.js"></script>
 ```
 
 ## Features

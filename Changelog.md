@@ -2,6 +2,9 @@
 
 ## 4.0
 
+#### 4.2.2
+* fixed a bug that prevented the LVHA plugin from working correctly ( [#199](https://github.com/rofrischmann/fela/issues/199) )
+
 #### 4.2.1
 * removed deprecated `render` from [fela](packages/fela) in favor of [fela-dom](packages/fela-dom)
 * using *try-catch* to catch unsupported rules inside `insertRule`

@@ -19,9 +19,9 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 
 ```HTML
 <!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/react-fela@4.2.1/dist/react-fela.js"></script>
+<script src="https://unpkg.com/react-fela@4.2.2/dist/react-fela.js"></script>
 <!-- Production build (minified)  -->
-<script src="https://unpkg.com/react-fela@4.2.1/dist/react-fela.min.js"></script>
+<script src="https://unpkg.com/react-fela@4.2.2/dist/react-fela.min.js"></script>
 ```
 
 ## API Reference

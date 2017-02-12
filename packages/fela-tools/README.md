@@ -13,9 +13,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaTools` global.
 ```HTML
 <!-- (Development) Unminified version -->
-<script src="https://unpkg.com/fela-tools@4.2.1/dist/fela-tools.js"></script>
+<script src="https://unpkg.com/fela-tools@4.2.2/dist/fela-tools.js"></script>
 <!-- (Production) Minified version -->
-<script src="https://unpkg.com/fela-tools@4.2.1/dist/fela-tools.min.js"></script>
+<script src="https://unpkg.com/fela-tools@4.2.2/dist/fela-tools.min.js"></script>
 ```
 
 ## Usage
