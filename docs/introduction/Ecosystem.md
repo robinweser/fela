@@ -43,6 +43,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-layout-debugger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-layout-debugger) - Adds colored outlines or backgroundColors to debug layouts
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
+* [fela-monolithic*](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic) - Renders monolithic classnames
 
 ### Components
 * [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components

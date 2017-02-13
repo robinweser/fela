@@ -1,7 +1,7 @@
 {
-  "name": "fela-beautifier",
+  "name": "fela-monolithic",
   "version": "4.2.2",
-  "description": "Fela enhancer to beautify CSS output",
+  "description": "Fela enhancer for having monolithic classnames",
   "main": "index.js",
   "files": [
     "LICENSE",
@@ -16,15 +16,10 @@
     "fela-enhancer",
     "dx",
     "devtools",
-    "cssinjs",
-    "beautifier",
-    "cssbeautify"
+    "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "dependencies": {
-    "cssbeautify": "0.3.1"
-  },
   "peerDependencies": {
     "fela": "4.2.2"
   }
