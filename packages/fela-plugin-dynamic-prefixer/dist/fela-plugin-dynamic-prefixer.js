@@ -113,7 +113,8 @@
   babelHelpers;
 
 
-  function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
+  var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
+  function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
 
   var getPrefixedValue = __commonjs(function (module, exports) {
   "use strict";
@@ -794,16 +795,16 @@
 
   var require$$13 = (getPrefixedKeyframes && typeof getPrefixedKeyframes === 'object' && 'default' in getPrefixedKeyframes ? getPrefixedKeyframes['default'] : getPrefixedKeyframes);
 
-  var bowser = __commonjs(function (module) {
+  var bowser = __commonjs(function (module, exports, global) {
   /*!
    * Bowser - a browser detector
    * https://github.com/ded/bowser
    * MIT License | (c) Dustin Diaz 2015
    */
 
-  !function (name, definition) {
-    if (typeof module != 'undefined' && module.exports) module.exports = definition();else if (typeof define == 'function' && define.amd) define(name, definition);else this[name] = definition();
-  }('bowser', function () {
+  !function (root, name, definition) {
+    if (typeof module != 'undefined' && module.exports) module.exports = definition();else if (typeof define == 'function' && define.amd) define(name, definition);else root[name] = definition();
+  }(__commonjs_global, 'bowser', function () {
     /**
       * See useragents.js for examples of navigator.userAgent
       */

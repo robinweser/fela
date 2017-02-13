@@ -1,7 +1,7 @@
 # fela-beautifier
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-beautifier.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.91kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.2kb-brightgreen.svg">
 
 The beautifier enhancer is a developer tool that automatically formats the rendered CSS markup on every change. It uses [cssbeautify](https://github.com/senchalabs/cssbeautify) to achieve this.
 
@@ -54,9 +54,6 @@ const renderer = createRenderer({
   enhancers: [ beautifyEnhancer ]
 })
 ```
-
-## Example
-![Preview](preview.png)
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
