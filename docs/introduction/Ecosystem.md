@@ -43,14 +43,14 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-layout-debugger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-layout-debugger) - Adds colored outlines or backgroundColors to debug layouts
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
-* [fela-monolithic*](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic) - Renders monolithic classnames
+* [fela-monolithic](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic) - Renders monolithic class names
 
 ### Components
 * [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components
 
 ### Tools
 * [fela-tools](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
-* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
+* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connecgt` with autobound styles
 
 ### Utilities
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support

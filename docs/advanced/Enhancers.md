@@ -48,20 +48,6 @@ const config = {
 const renderer = createRenderer(config)
 ```
 
-### Monolithic class names
-Using atomic class names design for developing can be quite hard to debug so we support monolithic class names.
-Atomic class names will give you `n` number of classes when you `renderer.renderRule` while monolithic design will give you one class name with all the rules.
-
-```javascript
-import monolithic from 'fela-monolithic'
-
-const config = {
-  enhancers: [ monolithic() ]
-}
-
-const renderer = createRenderer(config)
-```
-
 ## Official Enhancers
 Fela already ships with a set of useful enhancers. Check out [Introduction - Ecosystem](../introduction/Ecosystem.md#enhancers) for more information.<br>
 > **Note**: Official enhancers are wrapped by a configuration function by default.
