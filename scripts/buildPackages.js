@@ -128,6 +128,11 @@ const packages = {
     entry: 'enhancers/logger.js',
     dependencies: true
   },
+  'fela-monolithic': {
+    name: 'FelaMonolithic',
+    entry: 'enhancers/monolithic.js',
+    dependencies: false
+  },
   'react-fela': {
     name: 'ReactFela',
     entry: 'bindings/react/index.js',
