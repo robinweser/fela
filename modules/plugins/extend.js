@@ -1,17 +1,17 @@
 /* @flow weak */
 /* eslint-disable no-use-before-define */
 
-import assign from '../utils/assign'
+import assignStyles from '../utils/assignStyles'
 
 function extendStyle(style, extension) {
   // extend conditional style objects
   if (extension.hasOwnProperty('condition')) {
     if (extension.condition) {
-      assign(style, extend(extension.style))
+      assignStyles(style, extend(extension.style))
     }
   } else {
     // extend basic style objects
-    assign(style, extension)
+    assignStyles(style, extension)
   }
 }
 

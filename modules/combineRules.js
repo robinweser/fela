@@ -1,12 +1,12 @@
 /* @flow weak */
-import assign from './utils/assign'
+import assignStyles from './utils/assignStyles'
 
 export default function combineRules(...rules) {
   return (props) => {
     const style = {}
 
     for (let i = 0, len = rules.length; i < len; ++i) {
-      assign(style, rules[i](props))
+      assignStyles(style, rules[i](props))
     }
 
     return style

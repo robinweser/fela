@@ -1,9 +1,11 @@
 /* @flow weak */
+import assignStyles from '../utils/assignStyles'
+
 function customProperty(style, properties) {
   for (const property in style) {
     const value = style[property]
     if (properties[property]) {
-      Object.assign(style, properties[property](value))
+      assignStyles(style, properties[property](value))
       delete style[property]
     }
 
