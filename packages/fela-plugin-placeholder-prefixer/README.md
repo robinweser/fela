@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-placeholder-prefixer.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.54kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.74kb-brightgreen.svg">
 
 Adds prefixes to `::placeholder` pseudo elements.
 
@@ -14,9 +14,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginPlaceholderPrefixer` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-placeholder-prefixer@4.2.2/dist/fela-plugin-placeholder-prefixer.js"></script>
+<script src="https://unpkg.com/fela-plugin-placeholder-prefixer@4.2.3/dist/fela-plugin-placeholder-prefixer.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-placeholder-prefixer@4.2.2/dist/fela-plugin-placeholder-prefixer.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-placeholder-prefixer@4.2.3/dist/fela-plugin-placeholder-prefixer.min.js"></script>
 ```
 
 ## Usage

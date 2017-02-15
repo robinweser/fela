@@ -17,9 +17,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPresetDev` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-preset-dev@4.2.2/dist/fela-preset-dev.js"></script>
+<script src="https://unpkg.com/fela-preset-dev@4.2.3/dist/fela-preset-dev.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-preset-dev@4.2.2/dist/fela-preset-dev.min.js"></script>
+<script src="https://unpkg.com/fela-preset-dev@4.2.3/dist/fela-preset-dev.min.js"></script>
 ```
 
 ## Usage

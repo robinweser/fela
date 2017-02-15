@@ -113,11 +113,10 @@
   babelHelpers;
 
 
-  var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
-  function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
+  function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
   /*  weak */
-  function assign(base) {
+  function assignStyles(base) {
     for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       extendingStyles[_key - 1] = arguments[_key];
     }
@@ -127,12 +126,25 @@
 
       for (var property in style) {
         var value = style[property];
+        var baseValue = base[property];
 
-        if (base[property] instanceof Object && value instanceof Object) {
-          base[property] = assign({}, base[property], value);
-        } else {
-          base[property] = value;
+        if (baseValue instanceof Object) {
+          if (Array.isArray(baseValue)) {
+            if (Array.isArray(value)) {
+              base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), babelHelpers.toConsumableArray(value));
+            } else {
+              base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), [value]);
+            }
+            continue;
+          }
+
+          if (value instanceof Object && !Array.isArray(value)) {
+            base[property] = assignStyles({}, baseValue, value);
+            continue;
+          }
         }
+
+        base[property] = value;
       }
     }
 
@@ -143,11 +155,11 @@
     // extend conditional style objects
     if (extension.hasOwnProperty('condition')) {
       if (extension.condition) {
-        assign(style, extend(extension.style));
+        assignStyles(style, extend(extension.style));
       }
     } else {
       // extend basic style objects
-      assign(style, extension);
+      assignStyles(style, extension);
     }
   }
 

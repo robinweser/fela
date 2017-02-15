@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-named-media-query",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "description": "Fela plugin to support named media query syntax",
   "main": "index.js",
   "files": [
@@ -19,6 +19,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.2.2"
+    "fela": "4.2.3"
   }
 }

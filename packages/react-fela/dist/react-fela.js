@@ -280,7 +280,7 @@
   }
 
   /*  weak */
-  function assign(base) {
+  function assignStyles(base) {
     for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       extendingStyles[_key - 1] = arguments[_key];
     }
@@ -290,12 +290,25 @@
 
       for (var property in style) {
         var value = style[property];
+        var baseValue = base[property];
 
-        if (base[property] instanceof Object && value instanceof Object) {
-          base[property] = assign({}, base[property], value);
-        } else {
-          base[property] = value;
+        if (baseValue instanceof Object) {
+          if (Array.isArray(baseValue)) {
+            if (Array.isArray(value)) {
+              base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), babelHelpers.toConsumableArray(value));
+            } else {
+              base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), [value]);
+            }
+            continue;
+          }
+
+          if (value instanceof Object && !Array.isArray(value)) {
+            base[property] = assignStyles({}, baseValue, value);
+            continue;
+          }
         }
+
+        base[property] = value;
       }
     }
 
@@ -311,7 +324,7 @@
       var style = {};
 
       for (var i = 0, len = rules.length; i < len; ++i) {
-        assign(style, rules[i](props));
+        assignStyles(style, rules[i](props));
       }
 
       return style;

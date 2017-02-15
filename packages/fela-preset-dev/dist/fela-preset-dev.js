@@ -88,37 +88,25 @@
     return call && (typeof call === "object" || typeof call === "function") ? call : self;
   };
 
+  babelHelpers.toConsumableArray = function (arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+      return arr2;
+    } else {
+      return Array.from(arr);
+    }
+  };
+
   babelHelpers;
 
 
   function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
   /*  weak */
-  function assign(base) {
-    for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      extendingStyles[_key - 1] = arguments[_key];
-    }
-
-    for (var i = 0, len = extendingStyles.length; i < len; ++i) {
-      var style = extendingStyles[i];
-
-      for (var property in style) {
-        var value = style[property];
-
-        if (base[property] instanceof Object && value instanceof Object) {
-          base[property] = assign({}, base[property], value);
-        } else {
-          base[property] = value;
-        }
-      }
-    }
-
-    return base;
-  }
-
   function addLogger(style, props, type) {
     if (true) {
-      console.log(type, assign({}, style)); // eslint-disable-line
+      console.log(type, babelHelpers.extends({}, style)); // eslint-disable-line
     }
 
     return style;

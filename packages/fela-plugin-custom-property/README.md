@@ -2,7 +2,7 @@
 
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-custom-property.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.47kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.66kb-brightgreen.svg">
 
 Sometimes it's handy to define some custom properties mostly used as shortcuts.
 
@@ -16,9 +16,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginCustomProperty` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-custom-property@4.2.2/dist/fela-plugin-custom-property.js"></script>
+<script src="https://unpkg.com/fela-plugin-custom-property@4.2.3/dist/fela-plugin-custom-property.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-custom-property@4.2.2/dist/fela-plugin-custom-property.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-custom-property@4.2.3/dist/fela-plugin-custom-property.min.js"></script>
 ```
 
 ## Usage

@@ -1,7 +1,7 @@
 # fela-font-renderer
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-font-renderer.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.24kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.29kb-brightgreen.svg">
 
 Allocates all `renderFont` calls to a separate renderer which renders into a separate `mountNode` to prevent refetching the `@font-face` every time.
 
@@ -13,9 +13,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaFontRenderer` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-font-renderer@4.2.2/dist/fela-font-renderer.js"></script>
+<script src="https://unpkg.com/fela-font-renderer@4.2.3/dist/fela-font-renderer.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-font-renderer@4.2.2/dist/fela-font-renderer.min.js"></script>
+<script src="https://unpkg.com/fela-font-renderer@4.2.3/dist/fela-font-renderer.min.js"></script>
 ```
 
 ## Usage
