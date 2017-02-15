@@ -9,8 +9,11 @@ export default function assignStyles(base, ...extendingStyles) {
 
       if (baseValue instanceof Object) {
         if (Array.isArray(baseValue)) {
-          const normalizedValue = [].concat(value)
-          base[property] = [...baseValue, ...value]
+          if (Array.isArray(value)) {
+            base[property] = [...baseValue, ...value]
+          } else {
+            base[property] = [...baseValue, value]
+          }
           continue
         }
 
