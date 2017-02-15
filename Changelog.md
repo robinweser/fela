@@ -2,6 +2,10 @@
 
 ## 4.0
 
+#### 4.2.3
+* introducing the [fela-monolithic](packages/fela-monolithic) enhancer to use component-based CSS classes instead of atomic ones ( [#195](https://github.com/rofrischmann/fela/issues/195) )
+* improved style assigning to automatically merge arrays *e.g. when using [fela-plugin-extend](packages/fela-plugin-extend)*
+
 #### 4.2.2
 * fixed a bug that prevented the LVHA plugin from working correctly ( [#199](https://github.com/rofrischmann/fela/issues/199) )
 
