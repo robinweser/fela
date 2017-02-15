@@ -1,3 +1,4 @@
+# Developer Experience
 # Hot Reloading
 
 Right now there is no built-in solution for hot reloading by default.
@@ -29,4 +30,20 @@ const App = (
     // your app code here
   </Provider>
 )
+```
+
+## Monolithic class names
+Using atomic class names design for developing can be quite hard to debug so we support monolithic class names.
+Atomic class names will give you `n` number of classes when you `renderer.renderRule` while monolithic design will give you one class name with all the rules.
+
+Simply include the [Fela Monolithic Enhancer](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic).
+
+```javascript
+import monolithic from 'fela-monolithic'
+
+const config = {
+  enhancers: [ monolithic() ]
+}
+
+const renderer = createRenderer(config)
 ```

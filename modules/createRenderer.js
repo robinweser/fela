@@ -53,7 +53,7 @@ export default function createRenderer(config = {}) {
     },
     renderRule(rule, props = {}) {
       const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE)
-      return renderer._renderStyleToClassNames(processedStyle).slice(1)
+      return renderer._renderStyleToClassNames(processedStyle)
     },
     _renderStyleToClassNames(style, pseudo = '', media = '') {
       let classNames = ''
@@ -108,7 +108,7 @@ export default function createRenderer(config = {}) {
         }
       }
 
-      return classNames
+      return classNames.trim()
     },
     renderKeyframe(keyframe, props = {}) {
       const resolvedKeyframe = keyframe(props)

@@ -42,7 +42,7 @@ function beautifier(renderer) {
 }
 
 const config = {
-  plugins: [ beautifier ]
+  enhancers: [ beautifier ]
 }
 
 const renderer = createRenderer(config)

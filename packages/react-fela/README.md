@@ -3,7 +3,7 @@
 Official [React](https://github.com/facebook/react) bindings for Fela.
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.07kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.09kb-brightgreen.svg">
 
 This package only includes React bindings for [Fela](http://github.com/rofrischmann/fela).<br>
 It assumes you already know about Fela and how to use it.

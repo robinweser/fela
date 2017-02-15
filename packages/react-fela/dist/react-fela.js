@@ -216,6 +216,15 @@
   Provider.propTypes = { renderer: React.PropTypes.object.isRequired };
   Provider.childContextTypes = { renderer: React.PropTypes.object };
 
+  var generateDisplayName = function generateDisplayName(Comp) {
+    var displayName = Comp.displayName || Comp.name;
+    if (displayName) {
+      return 'Fela' + displayName;
+    }
+
+    return 'ConnectedFelaComponent';
+  };
+
   function connect(mapStylesToProps) {
     return function (Comp) {
       var _class, _temp;
@@ -246,7 +255,7 @@
           }
         }]);
         return EnhancedComponent;
-      }(React.Component), _class.displayName = Comp.displayName || Comp.name || 'ConnectedFelaComponent', _class.contextTypes = babelHelpers.extends({}, Comp.contextTypes, {
+      }(React.Component), _class.displayName = generateDisplayName(Comp), _class.contextTypes = babelHelpers.extends({}, Comp.contextTypes, {
         renderer: React.PropTypes.object,
         theme: React.PropTypes.object
       }), _temp;
