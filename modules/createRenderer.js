@@ -11,6 +11,7 @@ import generateCSSRule from './utils/generateCSSRule'
 import generateCSSSelector from './utils/generateCSSSelector'
 import cssifyStaticStyle from './utils/cssifyStaticStyle'
 import generateStaticReference from './utils/generateStaticReference'
+import cssifyObject from './utils/cssifyObject'
 
 import isMediaQuery from './utils/isMediaQuery'
 import isNestedSelector from './utils/isNestedSelector'
@@ -109,6 +110,34 @@ export default function createRenderer(config = {}) {
       }
 
       return classNames
+    },
+    renderUnionRule(rule, props = {}) {
+      const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE)
+      return renderer._renderStyleToUnionClassNames(processedStyle)
+    },
+    _renderStyleToUnionClassNames(style) {
+      const declarationReference = JSON.stringify(style)
+
+      if (renderer.cache[declarationReference]) {
+        return renderer.cache[declarationReference]
+      }
+
+      const className = renderer.selectorPrefix + generateClassName((++renderer.uniqueRuleIdentifier))
+      renderer.cache[declarationReference] = className
+
+      const cssDeclaration = cssifyObject(style)
+      const selector = generateCSSSelector(className)
+      const cssRule = generateCSSRule(selector, cssDeclaration)
+
+      renderer.rules += cssRule
+
+      renderer._emitChange({
+        selector,
+        declaration: cssDeclaration,
+        type: RULE_TYPE
+      })
+
+      return className
     },
     renderKeyframe(keyframe, props = {}) {
       const resolvedKeyframe = keyframe(props)

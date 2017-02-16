@@ -71,7 +71,6 @@ describe('Renderer', () => {
       expect(renderer.cache.hasOwnProperty('color' + 'red')).to.eql(true)
     })
 
-
     it('should reuse cached classNames', () => {
       const rule = props => ({ color: props.color, fontSize: '23px' })
       const renderer = createRenderer()
@@ -217,6 +216,18 @@ describe('Renderer', () => {
 
       expect(renderer.rules).to.eql('.a{color:red}')
       expect(renderer.mediaRules['(min-height:300px)']).to.eql('.b{color:blue}')
+    })
+
+    it('should redner union classNames', () => {
+      const rule = props => ({ color: props.color, fontSize: '23px' })
+      const renderer = createRenderer()
+
+      const className1 = renderer.renderUnionRule(rule, { color: 'red' })
+      const className2 = renderer.renderUnionRule(rule, { color: 'red' })
+
+      expect(className1).to.eql(className2)
+      expect(className1).to.eql('a')
+      expect(renderer.rules).to.eql('.a{color:red;font-size:23px}')
     })
   })
 
