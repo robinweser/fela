@@ -1,6 +1,6 @@
 {
   "name": "fela-monolithic",
-  "version": "4.2.3",
+  "version": "4.2.4",
   "description": "Fela enhancer for having monolithic classnames",
   "main": "index.js",
   "files": [
@@ -21,6 +21,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.2.3"
+    "fela": "4.2.4"
   }
 }

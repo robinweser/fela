@@ -354,7 +354,7 @@
         var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
         var processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE);
-        return renderer._renderStyleToClassNames(processedStyle);
+        return renderer._renderStyleToClassNames(processedStyle).slice(1);
       },
       _renderStyleToClassNames: function _renderStyleToClassNames(style) {
         var pseudo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
@@ -412,7 +412,7 @@
           }
         }
 
-        return classNames.trim();
+        return classNames;
       },
       renderKeyframe: function renderKeyframe(keyframe) {
         var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};

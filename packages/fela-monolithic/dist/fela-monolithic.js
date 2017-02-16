@@ -191,7 +191,7 @@
       var className = generateClassName(JSON.stringify(style), renderer.selectorPrefix || 'fela-');
       var selector = getCSSSelector(className);
 
-      if (renderer.cache[className]) return className;
+      if (renderer.cache[className]) return ' ' + className;
 
       var _renderer$_parseMonol = renderer._parseMonolithicRules(selector, style),
           rules = _renderer$_parseMonol.rules,
@@ -232,7 +232,7 @@
         });
       }
 
-      return className;
+      return ' ' + className;
     };
 
     return renderer;
