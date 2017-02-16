@@ -19,7 +19,7 @@ function generateClassName(str, prefix) {
   let i = str.length
 
   while (i) {
-    val = (val * 33) ^ str.charCodeAt(--i)
+    val = val * 33 ^ str.charCodeAt((--i))
   }
 
   return prefix + (val >>> 0).toString(36)
@@ -41,13 +41,12 @@ function addMonolithicClassNames(renderer) {
         decs.push(generateCSSDeclaration(key, value))
         continue
       } else if (Array.isArray(value)) {
-        value.forEach(val =>
-          decs.push(generateCSSDeclaration(key, val))
-        )
+        value.forEach(val => decs.push(generateCSSDeclaration(key, val)))
         continue
       } else if (isNestedSelector(key)) {
-        renderer._parseMonolithicRules(selector + normalizeNestedProperty(key), value, mediaSelector).rules
-          .forEach(r => rules.push(r))
+        renderer
+          ._parseMonolithicRules(selector + normalizeNestedProperty(key), value, mediaSelector)
+          .rules.forEach(r => rules.push(r))
         continue
       } else if (isMediaQuery(key)) {
         const mediaKey = generateCombinedMediaQuery(mediaSelector, key.slice(6).trim())
@@ -56,12 +55,10 @@ function addMonolithicClassNames(renderer) {
           rules: mediaRules.rules,
           media: mediaKey
         })
-        mediaRules.media
-          .forEach(r => media.push(r))
+        mediaRules.media.forEach(r => media.push(r))
         continue
       } else {
-        renderer._parseMonolithicRules(`${selector} ${key}`, value, mediaSelector).rules
-          .forEach(r => rules.push(r))
+        renderer._parseMonolithicRules(`${selector} ${key}`, value, mediaSelector).rules.forEach(r => rules.push(r))
         continue
       }
     }
@@ -119,7 +116,7 @@ function addMonolithicClassNames(renderer) {
       })
     }
 
-    return className
+    return ` ${className}`
   }
 
   return renderer

@@ -53,7 +53,7 @@ export default function createRenderer(config = {}) {
     },
     renderRule(rule, props = {}) {
       const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE)
-      return renderer._renderStyleToClassNames(processedStyle)
+      return renderer._renderStyleToClassNames(processedStyle).slice(1)
     },
     _renderStyleToClassNames(style, pseudo = '', media = '') {
       let classNames = ''
@@ -79,7 +79,7 @@ export default function createRenderer(config = {}) {
               continue
             }
 
-            const className = renderer.selectorPrefix + generateClassName(++renderer.uniqueRuleIdentifier)
+            const className = renderer.selectorPrefix + generateClassName((++renderer.uniqueRuleIdentifier))
 
             renderer.cache[declarationReference] = className
 
@@ -108,7 +108,7 @@ export default function createRenderer(config = {}) {
         }
       }
 
-      return classNames.trim()
+      return classNames
     },
     renderKeyframe(keyframe, props = {}) {
       const resolvedKeyframe = keyframe(props)
@@ -116,7 +116,7 @@ export default function createRenderer(config = {}) {
 
       if (!renderer.cache[keyframeReference]) {
         // use another unique identifier to ensure minimal css markup
-        const animationName = generateAnimationName(++renderer.uniqueKeyframeIdentifier)
+        const animationName = generateAnimationName((++renderer.uniqueKeyframeIdentifier))
 
         const processedKeyframe = processStyleWithPlugins(renderer.plugins, resolvedKeyframe, KEYFRAME_TYPE)
         const cssKeyframe = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
