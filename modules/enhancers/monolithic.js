@@ -78,7 +78,7 @@ function addMonolithicClassNames(renderer) {
     const className = generateClassName(JSON.stringify(style), renderer.selectorPrefix || 'fela-')
     const selector = generateCSSSelector(className)
 
-    if (renderer.cache[className]) return className
+    if (renderer.cache[className]) return ` ${className}`
 
     const { rules, media } = renderer._parseMonolithicRules(selector, style)
     const cssRules = rules.join('')
