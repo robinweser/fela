@@ -54,7 +54,6 @@ const title = props => ({
 })
 
 const Title = createComponent(title)
-})
 
 const greet = () => alert('Hello World')
 
@@ -65,4 +64,20 @@ ReactDOM.render(
 // => <div className="a" onclick="...">Hello World</div>
 ```
 
-## Composing components
+## Custom type on runtime
+To change the `type` on runtime and/or for each component, you may use the `is` prop.
+```javascript
+import { createComponent } from 'react-fela'
+
+const title = props => ({
+  color: 'red'
+})
+
+const Title = createComponent(title)
+
+ReactDOM.render(
+  <Title is='h1'>Hello World</Title>,
+  document.getElementById('app')
+)
+// => <h1 className="a">Hello World</h1>
+```

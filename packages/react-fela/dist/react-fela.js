@@ -364,11 +364,12 @@
       componentProps.id = ruleProps.id;
       componentProps.ref = ruleProps.innerRef;
 
+      var customType = ruleProps.is || type;
       var cls = ruleProps.className ? ruleProps.className + ' ' : '';
       ruleProps.theme = theme || {};
 
       componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
-      return React.createElement(type, componentProps, children);
+      return React.createElement(customType, componentProps, children);
     };
 
     FelaComponent.contextTypes = {

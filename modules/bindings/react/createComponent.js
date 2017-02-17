@@ -18,11 +18,15 @@ export default function createComponent(rule, type = 'div', passThroughProps = [
     // if the component renders into another Fela component
     // we pass down the combinedRule as well as both
     if (type._isFelaComponent) {
-      return createElement(type, {
-        _felaRule: combinedRule,
-        passThrough: resolvedPassThrough,
-        ...ruleProps
-      }, children)
+      return createElement(
+        type,
+        {
+          _felaRule: combinedRule,
+          passThrough: resolvedPassThrough,
+          ...ruleProps
+        },
+        children
+      )
     }
 
     const componentProps = extractPassThroughProps(resolvedPassThrough, ruleProps)
@@ -31,11 +35,12 @@ export default function createComponent(rule, type = 'div', passThroughProps = [
     componentProps.id = ruleProps.id
     componentProps.ref = ruleProps.innerRef
 
+    const customType = ruleProps.is || type
     const cls = ruleProps.className ? `${ruleProps.className} ` : ''
     ruleProps.theme = theme || {}
 
     componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps)
-    return createElement(type, componentProps, children)
+    return createElement(customType, componentProps, children)
   }
 
   FelaComponent.contextTypes = {

@@ -1,6 +1,9 @@
 # Changelog
 
 ## 4.0
+#### 4.2.5
+* updated both prefixer to [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer/blob/master/Changelog.md#300) 3.0.0
+* added the `is` prop to `createComponent` to define a custom type on runtime
 
 #### 4.2.4
 * (hot)fixed weird bug introduced by switching `slice(1)` to `trim()`
