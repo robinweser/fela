@@ -2,6 +2,7 @@
   "name": "fela-plugin-custom-property",
   "version": "4.2.5",
   "description": "Fela plugin to use custom properties",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

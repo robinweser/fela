@@ -2,6 +2,7 @@
   "name": "fela-tools",
   "version": "4.2.5",
   "description": "Useful tools for working with Fela",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

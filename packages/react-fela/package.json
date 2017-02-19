@@ -2,6 +2,7 @@
   "name": "react-fela",
   "version": "4.2.5",
   "description": "React bindings for Fela",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

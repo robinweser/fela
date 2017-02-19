@@ -174,6 +174,19 @@ function bundleConfig(pkg, info, minify) {
   }
 }
 
+function esModuleConfig(pkg, info) {
+  return {
+    format: 'es6',
+    globals: {
+      react: 'React',
+      fela: 'Fela'
+    },
+    moduleName: info.name,
+    dest: `packages/${pkg}/index.es2015.js`,
+    sourceMap: false
+  }
+}
+
 // Small helper to error and exit on fail
 const errorOnFail = (err, pkg) => {
   if (err) {
@@ -251,6 +264,18 @@ function buildPackage(pkg) {
       )
     })
     .catch(err => errorOnFail(err, pkg))
+
+  if (process.env.NODE_ENV === 'production') {
+    rollup
+      .rollup(rollupConfig(pkg, packages[pkg], false))
+      .then((bundle) => {
+        const config = esModuleConfig(pkg, packages[pkg])
+
+        bundle.write(config)
+        console.log(`Successfully bundled ${packages[pkg].name} es2015 module.`)
+      })
+      .catch(err => errorOnFail(err, pkg))
+  }
 }
 
 Object.keys(packages).forEach(pkg => buildPackage(pkg))

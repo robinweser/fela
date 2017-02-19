@@ -2,6 +2,7 @@
   "name": "fela-perf",
   "version": "4.2.5",
   "description": "Fela enhancer to log performance information",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

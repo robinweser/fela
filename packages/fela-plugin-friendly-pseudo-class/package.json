@@ -2,6 +2,7 @@
   "name": "fela-plugin-friendly-pseudo-class",
   "version": "4.2.5",
   "description": "Fela plugin to support javascript-friendly pseudo class syntax",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

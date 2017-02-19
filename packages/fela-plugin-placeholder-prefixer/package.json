@@ -2,6 +2,7 @@
   "name": "fela-plugin-placeholder-prefixer",
   "version": "4.2.5",
   "description": "Fela plugin to add ::placeholder prefxies",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

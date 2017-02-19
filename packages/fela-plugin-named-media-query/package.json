@@ -2,6 +2,7 @@
   "name": "fela-plugin-named-media-query",
   "version": "4.2.5",
   "description": "Fela plugin to support named media query syntax",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

@@ -2,6 +2,7 @@
   "name": "fela-plugin-lvha",
   "version": "4.2.5",
   "description": "Fela plugin that sorts pseudo classes according to LVH(F)A",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

@@ -2,6 +2,7 @@
   "name": "fela-native",
   "version": "4.2.5",
   "description": "Fela Renderer for React Native",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

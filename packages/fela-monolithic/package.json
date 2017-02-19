@@ -2,6 +2,7 @@
   "name": "fela-monolithic",
   "version": "4.2.5",
   "description": "Fela enhancer for having monolithic classnames",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

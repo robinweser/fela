@@ -1,0 +1,93 @@
+var babelHelpers = {};
+babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+babelHelpers.defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+babelHelpers.extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+babelHelpers.toConsumableArray = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
+};
+
+babelHelpers;
+
+var StyleSheet = {
+  create: function create(styles) {
+    var rules = {};
+
+    var _loop = function _loop(rule) {
+      if (typeof styles[rule] !== 'function') {
+        rules[rule] = function () {
+          return styles[rule];
+        };
+      } else {
+        rules[rule] = styles[rule];
+      }
+    };
+
+    for (var rule in styles) {
+      _loop(rule);
+    }
+
+    return rules;
+  }
+};
+
+function mapValueToMediaQuery() {
+  var queryValueMap = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var mapper = arguments[1];
+
+  var style = {};
+
+  for (var query in queryValueMap) {
+    if (typeof mapper === 'string') {
+      style[query] = babelHelpers.defineProperty({}, mapper, queryValueMap[query]);
+    } else {
+      style[query] = mapper(queryValueMap[query]);
+    }
+  }
+
+  return style;
+}
+
+var index = {
+  StyleSheet: StyleSheet,
+  mapValueToMediaQuery: mapValueToMediaQuery
+};
+
+export default index;

@@ -2,6 +2,7 @@
   "name": "fela-logger",
   "version": "4.2.5",
   "description": "Logging tool for Fela",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",

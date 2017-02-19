@@ -2,6 +2,7 @@
   "name": "fela-beautifier",
   "version": "4.2.5",
   "description": "Fela enhancer to beautify CSS output",
+  "module": "index.es2015.js",
   "main": "index.js",
   "files": [
     "LICENSE",
