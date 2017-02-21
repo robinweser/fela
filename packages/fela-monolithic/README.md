@@ -28,7 +28,32 @@ import monolithic from 'fela-monolithic'
 const renderer = createRenderer({
   enhancers: [ monolithic() ]
 })
+
+const rule = () => ({
+  className: 'custom',
+  color: 'red'
+})
+
+renderer.renderRule(rule)
 ```
+
+outputs
+
+```css
+.fela-custom {
+  color: red
+}
+```
+
+if `className` property is not used, the output will be
+
+```css
+.fela-137u7ef {
+  color: red
+}
+```
+
+`137u7ef` is a hash based on rule properties (`color: red` in this case). The prefix `fela` can be configured in createRenderer.
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
