@@ -15,11 +15,17 @@ import normalizeNestedProperty from '../utils/normalizeNestedProperty'
 import { RULE_TYPE } from '../utils/styleTypes'
 
 function generateClassName(str, prefix) {
+  if (str.className) {
+    const name = prefix + str.className
+    delete str.className
+    return name
+  }
+  const stringified = JSON.stringify(str)
   let val = 5381
-  let i = str.length
+  let i = stringified.length
 
   while (i) {
-    val = val * 33 ^ str.charCodeAt((--i))
+    val = val * 33 ^ stringified.charCodeAt((--i))
   }
 
   return prefix + (val >>> 0).toString(36)
@@ -75,7 +81,7 @@ function addMonolithicClassNames(renderer) {
     if (!Object.keys(style).length) {
       return ''
     }
-    const className = generateClassName(JSON.stringify(style), renderer.selectorPrefix || 'fela-')
+    const className = generateClassName(style, renderer.selectorPrefix || 'fela-')
     const selector = generateCSSSelector(className)
 
     if (renderer.cache[className]) return ` ${className}`
