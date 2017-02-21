@@ -141,4 +141,16 @@ describe('Monolithic enhancer', () => {
     expect(renderer.rules).to.eql(`.${className}{color:red}`)
     expect(renderer.mediaRules['(min-height:300px)']).to.eql(`.${className}{color:blue}`)
   })
+
+  it('should use custom className if defined', () => {
+    const rule = () => ({
+      className: 'custom',
+      color: 'red'
+    })
+
+    const renderer = createRenderer(options)
+    renderer.renderRule(rule)
+
+    expect(renderer.rules).to.eql('.fela-custom{color:red}')
+  })
 })
