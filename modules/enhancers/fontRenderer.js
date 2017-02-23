@@ -10,8 +10,7 @@ function addFontRenderer(renderer, mountNode) {
     render(renderer.fontRenderer, mountNode)
   }
 
-  renderer.renderFont = (family, files, properties) =>
-    renderer.fontRenderer.renderFont(family, files, properties)
+  renderer.renderFont = (family, files, properties) => renderer.fontRenderer.renderFont(family, files, properties)
 
   return renderer
 }

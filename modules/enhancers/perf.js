@@ -21,4 +21,4 @@ function addPerfTool(renderer) {
   return renderer
 }
 
-export default () => renderer => addPerfTool(renderer)
+export default () => addPerfTool

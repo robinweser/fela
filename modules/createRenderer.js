@@ -29,8 +29,6 @@ export default function createRenderer(config = {}) {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
     plugins: config.plugins || [],
-    // prettySelectors is currently useless, might reimplement better DX classNames later
-    // prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
     clear() {
@@ -177,6 +175,7 @@ export default function createRenderer(config = {}) {
             selector,
             declaration: cssDeclarations,
             type: RULE_TYPE,
+            static: true,
             media: ''
           })
         }
