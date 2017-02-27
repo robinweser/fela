@@ -11,8 +11,8 @@
   ],
   "rules": {
     "semi": [ 2, "never" ],
-    "object-curly-newline": ["error" ],
-    "object-property-newline": ["error", {
+    "object-curly-newline": [ 2 ],
+    "object-property-newline": [ 2, {
       "allowMultiplePropertiesPerLine": false
     }],
     "comma-dangle": [ 2, "never" ],
@@ -30,7 +30,7 @@
     "no-restricted-syntax": [ 1 ],
     "no-continue": [ 1 ],
     "no-prototype-builtins": [ 1 ],
-    "max-len": [ 2, 120 ],
+    "max-len": [ 1, 120 ],
     "no-mixed-operators": [ 1 ],
     "no-lonely-if": [ 1 ],
     "no-bitwise": [ 0 ]

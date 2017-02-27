@@ -1,0 +1,28 @@
+{
+  "name": "fela-statistics",
+  "version": "4.2.5",
+  "description": "Statistic generation tool for Fela",
+  "module": "index.es2015.js",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "/dist"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-devtools",
+    "statistics",
+    "stats",
+    "dx",
+    "devtools",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "4.2.5"
+  }
+}
