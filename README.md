@@ -152,6 +152,7 @@ The following list shows a quick overview of all existing packages.
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-logger">fela-logger</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-logger"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-logger.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic">fela-monolithic</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-monolithic"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-monolithic.svg"> |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-perf">fela-perf</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-perf"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-perf.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-statistics">fela-statistics</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-statistics"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-statistics.svg"> |
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>
