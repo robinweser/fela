@@ -17,14 +17,14 @@ declare module "fela" {
     staticString = 4,
     clear = 5
   }
-  interface TSubscribeMessage {
+  interface ISubscribeMessage {
     type: TSubscribeMessageType;
   }
-  interface TSubscribeRuleMessage extends TSubscribeMessage { static?: boolean; declaration: string; selector: string; media: string; }
-  interface TSubscribeKeyframesMessage extends TSubscribeMessage { name: string; keyframe: string; }
-  interface TSubscribeFontFaceMessage extends TSubscribeMessage { fontFamily: string; fontFace: string; }
-  interface TSubscribeStaticStringMessage extends TSubscribeMessage { css: string; }
-  interface TSubscribeClearMessage extends TSubscribeMessage { }
+  interface ISubscribeRuleOrStaticObjectMessage extends ISubscribeMessage { static?: boolean; declaration: string; selector: string; media: string; }
+  interface ISubscribeKeyframesMessage extends ISubscribeMessage { name: string; keyframe: string; }
+  interface ISubscribeFontFaceMessage extends ISubscribeMessage { fontFamily: string; fontFace: string; }
+  interface ISubscribeStaticStringMessage extends ISubscribeMessage { css: string; }
+  interface ISubscribeClearMessage extends ISubscribeMessage { }
 
   interface IRenderer {
     renderRule(rule: TRule, props: TRuleProps): void;
@@ -32,7 +32,7 @@ declare module "fela" {
     renderFont(family: string, files: Array<string>, props: TRuleProps): void;
     renderStatic(style: string, selector?: string): void;
     renderToString(): string;
-    subscribe(event: (msg: TSubscribeRuleMessage | TSubscribeKeyframesMessage | TSubscribeFontFaceMessage | TSubscribeStaticStringMessage | TSubscribeClearMessage) => void): { unsubscribe: () => void; }
+    subscribe(event: (msg: ISubscribeRuleOrStaticObjectMessage | ISubscribeKeyframesMessage | ISubscribeFontFaceMessage | ISubscribeStaticStringMessage | ISubscribeClearMessage) => void): { unsubscribe: () => void; }
     clear();
   }
 
