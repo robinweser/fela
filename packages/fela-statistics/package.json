@@ -1,7 +1,7 @@
 {
-  "name": "fela-preset-web",
+  "name": "fela-statistics",
   "version": "4.2.5",
-  "description": "Fela plugin preset for web applications",
+  "description": "Statistic generation tool for Fela",
   "module": "index.es2015.js",
   "main": "index.js",
   "files": [
@@ -13,16 +13,20 @@
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "fela-plugin",
+    "fela-devtools",
+    "statistics",
+    "stats",
+    "dx",
+    "devtools",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "dependencies": {
-    "inline-style-prefixer": "^3.0.0",
-    "unitless-css-property": "1.0.2"
-  },
   "peerDependencies": {
     "fela": "4.2.5"
+  },
+  "dependencies": {
+    "gzip-size": "^3.0.0",
+    "text-encoding": "^0.6.4"
   }
 }

@@ -42,10 +42,11 @@
     "eslint-plugin-react": "^6.9.0",
     "express": "^4.13.4",
     "express-http-proxy": "^0.6.0",
-    "flow-bin": "^0.36.0",
+    "flow-bin": "^0.38.0",
     "fs-extra": "^0.30.0",
     "gh-pages": "^0.11.0",
     "gzip-js": "^0.3.2",
+    "gzip-size": "^3.0.0",
     "inline-style-prefixer": "^2.0.1",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.4.5",
@@ -57,6 +58,7 @@
     "rollup-plugin-uglify": "0.3.1",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
+    "text-encoding": "^0.6.4",
     "unitless-css-property": "^1.0.1"
   }
 }

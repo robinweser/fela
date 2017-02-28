@@ -128,4 +128,4 @@ function addMonolithicClassNames(renderer) {
   return renderer
 }
 
-export default () => renderer => addMonolithicClassNames(renderer)
+export default () => addMonolithicClassNames
