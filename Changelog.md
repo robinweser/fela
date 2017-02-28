@@ -1,6 +1,11 @@
 # Changelog
 
 ## 4.0
+
+#### 4.2.6
+* introducing the [fela-statistics](packages/fela-statistics) enhancer providing many different metrics to analyze your styling ( [#203](https://github.com/rofrischmann/fela/issues/203) )
+* added the option to pass a static `className` to the fela-monolithic enhancer ( [#201](https://github.com/rofrischmann/fela/issues/201) )
+
 #### 4.2.5
 * updated both prefixer to [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer/blob/master/Changelog.md#300) 3.0.0
 * added the `is` prop to `createComponent` to define a custom type on runtime
