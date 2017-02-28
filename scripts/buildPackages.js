@@ -133,6 +133,11 @@ const packages = {
     entry: 'enhancers/monolithic.js',
     dependencies: false
   },
+  'fela-statistics': {
+    name: 'FelaStatistics',
+    entry: 'enhancers/statistics.js',
+    dependencies: true
+  },
   'react-fela': {
     name: 'ReactFela',
     entry: 'bindings/react/index.js',

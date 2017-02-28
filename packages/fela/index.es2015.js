@@ -107,7 +107,8 @@ babelHelpers.toConsumableArray = function (arr) {
 babelHelpers;
 
 
-function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
+var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
+function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
 
 var index$1 = __commonjs(function (module) {
 'use strict';
@@ -322,8 +323,6 @@ function createRenderer() {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
     plugins: config.plugins || [],
-    // prettySelectors is currently useless, might reimplement better DX classNames later
-    // prettySelectors: config.prettySelectors && process.env.NODE_ENV !== 'production',
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
     clear: function clear() {
@@ -480,6 +479,7 @@ function createRenderer() {
             selector: selector,
             declaration: cssDeclarations,
             type: RULE_TYPE,
+            static: true,
             media: ''
           });
         }

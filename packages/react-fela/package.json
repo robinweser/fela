@@ -1,6 +1,6 @@
 {
   "name": "react-fela",
-  "version": "4.2.5",
+  "version": "4.2.6",
   "description": "React bindings for Fela",
   "module": "index.es2015.js",
   "main": "index.js",
@@ -23,6 +23,6 @@
   "license": "MIT",
   "peerDependencies": {
     "react": "^15.3.2",
-    "fela": "4.2.5"
+    "fela": "4.2.6"
   }
 }

@@ -114,11 +114,17 @@
   var RULE_TYPE = 1;
 
   function generateClassName(str, prefix) {
+    if (str.className) {
+      var name = prefix + str.className;
+      delete str.className;
+      return name;
+    }
+    var stringified = JSON.stringify(str);
     var val = 5381;
-    var i = str.length;
+    var i = stringified.length;
 
     while (i) {
-      val = val * 33 ^ str.charCodeAt(--i);
+      val = val * 33 ^ stringified.charCodeAt(--i);
     }
 
     return prefix + (val >>> 0).toString(36);
@@ -188,7 +194,7 @@
       if (!Object.keys(style).length) {
         return '';
       }
-      var className = generateClassName(JSON.stringify(style), renderer.selectorPrefix || 'fela-');
+      var className = generateClassName(style, renderer.selectorPrefix || 'fela-');
       var selector = getCSSSelector(className);
 
       if (renderer.cache[className]) return ' ' + className;
@@ -239,9 +245,7 @@
   }
 
   var monolithic = (function () {
-    return function (renderer) {
-      return addMonolithicClassNames(renderer);
-    };
+    return addMonolithicClassNames;
   });
 
   return monolithic;

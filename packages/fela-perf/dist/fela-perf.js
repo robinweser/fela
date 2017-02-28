@@ -66,9 +66,7 @@
   }
 
   var perf = (function () {
-    return function (renderer) {
-      return addPerfTool(renderer);
-    };
+    return addPerfTool;
   });
 
   return perf;

@@ -113,7 +113,8 @@
   babelHelpers;
 
 
-  function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
+  var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
+  function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
 
   /*  weak */
   function assignStyles(base) {

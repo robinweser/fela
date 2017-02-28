@@ -60,9 +60,7 @@ function addPerfTool(renderer) {
 }
 
 var perf = (function () {
-  return function (renderer) {
-    return addPerfTool(renderer);
-  };
+  return addPerfTool;
 });
 
 export default perf;
