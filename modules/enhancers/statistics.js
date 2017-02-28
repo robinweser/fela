@@ -1,5 +1,6 @@
 /* @flow */
 /* eslint-disable prefer-rest-params */
+import 'text-encoding'
 import gzipSize from 'gzip-size'
 
 import { RULE_TYPE } from '../utils/styleTypes'
