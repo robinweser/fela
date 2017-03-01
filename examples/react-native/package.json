@@ -7,15 +7,12 @@
   },
   "dependencies": {
     "babel-preset-react-native-stage-0": "^1.0.1",
-    "fela": "^1.2.0",
-    "fela-native": "file:///Users/Grindelwald/Code/fela/packages/fela-native",
-    "fela-plugin-extend": "^1.2.0",
+    "fela": "^4.2.6",
+    "fela-native": "4.2.6",
+    "fela-plugin-extend": "4.2.6",
     "fela-stylesheet": "^1.0.3",
     "react": "15.3.1",
-    "react-fela": "^3.0.0",
+    "react-fela": "^4.2.6",
     "react-native": "0.33.0"
-  },
-  "devDependencies": {
-    "react-fela": "^3.0.0"
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { createRenderer, render, Renderer } from 'fela';
+import { createRenderer, Renderer } from 'fela';
+import { render } from 'fela-dom';
 
 @Injectable()
 export class FelaRendererService {

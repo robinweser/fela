@@ -5,6 +5,7 @@ import { Provider } from 'react-fela'
 import App from './app'
 
 import createRenderer from './renderer'
+
 const renderer = createRenderer(document.getElementById('font-stylesheet'))
 
 const mountNode = document.getElementById('stylesheet')

@@ -1,39 +1,35 @@
-var renderer = Fela.createRenderer({
-  plugins: [ FelaPluginPrefixer(), FelaPluginFallbackValue() ]
+const renderer = Fela.createRenderer({ plugins: [FelaPluginPrefixer(), FelaPluginFallbackValue()] })
+
+const selector = ({ size, name }) => ({
+  fontSize: `${size}px`,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  animation: `${name} 2s infinite`
 })
 
-var selector = function(props) {
-  return {
-    fontSize: props.size + 'px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+const keyframe = () => ({
+  '0%': { color: 'red' },
+  '50%': { color: 'blue' },
+  '100%': { color: 'red' }
+})
+
+renderer.renderStatic(
+  {
+    width: '100%',
+    height: '100%'
+  },
+  'body'
+)
+renderer.renderStatic(
+  {
+    width: '100%',
     height: '100%',
-    animation: props.name + ' 2s infinite'
-  }
-}
-
-
-const keyframe = function(props) {
-  return {
-    '0%': {
-      color: 'red'
-    },
-    '50%': {
-      color: 'blue'
-    },
-    '100%': {
-      color: 'red'
-    }
-  }
-}
-
-renderer.renderStatic({ width: '100%', height: '100%' }, 'body')
-renderer.renderStatic({
-  width: '100%',
-  height: '100%',
-  margin: 0
-}, '#app')
+    margin: 0
+  },
+  '#app'
+)
 
 const animationName = renderer.renderKeyframe(keyframe)
 const className = renderer.renderRule(selector, {
@@ -42,4 +38,4 @@ const className = renderer.renderRule(selector, {
 })
 
 document.getElementById('welcome').className = className
-Fela.render(renderer, document.getElementById('stylesheet'))
+FelaDOM.render(renderer, document.getElementById('stylesheet'))

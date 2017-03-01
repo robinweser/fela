@@ -10,9 +10,7 @@ class Ticker extends Component {
   }
 
   startTicker() {
-    this.setState({
-      color: this.state.color === 'red' ? 'blue' : 'red'
-    })
+    this.setState({ color: this.state.color === 'red' ? 'blue' : 'red' })
     setTimeout(this.startTicker, 500)
   }
 
