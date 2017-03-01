@@ -1,10 +1,23 @@
 /* @flow weak */
 import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE, CLEAR_TYPE } from '../utils/styleTypes'
 
+const cacheMap = {
+  [STATIC_TYPE]: 'statics',
+  [FONT_TYPE]: 'fontFaces',
+  [KEYFRAME_TYPE]: 'keyframes'
+}
+
 const styleNodes = {}
 
 export default function createDOMInterface(renderer, node) {
-  // TODO: only use multiple sheets in prod
+  // only use insertRule in production as browser devtools might have
+  // weird behavior if used together with insertRule at runtime
+  if (process.env.NODE_ENV !== 'production') {
+    return () => {
+      node.textContent = renderer.renderToString()
+    }
+  }
+
   styleNodes[''] = node
 
   createStyleNode(FONT_TYPE)
@@ -18,8 +31,6 @@ export default function createDOMInterface(renderer, node) {
   }
 
   return (change) => {
-    // only use insertRule in production as browser devtools might have
-    // weird behavior if used together with insertRule at runtime
     if (change.type === CLEAR_TYPE) {
       for (node in styleNodes) {
         styleNodes[node].textContent = ''
@@ -27,15 +38,17 @@ export default function createDOMInterface(renderer, node) {
     } else {
       const styleNode = getStyleNode(change.type, change.media)
 
-      if (process.env.NODE_ENV === 'production' && change.type === RULE_TYPE) {
+      if (change.type === RULE_TYPE) {
         try {
-          styleNode.sheet.insertRule(`${change.selector}{${change.declaration}}`, styleNode.sheet.cssRules.length)
+          styleNode.sheet.insertRule(
+            `${change.selector}{${change.declaration}}`,
+            styleNode.sheet.cssRules.length
+          )
         } catch (error) {
           // TODO: MAYBE WARN IN DEV MODE
         }
       } else {
-        // TODO: only add newly renderer stuff
-        styleNode.textContent = renderer.renderToString()
+        styleNode.textContent = renderer[cacheMap[change.type]]
       }
     }
   }

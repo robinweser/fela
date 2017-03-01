@@ -50,7 +50,7 @@ export default function createRenderer(config = {}) {
       renderer._emitChange({ type: CLEAR_TYPE })
     },
     renderRule(rule, props = {}) {
-      const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE)
+      const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props, renderer), RULE_TYPE)
       return renderer._renderStyleToClassNames(processedStyle).slice(1)
     },
     _renderStyleToClassNames(style, pseudo = '', media = '') {
