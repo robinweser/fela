@@ -165,20 +165,14 @@ export default function createRenderer(config = {}) {
 
         if (typeof staticStyle === 'string') {
           renderer.statics += cssDeclarations
-          renderer._emitChange({
-            type: STATIC_TYPE,
-            css: cssDeclarations
-          })
         } else {
           renderer.statics += generateCSSRule(selector, cssDeclarations)
-          renderer._emitChange({
-            selector,
-            declaration: cssDeclarations,
-            type: RULE_TYPE,
-            static: true,
-            media: ''
-          })
         }
+
+        renderer._emitChange({
+          type: STATIC_TYPE,
+          css: cssDeclarations
+        })
       }
     },
     renderToString() {
