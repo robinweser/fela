@@ -1,7 +1,7 @@
 {
-  "name": "inferno-fela",
+  "name": "preact-fela",
   "version": "4.2.6",
-  "description": "Inferno bindings for Fela",
+  "description": "Preact bindings for Fela",
   "module": "index.es2015.js",
   "main": "index.js",
   "files": [
@@ -14,19 +14,15 @@
   "keywords": [
     "fela",
     "dynamic styling",
-    "inferno",
+    "preact",
     "css",
     "styling",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "dependencies": {
-    "inferno-create-element": "^1.0.1",
-    "inferno-component": "^1.0.1"
-  },
   "peerDependencies": {
-    "inferno": "^1.0.1",
+    "preact": "^7.0.0",
     "fela": "4.2.6"
   }
 }
