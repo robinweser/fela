@@ -1,4 +1,4 @@
-/* @flow weak */
+/* @flow */
 import cssifyFontFace from './utils/cssifyFontFace'
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyMediaQueryRules from './utils/cssifyMediaQueryRules'
@@ -24,36 +24,164 @@ import checkFontFormat from './utils/checkFontFormat'
 
 import { STATIC_TYPE, RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, CLEAR_TYPE } from './utils/styleTypes'
 
-export default function createRenderer(config = {}) {
-  let renderer = {
+type Config = {
+  keyframePrefixes?: Array<string>,
+  plugins?: Array<Function>,
+  enhancers?: Array<Function>,
+  mediaQueryOrder?: Array<string>,
+  selectorPrefix?: string
+};
+
+type Renderer = {
+  keyframePrefixes: Array<string>,
+  plugins: Array<Function>,
+  mediaQueryOrder: Array<string>,
+  selectorPrefix: string,
+  listeners: Array<Function>,
+  fontFaces: string,
+  keyframes: string,
+  statics: string,
+  rules: string,
+  mediaRules: {[query: string]: string},
+  rendered: Array<string>,
+  uniqueRuleIdentifier: number,
+  uniqueKeyframeIdentifier: number,
+  cache: {[reference: string]: string | boolean},
+  renderRule: Function,
+  renderKeyframe: Function,
+  renderStatic: Function,
+  renderFont: Function,
+  renderToString: Function,
+  subscribe: Function,
+  clear: Function,
+  _renderStyleToClassNames: Function,
+  _emitChange: Function
+};
+
+export default function createRenderer(config: Config = {}): Renderer {
+  let renderer: Renderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
+    fontFaces: '',
+    keyframes: '',
+    statics: '',
+    rules: '',
+    // apply media rules in an explicit order to ensure
+    // correct media query execution order
+    mediaRules: applyMediaRulesInOrder(config.mediaQueryOrder || []),
+    rendered: [],
+    uniqueRuleIdentifier: 0,
+    uniqueKeyframeIdentifier: 0,
+    // use a flat cache object with pure string references
+    // to achieve maximal lookup performance and memoization speed
+    cache: {},
+    renderRule(rule: Function, props: Object = {}): string {
+      const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE)
+      return renderer._renderStyleToClassNames(processedStyle).slice(1)
+    },
+    renderKeyframe(keyframe: Function, props: Object = {}): string {
+      const resolvedKeyframe = keyframe(props)
+      const keyframeReference = JSON.stringify(resolvedKeyframe)
+
+      if (!renderer.cache[keyframeReference]) {
+        // use another unique identifier to ensure minimal css markup
+        const animationName = generateAnimationName((++renderer.uniqueKeyframeIdentifier))
+
+        const processedKeyframe = processStyleWithPlugins(renderer.plugins, resolvedKeyframe, KEYFRAME_TYPE)
+        const cssKeyframe = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
+        renderer.cache[keyframeReference] = animationName
+        renderer.keyframes += cssKeyframe
+
+        renderer._emitChange({
+          name: animationName,
+          keyframe: cssKeyframe,
+          type: KEYFRAME_TYPE
+        })
+      }
+
+      return renderer.cache[keyframeReference]
+    },
+    renderFont(family: string, files: Array<string>, properties: Object = {}): string {
+      const fontReference = family + JSON.stringify(properties)
+
+      if (!renderer.cache[fontReference]) {
+        const fontFamily = toCSSString(family)
+
+        // TODO: proper font family generation with error proofing
+        const fontFace = {
+          ...properties,
+          src: files.map(src => `url('${src}') format('${checkFontFormat(src)}')`).join(','),
+          fontFamily
+        }
+
+        const cssFontFace = cssifyFontFace(fontFace)
+        renderer.cache[fontReference] = fontFamily
+        renderer.fontFaces += cssFontFace
+
+        renderer._emitChange({
+          fontFamily,
+          fontFace: cssFontFace,
+          type: FONT_TYPE
+        })
+      }
+
+      return renderer.cache[fontReference]
+    },
+    renderStatic(staticStyle: Object | string, selector?: string): void {
+      const staticReference = generateStaticReference(staticStyle, selector)
+
+      if (!renderer.cache[staticReference]) {
+        const cssDeclarations = cssifyStaticStyle(staticStyle, renderer.plugins)
+        renderer.cache[staticReference] = true
+
+        if (typeof staticStyle === 'string') {
+          renderer.statics += cssDeclarations
+          renderer._emitChange({
+            type: STATIC_TYPE,
+            css: cssDeclarations
+          })
+        } else {
+          renderer.statics += generateCSSRule(selector, cssDeclarations)
+          renderer._emitChange({
+            selector,
+            declaration: cssDeclarations,
+            type: RULE_TYPE,
+            static: true,
+            media: ''
+          })
+        }
+      }
+    },
+    renderToString(): string {
+      let css = renderer.fontFaces + renderer.statics + renderer.keyframes + renderer.rules
+
+      for (const media in renderer.mediaRules) {
+        css += cssifyMediaQueryRules(media, renderer.mediaRules[media])
+      }
+
+      return css
+    },
+    subscribe(callback: Function): {unsubscribe: Function} {
+      renderer.listeners.push(callback)
+      return { unsubscribe: () => renderer.listeners.splice(renderer.listeners.indexOf(callback), 1) }
+    },
     clear() {
       renderer.fontFaces = ''
       renderer.keyframes = ''
       renderer.statics = ''
       renderer.rules = ''
-      // apply media rules in an explicit order to ensure
-      // correct media query execution order
       renderer.mediaRules = applyMediaRulesInOrder(renderer.mediaQueryOrder)
       renderer.rendered = []
       renderer.uniqueRuleIdentifier = 0
       renderer.uniqueKeyframeIdentifier = 0
-      // use a flat cache object with pure string references
-      // to achieve maximal lookup performance and memoization speed
       renderer.cache = {}
 
-      // initial change emit to enforce a clear start
       renderer._emitChange({ type: CLEAR_TYPE })
     },
-    renderRule(rule, props = {}) {
-      const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE)
-      return renderer._renderStyleToClassNames(processedStyle).slice(1)
-    },
-    _renderStyleToClassNames(style, pseudo = '', media = '') {
+    _renderStyleToClassNames(style: Object, pseudo: string = '', media: string = ''): string {
       let classNames = ''
 
       for (const property in style) {
@@ -108,93 +236,7 @@ export default function createRenderer(config = {}) {
 
       return classNames
     },
-    renderKeyframe(keyframe, props = {}) {
-      const resolvedKeyframe = keyframe(props)
-      const keyframeReference = JSON.stringify(resolvedKeyframe)
-
-      if (!renderer.cache[keyframeReference]) {
-        // use another unique identifier to ensure minimal css markup
-        const animationName = generateAnimationName((++renderer.uniqueKeyframeIdentifier))
-
-        const processedKeyframe = processStyleWithPlugins(renderer.plugins, resolvedKeyframe, KEYFRAME_TYPE)
-        const cssKeyframe = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
-        renderer.cache[keyframeReference] = animationName
-        renderer.keyframes += cssKeyframe
-
-        renderer._emitChange({
-          name: animationName,
-          keyframe: cssKeyframe,
-          type: KEYFRAME_TYPE
-        })
-      }
-
-      return renderer.cache[keyframeReference]
-    },
-    renderFont(family, files, properties = {}) {
-      const fontReference = family + JSON.stringify(properties)
-
-      if (!renderer.cache[fontReference]) {
-        const fontFamily = toCSSString(family)
-
-        // TODO: proper font family generation with error proofing
-        const fontFace = {
-          ...properties,
-          src: files.map(src => `url('${src}') format('${checkFontFormat(src)}')`).join(','),
-          fontFamily
-        }
-
-        const cssFontFace = cssifyFontFace(fontFace)
-        renderer.cache[fontReference] = fontFamily
-        renderer.fontFaces += cssFontFace
-
-        renderer._emitChange({
-          fontFamily,
-          fontFace: cssFontFace,
-          type: FONT_TYPE
-        })
-      }
-
-      return renderer.cache[fontReference]
-    },
-    renderStatic(staticStyle, selector) {
-      const staticReference = generateStaticReference(staticStyle, selector)
-
-      if (!renderer.cache[staticReference]) {
-        const cssDeclarations = cssifyStaticStyle(staticStyle, renderer.plugins)
-        renderer.cache[staticReference] = true
-
-        if (typeof staticStyle === 'string') {
-          renderer.statics += cssDeclarations
-          renderer._emitChange({
-            type: STATIC_TYPE,
-            css: cssDeclarations
-          })
-        } else {
-          renderer.statics += generateCSSRule(selector, cssDeclarations)
-          renderer._emitChange({
-            selector,
-            declaration: cssDeclarations,
-            type: RULE_TYPE,
-            static: true,
-            media: ''
-          })
-        }
-      }
-    },
-    renderToString() {
-      let css = renderer.fontFaces + renderer.statics + renderer.keyframes + renderer.rules
-
-      for (const media in renderer.mediaRules) {
-        css += cssifyMediaQueryRules(media, renderer.mediaRules[media])
-      }
-
-      return css
-    },
-    subscribe(callback) {
-      renderer.listeners.push(callback)
-      return { unsubscribe: () => renderer.listeners.splice(renderer.listeners.indexOf(callback), 1) }
-    },
-    _emitChange(change) {
+    _emitChange(change: Object): void {
       for (let i = 0, len = renderer.listeners.length; i < len; ++i) {
         renderer.listeners[i](change)
       }
