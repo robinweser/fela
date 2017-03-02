@@ -1,9 +1,14 @@
 /* @flow */
 /* eslint-disable prefer-rest-params */
-import 'text-encoding'
 import gzipSize from 'gzip-size'
 
 import { RULE_TYPE } from '../utils/styleTypes'
+
+function lengthInUtf8Bytes(str) {
+  // Matches only the 10.. bytes that are non-initial characters in a multi-byte sequence.
+  const m = encodeURIComponent(str).match(/%[89ABab]/g)
+  return str.length + (m ? m.length : 0)
+}
 
 function addStatistics(renderer: Object): Object {
   const statistics: Object = {
@@ -14,7 +19,6 @@ function addStatistics(renderer: Object): Object {
     usage: {},
     size: {},
     reuse: {},
-
     totalPseudoClasses: 0,
     totalMediaQueryClasses: 0,
     totalClasses: 0,
@@ -88,7 +92,7 @@ function addStatistics(renderer: Object): Object {
     }
 
     const currentCSS = renderer.renderToString()
-    const bytes = new TextEncoder('utf-8').encode(currentCSS).length
+    const bytes = lengthInUtf8Bytes(currentCSS)
 
     currentStats.size = {
       bytes,

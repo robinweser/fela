@@ -15,7 +15,6 @@ export default class Input extends Component {
     this.setState({ size: e.target.value })
   }
 
-
   render() {
     return (
       <Wrapper flex="0 1 auto">

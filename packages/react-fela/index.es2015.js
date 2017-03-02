@@ -1,4 +1,4 @@
-import React, { Component, Children, PropTypes, createElement } from 'react';
+import { Component, Children, PropTypes, createElement } from 'react';
 
 var babelHelpers = {};
 babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -208,6 +208,7 @@ var generateDisplayName = function generateDisplayName(Comp) {
   return 'ConnectedFelaComponent';
 };
 
+var createVNode = Inferno.createVNode;
 function connect(mapStylesToProps) {
   return function (Comp) {
     var _class, _temp;
@@ -234,7 +235,9 @@ function connect(mapStylesToProps) {
             theme: theme || {}
           }))(renderer);
 
-          return React.createElement(Comp, babelHelpers.extends({}, this.props, { styles: styles }));
+          return createVNode(16, Comp, babelHelpers.extends({}, this.props, {
+            'styles': styles
+          }));
         }
       }]);
       return EnhancedComponent;

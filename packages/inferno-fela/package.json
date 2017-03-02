@@ -1,7 +1,7 @@
 {
-  "name": "fela-statistics",
+  "name": "inferno-fela",
   "version": "4.2.6",
-  "description": "Statistic generation tool for Fela",
+  "description": "Inferno bindings for Fela",
   "module": "index.es2015.js",
   "main": "index.js",
   "files": [
@@ -13,19 +13,20 @@
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "fela-devtools",
-    "statistics",
-    "stats",
-    "dx",
-    "devtools",
+    "dynamic styling",
+    "react",
+    "css",
+    "styling",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "peerDependencies": {
-    "fela": "4.2.6"
-  },
   "dependencies": {
-    "gzip-size": "^3.0.0"
+    "inferno-create-element": "^1.0.1",
+    "inferno-component": "^1.0.1"
+  },
+  "peerDependencies": {
+    "inferno": "^1.0.1",
+    "fela": "4.2.6"
   }
 }
