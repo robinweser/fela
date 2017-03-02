@@ -158,7 +158,7 @@ const babelPlugin = babel({
 const nodeResolverPlugin = nodeResolver({
   jsnext: true,
   main: true,
-  skip: ['react']
+  skip: ['react', 'inferno-component', 'fela', 'inferno-create-element']
 })
 const commonJSPlugin = commonjs({ include: 'node_modules/**' })
 const uglifyPlugin = uglify()
@@ -176,7 +176,9 @@ function bundleConfig(pkg, info, minify) {
     format: 'umd',
     globals: {
       react: 'React',
-      fela: 'Fela'
+      fela: 'Fela',
+      'inferno-component': 'InfernoComponent',
+      'inferno-create-component': 'InfernoCreateComponent'
     },
     moduleName: info.name,
     dest: `packages/${pkg}/dist/${info.dest ? info.dest : pkg}${minify ? '.min' : ''}.js`,
@@ -189,7 +191,9 @@ function esModuleConfig(pkg, info) {
     format: 'es6',
     globals: {
       react: 'React',
-      fela: 'Fela'
+      fela: 'Fela',
+      'inferno-component': 'InfernoComponent',
+      'inferno-create-component': 'InfernoCreateComponent'
     },
     moduleName: info.name,
     dest: `packages/${pkg}/index.es2015.js`,

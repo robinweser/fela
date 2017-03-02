@@ -63,7 +63,6 @@
     "rollup-plugin-uglify": "0.3.1",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "text-encoding": "^0.6.4",
     "unitless-css-property": "^1.0.1"
   }
 }
