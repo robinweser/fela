@@ -20,15 +20,13 @@ export default function createDOMInterface(renderer, node) {
 
   styleNodes[''] = node
 
-  createStyleNode(FONT_TYPE)
-  createStyleNode(STATIC_TYPE)
-  createStyleNode(KEYFRAME_TYPE)
-
   if (renderer.mediaQueryOrder) {
     for (let i = 0, len = renderer.mediaQueryOrder.length; i < len; ++i) {
       createStyleNode(RULE_TYPE, renderer.mediaQueryOrder[i])
     }
   }
+
+  reflushNodes(renderer)
 
   return (change) => {
     if (change.type === CLEAR_TYPE) {
@@ -40,10 +38,7 @@ export default function createDOMInterface(renderer, node) {
 
       if (change.type === RULE_TYPE) {
         try {
-          styleNode.sheet.insertRule(
-            `${change.selector}{${change.declaration}}`,
-            styleNode.sheet.cssRules.length
-          )
+          styleNode.sheet.insertRule(`${change.selector}{${change.declaration}}`, styleNode.sheet.cssRules.length)
         } catch (error) {
           // TODO: MAYBE WARN IN DEV MODE
         }
@@ -51,6 +46,25 @@ export default function createDOMInterface(renderer, node) {
         styleNode.textContent = renderer[cacheMap[change.type]]
       }
     }
+  }
+}
+
+function reflushNodes(renderer) {
+  for (const type in cacheMap) {
+    const css = renderer[cacheMap[type]]
+    if (css) {
+      const node = getStyleNode(type)
+      node.textContent = css
+    }
+  }
+
+  if (renderer.rules) {
+    styleNodes[''].textContent = renderer.rules
+  }
+
+  for (const mediaQuery in renderer.mediaRules) {
+    const mediaRuleNode = getStyleNode(RULE_TYPE, mediaQuery)
+    mediaRuleNode.textContent = renderer.mediaRules[mediaQuery]
   }
 }
 
