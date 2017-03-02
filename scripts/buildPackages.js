@@ -138,6 +138,11 @@ const packages = {
     entry: 'enhancers/statistics.js',
     dependencies: true
   },
+  'inferno-fela': {
+    name: 'InfernoFela',
+    entry: 'bindings/inferno/index.js',
+    dependencies: true
+  },
   'react-fela': {
     name: 'ReactFela',
     entry: 'bindings/react/index.js',
@@ -148,7 +153,7 @@ const packages = {
 const babelPlugin = babel({
   babelrc: false,
   presets: ['es2015-rollup', 'stage-0', 'react'],
-  plugins: ['transform-class-properties', 'transform-dev-warning', 'transform-node-env-inline']
+  plugins: ['transform-class-properties', 'inferno', 'transform-dev-warning', 'transform-node-env-inline']
 })
 const nodeResolverPlugin = nodeResolver({
   jsnext: true,

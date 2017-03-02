@@ -1,6 +1,7 @@
+/* @flow weak */
 /* eslint-disable import/no-unresolved, import/extensions */
 import Component from 'inferno-component'
-import { render } from 'fela'
+import render from '../../dom/render'
 
 export default class Provider extends Component {
   getChildContext() {

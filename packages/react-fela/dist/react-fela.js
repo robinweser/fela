@@ -2,9 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react')) :
   typeof define === 'function' && define.amd ? define(['react'], factory) :
   (global.ReactFela = factory(global.React));
-}(this, function (React) { 'use strict';
-
-  var React__default = 'default' in React ? React['default'] : React;
+}(this, function (react) { 'use strict';
 
   var babelHelpers = {};
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -208,14 +206,14 @@
     }, {
       key: 'render',
       value: function render() {
-        return React.Children.only(this.props.children);
+        return react.Children.only(this.props.children);
       }
     }]);
     return Provider;
-  }(React.Component);
+  }(react.Component);
 
-  Provider.propTypes = { renderer: React.PropTypes.object.isRequired };
-  Provider.childContextTypes = { renderer: React.PropTypes.object };
+  Provider.propTypes = { renderer: react.PropTypes.object.isRequired };
+  Provider.childContextTypes = { renderer: react.PropTypes.object };
 
   var generateDisplayName = function generateDisplayName(Comp) {
     var displayName = Comp.displayName || Comp.name;
@@ -226,6 +224,7 @@
     return 'ConnectedFelaComponent';
   };
 
+  var createVNode = Inferno.createVNode;
   function connect(mapStylesToProps) {
     return function (Comp) {
       var _class, _temp;
@@ -252,13 +251,15 @@
               theme: theme || {}
             }))(renderer);
 
-            return React__default.createElement(Comp, babelHelpers.extends({}, this.props, { styles: styles }));
+            return createVNode(16, Comp, babelHelpers.extends({}, this.props, {
+              'styles': styles
+            }));
           }
         }]);
         return EnhancedComponent;
-      }(React.Component), _class.displayName = generateDisplayName(Comp), _class.contextTypes = babelHelpers.extends({}, Comp.contextTypes, {
-        renderer: React.PropTypes.object,
-        theme: React.PropTypes.object
+      }(react.Component), _class.displayName = generateDisplayName(Comp), _class.contextTypes = babelHelpers.extends({}, Comp.contextTypes, {
+        renderer: react.PropTypes.object,
+        theme: react.PropTypes.object
       }), _temp;
     };
   }
@@ -353,7 +354,7 @@
       // if the component renders into another Fela component
       // we pass down the combinedRule as well as both
       if (type._isFelaComponent) {
-        return React.createElement(type, babelHelpers.extends({
+        return react.createElement(type, babelHelpers.extends({
           _felaRule: combinedRule,
           passThrough: resolvedPassThrough
         }, ruleProps), children);
@@ -370,12 +371,12 @@
       ruleProps.theme = theme || {};
 
       componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
-      return React.createElement(customType, componentProps, children);
+      return react.createElement(customType, componentProps, children);
     };
 
     FelaComponent.contextTypes = {
-      renderer: React.PropTypes.object,
-      theme: React.PropTypes.object
+      renderer: react.PropTypes.object,
+      theme: react.PropTypes.object
     };
 
     // use the rule name as display name to better debug with react inspector
@@ -409,18 +410,18 @@
     }, {
       key: 'render',
       value: function render() {
-        return React.Children.only(this.props.children);
+        return react.Children.only(this.props.children);
       }
     }]);
     return ThemeProvider;
-  }(React.Component);
+  }(react.Component);
 
   ThemeProvider.propTypes = {
-    theme: React.PropTypes.object.isRequired,
-    overwrite: React.PropTypes.bool
+    theme: react.PropTypes.object.isRequired,
+    overwrite: react.PropTypes.bool
   };
-  ThemeProvider.childContextTypes = { theme: React.PropTypes.object };
-  ThemeProvider.contextTypes = { theme: React.PropTypes.object };
+  ThemeProvider.childContextTypes = { theme: react.PropTypes.object };
+  ThemeProvider.contextTypes = { theme: react.PropTypes.object };
   ThemeProvider.defaultProps = { overwrite: false };
 
   var index = {
