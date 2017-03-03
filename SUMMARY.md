@@ -25,8 +25,9 @@
 * [4. Usage Guides](docs/UsageGuides.md)
   * [4.1. Usage with React](docs/guides/UsageWithReact.md)
   * [4.2. Usage with React Native](docs/guides/UsageWithReactNative.md)
-  * [4.3. Usage with Angular 2](docs/guides/UsageWithAngular2.md)
+  * [4.3. Usage with Preact](docs/guides/UsageWithPreact.md)
   * [4.4. Usage with Inferno](docs/guides/UsageWithInferno.md)
+  * [4.5. Usage with Angular 2](docs/guides/UsageWithAngular2.md)
 * [5. API Reference](docs/API.md)
   * 5.1. fela
     * [5.1.1. createRenderer](docs/api/fela/createRenderer.md)

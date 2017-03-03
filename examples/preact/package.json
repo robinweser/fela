@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "fela-example-react",
+  "name": "fela-example-preact",
   "version": "1.0.0",
-  "description": "Fela example with React",
+  "description": "Fela example with Preact",
   "scripts": {
     "client": "NODE_ENV=development webpack-dev-server",
     "start": "concurrently --kill-others \"npm run client\" \"babel-node server.js\""
@@ -10,19 +10,19 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "fela": "^4.2.6",
-    "fela-beautifier": "^4.2.6",
-    "fela-font-renderer": "^4.2.6",
-    "fela-perf": "^4.2.6",
-    "fela-plugin-fallback-value": "^4.2.6",
-    "fela-plugin-logger": "^4.2.6",
-    "fela-plugin-lvha": "^4.2.6",
-    "fela-plugin-prefixer": "^4.2.6",
-    "fela-plugin-unit": "^4.2.6",
-    "fela-plugin-validator": "^4.2.6",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "react-fela": "^4.2.6"
+    "fela": "^4.2.7",
+    "fela-beautifier": "^4.2.7",
+    "fela-font-renderer": "^4.2.7",
+    "fela-perf": "^4.2.7",
+    "fela-plugin-fallback-value": "^4.2.7",
+    "fela-plugin-logger": "^4.2.7",
+    "fela-plugin-lvha": "^4.2.7",
+    "fela-plugin-prefixer": "^4.2.7",
+    "fela-plugin-unit": "^4.2.7",
+    "fela-plugin-validator": "^4.2.7",
+    "preact": "^7.2.0",
+    "preact-fela": "^4.2.7",
+    "preact-render-to-string": "^3.6.0"
   },
   "devDependencies": {
     "babel": "6.5.2",
@@ -46,7 +46,13 @@
       "react"
     ],
     "plugins": [
-      "add-module-exports"
+      "add-module-exports",
+      [
+        "transform-react-jsx",
+        {
+          "pragma": "h"
+        }
+      ]
     ]
   }
 }
