@@ -3,6 +3,8 @@
 # Disable module with broken flow types.
 .*/node_modules/babylon/*.*
 .*/node_modules/config-chain/*.*
+.*/node_modules/npm/*.*
+.*/node_modules/npmi/*.*
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
 
 [version]

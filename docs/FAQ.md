@@ -7,14 +7,6 @@
 * [Is Fela production-ready?](#is-fela-production-ready)
 * [Where does the name "Fela" come from?](#where-does-the-name-fela-come-from)
 
-#### Rules
-#### Keyframes
-
-#### Fonts
-* [Why do my fonts flicker?](#why-do-my-fonts-flicker)
-
-#### Renderer
-
 #### Convenience
 * [Can I write my styles as CSS?](#can-i-write-my-styles-as-css)
 
@@ -32,15 +24,6 @@ Just remember that you might again get into specificity problems if you mix diff
 #### Where does the name "Fela" come from?
 Fela actually is the name of a character in one of the author's favorite fantasy novel called ["Kingslayer Chronicles"](https://en.wikipedia.org/wiki/The_Kingkiller_Chronicle) by [Patrick Rothfuss](http://www.patrickrothfuss.com/content/index.asp). [Fela](http://kingkiller.wikia.com/wiki/Fela) is a young, attractive and smart woman practicing sculpturing among others at the university of Imre. She's one of [Kvothe](http://kingkiller.wikia.com/wiki/Kvothe)'s (the main protagonist), best friends there.<br>
 There is no deep connection to JavaScript styling in general, except the fact that she does sculpturing which seems to be kind of similar to what component styling is lately.
-
-## Rules
-
-## Keyframes
-
-## Fonts
-#### Why do my fonts flicker?
-
-## Renderer
 
 ## Convenience
 #### Can I write my styles as CSS?
