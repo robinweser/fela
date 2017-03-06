@@ -35,10 +35,8 @@ export default function createComponent(rule, type = 'div', passThroughProps = [
 
     // fela-native support
     if (renderer.isNativeRenderer) {
-      componentProps.style = {
-        ...ruleProps.style,
-        ...renderer.renderRule(combinedRule, ruleProps)
-      }
+      const felaStyle = renderer.renderRule(combinedRule, ruleProps)
+      componentProps.style = ruleProps.style ? [ruleProps.style, felaStyle] : felaStyle
     } else {
       componentProps.style = ruleProps.style
       const cls = ruleProps.className ? `${ruleProps.className} ` : ''
