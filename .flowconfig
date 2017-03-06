@@ -5,7 +5,10 @@
 .*/node_modules/config-chain/*.*
 .*/node_modules/npm/*.*
 .*/node_modules/npmi/*.*
+.*/node_modules/react-native/*.*
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
+
+module.name_mapper='(react-native)' -> 'empty/object'
 
 [version]
 ^0.38.0

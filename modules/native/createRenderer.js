@@ -1,4 +1,3 @@
-/* @flow weak */
 /* eslint-disable import/no-unresolved, import/extensions */
 import { StyleSheet } from 'react-native'
 

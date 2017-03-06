@@ -31,15 +31,24 @@ export default function createComponent(rule, type = 'div', passThroughProps = [
 
     const componentProps = extractPassThroughProps(resolvedPassThrough, ruleProps)
 
-    componentProps.style = ruleProps.style
+    ruleProps.theme = theme || {}
+
+    // fela-native support
+    if (renderer.isNativeRenderer) {
+      componentProps.style = {
+        ...ruleProps.style,
+        ...renderer.renderRule(combinedRule, ruleProps)
+      }
+    } else {
+      componentProps.style = ruleProps.style
+      const cls = ruleProps.className ? `${ruleProps.className} ` : ''
+      componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps)
+    }
+
     componentProps.id = ruleProps.id
     componentProps.ref = ruleProps.innerRef
 
     const customType = ruleProps.is || type
-    const cls = ruleProps.className ? `${ruleProps.className} ` : ''
-    ruleProps.theme = theme || {}
-
-    componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps)
     return createElement(customType, componentProps, children)
   }
 
