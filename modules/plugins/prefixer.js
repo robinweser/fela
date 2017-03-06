@@ -1,8 +1,8 @@
 /* @flow weak */
 import prefix from 'inline-style-prefixer/static'
+import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
 import fallbackValue from './fallbackValue'
-import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
 const resolveFallbackValues = fallbackValue()
 
