@@ -8,7 +8,7 @@ function removeUndefined(style) {
     const value = style[property]
     if (Array.isArray(value)) {
       style[property] = value.filter(val => !isInvalid(val))
-    } else if (value instanceof Object) {
+    } else if (typeof value === 'object') {
       style[property] = removeUndefined(value)
     } else if (isInvalid(value)) {
       delete style[property]

@@ -65,5 +65,8 @@
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "unitless-css-property": "^1.0.1"
+  },
+  "dependencies": {
+    "css-in-js-utils": "^1.0.2"
   }
 }

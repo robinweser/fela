@@ -2,7 +2,7 @@
 import prefix from 'inline-style-prefixer/static'
 
 import fallbackValue from './fallbackValue'
-import cssifyObject from '../utils/cssifyObject'
+import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
 const resolveFallbackValues = fallbackValue()
 
@@ -23,8 +23,7 @@ function addVendorPrefixes(style) {
       const referenceValue = prefixedDeclaration[referenceProperty]
       delete prefixedDeclaration[referenceProperty]
       const inlinedProperties = cssifyObject(prefixedDeclaration)
-      prefixedStyle[referenceProperty] = referenceValue +
-        (inlinedProperties ? `;${inlinedProperties}` : '')
+      prefixedStyle[referenceProperty] = referenceValue + (inlinedProperties ? `;${inlinedProperties}` : '')
     }
   }
 

@@ -2,7 +2,7 @@
 function resolveNamedMediaQuery(style: Object, mediaQueryMap: Object) {
   for (const property in style) {
     const value = style[property]
-    if (value instanceof Object && !Array.isArray(value)) {
+    if (typeof value === 'object' && !Array.isArray(value)) {
       const resolvedValue = resolveNamedMediaQuery(value, mediaQueryMap)
 
       if (mediaQueryMap[property]) {
@@ -15,5 +15,4 @@ function resolveNamedMediaQuery(style: Object, mediaQueryMap: Object) {
   return style
 }
 
-export default (mediaQueryMap: Object) =>
-  (style: Object) => resolveNamedMediaQuery(style, mediaQueryMap)
+export default (mediaQueryMap: Object) => (style: Object) => resolveNamedMediaQuery(style, mediaQueryMap)

@@ -1,8 +1,9 @@
 /* @flow weak */
+import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
+
 import cssifyMediaQueryRules from '../utils/cssifyMediaQueryRules'
 
 import generateCombinedMediaQuery from '../utils/generateCombinedMediaQuery'
-import generateCSSDeclaration from '../utils/generateCSSDeclaration'
 import generateCSSRule from '../utils/generateCSSRule'
 import generateCSSSelector from '../utils/generateCSSSelector'
 
@@ -44,10 +45,10 @@ function addMonolithicClassNames(renderer) {
       if (isUndefinedValue(value)) {
         continue
       } else if (type === 'number' || type === 'string') {
-        decs.push(generateCSSDeclaration(key, value))
+        decs.push(cssifyDeclaration(key, value))
         continue
       } else if (Array.isArray(value)) {
-        value.forEach(val => decs.push(generateCSSDeclaration(key, val)))
+        value.forEach(val => decs.push(cssifyDeclaration(key, val)))
         continue
       } else if (isNestedSelector(key)) {
         renderer

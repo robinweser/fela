@@ -1,5 +1,5 @@
 /* @flow weak */
-import isUnitlessCSSProperty from 'unitless-css-property'
+import isUnitlessProperty from 'css-in-js-utils/lib/isUnitlessProperty'
 
 import warning from '../utils/warning'
 
@@ -15,7 +15,7 @@ function addUnitIfNeeded(property, value, unit) {
 
 function addUnit(style, unit, propertyMap) {
   for (const property in style) {
-    if (!isUnitlessCSSProperty(property)) {
+    if (!isUnitlessProperty(property)) {
       const cssValue = style[property]
       const propertyUnit = propertyMap[property] || unit
       if (Array.isArray(cssValue)) {
