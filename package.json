@@ -57,6 +57,7 @@
     "mocha": "^2.4.5",
     "preact": "^7.0.0",
     "react": "^15.3.2",
+    "react-native": "^0.42.0",
     "rollup": "0.26.3",
     "rollup-plugin-babel": "2.4.0",
     "rollup-plugin-commonjs": "2.2.1",

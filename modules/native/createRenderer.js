@@ -8,6 +8,7 @@ export default function createRenderer(config = {}) {
   let renderer = {
     listeners: [],
     plugins: config.plugins || [],
+    isNativeRenderer: true,
     clear() {
       renderer.cache = {}
       renderer.ids = []
@@ -16,7 +17,7 @@ export default function createRenderer(config = {}) {
       const style = rule(props)
       const reference = JSON.stringify(style)
 
-      if (!renderer.cache[reference]) {
+      if (!renderer.cache.hasOwnProperty(reference)) {
         const processedStyle = processStyleWithPlugins(renderer.plugins, style, RULE_TYPE)
         renderer.cache[reference] = StyleSheet.create({ style: processedStyle })
       }
