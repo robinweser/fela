@@ -7,6 +7,13 @@ import combineRules from '../../combineRules'
 
 export default function createComponent(rule, type = 'div', passThroughProps = []) {
   const FelaComponent = ({ children, _felaRule, passThrough = [], ...ruleProps }, { renderer, theme }) => {
+    if (!renderer) {
+      const componentName = type.displayName ? type.displayName : type
+      throw new Error(`
+        createComponent() can't render styles for the component '${componentName}' without
+        Fela renderer in the context. Missing react-fela's <Provider /> at the app root?
+      `)
+    }
     const combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule
 
     // compose passThrough props from arrays or functions
