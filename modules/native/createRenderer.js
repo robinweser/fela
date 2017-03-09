@@ -8,6 +8,7 @@ export default function createRenderer(config = {}) {
   let renderer = {
     listeners: [],
     plugins: config.plugins || [],
+    isNativeRenderer: true,
     clear() {
       renderer.cache = {}
       renderer.ids = []
