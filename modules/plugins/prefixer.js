@@ -1,8 +1,8 @@
 /* @flow weak */
 import prefix from 'inline-style-prefixer/static'
+import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
 import fallbackValue from './fallbackValue'
-import cssifyObject from '../utils/cssifyObject'
 
 const resolveFallbackValues = fallbackValue()
 
@@ -13,6 +13,7 @@ function addVendorPrefixes(style) {
 
   for (const property in style) {
     const value = style[property]
+
     if (value instanceof Object && !Array.isArray(value)) {
       prefixedStyle[property] = addVendorPrefixes(value)
     } else {
@@ -23,8 +24,7 @@ function addVendorPrefixes(style) {
       const referenceValue = prefixedDeclaration[referenceProperty]
       delete prefixedDeclaration[referenceProperty]
       const inlinedProperties = cssifyObject(prefixedDeclaration)
-      prefixedStyle[referenceProperty] = referenceValue +
-        (inlinedProperties ? `;${inlinedProperties}` : '')
+      prefixedStyle[referenceProperty] = referenceValue + (inlinedProperties ? `;${inlinedProperties}` : '')
     }
   }
 

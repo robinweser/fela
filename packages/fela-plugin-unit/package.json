@@ -19,7 +19,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "unitless-css-property": "1.0.2"
+    "css-in-js-utils": "^1.0.3"
   },
   "peerDependencies": {
     "fela": "4.2.6"

@@ -1,6 +1,7 @@
 /* @flow weak */
+import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
+
 import minifyCSSString from './minifyCSSString'
-import cssifyObject from './cssifyObject'
 import processStyleWithPlugins from './processStyleWithPlugins'
 
 import { STATIC_TYPE } from './styleTypes'

@@ -10,8 +10,12 @@ const placeholderPrefixes = [
 ]
 
 export default () => customProperty({
-  '::placeholder': value => placeholderPrefixes.reduce((style, prefix) => {
-    style[prefix] = value
+  '::placeholder': (value) => {
+    const style = {}
+
+    for (let i = 0, len = placeholderPrefixes.length; i < len; ++i) {
+      style[placeholderPrefixes[i]] = value
+    }
     return style
-  }, {})
+  }
 })

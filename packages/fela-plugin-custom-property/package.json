@@ -22,5 +22,8 @@
   "license": "MIT",
   "peerDependencies": {
     "fela": "4.2.6"
+  },
+  "dependencies": {
+    "css-in-js-utils": "^1.0.3"
   }
 }
