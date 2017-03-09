@@ -1,7 +1,7 @@
 {
   "name": "fela",
   "version": "4.2.6",
-  "description": "Full-Featured Universal, Dynamic & High-Performance Styling in JavaScript",
+  "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "module": "index.es2015.js",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -23,6 +23,7 @@
     "cssinjs"
   ],
   "dependencies": {
+    "css-in-js-utils": "^1.0.3",
     "hyphenate-style-name": "1.0.1"
   },
   "author": "Robin Frischmann",

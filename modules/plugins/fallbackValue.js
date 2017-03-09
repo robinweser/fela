@@ -1,12 +1,15 @@
 /* @flow weak */
-import hyphenateProperty from 'css-in-js-utils/lib/hyphenateProperty'
+import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
+
+import isObject from '../utils/isObject'
 
 function resolveFallbackValues(style) {
   for (const property in style) {
     const value = style[property]
+
     if (Array.isArray(value)) {
-      style[property] = value.join(`;${hyphenateProperty(property)}:`)
-    } else if (value instanceof Object) {
+      style[property] = resolveArrayValue(property, value)
+    } else if (isObject(value)) {
       style[property] = resolveFallbackValues(value)
     }
   }

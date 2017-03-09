@@ -1,6 +1,7 @@
 /* @flow weak */
 import isUnitlessProperty from 'css-in-js-utils/lib/isUnitlessProperty'
 
+import isObject from '../utils/isObject'
 import warning from '../utils/warning'
 
 function addUnitIfNeeded(property, value, unit) {
@@ -18,10 +19,11 @@ function addUnit(style, unit, propertyMap) {
     if (!isUnitlessProperty(property)) {
       const cssValue = style[property]
       const propertyUnit = propertyMap[property] || unit
-      if (Array.isArray(cssValue)) {
-        style[property] = cssValue.map(val => addUnitIfNeeded(property, val, propertyUnit))
-      } else if (cssValue instanceof Object) {
+
+      if (isObject(cssValue)) {
         style[property] = addUnit(cssValue, unit, propertyMap)
+      } else if (Array.isArray(cssValue)) {
+        style[property] = cssValue.map(val => addUnitIfNeeded(property, val, propertyUnit))
       } else {
         style[property] = addUnitIfNeeded(property, cssValue, propertyUnit)
       }
@@ -34,8 +36,8 @@ function addUnit(style, unit, propertyMap) {
 export default (unit = 'px', propertyMap = {}) => {
   warning(
     unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null,
-    `You are using an invalid unit \`${unit}\`.
-    Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.`
+    `You are using an invalid unit "${unit}".
+Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.`
   )
 
   return style => addUnit(style, unit, propertyMap)

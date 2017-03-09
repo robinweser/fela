@@ -1,10 +1,13 @@
 /* @flow weak */
+import isObject from '../utils/isObject'
+
 const regex = new RegExp('^on([A-Z])')
 
 function friendlyPseudoClass(style) {
   for (const property in style) {
     const value = style[property]
-    if (value instanceof Object && !Array.isArray(value)) {
+
+    if (isObject(value)) {
       const resolvedValue = friendlyPseudoClass(value)
 
       if (regex.test(property)) {

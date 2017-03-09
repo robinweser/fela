@@ -34,6 +34,7 @@
     "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.3.1",
     "cross-env": "^1.0.8",
+    "css-in-js-utils": "^1.0.3",
     "cssbeautify": "^0.3.1",
     "eslint": "^3.14.0",
     "eslint-config-airbnb": "^14.0.0",
@@ -65,8 +66,5 @@
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "unitless-css-property": "^1.0.1"
-  },
-  "dependencies": {
-    "css-in-js-utils": "^1.0.2"
   }
 }

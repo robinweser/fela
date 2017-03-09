@@ -13,6 +13,7 @@ function addVendorPrefixes(style) {
 
   for (const property in style) {
     const value = style[property]
+
     if (value instanceof Object && !Array.isArray(value)) {
       prefixedStyle[property] = addVendorPrefixes(value)
     } else {
