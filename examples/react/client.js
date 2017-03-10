@@ -9,7 +9,6 @@ import createRenderer from './renderer'
 const renderer = createRenderer(document.getElementById('font-stylesheet'))
 
 const mountNode = document.getElementById('stylesheet')
-mountNode.textContent = ''
 
 render(
   <Provider renderer={renderer} mountNode={mountNode}>

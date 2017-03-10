@@ -106,8 +106,9 @@ render(renderer, mountNode)
 * [Vanilla JavaScript](http://fela.js.org/docs/introduction/Examples.html#vanilla) ([source](examples/vanilla))
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/react))
 * [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](examples/react-native))
-* [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
+* [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](examples/preact))
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
+* [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
 * [Fela + Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
 
 ## Community

@@ -9,7 +9,7 @@ npm i --save inferno-fela
 
 Instead of providing duplicate documentation, we therefore want you to check out the [Usage with React](UsageWithReact.md) instead. Just "replace" React with Inferno and you should be fine. There are only some differences which we are listing below.
 
-### Separate packages
+### Different packages
 
 Instead of providing the whole isomorphic API as a single package (like React does), Inferno has separate packages.
 
@@ -32,9 +32,18 @@ import { renderToString } from 'inferno-server'
 ```
 
 
+##### `render`
+```javascript
+import { render } from 'react-dom'
+import { render } from 'inferno'
+```
+
+
 <br>
 
 ---
 
 ### Related
 * [inferno-fela](https://github.com/rofrischmann/inferno-fela)
+* [react-fela](https://github.com/rofrischmann/react-fela)
+* [preact-fela](https://github.com/rofrischmann/preact-fela)

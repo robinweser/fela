@@ -1,4 +1,6 @@
 /* @flow weak */
+const regex = /^(:|\[|>|&)/
+
 export default function isNestedSelector(property) {
-  return property.match(/^(:|\[|>|&)/g) !== null
+  return regex.test(property)
 }

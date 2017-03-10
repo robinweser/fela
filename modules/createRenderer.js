@@ -1,4 +1,6 @@
 /* @flow weak */
+import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
+
 import cssifyFontFace from './utils/cssifyFontFace'
 import cssifyKeyframe from './utils/cssifyKeyframe'
 import cssifyMediaQueryRules from './utils/cssifyMediaQueryRules'
@@ -6,7 +8,6 @@ import cssifyMediaQueryRules from './utils/cssifyMediaQueryRules'
 import generateAnimationName from './utils/generateAnimationName'
 import generateClassName from './utils/generateClassName'
 import generateCombinedMediaQuery from './utils/generateCombinedMediaQuery'
-import generateCSSDeclaration from './utils/generateCSSDeclaration'
 import generateCSSRule from './utils/generateCSSRule'
 import generateCSSSelector from './utils/generateCSSSelector'
 import cssifyStaticStyle from './utils/cssifyStaticStyle'
@@ -58,7 +59,7 @@ export default function createRenderer(config = {}) {
 
       for (const property in style) {
         const value = style[property]
-        if (value instanceof Object) {
+        if (typeof value === 'object') {
           if (isNestedSelector(property)) {
             classNames += renderer._renderStyleToClassNames(value, pseudo + normalizeNestedProperty(property), media)
           } else if (isMediaQuery(property)) {
@@ -69,7 +70,7 @@ export default function createRenderer(config = {}) {
           }
         } else {
           const declarationReference = media + pseudo + property + value
-          if (!renderer.cache[declarationReference]) {
+          if (!renderer.cache.hasOwnProperty(declarationReference)) {
             // we remove undefined values to enable
             // usage of optional props without side-effects
             if (isUndefinedValue(value)) {
@@ -81,11 +82,11 @@ export default function createRenderer(config = {}) {
 
             renderer.cache[declarationReference] = className
 
-            const cssDeclaration = generateCSSDeclaration(property, value)
+            const cssDeclaration = cssifyDeclaration(property, value)
             const selector = generateCSSSelector(className, pseudo)
             const cssRule = generateCSSRule(selector, cssDeclaration)
 
-            if (media) {
+            if (media.length > 0) {
               if (!renderer.mediaRules.hasOwnProperty(media)) {
                 renderer.mediaRules[media] = ''
               }
@@ -112,7 +113,7 @@ export default function createRenderer(config = {}) {
       const resolvedKeyframe = keyframe(props)
       const keyframeReference = JSON.stringify(resolvedKeyframe)
 
-      if (!renderer.cache[keyframeReference]) {
+      if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
         const animationName = generateAnimationName((++renderer.uniqueKeyframeIdentifier))
 
@@ -133,7 +134,7 @@ export default function createRenderer(config = {}) {
     renderFont(family, files, properties = {}) {
       const fontReference = family + JSON.stringify(properties)
 
-      if (!renderer.cache[fontReference]) {
+      if (!renderer.cache.hasOwnProperty(fontReference)) {
         const fontFamily = toCSSString(family)
 
         // TODO: proper font family generation with error proofing
@@ -159,7 +160,7 @@ export default function createRenderer(config = {}) {
     renderStatic(staticStyle, selector) {
       const staticReference = generateStaticReference(staticStyle, selector)
 
-      if (!renderer.cache[staticReference]) {
+      if (!renderer.cache.hasOwnProperty(staticReference)) {
         const cssDeclarations = cssifyStaticStyle(staticStyle, renderer.plugins)
         renderer.cache[staticReference] = true
 

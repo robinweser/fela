@@ -22,7 +22,7 @@
     "fela-plugin-validator": "^4.2.6",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-fela": "^2.1.0"
+    "react-fela": "^4.2.6"
   },
   "devDependencies": {
     "babel": "6.5.2",

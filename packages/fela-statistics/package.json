@@ -26,7 +26,6 @@
     "fela": "4.2.6"
   },
   "dependencies": {
-    "gzip-size": "^3.0.0",
-    "text-encoding": "^0.6.4"
+    "gzip-size": "^3.0.0"
   }
 }

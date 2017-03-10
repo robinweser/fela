@@ -138,6 +138,16 @@ const packages = {
     entry: 'enhancers/statistics.js',
     dependencies: true
   },
+  'inferno-fela': {
+    name: 'InfernoFela',
+    entry: 'bindings/inferno/index.js',
+    dependencies: true
+  },
+  'preact-fela': {
+    name: 'PreactFela',
+    entry: 'bindings/preact/index.js',
+    dependencies: true
+  },
   'react-fela': {
     name: 'ReactFela',
     entry: 'bindings/react/index.js',
@@ -148,12 +158,12 @@ const packages = {
 const babelPlugin = babel({
   babelrc: false,
   presets: ['es2015-rollup', 'stage-0', 'react'],
-  plugins: ['transform-class-properties', 'transform-dev-warning', 'transform-node-env-inline']
+  plugins: ['transform-class-properties', 'inferno', 'preact', 'transform-dev-warning', 'transform-node-env-inline']
 })
 const nodeResolverPlugin = nodeResolver({
   jsnext: true,
   main: true,
-  skip: ['react']
+  skip: ['react', 'inferno-component', 'fela', 'preact', 'inferno-create-element']
 })
 const commonJSPlugin = commonjs({ include: 'node_modules/**' })
 const uglifyPlugin = uglify()
@@ -171,7 +181,10 @@ function bundleConfig(pkg, info, minify) {
     format: 'umd',
     globals: {
       react: 'React',
-      fela: 'Fela'
+      fela: 'Fela',
+      'inferno-component': 'InfernoComponent',
+      'inferno-create-component': 'InfernoCreateComponent',
+      preact: 'Preact'
     },
     moduleName: info.name,
     dest: `packages/${pkg}/dist/${info.dest ? info.dest : pkg}${minify ? '.min' : ''}.js`,
@@ -184,7 +197,10 @@ function esModuleConfig(pkg, info) {
     format: 'es6',
     globals: {
       react: 'React',
-      fela: 'Fela'
+      fela: 'Fela',
+      'inferno-component': 'InfernoComponent',
+      'inferno-create-component': 'InfernoCreateComponent',
+      preact: 'Preact'
     },
     moduleName: info.name,
     dest: `packages/${pkg}/index.es2015.js`,
