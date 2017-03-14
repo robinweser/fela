@@ -1,12 +1,15 @@
-/* @flow weak */
-export default function enhance(...enhancers) {
-  return createRenderer => (config) => {
-    let renderer = createRenderer(config)
+/* @flow */
+import reduce from 'lodash/reduce'
 
-    for (let i = 0, len = enhancers.length; i < len; ++i) {
-      renderer = enhancers[i](renderer)
-    }
-
-    return renderer
-  }
+export default function enhance(...enhancers: Array<Function>): Function {
+  return (createRenderer: Function) =>
+    (config: Object) =>
+      reduce(
+        enhancers,
+        (enhancedRenderer, enhancer) => {
+          enhancedRenderer = enhancer(enhancedRenderer)
+          return enhancedRenderer
+        },
+        createRenderer(config)
+      )
 }

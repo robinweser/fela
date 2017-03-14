@@ -1,8 +1,8 @@
-/* @flow weak */
+/* @flow  */
 const chars = 'abcdefghijklmnopqrstuvwxyz'
 const charLength = chars.length
 
-export default function generateClassName(id, className = '') {
+export default function generateClassName(id: number, className: string = ''): string {
   if (id <= charLength) {
     return chars[id - 1] + className
   }
