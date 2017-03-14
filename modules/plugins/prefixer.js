@@ -23,8 +23,7 @@ function addVendorPrefixes(style) {
       const referenceValue = prefixedDeclaration[referenceProperty]
       delete prefixedDeclaration[referenceProperty]
       const inlinedProperties = cssifyObject(prefixedDeclaration)
-      prefixedStyle[referenceProperty] = referenceValue +
-        (inlinedProperties ? `;${inlinedProperties}` : '')
+      prefixedStyle[referenceProperty] = referenceValue + (inlinedProperties ? `;${inlinedProperties}` : '')
     }
   }
 

@@ -13,9 +13,7 @@ function validateStyleObject(style, logInvalid, deleteInvalid) {
         }
         if (logInvalid) {
           console.error(
-            `${deleteInvalid
-              ? '[Deleted] '
-              : ' '}Invalid nested property. Only use nested \`@media\` queries or \`:\` pseudo classes.
+            `${deleteInvalid ? '[Deleted] ' : ' '}Invalid nested property. Only use nested \`@media\` queries or \`:\` pseudo classes.
               Maybe you forgot to add a plugin that resolves \`${property}\`.`,
             {
               // eslint-disable-line
@@ -51,7 +49,7 @@ function validator(style, type, options) {
         // check for invalid percentage values, it only allows from, to or 0% - 100%
         if (
           !percentage.match(/from|to|%/) ||
-            percentage.indexOf('%') > -1 && (percentageValue < 0 || percentageValue > 100)
+          (percentage.indexOf('%') > -1 && (percentageValue < 0 || percentageValue > 100))
         ) {
           if (logInvalid) {
             console.error(
@@ -80,7 +78,9 @@ const defaultOptions = {
   logInvalid: true,
   deleteInvalid: false
 }
-export default options => (style, props, type) => validator(style, type, {
-  ...defaultOptions,
-  ...options
-})
+export default options =>
+  (style, props, type) =>
+    validator(style, type, {
+      ...defaultOptions,
+      ...options
+    })

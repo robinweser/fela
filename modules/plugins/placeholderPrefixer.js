@@ -9,9 +9,14 @@ const placeholderPrefixes = [
   '::placeholder'
 ]
 
-export default () => customProperty({
-  '::placeholder': value => placeholderPrefixes.reduce((style, prefix) => {
-    style[prefix] = value
-    return style
-  }, {})
-})
+export default () =>
+  customProperty({
+    '::placeholder': value =>
+      placeholderPrefixes.reduce(
+        (style, prefix) => {
+          style[prefix] = value
+          return style
+        },
+        {}
+      )
+  })

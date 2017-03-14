@@ -6,7 +6,7 @@ import warning from '../utils/warning'
 function addUnitIfNeeded(property, value, unit) {
   const valueType = typeof value
   /* eslint-disable eqeqeq */
-  if (valueType === 'number' || valueType === 'string' && value == parseFloat(value)) {
+  if (valueType === 'number' || (valueType === 'string' && value == parseFloat(value))) {
     value += unit
   }
   /* eslint-enable */

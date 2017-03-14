@@ -36,7 +36,9 @@ const defaultOptions = {
   logCSS: false,
   formatCSS: false
 }
-export default (options = {}) => renderer => addLogger(renderer, {
-  ...defaultOptions,
-  ...options
-})
+export default (options = {}) =>
+  renderer =>
+    addLogger(renderer, {
+      ...defaultOptions,
+      ...options
+    })

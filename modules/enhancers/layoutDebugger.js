@@ -32,7 +32,9 @@ const defaultOptions = {
   backgroundColor: false,
   thickness: 1
 }
-export default options => renderer => addLayoutDebugger(renderer, {
-  ...defaultOptions,
-  ...options
-})
+export default options =>
+  renderer =>
+    addLayoutDebugger(renderer, {
+      ...defaultOptions,
+      ...options
+    })
