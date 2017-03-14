@@ -6,7 +6,7 @@ describe('Checking the font format', () => {
     expect(checkFontFormat('foo.eot')).toEqual('eot')
   })
 
-  it('should return undefined', () => {
-    expect(checkFontFormat('foobar.png')).toEqual(undefined)
+  it('should return an empty string', () => {
+    expect(checkFontFormat('foobar.png')).toEqual('')
   })
 })

@@ -13,7 +13,7 @@ function LVHA(style) {
   const pseudoList = []
 
   for (const property in style) {
-    if (precedence[property]) {
+    if (precedence.hasOwnProperty(property)) {
       pseudoList[precedence[property]] = style[property]
       delete style[property]
     }

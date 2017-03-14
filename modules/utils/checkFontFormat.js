@@ -1,4 +1,6 @@
 /* @flow */
+import warning from './warning'
+
 const formats = {
   '.woff': 'woff',
   '.eot': 'eot',
@@ -15,6 +17,10 @@ export default function checkFontFormat(src: string): string {
       return formats[extension]
     }
   }
-  // TODO: warning: wrong font format
+
+  warning(
+    true,
+    `A invalid font-format was used in "${src}". Use one of these: ${Object.keys(formats).join(', ')}.`
+  )
   return ''
 }

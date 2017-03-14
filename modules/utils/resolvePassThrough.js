@@ -1,6 +1,6 @@
 /* @flow weak */
 export default function resolvePassThrough(passThrough, ruleProps) {
-  if (passThrough instanceof Function) {
+  if (typeof passThrough === 'function') {
     return Object.keys(passThrough(ruleProps))
   }
 

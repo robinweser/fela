@@ -1,15 +1,18 @@
 /* @flow weak */
-import assignStyles from '../utils/assignStyles'
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
+
+import isObject from '../utils/isObject'
 
 function customProperty(style, properties) {
   for (const property in style) {
     const value = style[property]
-    if (properties[property]) {
-      assignStyles(style, properties[property](value))
+
+    if (properties.hasOwnProperty(property)) {
+      assignStyle(style, properties[property](value))
       delete style[property]
     }
 
-    if (value instanceof Object && !Array.isArray(value)) {
+    if (isObject(value)) {
       style[property] = customProperty(value, properties)
     }
   }

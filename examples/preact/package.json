@@ -1,0 +1,58 @@
+{
+  "private": true,
+  "name": "fela-example-preact",
+  "version": "1.0.0",
+  "description": "Fela example with Preact",
+  "scripts": {
+    "client": "NODE_ENV=development webpack-dev-server",
+    "start": "concurrently --kill-others \"npm run client\" \"babel-node server.js\""
+  },
+  "author": "Robin Frischmann <robin@rofrischmann.de>",
+  "license": "MIT",
+  "dependencies": {
+    "fela": "^4.2.7",
+    "fela-beautifier": "^4.2.7",
+    "fela-font-renderer": "^4.2.7",
+    "fela-perf": "^4.2.7",
+    "fela-plugin-fallback-value": "^4.2.7",
+    "fela-plugin-logger": "^4.2.7",
+    "fela-plugin-lvha": "^4.2.7",
+    "fela-plugin-prefixer": "^4.2.7",
+    "fela-plugin-unit": "^4.2.7",
+    "fela-plugin-validator": "^4.2.7",
+    "preact": "^7.2.0",
+    "preact-fela": "^4.2.7",
+    "preact-render-to-string": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel": "6.5.2",
+    "babel-cli": "6.6.0",
+    "babel-loader": "6.2.1",
+    "babel-plugin-add-module-exports": "0.1.2",
+    "babel-plugin-transform-dev-warning": "^0.1.0",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-react": "6.5.0",
+    "babel-preset-stage-0": "6.5.0",
+    "concurrently": "^2.1.0",
+    "express": "^4.14.0",
+    "express-http-proxy": "^0.7.2",
+    "webpack": "1.12.11",
+    "webpack-dev-server": "1.14.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "add-module-exports",
+      [
+        "transform-react-jsx",
+        {
+          "pragma": "h"
+        }
+      ]
+    ]
+  }
+}

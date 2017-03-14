@@ -1,22 +1,13 @@
-import cssifyObject from '../cssifyObject'
+import cssifyFontFace from '../cssifyFontFace'
 
-describe('Cssifying objects', () => {
+describe('Cssifying font faces', () => {
   it('should generate a valid CSS string', () => {
-    expect(cssifyObject({ color: 'red' })).toEqual('color:red')
-  })
-
-  it('should convert properties to dash case', () => {
-    expect(cssifyObject({ fontSize: '12px' })).toEqual('font-size:12px')
-  })
-
-  it('should separate declarations with semicolons', () => {
-    expect(cssifyObject({ fontSize: '12px', color: 'red' })).toEqual('font-size:12px;color:red')
-  })
-
-  it('should convert vendor prefixes', () => {
-    expect(cssifyObject({
-      WebkitJustifyContent: 'center',
-      msFlexAlign: 'center'
-    })).toEqual('-webkit-justify-content:center;-ms-flex-align:center')
+    expect(
+      cssifyFontFace({
+        fontFamily: '"Bar"',
+        fontWeight: 300,
+        src: 'url(foo/bar.ttf) format(ttf)'
+      })
+    ).toEqual('@font-face{font-family:"Bar";font-weight:300;src:url(foo/bar.ttf) format(ttf)}')
   })
 })

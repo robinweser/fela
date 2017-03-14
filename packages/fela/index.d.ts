@@ -27,8 +27,8 @@ declare module "fela" {
   interface ISubscribeClearMessage extends ISubscribeMessage { }
 
   interface IRenderer {
-    renderRule(rule: TRule, props: TRuleProps): void;
-    renderKeyframe(keyFrame: TKeyFrame, props: TRuleProps): void;
+    renderRule(rule: TRule, props: TRuleProps): string;
+    renderKeyframe(keyFrame: TKeyFrame, props: TRuleProps): string;
     renderFont(family: string, files: Array<string>, props: TRuleProps): void;
     renderStatic(style: string, selector?: string): void;
     renderToString(): string;
