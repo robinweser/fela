@@ -113,6 +113,7 @@ render(renderer, mountNode)
 
 ## Community
 * [Aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
+* [Este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
 
 ## Packages
 This repository is made of several separate packages including the core package. For convenience sake, we keep the package versions in sync. Therefore every package gets updated along with the core package, even if nothing changed within a particular package.
@@ -126,6 +127,8 @@ The following list shows a quick overview of all existing packages.
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-native">fela-native</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-native"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-native.svg"> |
 | **Bindings** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/react-fela">react-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/react-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/preact-fela">preact-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/preact-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/preact-fela.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela">inferno-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/inferno-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/inferno-fela.svg"> |
 | **Tools** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-tools">fela-tools</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-tools"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-tools.svg"> |
 | **Plugins** |  |  |

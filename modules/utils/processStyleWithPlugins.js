@@ -6,12 +6,16 @@ export default function processStyleWithPlugins(
   style: Object,
   type: number
 ) {
-  return arrayReduce(
-    plugins,
-    (processedStyle, plugin) => {
-      processedStyle = plugin(processedStyle, type)
-      return processedStyle
-    },
-    style
-  )
+  if (plugins.length > 0) {
+    return arrayReduce(
+      plugins,
+      (processedStyle, plugin) => {
+        processedStyle = plugin(processedStyle, type)
+        return processedStyle
+      },
+      style
+    )
+  }
+
+  return style
 }

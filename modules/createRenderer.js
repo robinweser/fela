@@ -15,14 +15,23 @@ import generateStaticReference from './utils/generateStaticReference'
 import isMediaQuery from './utils/isMediaQuery'
 import isNestedSelector from './utils/isNestedSelector'
 import isUndefinedValue from './utils/isUndefinedValue'
+import isObject from './utils/isObject'
 
 import normalizeNestedProperty from './utils/normalizeNestedProperty'
 import applyMediaRulesInOrder from './utils/applyMediaRulesInOrder'
 import processStyleWithPlugins from './utils/processStyleWithPlugins'
 import toCSSString from './utils/toCSSString'
 import checkFontFormat from './utils/checkFontFormat'
+import objectReduce from './utils/objectReduce'
+import arrayEach from './utils/arrayEach'
 
-import { STATIC_TYPE, RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, CLEAR_TYPE } from './utils/styleTypes'
+import {
+  STATIC_TYPE,
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  FONT_TYPE,
+  CLEAR_TYPE
+} from './utils/styleTypes'
 
 type Config = {
   keyframePrefixes?: Array<string>,
@@ -30,6 +39,10 @@ type Config = {
   enhancers?: Array<Function>,
   mediaQueryOrder?: Array<string>,
   selectorPrefix?: string
+};
+
+type Cache = {
+  [reference: string]: string
 };
 
 type Renderer = {
@@ -43,10 +56,9 @@ type Renderer = {
   statics: string,
   rules: string,
   mediaRules: { [query: string]: string },
-  rendered: Array<string>,
   uniqueRuleIdentifier: number,
   uniqueKeyframeIdentifier: number,
-  cache: { [reference: string]: string | boolean },
+  cache: Cache,
   renderRule: Function,
   renderKeyframe: Function,
   renderStatic: Function,
@@ -56,6 +68,14 @@ type Renderer = {
   clear: Function,
   _renderStyleToClassNames: Function,
   _emitChange: Function
+};
+
+type FontProperties = {
+  fontVariant?: string,
+  fontStretch?: string,
+  fontWeight?: string | number,
+  fontStyle?: string,
+  unicodeRange?: string
 };
 
 export default function createRenderer(config: Config = {}): Renderer {
@@ -72,34 +92,43 @@ export default function createRenderer(config: Config = {}): Renderer {
     // apply media rules in an explicit order to ensure
     // correct media query execution order
     mediaRules: applyMediaRulesInOrder(config.mediaQueryOrder || []),
-    rendered: [],
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},
+
     renderRule(rule: Function, props: Object = {}): string {
-      const processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE)
+      const processedStyle = processStyleWithPlugins(
+        renderer.plugins,
+        rule(props),
+        RULE_TYPE
+      )
       return renderer._renderStyleToClassNames(processedStyle).slice(1)
     },
+
     renderKeyframe(keyframe: Function, props: Object = {}): string {
       const resolvedKeyframe = keyframe(props)
       const keyframeReference = JSON.stringify(resolvedKeyframe)
 
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
-        const animationName = generateAnimationName(++renderer.uniqueKeyframeIdentifier)
+        const animationName = generateAnimationName(
+          ++renderer.uniqueKeyframeIdentifier
+        )
 
         const processedKeyframe = processStyleWithPlugins(
           renderer.plugins,
           resolvedKeyframe,
           KEYFRAME_TYPE
         )
+
         const cssKeyframe = cssifyKeyframe(
           processedKeyframe,
           animationName,
           renderer.keyframePrefixes
         )
+
         renderer.cache[keyframeReference] = animationName
         renderer.keyframes += cssKeyframe
 
@@ -112,7 +141,12 @@ export default function createRenderer(config: Config = {}): Renderer {
 
       return renderer.cache[keyframeReference]
     },
-    renderFont(family: string, files: Array<string>, properties: Object = {}): string {
+
+    renderFont(
+      family: string,
+      files: Array<string>,
+      properties: FontProperties = {}
+    ): string {
       const fontReference = family + JSON.stringify(properties)
 
       if (!renderer.cache.hasOwnProperty(fontReference)) {
@@ -121,7 +155,9 @@ export default function createRenderer(config: Config = {}): Renderer {
         // TODO: proper font family generation with error proofing
         const fontFace = {
           ...properties,
-          src: files.map(src => `url('${src}') format('${checkFontFormat(src)}')`).join(','),
+          src: files
+            .map(src => `url('${src}') format('${checkFontFormat(src)}')`)
+            .join(','),
           fontFamily
         }
 
@@ -138,12 +174,16 @@ export default function createRenderer(config: Config = {}): Renderer {
 
       return renderer.cache[fontReference]
     },
+
     renderStatic(staticStyle: Object | string, selector?: string): void {
       const staticReference = generateStaticReference(staticStyle, selector)
 
       if (!renderer.cache.hasOwnProperty(staticReference)) {
-        const cssDeclarations = cssifyStaticStyle(staticStyle, renderer.plugins)
-        renderer.cache[staticReference] = true
+        const cssDeclarations = cssifyStaticStyle(
+          staticStyle,
+          renderer.plugins
+        )
+        renderer.cache[staticReference] = ''
 
         if (typeof staticStyle === 'string') {
           renderer.statics += cssDeclarations
@@ -151,7 +191,7 @@ export default function createRenderer(config: Config = {}): Renderer {
             type: STATIC_TYPE,
             css: cssDeclarations
           })
-        } else {
+        } else if (selector) {
           renderer.statics += generateCSSRule(selector, cssDeclarations)
           renderer._emitChange({
             selector,
@@ -163,38 +203,53 @@ export default function createRenderer(config: Config = {}): Renderer {
         }
       }
     },
+
     renderToString(): string {
-      let css = renderer.fontFaces + renderer.statics + renderer.keyframes + renderer.rules
+      const basicCSS = renderer.fontFaces +
+        renderer.statics +
+        renderer.keyframes +
+        renderer.rules
 
-      for (const media in renderer.mediaRules) {
-        css += cssifyMediaQueryRules(media, renderer.mediaRules[media])
-      }
-
-      return css
+      return objectReduce(
+        renderer.mediaRules,
+        (css, rules, query) => css + cssifyMediaQueryRules(query, rules),
+        basicCSS
+      )
     },
+
     subscribe(callback: Function): { unsubscribe: Function } {
       renderer.listeners.push(callback)
-      return { unsubscribe: () => renderer.listeners.splice(renderer.listeners.indexOf(callback), 1) }
+
+      return {
+        unsubscribe: () =>
+          renderer.listeners.splice(renderer.listeners.indexOf(callback), 1)
+      }
     },
+
     clear() {
       renderer.fontFaces = ''
       renderer.keyframes = ''
       renderer.statics = ''
       renderer.rules = ''
       renderer.mediaRules = applyMediaRulesInOrder(renderer.mediaQueryOrder)
-      renderer.rendered = []
       renderer.uniqueRuleIdentifier = 0
       renderer.uniqueKeyframeIdentifier = 0
       renderer.cache = {}
 
       renderer._emitChange({ type: CLEAR_TYPE })
     },
-    _renderStyleToClassNames(style: Object, pseudo: string = '', media: string = ''): string {
+
+    _renderStyleToClassNames(
+      style: Object,
+      pseudo: string = '',
+      media: string = ''
+    ): string {
       let classNames = ''
 
       for (const property in style) {
         const value = style[property]
-        if (value instanceof Object) {
+
+        if (isObject(value)) {
           if (isNestedSelector(property)) {
             classNames += renderer._renderStyleToClassNames(
               value,
@@ -202,14 +257,23 @@ export default function createRenderer(config: Config = {}): Renderer {
               media
             )
           } else if (isMediaQuery(property)) {
-            const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
-            classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery)
+            const combinedMediaQuery = generateCombinedMediaQuery(
+              media,
+              property.slice(6).trim()
+            )
+
+            classNames += renderer._renderStyleToClassNames(
+              value,
+              pseudo,
+              combinedMediaQuery
+            )
           } else {
             // TODO: warning
           }
         } else {
           const declarationReference = media + pseudo + property + value
-          if (!renderer.cache[declarationReference]) {
+
+          if (!renderer.cache.hasOwnProperty(declarationReference)) {
             // we remove undefined values to enable
             // usage of optional props without side-effects
             if (isUndefinedValue(value)) {
@@ -226,10 +290,11 @@ export default function createRenderer(config: Config = {}): Renderer {
             const selector = generateCSSSelector(className, pseudo)
             const cssRule = generateCSSRule(selector, cssDeclaration)
 
-            if (media) {
+            if (media.length > 0) {
               if (!renderer.mediaRules.hasOwnProperty(media)) {
                 renderer.mediaRules[media] = ''
               }
+
               renderer.mediaRules[media] += cssRule
             } else {
               renderer.rules += cssRule
@@ -249,10 +314,9 @@ export default function createRenderer(config: Config = {}): Renderer {
 
       return classNames
     },
+
     _emitChange(change: Object): void {
-      for (let i = 0, len = renderer.listeners.length; i < len; ++i) {
-        renderer.listeners[i](change)
-      }
+      arrayEach(renderer.listeners, listener => listener(change))
     }
   }
 
@@ -261,9 +325,9 @@ export default function createRenderer(config: Config = {}): Renderer {
   renderer.clear()
 
   if (config.enhancers) {
-    for (let i = 0, len = config.enhancers.length; i < len; ++i) {
-      renderer = config.enhancers[i](renderer)
-    }
+    arrayEach(config.enhancers, (enhancer) => {
+      renderer = enhancer(renderer)
+    })
   }
 
   return renderer
