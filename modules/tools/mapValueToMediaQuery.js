@@ -1,5 +1,8 @@
 /* @flow */
-export default function mapValueToMediaQuery(queryValueMap: Object = {}, mapper: Function | string): Object {
+export default function mapValueToMediaQuery(
+  queryValueMap: Object = {},
+  mapper: Function | string
+): Object {
   const style = {}
 
   for (const query in queryValueMap) {

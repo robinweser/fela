@@ -1,12 +1,12 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from './arrayReduce'
 
 export default function processStyleWithPlugins(
   plugins: Array<Function>,
   style: Object,
   type: number
 ) {
-  return reduce(
+  return arrayReduce(
     plugins,
     (processedStyle, plugin) => {
       processedStyle = plugin(processedStyle, type)

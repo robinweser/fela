@@ -78,7 +78,8 @@ function addStatistics(renderer: Object): Object {
   })
 
   function calculateReuse() {
-    const quotient = (statistics.totalUsage - statistics.totalClasses) / statistics.totalUsage
+    const quotient = (statistics.totalUsage - statistics.totalClasses) /
+      statistics.totalUsage
     return Math.floor(quotient * 10000) / 10000
   }
 

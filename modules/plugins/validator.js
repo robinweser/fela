@@ -35,7 +35,8 @@ function validateStyleObject(style, logInvalid, deleteInvalid) {
 function isValidPercentage(percentage) {
   const percentageValue = parseFloat(percentage)
 
-  return percentage.indexOf('%') > -1 && (percentageValue < 0 || percentageValue > 100)
+  return percentage.indexOf('%') > -1 &&
+    (percentageValue < 0 || percentageValue > 100)
 }
 
 function validateKeyframeObject(style, logInvalid, deleteInvalid) {

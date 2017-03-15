@@ -1,5 +1,8 @@
 /* @flow */
-export default function generateStaticReference(style: string | Object, selector?: string): string {
+export default function generateStaticReference(
+  style: string | Object,
+  selector?: string
+): string {
   if (typeof style === 'string') {
     return style
   }

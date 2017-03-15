@@ -185,7 +185,9 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(renderer.rules).toEqual('.a{color:red}.b~#foo{color:blue}.c .bar{color:green}')
+      expect(renderer.rules).toEqual(
+        '.a{color:red}.b~#foo{color:blue}.c .bar{color:green}'
+      )
     })
 
     it('should render media queries', () => {
@@ -198,7 +200,9 @@ describe('Renderer', () => {
       const className = renderer.renderRule(rule)
 
       expect(renderer.rules).toEqual('.a{color:red}')
-      expect(renderer.mediaRules['(min-height:300px)']).toEqual('.b{color:blue}')
+      expect(renderer.mediaRules['(min-height:300px)']).toEqual(
+        '.b{color:blue}'
+      )
     })
   })
 
@@ -212,7 +216,9 @@ describe('Renderer', () => {
       const renderer = createRenderer()
 
       const animationName = renderer.renderKeyframe(keyframe)
-      expect(renderer.cache.hasOwnProperty(JSON.stringify(keyframe()))).toEqual(true)
+      expect(renderer.cache.hasOwnProperty(JSON.stringify(keyframe()))).toEqual(
+        true
+      )
     })
 
     it('should return a valid animation name', () => {
@@ -263,7 +269,9 @@ describe('Renderer', () => {
       }
 
       renderer.renderStatic(staticStyle, 'html,body')
-      expect(renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')).toEqual(true)
+      expect(
+        renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')
+      ).toEqual(true)
       expect(renderer.statics).toEqual('html,body{margin:0;font-size:12px}')
     })
 
@@ -279,9 +287,15 @@ describe('Renderer', () => {
       )
       renderer.renderStatic({ color: 'red' }, 'html,body')
 
-      expect(renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')).toEqual(true)
-      expect(renderer.cache.hasOwnProperty('html,body{"color":"red"}')).toEqual(true)
-      expect(renderer.statics).toEqual('html,body{margin:0;font-size:12px}html,body{color:red}')
+      expect(
+        renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')
+      ).toEqual(true)
+      expect(renderer.cache.hasOwnProperty('html,body{"color":"red"}')).toEqual(
+        true
+      )
+      expect(renderer.statics).toEqual(
+        'html,body{margin:0;font-size:12px}html,body{color:red}'
+      )
     })
   })
 
@@ -291,7 +305,11 @@ describe('Renderer', () => {
       const family = 'Arial'
       const properties = { fontWeight: 300 }
 
-      renderer.renderFont(family, ['../fonts/Arial.ttf', '../fonts/Arial.woff'], properties)
+      renderer.renderFont(
+        family,
+        ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
+        properties
+      )
 
       const key = family + JSON.stringify(properties)
       expect(renderer.cache.hasOwnProperty(key)).toEqual(true)
@@ -300,7 +318,11 @@ describe('Renderer', () => {
     it('should return the font family', () => {
       const renderer = createRenderer()
 
-      const family = renderer.renderFont('Arial', ['../fonts/Arial.ttf', '../fonts/Arial.woff'], { fontWeight: 300 })
+      const family = renderer.renderFont(
+        'Arial',
+        ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
+        { fontWeight: 300 }
+      )
 
       expect(family).toEqual('"Arial"')
     })

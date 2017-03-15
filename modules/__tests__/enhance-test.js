@@ -27,7 +27,9 @@ describe('Enhancing renderers', () => {
       foo: 'bar'
     })
 
-    const enhancedRenderer = enhance(enhancer, anotherEnhancer)(createRenderer)()
+    const enhancedRenderer = enhance(enhancer, anotherEnhancer)(
+      createRenderer
+    )()
     expect(enhancedRenderer.greet).toBeInstanceOf(Function)
     expect(enhancedRenderer.greet('World')).toEqual('Hello World')
     expect(enhancedRenderer.foo).toEqual('bar')

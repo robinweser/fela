@@ -52,12 +52,23 @@ function addMonolithicClassNames(renderer) {
         continue
       } else if (isNestedSelector(key)) {
         renderer
-          ._parseMonolithicRules(selector + normalizeNestedProperty(key), value, mediaSelector)
+          ._parseMonolithicRules(
+            selector + normalizeNestedProperty(key),
+            value,
+            mediaSelector
+          )
           .rules.forEach(r => rules.push(r))
         continue
       } else if (isMediaQuery(key)) {
-        const mediaKey = generateCombinedMediaQuery(mediaSelector, key.slice(6).trim())
-        const mediaRules = renderer._parseMonolithicRules(selector, value, mediaKey)
+        const mediaKey = generateCombinedMediaQuery(
+          mediaSelector,
+          key.slice(6).trim()
+        )
+        const mediaRules = renderer._parseMonolithicRules(
+          selector,
+          value,
+          mediaKey
+        )
         media.push({
           rules: mediaRules.rules,
           media: mediaKey
@@ -65,7 +76,9 @@ function addMonolithicClassNames(renderer) {
         mediaRules.media.forEach(r => media.push(r))
         continue
       } else {
-        renderer._parseMonolithicRules(`${selector} ${key}`, value, mediaSelector).rules.forEach(r => rules.push(r))
+        renderer
+          ._parseMonolithicRules(`${selector} ${key}`, value, mediaSelector)
+          .rules.forEach(r => rules.push(r))
         continue
       }
     }
@@ -82,7 +95,10 @@ function addMonolithicClassNames(renderer) {
     if (!Object.keys(style).length) {
       return ''
     }
-    const className = generateClassName(style, renderer.selectorPrefix || 'fela-')
+    const className = generateClassName(
+      style,
+      renderer.selectorPrefix || 'fela-'
+    )
     const selector = generateCSSSelector(className)
 
     if (renderer.cache[className]) return ` ${className}`
@@ -112,7 +128,10 @@ function addMonolithicClassNames(renderer) {
           renderer.mediaRules[mediaKey] = ''
         }
         renderer.mediaRules[mediaKey] += mediaRules
-        renderer.cache[className] += cssifyMediaQueryRules(mediaKey, mediaRules)
+        renderer.cache[className] += cssifyMediaQueryRules(
+          mediaKey,
+          mediaRules
+        )
 
         renderer._emitChange({
           selector,

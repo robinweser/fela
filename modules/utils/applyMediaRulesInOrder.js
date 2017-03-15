@@ -1,9 +1,11 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from './arrayReduce'
 
-type MediaRules = { [mediaQuery: string]: string };
-export default function applyMediaRulesInOrder(order: Array<string>): MediaRules {
-  return reduce(
+type MediaRules = {[mediaQuery: string]: string};
+export default function applyMediaRulesInOrder(
+  order: Array<string>
+): MediaRules {
+  return arrayReduce(
     order,
     (mediaRules, query) => {
       mediaRules[query] = ''

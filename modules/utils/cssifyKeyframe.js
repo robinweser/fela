@@ -1,21 +1,24 @@
 /* @flow */
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
-import reduce from 'lodash/reduce'
+
+import arrayReduce from './arrayReduce'
+import objectReduce from './objectReduce'
 
 export default function cssifyKeyframe(
   frames: Object,
   animationName: string,
   prefixes: Array<string> = ['']
 ): string {
-  const keyframe = reduce(
+  const keyframe = objectReduce(
     frames,
     (css, frame, percentage) => `${css}${percentage}{${cssifyObject(frame)}}`,
     ''
   )
 
-  return reduce(
+  return arrayReduce(
     prefixes,
-    (cssKeyframe, prefix) => `${cssKeyframe}@${prefix}keyframes ${animationName}{${keyframe}}`,
+    (cssKeyframe, prefix) =>
+      `${cssKeyframe}@${prefix}keyframes ${animationName}{${keyframe}}`,
     ''
   )
 }
