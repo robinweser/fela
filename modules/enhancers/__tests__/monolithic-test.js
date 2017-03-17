@@ -5,7 +5,7 @@ const options = { enhancers: [monolithic()] }
 
 describe('Monolithic enhancer', () => {
   it('should add a cache entry', () => {
-    const rule = props => ({ color: 'red' })
+    const rule = () => ({ color: 'red' })
     const renderer = createRenderer(options)
 
     const className = renderer.renderRule(rule)
@@ -27,7 +27,7 @@ describe('Monolithic enhancer', () => {
   })
 
   it('should return an empty string if the style is empty', () => {
-    const rule = props => ({})
+    const rule = () => ({})
     const renderer = createRenderer(options)
 
     const className = renderer.renderRule(rule)
@@ -60,7 +60,7 @@ describe('Monolithic enhancer', () => {
   })
 
   it('should render pseudo classes', () => {
-    const rule = props => ({
+    const rule = () => ({
       color: 'red',
       ':hover': { color: 'blue' }
     })
@@ -68,11 +68,13 @@ describe('Monolithic enhancer', () => {
     const renderer = createRenderer(options)
     const className = renderer.renderRule(rule)
 
-    expect(renderer.rules).toEqual(`.${className}{color:red}.${className}:hover{color:blue}`)
+    expect(renderer.rules).toEqual(
+      `.${className}{color:red}.${className}:hover{color:blue}`
+    )
   })
 
   it('should prefix classNames', () => {
-    const rule = props => ({ color: 'red' })
+    const rule = () => ({ color: 'red' })
 
     const renderer = createRenderer({ selectorPrefix: 'fela_' })
     const className = renderer.renderRule(rule)
@@ -82,7 +84,7 @@ describe('Monolithic enhancer', () => {
   })
 
   it('should render attribute selectors', () => {
-    const rule = props => ({
+    const rule = () => ({
       color: 'red',
       '[bool=true]': { color: 'blue' }
     })
@@ -90,11 +92,13 @@ describe('Monolithic enhancer', () => {
 
     const className = renderer.renderRule(rule)
 
-    expect(renderer.rules).toEqual(`.${className}{color:red}.${className}[bool=true]{color:blue}`)
+    expect(renderer.rules).toEqual(
+      `.${className}{color:red}.${className}[bool=true]{color:blue}`
+    )
   })
 
   it('should render child selectors', () => {
-    const rule = props => ({
+    const rule = () => ({
       color: 'red',
       '>div': { color: 'blue' }
     })
@@ -102,11 +106,13 @@ describe('Monolithic enhancer', () => {
 
     const className = renderer.renderRule(rule)
 
-    expect(renderer.rules).toEqual(`.${className}{color:red}.${className}>div{color:blue}`)
+    expect(renderer.rules).toEqual(
+      `.${className}{color:red}.${className}>div{color:blue}`
+    )
   })
 
   it('should render any nested selector with the &-prefix', () => {
-    const rule = props => ({
+    const rule = () => ({
       color: 'red',
       '&~#foo': { color: 'blue' },
       '& .bar': { color: 'green' }
@@ -121,7 +127,7 @@ describe('Monolithic enhancer', () => {
   })
 
   it('should render media queries', () => {
-    const rule = props => ({
+    const rule = () => ({
       color: 'red',
       '@media (min-height:300px)': { color: 'blue' }
     })
@@ -130,7 +136,9 @@ describe('Monolithic enhancer', () => {
     const className = renderer.renderRule(rule)
 
     expect(renderer.rules).toEqual(`.${className}{color:red}`)
-    expect(renderer.mediaRules['(min-height:300px)']).toEqual(`.${className}{color:blue}`)
+    expect(renderer.mediaRules['(min-height:300px)']).toEqual(
+      `.${className}{color:blue}`
+    )
   })
 
   it('should use custom className if defined', () => {

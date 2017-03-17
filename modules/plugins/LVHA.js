@@ -1,4 +1,6 @@
-/* @flow weak */
+/* @flow */
+import arrayEach from '../utils/arrayEach'
+
 const precedence = {
   ':link': 0,
   ':visited': 1,
@@ -9,7 +11,7 @@ const precedence = {
 
 const pseudoClasses = Object.keys(precedence)
 
-function LVHA(style) {
+function orderLVHA(style: Object): Object {
   const pseudoList = []
 
   for (const property in style) {
@@ -19,15 +21,15 @@ function LVHA(style) {
     }
   }
 
-  for (let i = 0, len = pseudoList.length; i < len; ++i) {
-    const pseudoStyle = pseudoList[i]
-
+  arrayEach(pseudoList, (pseudoStyle, index) => {
     if (pseudoStyle) {
-      style[pseudoClasses[i]] = pseudoStyle
+      style[pseudoClasses[index]] = pseudoStyle
     }
-  }
+  })
 
   return style
 }
 
-export default () => LVHA
+export default function LVHA() {
+  return orderLVHA
+}

@@ -1,9 +1,9 @@
-/* @flow weak */
+/* @flow */
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import isObject from '../utils/isObject'
 
-function customProperty(style, properties) {
+function resolveCustomProperty(style: Object, properties: Object): Object {
   for (const property in style) {
     const value = style[property]
 
@@ -13,11 +13,13 @@ function customProperty(style, properties) {
     }
 
     if (isObject(value)) {
-      style[property] = customProperty(value, properties)
+      style[property] = resolveCustomProperty(value, properties)
     }
   }
 
   return style
 }
 
-export default properties => style => customProperty(style, properties)
+export default function customProperty(properties: Object) {
+  return (style: Object) => resolveCustomProperty(style, properties)
+}

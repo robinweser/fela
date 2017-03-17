@@ -28,9 +28,7 @@ describe('Named media query plugin', () => {
       namedMediaQuery({
         desktop: '@media (min-width: 300px)',
         tablet: '@media (min-width: 150px)'
-      })(
-        style
-      )
+      })(style)
     ).toEqual({
       width: 20,
       '@media (min-width: 150px)': {

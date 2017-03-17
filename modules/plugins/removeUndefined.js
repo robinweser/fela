@@ -2,7 +2,7 @@
 import isUndefinedValue from '../utils/isUndefinedValue'
 import isObject from '../utils/isObject'
 
-function removeUndefined(style) {
+function removeUndefined(style: Object): Object {
   for (const property in style) {
     const value = style[property]
 

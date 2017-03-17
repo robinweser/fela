@@ -1,5 +1,4 @@
 import createRenderer from '../createRenderer'
-import sinon from 'sinon'
 
 import { RULE_TYPE } from '../utils/styleTypes'
 
@@ -41,7 +40,7 @@ describe('Renderer', () => {
   describe('Clearing a Renderer', () => {
     it('should reset all caches', () => {
       const renderer = createRenderer()
-      const rule = props => ({ color: 'red' })
+      const rule = () => ({ color: 'red' })
 
       renderer.renderRule(rule)
       renderer.clear()
@@ -59,12 +58,12 @@ describe('Renderer', () => {
 
   describe('Rendering rules', () => {
     it('should add a cache entry', () => {
-      const rule = props => ({ color: 'red' })
+      const rule = () => ({ color: 'red' })
       const renderer = createRenderer()
 
-      const className = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
-      expect(renderer.cache.hasOwnProperty('color' + 'red')).toEqual(true)
+      expect(renderer.cache.hasOwnProperty('colorred')).toEqual(true)
     })
 
     it('should reuse cached classNames', () => {
@@ -84,7 +83,7 @@ describe('Renderer', () => {
     })
 
     it('should return an empty string if the style is empty', () => {
-      const rule = props => ({})
+      const rule = () => ({})
       const renderer = createRenderer()
 
       const className = renderer.renderRule(rule)
@@ -118,19 +117,19 @@ describe('Renderer', () => {
     })
 
     it('should render pseudo classes', () => {
-      const rule = props => ({
+      const rule = () => ({
         color: 'red',
         ':hover': { color: 'blue' }
       })
 
       const renderer = createRenderer()
-      const className = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
       expect(renderer.rules).toEqual('.a{color:red}.b:hover{color:blue}')
     })
 
     it('should prefix classNames', () => {
-      const rule = props => ({ color: 'red' })
+      const rule = () => ({ color: 'red' })
 
       const renderer = createRenderer({ selectorPrefix: 'fela_' })
       const className = renderer.renderRule(rule)
@@ -140,50 +139,50 @@ describe('Renderer', () => {
     })
 
     it('should render attribute selectors', () => {
-      const rule = props => ({
+      const rule = () => ({
         color: 'red',
         '[bool=true]': { color: 'blue' }
       })
       const renderer = createRenderer()
 
-      const className = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
       expect(renderer.rules).toEqual('.a{color:red}.b[bool=true]{color:blue}')
     })
 
     it('should render child selectors', () => {
-      const rule = props => ({
+      const rule = () => ({
         color: 'red',
         '>div': { color: 'blue' }
       })
       const renderer = createRenderer()
 
-      const className = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
       expect(renderer.rules).toEqual('.a{color:red}.b>div{color:blue}')
     })
 
     it('should render pseudo class selectors', () => {
-      const rule = props => ({
+      const rule = () => ({
         color: 'red',
         ':hover': { color: 'blue' }
       })
       const renderer = createRenderer()
 
-      const className = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
       expect(renderer.rules).toEqual('.a{color:red}.b:hover{color:blue}')
     })
 
     it('should render any nested selector with the &-prefix', () => {
-      const rule = props => ({
+      const rule = () => ({
         color: 'red',
         '&~#foo': { color: 'blue' },
         '& .bar': { color: 'green' }
       })
       const renderer = createRenderer()
 
-      const className = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
       expect(renderer.rules).toEqual(
         '.a{color:red}.b~#foo{color:blue}.c .bar{color:green}'
@@ -191,13 +190,13 @@ describe('Renderer', () => {
     })
 
     it('should render media queries', () => {
-      const rule = props => ({
+      const rule = () => ({
         color: 'red',
         '@media (min-height:300px)': { color: 'blue' }
       })
 
       const renderer = createRenderer()
-      const className = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
       expect(renderer.rules).toEqual('.a{color:red}')
       expect(renderer.mediaRules['(min-height:300px)']).toEqual(
@@ -208,21 +207,21 @@ describe('Renderer', () => {
 
   describe('Rendering keyframes', () => {
     it('should add a cache entry', () => {
-      const keyframe = props => ({
+      const keyframe = () => ({
         from: { color: 'red' },
         to: { color: 'blue' }
       })
 
       const renderer = createRenderer()
 
-      const animationName = renderer.renderKeyframe(keyframe)
+      renderer.renderKeyframe(keyframe)
       expect(renderer.cache.hasOwnProperty(JSON.stringify(keyframe()))).toEqual(
         true
       )
     })
 
     it('should return a valid animation name', () => {
-      const keyframe = props => ({
+      const keyframe = () => ({
         from: { color: 'red' },
         to: { color: 'blue' }
       })
@@ -330,7 +329,7 @@ describe('Renderer', () => {
 
   describe('Subscribing to the Renderer', () => {
     it('should call the callback each time it emits changes', () => {
-      const rule = props => ({
+      const rule = () => ({
         color: 'red',
         '@media (min-height: 300px)': { color: 'blue' }
       })
@@ -344,7 +343,7 @@ describe('Renderer', () => {
     })
 
     it('should call the callback with a change object', () => {
-      const rule = props => ({
+      const rule = () => ({
         color: 'red',
         '@media (min-height: 300px)': { color: 'blue' }
       })
@@ -355,7 +354,7 @@ describe('Renderer', () => {
       const subscriber = change => changes.push(change)
 
       renderer.subscribe(subscriber)
-      const staticClassName = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
       expect(changes).toEqual([
         {

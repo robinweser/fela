@@ -1,5 +1,3 @@
-import { createElement } from 'react'
-
 import createComponent from '../createComponent'
 import createRenderer from '../../../createRenderer'
 
@@ -117,12 +115,12 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should compose styles', () => {
-    const rule = props => ({
+    const rule = () => ({
       color: 'blue',
       fontSize: '16px'
     })
 
-    const anotherRule = props => ({
+    const anotherRule = () => ({
       color: 'red',
       lineHeight: 1.2
     })
@@ -135,13 +133,17 @@ describe('Creating Components from Fela rules', () => {
     const element = ComposedComp({}, { renderer })
     const renderedElement = element.type(element.props, { renderer })
 
-    expect(renderer.rules).toEqual('.a{color:red}.b{font-size:16px}.c{line-height:1.2}')
+    expect(renderer.rules).toEqual(
+      '.a{color:red}.b{font-size:16px}.c{line-height:1.2}'
+    )
     expect(renderedElement.props.className).toEqual('a b c')
   })
 
   it('should compose passThrough props', () => {
     const component = createComponent(() => ({}), 'div', props => props)
-    const composedComponent = createComponent(() => ({}), component, ['onClick'])
+    const composedComponent = createComponent(() => ({}), component, [
+      'onClick'
+    ])
 
     const renderer = createRenderer()
 
@@ -160,7 +162,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should only use the rule name as displayName', () => {
-    const Button = props => ({
+    const Button = () => ({
       color: 'red',
       fontSize: 16
     })
@@ -170,7 +172,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should only use the rule name as displayName', () => {
-    const Button = props => ({
+    const Button = () => ({
       color: 'red',
       fontSize: 16
     })

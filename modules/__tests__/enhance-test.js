@@ -3,7 +3,6 @@ import createRenderer from '../createRenderer'
 
 describe('Enhancing renderers', () => {
   it('should enhance a renderer', () => {
-    const renderer = {}
     const enhancer = renderer => ({
       ...renderer,
       greet: name => `Hello ${name}`
@@ -15,8 +14,6 @@ describe('Enhancing renderers', () => {
   })
 
   it('should enhance a renderer multiple times', () => {
-    const renderer = {}
-
     const enhancer = renderer => ({
       ...renderer,
       greet: name => `Hello ${name}`

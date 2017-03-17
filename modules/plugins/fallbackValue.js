@@ -1,9 +1,9 @@
-/* @flow weak */
+/* @flow */
 import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
 
 import isObject from '../utils/isObject'
 
-function resolveFallbackValues(style) {
+export function resolveFallbackValues(style: Object): Object {
   for (const property in style) {
     const value = style[property]
 

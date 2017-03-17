@@ -33,53 +33,13 @@ import {
   CLEAR_TYPE
 } from './utils/styleTypes'
 
-type Config = {
-  keyframePrefixes?: Array<string>,
-  plugins?: Array<Function>,
-  enhancers?: Array<Function>,
-  mediaQueryOrder?: Array<string>,
-  selectorPrefix?: string
-};
+import type { DOMRenderer, DOMRendererConfig } from '../flowtypes/DOMRenderer'
+import type FontProperties from '../flowtypes/FontProperties'
 
-type Cache = {
-  [reference: string]: string
-};
-
-type Renderer = {
-  keyframePrefixes: Array<string>,
-  plugins: Array<Function>,
-  mediaQueryOrder: Array<string>,
-  selectorPrefix: string,
-  listeners: Array<Function>,
-  fontFaces: string,
-  keyframes: string,
-  statics: string,
-  rules: string,
-  mediaRules: { [query: string]: string },
-  uniqueRuleIdentifier: number,
-  uniqueKeyframeIdentifier: number,
-  cache: Cache,
-  renderRule: Function,
-  renderKeyframe: Function,
-  renderStatic: Function,
-  renderFont: Function,
-  renderToString: Function,
-  subscribe: Function,
-  clear: Function,
-  _renderStyleToClassNames: Function,
-  _emitChange: Function
-};
-
-type FontProperties = {
-  fontVariant?: string,
-  fontStretch?: string,
-  fontWeight?: string | number,
-  fontStyle?: string,
-  unicodeRange?: string
-};
-
-export default function createRenderer(config: Config = {}): Renderer {
-  let renderer: Renderer = {
+export default function createRenderer(
+  config: DOMRendererConfig = {}
+): DOMRenderer {
+  let renderer: DOMRenderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
     plugins: config.plugins || [],
@@ -217,7 +177,7 @@ export default function createRenderer(config: Config = {}): Renderer {
       )
     },
 
-    subscribe(callback: Function): { unsubscribe: Function } {
+    subscribe(callback: Function): {unsubscribe: Function} {
       renderer.listeners.push(callback)
 
       return {
@@ -278,7 +238,9 @@ export default function createRenderer(config: Config = {}): Renderer {
             // usage of optional props without side-effects
             if (isUndefinedValue(value)) {
               renderer.cache[declarationReference] = ''
+              /* eslint-disable no-continue */
               continue
+              /* eslint-enable */
             }
 
             const className = renderer.selectorPrefix +

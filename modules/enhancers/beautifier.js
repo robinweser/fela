@@ -1,10 +1,12 @@
-/* @flow weak */
+/* @flow */
 import cssbeautify from 'cssbeautify'
 
-function addBeautifier(renderer, options) {
+import type DOMRenderer from '../../flowtypes/DOMRenderer'
+
+function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
   const existingRenderToString = renderer.renderToString.bind(renderer)
 
-  renderer.renderToString = () => {
+  renderer.renderToString = (): string => {
     const css = existingRenderToString()
     return cssbeautify(css, options)
   }
@@ -17,9 +19,11 @@ const defaultOptions = {
   openbrace: 'end-of-line',
   autosemicolon: false
 }
-export default (options = {}) =>
-  renderer =>
+
+export default function beautifier(options: Object = {}) {
+  return (renderer: DOMRenderer) =>
     addBeautifier(renderer, {
       ...defaultOptions,
       ...options
     })
+}

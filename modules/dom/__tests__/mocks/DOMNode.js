@@ -1,18 +1,18 @@
 export default function DOMNode() {
-  let cssRules = [ ]
+  const cssRules = []
 
   return {
     textContent: '',
     nodeType: 1,
     nodeName: 'STYLE',
-    hasAttribute: function(attribute) {
+    hasAttribute(attribute) {
       return this.hasOwnProperty(attribute)
     },
-    setAttribute: function(attribute, value) {
+    setAttribute(attribute, value) {
       this[attribute] = value
     },
     sheet: {
-      cssRules: cssRules,
+      cssRules,
       insertRule: (rule, id) => cssRules.splice(id, 0, rule)
     }
   }

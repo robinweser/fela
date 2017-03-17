@@ -1,9 +1,9 @@
-/* @flow weak */
+/* @flow */
 import isObject from '../utils/isObject'
 
 const regex = new RegExp('^on([A-Z])')
 
-function friendlyPseudoClass(style) {
+function friendlyPseudoClass(style: Object): Object {
   for (const property in style) {
     const value = style[property]
 
