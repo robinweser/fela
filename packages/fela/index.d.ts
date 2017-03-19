@@ -1,6 +1,6 @@
 declare module "fela" {
 
-  import React from 'react';
+  import { CSSProperties } from 'react';
 
   type TRuleProps = {};
   type TRule = (props: TRuleProps) => IStyle; 
@@ -31,6 +31,7 @@ declare module "fela" {
     renderKeyframe(keyFrame: TKeyFrame, props: TRuleProps): string;
     renderFont(family: string, files: Array<string>, props: TRuleProps): void;
     renderStatic(style: string, selector?: string): void;
+    renderStatic(style: IStyle, selector: string): void;
     renderToString(): string;
     subscribe(event: (msg: ISubscribeRuleOrStaticObjectMessage | ISubscribeKeyframesMessage | ISubscribeFontFaceMessage | ISubscribeStaticStringMessage | ISubscribeClearMessage) => void): { unsubscribe: () => void; }
     clear();
@@ -45,7 +46,7 @@ declare module "fela" {
     selectorPrefix?: string;
   }
 
-  interface IStyle extends React.CSSProperties {
+  interface IStyle extends CSSProperties {
     //TODO: add properties, missing in React.CSSProperties
   }
 
