@@ -1,6 +1,6 @@
 declare module "fela" {
 
-  import React from 'react';
+  import { CSSProperties } from 'react';
 
   type TRuleProps = {};
   type TRule = (props: TRuleProps) => IStyle; 
@@ -45,7 +45,7 @@ declare module "fela" {
     selectorPrefix?: string;
   }
 
-  interface IStyle extends React.CSSProperties {
+  interface IStyle extends CSSProperties {
     //TODO: add properties, missing in React.CSSProperties
   }
 
