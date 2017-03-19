@@ -31,6 +31,7 @@ declare module "fela" {
     renderKeyframe(keyFrame: TKeyFrame, props: TRuleProps): string;
     renderFont(family: string, files: Array<string>, props: TRuleProps): void;
     renderStatic(style: string, selector?: string): void;
+    renderStatic(style: IStyle, selector: string): void;
     renderToString(): string;
     subscribe(event: (msg: ISubscribeRuleOrStaticObjectMessage | ISubscribeKeyframesMessage | ISubscribeFontFaceMessage | ISubscribeStaticStringMessage | ISubscribeClearMessage) => void): { unsubscribe: () => void; }
     clear();
