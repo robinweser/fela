@@ -12,6 +12,8 @@ Once rendered into a DOM node, a change listener will subscribe to changes. The 
 
 **In development** you may use any valid DOM node as it uses `node.textContent` to update styles. This also implies that Fela is even faster in production, so be sure to use the production environment for production builds.
 
+These two modes exist as [Chrome Developer Tools does not support `CSSStyleSheet.insertRule`](https://bugs.chromium.org/p/chromium/issues/detail?id=387952).
+
 ## Example
 
 ```javascript
