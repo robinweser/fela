@@ -1,7 +1,7 @@
 # Usage with Inferno
 
 Inferno is a modern React-like UI library which ships an almost identical API, but claims to be much faster.
-Due to the fact it is really similar to React's API, the [Inferno bindings for Fela](https://github.com/rofrischmann/inferno-fela) are basically the same as the [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
+Due to the fact it is really similar to React's API, the [Inferno bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela) are basically the same as the [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
 
 ```sh
 npm i --save inferno-fela
@@ -44,6 +44,6 @@ import { render } from 'inferno'
 ---
 
 ### Related
-* [inferno-fela](https://github.com/rofrischmann/inferno-fela)
-* [react-fela](https://github.com/rofrischmann/react-fela)
-* [preact-fela](https://github.com/rofrischmann/preact-fela)
+* [inferno-fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela)
+* [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela)
+* [preact-fela](https://github.com/rofrischmann/fela/tree/master/packages/preact-fela)

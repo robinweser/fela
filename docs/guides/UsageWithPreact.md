@@ -27,6 +27,6 @@ import { render } from 'preact'
 ---
 
 ### Related
-* [preact-fela](https://github.com/rofrischmann/preact-fela)
-* [react-fela](https://github.com/rofrischmann/react-fela)
-* [inferno-fela](https://github.com/rofrischmann/inferno-fela)
+* [preact-fela](https://github.com/rofrischmann/fela/tree/master/packages/preact-fela)
+* [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela)
+* [inferno-fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela)

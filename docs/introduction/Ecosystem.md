@@ -14,7 +14,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 ### Bindings
 * [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) - React & React Native
 * [preact-fela](https://github.com/rofrischmann/fela/tree/master/packages/preact-fela) - Preact
-* [inferno-fela](https://github.com/rofrischmann/inferno-fela) - Inferno
+* [inferno-fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela) - Inferno
 
 ### Plugins
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
