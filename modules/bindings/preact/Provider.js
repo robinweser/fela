@@ -16,6 +16,6 @@ export default class Provider extends Component {
   }
 
   render({ children }) {
-    return children
+    return children[0]
   }
 }

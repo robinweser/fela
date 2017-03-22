@@ -16,7 +16,7 @@ export default class ThemeProvider extends Component {
     }
   }
 
-  render() {
-    return this.props.children
+  render({ children }) {
+    return children[0]
   }
 }
