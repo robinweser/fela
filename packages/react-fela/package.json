@@ -22,7 +22,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^15.3.2",
+    "react": "*",
     "fela": "4.2.6"
   }
 }

@@ -10,8 +10,8 @@
     "README.md",
     "index.d.ts",
     "index.js",
-    "/lib",
-    "/dist"
+    "lib/**",
+    "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -23,8 +23,7 @@
     "cssinjs"
   ],
   "dependencies": {
-    "css-in-js-utils": "^1.0.3",
-    "hyphenate-style-name": "1.0.1"
+    "css-in-js-utils": "^1.0.3"
   },
   "author": "Robin Frischmann",
   "license": "MIT"

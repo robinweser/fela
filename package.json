@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "4.2.6",
+  "version": "4.3.0",
   "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
@@ -38,7 +38,6 @@
     "babel-preset-es2015-rollup": "^1.1.1",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
-    "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.3.1",
     "cross-env": "^1.0.8",
     "css-in-js-utils": "^1.0.3",
@@ -60,7 +59,7 @@
     "inferno": "^1.0.1",
     "inferno-component": "^1.0.1",
     "inferno-create-element": "^1.0.1",
-    "inline-style-prefixer": "^2.0.1",
+    "inline-style-prefixer": "^3.0.1",
     "jest": "^19.0.2",
     "prettier-eslint": "^4.2.1",
     "prettier-eslint-cli": "^3.1.2",
@@ -71,7 +70,6 @@
     "rollup-plugin-babel": "2.4.0",
     "rollup-plugin-commonjs": "2.2.1",
     "rollup-plugin-node-resolve": "1.5.0",
-    "rollup-plugin-uglify": "0.3.1",
-    "sinon": "^1.17.3"
+    "rollup-plugin-uglify": "0.3.1"
   }
 }

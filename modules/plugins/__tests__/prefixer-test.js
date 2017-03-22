@@ -8,7 +8,7 @@ describe('Prefixer plugin', () => {
     }
 
     expect(prefixer()(style)).toEqual({
-      WebkitJustifyContent: 'center;-ms-flex-pack:center;-webkit-box-pack:center;justify-content:center',
+      justifyContent: 'center;-webkit-box-pack:center;-webkit-justify-content:center',
       display: [
         '-webkit-box',
         '-moz-box',
@@ -26,14 +26,14 @@ describe('Prefixer plugin', () => {
     }
 
     expect(prefixer()(style)).toEqual({
+      ':hover': { justifyContent: 'center;-webkit-box-pack:center;-webkit-justify-content:center' },
       display: [
         '-webkit-box',
         '-moz-box',
         '-ms-flexbox',
         '-webkit-flex',
         'flex'
-      ],
-      ':hover': { WebkitJustifyContent: 'center;-ms-flex-pack:center;-webkit-box-pack:center;justify-content:center' }
+      ]
     })
   })
 })
