@@ -11,7 +11,7 @@
 * improved [fela-plugin-prefixer](packages/fela-plugin-prefixer) performance
 * various small performance improvements
 
-
+##### Infrastructure
 * typed the whole code base with Flow
 * using Jest and Prettier
 * fixed package exports for JSPM users
