@@ -42,13 +42,17 @@
 
   babelHelpers;
 
-  /*  weak */
+  function isObject(value) {
+    return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
+  }
+
   var regex = new RegExp('^on([A-Z])');
 
   function friendlyPseudoClass(style) {
     for (var property in style) {
       var value = style[property];
-      if (value instanceof Object && !Array.isArray(value)) {
+
+      if (isObject(value)) {
         var resolvedValue = friendlyPseudoClass(value);
 
         if (regex.test(property)) {

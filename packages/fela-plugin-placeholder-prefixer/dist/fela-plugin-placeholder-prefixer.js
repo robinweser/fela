@@ -1,8 +1,10 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.FelaPluginPlaceholderPrefixer = factory());
-}(this, function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('css-in-js-utils/lib/assignStyle')) :
+  typeof define === 'function' && define.amd ? define(['css-in-js-utils/lib/assignStyle'], factory) :
+  (global.FelaPluginPlaceholderPrefixer = factory(global.assignStyle));
+}(this, function (assignStyle) { 'use strict';
+
+  assignStyle = 'default' in assignStyle ? assignStyle['default'] : assignStyle;
 
   var babelHelpers = {};
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -40,88 +42,55 @@
     return target;
   };
 
-  babelHelpers.toConsumableArray = function (arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-      return arr2;
-    } else {
-      return Array.from(arr);
-    }
-  };
-
   babelHelpers;
 
-  /*  weak */
-  function assignStyles(base) {
-    for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      extendingStyles[_key - 1] = arguments[_key];
-    }
-
-    for (var i = 0, len = extendingStyles.length; i < len; ++i) {
-      var style = extendingStyles[i];
-
-      for (var property in style) {
-        var value = style[property];
-        var baseValue = base[property];
-
-        if (baseValue instanceof Object) {
-          if (Array.isArray(baseValue)) {
-            if (Array.isArray(value)) {
-              base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), babelHelpers.toConsumableArray(value));
-            } else {
-              base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), [value]);
-            }
-            continue;
-          }
-
-          if (value instanceof Object && !Array.isArray(value)) {
-            base[property] = assignStyles({}, baseValue, value);
-            continue;
-          }
-        }
-
-        base[property] = value;
-      }
-    }
-
-    return base;
+  function isObject(value) {
+    return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
   }
 
-  function customProperty(style, properties) {
+  function resolveCustomProperty(style, properties) {
     for (var property in style) {
       var value = style[property];
-      if (properties[property]) {
-        assignStyles(style, properties[property](value));
+
+      if (properties.hasOwnProperty(property)) {
+        assignStyle(style, properties[property](value));
         delete style[property];
       }
 
-      if (value instanceof Object && !Array.isArray(value)) {
-        style[property] = customProperty(value, properties);
+      if (isObject(value)) {
+        style[property] = resolveCustomProperty(value, properties);
       }
     }
 
     return style;
   }
 
-  var customProperty$1 = (function (properties) {
+  function customProperty(properties) {
     return function (style) {
-      return customProperty(style, properties);
+      return resolveCustomProperty(style, properties);
     };
-  });
+  }
+
+  function arrayReduce(array, iterator, initialValue) {
+    for (var i = 0, len = array.length; i < len; ++i) {
+      initialValue = iterator(initialValue, array[i]);
+    }
+
+    return initialValue;
+  }
 
   var placeholderPrefixes = ['::-webkit-input-placeholder', '::-moz-placeholder', ':-ms-input-placeholder', ':-moz-placeholder', '::placeholder'];
 
-  var placeholderPrefixer = (function () {
-    return customProperty$1({
+  function placeholderPrefixer() {
+    return customProperty({
       '::placeholder': function placeholder(value) {
-        return placeholderPrefixes.reduce(function (style, prefix) {
+        return arrayReduce(placeholderPrefixes, function (style, prefix) {
           style[prefix] = value;
           return style;
         }, {});
       }
     });
-  });
+  }
 
   return placeholderPrefixer;
 

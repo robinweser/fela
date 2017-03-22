@@ -36,7 +36,6 @@ babelHelpers.extends = Object.assign || function (target) {
 
 babelHelpers;
 
-/*  weak */
 function addLayoutDebugger(renderer, options) {
   var existingRenderRule = renderer.renderRule.bind(renderer);
 
@@ -60,14 +59,18 @@ function addLayoutDebugger(renderer, options) {
   return renderer;
 }
 
+
 var defaultOptions = {
   backgroundColor: false,
   thickness: 1
 };
-var layoutDebugger = (function (options) {
+
+function layoutDebugger() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
   return function (renderer) {
     return addLayoutDebugger(renderer, babelHelpers.extends({}, defaultOptions, options));
   };
-});
+}
 
 export default layoutDebugger;

@@ -36,13 +36,18 @@ babelHelpers.extends = Object.assign || function (target) {
 
 babelHelpers;
 
+function isObject(value) {
+  return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
+}
+
 function resolveNamedMediaQuery(style, mediaQueryMap) {
   for (var property in style) {
     var value = style[property];
-    if (value instanceof Object && !Array.isArray(value)) {
+
+    if (isObject(value)) {
       var resolvedValue = resolveNamedMediaQuery(value, mediaQueryMap);
 
-      if (mediaQueryMap[property]) {
+      if (mediaQueryMap.hasOwnProperty(property)) {
         style[mediaQueryMap[property]] = resolvedValue;
         delete style[property];
       }
@@ -52,10 +57,10 @@ function resolveNamedMediaQuery(style, mediaQueryMap) {
   return style;
 }
 
-var namedMediaQuery = (function (mediaQueryMap) {
+function namedMediaQuery(mediaQueryMap) {
   return function (style) {
     return resolveNamedMediaQuery(style, mediaQueryMap);
   };
-});
+}
 
 export default namedMediaQuery;

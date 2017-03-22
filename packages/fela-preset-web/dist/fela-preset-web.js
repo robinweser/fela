@@ -116,8 +116,32 @@
   var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
   function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
 
-  /*  weak */
-  function assignStyles(base) {
+  var assignStyle = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _typeof = typeof Symbol === "function" && babelHelpers.typeof(Symbol.iterator) === "symbol" ? function (obj) {
+    return typeof obj === "undefined" ? "undefined" : babelHelpers.typeof(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : babelHelpers.typeof(obj);
+  };
+
+  exports.default = assignStyle;
+
+  function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i];
+      }return arr2;
+    } else {
+      return Array.from(arr);
+    }
+  }
+
+  function assignStyle(base) {
     for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       extendingStyles[_key - 1] = arguments[_key];
     }
@@ -129,18 +153,18 @@
         var value = style[property];
         var baseValue = base[property];
 
-        if (baseValue instanceof Object) {
+        if ((typeof baseValue === 'undefined' ? 'undefined' : _typeof(baseValue)) === 'object') {
           if (Array.isArray(baseValue)) {
             if (Array.isArray(value)) {
-              base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), babelHelpers.toConsumableArray(value));
+              base[property] = [].concat(_toConsumableArray(baseValue), _toConsumableArray(value));
             } else {
-              base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), [value]);
+              base[property] = [].concat(_toConsumableArray(baseValue), [value]);
             }
             continue;
           }
 
-          if (value instanceof Object && !Array.isArray(value)) {
-            base[property] = assignStyles({}, baseValue, value);
+          if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && !Array.isArray(value)) {
+            base[property] = assignStyle({}, baseValue, value);
             continue;
           }
         }
@@ -151,30 +175,45 @@
 
     return base;
   }
+  module.exports = exports['default'];
+  });
 
-  function extendStyle(style, extension) {
+  var assignStyle$1 = (assignStyle && typeof assignStyle === 'object' && 'default' in assignStyle ? assignStyle['default'] : assignStyle);
+
+  function isObject(value) {
+    return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
+  }
+
+  function arrayEach(array, iterator) {
+    for (var i = 0, len = array.length; i < len; ++i) {
+      iterator(array[i], i);
+    }
+  }
+
+  function extendStyle(style, extension, extendPlugin) {
     // extend conditional style objects
     if (extension.hasOwnProperty('condition')) {
       if (extension.condition) {
-        assignStyles(style, extend(extension.style));
+        assignStyle$1(style, extendPlugin(extension.style));
       }
     } else {
       // extend basic style objects
-      assignStyles(style, extension);
+      assignStyle$1(style, extension);
     }
   }
 
   function extend(style) {
     for (var property in style) {
       var value = style[property];
+
       if (property === 'extend') {
-        // arrayify to loop each extension to support arrays and single extends
         var extensions = [].concat(value);
-        for (var i = 0, len = extensions.length; i < len; ++i) {
-          extendStyle(style, extensions[i]);
-        }
+
+        arrayEach(extensions, function (extension) {
+          return extendStyle(style, extension, extend);
+        });
         delete style[property];
-      } else if (value instanceof Object && !Array.isArray(value)) {
+      } else if (isObject(value)) {
         // support nested extend as well
         style[property] = extend(value);
       }
@@ -187,107 +226,20 @@
     return extend;
   });
 
-  var flexboxOld = __commonjs(function (module, exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = flexboxOld;
-
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-    } else {
-      obj[key] = value;
-    }return obj;
-  }
-
-  var alternativeValues = {
-    'space-around': 'justify',
-    'space-between': 'justify',
-    'flex-start': 'start',
-    'flex-end': 'end',
-    'wrap-reverse': 'multiple',
-    wrap: 'multiple'
-  };
-
-  var alternativeProps = {
-    alignItems: 'WebkitBoxAlign',
-    justifyContent: 'WebkitBoxPack',
-    flexWrap: 'WebkitBoxLines'
-  };
-
-  function flexboxOld(property, value) {
-    if (property === 'flexDirection' && typeof value === 'string') {
-      return {
-        WebkitBoxOrient: value.indexOf('column') > -1 ? 'vertical' : 'horizontal',
-        WebkitBoxDirection: value.indexOf('reverse') > -1 ? 'reverse' : 'normal'
-      };
-    }
-    if (alternativeProps[property]) {
-      return _defineProperty({}, alternativeProps[property], alternativeValues[value] || value);
-    }
-  }
-  module.exports = exports['default'];
-  });
-
-  var require$$0$1 = (flexboxOld && typeof flexboxOld === 'object' && 'default' in flexboxOld ? flexboxOld['default'] : flexboxOld);
-
-  var flexboxIE = __commonjs(function (module, exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = flexboxIE;
-
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-    } else {
-      obj[key] = value;
-    }return obj;
-  }
-
-  var alternativeValues = {
-    'space-around': 'distribute',
-    'space-between': 'justify',
-    'flex-start': 'start',
-    'flex-end': 'end'
-  };
-  var alternativeProps = {
-    alignContent: 'msFlexLinePack',
-    alignSelf: 'msFlexItemAlign',
-    alignItems: 'msFlexAlign',
-    justifyContent: 'msFlexPack',
-    order: 'msFlexOrder',
-    flexGrow: 'msFlexPositive',
-    flexShrink: 'msFlexNegative',
-    flexBasis: 'msPreferredSize'
-  };
-
-  function flexboxIE(property, value) {
-    if (alternativeProps[property]) {
-      return _defineProperty({}, alternativeProps[property], alternativeValues[value] || value);
-    }
-  }
-  module.exports = exports['default'];
-  });
-
-  var require$$1 = (flexboxIE && typeof flexboxIE === 'object' && 'default' in flexboxIE ? flexboxIE['default'] : flexboxIE);
-
-  var prefixProps = __commonjs(function (module, exports) {
+  var capitalizeString = __commonjs(function (module, exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = { "Webkit": { "transform": true, "transformOrigin": true, "transformOriginX": true, "transformOriginY": true, "backfaceVisibility": true, "perspective": true, "perspectiveOrigin": true, "transformStyle": true, "transformOriginZ": true, "animation": true, "animationDelay": true, "animationDirection": true, "animationFillMode": true, "animationDuration": true, "animationIterationCount": true, "animationName": true, "animationPlayState": true, "animationTimingFunction": true, "appearance": true, "userSelect": true, "fontKerning": true, "textEmphasisPosition": true, "textEmphasis": true, "textEmphasisStyle": true, "textEmphasisColor": true, "boxDecorationBreak": true, "clipPath": true, "maskImage": true, "maskMode": true, "maskRepeat": true, "maskPosition": true, "maskClip": true, "maskOrigin": true, "maskSize": true, "maskComposite": true, "mask": true, "maskBorderSource": true, "maskBorderMode": true, "maskBorderSlice": true, "maskBorderWidth": true, "maskBorderOutset": true, "maskBorderRepeat": true, "maskBorder": true, "maskType": true, "textDecorationStyle": true, "textDecorationSkip": true, "textDecorationLine": true, "textDecorationColor": true, "filter": true, "fontFeatureSettings": true, "breakAfter": true, "breakBefore": true, "breakInside": true, "columnCount": true, "columnFill": true, "columnGap": true, "columnRule": true, "columnRuleColor": true, "columnRuleStyle": true, "columnRuleWidth": true, "columns": true, "columnSpan": true, "columnWidth": true, "flex": true, "flexBasis": true, "flexDirection": true, "flexGrow": true, "flexFlow": true, "flexShrink": true, "flexWrap": true, "alignContent": true, "alignItems": true, "alignSelf": true, "justifyContent": true, "order": true, "transition": true, "transitionDelay": true, "transitionDuration": true, "transitionProperty": true, "transitionTimingFunction": true, "backdropFilter": true, "scrollSnapType": true, "scrollSnapPointsX": true, "scrollSnapPointsY": true, "scrollSnapDestination": true, "scrollSnapCoordinate": true, "shapeImageThreshold": true, "shapeImageMargin": true, "shapeImageOutside": true, "hyphens": true, "flowInto": true, "flowFrom": true, "regionFragment": true, "textSizeAdjust": true }, "Moz": { "appearance": true, "userSelect": true, "boxSizing": true, "textAlignLast": true, "textDecorationStyle": true, "textDecorationSkip": true, "textDecorationLine": true, "textDecorationColor": true, "tabSize": true, "hyphens": true, "fontFeatureSettings": true, "breakAfter": true, "breakBefore": true, "breakInside": true, "columnCount": true, "columnFill": true, "columnGap": true, "columnRule": true, "columnRuleColor": true, "columnRuleStyle": true, "columnRuleWidth": true, "columns": true, "columnSpan": true, "columnWidth": true }, "ms": { "flex": true, "flexBasis": false, "flexDirection": true, "flexGrow": false, "flexFlow": true, "flexShrink": false, "flexWrap": true, "alignContent": false, "alignItems": false, "alignSelf": false, "justifyContent": false, "order": false, "transform": true, "transformOrigin": true, "transformOriginX": true, "transformOriginY": true, "userSelect": true, "wrapFlow": true, "wrapThrough": true, "wrapMargin": true, "scrollSnapType": true, "scrollSnapPointsX": true, "scrollSnapPointsY": true, "scrollSnapDestination": true, "scrollSnapCoordinate": true, "touchAction": true, "hyphens": true, "flowInto": true, "flowFrom": true, "breakBefore": true, "breakAfter": true, "breakInside": true, "regionFragment": true, "gridTemplateColumns": true, "gridTemplateRows": true, "gridTemplateAreas": true, "gridTemplate": true, "gridAutoColumns": true, "gridAutoRows": true, "gridAutoFlow": true, "grid": true, "gridRowStart": true, "gridColumnStart": true, "gridRowEnd": true, "gridRow": true, "gridColumn": true, "gridColumnEnd": true, "gridColumnGap": true, "gridRowGap": true, "gridArea": true, "gridGap": true, "textSizeAdjust": true } };
+  exports.default = capitalizeString;
+  function capitalizeString(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   module.exports = exports["default"];
   });
 
-  var require$$0$2 = (prefixProps && typeof prefixProps === 'object' && 'default' in prefixProps ? prefixProps['default'] : prefixProps);
+  var require$$0$1 = (capitalizeString && typeof capitalizeString === 'object' && 'default' in capitalizeString ? capitalizeString['default'] : capitalizeString);
 
   var isPrefixedValue = __commonjs(function (module, exports) {
   'use strict';
@@ -295,36 +247,19 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  exports.default = isPrefixedValue;
 
-  exports.default = function (value) {
-    if (Array.isArray(value)) value = value.join(',');
+  var regex = /-webkit-|-moz-|-ms-/;
 
-    return value.match(/-webkit-|-moz-|-ms-/) !== null;
-  };
-
+  function isPrefixedValue(value) {
+    return typeof value === 'string' && regex.test(value);
+  }
   module.exports = exports['default'];
   });
 
-  var require$$0$3 = (isPrefixedValue && typeof isPrefixedValue === 'object' && 'default' in isPrefixedValue ? isPrefixedValue['default'] : isPrefixedValue);
+  var require$$0$2 = (isPrefixedValue && typeof isPrefixedValue === 'object' && 'default' in isPrefixedValue ? isPrefixedValue['default'] : isPrefixedValue);
 
-  var capitalizeString = __commonjs(function (module, exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  // helper to capitalize strings
-
-  exports.default = function (str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
-  module.exports = exports["default"];
-  });
-
-  var require$$2$1 = (capitalizeString && typeof capitalizeString === 'object' && 'default' in capitalizeString ? capitalizeString['default'] : capitalizeString);
-
-  var index = __commonjs(function (module) {
+  var index$1 = __commonjs(function (module) {
   'use strict';
 
   var uppercasePattern = /[A-Z]/g;
@@ -338,7 +273,31 @@
   module.exports = hyphenateStyleName;
   });
 
-  var require$$0$4 = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
+  var require$$0$4 = (index$1 && typeof index$1 === 'object' && 'default' in index$1 ? index$1['default'] : index$1);
+
+  var hyphenateProperty = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = hyphenateProperty;
+
+  var _hyphenateStyleName = require$$0$4;
+
+  var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+
+  function hyphenateProperty(property) {
+    return (0, _hyphenateStyleName2.default)(property);
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$0$3 = (hyphenateProperty && typeof hyphenateProperty === 'object' && 'default' in hyphenateProperty ? hyphenateProperty['default'] : hyphenateProperty);
 
   var transition = __commonjs(function (module, exports) {
   'use strict';
@@ -348,61 +307,38 @@
   });
   exports.default = transition;
 
-  var _hyphenateStyleName = require$$0$4;
+  var _hyphenateProperty = require$$0$3;
 
-  var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
+  var _hyphenateProperty2 = _interopRequireDefault(_hyphenateProperty);
 
-  var _capitalizeString = require$$2$1;
-
-  var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
-
-  var _isPrefixedValue = require$$0$3;
+  var _isPrefixedValue = require$$0$2;
 
   var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
-  var _prefixProps = require$$0$2;
+  var _capitalizeString = require$$0$1;
 
-  var _prefixProps2 = _interopRequireDefault(_prefixProps);
+  var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
-  }
-
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-    } else {
-      obj[key] = value;
-    }return obj;
   }
 
   var properties = {
     transition: true,
     transitionProperty: true,
     WebkitTransition: true,
-    WebkitTransitionProperty: true
+    WebkitTransitionProperty: true,
+    MozTransition: true,
+    MozTransitionProperty: true
   };
 
-  function transition(property, value) {
-    // also check for already prefixed transitions
-    if (typeof value === 'string' && properties[property]) {
-      var _ref2;
+  var prefixMapping = {
+    Webkit: '-webkit-',
+    Moz: '-moz-',
+    ms: '-ms-'
+  };
 
-      var outputValue = prefixValue(value);
-      var webkitOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (value) {
-        return value.match(/-moz-|-ms-/) === null;
-      }).join(',');
-
-      // if the property is already prefixed
-      if (property.indexOf('Webkit') > -1) {
-        return _defineProperty({}, property, webkitOutput);
-      }
-
-      return _ref2 = {}, _defineProperty(_ref2, 'Webkit' + (0, _capitalizeString2.default)(property), webkitOutput), _defineProperty(_ref2, property, outputValue), _ref2;
-    }
-  }
-
-  function prefixValue(value) {
+  function prefixValue(value, propertyPrefixMap) {
     if ((0, _isPrefixedValue2.default)(value)) {
       return value;
     }
@@ -410,93 +346,57 @@
     // only split multi values, not cubic beziers
     var multipleValues = value.split(/,(?![^()]*(?:\([^()]*\))?\))/g);
 
-    // iterate each single value and check for transitioned properties
-    // that need to be prefixed as well
-    multipleValues.forEach(function (val, index) {
-      multipleValues[index] = Object.keys(_prefixProps2.default).reduce(function (out, prefix) {
-        var dashCasePrefix = '-' + prefix.toLowerCase() + '-';
+    for (var i = 0, len = multipleValues.length; i < len; ++i) {
+      var singleValue = multipleValues[i];
+      var values = [singleValue];
+      for (var property in propertyPrefixMap) {
+        var dashCaseProperty = (0, _hyphenateProperty2.default)(property);
 
-        Object.keys(_prefixProps2.default[prefix]).forEach(function (prop) {
-          var dashCaseProperty = (0, _hyphenateStyleName2.default)(prop);
-
-          if (val.indexOf(dashCaseProperty) > -1 && dashCaseProperty !== 'order') {
+        if (singleValue.indexOf(dashCaseProperty) > -1 && dashCaseProperty !== 'order') {
+          var prefixes = propertyPrefixMap[property];
+          for (var j = 0, pLen = prefixes.length; j < pLen; ++j) {
             // join all prefixes and create a new value
-            out = val.replace(dashCaseProperty, dashCasePrefix + dashCaseProperty) + ',' + out;
+            values.unshift(singleValue.replace(dashCaseProperty, prefixMapping[prefixes[j]] + dashCaseProperty));
           }
-        });
-        return out;
-      }, val);
-    });
+        }
+      }
+
+      multipleValues[i] = values.join(',');
+    }
 
     return multipleValues.join(',');
   }
-  module.exports = exports['default'];
-  });
 
-  var require$$2 = (transition && typeof transition === 'object' && 'default' in transition ? transition['default'] : transition);
+  function transition(property, value, style, propertyPrefixMap) {
+    // also check for already prefixed transitions
+    if (typeof value === 'string' && properties.hasOwnProperty(property)) {
+      var outputValue = prefixValue(value, propertyPrefixMap);
+      // if the property is already prefixed
+      var webkitOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (val) {
+        return !/-moz-|-ms-/.test(val);
+      }).join(',');
 
-  var joinPrefixedValue = __commonjs(function (module, exports) {
-  'use strict';
+      if (property.indexOf('Webkit') > -1) {
+        return webkitOutput;
+      }
 
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
+      var mozOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (val) {
+        return !/-webkit-|-ms-/.test(val);
+      }).join(',');
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-    } else {
-      obj[key] = value;
-    }return obj;
-  }
+      if (property.indexOf('Moz') > -1) {
+        return mozOutput;
+      }
 
-  // returns a style object with a single concated prefixed value string
-
-  exports.default = function (property, value) {
-    var replacer = arguments.length <= 2 || arguments[2] === undefined ? function (prefix, value) {
-      return prefix + value;
-    } : arguments[2];
-    return _defineProperty({}, property, ['-webkit-', '-moz-', ''].map(function (prefix) {
-      return replacer(prefix, value);
-    }));
-  };
-
-  module.exports = exports['default'];
-  });
-
-  var require$$1$1 = (joinPrefixedValue && typeof joinPrefixedValue === 'object' && 'default' in joinPrefixedValue ? joinPrefixedValue['default'] : joinPrefixedValue);
-
-  var gradient = __commonjs(function (module, exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = gradient;
-
-  var _joinPrefixedValue = require$$1$1;
-
-  var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
-
-  var _isPrefixedValue = require$$0$3;
-
-  var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-  }
-
-  var values = /linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/;
-
-  function gradient(property, value) {
-    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.match(values) !== null) {
-      return (0, _joinPrefixedValue2.default)(property, value);
+      style['Webkit' + (0, _capitalizeString2.default)(property)] = webkitOutput;
+      style['Moz' + (0, _capitalizeString2.default)(property)] = mozOutput;
+      return outputValue;
     }
   }
   module.exports = exports['default'];
   });
 
-  var require$$3 = (gradient && typeof gradient === 'object' && 'default' in gradient ? gradient['default'] : gradient);
+  var require$$0 = (transition && typeof transition === 'object' && 'default' in transition ? transition['default'] : transition);
 
   var sizing = __commonjs(function (module, exports) {
   'use strict';
@@ -505,14 +405,7 @@
     value: true
   });
   exports.default = sizing;
-
-  var _joinPrefixedValue = require$$1$1;
-
-  var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-  }
+  var prefixes = ['-webkit-', '-moz-', ''];
 
   var properties = {
     maxHeight: true,
@@ -532,100 +425,16 @@
   };
 
   function sizing(property, value) {
-    if (properties[property] && values[value]) {
-      return (0, _joinPrefixedValue2.default)(property, value);
-    }
-  }
-  module.exports = exports['default'];
-  });
-
-  var require$$4 = (sizing && typeof sizing === 'object' && 'default' in sizing ? sizing['default'] : sizing);
-
-  var flex = __commonjs(function (module, exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = flex;
-  var values = { flex: true, 'inline-flex': true };
-
-  function flex(property, value) {
-    if (property === 'display' && values[value]) {
-      return {
-        display: ['-webkit-box', '-moz-box', '-ms-' + value + 'box', '-webkit-' + value, value]
-      };
-    }
-  }
-  module.exports = exports['default'];
-  });
-
-  var require$$5 = (flex && typeof flex === 'object' && 'default' in flex ? flex['default'] : flex);
-
-  var cursor = __commonjs(function (module, exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = cursor;
-
-  var _joinPrefixedValue = require$$1$1;
-
-  var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-  }
-
-  var values = {
-    'zoom-in': true,
-    'zoom-out': true,
-    grab: true,
-    grabbing: true
-  };
-
-  function cursor(property, value) {
-    if (property === 'cursor' && values[value]) {
-      return (0, _joinPrefixedValue2.default)(property, value);
-    }
-  }
-  module.exports = exports['default'];
-  });
-
-  var require$$6 = (cursor && typeof cursor === 'object' && 'default' in cursor ? cursor['default'] : cursor);
-
-  var calc = __commonjs(function (module, exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = calc;
-
-  var _joinPrefixedValue = require$$1$1;
-
-  var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
-
-  var _isPrefixedValue = require$$0$3;
-
-  var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-  }
-
-  function calc(property, value) {
-    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('calc(') > -1) {
-      return (0, _joinPrefixedValue2.default)(property, value, function (prefix, value) {
-        return value.replace(/calc\(/g, prefix + 'calc(');
+    if (properties.hasOwnProperty(property) && values.hasOwnProperty(value)) {
+      return prefixes.map(function (prefix) {
+        return prefix + value;
       });
     }
   }
   module.exports = exports['default'];
   });
 
-  var require$$7 = (calc && typeof calc === 'object' && 'default' in calc ? calc['default'] : calc);
+  var require$$1 = (sizing && typeof sizing === 'object' && 'default' in sizing ? sizing['default'] : sizing);
 
   var position = __commonjs(function (module, exports) {
   'use strict';
@@ -636,218 +445,531 @@
   exports.default = position;
   function position(property, value) {
     if (property === 'position' && value === 'sticky') {
-      return { position: ['-webkit-sticky', 'sticky'] };
+      return ['-webkit-sticky', 'sticky'];
     }
   }
   module.exports = exports['default'];
   });
 
-  var require$$8 = (position && typeof position === 'object' && 'default' in position ? position['default'] : position);
+  var require$$2 = (position && typeof position === 'object' && 'default' in position ? position['default'] : position);
 
-  var isPrefixedProperty = __commonjs(function (module, exports) {
+  var imageSet = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = imageSet;
+
+  var _isPrefixedValue = require$$0$2;
+
+  var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+
+  // http://caniuse.com/#feat=css-image-set
+  var prefixes = ['-webkit-', ''];
+  function imageSet(property, value) {
+    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('image-set(') > -1) {
+      return prefixes.map(function (prefix) {
+        return value.replace(/image-set\(/g, prefix + 'image-set(');
+      });
+    }
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$3 = (imageSet && typeof imageSet === 'object' && 'default' in imageSet ? imageSet['default'] : imageSet);
+
+  var gradient = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = gradient;
+
+  var _isPrefixedValue = require$$0$2;
+
+  var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+
+  var prefixes = ['-webkit-', '-moz-', ''];
+
+  var values = /linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/;
+
+  function gradient(property, value) {
+    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && values.test(value)) {
+      return prefixes.map(function (prefix) {
+        return prefix + value;
+      });
+    }
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$4 = (gradient && typeof gradient === 'object' && 'default' in gradient ? gradient['default'] : gradient);
+
+  var flexboxOld = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = flexboxOld;
+  var alternativeValues = {
+    'space-around': 'justify',
+    'space-between': 'justify',
+    'flex-start': 'start',
+    'flex-end': 'end',
+    'wrap-reverse': 'multiple',
+    wrap: 'multiple'
+  };
+
+  var alternativeProps = {
+    alignItems: 'WebkitBoxAlign',
+    justifyContent: 'WebkitBoxPack',
+    flexWrap: 'WebkitBoxLines'
+  };
+
+  function flexboxOld(property, value, style) {
+    if (property === 'flexDirection' && typeof value === 'string') {
+      if (value.indexOf('column') > -1) {
+        style.WebkitBoxOrient = 'vertical';
+      } else {
+        style.WebkitBoxOrient = 'horizontal';
+      }
+      if (value.indexOf('reverse') > -1) {
+        style.WebkitBoxDirection = 'reverse';
+      } else {
+        style.WebkitBoxDirection = 'normal';
+      }
+    }
+    if (alternativeProps.hasOwnProperty(property)) {
+      style[alternativeProps[property]] = alternativeValues[value] || value;
+    }
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$5 = (flexboxOld && typeof flexboxOld === 'object' && 'default' in flexboxOld ? flexboxOld['default'] : flexboxOld);
+
+  var flex = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = flex;
+  var values = {
+    flex: true,
+    'inline-flex': true
+  };
+
+  function flex(property, value) {
+    if (property === 'display' && values.hasOwnProperty(value)) {
+      return ['-webkit-box', '-moz-box', '-ms-' + value + 'box', '-webkit-' + value, value];
+    }
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$6 = (flex && typeof flex === 'object' && 'default' in flex ? flex['default'] : flex);
+
+  var filter = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = filter;
+
+  var _isPrefixedValue = require$$0$2;
+
+  var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+
+  // http://caniuse.com/#feat=css-filter-function
+  var prefixes = ['-webkit-', ''];
+  function filter(property, value) {
+    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('filter(') > -1) {
+      return prefixes.map(function (prefix) {
+        return value.replace(/filter\(/g, prefix + 'filter(');
+      });
+    }
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$7 = (filter && typeof filter === 'object' && 'default' in filter ? filter['default'] : filter);
+
+  var crossFade = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = crossFade;
+
+  var _isPrefixedValue = require$$0$2;
+
+  var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+
+  // http://caniuse.com/#search=cross-fade
+  var prefixes = ['-webkit-', ''];
+  function crossFade(property, value) {
+    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('cross-fade(') > -1) {
+      return prefixes.map(function (prefix) {
+        return value.replace(/cross-fade\(/g, prefix + 'cross-fade(');
+      });
+    }
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$8 = (crossFade && typeof crossFade === 'object' && 'default' in crossFade ? crossFade['default'] : crossFade);
+
+  var cursor = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = cursor;
+  var prefixes = ['-webkit-', '-moz-', ''];
+
+  var values = {
+    'zoom-in': true,
+    'zoom-out': true,
+    grab: true,
+    grabbing: true
+  };
+
+  function cursor(property, value) {
+    if (property === 'cursor' && values.hasOwnProperty(value)) {
+      return prefixes.map(function (prefix) {
+        return prefix + value;
+      });
+    }
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$9 = (cursor && typeof cursor === 'object' && 'default' in cursor ? cursor['default'] : cursor);
+
+  var staticData = __commonjs(function (module, exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-  exports.default = function (property) {
-    return property.match(/^(Webkit|Moz|O|ms)/) !== null;
+  exports.default = {
+    plugins: [],
+    prefixMap: { "appearance": ["Webkit", "Moz"], "userSelect": ["Webkit", "Moz", "ms"], "textEmphasisPosition": ["Webkit"], "textEmphasis": ["Webkit"], "textEmphasisStyle": ["Webkit"], "textEmphasisColor": ["Webkit"], "boxDecorationBreak": ["Webkit"], "clipPath": ["Webkit"], "maskImage": ["Webkit"], "maskMode": ["Webkit"], "maskRepeat": ["Webkit"], "maskPosition": ["Webkit"], "maskClip": ["Webkit"], "maskOrigin": ["Webkit"], "maskSize": ["Webkit"], "maskComposite": ["Webkit"], "mask": ["Webkit"], "maskBorderSource": ["Webkit"], "maskBorderMode": ["Webkit"], "maskBorderSlice": ["Webkit"], "maskBorderWidth": ["Webkit"], "maskBorderOutset": ["Webkit"], "maskBorderRepeat": ["Webkit"], "maskBorder": ["Webkit"], "maskType": ["Webkit"], "textDecorationStyle": ["Webkit"], "textDecorationSkip": ["Webkit"], "textDecorationLine": ["Webkit"], "textDecorationColor": ["Webkit"], "filter": ["Webkit"], "fontFeatureSettings": ["Webkit"], "breakAfter": ["Webkit", "Moz", "ms"], "breakBefore": ["Webkit", "Moz", "ms"], "breakInside": ["Webkit", "Moz", "ms"], "columnCount": ["Webkit", "Moz"], "columnFill": ["Webkit", "Moz"], "columnGap": ["Webkit", "Moz"], "columnRule": ["Webkit", "Moz"], "columnRuleColor": ["Webkit", "Moz"], "columnRuleStyle": ["Webkit", "Moz"], "columnRuleWidth": ["Webkit", "Moz"], "columns": ["Webkit", "Moz"], "columnSpan": ["Webkit", "Moz"], "columnWidth": ["Webkit", "Moz"], "flex": ["Webkit"], "flexBasis": ["Webkit"], "flexDirection": ["Webkit"], "flexGrow": ["Webkit"], "flexFlow": ["Webkit"], "flexShrink": ["Webkit"], "flexWrap": ["Webkit"], "alignContent": ["Webkit"], "alignItems": ["Webkit"], "alignSelf": ["Webkit"], "justifyContent": ["Webkit"], "order": ["Webkit"], "transform": ["Webkit"], "transformOrigin": ["Webkit"], "transformOriginX": ["Webkit"], "transformOriginY": ["Webkit"], "backfaceVisibility": ["Webkit"], "perspective": ["Webkit"], "perspectiveOrigin": ["Webkit"], "transformStyle": ["Webkit"], "transformOriginZ": ["Webkit"], "animation": ["Webkit"], "animationDelay": ["Webkit"], "animationDirection": ["Webkit"], "animationFillMode": ["Webkit"], "animationDuration": ["Webkit"], "animationIterationCount": ["Webkit"], "animationName": ["Webkit"], "animationPlayState": ["Webkit"], "animationTimingFunction": ["Webkit"], "backdropFilter": ["Webkit"], "fontKerning": ["Webkit"], "scrollSnapType": ["Webkit", "ms"], "scrollSnapPointsX": ["Webkit", "ms"], "scrollSnapPointsY": ["Webkit", "ms"], "scrollSnapDestination": ["Webkit", "ms"], "scrollSnapCoordinate": ["Webkit", "ms"], "shapeImageThreshold": ["Webkit"], "shapeImageMargin": ["Webkit"], "shapeImageOutside": ["Webkit"], "hyphens": ["Webkit", "Moz", "ms"], "flowInto": ["Webkit", "ms"], "flowFrom": ["Webkit", "ms"], "regionFragment": ["Webkit", "ms"], "textAlignLast": ["Moz"], "tabSize": ["Moz"], "wrapFlow": ["ms"], "wrapThrough": ["ms"], "wrapMargin": ["ms"], "gridTemplateColumns": ["ms"], "gridTemplateRows": ["ms"], "gridTemplateAreas": ["ms"], "gridTemplate": ["ms"], "gridAutoColumns": ["ms"], "gridAutoRows": ["ms"], "gridAutoFlow": ["ms"], "grid": ["ms"], "gridRowStart": ["ms"], "gridColumnStart": ["ms"], "gridRowEnd": ["ms"], "gridRow": ["ms"], "gridColumn": ["ms"], "gridColumnEnd": ["ms"], "gridColumnGap": ["ms"], "gridRowGap": ["ms"], "gridArea": ["ms"], "gridGap": ["ms"], "textSizeAdjust": ["Webkit", "ms"], "transitionDelay": ["Webkit"], "transitionDuration": ["Webkit"], "transitionProperty": ["Webkit"], "transitionTimingFunction": ["Webkit"] }
   };
-
   module.exports = exports["default"];
   });
 
-  var require$$0$5 = (isPrefixedProperty && typeof isPrefixedProperty === 'object' && 'default' in isPrefixedProperty ? isPrefixedProperty['default'] : isPrefixedProperty);
+  var require$$10 = (staticData && typeof staticData === 'object' && 'default' in staticData ? staticData['default'] : staticData);
 
-  var sortPrefixedStyle = __commonjs(function (module, exports) {
-  'use strict';
+  var isObject$1 = __commonjs(function (module, exports) {
+  "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = sortPrefixedStyle;
+  exports.default = isObject;
+  function isObject(value) {
+    return value instanceof Object && !Array.isArray(value);
+  }
+  module.exports = exports["default"];
+  });
 
-  var _isPrefixedProperty = require$$0$5;
+  var require$$0$5 = (isObject$1 && typeof isObject$1 === 'object' && 'default' in isObject$1 ? isObject$1['default'] : isObject$1);
 
-  var _isPrefixedProperty2 = _interopRequireDefault(_isPrefixedProperty);
+  var addNewValuesOnly = __commonjs(function (module, exports) {
+  "use strict";
 
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = addNewValuesOnly;
+  function addIfNew(list, value) {
+    if (list.indexOf(value) === -1) {
+      list.push(value);
+    }
   }
 
-  function sortPrefixedStyle(style) {
-    return Object.keys(style).sort(function (left, right) {
-      if ((0, _isPrefixedProperty2.default)(left) && !(0, _isPrefixedProperty2.default)(right)) {
-        return -1;
-      } else if (!(0, _isPrefixedProperty2.default)(left) && (0, _isPrefixedProperty2.default)(right)) {
-        return 1;
+  function addNewValuesOnly(list, values) {
+    if (Array.isArray(values)) {
+      for (var i = 0, len = values.length; i < len; ++i) {
+        addIfNew(list, values[i]);
       }
-      return 0;
-    }).reduce(function (sortedStyle, prop) {
-      sortedStyle[prop] = style[prop];
-      return sortedStyle;
-    }, {});
+    } else {
+      addIfNew(list, values);
+    }
   }
-  module.exports = exports['default'];
+  module.exports = exports["default"];
   });
 
-  var require$$9 = (sortPrefixedStyle && typeof sortPrefixedStyle === 'object' && 'default' in sortPrefixedStyle ? sortPrefixedStyle['default'] : sortPrefixedStyle);
+  var require$$1$1 = (addNewValuesOnly && typeof addNewValuesOnly === 'object' && 'default' in addNewValuesOnly ? addNewValuesOnly['default'] : addNewValuesOnly);
 
-  var prefixAll = __commonjs(function (module, exports) {
+  var prefixValue = __commonjs(function (module, exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = prefixValue;
+  function prefixValue(plugins, property, value, style, metaData) {
+    for (var i = 0, len = plugins.length; i < len; ++i) {
+      var processedValue = plugins[i](property, value, style, metaData);
+
+      // we can stop processing if a value is returned
+      // as all plugin criteria are unique
+      if (processedValue) {
+        return processedValue;
+      }
+    }
+  }
+  module.exports = exports["default"];
+  });
+
+  var require$$2$1 = (prefixValue && typeof prefixValue === 'object' && 'default' in prefixValue ? prefixValue['default'] : prefixValue);
+
+  var prefixProperty = __commonjs(function (module, exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = prefixAll;
+  exports.default = prefixProperty;
 
-  var _prefixProps = require$$0$2;
-
-  var _prefixProps2 = _interopRequireDefault(_prefixProps);
-
-  var _capitalizeString = require$$2$1;
+  var _capitalizeString = require$$0$1;
 
   var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
-  var _sortPrefixedStyle = require$$9;
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
 
-  var _sortPrefixedStyle2 = _interopRequireDefault(_sortPrefixedStyle);
+  function prefixProperty(prefixProperties, property, style) {
+    if (prefixProperties.hasOwnProperty(property)) {
+      var requiredPrefixes = prefixProperties[property];
+      for (var i = 0, len = requiredPrefixes.length; i < len; ++i) {
+        style[requiredPrefixes[i] + (0, _capitalizeString2.default)(property)] = style[property];
+      }
+    }
+  }
+  module.exports = exports['default'];
+  });
 
-  var _position = require$$8;
+  var require$$3$1 = (prefixProperty && typeof prefixProperty === 'object' && 'default' in prefixProperty ? prefixProperty['default'] : prefixProperty);
 
-  var _position2 = _interopRequireDefault(_position);
+  var createPrefixer = __commonjs(function (module, exports) {
+  'use strict';
 
-  var _calc = require$$7;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = createPrefixer;
 
-  var _calc2 = _interopRequireDefault(_calc);
+  var _prefixProperty = require$$3$1;
 
-  var _cursor = require$$6;
+  var _prefixProperty2 = _interopRequireDefault(_prefixProperty);
 
-  var _cursor2 = _interopRequireDefault(_cursor);
+  var _prefixValue = require$$2$1;
 
-  var _flex = require$$5;
+  var _prefixValue2 = _interopRequireDefault(_prefixValue);
 
-  var _flex2 = _interopRequireDefault(_flex);
+  var _addNewValuesOnly = require$$1$1;
 
-  var _sizing = require$$4;
+  var _addNewValuesOnly2 = _interopRequireDefault(_addNewValuesOnly);
 
-  var _sizing2 = _interopRequireDefault(_sizing);
+  var _isObject = require$$0$5;
 
-  var _gradient = require$$3;
-
-  var _gradient2 = _interopRequireDefault(_gradient);
-
-  var _transition = require$$2;
-
-  var _transition2 = _interopRequireDefault(_transition);
-
-  var _flexboxIE = require$$1;
-
-  var _flexboxIE2 = _interopRequireDefault(_flexboxIE);
-
-  var _flexboxOld = require$$0$1;
-
-  var _flexboxOld2 = _interopRequireDefault(_flexboxOld);
+  var _isObject2 = _interopRequireDefault(_isObject);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
   }
 
-  // special flexbox specifications
+  function createPrefixer(_ref) {
+    var prefixMap = _ref.prefixMap,
+        plugins = _ref.plugins;
 
+    function prefixAll(style) {
+      for (var property in style) {
+        var value = style[property];
 
-  var plugins = [_position2.default, _calc2.default, _cursor2.default, _sizing2.default, _gradient2.default, _transition2.default, _flexboxIE2.default, _flexboxOld2.default, _flex2.default];
+        // handle nested objects
+        if ((0, _isObject2.default)(value)) {
+          style[property] = prefixAll(value);
+          // handle array values
+        } else if (Array.isArray(value)) {
+          var combinedValue = [];
 
-  /**
-   * Returns a prefixed version of the style object using all vendor prefixes
-   * @param {Object} styles - Style object that gets prefixed properties added
-   * @returns {Object} - Style object with prefixed properties and values
-   */
-  function prefixAll(styles) {
-    Object.keys(styles).forEach(function (property) {
-      var value = styles[property];
-      if (value instanceof Object && !Array.isArray(value)) {
-        // recurse through nested style objects
-        styles[property] = prefixAll(value);
-      } else {
-        Object.keys(_prefixProps2.default).forEach(function (prefix) {
-          var properties = _prefixProps2.default[prefix];
-          // add prefixes if needed
-          if (properties[property]) {
-            styles[prefix + (0, _capitalizeString2.default)(property)] = value;
+          for (var i = 0, len = value.length; i < len; ++i) {
+            var processedValue = (0, _prefixValue2.default)(plugins, property, value[i], style, prefixMap);
+            (0, _addNewValuesOnly2.default)(combinedValue, processedValue || value[i]);
           }
-        });
-      }
-    });
 
-    Object.keys(styles).forEach(function (property) {
-      [].concat(styles[property]).forEach(function (value, index) {
-        // resolve every special plugins
-        plugins.forEach(function (plugin) {
-          return assignStyles(styles, plugin(property, value));
-        });
-      });
-    });
-
-    return (0, _sortPrefixedStyle2.default)(styles);
-  }
-
-  function assignStyles(base) {
-    var extend = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    Object.keys(extend).forEach(function (property) {
-      var baseValue = base[property];
-      if (Array.isArray(baseValue)) {
-        [].concat(extend[property]).forEach(function (value) {
-          var valueIndex = baseValue.indexOf(value);
-          if (valueIndex > -1) {
-            base[property].splice(valueIndex, 1);
+          // only modify the value if it was touched
+          // by any plugin to prevent unnecessary mutations
+          if (combinedValue.length > 0) {
+            style[property] = combinedValue;
           }
-          base[property].push(value);
-        });
-      } else {
-        base[property] = extend[property];
+        } else {
+          var _processedValue = (0, _prefixValue2.default)(plugins, property, value, style, prefixMap);
+
+          // only modify the value if it was touched
+          // by any plugin to prevent unnecessary mutations
+          if (_processedValue) {
+            style[property] = _processedValue;
+          }
+
+          (0, _prefixProperty2.default)(prefixMap, property, style);
+        }
       }
-    });
+
+      return style;
+    }
+
+    return prefixAll;
   }
   module.exports = exports['default'];
   });
 
-  var require$$0 = (prefixAll && typeof prefixAll === 'object' && 'default' in prefixAll ? prefixAll['default'] : prefixAll);
+  var require$$11 = (createPrefixer && typeof createPrefixer === 'object' && 'default' in createPrefixer ? createPrefixer['default'] : createPrefixer);
 
-  var _static = __commonjs(function (module) {
-  module.exports = require$$0;
+  var index = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
   });
 
-  var prefix = (_static && typeof _static === 'object' && 'default' in _static ? _static['default'] : _static);
+  var _createPrefixer = require$$11;
 
-  function resolveFallbackValues$1(style) {
-    for (var property in style) {
-      var value = style[property];
-      if (Array.isArray(value)) {
-        style[property] = value.join(';' + require$$0$4(property) + ':');
-      } else if (value instanceof Object) {
-        style[property] = resolveFallbackValues$1(value);
-      }
-    }
+  var _createPrefixer2 = _interopRequireDefault(_createPrefixer);
 
-    return style;
+  var _staticData = require$$10;
+
+  var _staticData2 = _interopRequireDefault(_staticData);
+
+  var _cursor = require$$9;
+
+  var _cursor2 = _interopRequireDefault(_cursor);
+
+  var _crossFade = require$$8;
+
+  var _crossFade2 = _interopRequireDefault(_crossFade);
+
+  var _filter = require$$7;
+
+  var _filter2 = _interopRequireDefault(_filter);
+
+  var _flex = require$$6;
+
+  var _flex2 = _interopRequireDefault(_flex);
+
+  var _flexboxOld = require$$5;
+
+  var _flexboxOld2 = _interopRequireDefault(_flexboxOld);
+
+  var _gradient = require$$4;
+
+  var _gradient2 = _interopRequireDefault(_gradient);
+
+  var _imageSet = require$$3;
+
+  var _imageSet2 = _interopRequireDefault(_imageSet);
+
+  var _position = require$$2;
+
+  var _position2 = _interopRequireDefault(_position);
+
+  var _sizing = require$$1;
+
+  var _sizing2 = _interopRequireDefault(_sizing);
+
+  var _transition = require$$0;
+
+  var _transition2 = _interopRequireDefault(_transition);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
   }
 
-  var fallbackValue = (function () {
-    return resolveFallbackValues$1;
+  var plugins = [_crossFade2.default, _cursor2.default, _filter2.default, _flexboxOld2.default, _gradient2.default, _imageSet2.default, _position2.default, _sizing2.default, _transition2.default, _flex2.default];
+
+  exports.default = (0, _createPrefixer2.default)({
+    prefixMap: _staticData2.default.prefixMap,
+    plugins: plugins
+  });
+  module.exports = exports['default'];
   });
 
-  function generateCSSDeclaration(property, value) {
-    return require$$0$4(property) + ':' + value;
+  var prefix = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
+
+  var cssifyDeclaration = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = cssifyDeclaration;
+
+  var _hyphenateProperty = require$$0$3;
+
+  var _hyphenateProperty2 = _interopRequireDefault(_hyphenateProperty);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+
+  function cssifyDeclaration(property, value) {
+    return (0, _hyphenateProperty2.default)(property) + ':' + value;
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$0$6 = (cssifyDeclaration && typeof cssifyDeclaration === 'object' && 'default' in cssifyDeclaration ? cssifyDeclaration['default'] : cssifyDeclaration);
+
+  var cssifyObject = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = cssifyObject;
+
+  var _cssifyDeclaration = require$$0$6;
+
+  var _cssifyDeclaration2 = _interopRequireDefault(_cssifyDeclaration);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
   }
 
   function cssifyObject(style) {
     var css = '';
 
     for (var property in style) {
-      if (typeof style[property] !== 'string' && typeof style[property] !== 'number') {
+      var value = style[property];
+      if (typeof value !== 'string' && typeof value !== 'number') {
         continue;
       }
 
@@ -857,43 +979,97 @@
         css += ';';
       }
 
-      css += generateCSSDeclaration(property, style[property]);
+      css += (0, _cssifyDeclaration2.default)(property, value);
     }
 
     return css;
   }
+  module.exports = exports['default'];
+  });
 
-  var resolveFallbackValues = fallbackValue();
+  var cssifyObject$1 = (cssifyObject && typeof cssifyObject === 'object' && 'default' in cssifyObject ? cssifyObject['default'] : cssifyObject);
 
-  // TODO: refactor this messy piece of code
-  // into clean, performant equivalent
-  function addVendorPrefixes(style) {
-    var prefixedStyle = {};
+  var resolveArrayValue = __commonjs(function (module, exports) {
+  'use strict';
 
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = resolveArrayValue;
+
+  var _hyphenateProperty = require$$0$3;
+
+  var _hyphenateProperty2 = _interopRequireDefault(_hyphenateProperty);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+
+  function resolveArrayValue(property, value) {
+    var hyphenatedProperty = (0, _hyphenateProperty2.default)(property);
+
+    return value.join(';' + hyphenatedProperty + ':');
+  }
+  module.exports = exports['default'];
+  });
+
+  var resolveArrayValue$1 = (resolveArrayValue && typeof resolveArrayValue === 'object' && 'default' in resolveArrayValue ? resolveArrayValue['default'] : resolveArrayValue);
+
+  function resolveFallbackValues(style) {
     for (var property in style) {
       var value = style[property];
-      if (value instanceof Object && !Array.isArray(value)) {
-        prefixedStyle[property] = addVendorPrefixes(value);
-      } else {
-        var declaration = babelHelpers.defineProperty({}, property, style[property]);
-        var prefixedDeclaration = resolveFallbackValues(prefix(declaration));
 
-        var referenceProperty = Object.keys(prefixedDeclaration)[0];
-        var referenceValue = prefixedDeclaration[referenceProperty];
-        delete prefixedDeclaration[referenceProperty];
-        var inlinedProperties = cssifyObject(prefixedDeclaration);
-        prefixedStyle[referenceProperty] = referenceValue + (inlinedProperties ? ';' + inlinedProperties : '');
+      if (Array.isArray(value)) {
+        style[property] = resolveArrayValue$1(property, value);
+      } else if (isObject(value)) {
+        style[property] = resolveFallbackValues(value);
       }
     }
 
-    return prefixedStyle;
+    return style;
   }
 
-  var prefixer = (function () {
-    return addVendorPrefixes;
+  var fallbackValue = (function () {
+    return resolveFallbackValues;
   });
 
-  /*  weak */
+  function objectReduce(object, iterator, initialValue) {
+    for (var key in object) {
+      initialValue = iterator(initialValue, object[key], key);
+    }
+
+    return initialValue;
+  }
+
+  function addVendorPrefixes(style) {
+    return objectReduce(style, function (prefixedStyle, value, property) {
+      if (isObject(value)) {
+        prefixedStyle[property] = addVendorPrefixes(value);
+      } else {
+        var prefixedDeclaration = prefix(babelHelpers.defineProperty({}, property, style[property]));
+        var styleKeys = Object.keys(prefixedDeclaration);
+
+        var referenceProperty = styleKeys[0];
+        var referenceValue = prefixedDeclaration[referenceProperty];
+
+        if (styleKeys.length === 1) {
+          prefixedStyle[referenceProperty] = referenceValue;
+        } else {
+          delete prefixedDeclaration[referenceProperty];
+          var inlinedProperties = cssifyObject$1(resolveFallbackValues(prefixedDeclaration));
+
+          prefixedStyle[referenceProperty] = referenceValue + ';' + inlinedProperties;
+        }
+      }
+
+      return prefixedStyle;
+    }, {});
+  }
+
+  function prefixer() {
+    return addVendorPrefixes;
+  }
+
   var precedence = {
     ':link': 0,
     ':visited': 1,
@@ -904,33 +1080,44 @@
 
   var pseudoClasses = Object.keys(precedence);
 
-  function LVHA(style) {
+  function orderLVHA(style) {
     var pseudoList = [];
 
     for (var property in style) {
-      if (precedence[property]) {
+      if (precedence.hasOwnProperty(property)) {
         pseudoList[precedence[property]] = style[property];
         delete style[property];
       }
     }
 
-    for (var i = 0, len = pseudoList.length; i < len; ++i) {
-      var pseudoStyle = pseudoList[i];
-
+    arrayEach(pseudoList, function (pseudoStyle, index) {
       if (pseudoStyle) {
-        style[pseudoClasses[i]] = pseudoStyle;
+        style[pseudoClasses[index]] = pseudoStyle;
       }
-    }
+    });
 
     return style;
   }
 
-  var LVHA$1 = (function () {
-    return LVHA;
-  });
+  function LVHA() {
+    return orderLVHA;
+  }
 
-  var index$1 = __commonjs(function (module) {
-  var hyphenateStyleName = require$$0$4;
+  var isUnitlessProperty = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = isUnitlessProperty;
+
+  var _hyphenateProperty = require$$0$3;
+
+  var _hyphenateProperty2 = _interopRequireDefault(_hyphenateProperty);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
 
   var unitlessProperties = {
     borderImageOutset: true,
@@ -944,7 +1131,6 @@
     widows: true,
     zIndex: true,
     zoom: true,
-
     // SVG-related properties
     fillOpacity: true,
     floodOpacity: true,
@@ -956,52 +1142,37 @@
     strokeWidth: true
   };
 
-  var prefixedUnitlessProperties = {
-    animationIterationCount: true,
-    boxFlex: true,
-    boxFlexGroup: true,
-    boxOrdinalGroup: true,
-    columnCount: true,
-    flex: true,
-    flexGrow: true,
-    flexPositive: true,
-    flexShrink: true,
-    flexNegative: true,
-    flexOrder: true,
-    gridRow: true,
-    gridColumn: true,
-    order: true,
-    lineClamp: true
-  };
+  var prefixedUnitlessProperties = ['animationIterationCount', 'boxFlex', 'boxFlexGroup', 'boxOrdinalGroup', 'columnCount', 'flex', 'flexGrow', 'flexPositive', 'flexShrink', 'flexNegative', 'flexOrder', 'gridRow', 'gridColumn', 'order', 'lineClamp'];
 
   var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
 
-  function getPrefixedKey(prefix, key) {
-    return prefix + key.charAt(0).toUpperCase() + key.slice(1);
+  function getPrefixedProperty(prefix, property) {
+    return prefix + property.charAt(0).toUpperCase() + property.slice(1);
   }
 
   // add all prefixed properties to the unitless properties
-  Object.keys(prefixedUnitlessProperties).forEach(function (property) {
+  for (var i = 0, len = prefixedUnitlessProperties.length; i < len; ++i) {
+    var property = prefixedUnitlessProperties[i];
     unitlessProperties[property] = true;
 
-    prefixes.forEach(function (prefix) {
-      unitlessProperties[getPrefixedKey(prefix, property)] = true;
-    });
-  });
+    for (var j = 0, jLen = prefixes.length; j < jLen; ++j) {
+      unitlessProperties[getPrefixedProperty(prefixes[j], property)] = true;
+    }
+  }
 
   // add all hypenated properties as well
-  Object.keys(unitlessProperties).forEach(function (property) {
-    unitlessProperties[hyphenateStyleName(property)] = true;
+  for (var _property in unitlessProperties) {
+    unitlessProperties[(0, _hyphenateProperty2.default)(_property)] = true;
+  }
+
+  function isUnitlessProperty(property) {
+    return unitlessProperties.hasOwnProperty(property);
+  }
+  module.exports = exports['default'];
   });
 
-  module.exports = function (property) {
-    return unitlessProperties[property];
-  };
-  });
+  var isUnitlessProperty$1 = (isUnitlessProperty && typeof isUnitlessProperty === 'object' && 'default' in isUnitlessProperty ? isUnitlessProperty['default'] : isUnitlessProperty);
 
-  var isUnitlessCSSProperty = (index$1 && typeof index$1 === 'object' && 'default' in index$1 ? index$1['default'] : index$1);
-
-  /*  weak */
   /* eslint-disable import/no-mutable-exports */
   var warning = function warning() {
     return true;
@@ -1019,28 +1190,29 @@
 
   var warning$1 = warning;
 
-  function addUnitIfNeeded(property, value, unit) {
+  function addUnitIfNeeded(property, value, propertyUnit) {
     var valueType = typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value);
     /* eslint-disable eqeqeq */
     if (valueType === 'number' || valueType === 'string' && value == parseFloat(value)) {
-      value += unit;
+      value += propertyUnit;
     }
     /* eslint-enable */
     return value;
   }
 
-  function addUnit(style, unit, propertyMap) {
+  function addUnit(style, defaultUnit, propertyMap) {
     var _loop = function _loop(property) {
-      if (!isUnitlessCSSProperty(property)) {
+      if (!isUnitlessProperty$1(property)) {
         (function () {
           var cssValue = style[property];
-          var propertyUnit = propertyMap[property] || unit;
-          if (Array.isArray(cssValue)) {
+          var propertyUnit = propertyMap[property] || defaultUnit;
+
+          if (isObject(cssValue)) {
+            style[property] = addUnit(cssValue, defaultUnit, propertyMap);
+          } else if (Array.isArray(cssValue)) {
             style[property] = cssValue.map(function (val) {
               return addUnitIfNeeded(property, val, propertyUnit);
             });
-          } else if (cssValue instanceof Object) {
-            style[property] = addUnit(cssValue, unit, propertyMap);
           } else {
             style[property] = addUnitIfNeeded(property, cssValue, propertyUnit);
           }
@@ -1055,18 +1227,18 @@
     return style;
   }
 
-  var unit = (function () {
-    var unit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'px';
+  function unit() {
+    var defaultUnit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'px';
     var propertyMap = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    warning$1(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`.\n    Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
+    warning$1(defaultUnit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit "' + defaultUnit + '". Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
 
     return function (style) {
-      return addUnit(style, unit, propertyMap);
+      return addUnit(style, defaultUnit, propertyMap);
     };
-  });
+  }
 
-  var web = [extend$1(), prefixer(), fallbackValue(), LVHA$1(), unit()];
+  var web = [extend$1(), prefixer(), fallbackValue(), LVHA(), unit()];
 
   return web;
 

@@ -1,5 +1,4 @@
-import Component from 'inferno-component';
-import createElement from 'inferno-create-element';
+import { Component, h } from 'preact';
 
 var babelHelpers = {};
 babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -188,8 +187,10 @@ var Provider = function (_Component) {
     }
   }, {
     key: 'render',
-    value: function render() {
-      return this.props.children;
+    value: function render(_ref) {
+      var children = _ref.children;
+
+      return children;
     }
   }]);
   return Provider;
@@ -218,18 +219,15 @@ function connect(mapStylesToProps) {
 
       babelHelpers.createClass(EnhancedComponent, [{
         key: 'render',
-        value: function render() {
-          // invoke props and renderer to render all styles
-          var _context = this.context,
-              renderer = _context.renderer,
-              theme = _context.theme;
+        value: function render(props, state, _ref) {
+          var renderer = _ref.renderer,
+              theme = _ref.theme;
 
-
-          var styles = mapStylesToProps(babelHelpers.extends({}, this.props, {
+          var styles = mapStylesToProps(babelHelpers.extends({}, props, {
             theme: theme || {}
           }))(renderer);
 
-          return createElement(Comp, babelHelpers.extends({}, this.props, {
+          return h(Comp, babelHelpers.extends({}, props, {
             styles: styles
           }));
         }
@@ -361,7 +359,7 @@ function createComponent(rule) {
     // if the component renders into another Fela component
     // we pass down the combinedRule as well as both
     if (type._isFelaComponent) {
-      return createElement(type, babelHelpers.extends({
+      return h(type, babelHelpers.extends({
         _felaRule: combinedRule,
         passThrough: resolvedPassThrough
       }, ruleProps), children);
@@ -378,7 +376,7 @@ function createComponent(rule) {
     ruleProps.theme = theme || {};
 
     componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
-    return createElement(customType, componentProps, children);
+    return h(customType, componentProps, children);
   };
 
   // use the rule name as display name to better debug with react inspector

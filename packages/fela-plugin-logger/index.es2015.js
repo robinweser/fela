@@ -36,12 +36,12 @@ babelHelpers.extends = Object.assign || function (target) {
 
 babelHelpers;
 
-/*  weak */
-function addLogger(style, props, type) {
+function addLogger(style, type) {
   if (false) {}
 
   return style;
 }
+/* eslint-disable no-console */
 
 var logger = (function () {
   return addLogger;

@@ -3,7 +3,7 @@ import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
 
 import isObject from '../utils/isObject'
 
-export function resolveFallbackValues(style: Object): Object {
+function resolveFallbackValues(style: Object): Object {
   for (const property in style) {
     const value = style[property]
 

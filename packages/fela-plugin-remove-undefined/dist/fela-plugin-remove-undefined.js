@@ -42,21 +42,25 @@
 
   babelHelpers;
 
-  /*  weak */
-  function isInvalid(value) {
-    return value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1;
+  function isUndefinedValue(value) {
+    return value === undefined || typeof value === 'string' && value.indexOf('undefined') !== -1;
+  }
+
+  function isObject(value) {
+    return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
   }
 
   function removeUndefined(style) {
     for (var property in style) {
       var value = style[property];
-      if (Array.isArray(value)) {
-        style[property] = value.filter(function (val) {
-          return !isInvalid(val);
-        });
-      } else if (value instanceof Object) {
+
+      if (isObject(value)) {
         style[property] = removeUndefined(value);
-      } else if (isInvalid(value)) {
+      } else if (Array.isArray(value)) {
+        style[property] = value.filter(function (val) {
+          return !isUndefinedValue(val);
+        });
+      } else if (isUndefinedValue(value)) {
         delete style[property];
       }
     }

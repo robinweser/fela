@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react')) :
-  typeof define === 'function' && define.amd ? define(['react'], factory) :
-  (global.ReactFela = factory(global.React));
-}(this, function (react) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('preact')) :
+  typeof define === 'function' && define.amd ? define(['preact'], factory) :
+  (global.PreactFela = factory(global.Preact));
+}(this, function (preact) { 'use strict';
 
   var babelHelpers = {};
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -202,15 +202,14 @@
       }
     }, {
       key: 'render',
-      value: function render() {
-        return react.Children.only(this.props.children);
+      value: function render(_ref) {
+        var children = _ref.children;
+
+        return children;
       }
     }]);
     return Provider;
-  }(react.Component);
-
-  Provider.propTypes = { renderer: react.PropTypes.object.isRequired };
-  Provider.childContextTypes = { renderer: react.PropTypes.object };
+  }(preact.Component);
 
   var generateDisplayName = function generateDisplayName(Comp) {
     var displayName = Comp.displayName || Comp.name;
@@ -221,7 +220,6 @@
     return 'ConnectedFelaComponent';
   };
 
-  var createVNode = Inferno.createVNode;
   function connect(mapStylesToProps) {
     return function (Comp) {
       var _class, _temp;
@@ -236,28 +234,23 @@
 
         babelHelpers.createClass(EnhancedComponent, [{
           key: 'render',
+          value: function render(props, state, _ref) {
+            var renderer = _ref.renderer,
+                theme = _ref.theme;
 
-          // reuse the initial displayName name
-          value: function render() {
-            var _context = this.context,
-                renderer = _context.renderer,
-                theme = _context.theme;
-
-
-            var styles = mapStylesToProps(babelHelpers.extends({}, this.props, {
+            var styles = mapStylesToProps(babelHelpers.extends({}, props, {
               theme: theme || {}
             }))(renderer);
 
-            return createVNode(16, Comp, babelHelpers.extends({}, this.props, {
-              'styles': styles
+            return preact.h(Comp, babelHelpers.extends({}, props, {
+              styles: styles
             }));
           }
+          // reuse the initial displayName name
+
         }]);
         return EnhancedComponent;
-      }(react.Component), _class.displayName = generateDisplayName(Comp), _class.contextTypes = babelHelpers.extends({}, Comp.contextTypes, {
-        renderer: react.PropTypes.object,
-        theme: react.PropTypes.object
-      }), _temp;
+      }(preact.Component), _class.displayName = generateDisplayName(Comp), _temp;
     };
   }
 
@@ -373,10 +366,6 @@
           passThrough = _ref$passThrough === undefined ? [] : _ref$passThrough,
           ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', '_felaRule', 'passThrough']);
 
-      if (!renderer) {
-        var componentName = type.displayName ? type.displayName : type;
-        throw new Error('\n        createComponent() can\'t render styles for the component \'' + componentName + '\' without\n        Fela renderer in the context. Missing react-fela\'s <Provider /> at the app root?\n      ');
-      }
       var combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule;
 
       // compose passThrough props from arrays or functions
@@ -385,7 +374,7 @@
       // if the component renders into another Fela component
       // we pass down the combinedRule as well as both
       if (type._isFelaComponent) {
-        return react.createElement(type, babelHelpers.extends({
+        return preact.h(type, babelHelpers.extends({
           _felaRule: combinedRule,
           passThrough: resolvedPassThrough
         }, ruleProps), children);
@@ -393,28 +382,16 @@
 
       var componentProps = extractPassThroughProps(resolvedPassThrough, ruleProps);
 
-      ruleProps.theme = theme || {};
-
-      // fela-native support
-      if (renderer.isNativeRenderer) {
-        var felaStyle = renderer.renderRule(combinedRule, ruleProps);
-        componentProps.style = ruleProps.style ? [ruleProps.style, felaStyle] : felaStyle;
-      } else {
-        componentProps.style = ruleProps.style;
-        var cls = ruleProps.className ? ruleProps.className + ' ' : '';
-        componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
-      }
-
+      componentProps.style = ruleProps.style;
       componentProps.id = ruleProps.id;
       componentProps.ref = ruleProps.innerRef;
 
       var customType = ruleProps.is || type;
-      return react.createElement(customType, componentProps, children);
-    };
+      var cls = ruleProps.className ? ruleProps.className + ' ' : '';
+      ruleProps.theme = theme || {};
 
-    FelaComponent.contextTypes = {
-      renderer: react.PropTypes.object,
-      theme: react.PropTypes.object
+      componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
+      return preact.h(customType, componentProps, children);
     };
 
     // use the rule name as display name to better debug with react inspector
@@ -448,18 +425,12 @@
     }, {
       key: 'render',
       value: function render() {
-        return react.Children.only(this.props.children);
+        return this.props.children;
       }
     }]);
     return ThemeProvider;
-  }(react.Component);
+  }(preact.Component);
 
-  ThemeProvider.propTypes = {
-    theme: react.PropTypes.object.isRequired,
-    overwrite: react.PropTypes.bool
-  };
-  ThemeProvider.childContextTypes = { theme: react.PropTypes.object };
-  ThemeProvider.contextTypes = { theme: react.PropTypes.object };
   ThemeProvider.defaultProps = { overwrite: false };
 
   var index = {
@@ -472,4 +443,4 @@
   return index;
 
 }));
-//# sourceMappingURL=react-fela.js.map
+//# sourceMappingURL=preact-fela.js.map

@@ -82,21 +82,10 @@ babelHelpers.possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-babelHelpers.toConsumableArray = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  } else {
-    return Array.from(arr);
-  }
-};
-
 babelHelpers;
 
 
-var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
-function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
+function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
 var cssbeautify = __commonjs(function (module, exports) {
 /*
@@ -579,10 +568,8 @@ var CLEAR_TYPE = 5;
 
 function addLogger(renderer, options) {
   renderer.subscribe(function (change) {
-    // log clearing
     if (change.type === CLEAR_TYPE) {
       console.log('Cleared renderer cache.');
-      // eslint-disable-line
       return true;
     }
 
@@ -609,11 +596,13 @@ var defaultOptions = {
   logCSS: false,
   formatCSS: false
 };
-var logger = (function () {
+
+function logger() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
   return function (renderer) {
     return addLogger(renderer, babelHelpers.extends({}, defaultOptions, options));
   };
-});
+}
 
 export default logger;

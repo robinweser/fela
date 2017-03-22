@@ -2,10 +2,12 @@
 import prefix from 'inline-style-prefixer/static'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
-import { resolveFallbackValues } from './fallbackValue'
+import fallbackValue from './fallbackValue'
 
 import isObject from '../utils/isObject'
 import objectReduce from '../utils/objectReduce'
+
+const resolveFallbackValues = fallbackValue()
 
 function addVendorPrefixes(style: Object): Object {
   return objectReduce(
