@@ -1,8 +1,13 @@
-/* @flow weak */
-function addLayoutDebugger(renderer, options) {
+/* @flow */
+import type DOMRenderer from '../../flowtypes/DOMRenderer'
+
+function addLayoutDebugger(
+  renderer: DOMRenderer,
+  options: Object
+): DOMRenderer {
   const existingRenderRule = renderer.renderRule.bind(renderer)
 
-  renderer.renderRule = (rule, props) => {
+  renderer.renderRule = (rule: Function, props: Object): string => {
     const className = existingRenderRule(rule, props)
 
     const ruleName = rule.name || 'debug_layout'
@@ -32,7 +37,11 @@ const defaultOptions = {
   backgroundColor: false,
   thickness: 1
 }
-export default options => renderer => addLayoutDebugger(renderer, {
-  ...defaultOptions,
-  ...options
-})
+
+export default function layoutDebugger(options: Object = {}) {
+  return (renderer: DOMRenderer) =>
+    addLayoutDebugger(renderer, {
+      ...defaultOptions,
+      ...options
+    })
+}

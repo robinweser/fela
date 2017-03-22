@@ -1,21 +1,28 @@
 {
   "private": true,
   "version": "4.2.6",
-  "description": "Full-Featured Universal, Dynamic & High-Performance Styling in JavaScript",
+  "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
   "license": "MIT",
   "scripts": {
     "babel": "babel -d packages/fela/lib modules",
-    "check": "mocha --opts test/_setup/mocha.opts",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
+    "check": "npm run lint && npm run test:coverage && npm run flow",
+    "format": "prettier-eslint modules/**/*.js --write",
     "flow": "flow",
     "lint": "eslint modules",
-    "precommit": "npm run lint && npm test && npm run flow",
-    "prepare": "npm run precommit && npm run babel && npm run dist",
-    "release": "npm run prepare && ./scripts/publishPackages.sh && npm run docs",
-    "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/_setup/mocha.opts"
+    "release:prepare": "npm run check && npm run babel && npm run dist",
+    "release": "npm run release:prepare && ./scripts/publishPackages.sh && npm run docs",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "rootDir": "modules",
+    "testPathIgnorePatterns": [
+      "/mocks/"
+    ]
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -54,8 +61,9 @@
     "inferno-component": "^1.0.1",
     "inferno-create-element": "^1.0.1",
     "inline-style-prefixer": "^2.0.1",
-    "istanbul": "^1.0.0-alpha.2",
-    "mocha": "^2.4.5",
+    "jest": "^19.0.2",
+    "prettier-eslint": "^4.2.1",
+    "prettier-eslint-cli": "^3.1.2",
     "preact": "^7.0.0",
     "react": "^15.3.2",
     "react-native": "^0.42.0",
@@ -64,8 +72,6 @@
     "rollup-plugin-commonjs": "2.2.1",
     "rollup-plugin-node-resolve": "1.5.0",
     "rollup-plugin-uglify": "0.3.1",
-    "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0",
-    "unitless-css-property": "^1.0.1"
+    "sinon": "^1.17.3"
   }
 }

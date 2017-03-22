@@ -1,20 +1,23 @@
-/* @flow weak */
-/* eslint-disable consistent-return */
+/* @flow */
+/* eslint-disable consistent-return, no-console */
 import cssbeautify from 'cssbeautify'
 
 import { CLEAR_TYPE } from '../utils/styleTypes'
 
-function addLogger(renderer, options) {
+import type DOMRenderer from '../../flowtypes/DOMRenderer'
+
+function addLogger(renderer: DOMRenderer, options: Object): DOMRenderer {
   renderer.subscribe((change) => {
-    // log clearing
     if (change.type === CLEAR_TYPE) {
       console.log('Cleared renderer cache.')
-      // eslint-disable-line
       return true
     }
 
     const selector = change.selector || change.fontFamily || change.name
-    const css = change.declaration || change.keyframe || change.fontFace || change.css
+    const css = change.declaration ||
+      change.keyframe ||
+      change.fontFace ||
+      change.css
     const formattedCSS = options.format ? cssbeautify(css) : css
     const isMedia = change.media && change.media.length > 0
 
@@ -36,7 +39,11 @@ const defaultOptions = {
   logCSS: false,
   formatCSS: false
 }
-export default (options = {}) => renderer => addLogger(renderer, {
-  ...defaultOptions,
-  ...options
-})
+
+export default function logger(options: Object = {}) {
+  return (renderer: DOMRenderer) =>
+    addLogger(renderer, {
+      ...defaultOptions,
+      ...options
+    })
+}

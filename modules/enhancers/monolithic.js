@@ -1,4 +1,5 @@
-/* @flow weak */
+/* @flow */
+/* eslint-disable no-continue */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 
 import cssifyMediaQueryRules from '../utils/cssifyMediaQueryRules'
@@ -15,25 +16,40 @@ import normalizeNestedProperty from '../utils/normalizeNestedProperty'
 
 import { RULE_TYPE } from '../utils/styleTypes'
 
-function generateClassName(str, prefix) {
-  if (str.className) {
-    const name = prefix + str.className
-    delete str.className
+import type DOMRenderer from '../../flowtypes/DOMRenderer'
+
+function generateClassName(style: Object, prefix: string): string {
+  if (style.className) {
+    const name = prefix + style.className
+    delete style.className
     return name
   }
-  const stringified = JSON.stringify(str)
+  const stringified = JSON.stringify(style)
   let val = 5381
   let i = stringified.length
 
   while (i) {
-    val = val * 33 ^ stringified.charCodeAt((--i))
+    val = val * 33 ^ stringified.charCodeAt(--i)
   }
 
   return prefix + (val >>> 0).toString(36)
 }
 
-function addMonolithicClassNames(renderer) {
-  renderer._parseMonolithicRules = (selector, styles, mediaSelector = '') => {
+type MonoliticRenderer = {
+  _parseMonolithicRules: Function,
+};
+
+function useMonolithicRenderer(
+  renderer: DOMRenderer
+): DOMRenderer & MonoliticRenderer {
+  renderer._parseMonolithicRules = (
+    selector: string,
+    styles: Object,
+    mediaSelector: string = ''
+  ): {
+    rules: Array<string>,
+    media: Array<{rules: Array<string>, media: string}>,
+  } => {
     const decs = []
     const rules = []
     const media = []
@@ -52,12 +68,23 @@ function addMonolithicClassNames(renderer) {
         continue
       } else if (isNestedSelector(key)) {
         renderer
-          ._parseMonolithicRules(selector + normalizeNestedProperty(key), value, mediaSelector)
+          ._parseMonolithicRules(
+            selector + normalizeNestedProperty(key),
+            value,
+            mediaSelector
+          )
           .rules.forEach(r => rules.push(r))
         continue
       } else if (isMediaQuery(key)) {
-        const mediaKey = generateCombinedMediaQuery(mediaSelector, key.slice(6).trim())
-        const mediaRules = renderer._parseMonolithicRules(selector, value, mediaKey)
+        const mediaKey = generateCombinedMediaQuery(
+          mediaSelector,
+          key.slice(6).trim()
+        )
+        const mediaRules = renderer._parseMonolithicRules(
+          selector,
+          value,
+          mediaKey
+        )
         media.push({
           rules: mediaRules.rules,
           media: mediaKey
@@ -65,7 +92,9 @@ function addMonolithicClassNames(renderer) {
         mediaRules.media.forEach(r => media.push(r))
         continue
       } else {
-        renderer._parseMonolithicRules(`${selector} ${key}`, value, mediaSelector).rules.forEach(r => rules.push(r))
+        renderer
+          ._parseMonolithicRules(`${selector} ${key}`, value, mediaSelector)
+          .rules.forEach(r => rules.push(r))
         continue
       }
     }
@@ -78,11 +107,15 @@ function addMonolithicClassNames(renderer) {
     }
   }
 
-  renderer._renderStyleToClassNames = (style) => {
+  renderer._renderStyleToClassNames = (style: Object): string => {
     if (!Object.keys(style).length) {
       return ''
     }
-    const className = generateClassName(style, renderer.selectorPrefix || 'fela-')
+
+    const className = generateClassName(
+      style,
+      renderer.selectorPrefix || 'fela-'
+    )
     const selector = generateCSSSelector(className)
 
     if (renderer.cache[className]) return ` ${className}`
@@ -112,7 +145,10 @@ function addMonolithicClassNames(renderer) {
           renderer.mediaRules[mediaKey] = ''
         }
         renderer.mediaRules[mediaKey] += mediaRules
-        renderer.cache[className] += cssifyMediaQueryRules(mediaKey, mediaRules)
+        renderer.cache[className] += cssifyMediaQueryRules(
+          mediaKey,
+          mediaRules
+        )
 
         renderer._emitChange({
           selector,
@@ -129,4 +165,6 @@ function addMonolithicClassNames(renderer) {
   return renderer
 }
 
-export default () => addMonolithicClassNames
+export default function monolithic() {
+  return useMonolithicRenderer
+}

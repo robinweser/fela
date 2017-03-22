@@ -29,8 +29,8 @@
     "guard-for-in": [ 0 ],
     "no-restricted-syntax": [ 0 ],
     "no-continue": [ 1 ],
-    "no-prototype-builtins": [ 1 ],
-    "max-len": [ 0, 100 ],
+    "no-prototype-builtins": [ 0 ],
+    "max-len": [ 0, 80 ],
     "no-mixed-operators": [ 0 ],
     "no-lonely-if": [ 1 ],
     "no-bitwise": [ 0 ]

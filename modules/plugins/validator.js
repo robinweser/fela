@@ -1,4 +1,5 @@
-/* @flow weak */
+/* @flow  */
+/* eslint-disable no-console */
 import { RULE_TYPE, KEYFRAME_TYPE } from '../utils/styleTypes'
 
 import isObject from '../utils/isObject'
@@ -6,7 +7,13 @@ import isNestedSelector from '../utils/isNestedSelector'
 
 const percentageRegex = /from|to|%/
 
-function validateStyleObject(style, logInvalid, deleteInvalid) {
+type Type = 1 | 2 | 3 | 4 | 5;
+
+function validateStyleObject(
+  style: Object,
+  logInvalid: boolean,
+  deleteInvalid: boolean
+): void {
   for (const property in style) {
     const value = style[property]
 
@@ -19,9 +26,7 @@ function validateStyleObject(style, logInvalid, deleteInvalid) {
         }
         if (logInvalid) {
           console.error(
-            `${deleteInvalid
-              ? '[Deleted] '
-              : ' '}Invalid nested property. Only use nested media queries, pseudo classes, child selectors or &-combinators.
+            `${deleteInvalid ? '[Deleted] ' : ' '}Invalid nested property. Only use nested media queries, pseudo classes, child selectors or &-combinators.
               Maybe you forgot to add a plugin that resolves "${property}".`,
             {
               property,
@@ -34,47 +39,55 @@ function validateStyleObject(style, logInvalid, deleteInvalid) {
   }
 }
 
-function isValidPercentage(percentage) {
+function isValidPercentage(percentage: string): boolean {
   const percentageValue = parseFloat(percentage)
 
-  return percentage.indexOf('%') > -1 && (percentageValue < 0 || percentageValue > 100)
+  return percentage.indexOf('%') > -1 &&
+    (percentageValue < 0 || percentageValue > 100)
 }
 
-function validateKeyframeObject(style, logInvalid, deleteInvalid) {
+function validateKeyframeObject(
+  style: Object,
+  logInvalid: boolean,
+  deleteInvalid: boolean
+): void {
   for (const percentage in style) {
     const value = style[percentage]
     if (!isObject(value)) {
       if (logInvalid) {
-        console.error(`${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe value. An object was expected.`, {
-          percentage,
-          style: value
-        })
+        console.error(
+          `${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe value. An object was expected.`,
+          {
+            percentage,
+            style: value
+          }
+        )
       }
       if (deleteInvalid) {
         delete style[percentage]
       }
-    } else {
       // check for invalid percentage values, it only allows from, to or 0% - 100%
-      if (!percentageRegex.test(percentage) || !isValidPercentage(percentage)) {
-        if (logInvalid) {
-          console.error(
-            `${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe property.
+    } else if (
+      !percentageRegex.test(percentage) || !isValidPercentage(percentage)
+    ) {
+      if (logInvalid) {
+        console.error(
+          `${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe property.
               Expected either \`to\`, \`from\` or a percentage value between 0 and 100.`,
-            {
-              percentage,
-              style: value
-            }
-          )
-        }
-        if (deleteInvalid) {
-          delete style[percentage]
-        }
+          {
+            percentage,
+            style: value
+          }
+        )
+      }
+      if (deleteInvalid) {
+        delete style[percentage]
       }
     }
   }
 }
 
-function validator(style, type, options) {
+function validateStyle(style: Object, type: Type, options: Object): Object {
   const { logInvalid, deleteInvalid } = options
 
   if (type === KEYFRAME_TYPE) {
@@ -90,7 +103,11 @@ const defaultOptions = {
   logInvalid: true,
   deleteInvalid: false
 }
-export default options => (style, props, type) => validator(style, type, {
-  ...defaultOptions,
-  ...options
-})
+
+export default function validator(options: Object = {}) {
+  return (style: Object, type: Type) =>
+    validateStyle(style, type, {
+      ...defaultOptions,
+      ...options
+    })
+}

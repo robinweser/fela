@@ -1,18 +1,24 @@
-/* @flow weak */
+/* @flow */
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
-export default function cssifyKeyframe(frames, animationName, prefixes = ['']) {
-  let keyframe = ''
+import arrayReduce from './arrayReduce'
+import objectReduce from './objectReduce'
 
-  for (const percentage in frames) {
-    keyframe += `${percentage}{${cssifyObject(frames[percentage])}}`
-  }
+export default function cssifyKeyframe(
+  frames: Object,
+  animationName: string,
+  prefixes: Array<string> = ['']
+): string {
+  const keyframe = objectReduce(
+    frames,
+    (css, frame, percentage) => `${css}${percentage}{${cssifyObject(frame)}}`,
+    ''
+  )
 
-  let css = ''
-
-  for (let i = 0, len = prefixes.length; i < len; ++i) {
-    css += `@${prefixes[i]}keyframes ${animationName}{${keyframe}}`
-  }
-
-  return css
+  return arrayReduce(
+    prefixes,
+    (cssKeyframe, prefix) =>
+      `${cssKeyframe}@${prefix}keyframes ${animationName}{${keyframe}}`,
+    ''
+  )
 }

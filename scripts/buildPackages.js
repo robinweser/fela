@@ -158,18 +158,31 @@ const packages = {
 const babelPlugin = babel({
   babelrc: false,
   presets: ['es2015-rollup', 'stage-0', 'react'],
-  plugins: ['transform-class-properties', 'inferno', 'preact', 'transform-dev-warning', 'transform-node-env-inline']
+  plugins: [
+    'transform-class-properties',
+    'inferno',
+    'transform-dev-warning',
+    'transform-node-env-inline'
+  ]
 })
 const nodeResolverPlugin = nodeResolver({
   jsnext: true,
   main: true,
-  skip: ['react', 'inferno-component', 'fela', 'preact', 'inferno-create-element']
+  skip: [
+    'react',
+    'inferno-component',
+    'fela',
+    'preact',
+    'inferno-create-element'
+  ]
 })
 const commonJSPlugin = commonjs({ include: 'node_modules/**' })
 const uglifyPlugin = uglify()
 
 function rollupConfig(pkg, info, minify) {
-  const plugins = info.dependencies ? [babelPlugin, nodeResolverPlugin, commonJSPlugin] : [babelPlugin]
+  const plugins = info.dependencies
+    ? [babelPlugin, nodeResolverPlugin, commonJSPlugin]
+    : [babelPlugin]
   return {
     entry: `modules/${info.entry}`,
     plugins: minify ? plugins.concat(uglifyPlugin) : plugins
@@ -258,11 +271,16 @@ function updateReadme(pkg, bundleSize) {
       const bundleString = (bundleSize / 1000).toString().split('.')
       const readme = data
         .replace(/@[1-9]*[.][0-9]*[.][0-9]*/g, `@${globalVersion}`)
-        .replace(/gzipped-[0-9]*[.][0-9]*kb/, `gzipped-${bundleString[0]}.${bundleString[1].substr(0, 2)}kb`)
+        .replace(
+          /gzipped-[0-9]*[.][0-9]*kb/,
+          `gzipped-${bundleString[0]}.${bundleString[1].substr(0, 2)}kb`
+        )
 
       fs.writeFile(path, readme, (err) => {
         errorOnFail(err, pkg)
-        console.log(`Successfully updated ${pkg} README.md to ${globalVersion}.`)
+        console.log(
+          `Successfully updated ${pkg} README.md to ${globalVersion}.`
+        )
       })
     })
   })
@@ -270,9 +288,15 @@ function updateReadme(pkg, bundleSize) {
 
 function buildPackage(pkg) {
   rollup
-    .rollup(rollupConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production'))
+    .rollup(
+      rollupConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')
+    )
     .then((bundle) => {
-      const config = bundleConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')
+      const config = bundleConfig(
+        pkg,
+        packages[pkg],
+        process.env.NODE_ENV === 'production'
+      )
 
       if (process.env.NODE_ENV === 'production') {
         updateReadme(pkg, gzip.zip(bundle.generate(config).code).length)
@@ -293,7 +317,9 @@ function buildPackage(pkg) {
         const config = esModuleConfig(pkg, packages[pkg])
 
         bundle.write(config)
-        console.log(`Successfully bundled ${packages[pkg].name} es2015 module.`)
+        console.log(
+          `Successfully bundled ${packages[pkg].name} es2015 module.`
+        )
       })
       .catch(err => errorOnFail(err, pkg))
   }

@@ -1,11 +1,16 @@
-/* @flow weak */
-export default function extractPassThroughProps(passThrough, ruleProps) {
-  const output = {}
+/* @flow  */
+import arrayReduce from './arrayReduce'
 
-  for (let i = 0, len = passThrough.length; i < len; ++i) {
-    const prop = passThrough[i]
-    output[prop] = ruleProps[prop]
-  }
-
-  return output
+export default function extractPassThroughProps(
+  passThrough: Array<string>,
+  ruleProps: Object
+): Object {
+  return arrayReduce(
+    passThrough,
+    (output, property) => {
+      output[property] = ruleProps[property]
+      return output
+    },
+    {}
+  )
 }

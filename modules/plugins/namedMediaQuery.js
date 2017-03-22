@@ -18,4 +18,6 @@ function resolveNamedMediaQuery(style: Object, mediaQueryMap: Object) {
   return style
 }
 
-export default (mediaQueryMap: Object) => (style: Object) => resolveNamedMediaQuery(style, mediaQueryMap)
+export default function namedMediaQuery(mediaQueryMap: Object) {
+  return (style: Object) => resolveNamedMediaQuery(style, mediaQueryMap)
+}

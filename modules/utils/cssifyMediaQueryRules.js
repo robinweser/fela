@@ -1,5 +1,8 @@
-/* @flow weak */
-export default function cssifyMediaQueryRules(mediaQuery, mediaQueryRules) {
+/* @flow  */
+export default function cssifyMediaQueryRules(
+  mediaQuery: string,
+  mediaQueryRules?: string
+): string {
   if (mediaQueryRules) {
     return `@media ${mediaQuery}{${mediaQueryRules}}`
   }

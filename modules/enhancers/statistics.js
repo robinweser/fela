@@ -4,14 +4,21 @@ import gzipSize from 'gzip-size'
 
 import { RULE_TYPE } from '../utils/styleTypes'
 
-function lengthInUtf8Bytes(str) {
-  // Matches only the 10.. bytes that are non-initial characters in a multi-byte sequence.
+import type DOMRenderer from '../../flowtypes/DOMRenderer'
+
+function lengthInUtf8Bytes(str: string): number {
   const m = encodeURIComponent(str).match(/%[89ABab]/g)
   return str.length + (m ? m.length : 0)
 }
 
-function addStatistics(renderer: Object): Object {
-  const statistics: Object = {
+type RendererWithStatistics = {
+  getStatistics: Function,
+};
+
+function addStatistics(
+  renderer: DOMRenderer
+): DOMRenderer & RendererWithStatistics {
+  const statistics = {
     count: {
       classes: 0,
       pseudoClasses: 0
@@ -36,8 +43,8 @@ function addStatistics(renderer: Object): Object {
     })
   }
 
-  const existingRenderRule: Function = renderer.renderRule
-  renderer.renderRule = function () {
+  const existingRenderRule = renderer.renderRule
+  renderer.renderRule = function renderRule(): string {
     statistics.totalRenders++
     const classNames: string = existingRenderRule.apply(renderer, arguments)
     addClassNamesToUsage(classNames)
@@ -77,12 +84,13 @@ function addStatistics(renderer: Object): Object {
     }
   })
 
-  function calculateReuse() {
-    const quotient = (statistics.totalUsage - statistics.totalClasses) / statistics.totalUsage
+  function calculateReuse(): number {
+    const quotient = (statistics.totalUsage - statistics.totalClasses) /
+      statistics.totalUsage
     return Math.floor(quotient * 10000) / 10000
   }
 
-  renderer.getStatistics = () => {
+  renderer.getStatistics = (): Object => {
     const currentStats = { ...statistics }
 
     const reuse = calculateReuse()

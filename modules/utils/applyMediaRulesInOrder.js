@@ -1,10 +1,16 @@
-/* @flow weak */
-export default function applyMediaRulesInOrder(order) {
-  const mediaRules = {}
+/* @flow */
+import arrayReduce from './arrayReduce'
 
-  for (let i = 0, len = order.length; i < len; ++i) {
-    mediaRules[order[i]] = ''
-  }
-
-  return mediaRules
+type MediaRules = { [mediaQuery: string]: string };
+export default function applyMediaRulesInOrder(
+  order: Array<string>
+): MediaRules {
+  return arrayReduce(
+    order,
+    (mediaRules, query) => {
+      mediaRules[query] = ''
+      return mediaRules
+    },
+    {}
+  )
 }

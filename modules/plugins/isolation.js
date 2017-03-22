@@ -1,5 +1,7 @@
-/* @flow weak */
-function addIsolation(style, exclude = []) {
+/* @flow */
+import arrayReduce from '../utils/arrayReduce'
+
+function addIsolation(style: Object, exclude: Array<string> = []): Object {
   if (style.isolation === false) {
     // remove the isolation prop to
     // prevent false CSS properties
@@ -7,7 +9,8 @@ function addIsolation(style, exclude = []) {
     return style
   }
 
-  const excludedDeclarations = exclude.reduce(
+  const excludedDeclarations = arrayReduce(
+    exclude,
     (exclusion, property) => {
       exclusion[property] = 'inherit'
       return exclusion
@@ -22,4 +25,6 @@ function addIsolation(style, exclude = []) {
   }
 }
 
-export default (options = {}) => style => addIsolation(style, options.exclude)
+export default function isolation(options: Object = {}) {
+  return (style: Object) => addIsolation(style, options.exclude)
+}

@@ -1,8 +1,15 @@
-/* @flow weak */
-export default function generateStaticReference(style, selector) {
+/* @flow */
+export default function generateStaticReference(
+  style: string | Object,
+  selector?: string
+): string {
   if (typeof style === 'string') {
     return style
   }
 
-  return selector + JSON.stringify(style)
+  if (selector) {
+    return selector + JSON.stringify(style)
+  }
+
+  return ''
 }
