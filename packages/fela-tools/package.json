@@ -10,7 +10,7 @@
     "index.js",
     "StyleSheet.js",
     "mapValueToMediaQuery.js",
-    "/dist"
+    "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
