@@ -205,7 +205,7 @@
       value: function render(_ref) {
         var children = _ref.children;
 
-        return children;
+        return children[0];
       }
     }]);
     return Provider;
@@ -424,8 +424,10 @@
       }
     }, {
       key: 'render',
-      value: function render() {
-        return this.props.children;
+      value: function render(_ref) {
+        var children = _ref.children;
+
+        return children[0];
       }
     }]);
     return ThemeProvider;

@@ -190,7 +190,7 @@ var Provider = function (_Component) {
     value: function render(_ref) {
       var children = _ref.children;
 
-      return children;
+      return children[0];
     }
   }]);
   return Provider;
@@ -409,8 +409,10 @@ var ThemeProvider = function (_Component) {
     }
   }, {
     key: 'render',
-    value: function render() {
-      return this.props.children;
+    value: function render(_ref) {
+      var children = _ref.children;
+
+      return children[0];
     }
   }]);
   return ThemeProvider;

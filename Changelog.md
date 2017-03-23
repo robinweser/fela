@@ -2,8 +2,14 @@
 
 ## 4.0
 
-### 4.3.0
+#### 4.3.2
+* fixed render returns for `<Provider>` and `<ThemeProvider>` in [preact-fela](packages/preact-fela) ( [#228](https://github.com/rofrischmann/fela/pull/228) )
+* added TypeScript typings to the plugin presets ( [#229](https://github.com/rofrischmann/fela/pull/229) )
 
+#### 4.3.1 (hot fix)
+* fix for wrong exports of [fela-plugin-fallback-value](packages/fela-plugin-fallback-value)
+
+#### 4.3.0
 ##### Improvements
 * introducting [preact-fela](packages/preact-fela) ( [#207](https://github.com/rofrischmann/fela/pull/207) )
 * updated [inferno-fela](packages/inferno-fela) ( [#212](https://github.com/rofrischmann/fela/pull/212) )
