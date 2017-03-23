@@ -4,10 +4,12 @@
   "description": "Fela plugin preset for web applications",
   "module": "index.es2015.js",
   "main": "index.js",
+  "typings": "index.d.ts",
   "files": [
     "LICENSE",
     "README.md",
     "index.js",
+    "index.d.ts",
     "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
