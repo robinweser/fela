@@ -1,4 +1,4 @@
-/* @flow weak */
+/* @flow */
 import { Component, PropTypes, Children } from 'react'
 import render from '../../dom/render'
 

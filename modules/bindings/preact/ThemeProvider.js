@@ -1,4 +1,4 @@
-/* @flow weak */
+/* @flow */
 import { Component } from 'preact'
 
 export default class ThemeProvider extends Component {
@@ -16,7 +16,7 @@ export default class ThemeProvider extends Component {
     }
   }
 
-  render({ children }) {
-    return children[0]
+  render() {
+    return this.props.children[0]
   }
 }
