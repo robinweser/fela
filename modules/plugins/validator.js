@@ -4,6 +4,7 @@ import { RULE_TYPE, KEYFRAME_TYPE } from '../utils/styleTypes'
 
 import isObject from '../utils/isObject'
 import isNestedSelector from '../utils/isNestedSelector'
+import isMediaQuery from '../utils/isMediaQuery'
 
 const percentageRegex = /from|to|%/
 
@@ -18,7 +19,7 @@ function validateStyleObject(
     const value = style[property]
 
     if (isObject(value)) {
-      if (isNestedSelector(property)) {
+      if (isNestedSelector(property) || isMediaQuery(property)) {
         validateStyleObject(value, logInvalid, deleteInvalid)
       } else {
         if (deleteInvalid) {
