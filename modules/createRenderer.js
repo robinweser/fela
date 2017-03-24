@@ -22,6 +22,8 @@ import processStyleWithPlugins from './utils/processStyleWithPlugins'
 import toCSSString from './utils/toCSSString'
 import checkFontFormat from './utils/checkFontFormat'
 
+import renderToString from './dom/server/renderToString'
+
 import { STATIC_TYPE, RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, CLEAR_TYPE } from './utils/styleTypes'
 
 export default function createRenderer(config = {}) {
@@ -77,7 +79,7 @@ export default function createRenderer(config = {}) {
               continue
             }
 
-            const className = renderer.selectorPrefix + generateClassName((++renderer.uniqueRuleIdentifier))
+            const className = renderer.selectorPrefix + generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className
 
@@ -114,7 +116,7 @@ export default function createRenderer(config = {}) {
 
       if (!renderer.cache[keyframeReference]) {
         // use another unique identifier to ensure minimal css markup
-        const animationName = generateAnimationName((++renderer.uniqueKeyframeIdentifier))
+        const animationName = generateAnimationName(++renderer.uniqueKeyframeIdentifier)
 
         const processedKeyframe = processStyleWithPlugins(renderer.plugins, resolvedKeyframe, KEYFRAME_TYPE)
         const cssKeyframe = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes)
@@ -176,13 +178,7 @@ export default function createRenderer(config = {}) {
       }
     },
     renderToString() {
-      let css = renderer.fontFaces + renderer.statics + renderer.keyframes + renderer.rules
-
-      for (const media in renderer.mediaRules) {
-        css += cssifyMediaQueryRules(media, renderer.mediaRules[media])
-      }
-
-      return css
+      return renderToString(renderer)
     },
     subscribe(callback) {
       renderer.listeners.push(callback)
