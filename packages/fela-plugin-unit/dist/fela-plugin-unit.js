@@ -80,6 +80,18 @@
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   };
 
+  babelHelpers.objectWithoutProperties = function (obj, keys) {
+    var target = {};
+
+    for (var i in obj) {
+      if (keys.indexOf(i) >= 0) continue;
+      if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+      target[i] = obj[i];
+    }
+
+    return target;
+  };
+
   babelHelpers.possibleConstructorReturn = function (self, call) {
     if (!self) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -101,10 +113,9 @@
   babelHelpers;
 
 
-  var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
-  function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
+  function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
-  var index$1 = __commonjs(function (module) {
+  var index = __commonjs(function (module) {
   'use strict';
 
   var uppercasePattern = /[A-Z]/g;
@@ -118,10 +129,47 @@
   module.exports = hyphenateStyleName;
   });
 
-  var require$$0 = (index$1 && typeof index$1 === 'object' && 'default' in index$1 ? index$1['default'] : index$1);
+  var require$$0$1 = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
 
-  var index = __commonjs(function (module) {
-  var hyphenateStyleName = require$$0;
+  var hyphenateProperty = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = hyphenateProperty;
+
+  var _hyphenateStyleName = require$$0$1;
+
+  var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
+
+  function hyphenateProperty(property) {
+    return (0, _hyphenateStyleName2.default)(property);
+  }
+  module.exports = exports['default'];
+  });
+
+  var require$$0 = (hyphenateProperty && typeof hyphenateProperty === 'object' && 'default' in hyphenateProperty ? hyphenateProperty['default'] : hyphenateProperty);
+
+  var isUnitlessProperty = __commonjs(function (module, exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = isUnitlessProperty;
+
+  var _hyphenateProperty = require$$0;
+
+  var _hyphenateProperty2 = _interopRequireDefault(_hyphenateProperty);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+  }
 
   var unitlessProperties = {
     borderImageOutset: true,
@@ -135,7 +183,6 @@
     widows: true,
     zIndex: true,
     zoom: true,
-
     // SVG-related properties
     fillOpacity: true,
     floodOpacity: true,
@@ -147,52 +194,41 @@
     strokeWidth: true
   };
 
-  var prefixedUnitlessProperties = {
-    animationIterationCount: true,
-    boxFlex: true,
-    boxFlexGroup: true,
-    boxOrdinalGroup: true,
-    columnCount: true,
-    flex: true,
-    flexGrow: true,
-    flexPositive: true,
-    flexShrink: true,
-    flexNegative: true,
-    flexOrder: true,
-    gridRow: true,
-    gridColumn: true,
-    order: true,
-    lineClamp: true
-  };
+  var prefixedUnitlessProperties = ['animationIterationCount', 'boxFlex', 'boxFlexGroup', 'boxOrdinalGroup', 'columnCount', 'flex', 'flexGrow', 'flexPositive', 'flexShrink', 'flexNegative', 'flexOrder', 'gridRow', 'gridColumn', 'order', 'lineClamp'];
 
   var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
 
-  function getPrefixedKey(prefix, key) {
-    return prefix + key.charAt(0).toUpperCase() + key.slice(1);
+  function getPrefixedProperty(prefix, property) {
+    return prefix + property.charAt(0).toUpperCase() + property.slice(1);
   }
 
   // add all prefixed properties to the unitless properties
-  Object.keys(prefixedUnitlessProperties).forEach(function (property) {
+  for (var i = 0, len = prefixedUnitlessProperties.length; i < len; ++i) {
+    var property = prefixedUnitlessProperties[i];
     unitlessProperties[property] = true;
 
-    prefixes.forEach(function (prefix) {
-      unitlessProperties[getPrefixedKey(prefix, property)] = true;
-    });
-  });
+    for (var j = 0, jLen = prefixes.length; j < jLen; ++j) {
+      unitlessProperties[getPrefixedProperty(prefixes[j], property)] = true;
+    }
+  }
 
   // add all hypenated properties as well
-  Object.keys(unitlessProperties).forEach(function (property) {
-    unitlessProperties[hyphenateStyleName(property)] = true;
+  for (var _property in unitlessProperties) {
+    unitlessProperties[(0, _hyphenateProperty2.default)(_property)] = true;
+  }
+
+  function isUnitlessProperty(property) {
+    return unitlessProperties.hasOwnProperty(property);
+  }
+  module.exports = exports['default'];
   });
 
-  module.exports = function (property) {
-    return unitlessProperties[property];
-  };
-  });
+  var isUnitlessProperty$1 = (isUnitlessProperty && typeof isUnitlessProperty === 'object' && 'default' in isUnitlessProperty ? isUnitlessProperty['default'] : isUnitlessProperty);
 
-  var isUnitlessCSSProperty = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
+  function isObject(value) {
+    return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
+  }
 
-  /*  weak */
   /* eslint-disable import/no-mutable-exports */
   var warning = function warning() {
     return true;
@@ -210,28 +246,29 @@
 
   var warning$1 = warning;
 
-  function addUnitIfNeeded(property, value, unit) {
+  function addUnitIfNeeded(property, value, propertyUnit) {
     var valueType = typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value);
     /* eslint-disable eqeqeq */
     if (valueType === 'number' || valueType === 'string' && value == parseFloat(value)) {
-      value += unit;
+      value += propertyUnit;
     }
     /* eslint-enable */
     return value;
   }
 
-  function addUnit(style, unit, propertyMap) {
+  function addUnit(style, defaultUnit, propertyMap) {
     var _loop = function _loop(property) {
-      if (!isUnitlessCSSProperty(property)) {
+      if (!isUnitlessProperty$1(property)) {
         (function () {
           var cssValue = style[property];
-          var propertyUnit = propertyMap[property] || unit;
-          if (Array.isArray(cssValue)) {
+          var propertyUnit = propertyMap[property] || defaultUnit;
+
+          if (isObject(cssValue)) {
+            style[property] = addUnit(cssValue, defaultUnit, propertyMap);
+          } else if (Array.isArray(cssValue)) {
             style[property] = cssValue.map(function (val) {
               return addUnitIfNeeded(property, val, propertyUnit);
             });
-          } else if (cssValue instanceof Object) {
-            style[property] = addUnit(cssValue, unit, propertyMap);
           } else {
             style[property] = addUnitIfNeeded(property, cssValue, propertyUnit);
           }
@@ -246,16 +283,16 @@
     return style;
   }
 
-  var unit = (function () {
-    var unit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'px';
+  function unit() {
+    var defaultUnit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'px';
     var propertyMap = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    warning$1(unit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit `' + unit + '`.\n    Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
+    warning$1(defaultUnit.match(/ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/) !== null, 'You are using an invalid unit "' + defaultUnit + '". Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.');
 
     return function (style) {
-      return addUnit(style, unit, propertyMap);
+      return addUnit(style, defaultUnit, propertyMap);
     };
-  });
+  }
 
   return unit;
 

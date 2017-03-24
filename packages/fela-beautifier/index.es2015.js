@@ -82,16 +82,6 @@ babelHelpers.possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-babelHelpers.toConsumableArray = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  } else {
-    return Array.from(arr);
-  }
-};
-
 babelHelpers;
 
 
@@ -590,11 +580,13 @@ var defaultOptions = {
   openbrace: 'end-of-line',
   autosemicolon: false
 };
-var beautifier = (function () {
+
+function beautifier() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
   return function (renderer) {
     return addBeautifier(renderer, babelHelpers.extends({}, defaultOptions, options));
   };
-});
+}
 
 export default beautifier;

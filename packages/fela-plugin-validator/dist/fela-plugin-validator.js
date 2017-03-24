@@ -40,35 +40,36 @@
     return target;
   };
 
-  babelHelpers.toConsumableArray = function (arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-      return arr2;
-    } else {
-      return Array.from(arr);
-    }
-  };
-
   babelHelpers;
 
-  /*  weak */
   var RULE_TYPE = 1;
   var KEYFRAME_TYPE = 2;
+
+  function isObject(value) {
+    return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
+  }
+
+  var regex = /^(:|\[|>|&)/;
+
+  function isNestedSelector(property) {
+    return regex.test(property);
+  }
+
+  var percentageRegex = /from|to|%/;
 
   function validateStyleObject(style, logInvalid, deleteInvalid) {
     for (var property in style) {
       var value = style[property];
-      if (value instanceof Object && !Array.isArray(value)) {
-        if (/^(@media|:|\[|>)/.test(property)) {
+
+      if (isObject(value)) {
+        if (isNestedSelector(property)) {
           validateStyleObject(value, logInvalid, deleteInvalid);
         } else {
           if (deleteInvalid) {
             delete style[property];
           }
           if (logInvalid) {
-            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid nested property. Only use nested `@media` queries or `:` pseudo classes.\n              Maybe you forgot to add a plugin that resolves `' + property + '`.', {
-              // eslint-disable-line
+            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid nested property. Only use nested media queries, pseudo classes, child selectors or &-combinators.\n              Maybe you forgot to add a plugin that resolves "' + property + '".', {
               property: property,
               value: value
             });
@@ -78,41 +79,47 @@
     }
   }
 
-  function validator(style, type, options) {
+  function isValidPercentage(percentage) {
+    var percentageValue = parseFloat(percentage);
+
+    return percentage.indexOf('%') > -1 && (percentageValue < 0 || percentageValue > 100);
+  }
+
+  function validateKeyframeObject(style, logInvalid, deleteInvalid) {
+    for (var percentage in style) {
+      var value = style[percentage];
+      if (!isObject(value)) {
+        if (logInvalid) {
+          console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe value. An object was expected.', {
+            percentage: percentage,
+            style: value
+          });
+        }
+        if (deleteInvalid) {
+          delete style[percentage];
+        }
+        // check for invalid percentage values, it only allows from, to or 0% - 100%
+      } else if (!percentageRegex.test(percentage) || !isValidPercentage(percentage)) {
+        if (logInvalid) {
+          console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe property.\n              Expected either `to`, `from` or a percentage value between 0 and 100.', {
+            percentage: percentage,
+            style: value
+          });
+        }
+        if (deleteInvalid) {
+          delete style[percentage];
+        }
+      }
+    }
+  }
+
+  function validateStyle(style, type, options) {
     var logInvalid = options.logInvalid,
         deleteInvalid = options.deleteInvalid;
 
 
     if (type === KEYFRAME_TYPE) {
-      for (var percentage in style) {
-        var percentageValue = parseFloat(percentage);
-        var value = style[percentage];
-        if (value instanceof Object === false) {
-          if (logInvalid) {
-            console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe value. An object was expected.', {
-              // eslint-disable-line
-              percentage: percentage,
-              style: value
-            });
-          }
-          if (deleteInvalid) {
-            delete style[percentage];
-          }
-        } else {
-          // check for invalid percentage values, it only allows from, to or 0% - 100%
-          if (!percentage.match(/from|to|%/) || percentage.indexOf('%') > -1 && (percentageValue < 0 || percentageValue > 100)) {
-            if (logInvalid) {
-              console.error((deleteInvalid ? '[Deleted] ' : ' ') + 'Invalid keyframe property.\n                Expected either `to`, `from` or a percentage value between 0 and 100.', {
-                percentage: percentage,
-                style: value
-              });
-            }
-            if (deleteInvalid) {
-              delete style[percentage];
-            }
-          }
-        }
-      }
+      validateKeyframeObject(style, logInvalid, deleteInvalid);
     } else if (type === RULE_TYPE) {
       validateStyleObject(style, logInvalid, deleteInvalid);
     }
@@ -124,13 +131,16 @@
     logInvalid: true,
     deleteInvalid: false
   };
-  var validator$1 = (function (options) {
-    return function (style, props, type) {
-      return validator(style, type, babelHelpers.extends({}, defaultOptions, options));
-    };
-  });
 
-  return validator$1;
+  function validator() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    return function (style, type) {
+      return validateStyle(style, type, babelHelpers.extends({}, defaultOptions, options));
+    };
+  }
+
+  return validator;
 
 }));
 //# sourceMappingURL=fela-plugin-validator.js.map

@@ -1,4 +1,4 @@
-/* @flow weak */
+/* @flow */
 import { Component, PropTypes, Children } from 'react'
 
 export default class ThemeProvider extends Component {

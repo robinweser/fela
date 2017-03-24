@@ -1,5 +1,7 @@
-/* @flow weak */
+/* @flow */
 import customProperty from './customProperty'
+
+import arrayReduce from '../utils/arrayReduce'
 
 const placeholderPrefixes = [
   '::-webkit-input-placeholder',
@@ -9,9 +11,16 @@ const placeholderPrefixes = [
   '::placeholder'
 ]
 
-export default () => customProperty({
-  '::placeholder': value => placeholderPrefixes.reduce((style, prefix) => {
-    style[prefix] = value
-    return style
-  }, {})
-})
+export default function placeholderPrefixer() {
+  return customProperty({
+    '::placeholder': value =>
+      arrayReduce(
+        placeholderPrefixes,
+        (style, prefix) => {
+          style[prefix] = value
+          return style
+        },
+        {}
+      )
+  })
+}

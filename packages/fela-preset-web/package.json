@@ -1,14 +1,16 @@
 {
   "name": "fela-preset-web",
-  "version": "4.2.6",
+  "version": "4.3.2",
   "description": "Fela plugin preset for web applications",
   "module": "index.es2015.js",
   "main": "index.js",
+  "typings": "index.d.ts",
   "files": [
     "LICENSE",
     "README.md",
+    "index.d.ts",
     "index.js",
-    "/dist"
+    "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -20,9 +22,9 @@
   "license": "MIT",
   "dependencies": {
     "inline-style-prefixer": "^3.0.0",
-    "unitless-css-property": "1.0.2"
+    "css-in-js-utils": "^1.0.3"
   },
   "peerDependencies": {
-    "fela": "4.2.6"
+    "fela": "4.3.2"
   }
 }

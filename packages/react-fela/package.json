@@ -1,6 +1,6 @@
 {
   "name": "react-fela",
-  "version": "4.2.6",
+  "version": "4.3.2",
   "description": "React bindings for Fela",
   "module": "index.es2015.js",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "LICENSE",
     "README.md",
     "index.js",
-    "/dist"
+    "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -22,7 +22,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^15.3.2",
-    "fela": "4.2.6"
+    "react": "*",
+    "fela": "4.3.2"
   }
 }

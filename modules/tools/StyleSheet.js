@@ -1,16 +1,20 @@
 /* @flow */
+import objectReduce from '../utils/objectReduce'
+
 export default {
-  create(styles: Object): Object {
-    const rules = {}
+  create(styleSheet: Object): Object {
+    return objectReduce(
+      styleSheet,
+      (ruleSheet, rule, ruleName) => {
+        if (typeof rule === 'function') {
+          ruleSheet[ruleName] = rule
+        } else {
+          ruleSheet[ruleName] = () => rule
+        }
 
-    for (const rule in styles) {
-      if (typeof styles[rule] !== 'function') {
-        rules[rule] = () => styles[rule]
-      } else {
-        rules[rule] = styles[rule]
-      }
-    }
-
-    return rules
+        return ruleSheet
+      },
+      {}
+    )
   }
 }

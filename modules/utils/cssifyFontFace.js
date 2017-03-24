@@ -1,6 +1,8 @@
-/* @flow weak */
-import cssifyObject from './cssifyObject'
+/* @flow */
+import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
-export default function cssifyFontFace(fontFace) {
+import type FontFace from '../../flowtypes/FontFace'
+
+export default function cssifyFontFace(fontFace: FontFace): string {
   return `@font-face{${cssifyObject(fontFace)}}`
 }

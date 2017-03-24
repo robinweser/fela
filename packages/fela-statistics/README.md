@@ -1,7 +1,7 @@
 # fela-statistics
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-statistics.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-194.98kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.91kb-brightgreen.svg">
 
 Statistic generation tool for Fela. It collects several information and metrics to better analyze your application CSS.<br>
 Right now, it provides the following information:
@@ -27,9 +27,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaStatistics` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-statistics@4.2.6/dist/fela-statistics.js"></script>
+<script src="https://unpkg.com/fela-statistics@4.3.2/dist/fela-statistics.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-statistics@4.2.6/dist/fela-statistics.min.js"></script>
+<script src="https://unpkg.com/fela-statistics@4.3.2/dist/fela-statistics.min.js"></script>
 ```
 
 

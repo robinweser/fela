@@ -40,37 +40,29 @@
     return target;
   };
 
-  babelHelpers.toConsumableArray = function (arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-      return arr2;
-    } else {
-      return Array.from(arr);
-    }
-  };
-
   babelHelpers;
 
+  function objectReduce(object, iterator, initialValue) {
+    for (var key in object) {
+      initialValue = iterator(initialValue, object[key], key);
+    }
+
+    return initialValue;
+  }
+
   var StyleSheet = {
-    create: function create(styles) {
-      var rules = {};
-
-      var _loop = function _loop(rule) {
-        if (typeof styles[rule] !== 'function') {
-          rules[rule] = function () {
-            return styles[rule];
-          };
+    create: function create(styleSheet) {
+      return objectReduce(styleSheet, function (ruleSheet, rule, ruleName) {
+        if (typeof rule === 'function') {
+          ruleSheet[ruleName] = rule;
         } else {
-          rules[rule] = styles[rule];
+          ruleSheet[ruleName] = function () {
+            return rule;
+          };
         }
-      };
 
-      for (var rule in styles) {
-        _loop(rule);
-      }
-
-      return rules;
+        return ruleSheet;
+      }, {});
     }
   };
 
@@ -78,17 +70,15 @@
     var queryValueMap = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var mapper = arguments[1];
 
-    var style = {};
-
-    for (var query in queryValueMap) {
+    return objectReduce(queryValueMap, function (style, value, query) {
       if (typeof mapper === 'string') {
-        style[query] = babelHelpers.defineProperty({}, mapper, queryValueMap[query]);
+        style[query] = babelHelpers.defineProperty({}, mapper, value);
       } else {
-        style[query] = mapper(queryValueMap[query]);
+        style[query] = mapper(value);
       }
-    }
 
-    return style;
+      return style;
+    }, {});
   }
 
   var index = {

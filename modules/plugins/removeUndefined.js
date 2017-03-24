@@ -1,16 +1,16 @@
-/* @flow weak */
-function isInvalid(value) {
-  return value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1
-}
+/* @flow */
+import isUndefinedValue from '../utils/isUndefinedValue'
+import isObject from '../utils/isObject'
 
-function removeUndefined(style) {
+function removeUndefined(style: Object): Object {
   for (const property in style) {
     const value = style[property]
-    if (Array.isArray(value)) {
-      style[property] = value.filter(val => !isInvalid(val))
-    } else if (value instanceof Object) {
+
+    if (isObject(value)) {
       style[property] = removeUndefined(value)
-    } else if (isInvalid(value)) {
+    } else if (Array.isArray(value)) {
+      style[property] = value.filter(val => !isUndefinedValue(val))
+    } else if (isUndefinedValue(value)) {
       delete style[property]
     }
   }

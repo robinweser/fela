@@ -1,10 +1,16 @@
-/* @flow weak */
+/* @flow */
+/* eslint-disable no-console */
+import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type NativeRenderer from '../../flowtypes/NativeRenderer'
+
 let counter = 0
 
-function addPerfTool(renderer) {
+function addPerfTool(
+  renderer: DOMRenderer | NativeRenderer
+): DOMRenderer | NativeRenderer {
   const existingRenderRule = renderer.renderRule.bind(renderer)
 
-  renderer.renderRule = (rule, props) => {
+  renderer.renderRule = (rule: Function, props: Object): string => {
     const timerCounter = `[${++counter}]`
 
     console.time(timerCounter)
@@ -21,4 +27,6 @@ function addPerfTool(renderer) {
   return renderer
 }
 
-export default () => addPerfTool
+export default function perf() {
+  return addPerfTool
+}

@@ -1,14 +1,9 @@
-/* @flow weak */
-import assignStyles from './utils/assignStyles'
+/* @flow */
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
-export default function combineRules(...rules) {
-  return (props) => {
-    const style = {}
+import arrayReduce from './utils/arrayReduce'
 
-    for (let i = 0, len = rules.length; i < len; ++i) {
-      assignStyles(style, rules[i](props))
-    }
-
-    return style
-  }
+export default function combineRules(...rules: Array<Function>): Function {
+  return (props: Object): Object =>
+    arrayReduce(rules, (style, rule) => assignStyle(style, rule(props)), {})
 }

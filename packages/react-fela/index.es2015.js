@@ -1,4 +1,4 @@
-import React, { Component, Children, PropTypes, createElement } from 'react';
+import { Component, Children, PropTypes, createElement } from 'react';
 
 var babelHelpers = {};
 babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -109,10 +109,8 @@ babelHelpers.toConsumableArray = function (arr) {
 babelHelpers;
 
 
-var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
-function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
+function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
-/*  weak */
 var RULE_TYPE = 1;
 
 function createDOMInterface(renderer, node) {
@@ -208,6 +206,7 @@ var generateDisplayName = function generateDisplayName(Comp) {
   return 'ConnectedFelaComponent';
 };
 
+var createVNode = Inferno.createVNode;
 function connect(mapStylesToProps) {
   return function (Comp) {
     var _class, _temp;
@@ -234,7 +233,9 @@ function connect(mapStylesToProps) {
             theme: theme || {}
           }))(renderer);
 
-          return React.createElement(Comp, babelHelpers.extends({}, this.props, { styles: styles }));
+          return createVNode(16, Comp, babelHelpers.extends({}, this.props, {
+            'styles': styles
+          }));
         }
       }]);
       return EnhancedComponent;
@@ -245,25 +246,55 @@ function connect(mapStylesToProps) {
   };
 }
 
-/*  weak */
+function arrayReduce(array, iterator, initialValue) {
+  for (var i = 0, len = array.length; i < len; ++i) {
+    initialValue = iterator(initialValue, array[i]);
+  }
+
+  return initialValue;
+}
+
 function extractPassThroughProps(passThrough, ruleProps) {
-  return passThrough.reduce(function (output, prop) {
-    output[prop] = ruleProps[prop];
+  return arrayReduce(passThrough, function (output, property) {
+    output[property] = ruleProps[property];
     return output;
   }, {});
 }
 
-/*  weak */
 function resolvePassThrough(passThrough, ruleProps) {
-  if (passThrough instanceof Function) {
+  if (typeof passThrough === 'function') {
     return Object.keys(passThrough(ruleProps));
   }
 
   return passThrough;
 }
 
-/*  weak */
-function assignStyles(base) {
+var assignStyle = __commonjs(function (module, exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && babelHelpers.typeof(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : babelHelpers.typeof(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : babelHelpers.typeof(obj);
+};
+
+exports.default = assignStyle;
+
+function _toConsumableArray(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }return arr2;
+  } else {
+    return Array.from(arr);
+  }
+}
+
+function assignStyle(base) {
   for (var _len = arguments.length, extendingStyles = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     extendingStyles[_key - 1] = arguments[_key];
   }
@@ -275,18 +306,18 @@ function assignStyles(base) {
       var value = style[property];
       var baseValue = base[property];
 
-      if (baseValue instanceof Object) {
+      if ((typeof baseValue === 'undefined' ? 'undefined' : _typeof(baseValue)) === 'object') {
         if (Array.isArray(baseValue)) {
           if (Array.isArray(value)) {
-            base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), babelHelpers.toConsumableArray(value));
+            base[property] = [].concat(_toConsumableArray(baseValue), _toConsumableArray(value));
           } else {
-            base[property] = [].concat(babelHelpers.toConsumableArray(baseValue), [value]);
+            base[property] = [].concat(_toConsumableArray(baseValue), [value]);
           }
           continue;
         }
 
-        if (value instanceof Object && !Array.isArray(value)) {
-          base[property] = assignStyles({}, baseValue, value);
+        if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && !Array.isArray(value)) {
+          base[property] = assignStyle({}, baseValue, value);
           continue;
         }
       }
@@ -297,6 +328,10 @@ function assignStyles(base) {
 
   return base;
 }
+module.exports = exports['default'];
+});
+
+var assignStyle$1 = (assignStyle && typeof assignStyle === 'object' && 'default' in assignStyle ? assignStyle['default'] : assignStyle);
 
 function combineRules() {
   for (var _len = arguments.length, rules = Array(_len), _key = 0; _key < _len; _key++) {
@@ -304,13 +339,9 @@ function combineRules() {
   }
 
   return function (props) {
-    var style = {};
-
-    for (var i = 0, len = rules.length; i < len; ++i) {
-      assignStyles(style, rules[i](props));
-    }
-
-    return style;
+    return arrayReduce(rules, function (style, rule) {
+      return assignStyle$1(style, rule(props));
+    }, {});
   };
 }
 
@@ -327,6 +358,10 @@ function createComponent(rule) {
         passThrough = _ref$passThrough === undefined ? [] : _ref$passThrough,
         ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', '_felaRule', 'passThrough']);
 
+    if (!renderer) {
+      var componentName = type.displayName ? type.displayName : type;
+      throw new Error('\n        createComponent() can\'t render styles for the component \'' + componentName + '\' without\n        Fela renderer in the context. Missing react-fela\'s <Provider /> at the app root?\n      ');
+    }
     var combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule;
 
     // compose passThrough props from arrays or functions
@@ -343,15 +378,22 @@ function createComponent(rule) {
 
     var componentProps = extractPassThroughProps(resolvedPassThrough, ruleProps);
 
-    componentProps.style = ruleProps.style;
+    ruleProps.theme = theme || {};
+
+    // fela-native support
+    if (renderer.isNativeRenderer) {
+      var felaStyle = renderer.renderRule(combinedRule, ruleProps);
+      componentProps.style = ruleProps.style ? [ruleProps.style, felaStyle] : felaStyle;
+    } else {
+      componentProps.style = ruleProps.style;
+      var cls = ruleProps.className ? ruleProps.className + ' ' : '';
+      componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
+    }
+
     componentProps.id = ruleProps.id;
     componentProps.ref = ruleProps.innerRef;
 
     var customType = ruleProps.is || type;
-    var cls = ruleProps.className ? ruleProps.className + ' ' : '';
-    ruleProps.theme = theme || {};
-
-    componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
     return createElement(customType, componentProps, children);
   };
 

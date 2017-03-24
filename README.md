@@ -7,12 +7,7 @@ It generates CSS and therefore supports all common CSS features such as media qu
 
 Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) or with any other view library. It even supports [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html).
 
-<img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master">
-<a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a>
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.75kb-brightgreen.svg">
-<img alt="npm version" src="https://badge.fury.io/js/fela.svg">
-<a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
+<img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.99kb-brightgreen.svg"> <img alt="npm version" src="https://badge.fury.io/js/fela.svg"> <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
 
 > [Try it on JSFiddle!](https://jsfiddle.net/mzrn1yvy/18/)
 
@@ -24,9 +19,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [unpkg](https://unpkg.com/).
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela@4.2.6/dist/fela.js"></script>
+<script src="https://unpkg.com/fela@4.3.2/dist/fela.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela@4.2.6/dist/fela.min.js"></script>
+<script src="https://unpkg.com/fela@4.3.2/dist/fela.min.js"></script>
 ```
 
 ## Features
@@ -106,12 +101,14 @@ render(renderer, mountNode)
 * [Vanilla JavaScript](http://fela.js.org/docs/introduction/Examples.html#vanilla) ([source](examples/vanilla))
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/react))
 * [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](examples/react-native))
-* [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
+* [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](examples/preact))
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
+* [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
 * [Fela + Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
 
 ## Community
 * [Aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
+* [Este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
 
 ## Packages
 This repository is made of several separate packages including the core package. For convenience sake, we keep the package versions in sync. Therefore every package gets updated along with the core package, even if nothing changed within a particular package.
@@ -125,6 +122,8 @@ The following list shows a quick overview of all existing packages.
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-native">fela-native</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-native"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-native.svg"> |
 | **Bindings** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/react-fela">react-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/react-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/preact-fela">preact-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/preact-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/preact-fela.svg"> |
+| <a href="https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela">inferno-fela</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/inferno-fela"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/inferno-fela.svg"> |
 | **Tools** |  |  |
 | <a href="https://github.com/rofrischmann/fela/tree/master/packages/fela-tools">fela-tools</a> | <img src="https://david-dm.org/rofrischmann/fela.svg?path=packages/fela-tools"> | <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-tools.svg"> |
 | **Plugins** |  |  |

@@ -1,23 +1,40 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import { StyleSheet } from 'react-native'
 
+/* @flow */
 import processStyleWithPlugins from '../utils/processStyleWithPlugins'
+import arrayEach from '../utils/arrayEach'
+
 import { RULE_TYPE } from '../utils/styleTypes'
 
-export default function createRenderer(config = {}) {
-  let renderer = {
+import type {
+  NativeRenderer,
+  NativeRendererConfig
+} from '../../flowtypes/NativeRenderer'
+
+export default function createRenderer(
+  config: NativeRendererConfig = {}
+): NativeRenderer {
+  let renderer: NativeRenderer = {
     listeners: [],
     plugins: config.plugins || [],
-    clear() {
+    isNativeRenderer: true,
+
+    clear(): void {
       renderer.cache = {}
       renderer.ids = []
     },
-    renderRule(rule, props = {}) {
+
+    renderRule(rule: Function, props: Object = {}): Object {
       const style = rule(props)
       const reference = JSON.stringify(style)
 
-      if (!renderer.cache[reference]) {
-        const processedStyle = processStyleWithPlugins(renderer.plugins, style, RULE_TYPE)
+      if (!renderer.cache.hasOwnProperty(reference)) {
+        const processedStyle = processStyleWithPlugins(
+          renderer.plugins,
+          style,
+          RULE_TYPE
+        )
         renderer.cache[reference] = StyleSheet.create({ style: processedStyle })
       }
 
@@ -29,9 +46,9 @@ export default function createRenderer(config = {}) {
   renderer.clear()
 
   if (config.enhancers) {
-    for (let i = 0, len = config.enhancers.length; i < len; ++i) {
-      renderer = config.enhancers[i](renderer)
-    }
+    arrayEach(config.enhancers, (enhancer) => {
+      renderer = enhancer(renderer)
+    })
   }
 
   return renderer

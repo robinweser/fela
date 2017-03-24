@@ -138,6 +138,16 @@ const packages = {
     entry: 'enhancers/statistics.js',
     dependencies: true
   },
+  'inferno-fela': {
+    name: 'InfernoFela',
+    entry: 'bindings/inferno/index.js',
+    dependencies: true
+  },
+  'preact-fela': {
+    name: 'PreactFela',
+    entry: 'bindings/preact/index.js',
+    dependencies: true
+  },
   'react-fela': {
     name: 'ReactFela',
     entry: 'bindings/react/index.js',
@@ -148,18 +158,31 @@ const packages = {
 const babelPlugin = babel({
   babelrc: false,
   presets: ['es2015-rollup', 'stage-0', 'react'],
-  plugins: ['transform-class-properties', 'transform-dev-warning', 'transform-node-env-inline']
+  plugins: [
+    'transform-class-properties',
+    'inferno',
+    'transform-dev-warning',
+    'transform-node-env-inline'
+  ]
 })
 const nodeResolverPlugin = nodeResolver({
   jsnext: true,
   main: true,
-  skip: ['react']
+  skip: [
+    'react',
+    'inferno-component',
+    'fela',
+    'preact',
+    'inferno-create-element'
+  ]
 })
 const commonJSPlugin = commonjs({ include: 'node_modules/**' })
 const uglifyPlugin = uglify()
 
 function rollupConfig(pkg, info, minify) {
-  const plugins = info.dependencies ? [babelPlugin, nodeResolverPlugin, commonJSPlugin] : [babelPlugin]
+  const plugins = info.dependencies
+    ? [babelPlugin, nodeResolverPlugin, commonJSPlugin]
+    : [babelPlugin]
   return {
     entry: `modules/${info.entry}`,
     plugins: minify ? plugins.concat(uglifyPlugin) : plugins
@@ -171,7 +194,10 @@ function bundleConfig(pkg, info, minify) {
     format: 'umd',
     globals: {
       react: 'React',
-      fela: 'Fela'
+      fela: 'Fela',
+      'inferno-component': 'InfernoComponent',
+      'inferno-create-component': 'InfernoCreateComponent',
+      preact: 'Preact'
     },
     moduleName: info.name,
     dest: `packages/${pkg}/dist/${info.dest ? info.dest : pkg}${minify ? '.min' : ''}.js`,
@@ -184,7 +210,10 @@ function esModuleConfig(pkg, info) {
     format: 'es6',
     globals: {
       react: 'React',
-      fela: 'Fela'
+      fela: 'Fela',
+      'inferno-component': 'InfernoComponent',
+      'inferno-create-component': 'InfernoCreateComponent',
+      preact: 'Preact'
     },
     moduleName: info.name,
     dest: `packages/${pkg}/index.es2015.js`,
@@ -242,11 +271,16 @@ function updateReadme(pkg, bundleSize) {
       const bundleString = (bundleSize / 1000).toString().split('.')
       const readme = data
         .replace(/@[1-9]*[.][0-9]*[.][0-9]*/g, `@${globalVersion}`)
-        .replace(/gzipped-[0-9]*[.][0-9]*kb/, `gzipped-${bundleString[0]}.${bundleString[1].substr(0, 2)}kb`)
+        .replace(
+          /gzipped-[0-9]*[.][0-9]*kb/,
+          `gzipped-${bundleString[0]}.${bundleString[1].substr(0, 2)}kb`
+        )
 
       fs.writeFile(path, readme, (err) => {
         errorOnFail(err, pkg)
-        console.log(`Successfully updated ${pkg} README.md to ${globalVersion}.`)
+        console.log(
+          `Successfully updated ${pkg} README.md to ${globalVersion}.`
+        )
       })
     })
   })
@@ -254,9 +288,15 @@ function updateReadme(pkg, bundleSize) {
 
 function buildPackage(pkg) {
   rollup
-    .rollup(rollupConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production'))
+    .rollup(
+      rollupConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')
+    )
     .then((bundle) => {
-      const config = bundleConfig(pkg, packages[pkg], process.env.NODE_ENV === 'production')
+      const config = bundleConfig(
+        pkg,
+        packages[pkg],
+        process.env.NODE_ENV === 'production'
+      )
 
       if (process.env.NODE_ENV === 'production') {
         updateReadme(pkg, gzip.zip(bundle.generate(config).code).length)
@@ -277,7 +317,9 @@ function buildPackage(pkg) {
         const config = esModuleConfig(pkg, packages[pkg])
 
         bundle.write(config)
-        console.log(`Successfully bundled ${packages[pkg].name} es2015 module.`)
+        console.log(
+          `Successfully bundled ${packages[pkg].name} es2015 module.`
+        )
       })
       .catch(err => errorOnFail(err, pkg))
   }

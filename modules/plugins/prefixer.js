@@ -1,34 +1,47 @@
-/* @flow weak */
+/* @flow */
 import prefix from 'inline-style-prefixer/static'
+import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
 import fallbackValue from './fallbackValue'
-import cssifyObject from '../utils/cssifyObject'
+
+import isObject from '../utils/isObject'
+import objectReduce from '../utils/objectReduce'
 
 const resolveFallbackValues = fallbackValue()
 
-// TODO: refactor this messy piece of code
-// into clean, performant equivalent
-function addVendorPrefixes(style) {
-  const prefixedStyle = {}
+function addVendorPrefixes(style: Object): Object {
+  return objectReduce(
+    style,
+    (prefixedStyle, value, property) => {
+      if (isObject(value)) {
+        prefixedStyle[property] = addVendorPrefixes(value)
+      } else {
+        const prefixedDeclaration = prefix({ [property]: style[property] })
+        const styleKeys = Object.keys(prefixedDeclaration)
 
-  for (const property in style) {
-    const value = style[property]
-    if (value instanceof Object && !Array.isArray(value)) {
-      prefixedStyle[property] = addVendorPrefixes(value)
-    } else {
-      const declaration = { [property]: style[property] }
-      const prefixedDeclaration = resolveFallbackValues(prefix(declaration))
+        const referenceProperty = styleKeys[0]
+        const referenceValue = prefixedDeclaration[referenceProperty]
 
-      const referenceProperty = Object.keys(prefixedDeclaration)[0]
-      const referenceValue = prefixedDeclaration[referenceProperty]
-      delete prefixedDeclaration[referenceProperty]
-      const inlinedProperties = cssifyObject(prefixedDeclaration)
-      prefixedStyle[referenceProperty] = referenceValue +
-        (inlinedProperties ? `;${inlinedProperties}` : '')
-    }
-  }
+        if (styleKeys.length === 1) {
+          prefixedStyle[referenceProperty] = referenceValue
+        } else {
+          delete prefixedDeclaration[referenceProperty]
+          const inlinedProperties = cssifyObject(
+            resolveFallbackValues(prefixedDeclaration)
+          )
 
-  return prefixedStyle
+          prefixedStyle[
+            referenceProperty
+          ] = `${referenceValue};${inlinedProperties}`
+        }
+      }
+
+      return prefixedStyle
+    },
+    {}
+  )
 }
 
-export default () => addVendorPrefixes
+export default function prefixer() {
+  return addVendorPrefixes
+}

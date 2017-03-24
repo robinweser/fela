@@ -1,21 +1,28 @@
 {
   "private": true,
-  "version": "4.2.6",
-  "description": "Full-Featured Universal, Dynamic & High-Performance Styling in JavaScript",
+  "version": "4.3.2",
+  "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "repository": "https://github.com/rofrischmann/fela/",
   "author": "Robin Frischmann",
   "license": "MIT",
   "scripts": {
     "babel": "babel -d packages/fela/lib modules",
-    "check": "mocha --opts test/_setup/mocha.opts",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
+    "check": "npm run lint && npm run test:coverage && npm run flow",
+    "format": "prettier-eslint modules/**/*.js --write",
     "flow": "flow",
     "lint": "eslint modules",
-    "precommit": "npm run lint && npm test && npm run flow",
-    "prepare": "npm run precommit && npm run babel && npm run dist",
-    "release": "npm run prepare && ./scripts/publishPackages.sh && npm run docs",
-    "test": "istanbul cover node_modules/mocha/bin/_mocha -- --opts test/_setup/mocha.opts"
+    "release:prepare": "npm run check && npm run babel && npm run dist",
+    "release": "npm run release:prepare && ./scripts/publishPackages.sh && npm run docs",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "rootDir": "modules",
+    "testPathIgnorePatterns": [
+      "/mocks/"
+    ]
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -23,6 +30,7 @@
     "babel-core": "^6.6.0",
     "babel-eslint": "^7.1.1",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-inferno": "^1.9.0",
     "babel-plugin-transform-class-properties": "^6.9.1",
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-node-env-inline": "^6.8.0",
@@ -30,9 +38,9 @@
     "babel-preset-es2015-rollup": "^1.1.1",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
-    "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.3.1",
     "cross-env": "^1.0.8",
+    "css-in-js-utils": "^1.0.3",
     "cssbeautify": "^0.3.1",
     "eslint": "^3.14.0",
     "eslint-config-airbnb": "^14.0.0",
@@ -48,18 +56,20 @@
     "gitbook-cli": "^2.3.0",
     "gzip-js": "^0.3.2",
     "gzip-size": "^3.0.0",
-    "inline-style-prefixer": "^2.0.1",
-    "istanbul": "^1.0.0-alpha.2",
-    "mocha": "^2.4.5",
+    "inferno": "^1.0.1",
+    "inferno-component": "^1.0.1",
+    "inferno-create-element": "^1.0.1",
+    "inline-style-prefixer": "^3.0.1",
+    "jest": "^19.0.2",
+    "prettier-eslint": "^4.2.1",
+    "prettier-eslint-cli": "^3.1.2",
+    "preact": "^7.0.0",
     "react": "^15.3.2",
+    "react-native": "^0.42.0",
     "rollup": "0.26.3",
     "rollup-plugin-babel": "2.4.0",
     "rollup-plugin-commonjs": "2.2.1",
     "rollup-plugin-node-resolve": "1.5.0",
-    "rollup-plugin-uglify": "0.3.1",
-    "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0",
-    "text-encoding": "^0.6.4",
-    "unitless-css-property": "^1.0.1"
+    "rollup-plugin-uglify": "0.3.1"
   }
 }

@@ -1,11 +1,14 @@
 /* @flow */
+import isObject from '../utils/isObject'
+
 function resolveNamedMediaQuery(style: Object, mediaQueryMap: Object) {
   for (const property in style) {
     const value = style[property]
-    if (value instanceof Object && !Array.isArray(value)) {
+
+    if (isObject(value)) {
       const resolvedValue = resolveNamedMediaQuery(value, mediaQueryMap)
 
-      if (mediaQueryMap[property]) {
+      if (mediaQueryMap.hasOwnProperty(property)) {
         style[mediaQueryMap[property]] = resolvedValue
         delete style[property]
       }
@@ -15,5 +18,6 @@ function resolveNamedMediaQuery(style: Object, mediaQueryMap: Object) {
   return style
 }
 
-export default (mediaQueryMap: Object) =>
-  (style: Object) => resolveNamedMediaQuery(style, mediaQueryMap)
+export default function namedMediaQuery(mediaQueryMap: Object) {
+  return (style: Object) => resolveNamedMediaQuery(style, mediaQueryMap)
+}

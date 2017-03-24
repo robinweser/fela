@@ -1,10 +1,10 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('hyphenate-style-name')) :
-  typeof define === 'function' && define.amd ? define(['hyphenate-style-name'], factory) :
-  (global.FelaMonolithic = factory(global.hyphenateStyleName));
-}(this, function (hyphenateStyleName) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('css-in-js-utils/lib/cssifyDeclaration')) :
+  typeof define === 'function' && define.amd ? define(['css-in-js-utils/lib/cssifyDeclaration'], factory) :
+  (global.FelaMonolithic = factory(global.cssifyDeclaration));
+}(this, function (cssifyDeclaration) { 'use strict';
 
-  hyphenateStyleName = 'default' in hyphenateStyleName ? hyphenateStyleName['default'] : hyphenateStyleName;
+  cssifyDeclaration = 'default' in cssifyDeclaration ? cssifyDeclaration['default'] : cssifyDeclaration;
 
   var babelHelpers = {};
   babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -42,19 +42,8 @@
     return target;
   };
 
-  babelHelpers.toConsumableArray = function (arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-      return arr2;
-    } else {
-      return Array.from(arr);
-    }
-  };
-
   babelHelpers;
 
-  /*  weak */
   function cssifyMediaQueryRules(mediaQuery, mediaQueryRules) {
     if (mediaQueryRules) {
       return '@media ' + mediaQuery + '{' + mediaQueryRules + '}';
@@ -63,45 +52,38 @@
     return '';
   }
 
-  /*  weak */
   function generateCombinedMediaQuery(currentMediaQuery, nestedMediaQuery) {
     if (currentMediaQuery.length === 0) {
       return nestedMediaQuery;
     }
+
     return currentMediaQuery + " and " + nestedMediaQuery;
   }
 
-  function generateCSSDeclaration(property, value) {
-    return hyphenateStyleName(property) + ':' + value;
-  }
-
-  /*  weak */
   function generateCSSRule(selector, cssDeclaration) {
     return selector + "{" + cssDeclaration + "}";
   }
 
-  /*  weak */
   function getCSSSelector(className) {
     var pseudo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
     return '.' + className + pseudo;
   }
 
-  /*  weak */
   function isMediaQuery(property) {
     return property.substr(0, 6) === '@media';
   }
 
-  /*  weak */
+  var regex = /^(:|\[|>|&)/;
+
   function isNestedSelector(property) {
-    return property.match(/^(:|\[|>|&)/g) !== null;
+    return regex.test(property);
   }
 
   function isUndefinedValue(value) {
-    return value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1;
+    return value === undefined || typeof value === 'string' && value.indexOf('undefined') !== -1;
   }
 
-  /*  weak */
   function normalizeNestedProperty(nestedProperty) {
     if (nestedProperty.charAt(0) === '&') {
       return nestedProperty.slice(1);
@@ -110,16 +92,15 @@
     return nestedProperty;
   }
 
-  /*  weak */
   var RULE_TYPE = 1;
 
-  function generateClassName(str, prefix) {
-    if (str.className) {
-      var name = prefix + str.className;
-      delete str.className;
+  function generateClassName(style, prefix) {
+    if (style.className) {
+      var name = prefix + style.className;
+      delete style.className;
       return name;
     }
-    var stringified = JSON.stringify(str);
+    var stringified = JSON.stringify(style);
     var val = 5381;
     var i = stringified.length;
 
@@ -130,7 +111,7 @@
     return prefix + (val >>> 0).toString(36);
   }
 
-  function addMonolithicClassNames(renderer) {
+  function useMonolithicRenderer(renderer) {
     renderer._parseMonolithicRules = function (selector, styles) {
       var mediaSelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
 
@@ -145,11 +126,11 @@
         if (isUndefinedValue(value)) {
           return 'continue';
         } else if (type === 'number' || type === 'string') {
-          decs.push(generateCSSDeclaration(key, value));
+          decs.push(cssifyDeclaration(key, value));
           return 'continue';
         } else if (Array.isArray(value)) {
           value.forEach(function (val) {
-            return decs.push(generateCSSDeclaration(key, val));
+            return decs.push(cssifyDeclaration(key, val));
           });
           return 'continue';
         } else if (isNestedSelector(key)) {
@@ -194,6 +175,7 @@
       if (!Object.keys(style).length) {
         return '';
       }
+
       var className = generateClassName(style, renderer.selectorPrefix || 'fela-');
       var selector = getCSSSelector(className);
 
@@ -244,9 +226,9 @@
     return renderer;
   }
 
-  var monolithic = (function () {
-    return addMonolithicClassNames;
-  });
+  function monolithic() {
+    return useMonolithicRenderer;
+  }
 
   return monolithic;
 

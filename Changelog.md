@@ -2,6 +2,30 @@
 
 ## 4.0
 
+#### 4.3.2
+* fixed render returns for `<Provider>` and `<ThemeProvider>` in [preact-fela](packages/preact-fela) ( [#228](https://github.com/rofrischmann/fela/pull/228) )
+* added TypeScript typings to the plugin presets ( [#229](https://github.com/rofrischmann/fela/pull/229) )
+
+#### 4.3.1 (hot fix)
+* fix for wrong exports of [fela-plugin-fallback-value](packages/fela-plugin-fallback-value)
+
+#### 4.3.0
+##### Improvements
+* introducting [preact-fela](packages/preact-fela) ( [#207](https://github.com/rofrischmann/fela/pull/207) )
+* updated [inferno-fela](packages/inferno-fela) ( [#212](https://github.com/rofrischmann/fela/pull/212) )
+* first-hand fela-native support for `createComponent` ( [#213](https://github.com/rofrischmann/fela/pull/213) )
+* improved [fela-plugin-prefixer](packages/fela-plugin-prefixer) performance
+* various small performance improvements
+
+##### Infrastructure
+* typed the whole code base with Flow
+* using Jest and Prettier
+* fixed package exports for JSPM users
+* improved TypeScript type definitions
+* many small documentation improvements
+
+------
+
 #### 4.2.6
 * introducing the [fela-statistics](packages/fela-statistics) enhancer providing many different metrics to analyze your styling ( [#203](https://github.com/rofrischmann/fela/issues/203) )
 * added the option to pass a static `className` to the fela-monolithic enhancer ( [#201](https://github.com/rofrischmann/fela/issues/201) )

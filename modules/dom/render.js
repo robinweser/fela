@@ -7,7 +7,9 @@ export default function render(renderer, mountNode) {
   // mountNode must be a valid HTML element to be able
   // to set mountNode.textContent later on
   if (!isValidHTMLElement(mountNode)) {
-    throw new Error('You need to specify a valid element node (nodeType = 1) to render into.')
+    throw new Error(
+      'You need to specify a valid element node (nodeType = 1) to render into.'
+    )
   }
 
   // warns if the DOM node either is not a valid <style> element

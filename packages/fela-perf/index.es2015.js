@@ -36,7 +36,7 @@ babelHelpers.extends = Object.assign || function (target) {
 
 babelHelpers;
 
-/*  weak */
+/* eslint-disable no-console */
 var counter = 0;
 
 function addPerfTool(renderer) {
@@ -59,8 +59,8 @@ function addPerfTool(renderer) {
   return renderer;
 }
 
-var perf = (function () {
+function perf() {
   return addPerfTool;
-});
+}
 
 export default perf;

@@ -42,7 +42,12 @@
 
   babelHelpers;
 
-  /*  weak */
+  function arrayEach(array, iterator) {
+    for (var i = 0, len = array.length; i < len; ++i) {
+      iterator(array[i], i);
+    }
+  }
+
   var precedence = {
     ':link': 0,
     ':visited': 1,
@@ -53,32 +58,30 @@
 
   var pseudoClasses = Object.keys(precedence);
 
-  function LVHA(style) {
+  function orderLVHA(style) {
     var pseudoList = [];
 
     for (var property in style) {
-      if (precedence[property]) {
+      if (precedence.hasOwnProperty(property)) {
         pseudoList[precedence[property]] = style[property];
         delete style[property];
       }
     }
 
-    for (var i = 0, len = pseudoList.length; i < len; ++i) {
-      var pseudoStyle = pseudoList[i];
-
+    arrayEach(pseudoList, function (pseudoStyle, index) {
       if (pseudoStyle) {
-        style[pseudoClasses[i]] = pseudoStyle;
+        style[pseudoClasses[index]] = pseudoStyle;
       }
-    }
+    });
 
     return style;
   }
 
-  var LVHA$1 = (function () {
-    return LVHA;
-  });
+  function LVHA() {
+    return orderLVHA;
+  }
 
-  return LVHA$1;
+  return LVHA;
 
 }));
 //# sourceMappingURL=fela-plugin-lvha.js.map

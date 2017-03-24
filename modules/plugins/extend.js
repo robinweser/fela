@@ -1,31 +1,35 @@
-/* @flow weak */
-/* eslint-disable no-use-before-define */
+/* @flow */
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
-import assignStyles from '../utils/assignStyles'
+import isObject from '../utils/isObject'
+import arrayEach from '../utils/arrayEach'
 
-function extendStyle(style, extension) {
+function extendStyle(
+  style: Object,
+  extension: Object,
+  extendPlugin: Function
+): void {
   // extend conditional style objects
   if (extension.hasOwnProperty('condition')) {
     if (extension.condition) {
-      assignStyles(style, extend(extension.style))
+      assignStyle(style, extendPlugin(extension.style))
     }
   } else {
     // extend basic style objects
-    assignStyles(style, extension)
+    assignStyle(style, extension)
   }
 }
 
-function extend(style) {
+function extend(style: Object): Object {
   for (const property in style) {
     const value = style[property]
+
     if (property === 'extend') {
-      // arrayify to loop each extension to support arrays and single extends
       const extensions = [].concat(value)
-      for (let i = 0, len = extensions.length; i < len; ++i) {
-        extendStyle(style, extensions[i])
-      }
+
+      arrayEach(extensions, extension => extendStyle(style, extension, extend))
       delete style[property]
-    } else if (value instanceof Object && !Array.isArray(value)) {
+    } else if (isObject(value)) {
       // support nested extend as well
       style[property] = extend(value)
     }

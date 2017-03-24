@@ -1,4 +1,5 @@
-import hyphenateStyleName from 'hyphenate-style-name';
+import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration';
+import cssifyObject from 'css-in-js-utils/lib/cssifyObject';
 
 var babelHelpers = {};
 babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -36,59 +37,40 @@ babelHelpers.extends = Object.assign || function (target) {
   return target;
 };
 
-babelHelpers.toConsumableArray = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  } else {
-    return Array.from(arr);
-  }
-};
-
 babelHelpers;
-
-function generateCSSDeclaration(property, value) {
-  return hyphenateStyleName(property) + ':' + value;
-}
-
-function cssifyObject(style) {
-  var css = '';
-
-  for (var property in style) {
-    if (typeof style[property] !== 'string' && typeof style[property] !== 'number') {
-      continue;
-    }
-
-    // prevents the semicolon after
-    // the last rule declaration
-    if (css) {
-      css += ';';
-    }
-
-    css += generateCSSDeclaration(property, style[property]);
-  }
-
-  return css;
-}
 
 function cssifyFontFace(fontFace) {
   return '@font-face{' + cssifyObject(fontFace) + '}';
 }
 
+function arrayReduce(array, iterator, initialValue) {
+  for (var i = 0, len = array.length; i < len; ++i) {
+    initialValue = iterator(initialValue, array[i]);
+  }
+
+  return initialValue;
+}
+
+function objectReduce(object, iterator, initialValue) {
+  for (var key in object) {
+    initialValue = iterator(initialValue, object[key], key);
+  }
+
+  return initialValue;
+}
+
 function cssifyKeyframe(frames, animationName) {
   var prefixes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [''];
 
-  var keyframe = Object.keys(frames).reduce(function (css, percentage) {
-    return css + percentage + '{' + cssifyObject(frames[percentage]) + '}';
+  var keyframe = objectReduce(frames, function (css, frame, percentage) {
+    return '' + css + percentage + '{' + cssifyObject(frame) + '}';
   }, '');
 
-  return prefixes.reduce(function (css, prefix) {
-    return css + '@' + prefix + 'keyframes ' + animationName + '{' + keyframe + '}';
+  return arrayReduce(prefixes, function (cssKeyframe, prefix) {
+    return cssKeyframe + '@' + prefix + 'keyframes ' + animationName + '{' + keyframe + '}';
   }, '');
 }
 
-/*  weak */
 function cssifyMediaQueryRules(mediaQuery, mediaQueryRules) {
   if (mediaQueryRules) {
     return '@media ' + mediaQuery + '{' + mediaQueryRules + '}';
@@ -97,12 +79,10 @@ function cssifyMediaQueryRules(mediaQuery, mediaQueryRules) {
   return '';
 }
 
-/*  weak */
 function generateAnimationName(id) {
   return "k" + id;
 }
 
-/*  weak */
 var chars = 'abcdefghijklmnopqrstuvwxyz';
 var charLength = chars.length;
 
@@ -117,40 +97,39 @@ function generateClassName(id) {
   return generateClassName(id / charLength | 0, chars[id % charLength] + className);
 }
 
-/*  weak */
 function generateCombinedMediaQuery(currentMediaQuery, nestedMediaQuery) {
   if (currentMediaQuery.length === 0) {
     return nestedMediaQuery;
   }
+
   return currentMediaQuery + " and " + nestedMediaQuery;
 }
 
-/*  weak */
 function generateCSSRule(selector, cssDeclaration) {
   return selector + "{" + cssDeclaration + "}";
 }
 
-/*  weak */
 function getCSSSelector(className) {
   var pseudo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
   return '.' + className + pseudo;
 }
 
-/*  weak */
 function minifyCSSString(style) {
   return style.replace(/\s{2,}/g, '');
 }
 
 function processStyleWithPlugins(plugins, style, type) {
-  for (var i = 0; i < plugins.length; ++i) {
-    style = plugins[i](style, type);
+  if (plugins.length > 0) {
+    return arrayReduce(plugins, function (processedStyle, plugin) {
+      processedStyle = plugin(processedStyle, type);
+      return processedStyle;
+    }, style);
   }
 
   return style;
 }
 
-/*  weak */
 var RULE_TYPE = 1;
 var KEYFRAME_TYPE = 2;
 var FONT_TYPE = 3;
@@ -166,30 +145,36 @@ function cssifyStaticStyle(staticStyle, plugins) {
   return cssifyObject(processedStaticStyle);
 }
 
-/*  weak */
 function generateStaticReference(style, selector) {
   if (typeof style === 'string') {
     return style;
   }
 
-  return selector + JSON.stringify(style);
+  if (selector) {
+    return selector + JSON.stringify(style);
+  }
+
+  return '';
 }
 
-/*  weak */
 function isMediaQuery(property) {
   return property.substr(0, 6) === '@media';
 }
 
-/*  weak */
+var regex = /^(:|\[|>|&)/;
+
 function isNestedSelector(property) {
-  return property.match(/^(:|\[|>|&)/g) !== null;
+  return regex.test(property);
 }
 
 function isUndefinedValue(value) {
-  return value === undefined || typeof value === 'string' && value.indexOf('undefined') > -1;
+  return value === undefined || typeof value === 'string' && value.indexOf('undefined') !== -1;
 }
 
-/*  weak */
+function isObject(value) {
+  return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
+}
+
 function normalizeNestedProperty(nestedProperty) {
   if (nestedProperty.charAt(0) === '&') {
     return nestedProperty.slice(1);
@@ -198,26 +183,21 @@ function normalizeNestedProperty(nestedProperty) {
   return nestedProperty;
 }
 
-/*  weak */
 function applyMediaRulesInOrder(order) {
-  var mediaRules = {};
-
-  for (var i = 0, len = order.length; i < len; ++i) {
-    mediaRules[order[i]] = '';
-  }
-
-  return mediaRules;
+  return arrayReduce(order, function (mediaRules, query) {
+    mediaRules[query] = '';
+    return mediaRules;
+  }, {});
 }
 
-/*  weak */
 function toCSSString(value) {
   if (value.charAt(0) === '"') {
     return value;
   }
+
   return '"' + value + '"';
 }
 
-/*  weak */
 var formats = {
   '.woff': 'woff',
   '.eot': 'eot',
@@ -234,8 +214,15 @@ function checkFontFormat(src) {
       return formats[extension];
     }
   }
-  // TODO: warning: wrong font format
-  return undefined;
+
+  void 0;
+  return '';
+}
+
+function arrayEach(array, iterator) {
+  for (var i = 0, len = array.length; i < len; ++i) {
+    iterator(array[i], i);
+  }
 }
 
 function createRenderer() {
@@ -247,87 +234,24 @@ function createRenderer() {
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
-    clear: function clear() {
-      renderer.fontFaces = '';
-      renderer.keyframes = '';
-      renderer.statics = '';
-      renderer.rules = '';
-      // apply media rules in an explicit order to ensure
-      // correct media query execution order
-      renderer.mediaRules = applyMediaRulesInOrder(renderer.mediaQueryOrder);
-      renderer.rendered = [];
-      renderer.uniqueRuleIdentifier = 0;
-      renderer.uniqueKeyframeIdentifier = 0;
-      // use a flat cache object with pure string references
-      // to achieve maximal lookup performance and memoization speed
-      renderer.cache = {};
+    fontFaces: '',
+    keyframes: '',
+    statics: '',
+    rules: '',
+    // apply media rules in an explicit order to ensure
+    // correct media query execution order
+    mediaRules: applyMediaRulesInOrder(config.mediaQueryOrder || []),
+    uniqueRuleIdentifier: 0,
+    uniqueKeyframeIdentifier: 0,
+    // use a flat cache object with pure string references
+    // to achieve maximal lookup performance and memoization speed
+    cache: {},
 
-      // initial change emit to enforce a clear start
-      renderer._emitChange({ type: CLEAR_TYPE });
-    },
     renderRule: function renderRule(rule) {
       var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       var processedStyle = processStyleWithPlugins(renderer.plugins, rule(props), RULE_TYPE);
       return renderer._renderStyleToClassNames(processedStyle).slice(1);
-    },
-    _renderStyleToClassNames: function _renderStyleToClassNames(style) {
-      var pseudo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-      var media = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
-
-      var classNames = '';
-
-      for (var property in style) {
-        var value = style[property];
-        if (value instanceof Object) {
-          if (isNestedSelector(property)) {
-            classNames += renderer._renderStyleToClassNames(value, pseudo + normalizeNestedProperty(property), media);
-          } else if (isMediaQuery(property)) {
-            var combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim());
-            classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery);
-          } else {
-            // TODO: warning
-          }
-        } else {
-          var declarationReference = media + pseudo + property + value;
-          if (!renderer.cache[declarationReference]) {
-            // we remove undefined values to enable
-            // usage of optional props without side-effects
-            if (isUndefinedValue(value)) {
-              renderer.cache[declarationReference] = '';
-              continue;
-            }
-
-            var className = renderer.selectorPrefix + generateClassName(++renderer.uniqueRuleIdentifier);
-
-            renderer.cache[declarationReference] = className;
-
-            var cssDeclaration = generateCSSDeclaration(property, value);
-            var selector = getCSSSelector(className, pseudo);
-            var cssRule = generateCSSRule(selector, cssDeclaration);
-
-            if (media) {
-              if (!renderer.mediaRules.hasOwnProperty(media)) {
-                renderer.mediaRules[media] = '';
-              }
-              renderer.mediaRules[media] += cssRule;
-            } else {
-              renderer.rules += cssRule;
-            }
-
-            renderer._emitChange({
-              selector: selector,
-              declaration: cssDeclaration,
-              media: media,
-              type: RULE_TYPE
-            });
-          }
-
-          classNames += ' ' + renderer.cache[declarationReference];
-        }
-      }
-
-      return classNames;
     },
     renderKeyframe: function renderKeyframe(keyframe) {
       var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -335,12 +259,14 @@ function createRenderer() {
       var resolvedKeyframe = keyframe(props);
       var keyframeReference = JSON.stringify(resolvedKeyframe);
 
-      if (!renderer.cache[keyframeReference]) {
+      if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
         var animationName = generateAnimationName(++renderer.uniqueKeyframeIdentifier);
 
         var processedKeyframe = processStyleWithPlugins(renderer.plugins, resolvedKeyframe, KEYFRAME_TYPE);
+
         var cssKeyframe = cssifyKeyframe(processedKeyframe, animationName, renderer.keyframePrefixes);
+
         renderer.cache[keyframeReference] = animationName;
         renderer.keyframes += cssKeyframe;
 
@@ -358,7 +284,7 @@ function createRenderer() {
 
       var fontReference = family + JSON.stringify(properties);
 
-      if (!renderer.cache[fontReference]) {
+      if (!renderer.cache.hasOwnProperty(fontReference)) {
         var fontFamily = toCSSString(family);
 
         // TODO: proper font family generation with error proofing
@@ -385,9 +311,9 @@ function createRenderer() {
     renderStatic: function renderStatic(staticStyle, selector) {
       var staticReference = generateStaticReference(staticStyle, selector);
 
-      if (!renderer.cache[staticReference]) {
+      if (!renderer.cache.hasOwnProperty(staticReference)) {
         var cssDeclarations = cssifyStaticStyle(staticStyle, renderer.plugins);
-        renderer.cache[staticReference] = true;
+        renderer.cache[staticReference] = '';
 
         if (typeof staticStyle === 'string') {
           renderer.statics += cssDeclarations;
@@ -395,7 +321,7 @@ function createRenderer() {
             type: STATIC_TYPE,
             css: cssDeclarations
           });
-        } else {
+        } else if (selector) {
           renderer.statics += generateCSSRule(selector, cssDeclarations);
           renderer._emitChange({
             selector: selector,
@@ -408,24 +334,101 @@ function createRenderer() {
       }
     },
     renderToString: function renderToString() {
-      var css = renderer.fontFaces + renderer.statics + renderer.keyframes + renderer.rules;
+      var basicCSS = renderer.fontFaces + renderer.statics + renderer.keyframes + renderer.rules;
 
-      for (var media in renderer.mediaRules) {
-        css += cssifyMediaQueryRules(media, renderer.mediaRules[media]);
-      }
-
-      return css;
+      return objectReduce(renderer.mediaRules, function (css, rules, query) {
+        return css + cssifyMediaQueryRules(query, rules);
+      }, basicCSS);
     },
     subscribe: function subscribe(callback) {
       renderer.listeners.push(callback);
-      return { unsubscribe: function unsubscribe() {
+
+      return {
+        unsubscribe: function unsubscribe() {
           return renderer.listeners.splice(renderer.listeners.indexOf(callback), 1);
-        } };
+        }
+      };
+    },
+    clear: function clear() {
+      renderer.fontFaces = '';
+      renderer.keyframes = '';
+      renderer.statics = '';
+      renderer.rules = '';
+      renderer.mediaRules = applyMediaRulesInOrder(renderer.mediaQueryOrder);
+      renderer.uniqueRuleIdentifier = 0;
+      renderer.uniqueKeyframeIdentifier = 0;
+      renderer.cache = {};
+
+      renderer._emitChange({ type: CLEAR_TYPE });
+    },
+    _renderStyleToClassNames: function _renderStyleToClassNames(style) {
+      var pseudo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      var media = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+
+      var classNames = '';
+
+      for (var property in style) {
+        var value = style[property];
+
+        if (isObject(value)) {
+          if (isNestedSelector(property)) {
+            classNames += renderer._renderStyleToClassNames(value, pseudo + normalizeNestedProperty(property), media);
+          } else if (isMediaQuery(property)) {
+            var combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim());
+
+            classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery);
+          } else {
+            // TODO: warning
+          }
+        } else {
+          var declarationReference = media + pseudo + property + value;
+
+          if (!renderer.cache.hasOwnProperty(declarationReference)) {
+            // we remove undefined values to enable
+            // usage of optional props without side-effects
+            if (isUndefinedValue(value)) {
+              renderer.cache[declarationReference] = '';
+              /* eslint-disable no-continue */
+              continue;
+              /* eslint-enable */
+            }
+
+            var className = renderer.selectorPrefix + generateClassName(++renderer.uniqueRuleIdentifier);
+
+            renderer.cache[declarationReference] = className;
+
+            var cssDeclaration = cssifyDeclaration(property, value);
+            var selector = getCSSSelector(className, pseudo);
+            var cssRule = generateCSSRule(selector, cssDeclaration);
+
+            if (media.length > 0) {
+              if (!renderer.mediaRules.hasOwnProperty(media)) {
+                renderer.mediaRules[media] = '';
+              }
+
+              renderer.mediaRules[media] += cssRule;
+            } else {
+              renderer.rules += cssRule;
+            }
+
+            renderer._emitChange({
+              selector: selector,
+              declaration: cssDeclaration,
+              media: media,
+              type: RULE_TYPE
+            });
+          }
+
+          classNames += ' ' + renderer.cache[declarationReference];
+        }
+      }
+
+      return classNames;
     },
     _emitChange: function _emitChange(change) {
-      for (var i = 0, len = renderer.listeners.length; i < len; ++i) {
-        renderer.listeners[i](change);
-      }
+      arrayEach(renderer.listeners, function (listener) {
+        return listener(change);
+      });
     }
   };
 
@@ -434,9 +437,9 @@ function createRenderer() {
   renderer.clear();
 
   if (config.enhancers) {
-    for (var i = 0, len = config.enhancers.length; i < len; ++i) {
-      renderer = config.enhancers[i](renderer);
-    }
+    arrayEach(config.enhancers, function (enhancer) {
+      renderer = enhancer(renderer);
+    });
   }
 
   return renderer;
@@ -504,10 +507,10 @@ function addFontRenderer(renderer, mountNode) {
   return renderer;
 }
 
-var fontRenderer = (function (mountNode) {
+function fontRenderer(mountNode) {
   return function (renderer) {
     return addFontRenderer(renderer, mountNode);
   };
-});
+}
 
 export default fontRenderer;

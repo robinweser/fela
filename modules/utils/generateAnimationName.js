@@ -1,4 +1,4 @@
-/* @flow weak */
-export default function generateAnimationName(id) {
+/* @flow */
+export default function generateAnimationName(id: number): string {
   return `k${id}`
 }

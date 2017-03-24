@@ -74,6 +74,18 @@ babelHelpers.inherits = function (subClass, superClass) {
   if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 };
 
+babelHelpers.objectWithoutProperties = function (obj, keys) {
+  var target = {};
+
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+
+  return target;
+};
+
 babelHelpers.possibleConstructorReturn = function (self, call) {
   if (!self) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -111,14 +123,69 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 });
 
-var hyphenateStyleName = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
+var require$$0$1 = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
+
+var hyphenateProperty = __commonjs(function (module, exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = hyphenateProperty;
+
+var _hyphenateStyleName = require$$0$1;
+
+var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function hyphenateProperty(property) {
+  return (0, _hyphenateStyleName2.default)(property);
+}
+module.exports = exports['default'];
+});
+
+var require$$0 = (hyphenateProperty && typeof hyphenateProperty === 'object' && 'default' in hyphenateProperty ? hyphenateProperty['default'] : hyphenateProperty);
+
+var resolveArrayValue = __commonjs(function (module, exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = resolveArrayValue;
+
+var _hyphenateProperty = require$$0;
+
+var _hyphenateProperty2 = _interopRequireDefault(_hyphenateProperty);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function resolveArrayValue(property, value) {
+  var hyphenatedProperty = (0, _hyphenateProperty2.default)(property);
+
+  return value.join(';' + hyphenatedProperty + ':');
+}
+module.exports = exports['default'];
+});
+
+var resolveArrayValue$1 = (resolveArrayValue && typeof resolveArrayValue === 'object' && 'default' in resolveArrayValue ? resolveArrayValue['default'] : resolveArrayValue);
+
+function isObject(value) {
+  return (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && !Array.isArray(value);
+}
 
 function resolveFallbackValues(style) {
   for (var property in style) {
     var value = style[property];
+
     if (Array.isArray(value)) {
-      style[property] = value.join(';' + hyphenateStyleName(property) + ':');
-    } else if (value instanceof Object) {
+      style[property] = resolveArrayValue$1(property, value);
+    } else if (isObject(value)) {
       style[property] = resolveFallbackValues(value);
     }
   }

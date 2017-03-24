@@ -1,4 +1,6 @@
-/* @flow weak */
+/* @flow */
+import warning from './warning'
+
 const formats = {
   '.woff': 'woff',
   '.eot': 'eot',
@@ -8,13 +10,17 @@ const formats = {
 
 const extensions = Object.keys(formats)
 
-export default function checkFontFormat(src) {
+export default function checkFontFormat(src: string): string {
   for (let i = 0, len = extensions.length; i < len; ++i) {
     const extension = extensions[i]
     if (src.indexOf(extension) !== -1) {
       return formats[extension]
     }
   }
-  // TODO: warning: wrong font format
-  return undefined
+
+  warning(
+    true,
+    `A invalid font-format was used in "${src}". Use one of these: ${Object.keys(formats).join(', ')}.`
+  )
+  return ''
 }

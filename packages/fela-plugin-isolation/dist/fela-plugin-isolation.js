@@ -42,7 +42,14 @@
 
   babelHelpers;
 
-  /*  weak */
+  function arrayReduce(array, iterator, initialValue) {
+    for (var i = 0, len = array.length; i < len; ++i) {
+      initialValue = iterator(initialValue, array[i]);
+    }
+
+    return initialValue;
+  }
+
   function addIsolation(style) {
     var exclude = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
@@ -53,7 +60,7 @@
       return style;
     }
 
-    var excludedDeclarations = exclude.reduce(function (exclusion, property) {
+    var excludedDeclarations = arrayReduce(exclude, function (exclusion, property) {
       exclusion[property] = 'inherit';
       return exclusion;
     }, {});
@@ -63,12 +70,13 @@
     }, excludedDeclarations, style);
   }
 
-  var isolation = (function () {
+  function isolation() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
     return function (style) {
       return addIsolation(style, options.exclude);
     };
-  });
+  }
 
   return isolation;
 

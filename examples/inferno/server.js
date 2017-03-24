@@ -10,23 +10,20 @@ import createRenderer from './renderer'
 
 const app = express()
 
-app.use('/bundle.js', proxy('localhost:8080', {
-  forwardPath: () => '/bundle.js'
-}))
+app.use('/bundle.js', proxy('localhost:8080', { forwardPath: () => '/bundle.js' }))
 
 app.get('/', (req, res) => {
   const renderer = createRenderer()
 
-  const indexHTML = fs.readFileSync(__dirname + '/index.html').toString()
+  const indexHTML = fs.readFileSync(`${__dirname}/index.html`).toString()
   const appHtml = renderToString(
     <Provider renderer={renderer}>
       <App />
     </Provider>
   )
   const appCSS = renderer.renderToString()
-  const fontCSS = renderer.fontRenderer.renderToString()
 
-  res.write(indexHTML.replace('<!-- {{app}} -->', appHtml).replace('<!-- {{css}} -->', appCSS).replace('<!-- {{fonts}} -->', fontCSS))
+  res.write(indexHTML.replace('<!-- {{app}} -->', appHtml).replace('<!-- {{css}} -->', appCSS))
   res.end()
 })
 

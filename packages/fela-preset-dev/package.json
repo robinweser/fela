@@ -1,14 +1,16 @@
 {
   "name": "fela-preset-dev",
-  "version": "4.2.6",
+  "version": "4.3.2",
   "description": "Fela plugin preset for web applications",
   "module": "index.es2015.js",
   "main": "index.js",
+  "typings": "index.d.ts",
   "files": [
     "LICENSE",
     "README.md",
     "index.js",
-    "/dist"
+    "index.d.ts",
+    "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -19,6 +21,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.2.6"
+    "fela": "4.3.2"
   }
 }

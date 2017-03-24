@@ -1,5 +1,11 @@
 /* @flow */
-import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE, CLEAR_TYPE } from '../utils/styleTypes'
+import {
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  FONT_TYPE,
+  STATIC_TYPE,
+  CLEAR_TYPE
+} from '../utils/styleTypes'
 
 function reflushStyleNodes() {
   const styleNodes = {}
@@ -70,7 +76,10 @@ export default function createDOMInterface(renderer) {
           }
         } else {
           try {
-            styleNode.sheet.insertRule(`${change.selector}{${change.declaration}}`, styleNode.sheet.cssRules.length)
+            styleNode.sheet.insertRule(
+              `${change.selector}{${change.declaration}}`,
+              styleNode.sheet.cssRules.length
+            )
           } catch (error) {
             // TODO: MAYBE WARN IN DEV MODE
           }

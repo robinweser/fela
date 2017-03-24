@@ -1,14 +1,21 @@
 /* @flow */
-export default function mapValueToMediaQuery(queryValueMap: Object = {}, mapper: Function | string): Object {
-  const style = {}
+import objectReduce from '../utils/objectReduce'
 
-  for (const query in queryValueMap) {
-    if (typeof mapper === 'string') {
-      style[query] = { [mapper]: queryValueMap[query] }
-    } else {
-      style[query] = mapper(queryValueMap[query])
-    }
-  }
+export default function mapValueToMediaQuery(
+  queryValueMap: Object = {},
+  mapper: Function | string
+): Object {
+  return objectReduce(
+    queryValueMap,
+    (style, value, query) => {
+      if (typeof mapper === 'string') {
+        style[query] = { [mapper]: value }
+      } else {
+        style[query] = mapper(value)
+      }
 
-  return style
+      return style
+    },
+    {}
+  )
 }

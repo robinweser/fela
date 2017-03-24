@@ -1,5 +1,7 @@
-/* @flow weak */
-export default function normalizeNestedProperty(nestedProperty) {
+/* @flow  */
+export default function normalizeNestedProperty(
+  nestedProperty: string
+): string {
   if (nestedProperty.charAt(0) === '&') {
     return nestedProperty.slice(1)
   }

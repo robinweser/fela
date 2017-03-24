@@ -1,4 +1,7 @@
-/* @flow weak */
-export default function getCSSSelector(className, pseudo = '') {
+/* @flow */
+export default function getCSSSelector(
+  className: string,
+  pseudo: string = ''
+): string {
   return `.${className}${pseudo}`
 }

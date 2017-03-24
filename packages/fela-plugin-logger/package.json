@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-logger",
-  "version": "4.2.6",
+  "version": "4.3.2",
   "description": "Fela plugin to log processed style objects",
   "module": "index.es2015.js",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "LICENSE",
     "README.md",
     "index.js",
-    "/dist"
+    "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -21,6 +21,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.2.6"
+    "fela": "4.3.2"
   }
 }

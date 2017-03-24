@@ -1,12 +1,16 @@
 /* @flow */
 import cssifyMediaQueryRules from '../../utils/cssifyMediaQueryRules'
+import objectReduce from '../../utils/objectReduce'
 
 export default function renderToString(renderer: Object): string {
-  let css = renderer.fontFaces + renderer.statics + renderer.keyframes + renderer.rules
+  const basicCSS = renderer.fontFaces +
+    renderer.statics +
+    renderer.keyframes +
+    renderer.rules
 
-  for (const media in renderer.mediaRules) {
-    css += cssifyMediaQueryRules(media, renderer.mediaRules[media])
-  }
-
-  return css
+  return objectReduce(
+    renderer.mediaRules,
+    (css, rules, query) => css + cssifyMediaQueryRules(query, rules),
+    basicCSS
+  )
 }
