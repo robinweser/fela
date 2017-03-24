@@ -17,7 +17,6 @@ export default function createComponentFactory(
       { renderer, theme }
     ) => {
       if (!renderer) {
-        const componentName = type.displayName ? type.displayName : type
         throw new Error(
           "createComponent() can't render styles without the renderer in the context. Missing react-fela's <Provider /> at the app root?"
         )
