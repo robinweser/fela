@@ -1,6 +1,6 @@
 # Server Rendering
 As [already mentioned](../introduction/Benefits.md), Fela supports server-side rendering out of the box.
-All you need to to is call `renderToString` once you are finished rendering styles and you will get the final CSS markup.<br>
+All you need to to is call `renderToMarkup` once you are finished rendering styles and you will get the final HTML markup for the `<style>` elements.<br>
 That's it. No magic. No extra configuration.
 
 Usually you will render all styles on the server and inject the rendered CSS markup into the HTML markup which gets sent to the client.
@@ -10,7 +10,9 @@ The following code shows a simple server example using [express](https://github.
 ```javascript
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+
 import { createRenderer } from 'fela'
+import { renderToMarkup } from 'fela-dom/server'
 
 import express from 'express'
 
@@ -18,6 +20,11 @@ const rule = props => ({
   color: props.color,
   fontSize: '15px'
 })
+
+renderer.renderStatic({
+  margin: 0,
+  padding: 0,
+}, 'html, body')
 
 // simplified demo app
 const App = ({ renderer }) => (
@@ -31,14 +38,12 @@ const appHTML = `
 <!DOCTYPE html>
 <html>
 <head>
-  <style id="stylesheet">
-    <!-- {{css}} -->
-  </style>
   <title>Fela - Server Rendering</title>
+  {{style}}
 </head>
 <body>
   <div id="app">
-    <!-- {{app}} -->
+    {{app}}
   </div>
 </body>
 </html>
@@ -53,9 +58,9 @@ server.get('/', (req, res) => {
     <App renderer={renderer} />
   )
 
-  const cssMarkup = renderer.renderToString()
+  const styleMarkup = renderToMarkup(renderer)
   // inject the rendered html and css markup into the basic app html
-  res.write(appHTML.replace('<!-- {{app}} -->', htmlMarkup).replace('<!-- {{css}} -->', cssMarkup))
+  res.write(appHTML.replace('{{app}}', htmlMarkup).replace('{{style}}', styleMarkup))
   res.end()
 })
 // provide the content via localhost:8080
@@ -66,10 +71,13 @@ server.listen(8080, 'localhost')
 <!DOCTYPE html>
 <html>
 <head>
-  <style id="stylesheet">
+  <title>Fela - Server Rendering</title>
+  <style type="text/css" data-fela-type="STATIC">
+    html, body{margin:0;padding:0}
+  </style>
+  <style type="text/css" data-fela-type="RULE">
     .a{color:blue}.b{font-size:15px}
   </style>
-  <title>Fela - Server Rendering</title>
 </head>
 <body>
   <div id="app">

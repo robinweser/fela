@@ -1,5 +1,4 @@
-/* @flow weak */
+/* @flow */
 import render from './render'
-import createDOMStream from './DOMInterface'
 
-export default { render, createDOMStream }
+export default { render }

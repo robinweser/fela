@@ -8,6 +8,7 @@
     "LICENSE",
     "README.md",
     "index.js",
+    "server/**",
     "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",

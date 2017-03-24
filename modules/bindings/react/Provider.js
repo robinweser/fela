@@ -11,11 +11,7 @@ export default class Provider extends Component {
   }
 
   componentDidMount() {
-    const { mountNode, renderer } = this.props
-
-    if (mountNode) {
-      render(renderer, mountNode)
-    }
+    render(this.props.renderer)
   }
 
   render() {

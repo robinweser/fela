@@ -38,9 +38,12 @@
     * [6.1.4. enhance](docs/api/fela/enhance.md)
   * 6.2. fela-dom
     * [6.2.1. render](docs/api/fela-dom/render.md)
-  * 6.3. fela-native
-    * 6.3.1. createRenderer (soon)
-    * 6.3.2. Renderer (soon)
+  * 6.3. fela-dom/server
+    * [6.3.1. renderToString](docs/api/fela-dom/server/renderToString.md)
+    * [6.3.2. renderToMarkup](docs/api/fela-dom/server/renderToMarkup.md)
+  * 6.4. fela-native (soon)
+    * 6.4.1. createRenderer
+    * 6.4.2. Renderer
 * [7. Troubleshooting](docs/Troubleshooting.md)
 * [8. FAQ](docs/FAQ.md)
 * [9. Feedback](docs/Feedback.md)

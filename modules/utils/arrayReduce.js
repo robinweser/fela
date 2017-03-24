@@ -1,6 +1,6 @@
 /* @flow */
 export default function arrayReduce(
-  array: Array<any>,
+  array: any,
   iterator: Function,
   initialValue: any
 ) {
