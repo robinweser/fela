@@ -1,4 +1,4 @@
-/* @flow weak */
+/* @flow */
 import { Component } from 'preact'
 import render from '../../dom/render'
 
@@ -15,7 +15,7 @@ export default class Provider extends Component {
     }
   }
 
-  render({ children }) {
-    return children[0]
+  render() {
+    return this.props.children[0]
   }
 }

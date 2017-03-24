@@ -1,5 +1,4 @@
-/* @flow weak */
-/* eslint-disable import/no-unresolved, import/extensions */
+/* @flow */
 import Provider from './Provider'
 import connect from './connect'
 import createComponent from './createComponent'

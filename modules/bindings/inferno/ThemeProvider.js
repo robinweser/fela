@@ -1,4 +1,4 @@
-/* @flow weak */
+/* @flow */
 import Component from 'inferno-component'
 
 export default class ThemeProvider extends Component {

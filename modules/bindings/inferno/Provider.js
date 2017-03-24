@@ -1,5 +1,4 @@
-/* @flow weak */
-/* eslint-disable import/no-unresolved, import/extensions */
+/* @flow */
 import Component from 'inferno-component'
 import render from '../../dom/render'
 
