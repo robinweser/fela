@@ -60,9 +60,13 @@ Below there are some key differences comparing Fela for React and Fela for React
 
 ### createComponent Example
 
+Create the Component using the Type
+
 ```
 const WelcomeText = createComponent(rule, View)
 ```
+
+You can now use the component as a component or a wrapper
 ```
  render() {
     return (
