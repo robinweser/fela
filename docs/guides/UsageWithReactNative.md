@@ -54,9 +54,28 @@ The following plugins and enhancers will also work with React Native:
 Below there are some key differences comparing Fela for React and Fela for React Native.
 
 * Use `style` not `className`
-* `createComponent` always requires the second parameter
+* `createComponent` always requires the second parameter, and the second parameter should be the type and not the string (see example below)
 * Length values do **not** have units
 * Only supported style properties are possible *(It's not CSS!)*
+
+### createComponent Example
+
+```
+const WelcomeText = createComponent(rule, View)
+```
+```
+ render() {
+    return (
+      <Provider renderer={renderer}>
+        <View>
+          <WelcomeText><Text>Welcome to this awesome app</Text></WelcomeText>
+        </View>
+      </Provider>
+    )
+ }
+```
+
+
 
 
 <br>
