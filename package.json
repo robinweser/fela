@@ -61,9 +61,9 @@
     "inferno-create-element": "^1.0.1",
     "inline-style-prefixer": "^3.0.1",
     "jest": "^19.0.2",
+    "preact": "^7.0.0",
     "prettier-eslint": "^4.2.1",
     "prettier-eslint-cli": "^3.1.2",
-    "preact": "^7.0.0",
     "react": "^15.3.2",
     "react-native": "^0.42.0",
     "rollup": "0.26.3",
@@ -71,5 +71,8 @@
     "rollup-plugin-commonjs": "2.2.1",
     "rollup-plugin-node-resolve": "1.5.0",
     "rollup-plugin-uglify": "0.3.1"
+  },
+  "dependencies": {
+    "react-broadcast": "^0.1.2"
   }
 }

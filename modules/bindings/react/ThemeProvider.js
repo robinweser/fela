@@ -1,28 +1,24 @@
 /* @flow */
-import { Component, PropTypes, Children } from 'react'
+import { Broadcast } from 'react-broadcast'
+import React, { Component, PropTypes, Children } from 'react'
 
 export default class ThemeProvider extends Component {
   static propTypes = {
     theme: PropTypes.object.isRequired,
     overwrite: PropTypes.bool
   };
-  static childContextTypes = { theme: PropTypes.object };
   static contextTypes = { theme: PropTypes.object };
   static defaultProps = { overwrite: false };
 
-  getChildContext() {
-    const { overwrite, theme } = this.props
-    const previousTheme = this.context.theme
-
-    return {
-      theme: {
-        ...(!overwrite ? previousTheme || {} : {}),
-        ...theme
-      }
-    }
-  }
-
   render() {
-    return Children.only(this.props.children)
+    const { overwrite, theme } = this.props
+    return (
+      <Broadcast channel='felaTheme' value={{
+        ...(overwrite ? {} : this.context.theme)
+        ...theme
+      }}>
+        {Children.only(this.props.children)}
+      </Broadcast>
+    )
   }
 }

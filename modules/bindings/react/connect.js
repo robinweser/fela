@@ -1,9 +1,35 @@
 /* @flow */
-import { Component, createElement, PropTypes } from 'react'
+import React, { Component, createElement, PropTypes } from 'react'
+import { Subscriber } from 'react-broadcast'
+import generateDisplayName from '../generateDisplayName'
 
-import connectFactory from '../connectFactory'
+export default function connect(mapStylesToProps: Function): Function {
+  return (component: any): any => {
+    class EnhancedComponent extends Component {
+      static displayName = generateDisplayName(component);
 
-export default connectFactory(Component, createElement, {
-  renderer: PropTypes.object,
-  theme: PropTypes.object
-})
+      render() {
+        return (
+          <Subscriber channel='felaTheme'>
+            {(theme = {}) => (
+              createElement(component, {
+                ...this.props,
+                styles: mapStylesToProps({
+                  ...this.props,
+                  theme
+                })(this.context.renderer)
+              })
+            )}
+          </Subscriber>
+        )
+      }
+    }
+
+    EnhancedComponent.contextTypes = {
+      renderer: PropTypes.object,
+      theme: PropTypes.object
+    }
+
+    return EnhancedComponent
+  }
+}
