@@ -45,7 +45,7 @@ export default function checkFontFormat(src: string): string {
 
     warning(
         true,
-        `A invalid base64 font was used. Please use one of the following mime type : ${Object.keys(base64Formats).join(', ')}.`
+        `A invalid base64 font was used. Please use one of the following mime type: ${Object.keys(base64Formats).join(', ')}.`
     )
   } else {
     warning(
