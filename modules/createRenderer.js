@@ -22,6 +22,7 @@ import applyMediaRulesInOrder from './utils/applyMediaRulesInOrder'
 import processStyleWithPlugins from './utils/processStyleWithPlugins'
 import toCSSString from './utils/toCSSString'
 import checkFontFormat from './utils/checkFontFormat'
+import checkFontUrl from './utils/checkFontUrl'
 import objectReduce from './utils/objectReduce'
 import arrayEach from './utils/arrayEach'
 
@@ -116,7 +117,7 @@ export default function createRenderer(
         const fontFace = {
           ...properties,
           src: files
-            .map(src => `url('${src}') format('${checkFontFormat(src)}')`)
+            .map(src => `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`)
             .join(','),
           fontFamily
         }
