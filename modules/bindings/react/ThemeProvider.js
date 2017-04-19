@@ -1,5 +1,6 @@
 /* @flow */
-import { Component, PropTypes, Children } from 'react'
+import { Component, Children } from 'react'
+import PropTypes from 'prop-types'
 
 export default class ThemeProvider extends Component {
   static propTypes = {

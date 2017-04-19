@@ -1,5 +1,6 @@
 /* @flow */
-import { createElement, PropTypes } from 'react'
+import { createElement } from 'react'
+import PropTypes from 'prop-types'
 
 import createComponentFactory from '../createComponentFactory'
 
