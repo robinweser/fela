@@ -1,5 +1,6 @@
 /* @flow */
-import React, { PropTypes } from 'react'
+import React, { Component, createElement } from 'react'
+import PropTypes from 'prop-types'
 import { Subscriber } from 'react-broadcast'
 import generateDisplayName from '../generateDisplayName'
 

@@ -1,6 +1,7 @@
 /* @flow */
 import { Broadcast } from 'react-broadcast'
-import React, { PropTypes, Children } from 'react'
+import React, { Component, Children } from 'react'
+import PropTypes from 'prop-types'
 
 const ThemeProvider = ({
   overwrite,

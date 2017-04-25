@@ -1,5 +1,6 @@
 /* @flow */
-import { Component, PropTypes, Children } from 'react'
+import { Component, Children } from 'react'
+import PropTypes from 'prop-types'
 import render from '../../dom/render'
 
 export default class Provider extends Component {
