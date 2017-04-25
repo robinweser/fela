@@ -152,4 +152,20 @@ describe('Monolithic enhancer', () => {
 
     expect(renderer.rules).toEqual('.fela-custom{color:red}')
   })
+
+  it('should create different classNames for different styles', () => {
+    const rule1 = () => ({
+      className: 'custom',
+      color: 'red'
+    })
+    const rule2 = () => ({
+      className: 'custom',
+      color: 'green'
+    })
+    const renderer = createRenderer(options)
+    const className1 = renderer.renderRule(rule1)
+    const className2 = renderer.renderRule(rule2)
+
+    expect(className1).not.toBe(className2)
+  })
 })
