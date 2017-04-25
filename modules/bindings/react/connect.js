@@ -1,10 +1,29 @@
 /* @flow */
-import { Component, createElement } from 'react'
+import React, { Component, createElement } from 'react'
 import PropTypes from 'prop-types'
+import { Subscriber } from 'react-broadcast'
+import generateDisplayName from '../generateDisplayName'
 
-import connectFactory from '../connectFactory'
+export default function connect(mapStylesToProps: Function): Function {
+  return (Component: any): any => {
+    const ConnectedComponent = (props, { renderer }) => (
+      <Subscriber channel="felaTheme">
+        {(theme = {}) => (
+          <Component
+            {...props}
+            styles={mapStylesToProps({
+              ...props,
+              theme
+            })(renderer)}
+          />
+        )}
+      </Subscriber>
+    )
 
-export default connectFactory(Component, createElement, {
-  renderer: PropTypes.object,
-  theme: PropTypes.object
-})
+    ConnectedComponent.displayName = generateDisplayName(Component)
+
+    ConnectedComponent.contextTypes = { renderer: PropTypes.object }
+
+    return ConnectedComponent
+  }
+}
