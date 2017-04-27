@@ -195,51 +195,60 @@ var Provider = function (_Component) {
   return Provider;
 }(Component);
 
-var generateDisplayName = function generateDisplayName(Comp) {
-  var displayName = Comp.displayName || Comp.name;
+function generateDisplayName(component) {
+  var displayName = component.displayName || component.name;
+
   if (displayName) {
     return 'Fela' + displayName;
   }
 
   return 'ConnectedFelaComponent';
-};
+}
 
-function connect(mapStylesToProps) {
-  return function (Comp) {
-    var _class, _temp;
+function connectFactory(BaseComponent, createElement, contextTypes) {
+  return function connect(mapStylesToProps) {
+    return function (component) {
+      var EnhancedComponent = function (_BaseComponent) {
+        babelHelpers.inherits(EnhancedComponent, _BaseComponent);
 
-    return _temp = _class = function (_Component) {
-      babelHelpers.inherits(EnhancedComponent, _Component);
+        function EnhancedComponent() {
+          babelHelpers.classCallCheck(this, EnhancedComponent);
+          return babelHelpers.possibleConstructorReturn(this, (EnhancedComponent.__proto__ || Object.getPrototypeOf(EnhancedComponent)).apply(this, arguments));
+        }
 
-      function EnhancedComponent() {
-        babelHelpers.classCallCheck(this, EnhancedComponent);
-        return babelHelpers.possibleConstructorReturn(this, (EnhancedComponent.__proto__ || Object.getPrototypeOf(EnhancedComponent)).apply(this, arguments));
+        babelHelpers.createClass(EnhancedComponent, [{
+          key: 'render',
+          value: function render() {
+            var _context = this.context,
+                renderer = _context.renderer,
+                theme = _context.theme;
+
+
+            var styles = mapStylesToProps(babelHelpers.extends({}, this.props, {
+              theme: theme || {}
+            }))(renderer);
+
+            return createElement(component, babelHelpers.extends({}, this.props, {
+              styles: styles
+            }));
+          }
+        }]);
+        return EnhancedComponent;
+      }(BaseComponent);
+
+      EnhancedComponent.displayName = generateDisplayName(component);
+
+
+      if (contextTypes) {
+        EnhancedComponent.contextTypes = babelHelpers.extends({}, component.contextTypes, contextTypes);
       }
 
-      babelHelpers.createClass(EnhancedComponent, [{
-        key: 'render',
-        value: function render() {
-          // invoke props and renderer to render all styles
-          var _context = this.context,
-              renderer = _context.renderer,
-              theme = _context.theme;
-
-
-          var styles = mapStylesToProps(babelHelpers.extends({}, this.props, {
-            theme: theme || {}
-          }))(renderer);
-
-          return createElement(Comp, babelHelpers.extends({}, this.props, {
-            styles: styles
-          }));
-        }
-        // reuse the initial displayName name
-
-      }]);
       return EnhancedComponent;
-    }(Component), _class.displayName = generateDisplayName(Comp), _temp;
+    };
   };
 }
+
+var connect = connectFactory(Component, createElement);
 
 function arrayReduce(array, iterator, initialValue) {
   for (var i = 0, len = array.length; i < len; ++i) {
@@ -340,53 +349,72 @@ function combineRules() {
   };
 }
 
-function createComponent(rule) {
-  var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'div';
-  var passThroughProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+function createComponentFactory(createElement, contextTypes) {
+  return function createComponent(rule) {
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'div';
+    var passThroughProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
-  var FelaComponent = function FelaComponent(_ref, _ref2) {
-    var renderer = _ref2.renderer,
-        theme = _ref2.theme;
-    var children = _ref.children,
-        _felaRule = _ref._felaRule,
-        _ref$passThrough = _ref.passThrough,
-        passThrough = _ref$passThrough === undefined ? [] : _ref$passThrough,
-        ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', '_felaRule', 'passThrough']);
+    var FelaComponent = function FelaComponent(_ref, _ref2) {
+      var renderer = _ref2.renderer,
+          theme = _ref2.theme;
+      var children = _ref.children,
+          _felaRule = _ref._felaRule,
+          _ref$passThrough = _ref.passThrough,
+          passThrough = _ref$passThrough === undefined ? [] : _ref$passThrough,
+          ruleProps = babelHelpers.objectWithoutProperties(_ref, ['children', '_felaRule', 'passThrough']);
 
-    var combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule;
+      if (!renderer) {
+        throw new Error("createComponent() can't render styles without the renderer in the context. Missing react-fela's <Provider /> at the app root?");
+      }
 
-    // compose passThrough props from arrays or functions
-    var resolvedPassThrough = [].concat(babelHelpers.toConsumableArray(resolvePassThrough(passThroughProps, ruleProps)), babelHelpers.toConsumableArray(resolvePassThrough(passThrough, ruleProps)));
+      var combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule;
 
-    // if the component renders into another Fela component
-    // we pass down the combinedRule as well as both
-    if (type._isFelaComponent) {
-      return createElement(type, babelHelpers.extends({
-        _felaRule: combinedRule,
-        passThrough: resolvedPassThrough
-      }, ruleProps), children);
+      // compose passThrough props from arrays or functions
+      var resolvedPassThrough = [].concat(babelHelpers.toConsumableArray(resolvePassThrough(passThroughProps, ruleProps)), babelHelpers.toConsumableArray(resolvePassThrough(passThrough, ruleProps)));
+
+      // if the component renders into another Fela component
+      // we pass down the combinedRule as well as both
+      if (type._isFelaComponent) {
+        return createElement(type, babelHelpers.extends({
+          _felaRule: combinedRule,
+          passThrough: resolvedPassThrough
+        }, ruleProps), children);
+      }
+
+      var componentProps = extractPassThroughProps(resolvedPassThrough, ruleProps);
+
+      ruleProps.theme = theme || {};
+
+      // fela-native support
+      if (renderer.isNativeRenderer) {
+        var felaStyle = renderer.renderRule(combinedRule, ruleProps);
+        componentProps.style = ruleProps.style ? [ruleProps.style, felaStyle] : felaStyle;
+      } else {
+        componentProps.style = ruleProps.style;
+        var cls = ruleProps.className ? ruleProps.className + ' ' : '';
+        componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
+      }
+
+      componentProps.id = ruleProps.id;
+      componentProps.ref = ruleProps.innerRef;
+
+      var customType = ruleProps.is || type;
+      return createElement(customType, componentProps, children);
+    };
+
+    if (contextTypes) {
+      FelaComponent.contextTypes = contextTypes;
     }
 
-    var componentProps = extractPassThroughProps(resolvedPassThrough, ruleProps);
+    // use the rule name as display name to better debug with react inspector
+    FelaComponent.displayName = rule.name ? rule.name : 'FelaComponent';
+    FelaComponent._isFelaComponent = true;
 
-    componentProps.style = ruleProps.style;
-    componentProps.id = ruleProps.id;
-    componentProps.ref = ruleProps.innerRef;
-
-    var customType = ruleProps.is || type;
-    var cls = ruleProps.className ? ruleProps.className + ' ' : '';
-    ruleProps.theme = theme || {};
-
-    componentProps.className = cls + renderer.renderRule(combinedRule, ruleProps);
-    return createElement(customType, componentProps, children);
+    return FelaComponent;
   };
-
-  // use the rule name as display name to better debug with react inspector
-  FelaComponent.displayName = rule.name ? rule.name : 'FelaComponent';
-  FelaComponent._isFelaComponent = true;
-
-  return FelaComponent;
 }
+
+var createComponent = createComponentFactory(createElement);
 
 var ThemeProvider = function (_Component) {
   babelHelpers.inherits(ThemeProvider, _Component);

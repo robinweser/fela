@@ -373,6 +373,10 @@ function toCSSString(value) {
   return '"' + value + '"';
 }
 
+function isBase64(property) {
+  return property.indexOf('data:') !== -1;
+}
+
 var formats = {
   '.woff': 'woff',
   '.eot': 'eot',
@@ -380,7 +384,23 @@ var formats = {
   '.svg': 'svg'
 };
 
+var base64Formats = {
+  'image/svg+xml': 'svg',
+  'application/x-font-woff': 'woff',
+  'application/font-woff': 'woff',
+  'application/x-font-woff2': 'woff2',
+  'application/font-woff2': 'woff2',
+  'font/woff2': 'woff2',
+  'application/octet-stream': 'ttf',
+  'application/x-font-ttf': 'ttf',
+  'application/x-font-truetype': 'ttf',
+  'application/x-font-opentype': 'otf',
+  'application/vnd.ms-fontobject': 'eot',
+  'application/font-sfnt': 'sfnt'
+};
+
 var extensions = Object.keys(formats);
+var base64MimeTypes = Object.keys(base64Formats);
 
 function checkFontFormat(src) {
   for (var i = 0, len = extensions.length; i < len; ++i) {
@@ -390,8 +410,27 @@ function checkFontFormat(src) {
     }
   }
 
-  void 0;
+  if (isBase64(src)) {
+    for (var _i = 0, _len = base64MimeTypes.length; _i < _len; ++_i) {
+      var mimeType = base64MimeTypes[_i];
+      if (src.indexOf(mimeType) !== -1) {
+        return base64Formats[mimeType];
+      }
+    }
+
+    void 0;
+  } else {
+    void 0;
+  }
   return '';
+}
+
+function checkFontUrl(src) {
+  if (isBase64(src)) {
+    return src;
+  }
+
+  return '\'' + src + '\'';
 }
 
 function arrayEach(array, iterator) {
@@ -465,7 +504,7 @@ function createRenderer() {
         // TODO: proper font family generation with error proofing
         var fontFace = babelHelpers.extends({}, properties, {
           src: files.map(function (src) {
-            return 'url(\'' + src + '\') format(\'' + checkFontFormat(src) + '\')';
+            return 'url(' + checkFontUrl(src) + ') format(\'' + checkFontFormat(src) + '\')';
           }).join(','),
           fontFamily: fontFamily
         });

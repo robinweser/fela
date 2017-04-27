@@ -111,6 +111,10 @@ function isNestedSelector(property) {
   return regex.test(property);
 }
 
+function isMediaQuery(property) {
+  return property.substr(0, 6) === '@media';
+}
+
 var percentageRegex = /from|to|%/;
 
 function validateStyleObject(style, logInvalid, deleteInvalid) {
@@ -118,7 +122,7 @@ function validateStyleObject(style, logInvalid, deleteInvalid) {
     var value = style[property];
 
     if (isObject(value)) {
-      if (isNestedSelector(property)) {
+      if (isNestedSelector(property) || isMediaQuery(property)) {
         validateStyleObject(value, logInvalid, deleteInvalid);
       } else {
         if (deleteInvalid) {

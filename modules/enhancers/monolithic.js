@@ -36,7 +36,7 @@ function generateClassName(style: Object, prefix: string): string {
 }
 
 type MonoliticRenderer = {
-  _parseMonolithicRules: Function,
+  _parseMonolithicRules: Function
 };
 
 function useMonolithicRenderer(
@@ -48,7 +48,7 @@ function useMonolithicRenderer(
     mediaSelector: string = ''
   ): {
     rules: Array<string>,
-    media: Array<{rules: Array<string>, media: string}>,
+    media: Array<{ rules: Array<string>, media: string }>
   } => {
     const decs = []
     const rules = []
