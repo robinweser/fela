@@ -1,13 +1,26 @@
 /* @flow */
 import { Broadcast } from 'react-broadcast'
-import React, { Component, Children } from 'react'
+import React, { Children } from 'react'
 import PropTypes from 'prop-types'
 
-const ThemeProvider = ({
-  overwrite,
-  theme,
-  children
-}, { theme: previousTheme }) => (
+type ProviderProps = {
+  overwrite?: boolean,
+  theme: Object,
+  children: any
+};
+
+type ProviderContext = {
+  theme: Object
+};
+const ThemeProvider = (
+  {
+    overwrite = false,
+    theme,
+    children
+  }:
+ProviderProps,
+  { theme: previousTheme }: ProviderContext
+) => (
   <Broadcast
     channel="felaTheme"
     value={{
@@ -19,10 +32,6 @@ const ThemeProvider = ({
   </Broadcast>
 )
 
-ThemeProvider.propTypes = {
-  theme: PropTypes.object.isRequired,
-  overwrite: PropTypes.bool
-}
 ThemeProvider.defaultProps = { overwrite: false }
 ThemeProvider.contextTypes = { theme: PropTypes.object }
 
