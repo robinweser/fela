@@ -157,6 +157,10 @@ The following list shows a quick overview of all existing packages.
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). We highly appreciate any contribution.<br>
 We also love to get feedback.
 
+## Who's using Fela?
+
+- [Cloudflare](https://www.cloudflare.com)
+
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
