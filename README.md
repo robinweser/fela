@@ -19,9 +19,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [unpkg](https://unpkg.com/).
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela@4.3.3/dist/fela.js"></script>
+<script src="https://unpkg.com/fela@4.3.4/dist/fela.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela@4.3.3/dist/fela.min.js"></script>
+<script src="https://unpkg.com/fela@4.3.4/dist/fela.min.js"></script>
 ```
 
 ## Features
@@ -83,7 +83,7 @@ render(renderer, mountNode)
 ```
 
 ## Documentation
-+ [Introduction](http://fela.js.org/docs/Introduction.html)
+* [Introduction](http://fela.js.org/docs/Introduction.html)
 * [Basics](http://fela.js.org/docs/Basics.html)
 * [Advanced](http://fela.js.org/docs/Advanced.html)
 * [Usage Guides](http://fela.js.org/docs/UsageGuides.html)
@@ -108,7 +108,9 @@ render(renderer, mountNode)
 
 ## Community
 * [Aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
+* [cf-ui](https://github.com/cloudflare/cf-ui) - Cloudflare UI Framework
 * [Este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
+* [Tel Aviv](https://github.com/dustin-H/telaviv) - React Universal Rendering
 
 ## Packages
 This repository is made of several separate packages including the core package. For convenience sake, we keep the package versions in sync. Therefore every package gets updated along with the core package, even if nothing changed within a particular package.
@@ -159,7 +161,11 @@ We also love to get feedback.
 
 ## Who's using Fela?
 
+- [abilis](https://www.abilis.de)
+- [BdP LV RPS](http://www.bdp-rps.de)
 - [Cloudflare](https://www.cloudflare.com)
+- [NinjaConcept](https://www.ninjaconcept.com)
+
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

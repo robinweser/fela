@@ -2,6 +2,9 @@
 
 ## 4.0
 
+#### 4.3.4 (hot fix)
+* revert ( [#239](https://github.com/rofrischmann/fela/pull/239) ) to fix `<ThemeProvider>`
+
 #### 4.3.3
 * using `prop-types` to support React >= 15.5 ( [#245](https://github.com/rofrischmann/fela/pull/245) )
 * using `react-broadcast` to ensure a rerender on theme changes ( [#239](https://github.com/rofrischmann/fela/pull/239) )

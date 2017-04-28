@@ -1,4 +1,4 @@
-import require$$0, { Component, Children, createElement } from 'react';
+import { Component, Children, createElement } from 'react';
 
 var babelHelpers = {};
 babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -206,7 +206,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 });
 
-var require$$0$2 = (emptyFunction && typeof emptyFunction === 'object' && 'default' in emptyFunction ? emptyFunction['default'] : emptyFunction);
+var require$$0$1 = (emptyFunction && typeof emptyFunction === 'object' && 'default' in emptyFunction ? emptyFunction['default'] : emptyFunction);
 
 var factoryWithThrowingShims = __commonjs(function (module) {
 /**
@@ -220,7 +220,7 @@ var factoryWithThrowingShims = __commonjs(function (module) {
 
 'use strict';
 
-var emptyFunction = require$$0$2;
+var emptyFunction = require$$0$1;
 var invariant = require$$3;
 
 module.exports = function () {
@@ -260,7 +260,7 @@ module.exports = function () {
 };
 });
 
-var require$$0$1 = (factoryWithThrowingShims && typeof factoryWithThrowingShims === 'object' && 'default' in factoryWithThrowingShims ? factoryWithThrowingShims['default'] : factoryWithThrowingShims);
+var require$$0 = (factoryWithThrowingShims && typeof factoryWithThrowingShims === 'object' && 'default' in factoryWithThrowingShims ? factoryWithThrowingShims['default'] : factoryWithThrowingShims);
 
 var ReactPropTypesSecret = __commonjs(function (module) {
 /**
@@ -294,7 +294,7 @@ var warning = __commonjs(function (module) {
 
 'use strict';
 
-var emptyFunction = require$$0$2;
+var emptyFunction = require$$0$1;
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -344,7 +344,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 module.exports = checkPropTypes;
 });
 
-var require$$0$3 = (checkPropTypes && typeof checkPropTypes === 'object' && 'default' in checkPropTypes ? checkPropTypes['default'] : checkPropTypes);
+var require$$0$2 = (checkPropTypes && typeof checkPropTypes === 'object' && 'default' in checkPropTypes ? checkPropTypes['default'] : checkPropTypes);
 
 var factoryWithTypeCheckers = __commonjs(function (module) {
 /**
@@ -358,12 +358,12 @@ var factoryWithTypeCheckers = __commonjs(function (module) {
 
 'use strict';
 
-var emptyFunction = require$$0$2;
+var emptyFunction = require$$0$1;
 var invariant = require$$3;
 var warning = require$$2;
 
 var ReactPropTypesSecret = require$$1;
-var checkPropTypes = require$$0$3;
+var checkPropTypes = require$$0$2;
 
 module.exports = function (isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -811,7 +811,7 @@ var index$1 = __commonjs(function (module) {
 if (false) {} else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = require$$0$1();
+  module.exports = require$$0();
 }
 });
 
@@ -903,319 +903,6 @@ var Provider = function (_Component) {
 Provider.propTypes = { renderer: PropTypes.object.isRequired };
 Provider.childContextTypes = { renderer: PropTypes.object };
 
-var invariant$1 = __commonjs(function (module) {
-/**
- * Copyright 2013-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-'use strict';
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var NODE_ENV = 'production';
-
-var invariant = function invariant(condition, format, a, b, c, d, e, f) {
-  if (NODE_ENV !== 'production') {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  }
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(format.replace(/%s/g, function () {
-        return args[argIndex++];
-      }));
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-module.exports = invariant;
-});
-
-var require$$1$1 = (invariant$1 && typeof invariant$1 === 'object' && 'default' in invariant$1 ? invariant$1['default'] : invariant$1);
-
-var Subscriber$1 = __commonjs(function (module, exports) {
-'use strict';
-
-exports.__esModule = true;
-
-var _invariant = require$$1$1;
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-var _react = require$$0;
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return call && ((typeof call === 'undefined' ? 'undefined' : babelHelpers.typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : babelHelpers.typeof(superClass)));
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-/**
- * A <Subscriber> pulls the value for a channel off of context.broadcasts
- * and passes it to its children function.
- */
-var Subscriber = function (_React$Component) {
-  _inherits(Subscriber, _React$Component);
-
-  function Subscriber() {
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Subscriber);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
-      value: null
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  Subscriber.prototype.componentWillMount = function componentWillMount() {
-    var _this2 = this;
-
-    var channel = this.props.channel;
-
-    if (this.context.broadcasts) {
-      var subscribe = this.context.broadcasts[channel];
-
-      !(typeof subscribe === 'function') ? (0, _invariant2.default)(false) : void 0;
-
-      this.unsubscribe = subscribe(function (value) {
-        // This function will be called once immediately.
-        _this2.setState({ value: value });
-      });
-    }
-  };
-
-  Subscriber.prototype.componentWillUnmount = function componentWillUnmount() {
-    if (this.unsubscribe) this.unsubscribe();
-  };
-
-  Subscriber.prototype.render = function render() {
-    return this.props.children(this.state.value);
-  };
-
-  return Subscriber;
-}(_react2.default.Component);
-
-Subscriber.contextTypes = {
-  broadcasts: _react2.default.PropTypes.object
-};
-
-if (false) {}
-
-exports.default = Subscriber;
-});
-
-var require$$0$4 = (Subscriber$1 && typeof Subscriber$1 === 'object' && 'default' in Subscriber$1 ? Subscriber$1['default'] : Subscriber$1);
-
-var Broadcast$1 = __commonjs(function (module, exports) {
-'use strict';
-
-exports.__esModule = true;
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-var _invariant = require$$1$1;
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-var _react = require$$0;
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return call && ((typeof call === 'undefined' ? 'undefined' : babelHelpers.typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : babelHelpers.typeof(superClass)));
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var createBroadcast = function createBroadcast(initialValue) {
-  var listeners = [];
-  var currentValue = initialValue;
-
-  return {
-    publish: function publish(value) {
-      currentValue = value;
-      listeners.forEach(function (listener) {
-        return listener(currentValue);
-      });
-    },
-    subscribe: function subscribe(listener) {
-      listeners.push(listener);
-
-      // Publish to this subscriber once immediately.
-      listener(currentValue);
-
-      return function () {
-        return listeners = listeners.filter(function (item) {
-          return item !== listener;
-        });
-      };
-    }
-  };
-};
-
-/**
- * A <Broadcast> provides a generic way for descendants to "subscribe"
- * to some value that changes over time, bypassing any intermediate
- * shouldComponentUpdate's in the hierarchy. It puts all subscription
- * functions on context.broadcasts, keyed by "channel".
- *
- * To use it, a subscriber must opt-in to context.broadcasts. See the
- * <Subscriber> component for a reference implementation.
- */
-
-var Broadcast = function (_React$Component) {
-  _inherits(Broadcast, _React$Component);
-
-  function Broadcast() {
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Broadcast);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.broadcast = createBroadcast(_this.props.value), _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  Broadcast.prototype.getBroadcastsContext = function getBroadcastsContext() {
-    var _extends2;
-
-    var channel = this.props.channel;
-    var broadcasts = this.context.broadcasts;
-
-    return _extends({}, broadcasts, (_extends2 = {}, _extends2[channel] = this.broadcast.subscribe, _extends2));
-  };
-
-  Broadcast.prototype.getChildContext = function getChildContext() {
-    return {
-      broadcasts: this.getBroadcastsContext()
-    };
-  };
-
-  Broadcast.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    !(this.props.channel === nextProps.channel) ? (0, _invariant2.default)(false) : void 0;
-
-    if (this.props.value !== nextProps.value) this.broadcast.publish(nextProps.value);
-  };
-
-  Broadcast.prototype.render = function render() {
-    return _react2.default.Children.only(this.props.children);
-  };
-
-  return Broadcast;
-}(_react2.default.Component);
-
-Broadcast.contextTypes = {
-  broadcasts: _react.PropTypes.object
-};
-Broadcast.childContextTypes = {
-  broadcasts: _react.PropTypes.object.isRequired
-};
-
-if (false) {}
-
-exports.default = Broadcast;
-});
-
-var require$$1$2 = (Broadcast$1 && typeof Broadcast$1 === 'object' && 'default' in Broadcast$1 ? Broadcast$1['default'] : Broadcast$1);
-
-var index$2 = __commonjs(function (module, exports) {
-'use strict';
-
-exports.__esModule = true;
-exports.Subscriber = exports.Broadcast = undefined;
-
-var _Broadcast2 = require$$1$2;
-
-var _Broadcast3 = _interopRequireDefault(_Broadcast2);
-
-var _Subscriber2 = require$$0$4;
-
-var _Subscriber3 = _interopRequireDefault(_Subscriber2);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-exports.Broadcast = _Broadcast3.default;
-exports.Subscriber = _Subscriber3.default;
-});
-
-var Subscriber = index$2.Subscriber;
-var Broadcast = index$2.Broadcast;
-
 function generateDisplayName(component) {
   var displayName = component.displayName || component.name;
 
@@ -1226,30 +913,53 @@ function generateDisplayName(component) {
   return 'ConnectedFelaComponent';
 }
 
-var createVNode = Inferno.createVNode;
-function connect(mapStylesToProps) {
-  return function (Component) {
-    var ConnectedComponent = function ConnectedComponent(props, _ref) {
-      var renderer = _ref.renderer;
-      return createVNode(16, Subscriber, {
-        'channel': 'felaTheme',
-        children: function children() {
-          var theme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-          return createVNode(16, Component, babelHelpers.extends({}, props, {
-            'styles': mapStylesToProps(babelHelpers.extends({}, props, {
-              theme: theme
-            }))(renderer)
-          }));
+function connectFactory(BaseComponent, createElement, contextTypes) {
+  return function connect(mapStylesToProps) {
+    return function (component) {
+      var EnhancedComponent = function (_BaseComponent) {
+        babelHelpers.inherits(EnhancedComponent, _BaseComponent);
+
+        function EnhancedComponent() {
+          babelHelpers.classCallCheck(this, EnhancedComponent);
+          return babelHelpers.possibleConstructorReturn(this, (EnhancedComponent.__proto__ || Object.getPrototypeOf(EnhancedComponent)).apply(this, arguments));
         }
-      });
+
+        babelHelpers.createClass(EnhancedComponent, [{
+          key: 'render',
+          value: function render() {
+            var _context = this.context,
+                renderer = _context.renderer,
+                theme = _context.theme;
+
+
+            var styles = mapStylesToProps(babelHelpers.extends({}, this.props, {
+              theme: theme || {}
+            }))(renderer);
+
+            return createElement(component, babelHelpers.extends({}, this.props, {
+              styles: styles
+            }));
+          }
+        }]);
+        return EnhancedComponent;
+      }(BaseComponent);
+
+      EnhancedComponent.displayName = generateDisplayName(component);
+
+
+      if (contextTypes) {
+        EnhancedComponent.contextTypes = babelHelpers.extends({}, component.contextTypes, contextTypes);
+      }
+
+      return EnhancedComponent;
     };
-
-    ConnectedComponent.displayName = generateDisplayName(Component);
-    ConnectedComponent.contextTypes = { renderer: PropTypes.object };
-
-    return ConnectedComponent;
   };
 }
+
+var connect = connectFactory(Component, createElement, {
+  renderer: PropTypes.object,
+  theme: PropTypes.object
+});
 
 function arrayReduce(array, iterator, initialValue) {
   for (var i = 0, len = array.length; i < len; ++i) {
@@ -1420,29 +1130,48 @@ var createComponent = createComponentFactory(createElement, {
   theme: PropTypes.object
 });
 
-var createVNode$1 = Inferno.createVNode;
+var Provider$1 = function (_Component) {
+  babelHelpers.inherits(Provider, _Component);
 
-var ThemeProvider = function ThemeProvider(_ref, _ref2) {
-  var _ref$overwrite = _ref.overwrite,
-      overwrite = _ref$overwrite === undefined ? false : _ref$overwrite,
-      theme = _ref.theme,
-      children = _ref.children;
-  var previousTheme = _ref2.theme;
-  return createVNode$1(16, Broadcast, {
-    'channel': 'felaTheme',
-    'value': babelHelpers.extends({}, overwrite ? {} : previousTheme, theme),
-    children: Children.only(children)
-  });
-};
+  function Provider() {
+    babelHelpers.classCallCheck(this, Provider);
+    return babelHelpers.possibleConstructorReturn(this, (Provider.__proto__ || Object.getPrototypeOf(Provider)).apply(this, arguments));
+  }
 
-ThemeProvider.defaultProps = { overwrite: false };
-ThemeProvider.contextTypes = { theme: PropTypes.object };
+  babelHelpers.createClass(Provider, [{
+    key: 'getChildContext',
+    value: function getChildContext() {
+      return { renderer: this.props.renderer };
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _props = this.props,
+          mountNode = _props.mountNode,
+          renderer = _props.renderer;
+
+
+      if (mountNode) {
+        render(renderer, mountNode);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return Children.only(this.props.children);
+    }
+  }]);
+  return Provider;
+}(Component);
+
+Provider$1.propTypes = { renderer: PropTypes.object.isRequired };
+Provider$1.childContextTypes = { renderer: PropTypes.object };
 
 var index = {
   Provider: Provider,
   connect: connect,
   createComponent: createComponent,
-  ThemeProvider: ThemeProvider
+  ThemeProvider: Provider$1
 };
 
 export default index;
