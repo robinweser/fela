@@ -18,9 +18,9 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 
 ```HTML
 <!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/inferno-fela@4.3.4/dist/inferno-fela.js"></script>
+<script src="https://unpkg.com/inferno-fela@4.3.5/dist/inferno-fela.js"></script>
 <!-- Production build (minified)  -->
-<script src="https://unpkg.com/inferno-fela@4.3.4/dist/inferno-fela.min.js"></script>
+<script src="https://unpkg.com/inferno-fela@4.3.5/dist/inferno-fela.min.js"></script>
 ```
 
 

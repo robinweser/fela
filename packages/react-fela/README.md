@@ -3,7 +3,7 @@
 Official [React](https://github.com/facebook/react) bindings for Fela.
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-4.22kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-4.28kb-brightgreen.svg">
 
 This package only includes React bindings for [Fela](http://github.com/rofrischmann/fela).<br>
 It assumes you already know about Fela and how to use it.
@@ -19,9 +19,9 @@ Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each pa
 
 ```HTML
 <!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/react-fela@4.3.4/dist/react-fela.js"></script>
+<script src="https://unpkg.com/react-fela@4.3.5/dist/react-fela.js"></script>
 <!-- Production build (minified)  -->
-<script src="https://unpkg.com/react-fela@4.3.4/dist/react-fela.min.js"></script>
+<script src="https://unpkg.com/react-fela@4.3.5/dist/react-fela.min.js"></script>
 ```
 
 ## API Reference

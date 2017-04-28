@@ -1130,30 +1130,26 @@ var createComponent = createComponentFactory(createElement, {
   theme: PropTypes.object
 });
 
-var Provider$1 = function (_Component) {
-  babelHelpers.inherits(Provider, _Component);
+var ThemeProvider = function (_Component) {
+  babelHelpers.inherits(ThemeProvider, _Component);
 
-  function Provider() {
-    babelHelpers.classCallCheck(this, Provider);
-    return babelHelpers.possibleConstructorReturn(this, (Provider.__proto__ || Object.getPrototypeOf(Provider)).apply(this, arguments));
+  function ThemeProvider() {
+    babelHelpers.classCallCheck(this, ThemeProvider);
+    return babelHelpers.possibleConstructorReturn(this, (ThemeProvider.__proto__ || Object.getPrototypeOf(ThemeProvider)).apply(this, arguments));
   }
 
-  babelHelpers.createClass(Provider, [{
+  babelHelpers.createClass(ThemeProvider, [{
     key: 'getChildContext',
     value: function getChildContext() {
-      return { renderer: this.props.renderer };
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
       var _props = this.props,
-          mountNode = _props.mountNode,
-          renderer = _props.renderer;
+          overwrite = _props.overwrite,
+          theme = _props.theme;
 
+      var previousTheme = this.context.theme;
 
-      if (mountNode) {
-        render(renderer, mountNode);
-      }
+      return {
+        theme: babelHelpers.extends({}, !overwrite ? previousTheme || {} : {}, theme)
+      };
     }
   }, {
     key: 'render',
@@ -1161,17 +1157,22 @@ var Provider$1 = function (_Component) {
       return Children.only(this.props.children);
     }
   }]);
-  return Provider;
+  return ThemeProvider;
 }(Component);
 
-Provider$1.propTypes = { renderer: PropTypes.object.isRequired };
-Provider$1.childContextTypes = { renderer: PropTypes.object };
+ThemeProvider.propTypes = {
+  theme: PropTypes.object.isRequired,
+  overwrite: PropTypes.bool
+};
+ThemeProvider.childContextTypes = { theme: PropTypes.object };
+ThemeProvider.contextTypes = { theme: PropTypes.object };
+ThemeProvider.defaultProps = { overwrite: false };
 
 var index = {
   Provider: Provider,
   connect: connect,
   createComponent: createComponent,
-  ThemeProvider: Provider$1
+  ThemeProvider: ThemeProvider
 };
 
 export default index;

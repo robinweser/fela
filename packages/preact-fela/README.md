@@ -18,9 +18,9 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 
 ```HTML
 <!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/preact-fela@4.3.4/dist/preact-fela.js"></script>
+<script src="https://unpkg.com/preact-fela@4.3.5/dist/preact-fela.js"></script>
 <!-- Production build (minified)  -->
-<script src="https://unpkg.com/preact-fela@4.3.4/dist/preact-fela.min.js"></script>
+<script src="https://unpkg.com/preact-fela@4.3.5/dist/preact-fela.min.js"></script>
 ```
 
 

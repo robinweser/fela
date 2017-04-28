@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-web",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "description": "Fela plugin preset for web applications",
   "module": "index.es2015.js",
   "main": "index.js",
@@ -25,6 +25,6 @@
     "css-in-js-utils": "^1.0.3"
   },
   "peerDependencies": {
-    "fela": "4.3.4"
+    "fela": "4.3.5"
   }
 }

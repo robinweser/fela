@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-custom-property",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "description": "Fela plugin to use custom properties",
   "module": "index.es2015.js",
   "main": "index.js",
@@ -21,7 +21,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.3.4"
+    "fela": "4.3.5"
   },
   "dependencies": {
     "css-in-js-utils": "^1.0.3"

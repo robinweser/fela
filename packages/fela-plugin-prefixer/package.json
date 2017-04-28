@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-prefixer",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "description": "Fela plugin to add vendor prefixes",
   "module": "index.es2015.js",
   "main": "index.js",
@@ -26,6 +26,6 @@
     "css-in-js-utils": "^1.0.3"
   },
   "peerDependencies": {
-    "fela": "4.3.4"
+    "fela": "4.3.5"
   }
 }

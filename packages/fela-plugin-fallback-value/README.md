@@ -16,9 +16,9 @@ Assuming you are using [npm](https://www.npmjs.com) as your package manager you 
 Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginFallbackValue` global.
 ```HTML
 <!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-fallback-value@4.3.4/dist/fela-plugin-fallback-value.js"></script>
+<script src="https://unpkg.com/fela-plugin-fallback-value@4.3.5/dist/fela-plugin-fallback-value.js"></script>
 <!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-fallback-value@4.3.4/dist/fela-plugin-fallback-value.min.js"></script>
+<script src="https://unpkg.com/fela-plugin-fallback-value@4.3.5/dist/fela-plugin-fallback-value.min.js"></script>
 ```
 
 ## Usage

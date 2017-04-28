@@ -1,21 +1,25 @@
 /* @flow */
 import { Component, Children } from 'react'
 import PropTypes from 'prop-types'
-import render from '../../dom/render'
 
-export default class Provider extends Component {
-  static propTypes = { renderer: PropTypes.object.isRequired };
-  static childContextTypes = { renderer: PropTypes.object };
+export default class ThemeProvider extends Component {
+  static propTypes = {
+    theme: PropTypes.object.isRequired,
+    overwrite: PropTypes.bool
+  };
+  static childContextTypes = { theme: PropTypes.object };
+  static contextTypes = { theme: PropTypes.object };
+  static defaultProps = { overwrite: false };
 
   getChildContext() {
-    return { renderer: this.props.renderer }
-  }
+    const { overwrite, theme } = this.props
+    const previousTheme = this.context.theme
 
-  componentDidMount() {
-    const { mountNode, renderer } = this.props
-
-    if (mountNode) {
-      render(renderer, mountNode)
+    return {
+      theme: {
+        ...(!overwrite ? previousTheme || {} : {}),
+        ...theme
+      }
     }
   }
 

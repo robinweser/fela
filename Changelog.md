@@ -2,6 +2,9 @@
 
 ## 4.0
 
+#### 4.3.5 (hot fix)
+* fix wrong `<ThemeProvider>` export
+
 #### 4.3.4 (hot fix)
 * revert ( [#239](https://github.com/rofrischmann/fela/pull/239) ) to fix `<ThemeProvider>`
 

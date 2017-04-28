@@ -1,6 +1,6 @@
 {
   "name": "fela-dom",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "description": "Fela package for working with the DOM",
   "module": "index.es2015.js",
   "main": "index.js",
@@ -22,6 +22,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.3.4"
+    "fela": "4.3.5"
   }
 }
