@@ -1,38 +1,25 @@
 /* @flow */
-import { Broadcast } from 'react-broadcast'
-import React, { Children } from 'react'
+import { Component, Children } from 'react'
 import PropTypes from 'prop-types'
+import render from '../../dom/render'
 
-type ProviderProps = {
-  overwrite?: boolean,
-  theme: Object,
-  children: any
-};
+export default class Provider extends Component {
+  static propTypes = { renderer: PropTypes.object.isRequired };
+  static childContextTypes = { renderer: PropTypes.object };
 
-type ProviderContext = {
-  theme: Object
-};
-const ThemeProvider = (
-  {
-    overwrite = false,
-    theme,
-    children
-  }:
-ProviderProps,
-  { theme: previousTheme }: ProviderContext
-) => (
-  <Broadcast
-    channel="felaTheme"
-    value={{
-      ...(overwrite ? {} : previousTheme),
-      ...theme
-    }}
-  >
-    {Children.only(children)}
-  </Broadcast>
-)
+  getChildContext() {
+    return { renderer: this.props.renderer }
+  }
 
-ThemeProvider.defaultProps = { overwrite: false }
-ThemeProvider.contextTypes = { theme: PropTypes.object }
+  componentDidMount() {
+    const { mountNode, renderer } = this.props
 
-export default ThemeProvider
+    if (mountNode) {
+      render(renderer, mountNode)
+    }
+  }
+
+  render() {
+    return Children.only(this.props.children)
+  }
+}

@@ -26,7 +26,6 @@
     "fela": "4.3.3"
   },
   "dependencies": {
-    "prop-types": "^15.5.8",
-    "react-broadcast": "0.1.2"
+    "prop-types": "^15.5.8"
   }
 }
