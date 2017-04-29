@@ -222,6 +222,23 @@ declare module "fela-plugin-validator" {
 }
 
 /**
+ * PRESETS
+ */
+declare module "fela-preset-web" {
+  import { TPlugin } from "fela";
+
+  const presets: TPlugin[];
+  export default presets;
+}
+
+declare module "fela-preset-dev" {
+  import { TPlugin } from "fela";
+
+  const presets: TPlugin[];
+  export default presets;
+}
+
+/**
  * TODO:
  *
  * 1. definition for `connect` is missing
