@@ -60,13 +60,95 @@ declare module "fela-dom" {
   function render(renderer: IRenderer, node: HTMLElement): any;
 }
 
+/**
+ * ENHANCERS
+ */
+declare module "fela-beautifier" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
+
+declare module "fela-font-renderer" {
+  import { TEnhancer } from "fela";
+
+  export default function(mountNode?: HTMLElement): TEnhancer;
+}
+
+declare module "fela-layout-debugger" {
+  import { TEnhancer } from "fela";
+
+  interface DebuggerOptions {
+    mode?: "outline" | "backgroundColor";
+    thickness?: number;
+  }
+
+  export default function(options: DebuggerOptions): TEnhancer;
+}
+
+declare module "fela-logger" {
+  import { TEnhancer } from "fela";
+
+  interface LoggerOptions {
+    logCSS?: boolean;
+    formatCSS?: boolean;
+  }
+
+  export default function(options: LoggerOptions): TEnhancer;
+}
+
+declare module "fela-monolithic" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
+
 declare module "fela-perf" {
   import { TEnhancer } from "fela";
 
   export default function(): TEnhancer;
 }
 
+declare module "fela-statistics" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
+
+/**
+ * PLUGINS
+ */
+declare module "fela-plugin-custom-property" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
+declare module "fela-plugin-extend" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
 declare module "fela-plugin-fallback-value" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
+declare module "fela-plugin-friendly-pseudo-class" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
+declare module "fela-plugin-isolation" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
+declare module "fela-plugin-logger" {
   import { TPlugin } from "fela";
 
   export default function(): TPlugin;
@@ -78,16 +160,65 @@ declare module "fela-plugin-lvha" {
   export default function(): TPlugin;
 }
 
+declare module "fela-plugin-named-media-query" {
+  import { TPlugin } from "fela";
+
+  interface Parameters {
+    [key: string]: string;
+  }
+
+  export default function(param: Parameters): TPlugin;
+}
+
+declare module "fela-plugin-placeholder-prefixer" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
 declare module "fela-plugin-prefixer" {
   import { TPlugin } from "fela";
 
   export default function(): TPlugin;
 }
 
-declare module "fela-plugin-validator" {
+declare module "fela-plugin-dynamic-prefixer" {
+  import { TPlugin } from "fela";
+
+  interface Configs {
+    userAgent?: any;
+    keepUnprefixed?: boolean;
+  }
+
+  export default function(configs: Configs): TPlugin;
+}
+
+declare module "fela-plugin-remove-undefined" {
   import { TPlugin } from "fela";
 
   export default function(): TPlugin;
+}
+
+declare module "fela-plugin-unit" {
+  import { TPlugin } from "fela";
+
+  type Unit = "ch" | "em" | "ex" | "rem" | "vh" | "vw" | "vmin" | "vmax" | "px" | "cm" | "mm" | "in" | "pc" | "pt" | "mozmm";
+  interface UnitPerProperty {
+    [key: string]: string;
+  }
+
+  export default function(unit?: Unit, unitPerProperty?: UnitPerProperty): TPlugin;
+}
+
+declare module "fela-plugin-validator" {
+  import { TPlugin } from "fela";
+
+  interface Configs {
+    logInvalid?: boolean;
+    deleteInvalid?: boolean;
+  }
+
+  export default function(configs: Configs): TPlugin;
 }
 
 /**
