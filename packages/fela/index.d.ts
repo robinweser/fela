@@ -34,7 +34,7 @@ declare module "fela" {
     renderStatic(style: IStyle, selector: string): void;
     renderToString(): string;
     subscribe(event: (msg: ISubscribeRuleOrStaticObjectMessage | ISubscribeKeyframesMessage | ISubscribeFontFaceMessage | ISubscribeStaticStringMessage | ISubscribeClearMessage) => void): { unsubscribe: () => void; }
-    clear();
+    clear(): void;
   }
 
   //http://fela.js.org/docs/advanced/RendererConfiguration.html
@@ -57,6 +57,6 @@ declare module "fela" {
 
 declare module "fela-dom" {
   import { IRenderer } from 'fela';
-  function render(renderer: IRenderer, node: HTMLElement);
+  function render(renderer: IRenderer, node: HTMLElement): any;
 }
 
