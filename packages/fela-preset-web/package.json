@@ -4,7 +4,6 @@
   "description": "Fela plugin preset for web applications",
   "module": "index.es2015.js",
   "main": "index.js",
-  "typings": "index.d.ts",
   "files": [
     "LICENSE",
     "README.md",
