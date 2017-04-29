@@ -6,8 +6,8 @@ declare module "fela" {
   type TRule = (props: TRuleProps) => IStyle;
   type TKeyFrame = TRule;
   type TRendererCreator = (config?: IConfig) => IRenderer;
-  type TPlugin = (style?: IStyle) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
-  type TEnhancer = (renderer?: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
+  type TPlugin = (style: IStyle) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
+  type TEnhancer = (renderer: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
 
   const enum TSubscribeMessageType {
     rule = 1,
