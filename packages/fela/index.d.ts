@@ -3,11 +3,11 @@ declare module "fela" {
   import { CSSProperties } from 'react';
 
   type TRuleProps = {};
-  type TRule = (props: TRuleProps) => IStyle; 
+  type TRule = (props: TRuleProps) => IStyle;
   type TKeyFrame = TRule;
   type TRendererCreator = (config?: IConfig) => IRenderer;
-  type TPlugin = (style: IStyle) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
-  type TEnhancer = (renderer: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
+  type TPlugin = (style?: IStyle) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
+  type TEnhancer = (renderer?: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
 
   const enum TSubscribeMessageType {
     rule = 1,
@@ -39,9 +39,9 @@ declare module "fela" {
 
   //http://fela.js.org/docs/advanced/RendererConfiguration.html
   interface IConfig {
-    plugins?: Array<IStyle>;
+    plugins?: Array<TPlugin>;
     keyframePrefixes?: Array<string>;
-    enhancers?: Array<IRenderer>;
+    enhancers?: Array<TEnhancer>;
     mediaQueryOrder?: Array<string>;
     selectorPrefix?: string;
   }
@@ -61,32 +61,31 @@ declare module "fela-dom" {
 }
 
 declare module "fela-perf" {
-  import { IRenderer } from "fela";
+  import { TEnhancer } from "fela";
 
-  export default function(): IRenderer;
+  export default function(): TEnhancer;
 }
 
 declare module "fela-plugin-fallback-value" {
-  import { IStyle } from "fela";
+  import { TPlugin } from "fela";
 
-  export default function(): IStyle;
+  export default function(): TPlugin;
 }
 
 declare module "fela-plugin-lvha" {
-  import { IStyle } from "fela";
+  import { TPlugin } from "fela";
 
-  export default function(): IStyle;
+  export default function(): TPlugin;
 }
 
 declare module "fela-plugin-prefixer" {
-  import { IStyle } from "fela";
+  import { TPlugin } from "fela";
 
-  export default function(): IStyle;
+  export default function(): TPlugin;
 }
 
 declare module "fela-plugin-validator" {
-  import { IStyle } from "fela";
+  import { TPlugin } from "fela";
 
-  export default function(): IStyle;
+  export default function(): TPlugin;
 }
-
