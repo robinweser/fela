@@ -39,9 +39,9 @@ declare module "fela" {
 
   //http://fela.js.org/docs/advanced/RendererConfiguration.html
   interface IConfig {
-    plugins?: Array<TPlugin>;
+    plugins?: Array<IStyle>;
     keyframePrefixes?: Array<string>;
-    enhancers?: Array<TEnhancer>;
+    enhancers?: Array<IRenderer>;
     mediaQueryOrder?: Array<string>;
     selectorPrefix?: string;
   }
@@ -58,5 +58,35 @@ declare module "fela" {
 declare module "fela-dom" {
   import { IRenderer } from 'fela';
   function render(renderer: IRenderer, node: HTMLElement): any;
+}
+
+declare module "fela-perf" {
+  import { IRenderer } from "fela";
+
+  export default function(): IRenderer;
+}
+
+declare module "fela-plugin-fallback-value" {
+  import { IStyle } from "fela";
+
+  export default function(): IStyle;
+}
+
+declare module "fela-plugin-lvha" {
+  import { IStyle } from "fela";
+
+  export default function(): IStyle;
+}
+
+declare module "fela-plugin-prefixer" {
+  import { IStyle } from "fela";
+
+  export default function(): IStyle;
+}
+
+declare module "fela-plugin-validator" {
+  import { IStyle } from "fela";
+
+  export default function(): IStyle;
 }
 
