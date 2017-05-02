@@ -31,7 +31,7 @@ export default function createRenderer(
 
       if (!renderer.cache.hasOwnProperty(reference)) {
         const processedStyle = processStyleWithPlugins(
-          renderer.plugins,
+          renderer,
           style,
           RULE_TYPE
         )

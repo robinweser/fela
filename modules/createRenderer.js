@@ -61,7 +61,7 @@ export default function createRenderer(
 
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
-        renderer.plugins,
+        renderer,
         rule(props),
         RULE_TYPE
       )
@@ -79,7 +79,7 @@ export default function createRenderer(
         )
 
         const processedKeyframe = processStyleWithPlugins(
-          renderer.plugins,
+          renderer,
           resolvedKeyframe,
           KEYFRAME_TYPE
         )
@@ -117,7 +117,10 @@ export default function createRenderer(
         const fontFace = {
           ...properties,
           src: files
-            .map(src => `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`)
+            .map(
+              src =>
+                `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`
+            )
             .join(','),
           fontFamily
         }
@@ -140,10 +143,7 @@ export default function createRenderer(
       const staticReference = generateStaticReference(staticStyle, selector)
 
       if (!renderer.cache.hasOwnProperty(staticReference)) {
-        const cssDeclarations = cssifyStaticStyle(
-          staticStyle,
-          renderer.plugins
-        )
+        const cssDeclarations = cssifyStaticStyle(staticStyle, renderer)
         renderer.cache[staticReference] = ''
 
         if (typeof staticStyle === 'string') {
@@ -178,7 +178,7 @@ export default function createRenderer(
       )
     },
 
-    subscribe(callback: Function): {unsubscribe: Function} {
+    subscribe(callback: Function): { unsubscribe: Function } {
       renderer.listeners.push(callback)
 
       return {
