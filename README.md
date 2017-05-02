@@ -110,7 +110,7 @@ render(renderer, mountNode)
 * [Aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
 * [cf-ui](https://github.com/cloudflare/cf-ui) - Cloudflare UI Framework
 * [Este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
-* [Kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components using Fela 
+* [Kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components with Fela
 * [Tel Aviv](https://github.com/dustin-H/telaviv) - React Universal Rendering
 
 ## Packages
