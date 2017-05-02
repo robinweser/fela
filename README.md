@@ -164,6 +164,8 @@ We also love to get feedback.
 - [abilis](https://www.abilis.de)
 - [BdP LV RPS](http://www.bdp-rps.de)
 - [Cloudflare](https://www.cloudflare.com)
+- [HelloFresh](https://www.hellofresh.de)
+- [MediaFire](https://m.mediafire.com)
 - [NinjaConcept](https://www.ninjaconcept.com)
 
 
