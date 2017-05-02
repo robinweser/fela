@@ -63,6 +63,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [react-animations](https://github.com/FormidableLabs/react-animations): CSS animations to be used with CSS in JS solutions
 * [react-styling](https://github.com/halt-hammerzeit/react-styling): Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
 * [stile](https://github.com/bloodyowl/stile): Handle units and string values
+* [storybook-addon-props-fela](https://github.com/Kilix/storybook-addon-props-fela): Document the props of your Fela components in storybook.
 
 <br>
 
