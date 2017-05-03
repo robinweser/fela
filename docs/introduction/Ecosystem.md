@@ -49,11 +49,14 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-statistics*](https://github.com/rofrischmann/fela/tree/master/packages/fela-statistics) - Collects different metrics to analyze your styles
 
 ### Components
+* [cf-ui](https://github.com/cloudflare/cf-ui): Cloudflare UI Framework
+* [just-box](https://github.com/RafalFilipek/just-box): Create universal layouts in React and React-Native
 * [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components
 
 ### Tools
+* [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Helps to pass classNames to specific props
 * [fela-tools](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
-* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connecgt` with autobound styles
+* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connecgt` with autobound styles 
 
 ### Utilities
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
