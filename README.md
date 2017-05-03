@@ -105,6 +105,7 @@ render(renderer, mountNode)
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
 * [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
 * [Fela + Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
+* [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
 
 ## Community
 * [Aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
@@ -117,6 +118,8 @@ render(renderer, mountNode)
 This repository is made of several separate packages including the core package. For convenience sake, we keep the package versions in sync. Therefore every package gets updated along with the core package, even if nothing changed within a particular package.
 <br><br>
 The following list shows a quick overview of all existing packages.
+> Note: It only lists packages within this repository. For third-party tools and packages check the [Ecosystem](http://fela.js.org/docs/introduction/Ecosystem.html) documentation page.
+
 
 | Package | Dependencies | Downloads |
 | --- | --- | --- |
