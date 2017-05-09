@@ -12,7 +12,7 @@ function lengthInUtf8Bytes(str: string): number {
 }
 
 type RendererWithStatistics = {
-  getStatistics: Function,
+  getStatistics: Function
 };
 
 function addStatistics(
@@ -115,4 +115,6 @@ function addStatistics(
   return renderer
 }
 
-export default () => addStatistics
+export default function statistics() {
+  return addStatistics
+}

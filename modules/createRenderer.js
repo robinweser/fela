@@ -117,7 +117,10 @@ export default function createRenderer(
         const fontFace = {
           ...properties,
           src: files
-            .map(src => `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`)
+            .map(
+              src =>
+                `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`
+            )
             .join(','),
           fontFamily
         }
@@ -178,7 +181,7 @@ export default function createRenderer(
       )
     },
 
-    subscribe(callback: Function): {unsubscribe: Function} {
+    subscribe(callback: Function): { unsubscribe: Function } {
       renderer.listeners.push(callback)
 
       return {
