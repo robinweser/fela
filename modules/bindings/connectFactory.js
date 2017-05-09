@@ -6,23 +6,22 @@ export default function connectFactory(
   createElement: Function,
   contextTypes?: Object
 ): Function {
-  return function connect(mapStylesToProps: Function): Function {
+  return function connect(rules: Object): Function {
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component);
 
         render() {
-          const { renderer, theme } = this.context
+          const { renderer, theme = {} } = this.context
+          const styleProps = { ...this.props, theme }
 
-          const styles = mapStylesToProps({
-            ...this.props,
-            theme: theme || {}
-          })(renderer)
+          const styles = Object.keys(rules).reduce((sofar, key) => {
+            const style = renderer.renderRule(rules[key], styleProps)
+            return Object.assign(sofar, { [key]: style })
+          }, {})
 
-          return createElement(component, {
-            ...this.props,
-            styles
-          })
+          const props = { ...this.props, styles }
+          return createElement(component, props)
         }
       }
 
