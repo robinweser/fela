@@ -1,15 +1,21 @@
 /* @flow  */
 export default function generateMonolithicClassName(
-  id: number,
-  className: string = ''
+  style: Object,
+  prefix: string
 ): string {
-  if (id <= charLength) {
-    return chars[id - 1] + className
+  if (style.className) {
+    const name = prefix + style.className
+    delete style.className
+    return name
   }
 
-  // Bitwise floor as safari performs much faster https://jsperf.com/math-floor-vs-math-round-vs-parseint/55
-  return generateClassName(
-    id / charLength | 0,
-    chars[id % charLength] + className
-  )
+  const stringified = JSON.stringify(style)
+  let val = 5381
+  let i = stringified.length
+
+  while (i) {
+    val = val * 33 ^ stringified.charCodeAt(--i)
+  }
+
+  return prefix + (val >>> 0).toString(36)
 }

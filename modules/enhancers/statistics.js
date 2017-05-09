@@ -115,6 +115,4 @@ function addStatistics(
   return renderer
 }
 
-export default function statistics() {
-  return addStatistics
-}
+export default () => addStatistics

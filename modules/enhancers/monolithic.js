@@ -10,6 +10,7 @@ import isUndefinedValue from '../utils/isUndefinedValue'
 import objectReduce from '../utils/objectReduce'
 import normalizeNestedProperty from '../utils/normalizeNestedProperty'
 
+import generateMonolithicClassName from '../utils/generateMonolithicClassName'
 import generateCombinedMediaQuery from '../utils/generateCombinedMediaQuery'
 import generateCSSSelector from '../utils/generateCSSSelector'
 import generateCSSRule from '../utils/generateCSSRule'
@@ -17,32 +18,9 @@ import generateCSSRule from '../utils/generateCSSRule'
 import { RULE_TYPE } from '../utils/styleTypes'
 
 import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type MonolithicRenderer from '../../flowtypes/MonolithicRenderer'
 
-function generateClassName(style: Object, prefix: string): string {
-  if (style.className) {
-    const name = prefix + style.className
-    delete style.className
-    return name
-  }
-
-  const stringified = JSON.stringify(style)
-  let val = 5381
-  let i = stringified.length
-
-  while (i) {
-    val = val * 33 ^ stringified.charCodeAt(--i)
-  }
-
-  return prefix + (val >>> 0).toString(36)
-}
-
-type MonoliticRenderer = {
-  _renderStyleToCache: Function
-};
-
-function useMonolithicRenderer(
-  renderer: DOMRenderer
-): DOMRenderer & MonoliticRenderer {
+function useMonolithicRenderer(renderer: DOMRenderer): MonolithicRenderer {
   renderer._renderStyleToCache = (
     className: string,
     style: Object,
@@ -114,7 +92,10 @@ function useMonolithicRenderer(
       return ''
     }
 
-    const className = generateClassName(style, renderer.selectorPrefix)
+    const className = generateMonolithicClassName(
+      style,
+      renderer.selectorPrefix
+    )
 
     if (!renderer.cache.hasOwnProperty(className)) {
       renderer._renderStyleToCache(className, style)
