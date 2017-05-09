@@ -12,7 +12,7 @@ function lengthInUtf8Bytes(str: string): number {
 }
 
 type RendererWithStatistics = {
-  getStatistics: Function,
+  getStatistics: Function
 };
 
 function addStatistics(

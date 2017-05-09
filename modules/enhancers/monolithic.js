@@ -1,162 +1,105 @@
 /* @flow */
 /* eslint-disable no-continue */
-import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
+import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
-import cssifyMediaQueryRules from '../utils/cssifyMediaQueryRules'
-
-import generateCombinedMediaQuery from '../utils/generateCombinedMediaQuery'
-import generateCSSRule from '../utils/generateCSSRule'
-import generateCSSSelector from '../utils/generateCSSSelector'
-
+import isObject from '../utils/isObject'
 import isMediaQuery from '../utils/isMediaQuery'
 import isNestedSelector from '../utils/isNestedSelector'
 import isUndefinedValue from '../utils/isUndefinedValue'
 
+import objectReduce from '../utils/objectReduce'
 import normalizeNestedProperty from '../utils/normalizeNestedProperty'
+
+import generateMonolithicClassName from '../utils/generateMonolithicClassName'
+import generateCombinedMediaQuery from '../utils/generateCombinedMediaQuery'
+import generateCSSSelector from '../utils/generateCSSSelector'
+import generateCSSRule from '../utils/generateCSSRule'
 
 import { RULE_TYPE } from '../utils/styleTypes'
 
 import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type MonolithicRenderer from '../../flowtypes/MonolithicRenderer'
 
-function generateClassName(style: Object, prefix: string): string {
-  if (style.className) {
-    const name = prefix + style.className
-    delete style.className
-    return name
-  }
-  const stringified = JSON.stringify(style)
-  let val = 5381
-  let i = stringified.length
+function useMonolithicRenderer(renderer: DOMRenderer): MonolithicRenderer {
+  renderer._renderStyleToCache = (
+    className: string,
+    style: Object,
+    pseudo: string = '',
+    media: string = ''
+  ) => {
+    const ruleSet = objectReduce(
+      style,
+      (ruleset, value, property) => {
+        if (isObject(value)) {
+          if (isNestedSelector(property)) {
+            renderer._renderStyleToCache(
+              className,
+              value,
+              pseudo + normalizeNestedProperty(property),
+              media
+            )
+          } else if (isMediaQuery(property)) {
+            const combinedMediaQuery = generateCombinedMediaQuery(
+              media,
+              property.slice(6).trim()
+            )
 
-  while (i) {
-    val = val * 33 ^ stringified.charCodeAt(--i)
-  }
+            renderer._renderStyleToCache(
+              className,
+              value,
+              pseudo,
+              combinedMediaQuery
+            )
+          } else {
+            // TODO: warning
+          }
+        } else if (!isUndefinedValue(value)) {
+          ruleset[property] = value
+        }
 
-  return prefix + (val >>> 0).toString(36)
-}
+        return ruleset
+      },
+      {}
+    )
 
-type MonoliticRenderer = {
-  _parseMonolithicRules: Function
-};
+    if (Object.keys(ruleSet).length > 0) {
+      const css = cssifyObject(ruleSet)
+      const selector = generateCSSSelector(className, pseudo)
+      const cssRule = generateCSSRule(selector, css)
 
-function useMonolithicRenderer(
-  renderer: DOMRenderer
-): DOMRenderer & MonoliticRenderer {
-  renderer._parseMonolithicRules = (
-    selector: string,
-    styles: Object,
-    mediaSelector: string = ''
-  ): {
-    rules: Array<string>,
-    media: Array<{ rules: Array<string>, media: string }>
-  } => {
-    const decs = []
-    const rules = []
-    const media = []
+      if (media.length > 0) {
+        if (!renderer.mediaRules.hasOwnProperty(media)) {
+          renderer.mediaRules[media] = ''
+        }
 
-    for (const key in styles) {
-      const value = styles[key]
-      const type = typeof value
-
-      if (isUndefinedValue(value)) {
-        continue
-      } else if (type === 'number' || type === 'string') {
-        decs.push(cssifyDeclaration(key, value))
-        continue
-      } else if (Array.isArray(value)) {
-        value.forEach(val => decs.push(cssifyDeclaration(key, val)))
-        continue
-      } else if (isNestedSelector(key)) {
-        renderer
-          ._parseMonolithicRules(
-            selector + normalizeNestedProperty(key),
-            value,
-            mediaSelector
-          )
-          .rules.forEach(r => rules.push(r))
-        continue
-      } else if (isMediaQuery(key)) {
-        const mediaKey = generateCombinedMediaQuery(
-          mediaSelector,
-          key.slice(6).trim()
-        )
-        const mediaRules = renderer._parseMonolithicRules(
-          selector,
-          value,
-          mediaKey
-        )
-        media.push({
-          rules: mediaRules.rules,
-          media: mediaKey
-        })
-        mediaRules.media.forEach(r => media.push(r))
-        continue
+        renderer.mediaRules[media] += cssRule
       } else {
-        renderer
-          ._parseMonolithicRules(`${selector} ${key}`, value, mediaSelector)
-          .rules.forEach(r => rules.push(r))
-        continue
+        renderer.rules += cssRule
       }
-    }
 
-    rules.unshift(generateCSSRule(selector, decs.join(';')))
+      renderer._emitChange({
+        selector,
+        declaration: css,
+        media,
 
-    return {
-      rules,
-      media
+        type: RULE_TYPE
+      })
     }
   }
 
   renderer._renderStyleToClassNames = (style: Object): string => {
-    if (!Object.keys(style).length) {
+    if (Object.keys(style).length < 1) {
       return ''
     }
 
-    const className = generateClassName(
+    const className = generateMonolithicClassName(
       style,
-      renderer.selectorPrefix || 'fela-'
+      renderer.selectorPrefix
     )
-    const selector = generateCSSSelector(className)
 
-    if (renderer.cache[className]) return ` ${className}`
-
-    const { rules, media } = renderer._parseMonolithicRules(selector, style)
-    const cssRules = rules.join('')
-
-    if (!renderer.cache[className]) {
-      renderer.cache[className] = ''
-    }
-
-    if (rules.length) {
-      renderer.rules += cssRules
-      renderer.cache[className] += cssRules
-
-      renderer._emitChange({
-        selector,
-        declaration: cssRules,
-        type: RULE_TYPE
-      })
-    }
-    if (media.length) {
-      media.forEach((r) => {
-        const mediaKey = r.media
-        const mediaRules = r.rules.join('')
-        if (!renderer.mediaRules.hasOwnProperty(mediaKey)) {
-          renderer.mediaRules[mediaKey] = ''
-        }
-        renderer.mediaRules[mediaKey] += mediaRules
-        renderer.cache[className] += cssifyMediaQueryRules(
-          mediaKey,
-          mediaRules
-        )
-
-        renderer._emitChange({
-          selector,
-          declaration: mediaRules,
-          media: mediaKey,
-          type: RULE_TYPE
-        })
-      })
+    if (!renderer.cache.hasOwnProperty(className)) {
+      renderer._renderStyleToCache(className, style)
+      renderer.cache[className] = true
     }
 
     return ` ${className}`

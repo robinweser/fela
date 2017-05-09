@@ -69,7 +69,7 @@ describe('Monolithic enhancer', () => {
     const className = renderer.renderRule(rule)
 
     expect(renderer.rules).toEqual(
-      `.${className}{color:red}.${className}:hover{color:blue}`
+      `.${className}:hover{color:blue}.${className}{color:red}`
     )
   })
 
@@ -93,7 +93,7 @@ describe('Monolithic enhancer', () => {
     const className = renderer.renderRule(rule)
 
     expect(renderer.rules).toEqual(
-      `.${className}{color:red}.${className}[bool=true]{color:blue}`
+      `.${className}[bool=true]{color:blue}.${className}{color:red}`
     )
   })
 
@@ -107,7 +107,7 @@ describe('Monolithic enhancer', () => {
     const className = renderer.renderRule(rule)
 
     expect(renderer.rules).toEqual(
-      `.${className}{color:red}.${className}>div{color:blue}`
+      `.${className}>div{color:blue}.${className}{color:red}`
     )
   })
 
@@ -122,7 +122,7 @@ describe('Monolithic enhancer', () => {
     const className = renderer.renderRule(rule)
 
     expect(renderer.rules).toEqual(
-      `.${className}{color:red}.${className}~#foo{color:blue}.${className} .bar{color:green}`
+      `.${className}~#foo{color:blue}.${className} .bar{color:green}.${className}{color:red}`
     )
   })
 
@@ -150,22 +150,6 @@ describe('Monolithic enhancer', () => {
     const renderer = createRenderer(options)
     renderer.renderRule(rule)
 
-    expect(renderer.rules).toEqual('.fela-custom{color:red}')
-  })
-
-  it('should create different classNames for different styles', () => {
-    const rule1 = () => ({
-      className: 'custom',
-      color: 'red'
-    })
-    const rule2 = () => ({
-      className: 'custom',
-      color: 'green'
-    })
-    const renderer = createRenderer(options)
-    const className1 = renderer.renderRule(rule1)
-    const className2 = renderer.renderRule(rule2)
-
-    expect(className1).not.toBe(className2)
+    expect(renderer.rules).toEqual('.custom{color:red}')
   })
 })
