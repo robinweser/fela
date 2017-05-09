@@ -1,16 +1,19 @@
 /* @flow */
 import arrayReduce from './arrayReduce'
 
+import type NativeRenderer from '../../flowtypes/NativeRenderer'
+import type DOMRenderer from '../../flowtypes/DOMRenderer'
+
 export default function processStyleWithPlugins(
-  plugins: Array<Function>,
+  renderer: DOMRenderer | NativeRenderer,
   style: Object,
   type: number
 ) {
-  if (plugins.length > 0) {
+  if (renderer.plugins.length > 0) {
     return arrayReduce(
-      plugins,
+      renderer.plugins,
       (processedStyle, plugin) => {
-        processedStyle = plugin(processedStyle, type)
+        processedStyle = plugin(processedStyle, type, renderer)
         return processedStyle
       },
       style

@@ -6,16 +6,19 @@ import processStyleWithPlugins from './processStyleWithPlugins'
 
 import { STATIC_TYPE } from './styleTypes'
 
+import type NativeRenderer from '../../flowtypes/NativeRenderer'
+import type DOMRenderer from '../../flowtypes/DOMRenderer'
+
 export default function cssifyStaticStyle(
   staticStyle: string | Object,
-  plugins: Array<Function>
+  renderer: DOMRenderer | NativeRenderer
 ): string {
   if (typeof staticStyle === 'string') {
     return minifyCSSString(staticStyle)
   }
 
   const processedStaticStyle = processStyleWithPlugins(
-    plugins,
+    renderer.plugins,
     staticStyle,
     STATIC_TYPE
   )
