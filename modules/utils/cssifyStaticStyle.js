@@ -18,7 +18,7 @@ export default function cssifyStaticStyle(
   }
 
   const processedStaticStyle = processStyleWithPlugins(
-    renderer.plugins,
+    renderer,
     staticStyle,
     STATIC_TYPE
   )

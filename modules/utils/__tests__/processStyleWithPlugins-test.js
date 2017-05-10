@@ -2,6 +2,9 @@ import processStyleWithPlugins from '../processStyleWithPlugins'
 
 const RULE_TYPE = 1
 
+function mockRenderer(plugin) {
+  return { plugins: [plugin] }
+}
 describe('Processing style', () => {
   it('should process style using data provided via the plugin interface', () => {
     const plugin = style => ({
@@ -9,7 +12,9 @@ describe('Processing style', () => {
       foo: 'bar'
     })
 
-    expect(processStyleWithPlugins([plugin], { width: 20 })).toEqual({
+    expect(
+      processStyleWithPlugins(mockRenderer(plugin), { width: 20 })
+    ).toEqual({
       width: 20,
       foo: 'bar'
     })
@@ -21,7 +26,9 @@ describe('Processing style', () => {
       foo: type
     })
 
-    expect(processStyleWithPlugins([plugin], { width: 20 }, RULE_TYPE)).toEqual({
+    expect(
+      processStyleWithPlugins(mockRenderer(plugin), { width: 20 }, RULE_TYPE)
+    ).toEqual({
       width: 20,
       foo: 1
     })

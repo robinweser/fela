@@ -1,4 +1,5 @@
 import cssifyStaticStyle from '../cssifyStaticStyle'
+import createRenderer from '../../createRenderer'
 
 describe('Cssifying static css declarations', () => {
   it('should return the minified style string', () => {
@@ -21,7 +22,7 @@ describe('Cssifying static css declarations', () => {
           color: 'red',
           WebkitTransitionDuration: 3
         },
-        []
+        createRenderer()
       )
     ).toEqual('color:red;-webkit-transition-duration:3')
   })
