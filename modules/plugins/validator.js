@@ -6,8 +6,6 @@ import isObject from '../utils/isObject'
 import isNestedSelector from '../utils/isNestedSelector'
 import isMediaQuery from '../utils/isMediaQuery'
 
-const percentageRegex = /from|to|%/
-
 type Type = 1 | 2 | 3 | 4 | 5;
 
 function validateStyleObject(
@@ -69,7 +67,7 @@ function validateKeyframeObject(
       }
       // check for invalid percentage values, it only allows from, to or 0% - 100%
     } else if (
-      !percentageRegex.test(percentage) || !isValidPercentage(percentage)
+      percentage !== 'from' && percentage !== 'to' && !isValidPercentage(percentage)
     ) {
       if (logInvalid) {
         console.error(
