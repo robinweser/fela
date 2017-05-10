@@ -9,6 +9,7 @@ import isUndefinedValue from '../utils/isUndefinedValue'
 
 import objectReduce from '../utils/objectReduce'
 import normalizeNestedProperty from '../utils/normalizeNestedProperty'
+import processStyleWithPlugins from '../utils/processStyleWithPlugins'
 
 import generateMonolithicClassName from '../utils/generateMonolithicClassName'
 import generateCombinedMediaQuery from '../utils/generateCombinedMediaQuery'
@@ -87,14 +88,17 @@ function useMonolithicRenderer(renderer: DOMRenderer): MonolithicRenderer {
     }
   }
 
-  renderer._renderStyleToClassNames = (style: Object): string => {
+  renderer._renderStyleToClassNames = (
+    style: Object,
+    rule: Function
+  ): string => {
     if (Object.keys(style).length < 1) {
       return ''
     }
 
     const className = generateMonolithicClassName(
       style,
-      renderer.selectorPrefix
+      (renderer.selectorPrefix || '') + (rule.selectorPrefix || '')
     )
 
     if (!renderer.cache.hasOwnProperty(className)) {
@@ -102,7 +106,16 @@ function useMonolithicRenderer(renderer: DOMRenderer): MonolithicRenderer {
       renderer.cache[className] = true
     }
 
-    return ` ${className}`
+    return className
+  }
+
+  renderer.renderRule = (rule: Function, props: Object = {}): string => {
+    const processedStyle = processStyleWithPlugins(
+      renderer,
+      rule(props),
+      RULE_TYPE
+    )
+    return renderer._renderStyleToClassNames(processedStyle, rule)
   }
 
   return renderer

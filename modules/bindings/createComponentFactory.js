@@ -9,9 +9,11 @@ export default function createComponentFactory(
 ): Function {
   return function createComponent(
     rule: Function,
-    type: string = 'div',
+    type: any = 'div',
     passThroughProps: Array<string> | Function = []
   ): Function {
+    const displayName = rule.name ? rule.name : 'FelaComponent'
+
     const FelaComponent = (
       { children, _felaRule, passThrough = [], ...ruleProps },
       { renderer, theme }
@@ -23,6 +25,14 @@ export default function createComponentFactory(
       }
 
       const combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule
+
+      // improve developer experience with monolithic renderer
+      // TODO: DEV ONLY
+      const componentName = typeof type === 'string'
+        ? type
+        : type.displayName || type.name || ''
+
+      combinedRule.selectorPrefix = `${displayName}__${componentName}_`
 
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [
@@ -76,7 +86,7 @@ export default function createComponentFactory(
     }
 
     // use the rule name as display name to better debug with react inspector
-    FelaComponent.displayName = rule.name ? rule.name : 'FelaComponent'
+    FelaComponent.displayName = displayName
     FelaComponent._isFelaComponent = true
 
     return FelaComponent

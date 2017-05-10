@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import createComponentFactory from '../createComponentFactory'
 import createRenderer from '../../createRenderer'
 
+import monolithic from '../../enhancers/monolithic'
+
 const createComponent = createComponentFactory(createElement, {
   renderer: PropTypes.object,
   theme: PropTypes.object
@@ -177,6 +179,35 @@ describe('Creating Components from Fela rules', () => {
     const component = createComponent(Button)
 
     expect(component.displayName).toEqual('Button')
+  })
+
+  it('should use a dev-friendly className with monolithic renderer', () => {
+    const Button = () => ({ fontSize: 16 })
+
+    const component = createComponent(Button)
+
+    const renderer = createRenderer({ enhancers: [monolithic()] })
+
+    const element = component({ color: 'black' }, { renderer })
+
+    expect(element.props.className).toEqual('Button__div_abrv9k')
+    expect(renderer.rules).toEqual('.Button__div_abrv9k{font-size:16}')
+  })
+
+  it('should use a dev-friendly className and the selectorPrefix', () => {
+    const Button = () => ({ fontSize: 16 })
+
+    const component = createComponent(Button)
+
+    const renderer = createRenderer({
+      enhancers: [monolithic()],
+      selectorPrefix: 'Fela-'
+    })
+
+    const element = component({ color: 'black' }, { renderer })
+
+    expect(element.props.className).toEqual('Fela-Button__div_abrv9k')
+    expect(renderer.rules).toEqual('.Fela-Button__div_abrv9k{font-size:16}')
   })
 
   it('should only use the rule name as displayName', () => {
