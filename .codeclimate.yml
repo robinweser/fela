@@ -8,3 +8,4 @@ exclude_paths:
 - "rollup/*"
 - "test/**/*"
 - "**/dist/*"
+- "packages/**/*"
