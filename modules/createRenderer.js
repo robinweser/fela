@@ -43,6 +43,8 @@ export default function createRenderer(
   let renderer: DOMRenderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
+    prettySelectors: process.env.NODE_ENV !== 'production' &&
+      config.prettySelectors,
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',

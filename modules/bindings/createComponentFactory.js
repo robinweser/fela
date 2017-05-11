@@ -27,12 +27,12 @@ export default function createComponentFactory(
       const combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule
 
       // improve developer experience with monolithic renderer
-      if (process.env.NODE_ENV !== 'production') {
+      if (renderer.prettySelectors) {
         const componentName = typeof type === 'string'
           ? type
           : type.displayName || type.name || ''
 
-        combinedRule.selectorPrefix = `${displayName}__${componentName}_`
+        combinedRule.selectorPrefix = `${displayName}_${componentName}__`
       }
 
       // compose passThrough props from arrays or functions
