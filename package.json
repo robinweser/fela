@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "babel": "babel -d packages/fela/lib modules",
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
     "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
     "check": "npm run lint && npm run test:coverage && npm run flow",
@@ -61,6 +63,7 @@
     "inferno-create-element": "^1.0.1",
     "inline-style-prefixer": "^3.0.1",
     "jest": "^19.0.2",
+    "lerna": "^2.0.0-rc.4",
     "preact": "^7.0.0",
     "prettier-eslint": "^4.2.1",
     "prettier-eslint-cli": "^3.1.2",
