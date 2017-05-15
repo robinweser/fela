@@ -24,6 +24,7 @@ Thumbs.db
 node_modules/
 npm-debug.log
 lib/
+es
 coverage
 _book
 examples/react/bundle.js

@@ -1,12 +1,18 @@
 {
   "presets": [
-    "es2015",
+    ["es2015", { "modules": false }],
     "stage-0",
     "react"
   ],
   "plugins": [
-    "add-module-exports",
     "transform-class-properties",
     "transform-dev-warning"
-  ]
+  ],
+  "env": {
+    "commonjs": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
 }

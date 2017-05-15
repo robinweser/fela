@@ -2,8 +2,9 @@
   "name": "fela-beautifier",
   "version": "4.3.5",
   "description": "Fela enhancer to beautify CSS output",
-  "module": "index.es2015.js",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
@@ -25,8 +26,5 @@
   "license": "MIT",
   "dependencies": {
     "cssbeautify": "0.3.1"
-  },
-  "peerDependencies": {
-    "fela": "4.3.5"
   }
 }
