@@ -193,8 +193,8 @@ describe('Creating Components from Fela rules', () => {
 
     const element = component({ color: 'black' }, { renderer })
 
-    expect(element.props.className).toEqual('Button__div_abrv9k')
-    expect(renderer.rules).toEqual('.Button__div_abrv9k{font-size:16}')
+    expect(element.props.className).toEqual('Button_div__abrv9k')
+    expect(renderer.rules).toEqual('.Button_div__abrv9k{font-size:16}')
   })
 
   it('should use a dev-friendly className and the selectorPrefix', () => {
@@ -210,8 +210,8 @@ describe('Creating Components from Fela rules', () => {
 
     const element = component({ color: 'black' }, { renderer })
 
-    expect(element.props.className).toEqual('Fela-Button__div_abrv9k')
-    expect(renderer.rules).toEqual('.Fela-Button__div_abrv9k{font-size:16}')
+    expect(element.props.className).toEqual('Fela-Button_div__abrv9k')
+    expect(renderer.rules).toEqual('.Fela-Button_div__abrv9k{font-size:16}')
   })
 
   it('should only use the rule name as displayName', () => {
