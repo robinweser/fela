@@ -3,7 +3,7 @@ import isObject from '../utils/isObject'
 
 import type DOMRenderer from '../../flowtypes/DOMRenderer'
 
-type Type = 1 | 2 | 3 | 4 | 5;
+type Type = 1 | 2 | 3 | 4 | 5
 
 function embedded(style: Object, type: Type, renderer: DOMRenderer): Object {
   for (const property in style) {

@@ -6,7 +6,7 @@ import isObject from '../utils/isObject'
 import isNestedSelector from '../utils/isNestedSelector'
 import isMediaQuery from '../utils/isMediaQuery'
 
-type Type = 1 | 2 | 3 | 4 | 5;
+type Type = 1 | 2 | 3 | 4 | 5
 
 function validateStyleObject(
   style: Object,
@@ -41,8 +41,10 @@ function validateStyleObject(
 function isValidPercentage(percentage: string): boolean {
   const percentageValue = parseFloat(percentage)
 
-  return percentage.indexOf('%') > -1 &&
-    (percentageValue < 0 || percentageValue > 100)
+  return (
+    percentage.indexOf('%') !== -1 &&
+    (percentageValue >= 0 && percentageValue <= 100)
+  )
 }
 
 function validateKeyframeObject(

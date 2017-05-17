@@ -34,11 +34,8 @@ import {
   CLEAR_TYPE
 } from './utils/styleTypes'
 
-import type {
-  DOMRenderer,
-  DOMRendererConfig
-} from '../../../flowtypes/DOMRenderer'
-import type FontProperties from '../../../flowtypes/FontProperties'
+import type { DOMRenderer, DOMRendererConfig } from '../flowtypes/DOMRenderer'
+import type FontProperties from '../flowtypes/FontProperties'
 
 export default function createRenderer(
   config: DOMRendererConfig = {}
@@ -46,8 +43,6 @@ export default function createRenderer(
   let renderer: DOMRenderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
-    prettySelectors: process.env.NODE_ENV !== 'production' &&
-      config.prettySelectors,
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
