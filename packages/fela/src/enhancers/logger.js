@@ -4,20 +4,18 @@ import cssbeautify from 'cssbeautify'
 
 import { CLEAR_TYPE } from '../utils/styleTypes'
 
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
 function addLogger(renderer: DOMRenderer, options: Object): DOMRenderer {
-  renderer.subscribe((change) => {
+  renderer.subscribe(change => {
     if (change.type === CLEAR_TYPE) {
       console.log('Cleared renderer cache.')
       return true
     }
 
     const selector = change.selector || change.fontFamily || change.name
-    const css = change.declaration ||
-      change.keyframe ||
-      change.fontFace ||
-      change.css
+    const css =
+      change.declaration || change.keyframe || change.fontFace || change.css
     const formattedCSS = options.format ? cssbeautify(css) : css
     const isMedia = change.media && change.media.length > 0
 

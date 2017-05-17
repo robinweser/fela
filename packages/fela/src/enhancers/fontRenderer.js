@@ -2,8 +2,8 @@
 import createRenderer from '../createRenderer'
 import render from '../dom/render'
 
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
-import type DOMNode from '../../flowtypes/DOMNode'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
+import type DOMNode from '../../../../flowtypes/DOMNode'
 
 function addFontRenderer(
   renderer: DOMRenderer,

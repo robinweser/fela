@@ -6,8 +6,8 @@ import processStyleWithPlugins from './processStyleWithPlugins'
 
 import { STATIC_TYPE } from './styleTypes'
 
-import type NativeRenderer from '../../flowtypes/NativeRenderer'
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type NativeRenderer from '../../../../flowtypes/NativeRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
 export default function cssifyStaticStyle(
   staticStyle: string | Object,

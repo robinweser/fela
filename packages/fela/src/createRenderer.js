@@ -34,8 +34,11 @@ import {
   CLEAR_TYPE
 } from './utils/styleTypes'
 
-import type { DOMRenderer, DOMRendererConfig } from '../flowtypes/DOMRenderer'
-import type FontProperties from '../flowtypes/FontProperties'
+import type {
+  DOMRenderer,
+  DOMRendererConfig
+} from '../../../flowtypes/DOMRenderer'
+import type FontProperties from '../../../flowtypes/FontProperties'
 
 export default function createRenderer(
   config: DOMRendererConfig = {}
@@ -168,7 +171,8 @@ export default function createRenderer(
     },
 
     renderToString(): string {
-      const basicCSS = renderer.fontFaces +
+      const basicCSS =
+        renderer.fontFaces +
         renderer.statics +
         renderer.keyframes +
         renderer.rules
@@ -246,7 +250,8 @@ export default function createRenderer(
               /* eslint-enable */
             }
 
-            const className = renderer.selectorPrefix +
+            const className =
+              renderer.selectorPrefix +
               generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className
@@ -290,7 +295,7 @@ export default function createRenderer(
   renderer.clear()
 
   if (config.enhancers) {
-    arrayEach(config.enhancers, (enhancer) => {
+    arrayEach(config.enhancers, enhancer => {
       renderer = enhancer(renderer)
     })
   }

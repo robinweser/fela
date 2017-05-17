@@ -10,7 +10,7 @@ import { RULE_TYPE } from '../utils/styleTypes'
 import type {
   NativeRenderer,
   NativeRendererConfig
-} from '../../flowtypes/NativeRenderer'
+} from '../../../../flowtypes/NativeRenderer'
 
 export default function createRenderer(
   config: NativeRendererConfig = {}
@@ -46,7 +46,7 @@ export default function createRenderer(
   renderer.clear()
 
   if (config.enhancers) {
-    arrayEach(config.enhancers, (enhancer) => {
+    arrayEach(config.enhancers, enhancer => {
       renderer = enhancer(renderer)
     })
   }

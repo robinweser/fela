@@ -1,7 +1,7 @@
 /* @flow */
 import cssbeautify from 'cssbeautify'
 
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
 function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
   const existingRenderToString = renderer.renderToString.bind(renderer)

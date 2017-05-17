@@ -1,7 +1,7 @@
 /* @flow */
 /* eslint-disable no-console */
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
-import type NativeRenderer from '../../flowtypes/NativeRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
+import type NativeRenderer from '../../../../flowtypes/NativeRenderer'
 
 let counter = 0
 

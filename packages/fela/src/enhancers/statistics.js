@@ -4,7 +4,7 @@ import gzipSize from 'gzip-size'
 
 import { RULE_TYPE } from '../utils/styleTypes'
 
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
 function lengthInUtf8Bytes(str: string): number {
   const m = encodeURIComponent(str).match(/%[89ABab]/g)
@@ -13,7 +13,7 @@ function lengthInUtf8Bytes(str: string): number {
 
 type RendererWithStatistics = {
   getStatistics: Function
-};
+}
 
 function addStatistics(
   renderer: DOMRenderer
@@ -34,7 +34,7 @@ function addStatistics(
   }
 
   function addClassNamesToUsage(classNames: string): void {
-    classNames.split(' ').forEach((className) => {
+    classNames.split(' ').forEach(className => {
       if (!statistics.usage[className]) {
         statistics.usage[className] = 0
       }
@@ -85,8 +85,8 @@ function addStatistics(
   })
 
   function calculateReuse(): number {
-    const quotient = (statistics.totalUsage - statistics.totalClasses) /
-      statistics.totalUsage
+    const quotient =
+      (statistics.totalUsage - statistics.totalClasses) / statistics.totalUsage
     return Math.floor(quotient * 10000) / 10000
   }
 

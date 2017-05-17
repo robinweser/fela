@@ -1,8 +1,8 @@
 /* @flow */
 import arrayReduce from './arrayReduce'
 
-import type NativeRenderer from '../../flowtypes/NativeRenderer'
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type NativeRenderer from '../../../../flowtypes/NativeRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
 export default function processStyleWithPlugins(
   renderer: DOMRenderer | NativeRenderer,

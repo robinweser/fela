@@ -1,5 +1,5 @@
 /* @flow */
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
 function addLayoutDebugger(
   renderer: DOMRenderer,
@@ -22,7 +22,9 @@ function addLayoutDebugger(
       )
     } else {
       renderer.renderStatic(
-        { outline: `${options.thickness}px solid hsl(${color}, 100%, 50%) !important` },
+        {
+          outline: `${options.thickness}px solid hsl(${color}, 100%, 50%) !important`
+        },
         `.${debugLayoutClassName}`
       )
     }
