@@ -35,7 +35,9 @@ export default function createRenderer(
           style,
           RULE_TYPE
         )
-        renderer.cache[reference] = StyleSheet.create({ style: processedStyle })
+        renderer.cache[reference] = StyleSheet.create({
+          style: processedStyle
+        })
       }
 
       return renderer.cache[reference].style

@@ -11,7 +11,7 @@
     "clean": "lerna clean",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
     "check": "npm run lint && npm run test:coverage && npm run flow",
-    "format": "prettier-eslint packages/**/*.js --write",
+    "format": "prettier-eslint packages/*/src/**/*.js --write",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
     "publish": "git pull --rebase && npm run build && lerna publish",

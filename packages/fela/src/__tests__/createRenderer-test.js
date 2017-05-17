@@ -18,7 +18,7 @@ describe('Renderer', () => {
     })
 
     it('should apply enhancers directly', () => {
-      const enhancer = (renderer) => {
+      const enhancer = renderer => {
         renderer.foo = 'bar'
         return renderer
       }
@@ -28,7 +28,9 @@ describe('Renderer', () => {
     })
 
     it('should apply media queries in correct order', () => {
-      const renderer = createRenderer({ mediaQueryOrder: ['(min-height: 300px)', '(max-width: 150px)'] })
+      const renderer = createRenderer({
+        mediaQueryOrder: ['(min-height: 300px)', '(max-width: 150px)']
+      })
 
       expect(renderer.mediaRules).toEqual({
         '(min-height: 300px)': '',

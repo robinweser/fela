@@ -14,8 +14,10 @@ function addLogger(renderer: DOMRenderer, options: Object): DOMRenderer {
     }
 
     const selector = change.selector || change.fontFamily || change.name
-    const css =
-      change.declaration || change.keyframe || change.fontFace || change.css
+    const css = change.declaration ||
+      change.keyframe ||
+      change.fontFace ||
+      change.css
     const formattedCSS = options.format ? cssbeautify(css) : css
     const isMedia = change.media && change.media.length > 0
 
