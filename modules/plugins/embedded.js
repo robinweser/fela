@@ -5,11 +5,7 @@ import type DOMRenderer from '../../flowtypes/DOMRenderer'
 
 type Type = 1 | 2 | 3 | 4 | 5;
 
-function embedKeyframeAndFont(
-  style: Object,
-  type: Type,
-  renderer: DOMRenderer
-): Object {
+function embedded(style: Object, type: Type, renderer: DOMRenderer): Object {
   for (const property in style) {
     const value = style[property]
 
@@ -30,4 +26,4 @@ function embedKeyframeAndFont(
   return style
 }
 
-export default () => embedKeyframeAndFont
+export default () => embedded
