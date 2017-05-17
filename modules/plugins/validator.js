@@ -41,8 +41,8 @@ function validateStyleObject(
 function isValidPercentage(percentage: string): boolean {
   const percentageValue = parseFloat(percentage)
 
-  return percentage.indexOf('%') > -1 &&
-    (percentageValue < 0 || percentageValue > 100)
+  return percentage.indexOf('%') !== -1 &&
+    (percentageValue >= 0 && percentageValue <= 100)
 }
 
 function validateKeyframeObject(
@@ -67,7 +67,9 @@ function validateKeyframeObject(
       }
       // check for invalid percentage values, it only allows from, to or 0% - 100%
     } else if (
-      percentage !== 'from' && percentage !== 'to' && !isValidPercentage(percentage)
+      percentage !== 'from' &&
+      percentage !== 'to' &&
+      !isValidPercentage(percentage)
     ) {
       if (logInvalid) {
         console.error(
