@@ -24,7 +24,9 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "^4.3.5",
     "react-native": "*"
+  },
+  "dependencies": {
+    "fela": "^4.3.5"
   }
 }
