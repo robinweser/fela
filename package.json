@@ -16,6 +16,7 @@
     "format": "prettier-eslint modules/**/*.js --write",
     "flow": "flow",
     "lint": "eslint modules",
+    "publish": "git pull --rebase && npm run build && lerna publish",
     "release:prepare": "npm run check && npm run babel && npm run dist",
     "release": "npm run release:prepare && ./scripts/publishPackages.sh && npm run docs",
     "test": "cross-env BABEL_ENV=commonjs jest",
