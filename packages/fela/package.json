@@ -2,16 +2,16 @@
   "name": "fela",
   "version": "4.3.5",
   "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
-  "module": "index.es2015.js",
-  "main": "index.js",
   "typings": "index.d.ts",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
     "index.d.ts",
-    "index.js",
     "lib/**",
-    "dist/**"
+    "es/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [

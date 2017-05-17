@@ -2,12 +2,14 @@
   "name": "fela-native",
   "version": "4.3.5",
   "description": "Fela Renderer for React Native",
-  "module": "index.es2015.js",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "index.js"
+    "lib/**",
+    "es/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -22,7 +24,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "4.3.5",
+    "fela": "^4.3.5",
     "react-native": "*"
   }
 }

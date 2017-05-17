@@ -18,11 +18,11 @@
     "lint": "eslint modules",
     "release:prepare": "npm run check && npm run babel && npm run dist",
     "release": "npm run release:prepare && ./scripts/publishPackages.sh && npm run docs",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "cross-env BABEL_ENV=commonjs jest",
+    "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage"
   },
   "jest": {
-    "rootDir": "modules",
+    "rootDir": "packages",
     "testPathIgnorePatterns": [
       "/mocks/"
     ]
@@ -32,6 +32,7 @@
     "babel-cli": "^6.6.0",
     "babel-core": "^6.6.0",
     "babel-eslint": "^7.1.1",
+    "babel-jest": "^20.0.1",
     "babel-plugin-inferno": "^1.9.0",
     "babel-plugin-transform-class-properties": "^6.9.1",
     "babel-plugin-transform-dev-warning": "^0.1.0",
