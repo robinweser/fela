@@ -12,14 +12,15 @@ function embedded(style: Object, type: Type, renderer: DOMRenderer): Object {
     if (property === 'fontFace' && isObject(value)) {
       const { fontFamily, src, ...otherProps } = value
       if (typeof fontFamily === 'string' && Array.isArray(src)) {
-        style[property] = renderer.renderFont(fontFamily, src, otherProps)
+        style.fontFamily = renderer.renderFont(fontFamily, src, otherProps)
+        delete style.fontFace
       } else {
         // TODO: warning - invalid font data
       }
     }
 
     if (property === 'animationName' && isObject(value)) {
-      style[property] = renderer.renderKeyframe(value)
+      style[property] = renderer.renderKeyframe(() => value)
     }
   }
 
