@@ -21,7 +21,12 @@ import { RULE_TYPE } from '../utils/styleTypes'
 import type DOMRenderer from '../../flowtypes/DOMRenderer'
 import type MonolithicRenderer from '../../flowtypes/MonolithicRenderer'
 
-function useMonolithicRenderer(renderer: DOMRenderer): MonolithicRenderer {
+function useMonolithicRenderer(
+  renderer: DOMRenderer,
+  prettySelectors: boolean = false
+): MonolithicRenderer {
+  renderer.prettySelectors = prettySelectors
+
   renderer._renderStyleToCache = (
     className: string,
     style: Object,
@@ -96,9 +101,13 @@ function useMonolithicRenderer(renderer: DOMRenderer): MonolithicRenderer {
       return ''
     }
 
+    const localRulePrefix = renderer.prettySelectors && rule.name
+      ? `${rule.name}_`
+      : ''
+
     const className = generateMonolithicClassName(
       style,
-      (renderer.selectorPrefix || '') + (rule.selectorPrefix || '')
+      (renderer.selectorPrefix || '') + (rule.selectorPrefix || localRulePrefix)
     )
 
     if (!renderer.cache.hasOwnProperty(className)) {
@@ -121,6 +130,10 @@ function useMonolithicRenderer(renderer: DOMRenderer): MonolithicRenderer {
   return renderer
 }
 
-export default function monolithic() {
-  return useMonolithicRenderer
+export default function monolithic(options: Object = {}) {
+  return (renderer: DOMRenderer) =>
+    useMonolithicRenderer(
+      renderer,
+      process.env.NODE_ENV !== 'production' && options.prettySelectors
+    )
 }

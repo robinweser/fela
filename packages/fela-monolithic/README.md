@@ -21,6 +21,7 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 ```
 
 ## Usage
+
 ```javascript
 import { createRenderer } from 'fela'
 import monolithic from 'fela-monolithic'
@@ -40,7 +41,7 @@ renderer.renderRule(rule)
 outputs
 
 ```css
-.fela-custom {
+.custom {
   color: red
 }
 ```
@@ -48,12 +49,67 @@ outputs
 if `className` property is not used, the output will be
 
 ```css
-.fela-137u7ef {
+.137u7ef {
   color: red
 }
 ```
 
-`137u7ef` is a hash based on rule properties (`color: red` in this case). The prefix `fela` can be configured in createRenderer.
+`137u7ef` is a hash based on rule properties (`color: red` in this case).
+
+### Configuration
+##### Options
+| Option | Value | Default | Description |
+| --- | --- | --- | --- |
+| `prettySelectors` | *(boolean)* | `false` | use pretty selectors in development |
+
+If you are using `prettySelectors` with plain Fela rules it will add the `rule.name` to the className e.g.
+
+> Note: anonymous functions will still only use the hash!
+
+```javascript
+import { createRenderer } from 'fela'
+import monolithic from 'fela-monolithic'
+
+const renderer = createRenderer({
+  enhancers: [ monolithic({ prettySelectors: true }) ]
+})
+
+const redText = () => ({
+  color: 'red'
+})
+
+renderer.renderRule(redText) // => redText_137u7ef
+```
+```css
+.redText_137u7ef {
+  color: red
+}
+```
+
+If you use it together with `createComponent` from `react-fela`, `preact-fela` or `inferno-fela`, it will also add the component type or displayName to the rule. e.g.
+
+```javascript
+import { createComponent } from 'react-fela'
+
+const Button = () => ({
+  color: 'red'
+})
+
+const Comp = createComponent(Button)
+
+<Button />
+// => <div class="Button_div__137u7ef"></div>
+
+const ExtendedButton = () => ({
+  backgroundColor: 'blue'
+})
+
+const Comp2 = createComponent(ExtendedButton, Button)
+
+<Comp2 />
+// => <div class="ExtendedButton_Button__xxxxx"></div>
+```
+
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

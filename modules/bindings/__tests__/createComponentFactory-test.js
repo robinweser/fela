@@ -186,10 +186,7 @@ describe('Creating Components from Fela rules', () => {
 
     const component = createComponent(Button)
 
-    const renderer = createRenderer({
-      enhancers: [monolithic()],
-      prettySelectors: true
-    })
+    const renderer = createRenderer({ enhancers: [monolithic({ prettySelectors: true })] })
 
     const element = component({ color: 'black' }, { renderer })
 
@@ -203,8 +200,7 @@ describe('Creating Components from Fela rules', () => {
     const component = createComponent(Button)
 
     const renderer = createRenderer({
-      enhancers: [monolithic()],
-      prettySelectors: true,
+      enhancers: [monolithic({ prettySelectors: true })],
       selectorPrefix: 'Fela-'
     })
 
