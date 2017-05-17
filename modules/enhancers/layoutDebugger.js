@@ -22,7 +22,9 @@ function addLayoutDebugger(
       )
     } else {
       renderer.renderStatic(
-        { outline: `${options.thickness}px solid hsl(${color}, 100%, 50%) !important` },
+        {
+          outline: `${options.thickness}px solid hsl(${color}, 100%, 50%) !important`
+        },
         `.${debugLayoutClassName}`
       )
     }
