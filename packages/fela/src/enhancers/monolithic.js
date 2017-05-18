@@ -18,8 +18,8 @@ import generateCSSRule from '../utils/generateCSSRule'
 
 import { RULE_TYPE } from '../utils/styleTypes'
 
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
-import type MonolithicRenderer from '../../flowtypes/MonolithicRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
+import type MonolithicRenderer from '../../../../flowtypes/MonolithicRenderer'
 
 function useMonolithicRenderer(
   renderer: DOMRenderer,

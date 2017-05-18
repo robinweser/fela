@@ -34,8 +34,11 @@ import {
   CLEAR_TYPE
 } from './utils/styleTypes'
 
-import type { DOMRenderer, DOMRendererConfig } from '../flowtypes/DOMRenderer'
-import type FontProperties from '../flowtypes/FontProperties'
+import type {
+  DOMRenderer,
+  DOMRendererConfig
+} from '../../../flowtypes/DOMRenderer'
+import type FontProperties from '../../../flowtypes/FontProperties'
 
 export default function createRenderer(
   config: DOMRendererConfig = {}

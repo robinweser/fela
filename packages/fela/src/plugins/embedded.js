@@ -1,7 +1,7 @@
 /* @flow */
 import isObject from '../utils/isObject'
 
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
 type Type = 1 | 2 | 3 | 4 | 5
 
