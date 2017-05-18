@@ -21,8 +21,7 @@
   * [3.5. Global & Third-Party Styles](docs/advanced/StaticStyle.md)
   * [3.6. Combined Rules](docs/advanced/CombinedRules.md)
   * [3.7. Enhancers](docs/advanced/Enhancers.md)
-  * [3.8. Testing Fela Components](docs/advanced/TestingFelaComponents.md)
-  * [3.9. Developer Experience](docs/advanced/DeveloperExperience.md)
+  * [3.8. Developer Experience](docs/advanced/DeveloperExperience.md)
 * [4. Usage Guides](docs/UsageGuides.md)
   * [4.1. Usage with React](docs/guides/UsageWithReact.md)
   * [4.2. Usage with React Native](docs/guides/UsageWithReactNative.md)
@@ -31,6 +30,7 @@
   * [4.5. Usage with Angular 2](docs/guides/UsageWithAngular2.md)
 * [5. Recipes](docs/Recipes.md)
   * [5.1. Responsive Components](docs/recipes/ResponsiveComponents.md)
+  * [5.2. Testing Fela Components](docs/recipes/TestingFelaComponents.md)
 * [6. API Reference](docs/API.md)
   * 6.1. fela
     * [6.1.1. createRenderer](docs/api/fela/createRenderer.md)
