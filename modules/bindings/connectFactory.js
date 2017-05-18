@@ -1,5 +1,6 @@
 /* @flow */
 import generateDisplayName from './generateDisplayName'
+import objectReduce from '../utils/objectReduce'
 
 export default function connectFactory(
   BaseComponent: any,
@@ -13,15 +14,24 @@ export default function connectFactory(
 
         render() {
           const { renderer, theme = {} } = this.context
-          const styleProps = { ...this.props, theme }
+          const styleProps = {
+            ...this.props,
+            theme
+          }
 
-          const styles = Object.keys(rules).reduce((sofar, key) => {
-            const style = renderer.renderRule(rules[key], styleProps)
-            return Object.assign(sofar, { [key]: style })
-          }, {})
+          const styles = objectReduce(
+            rules,
+            (styleMap, rule) => {
+              styleMap[rule] = renderer.renderRule(rules[rule], styleProps)
+              return styleMap
+            },
+            {}
+          )
 
-          const props = { ...this.props, styles }
-          return createElement(component, props)
+          return createElement(component, {
+            ...this.props,
+            styles
+          })
         }
       }
 
