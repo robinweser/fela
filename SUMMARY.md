@@ -30,6 +30,7 @@
   * [4.5. Usage with Angular 2](docs/guides/UsageWithAngular2.md)
 * [5. Recipes](docs/Recipes.md)
   * [5.1. Responsive Components](docs/recipes/ResponsiveComponents.md)
+  * [5.2. Testing Fela Components](docs/recipes/TestingFelaComponents.md)
 * [6. API Reference](docs/API.md)
   * 6.1. fela
     * [6.1.1. createRenderer](docs/api/fela/createRenderer.md)
