@@ -8,4 +8,5 @@ Now that we have learned the fundamental basics, we can go on with more advanced
 * [Global & Third-Party Styles](advanced/StaticStyle.md)
 * [Combined Rules](advanced/CombinedRules.md)
 * [Enhancers](advanced/Enhancers.md)
+* [Testing Fela Components](advanced/TestingFelaComponents.md)
 * [Developer Experience](advanced/DeveloperExperience.md)
