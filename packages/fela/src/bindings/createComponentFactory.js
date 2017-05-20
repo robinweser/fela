@@ -27,7 +27,7 @@ export default function createComponentFactory(
       const combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule
 
       // improve developer experience with monolithic renderer
-      if (renderer.prettySelectors) {
+      if (process.env.NODE_ENV !== 'production' && renderer.prettySelectors) {
         const componentName = typeof type === 'string'
           ? type
           : type.displayName || type.name || ''
@@ -69,14 +69,21 @@ export default function createComponentFactory(
           ? [ruleProps.style, felaStyle]
           : felaStyle
       } else {
-        componentProps.style = ruleProps.style
+        if (ruleProps.style) {
+          componentProps.style = ruleProps.style
+        }
         const cls = ruleProps.className ? `${ruleProps.className} ` : ''
         componentProps.className = cls +
           renderer.renderRule(combinedRule, ruleProps)
       }
 
-      componentProps.id = ruleProps.id
-      componentProps.ref = ruleProps.innerRef
+      if (ruleProps.id) {
+        componentProps.id = ruleProps.id
+      }
+
+      if (ruleProps.innerRef) {
+        componentProps.ref = ruleProps.innerRef
+      }
 
       const customType = ruleProps.is || type
       return createElement(customType, componentProps, children)

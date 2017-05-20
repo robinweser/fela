@@ -4,18 +4,29 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 
 ## Top-Level API
 #### fela
-* [`createRenderer([config])`](api/fela/fela/createRenderer.md)
-* [`combineRules(...rules)`](api/fela/fela/combineRules.md)
-* [`enhance(...enhancers)`](api/fela/fela/enhance.md)
+* [`createRenderer([config])`](api/fela/createRenderer.md)
+* [`combineRules(...rules)`](api/fela/combineRules.md)
+* [`enhance(...enhancers)`](api/fela/enhance.md)
 
+#### [Renderer API](api/fela/Renderer.md)
+* [`.renderRule(rule, [props])`](api/fela/Renderer.md#renderrulerule--props)
+* [`.renderKeyframe(keyframe, [props])`](api/fela/Renderer.md#renderkeyframe--props)
+* [`.renderFont(family, files, [properties])`](api/fela/Renderer.md#renderfontfamily-files--properties)
+* [`.renderStatic(style, [selector])`](api/fela/Renderer.md#renderstaticstyle--reference)
+* [`.renderToString()`](api/fela/Renderer.md#rendertostring)
+* [`.subscribe(listener)`](api/fela/Renderer.md#subscribelistener)
+* [`.clear()`](api/fela/Renderer.md#clear)
+
+---
 #### fela-dom
-* [`render(renderer, mountNode)`](api/fela/fela-dom/render.md)
+* [`render(renderer, mountNode)`](api/fela-dom/render.md)
 
-## [Renderer API](api/fela/fela/Renderer.md)
-* [`.renderRule(rule, [props])`](api/fela/fela/Renderer.md#renderrulerule--props)
-* [`.renderKeyframe(keyframe, [props])`](api/fela/fela/Renderer.md#renderkeyframe--props)
-* [`.renderFont(family, files, [properties])`](api/fela/fela/Renderer.md#renderfontfamily-files--properties)
-* [`.renderStatic(style, [selector])`](api/fela/fela/Renderer.md#renderstaticstyle--reference)
-* [`.renderToString()`](api/fela/fela/Renderer.md#rendertostring)
-* [`.subscribe(listener)`](api/fela/fela/Renderer.md#subscribelistener)
-* [`.clear()`](api/fela/fela/Renderer.md#clear)
+---
+
+#### fela-native
+* [`createRenderer([config])`](api/fela-native/createRenderer.md)
+
+#### [Renderer API](api/fela/Renderer.md)
+* [`.renderRule(rule, [props])`](api/fela-native/Renderer.md#renderrulerule--props)
+* [`.subscribe(listener)`](api/fela-native/Renderer.md#subscribelistener)
+* [`.clear()`](api/fela-native/Renderer.md#clear)

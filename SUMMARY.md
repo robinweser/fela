@@ -40,8 +40,8 @@
   * 6.2. fela-dom
     * [6.2.1. render](docs/api/fela-dom/render.md)
   * 6.3. fela-native
-    * 6.3.1. createRenderer (soon)
-    * 6.3.2. Renderer (soon)
+    * [6.3.1. createRenderer](docs/api/fela-native/createRenderer.md)
+    * [6.3.2. Renderer](docs/api/fela-native/Renderer.md)
 * [7. Troubleshooting](docs/Troubleshooting.md)
 * [8. FAQ](docs/FAQ.md)
 * [9. Feedback](docs/Feedback.md)
