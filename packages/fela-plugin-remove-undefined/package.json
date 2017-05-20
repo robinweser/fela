@@ -1,14 +1,15 @@
 {
   "name": "fela-plugin-remove-undefined",
-  "version": "4.3.2",
+  "version": "4.3.5",
   "description": "Fela plugin to remove invalid undefined values",
-  "module": "index.es2015.js",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "index.js",
-    "dist/**"
+    "lib/**",
+    "es/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -18,7 +19,7 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "peerDependencies": {
-    "fela": "4.3.2"
+  "dependencies": {
+    "fela": "^4.3.5"
   }
 }

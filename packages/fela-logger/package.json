@@ -1,14 +1,15 @@
 {
   "name": "fela-logger",
-  "version": "4.3.2",
+  "version": "4.3.5",
   "description": "Logging tool for Fela",
-  "module": "index.es2015.js",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "index.js",
-    "dist/**"
+    "es/**",
+    "lib/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -23,9 +24,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "cssbeautify": "0.3.1"
-  },
-  "peerDependencies": {
-    "fela": "4.3.2"
+    "cssbeautify": "0.3.1",
+    "fela": "^4.3.5"
   }
 }

@@ -1,0 +1,26 @@
+{
+  "name": "fela-plugin-important",
+  "version": "4.3.5",
+  "description": "Fela plugin that adds !important to every value",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "es/**",
+    "lib/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "important",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "fela": "^4.3.5"
+  }
+}

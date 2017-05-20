@@ -30,6 +30,7 @@
   * [4.5. Usage with Angular 2](docs/guides/UsageWithAngular2.md)
 * [5. Recipes](docs/Recipes.md)
   * [5.1. Responsive Components](docs/recipes/ResponsiveComponents.md)
+  * [5.2. Testing Fela Components](docs/recipes/TestingFelaComponents.md)
 * [6. API Reference](docs/API.md)
   * 6.1. fela
     * [6.1.1. createRenderer](docs/api/fela/createRenderer.md)
@@ -41,9 +42,9 @@
   * 6.3. fela-dom/server
     * [6.3.1. renderToString](docs/api/fela-dom/server/renderToString.md)
     * [6.3.2. renderToMarkup](docs/api/fela-dom/server/renderToMarkup.md)
-  * 6.4. fela-native (soon)
-    * 6.4.1. createRenderer
-    * 6.4.2. Renderer
+  * 6.4. fela-native
+    * [6.4.1. createRenderer](docs/api/fela-native/createRenderer.md)
+    * [6.4.2. Renderer](docs/api/fela-native/Renderer.md)
 * [7. Troubleshooting](docs/Troubleshooting.md)
 * [8. FAQ](docs/FAQ.md)
 * [9. Feedback](docs/Feedback.md)

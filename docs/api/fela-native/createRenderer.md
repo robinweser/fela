@@ -1,7 +1,6 @@
 # `createRenderer([config])`
 
-Creates a Fela renderer which renders your selectors, keyframes, fonts and static styles.<br>
-It caches all rendered styles to be able to reuse them on future rendering cycles.<br>
+Creates a Fela renderer which renders your React Native styles utilizing `StyleSheet.create`. It caches all rendered styles to be able to reuse them on future rendering cycles.
 
 ## Arguments
 1. `config` (*Object?*): Optional renderer configuration. The most common use case adding [plugins](../../advanced/Plugins.md) to process styles before they get cached. *(See [Advanced - Renderer Configuration](../../advanced/RendererConfiguration.md) for further information)*.
@@ -12,7 +11,7 @@ It caches all rendered styles to be able to reuse them on future rendering cycle
 ## Example
 
 ```javascript
-import { createRenderer } from 'fela'
+import { createRenderer } from 'fela-native'
 
 const rule = props => ({
   backgroundColor: 'red',
@@ -22,11 +21,6 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => a b c
-
-
-console.log(renderer.renderToString())
-// .a{background-color:red}
-// .b{font-size:12px}
-// .c{color:blue}
+renderer.render(rule, { size: 12 })
+// => { backgroundColor: 'red', fontSize: 12, color: 'blue' }
 ```

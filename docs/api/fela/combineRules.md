@@ -26,7 +26,7 @@ const anotherRule = props => ({
   color: 'blue'
 })
 
-const superRule = combineRule(rule, anotherRule)
+const superRule = combineRules(rule, anotherRule)
 
 renderer.renderRule(rule, { fontSize: '12px '}) // => c1 c2
 renderer.renderRule(anotherRule) // => c3

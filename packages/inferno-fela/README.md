@@ -3,7 +3,7 @@
 Official [Inferno](https://github.com/infernojs/inferno) bindings for Fela.
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/inferno-fela.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.21kb-brightgreen.svg">
+<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.35kb-brightgreen.svg">
 
 This package only includes Inferno bindings for [Fela](http://github.com/rofrischmann/fela).<br>
 It assumes you already know about Fela and how to use it.
@@ -18,9 +18,9 @@ Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily 
 
 ```HTML
 <!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/inferno-fela@4.3.2/dist/inferno-fela.js"></script>
+<script src="https://unpkg.com/inferno-fela@4.3.5/dist/inferno-fela.js"></script>
 <!-- Production build (minified)  -->
-<script src="https://unpkg.com/inferno-fela@4.3.2/dist/inferno-fela.min.js"></script>
+<script src="https://unpkg.com/inferno-fela@4.3.5/dist/inferno-fela.min.js"></script>
 ```
 
 

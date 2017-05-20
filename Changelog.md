@@ -2,6 +2,19 @@
 
 ## 4.0
 
+#### 4.3.5 (hot fix)
+* fix wrong `<ThemeProvider>` export
+
+#### 4.3.4 (hot fix)
+* revert ( [#239](https://github.com/rofrischmann/fela/pull/239) ) to fix `<ThemeProvider>`
+
+#### 4.3.3
+* using `prop-types` to support React >= 15.5 ( [#245](https://github.com/rofrischmann/fela/pull/245) )
+* using `react-broadcast` to ensure a rerender on theme changes ( [#239](https://github.com/rofrischmann/fela/pull/239) )
+* added support for Base64 font files ( [#242](https://github.com/rofrischmann/fela/pull/242) )
+* fixed media query validator in [fela-plugin-validator](packages/fela-plugin-validator) ( [#231](https://github.com/rofrischmann/fela/pull/231) )
+
+
 #### 4.3.2
 * fixed render returns for `<Provider>` and `<ThemeProvider>` in [preact-fela](packages/preact-fela) ( [#228](https://github.com/rofrischmann/fela/pull/228) )
 * added TypeScript typings to the plugin presets ( [#229](https://github.com/rofrischmann/fela/pull/229) )

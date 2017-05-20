@@ -1,14 +1,15 @@
 {
   "name": "fela-plugin-dynamic-prefixer",
-  "version": "4.3.2",
+  "version": "4.3.5",
   "description": "Fela plugin to dynamically add a minimum set of vendor prefixes",
-  "module": "index.es2015.js",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "index.js",
-    "dist/**"
+    "lib/**",
+    "es/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -22,9 +23,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
+    "fela": "^4.3.5",
     "inline-style-prefixer": "^3.0.0"
-  },
-  "peerDependencies": {
-    "fela": "4.3.2"
   }
 }

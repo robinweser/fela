@@ -15,6 +15,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) - React & React Native
 * [preact-fela](https://github.com/rofrischmann/fela/tree/master/packages/preact-fela) - Preact
 * [inferno-fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela) - Inferno
+* [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript 
 
 ### Plugins
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
@@ -48,11 +49,14 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-statistics*](https://github.com/rofrischmann/fela/tree/master/packages/fela-statistics) - Collects different metrics to analyze your styles
 
 ### Components
+* [cf-ui](https://github.com/cloudflare/cf-ui): Cloudflare UI Framework
+* [just-box](https://github.com/RafalFilipek/just-box): Create universal layouts in React and React-Native
 * [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components
 
 ### Tools
+* [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Helps to pass classNames to specific props
 * [fela-tools](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
-* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connecgt` with autobound styles
+* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connecgt` with autobound styles 
 
 ### Utilities
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
@@ -63,6 +67,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [react-animations](https://github.com/FormidableLabs/react-animations): CSS animations to be used with CSS in JS solutions
 * [react-styling](https://github.com/halt-hammerzeit/react-styling): Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
 * [stile](https://github.com/bloodyowl/stile): Handle units and string values
+* [storybook-addon-props-fela](https://github.com/Kilix/storybook-addon-props-fela): Document the props of your Fela components in storybook.
 
 <br>
 
