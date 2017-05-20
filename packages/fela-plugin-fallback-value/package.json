@@ -2,12 +2,13 @@
   "name": "fela-plugin-fallback-value",
   "version": "4.3.5",
   "description": "Fela plugin to resolve fallback values",
-  "module": "index.es2015.js",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "index.js",
+    "lib/**",
     "dist/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
@@ -19,10 +20,8 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "peerDependencies": {
-    "fela": "4.3.5"
-  },
   "dependencies": {
-    "css-in-js-utils": "^1.0.3"
+    "css-in-js-utils": "^1.0.3",
+    "fela": "^4.3.5"
   }
 }

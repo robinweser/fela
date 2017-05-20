@@ -2,13 +2,14 @@
   "name": "preact-fela",
   "version": "4.3.5",
   "description": "Preact bindings for Fela",
-  "module": "index.es2015.js",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "index.js",
-    "dist/**"
+    "lib/**",
+    "es/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
@@ -21,8 +22,8 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "peerDependencies": {
+  "dependencies": {
     "preact": "^7.0.0",
-    "fela": "4.3.5"
+    "fela": "^4.3.5"
   }
 }

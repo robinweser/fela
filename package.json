@@ -6,20 +6,20 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "scripts": {
-    "babel": "babel -d packages/fela/lib modules",
-    "dist": "cross-env NODE_ENV=production babel-node scripts/buildPackages && cross-env NODE_ENV=development babel-node scripts/buildPackages",
+    "bootstrap": "lerna bootstrap",
+    "build": "./scripts/build.sh",
+    "clean": "lerna clean",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
     "check": "npm run lint && npm run test:coverage && npm run flow",
-    "format": "prettier-eslint modules/**/*.js --write",
+    "format": "prettier-eslint packages/*/src/**/*.js --write",
     "flow": "flow",
-    "lint": "eslint modules",
-    "release:prepare": "npm run check && npm run babel && npm run dist",
-    "release": "npm run release:prepare && ./scripts/publishPackages.sh && npm run docs",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "lint": "eslint packages/*/src/**/*.js",
+    "publish": "git pull --rebase && npm run build && lerna publish",
+    "test": "cross-env BABEL_ENV=commonjs jest",
+    "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage"
   },
   "jest": {
-    "rootDir": "modules",
+    "rootDir": "packages",
     "testPathIgnorePatterns": [
       "/mocks/"
     ]
@@ -29,10 +29,11 @@
     "babel-cli": "^6.6.0",
     "babel-core": "^6.6.0",
     "babel-eslint": "^7.1.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-jest": "^20.0.1",
     "babel-plugin-inferno": "^1.9.0",
     "babel-plugin-transform-class-properties": "^6.9.1",
     "babel-plugin-transform-dev-warning": "^0.1.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-plugin-transform-node-env-inline": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-es2015-rollup": "^1.1.1",
@@ -61,6 +62,7 @@
     "inferno-create-element": "^1.0.1",
     "inline-style-prefixer": "^3.0.1",
     "jest": "^19.0.2",
+    "lerna": "^2.0.0-rc.4",
     "preact": "^7.0.0",
     "prettier-eslint": "^4.2.1",
     "prettier-eslint-cli": "^3.1.2",
