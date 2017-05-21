@@ -10,7 +10,7 @@ import {
 import reflushStyleNodes from '../utils/reflushStyleNodes'
 import createStyleNode from '../utils/createStyleNode'
 
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
 export default function createDOMInterface(renderer: DOMRenderer): Function {
   const styleNodes = reflushStyleNodes()

@@ -1,7 +1,12 @@
 /* @flow */
 import createStyleTagMarkup from '../../utils/createStyleTagMarkup'
 
-import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE } from '../../utils/styleTypes'
+import {
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  FONT_TYPE,
+  STATIC_TYPE
+} from '../../utils/styleTypes'
 
 const sheetMap = {
   fontFaces: FONT_TYPE,

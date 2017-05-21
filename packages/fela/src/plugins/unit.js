@@ -35,7 +35,8 @@ function addUnit(
         style[property] = addUnit(cssValue, defaultUnit, propertyMap)
       } else if (Array.isArray(cssValue)) {
         style[property] = cssValue.map(val =>
-          addUnitIfNeeded(property, val, propertyUnit))
+          addUnitIfNeeded(property, val, propertyUnit)
+        )
       } else {
         style[property] = addUnitIfNeeded(property, cssValue, propertyUnit)
       }

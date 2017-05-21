@@ -1,7 +1,7 @@
 /* @flow */
 import arrayReduce from './arrayReduce'
 
-type MediaRules = { [mediaQuery: string]: string };
+type MediaRules = { [mediaQuery: string]: string }
 export default function applyMediaRulesInOrder(
   order: Array<string>
 ): MediaRules {

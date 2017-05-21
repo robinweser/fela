@@ -3,8 +3,8 @@ import renderToString from '../dom/server/renderToString'
 
 import isValidHTMLElement from '../utils/isValidHTMLElement'
 
-import type DOMRenderer from '../../flowtypes/DOMRenderer'
-import type DOMNode from '../../flowtypes/DOMNode'
+import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
+import type DOMNode from '../../../../flowtypes/DOMNode'
 
 export default function renderToElement(
   renderer: DOMRenderer,
@@ -14,7 +14,7 @@ export default function renderToElement(
   // to set mountNode.textContent later on
   if (!isValidHTMLElement(mountNode)) {
     throw new Error(
-      'You need to specify a valid element node (nodeType = 1) to render into.'
+      'You need to specify a valid element node (mountNode.nodeType = 1) to render into.'
     )
   }
 

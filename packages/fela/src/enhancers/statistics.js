@@ -13,7 +13,7 @@ function lengthInUtf8Bytes(str: string): number {
 
 type RendererWithStatistics = {
   getStatistics: Function
-};
+}
 
 function addStatistics(
   renderer: DOMRenderer
@@ -85,8 +85,8 @@ function addStatistics(
   })
 
   function calculateReuse(): number {
-    const quotient = (statistics.totalUsage - statistics.totalClasses) /
-      statistics.totalUsage
+    const quotient =
+      (statistics.totalUsage - statistics.totalClasses) / statistics.totalUsage
     return Math.floor(quotient * 10000) / 10000
   }
 

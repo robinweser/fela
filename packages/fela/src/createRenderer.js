@@ -2,7 +2,6 @@
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import cssifyFontFace from './utils/cssifyFontFace'
 import cssifyKeyframe from './utils/cssifyKeyframe'
-import cssifyMediaQueryRules from './utils/cssifyMediaQueryRules'
 
 import generateAnimationName from './utils/generateAnimationName'
 import generateClassName from './utils/generateClassName'
@@ -23,7 +22,6 @@ import processStyleWithPlugins from './utils/processStyleWithPlugins'
 import toCSSString from './utils/toCSSString'
 import checkFontFormat from './utils/checkFontFormat'
 import checkFontUrl from './utils/checkFontUrl'
-import objectReduce from './utils/objectReduce'
 import arrayEach from './utils/arrayEach'
 
 import renderToString from './dom/server/renderToString'
@@ -238,7 +236,8 @@ export default function createRenderer(
               /* eslint-enable */
             }
 
-            const className = renderer.selectorPrefix +
+            const className =
+              renderer.selectorPrefix +
               generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className

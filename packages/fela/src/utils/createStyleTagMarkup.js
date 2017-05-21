@@ -1,5 +1,5 @@
 /* @flow */
-type Type = 'RULE' | 'FONT' | 'KEYFRAME' | 'STATIC';
+type Type = 'RULE' | 'FONT' | 'KEYFRAME' | 'STATIC'
 
 export default function createStyleMarkup(
   css: string,

@@ -6,10 +6,10 @@ export default class ThemeProvider extends Component {
   static propTypes = {
     theme: PropTypes.object.isRequired,
     overwrite: PropTypes.bool
-  };
-  static childContextTypes = { theme: PropTypes.object };
-  static contextTypes = { theme: PropTypes.object };
-  static defaultProps = { overwrite: false };
+  }
+  static childContextTypes = { theme: PropTypes.object }
+  static contextTypes = { theme: PropTypes.object }
+  static defaultProps = { overwrite: false }
 
   getChildContext() {
     const { overwrite, theme } = this.props
