@@ -11,7 +11,7 @@ export default function resolvePassThrough(
     if (!Array.isArray(resolved)) {
       if (process.env.NODE_ENV !== 'production' && !warnDeprecated) {
         console.warn(
-          'Using a function that returns an object of props as `createComponent` `passThroughProps`-parameter is deprecated. It will be removed soon. Instead return an array of prop names. e.g. `props => Object.keys(props)` See https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponent.md#passing-props'
+          'Using a function that returns an object of props as `createComponent` `passThroughProps`-parameter is deprecated. It will be removed soon. Instead return an array of prop names. e.g. `props => Object.keys(props)` See https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponent.md#functional-passthroughprops'
         )
       }
 
