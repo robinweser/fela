@@ -28,7 +28,7 @@ export default function connectFactory(
             // deprecation warning
             if (process.env.NODE_ENV !== 'production' && !this.warnDeprecated) {
               console.warn(
-                "Using a `mapStylesToProps` function with react-fela's `connect` is deprecated. It will be removed soon. Use a direct `rules` object. See https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/connect.md"
+                'Using a `mapStylesToProps` function with `connect` is deprecated. It will be removed soon. Use a direct `rules` object. See https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/connect.md'
               )
               this.warnDeprecated = true
             }

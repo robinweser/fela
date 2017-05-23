@@ -7,7 +7,7 @@ It automatically composes rules and passed props for nested Fela components.
 ## Arguments
 1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
 2. `type` (*string?|[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?*): React Component or HTML element which is used as the render base element. Defaults to `div`.
-3. `passThroughProps` (*Array?*): A list of props that get passed to the underlying element.
+3. `passThroughProps` (*Array?|Function?*): A list of props that get passed to the underlying element. Alternatively a function of `props` that returns an array of prop names.
 
 ## Returns
 (*Function*): Stateless functional React component.
@@ -41,6 +41,12 @@ Using the `passThroughProps` parameter allows us to pass props to the underlying
 * `id`
 
 If passing a className, it will automatically be concatenated with the Fela generated className. This allows composing multiple Fela Components.
+
+#### Functional passThroughProps
+You may also pass a function of `props` as `passThroughProps`. It must return an array of prop names. e.g. to pass all props you can do:
+```javascript
+const Title = createComponent(title, 'div', props => Object.keys(props))
+```
 
 #### Dynamically passing props
 This use case is especially important for library owners. Instead of passing the `passThroughProps` to the `createComponent` call directly, one can also use the `passThrough` prop on the created component to achieve the same effect.
