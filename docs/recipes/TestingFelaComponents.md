@@ -262,7 +262,7 @@ You may also consider [Enzyme](http://airbnb.io/enzyme/) as your React renderer 
 // test-helpers/felaShallow.js
 import React from 'react';
 import { shallow as enzymeShallow } from 'enzyme';
-import { createRenderer } from 'react-fela';
+import { createRenderer } from 'fela';
 import toJson from 'enzyme-to-json';
 
 const shallow = (node, options = {}) => {
@@ -303,7 +303,7 @@ console.log(shallow(<Box>hello</Box>).snapshot());
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mount as enzymeMount } from 'enzyme';
-import { createRenderer } from 'react-fela';
+import { createRenderer } from 'fela';
 import toJson from 'enzyme-to-json';
 
 const mount = (node, options = {}) => {
