@@ -14,7 +14,7 @@ export default function generateMonolithicClassName(
   let i = stringified.length
 
   while (i) {
-    val = val * 33 ^ stringified.charCodeAt(--i)
+    val = (val * 33) ^ stringified.charCodeAt(--i)
   }
 
   return prefix + (val >>> 0).toString(36)

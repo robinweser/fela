@@ -79,7 +79,7 @@ const className = renderer.renderRule(rule, { fontSize: 12 })
 console.log(className) // => a b c d e f h
 
 // renders all styles into the DOM
-render(renderer, mountNode)
+render(renderer)
 ```
 
 ## Documentation

@@ -4,7 +4,9 @@ describe('Mapping values to media queries', () => {
   it('should generate valid media queries', () => {
     const rule = props => ({
       color: 'blue',
-      ...mapValueToMediaQuery(props.sizes, value => ({ fontSize: `${value}px` }))
+      ...mapValueToMediaQuery(props.sizes, value => ({
+        fontSize: `${value}px`
+      }))
     })
 
     const style = rule({

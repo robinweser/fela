@@ -2,7 +2,7 @@
 import Component from 'inferno-component'
 
 export default class ThemeProvider extends Component {
-  static defaultProps = { overwrite: false };
+  static defaultProps = { overwrite: false }
 
   getChildContext() {
     const { overwrite, theme } = this.props

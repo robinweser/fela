@@ -11,7 +11,7 @@
     "clean": "lerna clean",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
     "check": "npm run lint && npm run test:coverage && npm run flow",
-    "format": "prettier-eslint packages/*/src/**/*.js --write",
+    "format": "prettier --single-quote --no-semi --jsx-bracket-same-line --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
     "publish": "git pull --rebase && npm run build && lerna publish",
@@ -21,7 +21,8 @@
   "jest": {
     "rootDir": "packages",
     "testPathIgnorePatterns": [
-      "/mocks/"
+      "/mocks/",
+      "/lib/"
     ]
   },
   "devDependencies": {
@@ -64,8 +65,7 @@
     "jest": "^19.0.2",
     "lerna": "^2.0.0-rc.4",
     "preact": "^7.0.0",
-    "prettier-eslint": "^4.2.1",
-    "prettier-eslint-cli": "^3.1.2",
+    "prettier": "^1.3.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-native": "^0.42.0"

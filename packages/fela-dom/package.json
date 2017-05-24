@@ -8,6 +8,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "server/**",
     "lib/**",
     "es/**"
   ],

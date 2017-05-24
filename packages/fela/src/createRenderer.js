@@ -2,7 +2,6 @@
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import cssifyFontFace from './utils/cssifyFontFace'
 import cssifyKeyframe from './utils/cssifyKeyframe'
-import cssifyMediaQueryRules from './utils/cssifyMediaQueryRules'
 
 import generateAnimationName from './utils/generateAnimationName'
 import generateClassName from './utils/generateClassName'
@@ -23,8 +22,9 @@ import processStyleWithPlugins from './utils/processStyleWithPlugins'
 import toCSSString from './utils/toCSSString'
 import checkFontFormat from './utils/checkFontFormat'
 import checkFontUrl from './utils/checkFontUrl'
-import objectReduce from './utils/objectReduce'
 import arrayEach from './utils/arrayEach'
+
+import renderToString from './dom/server/renderToString'
 
 import {
   STATIC_TYPE,
@@ -151,35 +151,23 @@ export default function createRenderer(
 
         if (typeof staticStyle === 'string') {
           renderer.statics += cssDeclarations
+
           renderer._emitChange({
             type: STATIC_TYPE,
             css: cssDeclarations
           })
         } else if (selector) {
           renderer.statics += generateCSSRule(selector, cssDeclarations)
-          renderer._emitChange({
-            selector,
-            declaration: cssDeclarations,
-            type: RULE_TYPE,
-            static: true,
-            media: ''
-          })
         }
+
+        renderer._emitChange({
+          type: STATIC_TYPE,
+          css: cssDeclarations
+        })
       }
     },
-
     renderToString(): string {
-      const basicCSS =
-        renderer.fontFaces +
-        renderer.statics +
-        renderer.keyframes +
-        renderer.rules
-
-      return objectReduce(
-        renderer.mediaRules,
-        (css, rules, query) => css + cssifyMediaQueryRules(query, rules),
-        basicCSS
-      )
+      return renderToString(renderer)
     },
 
     subscribe(callback: Function): { unsubscribe: Function } {

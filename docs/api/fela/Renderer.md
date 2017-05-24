@@ -10,7 +10,7 @@ To create a new renderer instance, simply use the `createRenderer` method to act
 * [`renderKeyframe(keyframe, [props])`](#renderkeyframekeyframe-props)
 * [`renderFont(family, files, [properties])`](#renderfontfamily-files-properties)
 * [`renderStatic(style, [selector])`](#renderstaticstyle-reference)
-* [`renderToString()`](#rendertostring)
+* [`renderToString()`](#rendertostring) *(Deprecated)*
 * [`subscribe(listener)`](#subscribelistener)
 * [`clear()`](#clear)
 
@@ -205,6 +205,8 @@ div {
 
 ## `renderToString()`
 
+> Deprecated! Use `renderToString` from `fela-dom/server` instead.
+
 Renders all cached styles into a single CSS string. Styles are grouped in the following order:
 
 1. Fonts
@@ -230,9 +232,9 @@ const rule = props => ({
 renderer.renderStatic('html,body{box-sizing:border-box;margin:0}').
 renderer.renderRule(rule, { fontSize: '12px' })
 
-const markup = renderer.renderToString()
+const css = renderer.renderToString()
 
-console.log(markup)
+console.log(css)
 // html,body{box-sizing:border-box;margin:0}
 // .a{font-size:12px}.b{color:blue}
 ```

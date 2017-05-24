@@ -52,10 +52,12 @@ describe('Unit plugin', () => {
       margin: 10,
       fontSize: 15
     }
-    expect(unit('px', {
-      margin: '%',
-      fontSize: 'pt'
-    })(style)).toEqual({
+    expect(
+      unit('px', {
+        margin: '%',
+        fontSize: 'pt'
+      })(style)
+    ).toEqual({
       width: '46px',
       height: '50px',
       margin: '10%',

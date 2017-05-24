@@ -26,7 +26,9 @@ describe('Prefixer plugin', () => {
     }
 
     expect(prefixer()(style)).toEqual({
-      ':hover': { justifyContent: 'center;-webkit-box-pack:center;-webkit-justify-content:center' },
+      ':hover': {
+        justifyContent: 'center;-webkit-box-pack:center;-webkit-justify-content:center'
+      },
       display: [
         '-webkit-box',
         '-moz-box',

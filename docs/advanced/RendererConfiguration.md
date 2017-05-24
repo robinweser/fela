@@ -24,6 +24,8 @@ import fallbackValue from 'fela-plugin-fallback-value'
 
 import beautifier from 'fela-beautifier'
 
+import { renderToString } from 'fela-dom/server'
+
 const config = {
   plugins: [ unit('em'), prefixer(), fallbackValue() ],
   keyframePrefixes: ['-webkit-'],
@@ -56,7 +58,7 @@ const rule = props => ({
 renderer.renderRule(rule, { color: 'red '})
 renderer.renderKeyframe(keyframe, { height: 100 })
 
-console.log(renderer.renderToString())
+console.log(renderToString(renderer))
 ```
 ```CSS
 @-webkit-keyframes fela_k1 {

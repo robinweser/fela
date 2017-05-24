@@ -10,7 +10,7 @@ The [`renderer`](../basics/Renderer.md) is only responsible for _inserting the s
 #### Testing Rules
 [Rules are just pure functions](../basics/Rules.md). Eric Elliot, a respected Javascript instructor in the industry, [defines pure functions for us](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976).
 
-> A pure function is a function which: 
+> A pure function is a function which:
 
 > - Given the same input, will always return the same output.
 > - Produces no side effects.
