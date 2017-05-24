@@ -126,6 +126,7 @@ We also love to get feedback.
 - [BdP LV RPS](http://www.bdp-rps.de)
 - [Cloudflare](https://www.cloudflare.com)
 - [HelloFresh](https://www.hellofresh.de)
+- [Kilix](http://kilix.fr)
 - [MediaFire](https://m.mediafire.com)
 - [N26](https://n26.com)
 - [NinjaConcept](https://www.ninjaconcept.com)
