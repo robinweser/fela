@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/namedMediaQuery')
+export * from 'fela/lib/plugins/namedMediaQuery'

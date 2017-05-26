@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/embedded')
+export * from 'fela/lib/plugins/embedded'

@@ -1,3 +1,3 @@
-var nativeRenderer = require('fela/lib/native/createRenderer')
+import createRenderer from 'fela/lib/native/createRenderer'
 
-module.exports = { createRenderer: nativeRenderer }
+export { createRenderer }

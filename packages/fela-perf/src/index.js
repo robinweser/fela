@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/enhancers/perf')
+export * from 'fela/lib/enhancers/perf'

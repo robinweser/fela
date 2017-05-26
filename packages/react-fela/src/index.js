@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/bindings/react/index')
+export * from 'fela/lib/bindings/react/index'

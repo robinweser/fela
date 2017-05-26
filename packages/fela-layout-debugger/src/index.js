@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/enhancers/layoutDebugger')
+export * from 'fela/lib/enhancers/layoutDebugger'

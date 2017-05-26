@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/placeholderPrefixer')
+export * from 'fela/lib/plugins/placeholderPrefixer'

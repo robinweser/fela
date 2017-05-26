@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/important')
+export * from 'fela/lib/plugins/important'

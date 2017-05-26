@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/logger')
+export * from 'fela/lib/plugins/logger'

@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/presets/web')
+export * from 'fela/lib/presets/web'

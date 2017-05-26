@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/LVHA')
+export * from 'fela/lib/plugins/LVHA'

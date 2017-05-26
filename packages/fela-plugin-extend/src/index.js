@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/extend')
+export * from 'fela/lib/plugins/extend'

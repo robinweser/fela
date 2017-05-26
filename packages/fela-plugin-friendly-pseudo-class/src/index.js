@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/friendlyPseudoClass')
+export * from 'fela/lib/plugins/friendlyPseudoClass'

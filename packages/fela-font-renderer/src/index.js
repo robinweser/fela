@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/enhancers/fontRenderer')
+export * from 'fela/lib/enhancers/fontRenderer'

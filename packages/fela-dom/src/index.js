@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/dom/index')
+export * from 'fela/lib/dom/index'

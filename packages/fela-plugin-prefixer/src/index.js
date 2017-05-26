@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/prefixer')
+export * from 'fela/lib/plugins/prefixer'

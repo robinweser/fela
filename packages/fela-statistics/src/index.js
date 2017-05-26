@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/enhancers/statistics')
+export * from 'fela/lib/enhancers/statistics'

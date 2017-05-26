@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/bindings/inferno/index')
+export * from 'fela/lib/bindings/inferno/index'

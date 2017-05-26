@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/removeUndefined')
+export * from 'fela/lib/plugins/removeUndefined'

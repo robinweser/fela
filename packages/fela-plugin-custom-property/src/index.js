@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/customProperty')
+export * from 'fela/lib/plugins/customProperty'

@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/plugins/fallbackValue')
+export * from 'fela/lib/plugins/fallbackValue'

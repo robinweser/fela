@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/enhancers/beautifier')
+export * from 'fela/lib/enhancers/beautifier'

@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/tools/mapValueToMediaQuery')
+export * from 'fela/lib/tools/mapValueToMediaQuery'

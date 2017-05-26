@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/tools/StyleSheet')
+export * from 'fela/lib/tools/StyleSheet'

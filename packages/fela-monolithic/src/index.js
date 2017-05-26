@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/enhancers/monolithic')
+export * from 'fela/lib/enhancers/monolithic'

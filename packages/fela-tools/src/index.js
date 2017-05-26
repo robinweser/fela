@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/tools/index.js')
+export * from 'fela/lib/tools/index.js'

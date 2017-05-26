@@ -1,1 +1,1 @@
-module.exports = require('fela/lib/presets/dev')
+export * from 'fela/lib/presets/dev'
