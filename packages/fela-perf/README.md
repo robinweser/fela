@@ -1,7 +1,6 @@
 # fela-perf
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-perf.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.47kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-perf.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.47kb-brightgreen.svg">
 
 Performance devTool to be used with Fela. It logs elapsed time during render cycles.
 

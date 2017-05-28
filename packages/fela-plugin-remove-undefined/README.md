@@ -1,8 +1,7 @@
 # fela-plugin-remove-undefined
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-remove-undefined.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.52kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-remove-undefined.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.52kb-brightgreen.svg">
 
 Removes any `undefined` value or string values containing `undefined`.
 It also checks array values. This plugin has been used to ensure auto prefixing to work. It is not necessary anymore as Fela automatically strips all undefined values.

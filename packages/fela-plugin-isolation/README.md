@@ -1,8 +1,7 @@
 # fela-plugin-isolation
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-isolation.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.53kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-isolation.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.53kb-brightgreen.svg">
 
 Adds style isolation to every rule by attaching `all: initial` to every class.
 

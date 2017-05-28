@@ -20,8 +20,8 @@ import { createRenderer } from 'fela'
 
 const renderer = createRenderer()
 
-const rule = props => ({
-  fontSize: props.fontSize,
+const rule = ({ fontSize }) => ({
+  fontSize: fontSize,
   color: 'blue',
   '@media (min-width: 300px)': {
     color: 'red'

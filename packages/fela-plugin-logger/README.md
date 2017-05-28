@@ -1,8 +1,7 @@
 # fela-plugin-logger
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-logger.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.39kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-logger.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.39kb-brightgreen.svg">
 
 Logs processed styles to the `console` at a given point of processing.<br>
 **Not to be confused with [fela-logger](../fela-logger)** which is used to render the real rendered output.

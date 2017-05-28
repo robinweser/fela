@@ -1,8 +1,7 @@
 # fela-plugin-prefixer
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-prefixer.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-3.94kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-prefixer.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-3.94kb-brightgreen.svg">
 
 Uses [inline-style-prefixer/static](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes to both property and value.
 

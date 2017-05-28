@@ -1,5 +1,7 @@
 # fela-font-renderer
 
+> Deprecated: With fela 4.4.0 this enhancer is no longer required as fela-dom now renders fonts into its own stylesheet.
+
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-font-renderer.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.47kb-brightgreen.svg">
 

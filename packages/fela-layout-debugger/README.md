@@ -1,8 +1,7 @@
 # fela-layout-debugger
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-layout-debugger.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.62kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-layout-debugger.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.62kb-brightgreen.svg">
 
 Adds either colored outlines or a almost transparent background color to debug the application layout.<br>
 Same rules will always have the same color.

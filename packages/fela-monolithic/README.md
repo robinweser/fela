@@ -1,7 +1,6 @@
 # fela-monolithic
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-monolithic.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.22kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-monolithic.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.22kb-brightgreen.svg">
 
 The monolithic enhancer will use unique class names instead of atomic ones.
 These generated class names are not re-usable like the atomic design but allows you to debug and modify styles with ease.

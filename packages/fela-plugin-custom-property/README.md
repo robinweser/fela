@@ -1,8 +1,7 @@
 # fela-plugin-custom-property
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-custom-property.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.53kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-custom-property.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.53kb-brightgreen.svg">
 
 Sometimes it's handy to define some custom properties mostly used as shortcuts.
 

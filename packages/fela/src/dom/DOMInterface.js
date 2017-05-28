@@ -12,23 +12,24 @@ import createStyleNode from '../utils/createStyleNode'
 
 import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 
+const sheetMap = {
+  [FONT_TYPE]: 'fontFaces',
+  [STATIC_TYPE]: 'statics',
+  [KEYFRAME_TYPE]: 'keyframes'
+}
+
 export default function createDOMInterface(renderer: DOMRenderer): Function {
   const styleNodes = reflushStyleNodes()
+  const baseNode = styleNodes[RULE_TYPE]
 
   function getStyleNode(type: string, media: string = ''): Object {
     const key = type + media
 
     if (!styleNodes[key]) {
-      styleNodes[key] = createStyleNode(type, media, styleNodes[RULE_TYPE])
+      styleNodes[key] = createStyleNode(type, media, baseNode)
     }
 
     return styleNodes[key]
-  }
-
-  const sheetMap = {
-    [FONT_TYPE]: 'fontFaces',
-    [STATIC_TYPE]: 'statics',
-    [KEYFRAME_TYPE]: 'keyframes'
   }
 
   return function changeSubscription(change) {

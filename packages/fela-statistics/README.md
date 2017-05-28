@@ -1,7 +1,6 @@
 # fela-statistics
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-statistics.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.91kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-statistics.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.91kb-brightgreen.svg">
 
 Statistic generation tool for Fela. It collects several information and metrics to better analyze your application CSS.<br>
 Right now, it provides the following information:

@@ -1,8 +1,7 @@
 # fela-plugin-friendly-pseudo-class
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-friendly-pseudo-class.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.54kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-friendly-pseudo-class.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.54kb-brightgreen.svg">
 
 Writing CSS pseudo classes within a plain JavaScript object sadly is sometimes painful as the default syntax is not really JavaScript-friendly.<br>
 

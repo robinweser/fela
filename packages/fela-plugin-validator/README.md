@@ -1,8 +1,7 @@
 # fela-plugin-validator
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.96kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.96kb-brightgreen.svg">
 
 Enforces object validation for keyframes and rules.
 Logs invalid properties to the `console`. One might also enable automatic property deletion.

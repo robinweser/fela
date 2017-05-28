@@ -1,8 +1,7 @@
 # fela-plugin-placeholder-prefixer
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-placeholder-prefixer.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.64kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-placeholder-prefixer.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.64kb-brightgreen.svg">
 
 Adds prefixes to `::placeholder` pseudo elements.
 

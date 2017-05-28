@@ -1,8 +1,7 @@
 # fela-plugin-named-media-query
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-named-media-query.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.49kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-named-media-query.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.49kb-brightgreen.svg">
 
 This plugin is basically a convenient plugin for more readable code and better maintenance.<br>
 It enables the use of named media query keys.

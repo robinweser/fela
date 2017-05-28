@@ -1,6 +1,22 @@
 # Changelog
 
-## 4.0
+#### 4.4.0
+##### API Changes
+> All API changes ship with backward compatibility, which is why we do not push a new major yet.
+
+* introducing [fela-dom/server](packages/fela-dom/server) and a new improved `render` for [fela-dom](packages/fela-dom) to avoid FOUCs and big stylesheet rerenders.
+* `connect` now directly accepts an object of named rules that are mapped to the `styles` prop.
+* `createComponent`'s *passThroughProps* now either accept an array of prop keys or a function that returns an array of prop keys (instead of an object of props)
+
+##### Improvements
+* only set `id` and/or `style` on `createComponent` if actually required to reduce overhead
+* introducing [fela-plugin-embedded](packages/fela-plugin-embedded) supporting inlined keyframes and font faces in rules
+* introducing [fela-plugin-important](packages/fela-plugin-important) that adds `!important` to every declaration
+
+##### Infrastructure
+We switched the whole project to an improved workflow with Lerna. This release is the first one done by Lerna.
+
+---
 
 #### 4.3.5 (hot fix)
 * fix wrong `<ThemeProvider>` export
