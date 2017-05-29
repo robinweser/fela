@@ -48,9 +48,16 @@ const rule = props => ({
   },
   ':active': {
     color: 'black'
+  },
+  // make sure you are using nested quotes to set the content.
+  ':before': {
+    content: '" "'
   }
 })
 ```
+
+**Note:**
+When using `:before` pseudo selector, make sure you are using nested quotes to set the content. Eg: `content: '" "'`
 
 #### 3. Media Queries
 Yet another CSS key feature are [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries). They're used to describe what styles are rendered depending on the current screen width/height, aspect ratio, device etc. Just like pseudo classes they can also be nested within your rules. In addition they can even have nested pseudo classes themselves.
