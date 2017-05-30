@@ -4,8 +4,7 @@ import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
 import fallbackValue from './fallbackValue'
 
-import isObject from '../utils/isObject'
-import objectReduce from '../utils/objectReduce'
+import { isObject, objectReduce } from 'fela-tools'
 
 const resolveFallbackValues = fallbackValue()
 

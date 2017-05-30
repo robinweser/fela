@@ -1,12 +1,11 @@
 /* @flow */
-import createStyleTagMarkup from '../../utils/createStyleTagMarkup'
-
 import {
+  createStyleTagMarkup,
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
   STATIC_TYPE
-} from '../../utils/styleTypes'
+} from 'fela-tools'
 
 const sheetMap = {
   fontFaces: FONT_TYPE,

@@ -1,38 +1,35 @@
 /* @flow */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
-import cssifyFontFace from './utils/cssifyFontFace'
-import cssifyKeyframe from './utils/cssifyKeyframe'
-
-import generateAnimationName from './utils/generateAnimationName'
-import generateClassName from './utils/generateClassName'
-import generateCombinedMediaQuery from './utils/generateCombinedMediaQuery'
-import generateCSSRule from './utils/generateCSSRule'
-import generateCSSSelector from './utils/generateCSSSelector'
-import cssifyStaticStyle from './utils/cssifyStaticStyle'
-import generateStaticReference from './utils/generateStaticReference'
-
-import isMediaQuery from './utils/isMediaQuery'
-import isNestedSelector from './utils/isNestedSelector'
-import isUndefinedValue from './utils/isUndefinedValue'
-import isObject from './utils/isObject'
-
-import normalizeNestedProperty from './utils/normalizeNestedProperty'
-import applyMediaRulesInOrder from './utils/applyMediaRulesInOrder'
-import processStyleWithPlugins from './utils/processStyleWithPlugins'
-import toCSSString from './utils/toCSSString'
-import checkFontFormat from './utils/checkFontFormat'
-import checkFontUrl from './utils/checkFontUrl'
-import arrayEach from './utils/arrayEach'
-
-import renderToString from './dom/server/renderToString'
 
 import {
+  cssifyFontFace,
+  cssifyKeyframe,
+  cssifyStaticStyle,
+  generateAnimationName,
+  generateClassName,
+  generateCombinedMediaQuery,
+  generateCSSRule,
+  generateCSSSelector,
+  generateStaticReference,
+  isMediaQuery,
+  isNestedSelector,
+  isUndefinedValue,
+  isObject,
+  normalizeNestedProperty,
+  applyMediaRulesInOrder,
+  processStyleWithPlugins,
+  toCSSString,
+  checkFontFormat,
+  checkFontUrl,
+  arrayEach,
   STATIC_TYPE,
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
   CLEAR_TYPE
-} from './utils/styleTypes'
+} from 'fela-tools'
+
+import renderToString from './dom/server/renderToString'
 
 import type {
   DOMRenderer,

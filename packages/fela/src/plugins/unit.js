@@ -1,8 +1,7 @@
 /* @flow */
 import isUnitlessProperty from 'css-in-js-utils/lib/isUnitlessProperty'
 
-import isObject from '../utils/isObject'
-import warning from '../utils/warning'
+import { isObject, warning } from 'fela-tools'
 
 function addUnitIfNeeded(
   property: string,

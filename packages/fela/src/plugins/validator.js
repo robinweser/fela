@@ -1,10 +1,12 @@
 /* @flow  */
 /* eslint-disable no-console */
-import { RULE_TYPE, KEYFRAME_TYPE } from '../utils/styleTypes'
-
-import isObject from '../utils/isObject'
-import isNestedSelector from '../utils/isNestedSelector'
-import isMediaQuery from '../utils/isMediaQuery'
+import {
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  isObject,
+  isNestedSelector,
+  isMediaQuery
+} from 'fela-tools'
 
 type Type = 1 | 2 | 3 | 4 | 5
 

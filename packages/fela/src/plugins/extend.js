@@ -1,8 +1,7 @@
 /* @flow */
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
-import isObject from '../utils/isObject'
-import arrayEach from '../utils/arrayEach'
+import { isObject, arrayEach } from 'fela-tools'
 
 function extendStyle(
   style: Object,

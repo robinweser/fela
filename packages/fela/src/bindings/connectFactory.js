@@ -1,6 +1,6 @@
 /* @flow */
 import generateDisplayName from './generateDisplayName'
-import objectReduce from '../utils/objectReduce'
+import { objectReduce } from 'fela-tools'
 
 export default function connectFactory(
   BaseComponent: any,
@@ -10,7 +10,7 @@ export default function connectFactory(
   return function connect(rules: Object | Function): Function {
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
-        static displayName = generateDisplayName(component);
+        static displayName = generateDisplayName(component)
 
         render() {
           const { renderer, theme } = this.context

@@ -1,7 +1,7 @@
 /* @flow */
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
-import arrayReduce from './utils/arrayReduce'
+import { arrayReduce } from 'fela-tools'
 
 export default function combineRules(...rules: Array<Function>): Function {
   return (props: Object): Object =>

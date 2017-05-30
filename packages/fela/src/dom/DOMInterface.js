@@ -4,11 +4,10 @@ import {
   KEYFRAME_TYPE,
   FONT_TYPE,
   STATIC_TYPE,
-  CLEAR_TYPE
-} from '../utils/styleTypes'
-
-import reflushStyleNodes from '../utils/reflushStyleNodes'
-import createStyleNode from '../utils/createStyleNode'
+  CLEAR_TYPE,
+  reflushStyleNodes,
+  createStyleNode
+} from 'fela-tools'
 
 import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 

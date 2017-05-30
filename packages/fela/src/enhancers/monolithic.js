@@ -2,21 +2,20 @@
 /* eslint-disable no-continue */
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
-import isObject from '../utils/isObject'
-import isMediaQuery from '../utils/isMediaQuery'
-import isNestedSelector from '../utils/isNestedSelector'
-import isUndefinedValue from '../utils/isUndefinedValue'
-
-import objectReduce from '../utils/objectReduce'
-import normalizeNestedProperty from '../utils/normalizeNestedProperty'
-import processStyleWithPlugins from '../utils/processStyleWithPlugins'
-
-import generateMonolithicClassName from '../utils/generateMonolithicClassName'
-import generateCombinedMediaQuery from '../utils/generateCombinedMediaQuery'
-import generateCSSSelector from '../utils/generateCSSSelector'
-import generateCSSRule from '../utils/generateCSSRule'
-
-import { RULE_TYPE } from '../utils/styleTypes'
+import {
+  isObject,
+  isMediaQuery,
+  isNestedSelector,
+  isUndefinedValue,
+  objectReduce,
+  normalizeNestedProperty,
+  processStyleWithPlugins,
+  generateMonolithicClassName,
+  generateCombinedMediaQuery,
+  generateCSSSelector,
+  generateCSSRule,
+  RULE_TYPE
+} from 'fela-tools'
 
 import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
 import type MonolithicRenderer from '../../../../flowtypes/MonolithicRenderer'
