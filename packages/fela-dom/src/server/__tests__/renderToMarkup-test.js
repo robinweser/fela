@@ -1,5 +1,5 @@
 import renderToMarkup from '../renderToMarkup'
-import createRenderer from 'fela'
+import { createRenderer } from 'fela'
 
 describe('Rendering to HTML markup', () => {
   it('should return a single HTML markup string', () => {
