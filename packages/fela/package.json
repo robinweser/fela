@@ -27,5 +27,8 @@
     "fela-tools": "^4.3.5"
   },
   "author": "Robin Frischmann",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "fela-monolithic": "^4.3.5"
+  }
 }
