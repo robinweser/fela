@@ -22,6 +22,11 @@
   "dependencies": {
     "css-in-js-utils": "^1.0.3",
     "fela": "^4.3.5",
+    "fela-plugin-extend": "^4.3.5",
+    "fela-plugin-fallback-value": "^4.3.5",
+    "fela-plugin-lvha": "^4.3.5",
+    "fela-plugin-prefixer": "^4.3.5",
+    "fela-plugin-unit": "^4.3.5",
     "inline-style-prefixer": "^3.0.0"
   }
 }
