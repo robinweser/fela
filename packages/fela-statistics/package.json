@@ -25,6 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "fela": "^4.3.5",
+    "fela-tools": "^4.3.5",
     "gzip-size": "^3.0.0"
   }
 }
