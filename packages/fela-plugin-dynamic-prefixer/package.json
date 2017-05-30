@@ -23,7 +23,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela": "^4.3.5",
     "inline-style-prefixer": "^3.0.5"
   }
 }

@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "fela": "^4.3.5",
+    "fela-dom": "^4.3.5",
     "prop-types": "^15.5.8"
   }
 }

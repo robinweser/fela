@@ -27,7 +27,6 @@
     "react-native": "*"
   },
   "dependencies": {
-    "fela": "^4.3.5",
     "fela-tools": "^4.3.5"
   }
 }

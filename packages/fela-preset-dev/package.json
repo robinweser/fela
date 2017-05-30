@@ -20,7 +20,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela": "^4.3.5",
     "fela-plugin-logger": "^4.3.5",
     "fela-plugin-validator": "^4.3.5"
   }
