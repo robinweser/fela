@@ -29,7 +29,7 @@ import {
   CLEAR_TYPE
 } from 'fela-tools'
 
-import renderToString from './dom/server/renderToString'
+import { renderToString } from 'fela-dom'
 
 import type {
   DOMRenderer,

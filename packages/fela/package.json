@@ -23,7 +23,8 @@
     "cssinjs"
   ],
   "dependencies": {
-    "css-in-js-utils": "^1.0.3"
+    "css-in-js-utils": "^1.0.3",
+    "fela-tools": "^4.3.5"
   },
   "author": "Robin Frischmann",
   "license": "MIT"
