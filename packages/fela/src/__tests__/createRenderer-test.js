@@ -1,6 +1,5 @@
-import createRenderer from '../createRenderer'
-
 import { RULE_TYPE } from 'fela-tools'
+import createRenderer from '../createRenderer'
 
 describe('Renderer', () => {
   describe('Instantiating a new renderer', () => {
