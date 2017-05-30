@@ -1,4 +1,4 @@
-import customProperty from '../customProperty'
+import customProperty from '../index'
 
 describe('Custom property plugin', () => {
   it('should resolve custom properties', () => {
