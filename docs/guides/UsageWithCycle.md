@@ -57,7 +57,14 @@ run(main, { DOM: makeFelaDomDriver('#app') })
 
 ```
 
-You can find options for `makeFelaDomDriver` [here](https://github.com/wcastand/cycle-fela#makefeladomdriver)
+`makeFelaDomDriver` takes optional parameters.
+
+An options object which let you pass the fela renderer options like plugins, enhancers.
+You can also use it to pass a custom DOMElement for your style with `customStyleNode` and your theme for fela.
+
+the third parameter is an array of the [staticRules](http://fela.js.org/docs/api/fela/Renderer.html#renderstaticstyle-reference) for fela.
+
+You can find more informations about options for `makeFelaDomDriver` [here](https://github.com/wcastand/cycle-fela#makefeladomdriver)
 
 #### createComponent
 
@@ -109,6 +116,19 @@ Or `createComponent` like this :
 
   const BoldRedSpan = createComponent(Bold, RedSpan);
   export default BoldRedSpan;
+```
+
+## Theming
+
+Like `react-fela` we provide a way to pass a theme to your components.
+the theme can be passed through options of `makeFelaDomDriver` :
+
+```javascript
+
+const theme = { primaryColor: 'red' }
+
+makeFelaDomDriver('#app', { theme })
+
 ```
 
 ## More informations
