@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   cache: true,
@@ -19,5 +19,8 @@ module.exports = {
         loader: 'babel-loader'
       }
     ]
+  },
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules')
   }
 }
