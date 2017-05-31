@@ -1,6 +1,6 @@
 /* @flow */
 import createDOMInterface from './DOMInterface'
-import { renderToElement } from 'fela-tools'
+import renderToElement from './renderToElement'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 import type DOMNode from '../../../flowtypes/DOMNode'

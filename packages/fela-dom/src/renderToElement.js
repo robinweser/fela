@@ -1,8 +1,7 @@
 /* @flow */
-import { renderToString } from 'fela-dom'
+import { isValidHTMLElement } from 'fela-tools'
 
-import isValidHTMLElement from './isValidHTMLElement'
-
+import renderToString from './server/renderToString'
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 import type DOMNode from '../../../flowtypes/DOMNode'
 

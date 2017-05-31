@@ -29,7 +29,6 @@ import normalizeNestedProperty from './normalizeNestedProperty'
 import objectReduce from './objectReduce'
 import processStyleWithPlugins from './processStyleWithPlugins'
 import reflushStyleNodes from './reflushStyleNodes'
-import renderToElement from './renderToElement'
 import resolvePassThrough from './resolvePassThrough'
 import StyleSheet from './StyleSheet'
 import {
@@ -74,7 +73,6 @@ export {
   objectReduce,
   processStyleWithPlugins,
   reflushStyleNodes,
-  renderToElement,
   resolvePassThrough,
   StyleSheet,
   RULE_TYPE,
