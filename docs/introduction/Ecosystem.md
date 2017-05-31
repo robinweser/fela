@@ -8,14 +8,15 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 ### Renderers
 * [fela](https://github.com/rofrischmann/fela/tree/master/packages/fela) - Web *(universal)*
-* [fela-dom](https://github.com/rofrischmann/fela/tree/master/packages/fela-dom) - Web *(client-side DOM bindings)*
+* [fela-dom](https://github.com/rofrischmann/fela/tree/master/packages/fela-dom) - Web *(DOM bindings)*
 * [fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native) - React Native
 
 ### Bindings
 * [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) - React & React Native
 * [preact-fela](https://github.com/rofrischmann/fela/tree/master/packages/preact-fela) - Preact
 * [inferno-fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela) - Inferno
-* [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript 
+* [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript
+* [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle
 
 ### Plugins
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
@@ -56,7 +57,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 ### Tools
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Helps to pass classNames to specific props
 * [fela-tools](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
-* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connecgt` with autobound styles 
+* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connecgt` with autobound styles
 
 ### Utilities
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support

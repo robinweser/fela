@@ -12,7 +12,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 
 import { createRenderer } from 'fela'
-import { renderToMarkup } from 'fela-dom/server'
+import { renderToMarkup } from 'fela-dom'
 
 import express from 'express'
 
@@ -94,4 +94,4 @@ server.listen(8080, 'localhost')
 ---
 
 ### Related
-* [API reference - `Renderer.renderToString`](../api/fela/Renderer.md#rendertostring)
+* [API reference - `renderToMarkup`](../api/fela-dom/renderToMarkup)

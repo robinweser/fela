@@ -19,18 +19,17 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 
 ---
 ### fela-dom
-* [`render(renderer)`](api/fela/fela-dom/render.md)
-
-#### fela-dom/server
-* [`renderToString(renderer)`](api/fela/fela-dom/server/renderToString.md)
-* [`renderToMarkup(renderer)`](api/fela/fela-dom/server/renderToMarkup.md)
+* [`render(renderer)`](api/fela-dom/render.md)
+* [`renderToString(renderer)`](api/fela-dom/renderToString.md)
+* [`renderToMarkup(renderer)`](api/fela-dom/renderToMarkup.md)
+* [`renderToElement(renderer)`](api/fela-dom/renderToElement.md)
 
 ---
 
 ### fela-native
 * [`createRenderer([config])`](api/fela-native/createRenderer.md)
 
-#### [Renderer API](api/fela/Renderer.md)
+#### [Renderer API](api/fela-native/Renderer.md)
 * [`.renderRule(rule, [props])`](api/fela-native/Renderer.md#renderrulerule--props)
 * [`.subscribe(listener)`](api/fela-native/Renderer.md#subscribelistener)
 * [`.clear()`](api/fela-native/Renderer.md#clear)
