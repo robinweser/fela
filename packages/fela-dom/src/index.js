@@ -1,1 +1,7 @@
-module.exports = require('fela/lib/dom/index')
+/* @flow */
+import render from './render'
+import renderToElement from './renderToElement'
+import renderToMarkup from './server/renderToMarkup'
+import renderToString from './server/renderToString'
+
+export { render, renderToMarkup, renderToString, renderToElement }

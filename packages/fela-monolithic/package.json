@@ -24,6 +24,9 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^1.0.3",
+    "fela-tools": "^4.3.5"
+  },
+  "devDependencies": {
     "fela": "^4.3.5"
   }
 }

@@ -23,7 +23,8 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "preact": "^7.0.0",
-    "fela": "^4.3.5"
+    "fela": "^4.3.5",
+    "fela-dom": "^4.3.5",
+    "preact": "^7.0.0"
   }
 }

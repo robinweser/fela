@@ -2,9 +2,13 @@
 import createRenderer from './createRenderer'
 import combineRules from './combineRules'
 import enhance from './enhance'
+import connectFactory from './bindings/connectFactory'
+import createComponentFactory from './bindings/createComponentFactory'
 
-export default {
+export {
   createRenderer,
   combineRules,
-  enhance
+  enhance,
+  connectFactory,
+  createComponentFactory
 }

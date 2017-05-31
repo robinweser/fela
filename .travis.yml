@@ -1,11 +1,15 @@
 language: node_js
 node_js:
-  - "5"
+  - "6"
+  - "4"
 script:
   - npm run check
 addons:
   code_climate:
     repo_token: 18e1eef105275451c25392c4f6b07ae0cc4ca3f6c280f9ccfcad7a16c9068d47
+before_script:
+  - npm run bootstrap
+  - npm run build
 after_script:
   - codeclimate-test-reporter < coverage/lcov.info
 notifications:

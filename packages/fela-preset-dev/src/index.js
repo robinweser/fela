@@ -1,1 +1,5 @@
-module.exports = require('fela/lib/presets/dev')
+/* @flow weak */
+import logger from 'fela-plugin-logger'
+import validator from 'fela-plugin-validator'
+
+export default [logger({ logMetaData: true }), validator()]

@@ -20,8 +20,5 @@
     "cssinjs"
   ],
   "author": "Robin Frischmann",
-  "license": "MIT",
-  "dependencies": {
-    "fela": "^4.3.5"
-  }
+  "license": "MIT"
 }

@@ -1,10 +1,9 @@
 import { createElement } from 'react'
 import PropTypes from 'prop-types'
+import monolithic from 'fela-monolithic'
 
 import createComponentFactory from '../createComponentFactory'
 import createRenderer from '../../createRenderer'
-
-import monolithic from '../../enhancers/monolithic'
 
 const createComponent = createComponentFactory(createElement, {
   renderer: PropTypes.object,

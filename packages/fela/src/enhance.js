@@ -1,5 +1,5 @@
 /* @flow */
-import arrayReduce from './utils/arrayReduce'
+import { arrayReduce } from 'fela-tools'
 
 export default function enhance(...enhancers: Array<Function>): Function {
   return (createRenderer: Function) => (config: Object) =>
