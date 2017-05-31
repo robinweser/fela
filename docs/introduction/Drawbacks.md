@@ -27,3 +27,13 @@ const rule = props => ({
 ```
 It might be more code to type, but its also more self-explanatory and descriptive.<br>
 > PS: There will soon be a tool, that automatically checks for mixed shorthand / longhand properties and throws a warning if used together.
+
+#### 3. CSS properties that contain double quotes
+For css properties that need double quotes, make sure you are using nested quotes in your code. Eg:
+```javascript
+const rule = props => ({
+  ':before': {
+    content: '" "'
+  }
+})
+```
