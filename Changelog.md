@@ -1,8 +1,10 @@
 # Changelog
 
-#### 4.4.0
+## 5.0
+
+#### 5.0.0
 ##### API Changes
-> All API changes ship with backward compatibility, which is why we do not push a new major yet.
+> All API changes ship with backward compatibility to allow incremental improvement.
 
 * introducing [fela-dom/server](packages/fela-dom/server) and a new improved `render` for [fela-dom](packages/fela-dom) to avoid FOUCs and big stylesheet rerenders.
 * `connect` now directly accepts an object of named rules that are mapped to the `styles` prop.

@@ -8,7 +8,7 @@ export default class Provider extends Component {
   }
 
   componentDidMount() {
-    render(this.props.renderer)
+    render(this.props.renderer, this.props.mountNode)
   }
 
   render() {
