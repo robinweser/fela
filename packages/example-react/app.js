@@ -2,7 +2,6 @@ import React from 'react'
 import Wrapper from './components/Wrapper'
 import Text from './components/Text'
 import Header from './components/Header'
-
 import Input from './containers/Input'
 
 export default () => (

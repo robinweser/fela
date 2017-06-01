@@ -5,8 +5,7 @@ import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-fela'
 import fs from 'fs'
 import { renderToMarkup } from 'fela-dom'
-
-import App from './app.js'
+import App from './app'
 import createRenderer from './renderer'
 
 const app = express()

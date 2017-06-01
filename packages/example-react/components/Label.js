@@ -1,4 +1,3 @@
-import React from 'react'
 import { createComponent } from 'react-fela'
 
 const label = props => ({
