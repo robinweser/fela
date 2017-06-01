@@ -86,7 +86,7 @@ describe('Creating Components from Fela rules', () => {
       color: props.color,
       fontSize: 16
     })
-    const component = createComponent(rule, 'div', props => props)
+    const component = createComponent(rule, 'div', Object.keys)
 
     const renderer = createRenderer()
 
@@ -149,7 +149,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should compose passThrough props', () => {
-    const component = createComponent(() => ({}), 'div', props => props)
+    const component = createComponent(() => ({}), 'div', Object.keys)
     const composedComponent = createComponent(() => ({}), component, [
       'onClick'
     ])

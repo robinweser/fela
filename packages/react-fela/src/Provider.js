@@ -4,11 +4,10 @@ import PropTypes from 'prop-types'
 import { render } from 'fela-dom'
 
 export default class Provider extends Component {
-  static childContextTypes = { renderer: PropTypes.object };
+  static childContextTypes = { renderer: PropTypes.object }
   static propTypes = {
-    renderer: PropTypes.object.isRequired,
-    mountNode: PropTypes.object
-  };
+    renderer: PropTypes.object.isRequired
+  }
 
   getChildContext() {
     return { renderer: this.props.renderer }

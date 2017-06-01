@@ -233,7 +233,8 @@ export default function createRenderer(
               /* eslint-enable */
             }
 
-            const className = renderer.selectorPrefix +
+            const className =
+              renderer.selectorPrefix +
               generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className
