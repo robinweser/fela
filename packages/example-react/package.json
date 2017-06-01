@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "fela-example-react",
+  "name": "example-react",
   "version": "1.0.0",
   "description": "Fela example with React",
   "scripts": {

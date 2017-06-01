@@ -1,5 +1,6 @@
 {
-  "name": "fela-example-angular2-javascript",
+  "private": true,
+  "name": "example-angular2",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
