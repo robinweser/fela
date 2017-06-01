@@ -4,6 +4,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-fela'
 import fs from 'fs'
+import { renderToMarkup } from 'fela-dom'
 
 import App from './app.js'
 import createRenderer from './renderer'
@@ -24,7 +25,7 @@ app.get('/', (req, res) => {
       <App />
     </Provider>
   )
-  const appCSS = renderer.renderToString()
+  const appCSS = renderToMarkup(renderer)
   const fontCSS = renderer.fontRenderer.renderToString()
 
   res.write(

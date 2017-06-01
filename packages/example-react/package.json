@@ -12,8 +12,10 @@
   "dependencies": {
     "fela": "^4.2.6",
     "fela-beautifier": "^4.2.6",
+    "fela-dom": "^4.3.5",
     "fela-font-renderer": "^4.2.6",
     "fela-perf": "^4.2.6",
+    "fela-plugin-embedded": "^4.2.6",
     "fela-plugin-fallback-value": "^4.2.6",
     "fela-plugin-logger": "^4.2.6",
     "fela-plugin-lvha": "^4.2.6",
