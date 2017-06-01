@@ -1,7 +1,6 @@
-import React from 'react'
 import { createComponent } from 'react-fela'
 
-const info = props => ({
+const info = () => ({
   padding: 5,
   fontSize: '20px',
   color: 'gray',

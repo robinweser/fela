@@ -6,7 +6,6 @@ import unit from 'fela-plugin-unit'
 import lvha from 'fela-plugin-lvha'
 import validator from 'fela-plugin-validator'
 import logger from 'fela-plugin-logger'
-
 import perf from 'fela-perf'
 import beautifier from 'fela-beautifier'
 
@@ -36,9 +35,5 @@ export default () => {
   )
 
   renderer.renderStatic({ display: 'flex' }, 'div')
-  renderer.renderFont('Lato', [
-    'https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff'
-  ])
-
   return renderer
 }
