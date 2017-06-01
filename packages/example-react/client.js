@@ -8,10 +8,8 @@ import createRenderer from './renderer'
 
 const renderer = createRenderer(document.getElementById('font-stylesheet'))
 
-const mountNode = document.getElementById('stylesheet')
-
 render(
-  <Provider renderer={renderer} mountNode={mountNode}>
+  <Provider renderer={renderer}>
     <App />
   </Provider>,
   document.getElementById('app')
