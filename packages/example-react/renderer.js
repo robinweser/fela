@@ -9,9 +9,8 @@ import logger from 'fela-plugin-logger'
 
 import perf from 'fela-perf'
 import beautifier from 'fela-beautifier'
-import fontRenderer from 'fela-font-renderer'
 
-export default fontNode => {
+export default () => {
   const renderer = createRenderer({
     plugins: [
       embedded(),
@@ -19,9 +18,10 @@ export default fontNode => {
       fallbackValue(),
       unit(),
       lvha(),
-      validator()
+      validator(),
+      logger()
     ],
-    enhancers: [perf(), beautifier(), fontRenderer(fontNode)]
+    enhancers: [perf(), beautifier()]
   })
 
   renderer.renderStatic(

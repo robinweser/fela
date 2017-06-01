@@ -26,13 +26,11 @@ app.get('/', (req, res) => {
     </Provider>
   )
   const appCSS = renderToMarkup(renderer)
-  const fontCSS = renderer.fontRenderer.renderToString()
 
   res.write(
     indexHTML
       .replace('<!-- {{app}} -->', appHtml)
       .replace('<!-- {{css}} -->', appCSS)
-      .replace('<!-- {{fonts}} -->', fontCSS)
   )
   res.end()
 })
