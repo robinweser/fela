@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "fela-example-preact",
+  "name": "example-preact",
   "version": "1.0.0",
   "description": "Fela example with Preact",
   "scripts": {

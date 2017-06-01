@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "fela-example-inferno",
+  "name": "example-inferno",
   "version": "1.0.0",
   "description": "Fela example with Inferno",
   "scripts": {
