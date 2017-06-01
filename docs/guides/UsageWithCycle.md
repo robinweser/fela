@@ -6,14 +6,14 @@ Fela was always designed with React in mind, but is **not** bound to React by de
 npm i --save cycle-fela
 ```
 
-### Setup fela in cycle
+### Fela in Cycle
 
 To initiate cycle with fela, you need to :
 ```javascript
 import {makeFelaDomDriver} from 'cycle-fela'
 ```
 
-`makeFelaDomDriver` should replace your `makeDomDriver` from `@cycle/dom`. A really besic setup would looks like this:
+`makeFelaDomDriver` should replace your `makeDomDriver` from `@cycle/dom`. A really basic setup would looks like this:
 
 ```javascript
 
@@ -62,14 +62,14 @@ run(main, { DOM: makeFelaDomDriver('#app') })
 An options object which let you pass the fela renderer options like plugins, enhancers.
 You can also use it to pass a custom DOMElement for your style with `customStyleNode` and your theme for fela.
 
-the third parameter is an array of the [staticRules](http://fela.js.org/docs/api/fela/Renderer.html#renderstaticstyle-reference) for fela.
+the third parameter is an array of [staticRules](http://fela.js.org/docs/api/fela/Renderer.html#renderstaticstyle-reference) for fela.
 
-You can find more informations about options for `makeFelaDomDriver` [here](https://github.com/wcastand/cycle-fela#makefeladomdriver)
+You can find more informations about the options for `makeFelaDomDriver` [here](https://github.com/wcastand/cycle-fela#makefeladomdriver)
 
 #### createComponent
 
-Cycle-fela exposes `createComponent` like react-fela.
-[createComponent](https://github.com/wcastand/cycle-fela#createcomponent) help you create presentational components that can be reuse in your app.
+cycle-fela exposes `createComponent` like react-fela.
+[createComponent](https://github.com/wcastand/cycle-fela#createcomponent) help you create presentational components that can be reused in your app.
 
 ```javascript
 
@@ -90,7 +90,7 @@ run(main, { DOM: makeFelaDomDriver('#app') })
 
 ## Composition
 
-For composition, you can use `combineRules` from fela like this :
+For composition, you can use `combineRules` e.g:
 
 ```javascript
 
@@ -120,7 +120,7 @@ Or `createComponent` like this :
 
 ## Theming
 
-Like `react-fela` we provide a way to pass a theme to your components.
+Like `react-fela`, we provide a way to pass a theme to your components.
 the theme can be passed through options of `makeFelaDomDriver` :
 
 ```javascript
@@ -131,7 +131,7 @@ makeFelaDomDriver('#app', { theme })
 
 ```
 
-## More informations
+## More information
 
 You can find more informations [here](https://github.com/wcastand/cycle-fela) and a complete example [here](https://github.com/wcastand/cycle-fela-example)
 
