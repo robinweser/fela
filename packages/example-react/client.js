@@ -6,7 +6,7 @@ import App from './app'
 
 import createRenderer from './renderer'
 
-const renderer = createRenderer(document.getElementById('font-stylesheet'))
+const renderer = createRenderer()
 
 render(
   <Provider renderer={renderer}>
