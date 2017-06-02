@@ -1,7 +1,7 @@
 /* @flow */
 import {
   reflushStyleNodes,
-  createStyleNode,
+  getStyleNode,
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
@@ -13,21 +13,6 @@ const sheetMap = {
   statics: STATIC_TYPE,
   keyframes: KEYFRAME_TYPE,
   rules: RULE_TYPE
-}
-
-function getStyleNode(
-  styleNodes: Object,
-  baseNode: Object,
-  type: string,
-  media: string = ''
-): Object {
-  const key = type + media
-
-  if (!styleNodes[key]) {
-    styleNodes[key] = createStyleNode(type, media, baseNode)
-  }
-
-  return styleNodes[key]
 }
 
 function initNode(

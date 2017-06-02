@@ -17,6 +17,7 @@ import generateCSSRule from './generateCSSRule'
 import generateCSSSelector from './generateCSSSelector'
 import generateMonolithicClassName from './generateMonolithicClassName'
 import generateStaticReference from './generateStaticReference'
+import getStyleNode from './getStyleNode'
 import isBase64 from './isBase64'
 import isMediaQuery from './isMediaQuery'
 import isNestedSelector from './isNestedSelector'
@@ -61,6 +62,7 @@ export {
   generateCSSSelector,
   generateMonolithicClassName,
   generateStaticReference,
+  getStyleNode,
   isBase64,
   isMediaQuery,
   isNestedSelector,
