@@ -107,6 +107,7 @@ render(renderer)
 * [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
 * [Fela + Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
 * [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
+* [Fela + Cycle](https://github.com/wcastand/cycle-fela-example)
 
 ## Community
 * [Aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
