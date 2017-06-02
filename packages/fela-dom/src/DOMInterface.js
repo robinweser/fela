@@ -18,23 +18,23 @@ const sheetMap = {
 }
 
 export default function createDOMInterface(renderer: DOMRenderer): Function {
-  const styleNodes = reflushStyleNodes()
-  const baseNode = styleNodes[RULE_TYPE]
+  renderer.styleNodes = reflushStyleNodes()
+  const baseNode = renderer.styleNodes[RULE_TYPE]
 
   function getStyleNode(type: string, media: string = ''): Object {
     const key = type + media
 
-    if (!styleNodes[key]) {
-      styleNodes[key] = createStyleNode(type, media, baseNode)
+    if (!renderer.styleNodes[key]) {
+      renderer.styleNodes[key] = createStyleNode(type, media, baseNode)
     }
 
-    return styleNodes[key]
+    return renderer.styleNodes[key]
   }
 
   return function changeSubscription(change) {
     if (change.type === CLEAR_TYPE) {
-      for (const node in styleNodes) {
-        styleNodes[node].textContent = ''
+      for (const node in renderer.styleNodes) {
+        renderer.styleNodes[node].textContent = ''
       }
 
       return
