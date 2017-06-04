@@ -2,7 +2,7 @@
 import warning from './warning'
 import isBase64 from './isBase64'
 
-const formats = {
+const formats: { [string]: string } = {
   '.woff': 'woff',
   '.eot': 'embedded-opentype',
   '.ttf': 'truetype',
@@ -11,7 +11,7 @@ const formats = {
   '.svgz': 'svg'
 }
 
-const base64Formats = {
+const base64Formats: { [string]: string } = {
   'image/svg+xml': 'svg',
   'application/x-font-woff': 'woff',
   'application/font-woff': 'woff',
