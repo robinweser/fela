@@ -4,9 +4,11 @@ import isBase64 from './isBase64'
 
 const formats = {
   '.woff': 'woff',
-  '.eot': 'eot',
+  '.eot': 'embedded-opentype',
   '.ttf': 'truetype',
-  '.svg': 'svg'
+  '.otf': 'opentype',
+  '.svg': 'svg',
+  '.svgz': 'svg'
 }
 
 const base64Formats = {
@@ -16,24 +18,30 @@ const base64Formats = {
   'application/x-font-woff2': 'woff2',
   'application/font-woff2': 'woff2',
   'font/woff2': 'woff2',
-  'application/octet-stream': 'ttf',
-  'application/x-font-ttf': 'ttf',
-  'application/x-font-truetype': 'ttf',
-  'application/x-font-opentype': 'otf',
-  'application/vnd.ms-fontobject': 'eot',
+  'application/octet-stream': 'truetype',
+  'application/x-font-ttf': 'truetype',
+  'application/x-font-truetype': 'truetype',
+  'application/x-font-opentype': 'opentype',
+  'application/vnd.ms-fontobject': 'embedded-opentype',
   'application/font-sfnt': 'sfnt'
 }
 
-const extensions = Object.keys(formats)
-const base64MimeTypes = Object.keys(base64Formats)
-
 export default function checkFontFormat(src: string): string {
   if (isBase64(src)) {
-    for (let i = 0, len = base64MimeTypes.length; i < len; ++i) {
-      const mimeType = base64MimeTypes[i]
-      if (src.indexOf(mimeType) !== -1) {
-        return base64Formats[mimeType]
+    let mime = ''
+    for (let i = 5; ; i++) { // 'data:'.length === 5
+      const c = src.charAt(i)
+
+      if (c === ';' || c === ',') {
+        break
       }
+
+      mime += c
+    }
+
+    const fmt = base64Formats[mime]
+    if (fmt) {
+      return fmt
     }
 
     warning(
@@ -41,11 +49,21 @@ export default function checkFontFormat(src: string): string {
       `A invalid base64 font was used. Please use one of the following mime type: ${Object.keys(base64Formats).join(', ')}.`
     )
   } else {
-    for (let i = 0, len = extensions.length; i < len; ++i) {
-      const extension = extensions[i]
-      if (src.indexOf(extension) !== -1) {
-        return formats[extension]
+    let extension = ''
+    for (let i = src.length - 1; ; i--) {
+      const c = src.charAt(i)
+
+      if (c === '.') {
+        extension = c + extension
+        break
       }
+
+      extension = c + extension
+    }
+
+    const fmt = formats[extension]
+    if (fmt) {
+      return fmt
     }
 
     warning(

@@ -3,7 +3,7 @@ import checkFontFormat from '../checkFontFormat'
 describe('Checking the font format', () => {
   it('should return the correct format', () => {
     expect(checkFontFormat('foo.ttf')).toEqual('truetype')
-    expect(checkFontFormat('foo.eot')).toEqual('eot')
+    expect(checkFontFormat('foo.eot')).toEqual('embedded-opentype')
   })
 
   it('should return an empty string', () => {
