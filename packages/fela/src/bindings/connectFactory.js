@@ -37,8 +37,8 @@ export default function connectFactory(
           } else {
             styles = objectReduce(
               rules,
-              (styleMap, rule) => {
-                styleMap[rule] = renderer.renderRule(rules[rule], styleProps)
+              (styleMap, rule, name) => {
+                styleMap[name] = renderer.renderRule(rule, styleProps)
                 return styleMap
               },
               {}
