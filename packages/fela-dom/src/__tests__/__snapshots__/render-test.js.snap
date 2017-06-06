@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render should render 1`] = `
+exports[`render should create style nodes and render CSS rules 1`] = `
 "<html>
 
 <head>
