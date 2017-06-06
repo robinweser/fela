@@ -26,4 +26,4 @@ const keyframe = props => ({
 
 #### Tools
 **[FormidableLabs/react-animations](https://github.com/FormidableLabs/react-animations)**<br>
-CSS animations to be used with CSS in JS solutions
+CSS animations to be used with CSS in JS solutions<br>

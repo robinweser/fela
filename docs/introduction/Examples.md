@@ -8,7 +8,7 @@ A basic vanilla JavaScript example. It uses ECMAScript 5 and UMD builds of the F
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/examples/vanilla
+cd fela/packages/example-vanilla
 open index.html
 ```
 
@@ -24,7 +24,7 @@ A simple example application using the [React bindings](https://github.com/rofri
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/examples/react
+cd fela/packages/example-react
 npm install
 # starts the universal rendered application at localhost:8080
 npm start
@@ -50,7 +50,7 @@ The example is the same as the [React example](#react) above.
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/examples/preact
+cd fela/packages/example-preact
 npm install
 # starts the universal rendered application at localhost:8080
 npm start
@@ -66,7 +66,7 @@ The example is the same as the [React example](#react) above.
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/examples/inferno
+cd fela/packages/example-inferno
 npm install
 # starts the universal rendered application at localhost:8080
 npm start
@@ -81,7 +81,7 @@ A simple example application using the [React bindings](https://github.com/rofri
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/examples/react-native
+cd fela/packages/example-react-native
 npm install
 npm start
 ```
@@ -100,7 +100,7 @@ The code examples are based on the build-chain as used in [Angular 2 ESNext Todo
 
 ```sh
 git clone https://github.com/rofrischmann/fela.git
-cd fela/examples/angular2/javascript
+cd fela/packages/example-angular2
 npm install
 npm run start
 ```
@@ -114,7 +114,7 @@ npm run start
 The same example is also available in TypeScript. It also covers Fela typings.
 ```sh
 git clone https://github.com/rofrischmann/fela.git
-cd fela/examples/angular2/typescript
+cd fela/packages/example-angular2-typescript
 npm install
 npm run start
 ```

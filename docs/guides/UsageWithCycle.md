@@ -10,10 +10,12 @@ npm i --save cycle-fela
 
 To initiate cycle with fela, you need to :
 ```javascript
-import {makeFelaDomDriver} from 'cycle-fela'
+import { makeFelaDomDriver } from 'cycle-fela'
 ```
 
-`makeFelaDomDriver` should replace your `makeDomDriver` from `@cycle/dom`. A really basic setup would looks like this:
+`makeFelaDomDriver` should replace your `makeDomDriver` from `@cycle/dom`.
+
+A really basic setup would looks like this:
 
 ```javascript
 
@@ -27,8 +29,9 @@ function main(sources) {
   return { DOM: vdom$ }
 }
 
-run(main, { DOM: makeFelaDomDriver('#app') })
-
+run(main, {
+  DOM: makeFelaDomDriver('#app')
+})
 ```
 
 #### Use Fela
@@ -37,7 +40,6 @@ Once you setup fela, `cycle-fela` will look for the props `component` in your el
 `component` must be a function like fela's rules :
 
 ```javascript
-
 import xs from 'xstream'
 import { run } from '@cycle/run'
 import { div } from '@cycle/dom'
@@ -53,8 +55,9 @@ function main(sources) {
   return { DOM: vdom$ }
 }
 
-run(main, { DOM: makeFelaDomDriver('#app') })
-
+run(main, {
+  DOM: makeFelaDomDriver('#app')
+})
 ```
 
 `makeFelaDomDriver` takes optional parameters.
@@ -72,20 +75,20 @@ cycle-fela exposes `createComponent` like react-fela.
 [createComponent](https://github.com/wcastand/cycle-fela#createcomponent) help you create presentational components that can be reused in your app.
 
 ```javascript
-
 import xs from 'xstream'
 import { run } from '@cycle/run'
 import { makeFelaDomDriver, createComponent } from 'cycle-fela'
 
-const RedDiv = createComponent(() => ({color: 'red'}), 'div')
+const RedDiv = createComponent(() => ({ color: 'red' }), 'div')
 
 function main(sources) {
   const vdom$ = xs.of(RedDiv('Hello World'))
   return { DOM: vdom$ }
 }
 
-run(main, { DOM: makeFelaDomDriver('#app') })
-
+run(main, {
+  DOM: makeFelaDomDriver('#app')
+})
 ```
 
 ## Composition
@@ -93,42 +96,36 @@ run(main, { DOM: makeFelaDomDriver('#app') })
 For composition, you can use `combineRules` e.g:
 
 ```javascript
+import { combineRules } from 'fela'
+import { createComponent } from 'cycle-fela'
 
-  import { combineRules } from 'fela';
-  import { createComponent } from 'cycle-fela';
+const Red = () => ({ color: 'red' })
+const Bold = () => ({ fontWeight: 'bold' })
 
-  const Red = () => ({color: 'red' });
-  const Bold = () => ({fontWeight: 'bold'});
-
-  const BoldRed = combineRules(Red, Bold);
-  export default createComponent(BoldRed, 'span');
-
+const BoldRed = combineRules(Red, Bold)
+export default createComponent(BoldRed, 'span')
 ```
 
-Or `createComponent` like this :
+Or `createComponent` like this:
 
 ```javascript
+import { createComponent } from 'cycle-fela'
 
-  import { createComponent } from 'cycle-fela';
+const RedSpan = createComponent(() => ({ color: 'red' }), 'span')
+const Bold = () => ({ fontWeight: 'bold' })
 
-  const RedSpan = createComponent(() => ({color: 'red' }), 'span');
-  const Bold = () => ({fontWeight: 'bold'});
-
-  const BoldRedSpan = createComponent(Bold, RedSpan);
-  export default BoldRedSpan;
+export default createComponent(Bold, RedSpan)
 ```
 
 ## Theming
 
 Like `react-fela`, we provide a way to pass a theme to your components.
-the theme can be passed through options of `makeFelaDomDriver` :
+the theme can be passed through options of `makeFelaDomDriver`:
 
 ```javascript
-
 const theme = { primaryColor: 'red' }
 
 makeFelaDomDriver('#app', { theme })
-
 ```
 
 ## More information

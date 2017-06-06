@@ -9,7 +9,7 @@ Usually you will render all styles on the server and inject the rendered CSS mar
 The following code shows a simple server example using [express](https://github.com/expressjs/express) and [React](https://github.com/facebook/react).
 ```javascript
 import React from 'react'
-import { renderToString } from 'react-dom/server'
+import { renderToString } from 'react-dom'
 
 import { createRenderer } from 'fela'
 import { renderToMarkup } from 'fela-dom'

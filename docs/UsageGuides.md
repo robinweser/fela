@@ -5,3 +5,4 @@
 * [Usage with Preact](guides/UsageWithPreact.md)
 * [Usage with Inferno](guides/UsageWithInferno.md)
 * [Usage with Angular 2](guides/UsageWithAngular2.md)
+* [Usage with Cycle](guides/UsageWithCycle.md)

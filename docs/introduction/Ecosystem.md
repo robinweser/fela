@@ -20,9 +20,11 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 ### Plugins
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
+* [fela-plugin-embedded](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-embedded) - Automatically Resolves embedded font faces and keyframes within rules
 * [fela-plugin-extend](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend) - Extend style objects based on conditions
 * [fela-plugin-fallback-value](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-fallback-value) - Resolves arrays of fallback values
 * [fela-plugin-friendly-pseudo-class](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-friendly-pseudo-class) - Transforms javascript-friendly pseudo class into valid syntax
+* [fela-plugin-importrant](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-importrant) - Adds `!important` to every value
 * [fela-plugin-isolation](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-isolation) - Adds style isolation to every rule
 * [fela-plugin-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-logger) - Logs processed style objects
 * [fela-plugin-lvha](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-lvha) - Sorts pseudo classes according to LVH(F)A
@@ -42,7 +44,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 > **Warning**: Enhancers are still experimental and the API might change.
 
 * [fela-beautifier*](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
-* [fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.
+* ~~[fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.~~ (*Deprecated*)
 * [fela-layout-debugger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-layout-debugger) - Adds colored outlines or backgroundColors to debug layouts
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-monolithic](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic) - Render component-based (monolithic) CSS classes (rather than atomic)
@@ -57,14 +59,21 @@ Many plugins and enhancers are already included in the [main repository](https:/
 ### Tools
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Helps to pass classNames to specific props
 * [fela-tools](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
-* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connecgt` with autobound styles
+* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
 
 ### Utilities
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
 * [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js): Transform your CSS to JavaScript at compile time
 * [classnames](https://github.com/JedWatson/classnames): Manage and combine multiple className values safely
 * [css-functions](https://github.com/cssinjs/css-functions): Functional API to create CSS functions including value validation
+* [css-spring](https://github.com/codepunkt/css-spring): Generate physics based css-keyframe animations for the css-in-js solution of your choice or plain css
+* [css-to-object](https://github.com/jxnblk/css-to-object): Convert flat CSS rules to JavaScript style objects
+* [fela-components](https://github.com/arturmuller/fela-components): Styling library for React and Fela
+* [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Generate class names for fela style rule and apply them as property on a wrapped component
+* [frejya](https://github.com/benoneal/freyja): Pass styles as props to components
 * [inline-style-transformer](https://github.com/rofrischmann/inline-style-transformer): CSS & style object transformation tools
+* [objectify-css](https://github.com/lachlanjc/objectify-css): CLI for converting CSS rules to JavaScript style objects
+* [polished](https://github.com/styled-components/polished): A lightweight toolset for writing styles in JavaScript
 * [react-animations](https://github.com/FormidableLabs/react-animations): CSS animations to be used with CSS in JS solutions
 * [react-styling](https://github.com/halt-hammerzeit/react-styling): Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
 * [stile](https://github.com/bloodyowl/stile): Handle units and string values

@@ -18,6 +18,7 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 * [`.clear()`](api/fela/Renderer.md#clear)
 
 ---
+
 ### fela-dom
 * [`render(renderer)`](api/fela-dom/render.md)
 * [`renderToString(renderer)`](api/fela-dom/renderToString.md)

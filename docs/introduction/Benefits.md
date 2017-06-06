@@ -1,7 +1,7 @@
 # Benefits
 
 #### 1. Universal Rendering
-Fela was designed to be capable of universal rendering (client- and server-side rendering) from the very beginning. The Renderer, which is the core of Fela, ships with a simple `renderToString` method which can return a valid CSS string of all rendered styles at any point in time. The DOM Renderer was not designed as the base, but rather as an extension to the universal Renderer.
+Fela was designed to be capable of universal rendering (client- and server-side rendering) from the very beginning. The renderer, which is the core of Fela, ships with universal rendering capabilities that can be utilized by both the DOM renderer and the server renderer to ship a seamless universal rendering experience.
 
 #### 2. Local Namespace
 Each rule is transformed into unique CSS classes by design. Hence there is no chance of any conflicts due to the global namespace.

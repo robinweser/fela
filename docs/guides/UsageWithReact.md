@@ -112,9 +112,7 @@ You may also nest multiple `<ThemeProvider>`. The `theme` object will then autom
 
 
 ## Passing the Renderer
-We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/api/fela/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.<br>
-It also takes an optional `mountNode` prop which is used to render our final CSS markup into. *(If you use server rendering you do not need to pass a `mountNode`)*.
-
+We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/api/fela/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.
 ```javascript
 import { createRenderer } from 'fela'
 import { Provider } from 'react-fela'
@@ -122,12 +120,9 @@ import { render } from 'react-dom'
 import React from 'react'
 
 const renderer = createRenderer()
-// The provider will automatically renderer the styles
-// into the mountNode on componentWillMount
-const mountNode = document.getElementById('stylesheet')
 
 render(
-  <Provider renderer={renderer} mountNode={mountNode}>
+  <Provider renderer={renderer}>
     <App />
   </Provider>,
   document.getElementById('app')
