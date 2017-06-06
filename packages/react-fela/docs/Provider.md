@@ -4,7 +4,6 @@ The `<Provider>` component wraps your whole application. It uses React's [contex
 
 ## Props
 1. `renderer` ([*Renderer*](http://fela.js.org/docs/api/Renderer.html)): Fela renderer which is used to actually render our styles.
-2. `mountNode` ([*HTMLElement?*](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)): DOM node to render the CSS into. It uses [`Fela.render(renderer, mountNode)`](http://fela.js.org/docs/api/render.html) on `componentWillMount` to initially connect the DOM node.
 
 ## Example
 ```javascript
@@ -14,12 +13,9 @@ import { render } from 'react-dom'
 import React from 'react'
 
 const renderer = createRenderer()
-// The provider will automatically renderer the styles
-// into the mountNode on componentWillMount
-const mountNode = document.getElementById('stylesheet')
 
 render(
-  <Provider renderer={renderer} mountNode={mountNode}>
+  <Provider renderer={renderer}>
     <App />
   </Provider>,
   document.getElementById('app')
@@ -30,7 +26,7 @@ All of our components can now directly use the renderer from `context`.
 ```javascript
 import React, { PropTypes } from 'react'
 
-const selector = props => ({
+const rule = props => ({
   fontSize: '12px',
   fontWeight: 300,
   color: props.color,
@@ -38,7 +34,7 @@ const selector = props => ({
 })
 
 const App = (props, { renderer }) => {
-  const className = renderer.renderRule(selector, { color: 'blue' })
+  const className = renderer.renderRule(rule, { color: 'blue' })
 
   return (
     <div className={className}>

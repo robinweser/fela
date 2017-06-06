@@ -205,7 +205,7 @@ div {
 
 ## `renderToString()`
 
-> Deprecated! Use `renderToString` from `fela-dom/server` instead.
+> Deprecated! Use `renderToString` from `fela-dom` instead.
 
 Renders all cached styles into a single CSS string. Styles are grouped in the following order:
 

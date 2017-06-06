@@ -1,11 +1,10 @@
-# `connect(mapStylesToProps)`
+# `connect(rules)`
 
 This HoCs ([Higher-order Components](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) provides the ability to map rendered classNames to a components `props` directly.<br>
 It provides all classNames using the `styles` prop.
 
 ## Arguments
-1. `mapStylesToProps` (*Function*): A function
-of `props` that returns a function of `renderer` which again returns an object of rendered classNames. The signature is: `props => renderer => ({ /* classNames */ })`.
+1. `rules` (*Object*): An object containing named rules which are provided to the component.
 
 ## Returns
 (*Function*): Component connector that passes the classNames to a React component.
@@ -14,7 +13,7 @@ of `props` that returns a function of `renderer` which again returns an object o
 ```javascript
 import { connect } from 'react-fela'
 
-let Header = ({ title, styles }) => (
+const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.title}>{title}</h1>
   </header>
@@ -32,20 +31,13 @@ const title = props => ({
   color: props.color
 })
 
-// We use both the components props and
-// the renderer to compose our classNames
-const mapStylesToProps = props => renderer => ({
-  container: renderer.renderRule(container),
-  title: renderer.renderRule(title, {
-    fontSize: props.size + 'px',
-    color: props.color
-  })
-})
-
-Header = connect(mapStylesToProps)(Header)
+const Connectedheader = connect({
+  container,
+  title
+})(Header)
 
 ReactDOM.render(
-  <Header
+  <Connectedheader
     title='Hello World'
     color='red'
     size={17} />,
