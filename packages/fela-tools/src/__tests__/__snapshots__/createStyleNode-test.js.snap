@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create style node should create new style nodes 1`] = `
+"<html>
+
+<head>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(max-width: 800px)\\"></style>
+</head>
+
+<body></body>
+
+</html>"
+`;
