@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render should create style nodes and render CSS rules 1`] = `
+"<html>
+
+<head>
+  <style data-fela-type=\\"FONT\\" type=\\"text/css\\">
+    @font-face {
+      font-weight: 300;
+      src: url('../Lato.ttf') format('truetype');
+      font-family: \\"Lato\\"
+    }
+  </style>
+  <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
+    @-webkit-keyframes k1 {
+      0% {
+        color: yellow
+      }
+      100% {
+        color: orange
+      }
+    }
+
+    @-moz-keyframes k1 {
+      0% {
+        color: yellow
+      }
+      100% {
+        color: orange
+      }
+    }
+
+    @keyframes k1 {
+      0% {
+        color: yellow
+      }
+      100% {
+        color: orange
+      }
+    }
+  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
+    .a {
+      background-color: red
+    }
+
+    .b {
+      color: blue
+    }
+  </style>
+</head>
+
+<body></body>
+
+</html>"
+`;

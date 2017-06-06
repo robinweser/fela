@@ -58,6 +58,7 @@ export default function createRenderer(
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},
+    styleNodes: {},
 
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(

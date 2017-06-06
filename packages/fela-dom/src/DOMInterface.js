@@ -6,7 +6,7 @@ import {
   STATIC_TYPE,
   CLEAR_TYPE,
   reflushStyleNodes,
-  createStyleNode
+  getStyleNode
 } from 'fela-tools'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
@@ -18,29 +18,24 @@ const sheetMap = {
 }
 
 export default function createDOMInterface(renderer: DOMRenderer): Function {
-  const styleNodes = reflushStyleNodes()
-  const baseNode = styleNodes[RULE_TYPE]
-
-  function getStyleNode(type: string, media: string = ''): Object {
-    const key = type + media
-
-    if (!styleNodes[key]) {
-      styleNodes[key] = createStyleNode(type, media, baseNode)
-    }
-
-    return styleNodes[key]
-  }
+  renderer.styleNodes = reflushStyleNodes()
+  const baseNode = renderer.styleNodes[RULE_TYPE]
 
   return function changeSubscription(change) {
     if (change.type === CLEAR_TYPE) {
-      for (const node in styleNodes) {
-        styleNodes[node].textContent = ''
+      for (const node in renderer.styleNodes) {
+        renderer.styleNodes[node].textContent = ''
       }
 
       return
     }
 
-    const styleNode = getStyleNode(change.type, change.media)
+    const styleNode = getStyleNode(
+      renderer.styleNodes,
+      baseNode,
+      change.type,
+      change.media
+    )
 
     if (change.type === RULE_TYPE) {
       // only use insertRule in production as browser devtools might have

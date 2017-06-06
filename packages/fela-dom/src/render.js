@@ -1,6 +1,7 @@
 /* @flow */
 import createDOMInterface from './DOMInterface'
 import renderToElement from './renderToElement'
+import initStyleNodes from './initStyleNodes'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 import type DOMNode from '../../../flowtypes/DOMNode'
@@ -21,6 +22,7 @@ export default function render(
 
     renderToElement(renderer, mountNode)
   } else {
+    initStyleNodes(renderer)
     const updateInterface = createDOMInterface(renderer)
     renderer.subscribe(updateInterface)
   }
