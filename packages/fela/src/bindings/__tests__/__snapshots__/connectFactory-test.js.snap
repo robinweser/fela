@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connect Factory for bindings should process rules and create classNames 1`] = `
+Array [
+  "<style>
+    .a {
+        padding: 1
+    }
+
+    .b {
+        color: red
+    }
+</style>",
+  <ConnectedFelaComponent>
+    <Component
+        styles={
+            Object {
+                "rule1": "a",
+                "rule2": "b",
+              }
+        }
+    >
+        <div>
+            <span
+                className="a"
+            />
+            <span
+                className="b"
+            />
+        </div>
+    </Component>
+</ConnectedFelaComponent>,
+]
+`;
