@@ -2,7 +2,7 @@
 /* eslint-disable prefer-rest-params */
 import gzipSize from 'gzip-size'
 
-import { RULE_TYPE } from 'fela-tools'
+import { RULE_TYPE } from 'fela-utils'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
