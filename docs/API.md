@@ -21,9 +21,7 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 
 ### fela-dom
 * [`render(renderer)`](api/fela-dom/render.md)
-* [`renderToString(renderer)`](api/fela-dom/renderToString.md)
 * [`renderToMarkup(renderer)`](api/fela-dom/renderToMarkup.md)
-* [`renderToElement(renderer)`](api/fela-dom/renderToElement.md)
 
 ---
 

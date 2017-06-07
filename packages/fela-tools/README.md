@@ -33,6 +33,7 @@ import StyleSheet from 'fela-tools/StyleSheet'
 ## API Reference
 
 * [`mapValueToMediaQuery(queryValueMap, mapper)`](docs/mapValueToMediaQuery.md)
+* [`renderToString(renderer)`](docs/renderToString.md)
 * [StyleSheet](docs/StyleSheet.md)
 
 ## License
