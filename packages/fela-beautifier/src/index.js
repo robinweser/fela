@@ -1,15 +1,25 @@
 /* @flow */
 import cssbeautify from 'cssbeautify'
+import { objectReduce } from 'fela-utils'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
 function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
-  const existingRenderToString = renderer.renderToString.bind(renderer)
+  renderer.subscribe(() => {
+    renderer.fontFaces = cssbeautify(renderer.fontFaces, options)
+    renderer.keyframes = cssbeautify(renderer.keyframes, options)
+    renderer.statics = cssbeautify(renderer.statics, options)
+    renderer.rules = cssbeautify(renderer.rules, options)
 
-  renderer.renderToString = (): string => {
-    const css = existingRenderToString()
-    return cssbeautify(css, options)
-  }
+    renderer.mediaRules = objectReduce(
+      renderer.mediaRules,
+      (mediaRules, rules, query) => {
+        mediaRules[query] = cssbeautify(rules, options)
+        return mediaRules
+      },
+      {}
+    )
+  })
 
   return renderer
 }
