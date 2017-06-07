@@ -1,3 +1,4 @@
+/* @flow */
 import createStyleNode from './createStyleNode'
 
 export default function getStyleNode(

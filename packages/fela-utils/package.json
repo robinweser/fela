@@ -1,7 +1,7 @@
 {
-  "name": "fela-tools",
+  "name": "fela-utils",
   "version": "4.3.5",
-  "description": "Useful tools for working with Fela",
+  "description": "Internal utilities for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -14,13 +14,12 @@
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "fela-tool",
+    "fela-utils",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "^1.0.3",
-    "fela-utils": "^4.3.5"
+    "css-in-js-utils": "^1.0.3"
   }
 }

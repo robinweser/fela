@@ -1,4 +1,4 @@
-/* @flow  */
+/* @flow */
 export default function normalizeNestedProperty(
   nestedProperty: string
 ): string {

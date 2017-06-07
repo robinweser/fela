@@ -1,5 +1,5 @@
 /* @flow */
-import { cssifyMediaQueryRules, objectReduce } from 'fela-tools'
+import { cssifyMediaQueryRules, objectReduce } from 'fela-utils'
 
 export default function renderToString(renderer: Object): string {
   const basicCSS =

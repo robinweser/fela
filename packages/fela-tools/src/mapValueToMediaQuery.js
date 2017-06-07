@@ -1,5 +1,5 @@
 /* @flow */
-import objectReduce from './objectReduce'
+import { objectReduce } from 'fela-utils'
 
 export default function mapValueToMediaQuery(
   queryValueMap: Object = {},
