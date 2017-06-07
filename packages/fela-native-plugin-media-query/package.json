@@ -1,35 +1,32 @@
 {
-  "name": "fela",
+  "name": "fela-plugin-native-media-query",
   "version": "4.3.5",
-  "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
-  "typings": "index.d.ts",
+  "description": "Fela plugin to resolve media queries in React Native",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "files": [
     "LICENSE",
     "README.md",
-    "index.d.ts",
     "lib/**",
     "es/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "dynamic styling",
-    "stylesheet",
-    "css",
-    "styling",
+    "fela-native",
+    "react-native",
+    "media query",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "devDependencies": {
-    "fela-monolithic": "^4.3.5"
+  "peerDependencies": {
+    "react-native": "*"
   },
   "dependencies": {
-    "css-in-js-utils": "^1.0.3",
     "fela-utils": "^4.3.5",
-    "fela-tools": "^4.3.5"
+    "css-in-js-utils": "^1.0.3",
+    "css-mediaquery": "^0.1.2"
   }
 }
