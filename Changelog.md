@@ -6,7 +6,7 @@
 Although all API changes ship with backward compatibility, we still publish a new major version as we changed a lot of internal infrastructure and want to make sure to not break existing applications in any way.
 
 ##### API Changes
-* introducing new [fela-dom](packages/fela-dom) server-side methods `renderToMarkup` and `renderToString` as well as a new improved `render` for to avoid FOUCs and big stylesheet rerenders. ( [#156](https://github.com/rofrischmann/fela/pull/156) )
+* introducing the new [fela-dom](packages/fela-dom) server-side method `renderToMarkup` as well as a new improved `render` for to avoid FOUCs and big stylesheet rerenders. ( [#156](https://github.com/rofrischmann/fela/pull/156) )
 * `connect` now directly accepts an object of named rules that are mapped to the `styles` prop. ( [#260](https://github.com/rofrischmann/fela/pull/260) )
 * `createComponent`'s *passThroughProps* now either accept an array of prop keys or a function that returns an array of prop keys (instead of an object of props)
 
