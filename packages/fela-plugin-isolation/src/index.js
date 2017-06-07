@@ -1,5 +1,5 @@
 /* @flow */
-import { arrayReduce } from 'fela-tools'
+import { arrayReduce } from 'fela-utils'
 
 function addIsolation(style: Object, exclude: Array<string> = []): Object {
   if (style.isolation === false) {

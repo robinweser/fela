@@ -1,5 +1,5 @@
 /* @flow */
-import { isObject } from 'fela-tools'
+import { isObject } from 'fela-utils'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 

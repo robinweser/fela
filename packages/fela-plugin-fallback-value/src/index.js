@@ -1,7 +1,7 @@
 /* @flow */
 import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
 
-import { isObject } from 'fela-tools'
+import { isObject } from 'fela-utils'
 
 function resolveFallbackValues(style: Object): Object {
   for (const property in style) {

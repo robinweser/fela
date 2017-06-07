@@ -15,7 +15,7 @@ import {
   generateCSSSelector,
   generateCSSRule,
   RULE_TYPE
-} from 'fela-tools'
+} from 'fela-utils'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 import type MonolithicRenderer from '../../../flowtypes/MonolithicRenderer'

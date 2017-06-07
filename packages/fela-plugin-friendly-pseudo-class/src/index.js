@@ -1,5 +1,5 @@
 /* @flow */
-import { isObject } from 'fela-tools'
+import { isObject } from 'fela-utils'
 
 const regex = new RegExp('^on([A-Z])')
 

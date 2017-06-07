@@ -1,5 +1,5 @@
 /* @flow */
-import { objectReduce } from 'fela-tools'
+import { objectReduce } from 'fela-utils'
 import generateDisplayName from './generateDisplayName'
 
 export default function connectFactory(

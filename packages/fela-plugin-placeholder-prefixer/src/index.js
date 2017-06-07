@@ -1,6 +1,6 @@
 /* @flow */
 import customProperty from 'fela-plugin-custom-property'
-import { arrayReduce } from 'fela-tools'
+import { arrayReduce } from 'fela-utils'
 
 const placeholderPrefixes = [
   '::-webkit-input-placeholder',

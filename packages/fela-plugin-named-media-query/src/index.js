@@ -1,5 +1,5 @@
 /* @flow */
-import { isObject } from 'fela-tools'
+import { isObject } from 'fela-utils'
 
 function resolveNamedMediaQuery(style: Object, mediaQueryMap: Object) {
   for (const property in style) {

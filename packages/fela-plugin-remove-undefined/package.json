@@ -20,6 +20,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-tools": "^4.3.5"
+    "fela-utils": "^4.3.5"
   }
 }

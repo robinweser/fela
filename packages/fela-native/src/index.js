@@ -2,7 +2,7 @@
 import { StyleSheet } from 'react-native'
 
 /* @flow */
-import { processStyleWithPlugins, arrayEach, RULE_TYPE } from 'fela-tools'
+import { processStyleWithPlugins, arrayEach, RULE_TYPE } from 'fela-utils'
 
 import type {
   NativeRenderer,

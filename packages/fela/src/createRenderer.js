@@ -27,9 +27,9 @@ import {
   KEYFRAME_TYPE,
   FONT_TYPE,
   CLEAR_TYPE
-} from 'fela-tools'
+} from 'fela-utils'
 
-import { renderToString } from 'fela-dom'
+import { renderToString } from 'fela-tools'
 
 import type {
   DOMRenderer,

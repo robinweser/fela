@@ -1,7 +1,7 @@
 /* @flow */
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
-import { isObject } from 'fela-tools'
+import { isObject } from 'fela-utils'
 
 function resolveCustomProperty(style: Object, properties: Object): Object {
   for (const property in style) {

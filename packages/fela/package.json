@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "css-in-js-utils": "^1.0.3",
-    "fela-dom": "^4.3.5",
+    "fela-utils": "^4.3.5",
     "fela-tools": "^4.3.5"
   },
   "author": "Robin Frischmann",

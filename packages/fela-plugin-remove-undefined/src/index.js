@@ -1,5 +1,5 @@
 /* @flow */
-import { isUndefinedValue, isObject } from 'fela-tools'
+import { isUndefinedValue, isObject } from 'fela-utils'
 
 function removeUndefined(style: Object): Object {
   for (const property in style) {

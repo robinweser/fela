@@ -6,7 +6,7 @@ import {
   KEYFRAME_TYPE,
   FONT_TYPE,
   STATIC_TYPE
-} from 'fela-tools'
+} from 'fela-utils'
 
 const sheetMap = {
   fontFaces: FONT_TYPE,

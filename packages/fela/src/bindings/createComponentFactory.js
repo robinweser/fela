@@ -1,5 +1,5 @@
 /* @flow */
-import { extractPassThroughProps, resolvePassThrough } from 'fela-tools'
+import { extractPassThroughProps, resolvePassThrough } from 'fela-utils'
 import combineRules from '../combineRules'
 
 export default function createComponentFactory(

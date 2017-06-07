@@ -1,5 +1,5 @@
 /* @flow */
-import { arrayEach } from 'fela-tools'
+import { arrayEach } from 'fela-utils'
 
 const precedence = {
   ':link': 0,

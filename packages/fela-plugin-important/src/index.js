@@ -1,5 +1,5 @@
 /* @flow */
-import { isObject } from 'fela-tools'
+import { isObject } from 'fela-utils'
 
 function addImportantToValue(value: any): any {
   if (

@@ -1,4 +1,4 @@
-import { RULE_TYPE } from 'fela-tools'
+import { RULE_TYPE } from 'fela-utils'
 import createRenderer from '../createRenderer'
 
 describe('Renderer', () => {
