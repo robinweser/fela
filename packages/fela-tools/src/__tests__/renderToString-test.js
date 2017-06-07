@@ -1,5 +1,6 @@
-import renderToString from '../renderToString'
 import { createRenderer } from 'fela'
+
+import renderToString from '../renderToString'
 
 describe('Rendering to string', () => {
   it('should return a single CSS string', () => {
