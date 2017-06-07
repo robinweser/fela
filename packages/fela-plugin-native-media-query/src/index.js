@@ -1,6 +1,8 @@
+/* eslint-disable import/no-unresolved, import/extensions */
+import { Dimension } from 'react-native'
+
 /* @flow */
 import { match } from 'css-mediaquery'
-import { Dimension } from 'react-native'
 import { isObject, isMediaQuery } from 'fela-utils'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
