@@ -1,6 +1,6 @@
 {
   "name": "inferno-fela",
-  "version": "4.3.5",
+  "version": "5.0.0",
   "description": "Inferno bindings for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -23,8 +23,8 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela": "^4.3.5",
-    "fela-dom": "^4.3.5",
+    "fela": "^5.0.0",
+    "fela-dom": "^5.0.0",
     "inferno": "^1.0.1",
     "inferno-component": "^1.0.1",
     "inferno-create-element": "^1.0.1"
