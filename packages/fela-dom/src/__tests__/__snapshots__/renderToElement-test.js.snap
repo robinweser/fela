@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderToElement should do initial and subscription render into node 1`] = `
+"<html>
+
+<head>
+  <style type=\\"text/css\\">
+    .a {
+      background-color: red
+    }
+
+    .b {
+      color: blue
+    }
+  </style>
+</head>
+
+<body></body>
+
+</html>"
+`;
+
+exports[`renderToElement should do initial and subscription render into node 2`] = `
+"<html>
+
+<head>
+  <style type=\\"text/css\\">
+    @-webkit-keyframes k1 {
+      0% {
+        color: yellow
+      }
+      100% {
+        color: orange
+      }
+    }
+
+    @-moz-keyframes k1 {
+      0% {
+        color: yellow
+      }
+      100% {
+        color: orange
+      }
+    }
+
+    @keyframes k1 {
+      0% {
+        color: yellow
+      }
+      100% {
+        color: orange
+      }
+    }
+
+    .a {
+      background-color: red
+    }
+
+    .b {
+      color: blue
+    }
+  </style>
+</head>
+
+<body></body>
+
+</html>"
+`;

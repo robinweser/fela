@@ -17,6 +17,13 @@ export default function renderToElement(
     )
   }
 
+  const css = renderToString(renderer)
+
+  if (mountNode.textContent !== css) {
+    // render currently rendered styles to the DOM once
+    mountNode.textContent = css
+  }
+
   return renderer.subscribe(() => {
     mountNode.textContent = renderToString(renderer)
   })
