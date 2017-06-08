@@ -87,3 +87,7 @@ ReactDOM.render(
 )
 // => <h1 className="a">Hello World</h1>
 ```
+
+## Related
+
+- [Explicit displayName for React components](http://fela.js.org/docs/recipes/DisplayNameComponents.html)
