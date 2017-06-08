@@ -90,11 +90,11 @@ render(renderer)
 * [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [@steida](https://twitter.com/steida)*
 
 ## Examples
-* [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/react))
-* [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](examples/react-native))
-* [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](examples/preact))
-* [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/inferno))
-* [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/angular/javascript))
+* [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](packages/example-react))
+* [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](packages/example-react-native))
+* [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](packages/example-preact))
+* [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](packages/example-inferno))
+* [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](packages/example-angular2))
 * [Fela + Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
 * [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
 * [Fela + Cycle](https://github.com/wcastand/cycle-fela-example)
