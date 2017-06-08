@@ -3,6 +3,7 @@ import proxy from 'express-http-proxy'
 import { h } from 'preact'
 import render from 'preact-render-to-string'
 import { Provider } from 'preact-fela'
+import { renderToMarkup } from 'fela-dom'
 import fs from 'fs'
 
 import App from './app.js'
@@ -24,7 +25,7 @@ app.get('/', (req, res) => {
       <App />
     </Provider>
   )
-  const appCSS = renderer.renderToMarkup()
+  const appCSS = renderToMarkup(renderer)
 
   res.write(
     indexHTML
