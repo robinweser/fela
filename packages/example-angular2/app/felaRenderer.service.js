@@ -4,12 +4,12 @@ import { render } from 'fela-dom'
 
 @Injectable()
 export class FelaRendererService {
-  static renderer = null;
+  static renderer = null
 
   constructor() {
     if (FelaRendererService.renderer === null) {
       FelaRendererService.renderer = createRenderer()
-      render(FelaRendererService.renderer, document.getElementById('felaStyles'))
+      render(FelaRendererService.renderer)
     }
   }
 

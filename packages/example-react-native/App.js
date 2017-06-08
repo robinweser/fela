@@ -2,9 +2,29 @@ import React, { Component, PropTypes } from 'react'
 import { create } from 'fela-stylesheet'
 import { Text, View } from 'react-native'
 
+const rules = create({
+  container: props => ({
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: props.bgColor
+  }),
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5
+  },
+  ticker: props => ({ color: props.color })
+})
+
 class Ticker extends Component {
   constructor() {
-    super(...arguments)
+    super()
     this.state = { color: 'red' }
     this.startTicker = this.startTicker.bind(this)
   }
@@ -22,7 +42,9 @@ class Ticker extends Component {
     const { renderer } = this.context
 
     return (
-      <Text style={renderer.renderRule(rules.ticker, { color: this.state.color })}>
+      <Text
+        style={renderer.renderRule(rules.ticker, { color: this.state.color })}
+      >
         I am &nbsp;
         {this.state.color}
       </Text>
@@ -47,26 +69,6 @@ const App = (_, { renderer }) => (
     <Ticker />
   </View>
 )
-
-const rules = create({
-  container: props => ({
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: props.bgColor
-  }),
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
-  },
-  ticker: props => ({ color: props.color })
-})
 
 App.contextTypes = { renderer: PropTypes.object }
 

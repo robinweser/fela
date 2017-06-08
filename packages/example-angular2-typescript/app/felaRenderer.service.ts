@@ -9,7 +9,7 @@ export class FelaRendererService {
   constructor() {
     if (FelaRendererService.renderer === null) {
       FelaRendererService.renderer = createRenderer();
-      render(FelaRendererService.renderer, document.getElementById('felaStyles'));
+      render(FelaRendererService.renderer);
     }
   }
 

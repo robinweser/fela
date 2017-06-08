@@ -14,7 +14,7 @@
     "format": "prettier --single-quote --no-semi --jsx-bracket-same-line --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
-    "publish": "git pull --rebase && npm run build && lerna publish",
+    "publish": "git pull --rebase && npm run build && lerna publish && npm run docs",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage"
   },
@@ -67,5 +67,12 @@
     "react-native": "^0.45.0",
     "react-test-renderer": "^15.5.4",
     "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "gitbook-plugin-advanced-emoji": "^0.2.2",
+    "gitbook-plugin-anker-enable": "0.0.4",
+    "gitbook-plugin-edit-link": "^2.0.2",
+    "gitbook-plugin-github": "^2.0.0",
+    "gitbook-plugin-prism": "^2.2.0"
   }
 }

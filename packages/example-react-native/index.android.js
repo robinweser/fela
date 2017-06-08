@@ -7,7 +7,7 @@ import App from './App'
 
 const renderer = createRenderer()
 
-const wrappedApp = _ => (
+const wrappedApp = () => (
   <Provider renderer={renderer}>
     <App />
   </Provider>
