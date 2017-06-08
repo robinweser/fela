@@ -9,18 +9,9 @@ It assumes you already know about Fela and how to use it.
 
 ## Installation
 ```sh
-npm i --save inferno-fela
+yarn add inferno-fela
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `InfernoFela` global.
-> **Caution**: You need to include both Inferno and Fela on your own as well.
-
-```HTML
-<!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/inferno-fela@4.3.5/dist/inferno-fela.js"></script>
-<!-- Production build (minified)  -->
-<script src="https://unpkg.com/inferno-fela@4.3.5/dist/inferno-fela.min.js"></script>
-```
+You may alternatively use `npm i --save inferno-fela`.
 
 
 ## API
