@@ -9,16 +9,10 @@ This plugins provides support for JavaScript-friendly pseudo class syntax with a
 
 ## Installation
 ```sh
-npm i --save fela-plugin-friendly-pseudo-class
+yarn add fela-plugin-friendly-pseudo-class
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginFriendlyPseudoClass` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-friendly-pseudo-class@4.3.5/dist/fela-plugin-friendly-pseudo-class.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-friendly-pseudo-class@4.3.5/dist/fela-plugin-friendly-pseudo-class.min.js"></script>
-```
+You may alternatively use `npm i --save fela-plugin-friendly-pseudo-class`.
+
 
 ## Usage
 Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).

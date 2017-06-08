@@ -10,16 +10,10 @@ This plugin is intended to be used to debug style processing steps.
 
 ## Installation
 ```sh
-npm i --save fela-plugin-logger
+yarn add fela-plugin-logger
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginLogger` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-logger@4.3.5/dist/fela-plugin-logger.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-logger@4.3.5/dist/fela-plugin-logger.min.js"></script>
-```
+You may alternatively use `npm i --save fela-plugin-logger`.
+
 
 ## Usage
 Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).

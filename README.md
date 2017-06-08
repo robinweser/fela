@@ -90,7 +90,6 @@ render(renderer)
 * [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [@steida](https://twitter.com/steida)*
 
 ## Examples
-* [Vanilla JavaScript](http://fela.js.org/docs/introduction/Examples.html#vanilla) ([source](examples/vanilla))
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/react))
 * [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](examples/react-native))
 * [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](examples/preact))
@@ -122,6 +121,7 @@ We also love to get feedback.
 - [MediaFire](https://m.mediafire.com)
 - [N26](https://n26.com)
 - [NinjaConcept](https://www.ninjaconcept.com)
+- [Optisure](https://www.optisure.de)
 
 
 ## License

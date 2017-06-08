@@ -6,16 +6,9 @@ This plugins allows the use of inline keyframes and font-faces. It directly reso
 
 ## Installation
 ```sh
-npm i --save fela-plugin-embedded
+yarn add fela-plugin-embedded
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginEmbedded` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-embedded@4.3.5/dist/fela-plugin-embedded.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-embedded@4.3.5/dist/fela-plugin-embedded.min.js"></script>
-```
+You may alternatively use `npm i --save fela-plugin-embedded`.
 
 ## Usage
 Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).

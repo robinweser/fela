@@ -1,6 +1,6 @@
 # fela-font-renderer
 
-> Deprecated: With fela 4.4.0 this enhancer is no longer required as fela-dom now renders fonts into its own stylesheet.
+> Deprecated: With fela 5.0.0 this enhancer is no longer required as fela-dom now renders fonts into its own stylesheet.
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-font-renderer.svg">
 <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.47kb-brightgreen.svg">
@@ -9,16 +9,9 @@ Allocates all `renderFont` calls to a separate renderer which renders into a sep
 
 ## Installation
 ```sh
-npm i --save fela-font-renderer
+yarn add fela-font-renderer
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaFontRenderer` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-font-renderer@4.3.5/dist/fela-font-renderer.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-font-renderer@4.3.5/dist/fela-font-renderer.min.js"></script>
-```
+You may alternatively use `npm i --save fela-font-renderer`.
 
 ## Usage
 ### Configuration

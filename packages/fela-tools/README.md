@@ -6,28 +6,16 @@ A set of useful tools to work with Fela.
 
 ## Installation
 ```sh
-npm i --save fela-tools
+yarn add fela-tools
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `FelaTools` global.
-```HTML
-<!-- (Development) Unminified version -->
-<script src="https://unpkg.com/fela-tools@4.3.5/dist/fela-tools.js"></script>
-<!-- (Production) Minified version -->
-<script src="https://unpkg.com/fela-tools@4.3.5/dist/fela-tools.min.js"></script>
-```
+You may alternatively use `npm i --save fela-tools`.
+
 
 ## Usage
-The provided API is provided by the `fela-tools` package by default e.g.
+The API is exported by the `fela-tools` package by default e.g.
 
 ```javascript
 import { StyleSheet } from 'fela-tools'
-```
-
-In addition to that, we also support per module imports to only import a specific tool *(which, without tree shaking, saves bundle size)*
-
-```javascript
-import StyleSheet from 'fela-tools/StyleSheet'
 ```
 
 ## API Reference

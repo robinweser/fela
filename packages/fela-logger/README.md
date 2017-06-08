@@ -6,17 +6,9 @@ Logging tool for Fela. Logs changes to the console, grouped by selector, animati
 
 ## Installation
 ```sh
-npm i --save fela-logger
+yarn add fela-logger
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaLogger` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-logger@4.3.5/dist/fela-logger.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-logger@4.3.5/dist/fela-logger.min.js"></script>
-```
-
+You may alternatively use `npm i --save fela-logger`.
 
 ## Usage
 ```javascript

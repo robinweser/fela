@@ -9,22 +9,14 @@ It assumes you already know about Fela and how to use it.
 
 ## Installation
 ```sh
-npm i --save react-fela
+yarn add react-fela
 ```
+You may alternatively use `npm i --save react-fela`.
 
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can basically just `npm install` all packages. <br>
-Otherwise we also provide [UMD](https://github.com/umdjs/umd) builds for each package within the `dist` folder. You can easily use them via [unpkg](https://unpkg.com/).
-> **Caution**: You need to include both React and Fela on your own as well.
 
-```HTML
-<!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/react-fela@4.3.5/dist/react-fela.js"></script>
-<!-- Production build (minified)  -->
-<script src="https://unpkg.com/react-fela@4.3.5/dist/react-fela.min.js"></script>
-```
 
 ## API Reference
-* [`<Provider renderer [mountNode]>`](docs/Provider.md)
+* [`<Provider renderer>`](docs/Provider.md)
 * [`connect(mapStylesToProps)`](docs/connect.md)
 * [`createComponent(rule, [type], [passThroughProps])`](docs/createComponent.md)
 * [`<ThemeProvider theme [overwrite]>`](docs/ThemeProvider.md)

@@ -11,16 +11,10 @@ A Fela plugin preset for development.
 
 ## Installation
 ```sh
-npm i --save fela-preset-dev
+yarn add fela-preset-dev
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPresetDev` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-preset-dev@4.3.5/dist/fela-preset-dev.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-preset-dev@4.3.5/dist/fela-preset-dev.min.js"></script>
-```
+You may alternatively use `npm i --save fela-preset-dev`.
+
 
 ## Usage
 Simply use the spread operator to add the preset.

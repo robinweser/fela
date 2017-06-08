@@ -8,16 +8,9 @@ Same rules will always have the same color.
 
 ## Installation
 ```sh
-npm i --save fela-layout-debugger
+yarn add fela-layout-debugger
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaLayoutDebugger` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-layout-debugger@4.3.5/dist/fela-layout-debugger.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-layout-debugger@4.3.5/dist/fela-layout-debugger.min.js"></script>
-```
+You may alternatively use `npm i --save fela-layout-debugger`.
 
 ## Usage
 ```javascript

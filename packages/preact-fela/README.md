@@ -9,18 +9,10 @@ It assumes you already know about Fela and how to use it.
 
 ## Installation
 ```sh
-npm i --save preact-fela
+yarn add preact-fela
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a  `PreactFela` global.
-> **Caution**: You need to include both Preact and Fela on your own as well.
+You may alternatively use `npm i --save preact-fela`.
 
-```HTML
-<!-- Development build (with warnings)  -->
-<script src="https://unpkg.com/preact-fela@4.3.5/dist/preact-fela.js"></script>
-<!-- Production build (minified)  -->
-<script src="https://unpkg.com/preact-fela@4.3.5/dist/preact-fela.min.js"></script>
-```
 
 
 ## API

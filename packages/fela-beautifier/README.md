@@ -6,16 +6,9 @@ The beautifier enhancer is a developer tool that automatically formats the rende
 
 ## Installation
 ```sh
-npm i --save fela-beautifier
+yarn add fela-beautifier
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaBeautifier` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-beautifier@4.3.5/dist/fela-beautifier.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-beautifier@4.3.5/dist/fela-beautifier.min.js"></script>
-```
+You may alternatively use `npm i --save fela-beautifier`.
 
 ## Usage
 ```javascript

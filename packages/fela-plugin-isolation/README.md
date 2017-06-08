@@ -7,16 +7,10 @@ Adds style isolation to every rule by attaching `all: initial` to every class.
 
 ## Installation
 ```sh
-npm i --save fela-plugin-isolation
+yarn add fela-plugin-isolation
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginIsolation` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-isolation@4.3.5/dist/fela-plugin-isolation.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-isolation@4.3.5/dist/fela-plugin-isolation.min.js"></script>
-```
+You may alternatively use `npm i --save fela-plugin-isolation`.
+
 
 ## Usage
 Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).

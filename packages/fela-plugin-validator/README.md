@@ -8,16 +8,10 @@ Logs invalid properties to the `console`. One might also enable automatic proper
 
 ## Installation
 ```sh
-npm i --save fela-plugin-validator
+yarn add fela-plugin-validator
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginValidator` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-validator@4.3.5/dist/fela-plugin-validator.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-validator@4.3.5/dist/fela-plugin-validator.min.js"></script>
-```
+You may alternatively use `npm i --save fela-plugin-validator`.
+
 
 ## Usage
 Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).

@@ -8,16 +8,9 @@ Every ruleset will have it's own unique class - this means that a new class will
 
 ## Installation
 ```sh
-npm i --save fela-monolithic
+yarn add fela-monolithic
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaMonolithic` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-monolithic@4.3.5/dist/fela-monolithic.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-monolithic@4.3.5/dist/fela-monolithic.min.js"></script>
-```
+You may alternatively use `npm i --save fela-monolithic`.
 
 ## Usage
 

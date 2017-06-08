@@ -3,20 +3,14 @@
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-important.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.52kb-brightgreen.svg">
 
-Adds !important to every declaration value. This helps to force specificity over third-party libraries.
+Adds `!important` to every declaration value. This helps to force specificity over third-party libraries.
 
 ## Installation
 ```sh
-npm i --save fela-plugin-important
+yarn add fela-plugin-important
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginImportant` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-important@4.3.5/dist/fela-plugin-important.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-important@4.3.5/dist/fela-plugin-important.min.js"></script>
-```
+You may alternatively use `npm i --save fela-plugin-important`.
+
 
 ## Usage
 Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).

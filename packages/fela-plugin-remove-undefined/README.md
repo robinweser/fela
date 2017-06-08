@@ -8,16 +8,10 @@ It also checks array values. This plugin has been used to ensure auto prefixing 
 
 ## Installation
 ```sh
-npm i --save fela-plugin-remove-undefined
+yarn add fela-plugin-remove-undefined
 ```
-Assuming you are using [npm](https://www.npmjs.com) as your package manager you can just `npm install`.<br>
-Otherwise we also provide a [UMD](https://github.com/umdjs/umd). You can easily use it via [unpkg](https://unpkg.com/). It registers a `FelaPluginRemoveUndefined` global.
-```HTML
-<!-- Fela (Development): Unminified version including all warnings -->
-<script src="https://unpkg.com/fela-plugin-remove-undefined@4.3.5/dist/fela-plugin-remove-undefined.js"></script>
-<!-- Fela (Production): Minified version -->
-<script src="https://unpkg.com/fela-plugin-remove-undefined@4.3.5/dist/fela-plugin-remove-undefined.min.js"></script>
-```
+You may alternatively use `npm i --save fela-plugin-remove-undefined`.
+
 
 
 ## Usage
