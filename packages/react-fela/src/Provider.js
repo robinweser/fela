@@ -14,7 +14,9 @@ export default class Provider extends Component {
   }
 
   componentDidMount() {
-    render(this.props.renderer, this.props.mountNode)
+    if (!this.props.renderer.isNativeRenderer) {
+      render(this.props.renderer, this.props.mountNode)
+    }
   }
 
   render() {

@@ -1,26 +1,17 @@
 /* eslint-disable import/no-unresolved, import/extensions */
-import { Dimension } from 'react-native'
+import { Dimensions } from 'react-native'
 
 /* @flow */
 import { Component, Children } from 'react'
 
-type DimensionType = {
-  width: number,
-  height: number
-}
-
 export default class DimensionProvider extends Component {
-  state = Dimension.get('window')
-
   componentWillMount() {
-    Dimension.addEventListener('change', this.updateDimensions)
+    Dimensions.addEventListener('change', this.forceUpdate)
   }
 
   componentWillUnmount() {
-    Dimension.removeEventListener('change', this.updateDimensions)
+    Dimensions.removeEventListener('change', this.forceUpdate)
   }
-
-  updateDimensions = (dimensions: DimensionType) => this.setState(dimensions)
 
   render() {
     return Children.only(this.props.children)

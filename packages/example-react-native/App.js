@@ -1,13 +1,22 @@
 import React, { Component, PropTypes } from 'react'
-import { create } from 'fela-stylesheet'
+import { StyleSheet } from 'fela-tools'
 import { Text, View } from 'react-native'
 
-const rules = create({
+const rules = StyleSheet.create({
   container: props => ({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: props.bgColor
+
+    '@media (min-width: 200px)': {
+      backgroundColor: 'yellow'
+    },
+    '@media (orientation: landscape)': {
+      backgroundColor: 'red'
+    },
+    '@media (orientation: portrait)': {
+      backgroundColor: 'blue'
+    }
   }),
   welcome: {
     fontSize: 20,
@@ -60,7 +69,7 @@ const App = (_, { renderer }) => (
       Welcome to Fela Native!
     </Text>
     <Text style={renderer.renderRule(rules.instructions)}>
-      To get started, edit index.android.js
+      To get started, edit index.ios.js
     </Text>
     <Text style={renderer.renderRule(rules.instructions)}>
       Double tap R on your keyboard to reload,

@@ -21,6 +21,8 @@ Thumbs.db
 *.vi
 
 *.js.map
+package-lock.json
+packages/**/yarn.lock
 node_modules/
 npm-debug.log
 lib/
