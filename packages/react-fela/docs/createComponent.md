@@ -90,4 +90,4 @@ ReactDOM.render(
 
 ## Related
 
-- [displayName on React Components](http://fela.js.org/docs/recipes/DisplayNameComponents.html)
+- [Explicit displayName for React components](http://fela.js.org/docs/recipes/DisplayNameComponents.html)
