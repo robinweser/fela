@@ -27,7 +27,7 @@ const container = props => ({
 
 const title = props => ({
   lineHeight: 1.2,
-  fontSize: props.fontSize,
+  fontSize: props.size,
   color: props.color
 })
 
