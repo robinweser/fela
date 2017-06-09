@@ -52,9 +52,9 @@ const text = props => ({
 const Text = createComponent(text)
 
 const RenderTreeFragment = (
-  <ThemeProvider flat theme={{ color: 'blue', fontSize: 15 }}>
+  <ThemeProvider theme={{ color: 'blue', fontSize: 15 }}>
     <Text>I am blue and 15px sized</Text>
-    <ThemeProvider flat overwrite theme={{ fontSize: 20 }}>
+    <ThemeProvider overwrite theme={{ fontSize: 20 }}>
       <Text>I am red and 20px sized</Text>
     </ThemeProvider>
   </ThemeProvider>
