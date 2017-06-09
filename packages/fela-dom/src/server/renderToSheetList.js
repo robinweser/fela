@@ -7,8 +7,13 @@ const sheetMap = {
   keyframes: KEYFRAME_TYPE,
   rules: RULE_TYPE
 }
+type Sheet = {
+  css: string,
+  type: RULE_TYPE | KEYFRAME_TYPE | FONT_TYPE | STATIC_TYPE,
+  media?: string
+}
 
-export default function renderToSheetList(renderer: Object): string {
+export default function renderToSheetList(renderer: Object): Array<Sheet> {
   const sheetList = []
 
   for (const style in sheetMap) {
