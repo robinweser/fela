@@ -21,9 +21,11 @@ export default function renderToSheetList(renderer: Object): string {
   }
 
   for (const media in renderer.mediaRules) {
+    const mediaCSS = renderer.mediaRules[media]
+
     if (mediaCSS.length > 0) {
       sheetList.push({
-        css: renderer.mediaRules[media],
+        css: mediaCSS,
         type: RULE_TYPE,
         media
       })

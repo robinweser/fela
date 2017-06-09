@@ -64,7 +64,8 @@ export default function createRenderer(
       const processedStyle = processStyleWithPlugins(
         renderer,
         rule(props),
-        RULE_TYPE
+        RULE_TYPE,
+        props
       )
       return renderer._renderStyleToClassNames(processedStyle).slice(1)
     },
@@ -82,7 +83,8 @@ export default function createRenderer(
         const processedKeyframe = processStyleWithPlugins(
           renderer,
           resolvedKeyframe,
-          KEYFRAME_TYPE
+          KEYFRAME_TYPE,
+          props
         )
 
         const cssKeyframe = cssifyKeyframe(
