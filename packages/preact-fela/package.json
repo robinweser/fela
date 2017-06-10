@@ -25,6 +25,6 @@
   "dependencies": {
     "fela": "^5.0.0",
     "fela-dom": "^5.0.0",
-    "preact": "^7.0.0"
+    "preact": "^8.0.0"
   }
 }
