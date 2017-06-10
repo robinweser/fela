@@ -20,7 +20,11 @@ export default class Input extends Component {
       <Wrapper flex="0 1 auto">
         <br />
         <Text>Change the input to experience dynamic styling.</Text>
-        <input type="number" onInput={this.setSize} defaultValue={this.state.size} />
+        <input
+          type="number"
+          onInput={this.setSize}
+          defaultValue={this.state.size}
+        />
         <Label size={this.state.size}>
           {this.state.size}
         </Label>

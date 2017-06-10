@@ -3,10 +3,9 @@ import proxy from 'express-http-proxy'
 import Inferno from 'inferno'
 import { renderToString } from 'inferno-server'
 import { Provider } from 'inferno-fela'
-import { renderToMarkup } from 'fela-dom'
 import fs from 'fs'
-
-import App from './app.js'
+import { renderToMarkup } from 'fela-dom'
+import App from './app'
 import createRenderer from './renderer'
 
 const app = express()
