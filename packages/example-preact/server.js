@@ -5,7 +5,6 @@ import render from 'preact-render-to-string'
 import { Provider } from 'preact-fela'
 import { renderToMarkup } from 'fela-dom'
 import fs from 'fs'
-
 import App from './app.js'
 import createRenderer from './renderer'
 
