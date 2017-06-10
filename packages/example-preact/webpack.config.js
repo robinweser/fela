@@ -1,5 +1,4 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
   cache: true,
@@ -13,14 +12,23 @@ module.exports = {
     chunkFilename: '[chunkhash].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: [['es2015', { modules: false }], 'react'],
+          plugins: [
+            [
+              'transform-react-jsx',
+              {
+                pragma: 'h'
+              }
+            ]
+          ]
+        }
       }
     ]
-  },
-  resolveLoader: {
-    root: path.join(__dirname, 'node_modules')
   }
 }

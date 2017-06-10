@@ -1,6 +1,6 @@
 import { createComponent } from 'preact-fela'
 
-const info = props => ({
+const info = () => ({
   padding: 5,
   fontSize: '20px',
   color: 'gray',
