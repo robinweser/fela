@@ -121,7 +121,8 @@ function useMonolithicRenderer(
     const processedStyle = processStyleWithPlugins(
       renderer,
       rule(props),
-      RULE_TYPE
+      RULE_TYPE,
+      props
     )
     return renderer._renderStyleToClassNames(processedStyle, rule)
   }
