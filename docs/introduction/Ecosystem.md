@@ -71,7 +71,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-components](https://github.com/arturmuller/fela-components): Styling library for React and Fela
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Generate class names for fela style rule and apply them as property on a wrapped component
 * [frejya](https://github.com/benoneal/freyja): Pass styles as props to components
-* [inline-style-transformer](https://github.com/rofrischmann/inline-style-transformer): CSS & style object transformation tools
 * [objectify-css](https://github.com/lachlanjc/objectify-css): CLI for converting CSS rules to JavaScript style objects
 * [polished](https://github.com/styled-components/polished): A lightweight toolset for writing styles in JavaScript
 * [react-animations](https://github.com/FormidableLabs/react-animations): CSS animations to be used with CSS in JS solutions
