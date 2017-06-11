@@ -3,7 +3,7 @@
 
 <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-dynamic-prefixer.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-10.29kb-brightgreen.svg">
 
-Uses [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes by evaluating the `userAgent`.
+Uses [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) to add vendor prefixes by evaluating the `userAgent`.
 
 **Requires to use [fela-plugin-fallback-value](../fela-plugin-fallback-value/) afterwards** in order to resolve alternative prefix values which get returned as an array by default.
 
