@@ -58,7 +58,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 ### Tools
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Helps to pass classNames to specific props
-* [fela-tools](https://github.com/https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
+* [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
 
 ### Utilities
