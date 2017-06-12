@@ -22,6 +22,7 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 ### fela-dom
 * [`render(renderer)`](api/fela-dom/render.md)
 * [`renderToMarkup(renderer)`](api/fela-dom/renderToMarkup.md)
+* [`renderToSheetList(renderer)`](api/fela-dom/renderToSheetList.md)
 
 ---
 

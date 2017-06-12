@@ -1,4 +1,4 @@
-# Explicit displayName for React components
+# Explicit Component displayName
 
 Sometimes, you need to have an explicit displayName for your components rather than the default `FelaComponent` for debugging, or maybe for things like storybook. Right now, there is no automatic way to do this.
 

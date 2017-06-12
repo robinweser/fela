@@ -31,6 +31,8 @@
 * [5. Recipes](docs/Recipes.md)
   * [5.1. Responsive Components](docs/recipes/ResponsiveComponents.md)
   * [5.2. Testing Fela Components](docs/recipes/TestingFelaComponents.md)
+  * [5.3. Explicit Component displayName](docs/recipes/DisplayNameComponents.md)
+  * [5.4. Monolithic Class Names](docs/recipes/MonolithicClassNames.md)
 * [6. API Reference](docs/API.md)
   * 6.1. fela
     * [6.1.1. createRenderer](docs/api/fela/createRenderer.md)
@@ -40,6 +42,7 @@
   * 6.2. fela-dom
     * [6.2.1. render](docs/api/fela-dom/render.md)
     * [6.2.2. renderToMarkup](docs/api/fela-dom/renderToMarkup.md)
+    * [6.2.3. renderToSheetList](docs/api/fela-dom/renderToSheetList.md)
   * 6.3. fela-native
     * [6.3.1. createRenderer](docs/api/fela-native/createRenderer.md)
     * [6.3.2. Renderer](docs/api/fela-native/Renderer.md)

@@ -15,7 +15,7 @@ This method is used for universal rendering. The DOM renderer is able to reuse t
 
 ### Example
 ```javascript
-import { renderToMarkup } from 'fela-dom/server'
+import { renderToMarkup } from 'fela-dom'
 import { createRenderer } from 'fela'
 
 const renderer = createRenderer()
