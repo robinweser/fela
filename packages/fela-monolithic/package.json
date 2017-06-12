@@ -9,7 +9,7 @@
     "LICENSE",
     "README.md",
     "lib/**",
-    "dist/**"
+    "es/**"
   ],
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
