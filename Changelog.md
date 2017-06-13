@@ -28,6 +28,8 @@ Although all API changes ship with backward compatibility, we still publish a ne
 ##### Infrastructure
 We switched the whole project to an improved workflow with Lerna. This release is the first one done by Lerna.
 
+## 4.0
+
 ---
 
 #### 4.3.5 (hot fix)
