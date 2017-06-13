@@ -2,6 +2,10 @@
 
 ## 5.0
 
+#### 5.0.1
+* added `renderToSheetList` to `fela-dom` to enable custom server-side rendering
+* introducing [fela-plugin-simulate](packages/fela-plugin-simulate) to simulate nested style objects e.g. pseudo classes and media queries ( [#261](https://github.com/rofrischmann/fela/pull/261) )
+
 #### 5.0.0
 Although all API changes ship with backward compatibility, we still publish a new major version as we changed a lot of internal infrastructure and want to make sure to not break existing applications in any way.
 
