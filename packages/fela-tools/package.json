@@ -1,6 +1,6 @@
 {
   "name": "fela-tools",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Useful tools for working with Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,9 +21,9 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^1.0.3",
-    "fela-utils": "^5.0.0"
+    "fela-utils": "^5.0.1"
   },
   "devDependencies": {
-    "fela": "^5.0.0"
+    "fela": "^5.0.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-isolation",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Fela plugin that adds style isolation",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -22,6 +22,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-utils": "^5.0.0"
+    "fela-utils": "^5.0.1"
   }
 }
