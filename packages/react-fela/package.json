@@ -25,11 +25,9 @@
   "peerDependencies": {
     "react": "*"
   },
-  "devDependencies": {
-    "fela-dom": "^5.0.2"
-  },
   "dependencies": {
     "fela": "^5.0.1",
+    "fela-dom": "^5.0.2",
     "prop-types": "^15.5.8"
   }
 }
