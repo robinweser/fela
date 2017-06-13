@@ -1,6 +1,6 @@
 {
   "name": "fela-font-renderer",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Fela enhancer to render fonts into a separate stylesheet",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -24,6 +24,6 @@
   "license": "MIT",
   "dependencies": {
     "fela": "^5.0.1",
-    "fela-dom": "^5.0.1"
+    "fela-dom": "^5.0.2"
   }
 }

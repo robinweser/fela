@@ -1,6 +1,6 @@
 {
   "name": "preact-fela",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Preact bindings for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "fela": "^5.0.1",
-    "fela-dom": "^5.0.1",
+    "fela-dom": "^5.0.2",
     "preact": "^8.0.0"
   }
 }
