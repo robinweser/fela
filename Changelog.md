@@ -2,6 +2,9 @@
 
 ## 5.0
 
+#### 5.0.2 (hot fix)
+* fixed wrong `fela-dom` export
+
 #### 5.0.1
 * added `renderToSheetList` to `fela-dom` to enable custom server-side rendering
 * introducing [fela-plugin-simulate](packages/fela-plugin-simulate) to simulate nested style objects e.g. pseudo classes and media queries ( [#261](https://github.com/rofrischmann/fela/pull/261) )
