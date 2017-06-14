@@ -1,6 +1,6 @@
 {
   "name": "react-fela",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "React bindings for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
