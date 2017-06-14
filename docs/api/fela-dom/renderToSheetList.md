@@ -42,5 +42,5 @@ const markup = renderToSheetList(renderer)
 markup.forEach(console.log)
 // { type: 'STATIC', css: 'html,body{box-sizing:border-box;margin:0}' }
 // { type: 'RULE', css: '.a{font-size:12px}.b{color:blue}' }
-// { type: 'RULE', css: '.c{color:red}', media='(min-width: 300px)' }
+// { type: 'RULE', css: '.c{color:red}', media: '(min-width: 300px)' }
 ```
