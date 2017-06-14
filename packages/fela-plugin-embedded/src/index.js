@@ -17,10 +17,10 @@ function embedded(style: Object, type: Type, renderer: DOMRenderer): Object {
       } else {
         // TODO: warning - invalid font data
       }
-    }
-
-    if (property === 'animationName' && isObject(value)) {
+    } else if (property === 'animationName' && isObject(value)) {
       style[property] = renderer.renderKeyframe(() => value)
+    } else if (isObject(value)) {
+      embedded(value, type, renderer)
     }
   }
 
