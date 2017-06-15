@@ -16,7 +16,7 @@ You may alternatively use `npm i --save react-fela`.
 
 
 ## API Reference
-* [`<Provider renderer>`](docs/Provider.md)
+* [`<Provider renderer [mountNode]>`](docs/Provider.md)
 * [`connect(mapStylesToProps)`](docs/connect.md)
 * [`createComponent(rule, [type], [passThroughProps])`](docs/createComponent.md)
 * [`<ThemeProvider theme [overwrite]>`](docs/ThemeProvider.md)

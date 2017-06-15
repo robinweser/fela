@@ -4,6 +4,7 @@ The `<Provider>` component wraps your whole application. It uses React's [contex
 
 ## Props
 1. `renderer` ([*Renderer*](http://fela.js.org/docs/api/Renderer.html)): Fela renderer which is used to actually render our styles.
+2. `mountNode` (*DOMNode*): An optional DOMNode where the renderer will write its rules. If not provided, the renderer will create one on its own. Providing the renderer with a mountNode can be useful to be sure that the create rules are written in the DOM after (or before) an other stylesheet.
 
 ## Example
 ```javascript
@@ -45,4 +46,21 @@ const App = (props, { renderer }) => {
 
 App.contextTypes = { renderer: PropTypes.object }
 export default App
+```
+
+With a `mountNode`.
+```javascript
+import { createRenderer } from 'fela'
+import { Provider } from 'react-fela'
+import { render } from 'react-dom'
+import React from 'react'
+
+const renderer = createRenderer()
+
+render(
+  <Provider renderer={renderer} mountNode={document.getElementById('stylesheet')}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+)
 ```
