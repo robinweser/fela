@@ -1,10 +1,5 @@
 {
   "private": true,
-  "version": "5.0.0",
-  "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
-  "repository": "https://github.com/rofrischmann/fela/",
-  "author": "Robin Frischmann",
-  "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "./scripts/build.sh",
@@ -55,6 +50,11 @@
     "flow-bin": "^0.38.0",
     "gh-pages": "^0.11.0",
     "gitbook-cli": "^2.3.0",
+    "gitbook-plugin-advanced-emoji": "^0.2.2",
+    "gitbook-plugin-anker-enable": "0.0.4",
+    "gitbook-plugin-edit-link": "^2.0.2",
+    "gitbook-plugin-github": "^2.0.0",
+    "gitbook-plugin-prism": "^2.2.0",
     "gzip-size": "^3.0.0",
     "inferno-component": "^3.3.1",
     "inferno-create-element": "^3.3.1",
@@ -67,12 +67,5 @@
     "react-native": "^0.45.0",
     "react-test-renderer": "^15.5.4",
     "rimraf": "^2.6.1"
-  },
-  "dependencies": {
-    "gitbook-plugin-advanced-emoji": "^0.2.2",
-    "gitbook-plugin-anker-enable": "0.0.4",
-    "gitbook-plugin-edit-link": "^2.0.2",
-    "gitbook-plugin-github": "^2.0.0",
-    "gitbook-plugin-prism": "^2.2.0"
   }
 }

@@ -17,3 +17,5 @@ else
     fi
   done
 fi
+
+cp README.md packages/bredon/README.md
