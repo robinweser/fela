@@ -9,7 +9,7 @@ function resolveFallbackValues(style: Object): Object {
 
     if (Array.isArray(value)) {
       style[property] = resolveArrayValue(property, value)
-    } else if (isObject(value)) {
+    } else if (isObject(value) && property !== 'fontFace') {
       style[property] = resolveFallbackValues(value)
     }
   }

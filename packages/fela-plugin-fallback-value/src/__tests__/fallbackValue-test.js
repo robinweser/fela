@@ -28,4 +28,22 @@ describe('Fallback value plugin', () => {
       ':hover': { width: '-webkit-calc(20px);width:calc(20px)' }
     })
   })
+
+  it('should not touch fontFamily property', () => {
+    const style = {
+      fontFace: {
+        fontFamily: 'Arial',
+        src: ['foo.svg', 'bar.ttf']
+      },
+      ':hover': { width: ['-webkit-calc(20px)', 'calc(20px)'] }
+    }
+
+    expect(fallbackValue()(style)).toEqual({
+      fontFace: {
+        fontFamily: 'Arial',
+        src: ['foo.svg', 'bar.ttf']
+      },
+      ':hover': { width: '-webkit-calc(20px);width:calc(20px)' }
+    })
+  })
 })
