@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-inferno",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Fela example with Inferno",
   "scripts": {
     "client": "NODE_ENV=development webpack-dev-server",
@@ -14,11 +14,11 @@
     "fela-beautifier": "^5.0.1",
     "fela-dom": "^5.0.2",
     "fela-perf": "^5.0.1",
-    "fela-plugin-embedded": "^5.0.2",
-    "fela-plugin-fallback-value": "^5.0.1",
+    "fela-plugin-embedded": "^5.0.3",
+    "fela-plugin-fallback-value": "^5.0.2",
     "fela-plugin-logger": "^5.0.1",
     "fela-plugin-lvha": "^5.0.1",
-    "fela-plugin-prefixer": "^5.0.1",
+    "fela-plugin-prefixer": "^5.0.2",
     "fela-plugin-unit": "^5.0.1",
     "fela-plugin-validator": "^5.0.1",
     "inferno": "^3.4.3",

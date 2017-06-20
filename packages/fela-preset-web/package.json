@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-web",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Fela plugin preset for web applications",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,9 +21,9 @@
   "license": "MIT",
   "dependencies": {
     "fela-plugin-extend": "^5.0.1",
-    "fela-plugin-fallback-value": "^5.0.1",
+    "fela-plugin-fallback-value": "^5.0.2",
     "fela-plugin-lvha": "^5.0.1",
-    "fela-plugin-prefixer": "^5.0.1",
+    "fela-plugin-prefixer": "^5.0.2",
     "fela-plugin-unit": "^5.0.1"
   }
 }
