@@ -59,4 +59,22 @@ describe('Embedded plugin', () => {
       "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}"
     )
   })
+
+  it('should render base64 fonts', () => {
+    const rule = () => ({
+      fontFace: {
+        fontFamily: 'foo',
+        src: [
+          'data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I'
+        ],
+        fontWeight: 500
+      }
+    })
+    const renderer = createRenderer({ plugins: [embedded()] })
+    renderer.renderRule(rule)
+    expect(renderer.rules).toEqual('.a{font-family:"foo"}')
+    expect(renderer.fontFaces).toEqual(
+      '@font-face{font-weight:500;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I) format(\'woff\');font-family:"foo"}'
+    )
+  })
 })

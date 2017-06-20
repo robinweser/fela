@@ -49,6 +49,19 @@ const renderer = createRenderer({
 }
 ```
 
+It also supports base64 encoded fonts:
+
+```javascript
+{
+  fontFace: {
+    fontFamily: 'font-name',
+    src: [
+      'data:application/x-font-woff;charset=utf-8;base64,PASTE-BASE64-HERE'
+    ]
+  }
+}
+```
+
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
