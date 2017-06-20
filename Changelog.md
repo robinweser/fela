@@ -2,6 +2,9 @@
 
 ## 5.0
 
+#### 5.0.3
+* prevent `fela-plugin-fallback-value` to resolve `fontFace`-property used for `fela-plugin-embedded` ( [#304](https://github.com/rofrischmann/fela/pull/304) )  
+
 #### 5.0.2 (hot fix)
 * fixed wrong `fela-dom` export
 
