@@ -23,4 +23,4 @@ const rule = () => ({
   }
 })
 
-export default createComponent(rule, Header, ['title'])
+export default createComponent(rule, Header)

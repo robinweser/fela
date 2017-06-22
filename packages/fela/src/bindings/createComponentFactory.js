@@ -1,10 +1,11 @@
 /* @flow */
-import { extractPassThroughProps, resolvePassThrough } from 'fela-utils'
+import { extractPassThroughProps, extractUsedProps, resolvePassThrough, resolveUsedProps } from 'fela-utils'
 import combineRules from '../combineRules'
 
 export default function createComponentFactory(
   createElement: Function,
-  contextTypes?: Object
+  contextTypes?: Object,
+  withProxy: boolean = false,
 ): Function {
   return function createComponent(
     rule: Function,
@@ -12,7 +13,7 @@ export default function createComponentFactory(
     passThroughProps: Array<string> | Function = []
   ): Function {
     const displayName = rule.name ? rule.name : 'FelaComponent'
-
+    const usedProps = withProxy ? extractUsedProps(rule) : {}
     const FelaComponent = (
       { children, _felaRule, passThrough = [], ...ruleProps },
       { renderer, theme }
@@ -33,11 +34,11 @@ export default function createComponentFactory(
 
         combinedRule.selectorPrefix = `${displayName}_${componentName}__`
       }
-
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [
         ...resolvePassThrough(passThroughProps, ruleProps),
-        ...resolvePassThrough(passThrough, ruleProps)
+        ...resolvePassThrough(passThrough, ruleProps),
+        ...withProxy ? resolveUsedProps(usedProps, ruleProps) : []
       ]
 
       // if the component renders into another Fela component
