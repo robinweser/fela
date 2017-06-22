@@ -11,7 +11,8 @@
     "lint": "eslint packages/*/src/**/*.js",
     "publish": "git pull --rebase && npm run build && lerna publish && npm run docs",
     "test": "cross-env BABEL_ENV=commonjs jest",
-    "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage"
+    "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage",
+    "setup": "yarn run clean && yarn run bootstrap && yarn run build"
   },
   "jest": {
     "rootDir": "packages",

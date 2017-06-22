@@ -63,7 +63,7 @@ export default function createRenderer(
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
         renderer,
-        rule(props),
+        rule(props, renderer),
         RULE_TYPE,
         props
       )
@@ -71,7 +71,7 @@ export default function createRenderer(
     },
 
     renderKeyframe(keyframe: Function, props: Object = {}): string {
-      const resolvedKeyframe = keyframe(props)
+      const resolvedKeyframe = keyframe(props, renderer)
       const keyframeReference = JSON.stringify(resolvedKeyframe)
 
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
@@ -193,11 +193,11 @@ export default function createRenderer(
     },
 
     _renderStyleToClassNames(
-      style: Object,
+      { _className, ...style }: Object,
       pseudo: string = '',
       media: string = ''
     ): string {
-      let classNames = ''
+      let classNames = _className || ''
 
       for (const property in style) {
         const value = style[property]

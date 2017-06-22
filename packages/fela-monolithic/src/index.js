@@ -120,7 +120,7 @@ function useMonolithicRenderer(
   renderer.renderRule = (rule: Function, props: Object = {}): string => {
     const processedStyle = processStyleWithPlugins(
       renderer,
-      rule(props),
+      rule(props, renderer),
       RULE_TYPE,
       props
     )
