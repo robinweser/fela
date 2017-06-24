@@ -17,5 +17,9 @@ export default function generateMonolithicClassName(
     val = (val * 33) ^ stringified.charCodeAt(--i)
   }
 
-  return prefix + (val >>> 0).toString(36)
+  const hashedName = (val >>> 0).toString(36)
+  if (prefix) {
+    return prefix + hashedName
+  }
+  return `f${hashedName}`
 }
