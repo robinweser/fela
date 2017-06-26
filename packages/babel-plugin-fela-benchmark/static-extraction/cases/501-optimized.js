@@ -1,8 +1,10 @@
+import webPreset from 'fela-preset-web'
 import { createRenderer } from '../../packages/501/index'
+
 import variations from './_variations'
 
 export const optimized501 = () => {
-  const renderer = createRenderer()
+  const renderer = createRenderer({ plugins: [...webPreset] })
   renderer.precompiled = {}
 
   const rule = ({ fontSize, width }) => {
@@ -23,7 +25,13 @@ export const optimized501 = () => {
     return {
       _className: renderer.precompiled[0],
       fontSize: `${fontSize}px`,
-      width: `${width}px`
+      width: `${width}px`,
+      ':hover': {
+        width: `${width * 2}px`,
+        '@media (min-width: 300px)': {
+          fontSize: `${fontSize + 2}px`
+        }
+      }
     }
   }
 
