@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-dynamic-prefixer",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Fela plugin to dynamically add a minimum set of vendor prefixes",
   "main": "lib/index.js",
   "module": "es/index.js",
