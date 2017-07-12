@@ -12,4 +12,9 @@ describe('Generating a className', () => {
     expect(generateClassName(1)).toEqual('a')
     expect(generateClassName(1)).toEqual('a')
   })
+
+  it('should not generate a blacklisted className', () => {
+    expect(generateClassName(28)).toEqual('ac')
+    expect(generateClassName(29)).toEqual('ae')
+  })
 })
