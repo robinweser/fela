@@ -122,6 +122,7 @@ We also love to get feedback.
 - [N26](https://n26.com)
 - [NinjaConcept](https://www.ninjaconcept.com)
 - [Optisure](https://www.optisure.de)
+- [V2](https://www.v2.com)
 
 
 ## License
