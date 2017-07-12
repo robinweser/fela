@@ -12,4 +12,9 @@ describe('Generating a className', () => {
     expect(generateClassName(1)).toEqual('a')
     expect(generateClassName(1)).toEqual('a')
   })
+
+  it('should skip className if filtered out', () => {
+    const filter = c => c !== 'a'
+    expect(generateClassName(1, '', filter)).toEqual('b')
+  })
 })
