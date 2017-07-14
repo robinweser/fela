@@ -59,6 +59,7 @@ export default function createRenderer(
     // to achieve maximal lookup performance and memoization speed
     cache: {},
     styleNodes: {},
+    filterClassName: config.filterClassName,
 
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
@@ -238,7 +239,11 @@ export default function createRenderer(
 
             const className =
               renderer.selectorPrefix +
-              generateClassName(++renderer.uniqueRuleIdentifier)
+              generateClassName(
+                ++renderer.uniqueRuleIdentifier,
+                void 0,
+                renderer.filterClassName
+              )
 
             renderer.cache[declarationReference] = className
 
