@@ -2,6 +2,10 @@
 
 ## 5.0
 
+#### 5.1.0
+* introducing `createComponentWithProxy` ( [#306](https://github.com/rofrischmann/fela/pull/306) )
+* added `filterClassName`-option to renderer config ( [#319](https://github.com/rofrischmann/fela/pull/319) )
+
 #### 5.0.3
 * prevent `fela-plugin-fallback-value` to resolve `fontFace`-property used for `fela-plugin-embedded` ( [#304](https://github.com/rofrischmann/fela/pull/304) )  
 
