@@ -1,5 +1,5 @@
 import React from 'react'
-import { createComponent } from 'react-fela'
+import { createComponentWithProxy } from 'react-fela'
 
 const Header = ({ title, className }) => (
   <div className={className}>
@@ -23,4 +23,4 @@ const rule = () => ({
   }
 })
 
-export default createComponent(rule, Header, ['title'])
+export default createComponentWithProxy(rule, Header)

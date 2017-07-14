@@ -136,4 +136,5 @@ render(
 * [API reference - `Provider` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/Provider.md)
 * [API reference - `connect` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/connect.md)
 * [API reference - `createComponent` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md)
+* [API reference - `createComponentWithProxy` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponentWithProxy.md)
 * [API reference - `ThemeProvider`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md)
