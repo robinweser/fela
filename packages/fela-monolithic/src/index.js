@@ -100,8 +100,8 @@ function useMonolithicRenderer(
       return ''
     }
 
-    const localRulePrefix = renderer.prettySelectors && rule.name
-      ? `${rule.name}_`
+    const localRulePrefix = renderer.prettySelectors && (rule.ruleName || rule.name)
+      ? `${rule.ruleName || rule.name}_`
       : ''
 
     const className = generateMonolithicClassName(
