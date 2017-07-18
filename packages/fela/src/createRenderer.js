@@ -269,7 +269,10 @@ export default function createRenderer(
             })
           }
 
-          classNames += ` ${renderer.cache[declarationReference]}`
+          // only append if we got a class cached
+          if (renderer.cache[declarationReference]) {
+            classNames += ` ${renderer.cache[declarationReference]}`
+          }
         }
       }
 
