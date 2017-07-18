@@ -10,6 +10,7 @@ export default {
           ruleSheet[ruleName] = rule
         } else {
           ruleSheet[ruleName] = () => rule
+          ruleSheet[ruleName].ruleName = ruleName
         }
 
         return ruleSheet

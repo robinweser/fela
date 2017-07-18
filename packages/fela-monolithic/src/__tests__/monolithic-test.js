@@ -163,4 +163,17 @@ describe('Monolithic enhancer', () => {
 
     expect(renderer.rules).toEqual('.colorRed_137u7ef{color:red}')
   })
+
+  it('should generate pretty selectors using ruleName if defined', () => {
+    const colorRed = () => ({ color: 'red' })
+
+    colorRed.ruleName = 'redColor'
+
+    const renderer = createRenderer({
+      enhancers: [monolithic({ prettySelectors: true })]
+    })
+    renderer.renderRule(colorRed)
+
+    expect(renderer.rules).toContain('redColor')
+  })
 })
