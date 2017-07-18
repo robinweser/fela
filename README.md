@@ -99,6 +99,9 @@ render(renderer)
 * [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
 * [Fela + Cycle](https://github.com/wcastand/cycle-fela-example)
 
+## Workshop
+* [fela-workshop](https://github.com/tajo/fela-workshop) - demonstrates typical Fela usage, side by side examples of CSS and Fela, a playground project
+
 ## Community
 * [Aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
 * [cf-ui](https://github.com/cloudflare/cf-ui) - Cloudflare UI Framework
