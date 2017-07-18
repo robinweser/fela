@@ -40,4 +40,36 @@ describe('Connect Factory for bindings', () => {
       toJson(wrapper)
     ]).toMatchSnapshot()
   })
+  it('should expose the components original static methods', () => {
+    const rules = {
+      rule1: () => ({
+        padding: 1
+      }),
+      rule2: () => ({
+        color: 'red'
+      })
+    }
+
+    const OriginalComponent = ({ styles }) => (
+      <div>
+        <span className={styles.rule1} />
+        <span className={styles.rule2} />
+      </div>
+    )
+
+    OriginalComponent.propTypes = {
+      stringProp() {},
+    }
+
+    const MyComponent = connect(rules)(OriginalComponent)
+
+    const renderer = createRenderer()
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        renderer
+      }
+    })
+
+    expect(MyComponent.propTypes).toEqual(OriginalComponent.propTypes)
+  })
 })

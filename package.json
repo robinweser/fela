@@ -69,5 +69,8 @@
     "react-native": "^0.45.0",
     "react-test-renderer": "^15.5.4",
     "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "hoist-non-react-statics": "^2.0.0"
   }
 }

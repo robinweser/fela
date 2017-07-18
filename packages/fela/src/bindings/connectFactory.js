@@ -1,6 +1,7 @@
 /* @flow */
 import { objectReduce } from 'fela-utils'
 import generateDisplayName from './generateDisplayName'
+import hoistStatics from 'hoist-non-react-statics';
 
 export default function connectFactory(
   BaseComponent: any,
@@ -59,7 +60,15 @@ export default function connectFactory(
         }
       }
 
-      return EnhancedComponent
+      // Re-attach static methods
+      EnhancedComponent.childContextTypes = component.childContextTypes;
+      EnhancedComponent.defaultProps = component.defaultProps;
+      EnhancedComponent.getDefaultProps = component.getDefaultProps;
+      EnhancedComponent.mixins = component.mixins;
+      EnhancedComponent.propTypes = component.propTypes;
+      EnhancedComponent.type = component.type;
+
+      return hoistStatics(EnhancedComponent, component)
     }
   }
 }
