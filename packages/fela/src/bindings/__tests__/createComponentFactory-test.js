@@ -1,5 +1,4 @@
-import React, { createElement, Component } from 'react'
-import { renderToStaticMarkup } from 'react-dom/server'
+import { createElement } from 'react'
 import PropTypes from 'prop-types'
 import monolithic from 'fela-monolithic'
 
