@@ -116,7 +116,7 @@ We also love to get feedback.
 
 ## Who's using Fela?
 
-> Your company is using Fela, but is not listed yet? [Add your company / organisation](https://github.com/rofrischmann/fela/edit/master/README.md) 
+> Your company is using Fela, but is not listed yet? [Add your company / organisation](https://github.com/rofrischmann/fela/edit/master/README.md#L121) 
 
 - [abilis](https://www.abilis.de)
 - [BdP LV RPS](http://www.bdp-rps.de)
