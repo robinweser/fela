@@ -1,4 +1,5 @@
-import { createElement } from 'react'
+import React, { createElement, Component } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import PropTypes from 'prop-types'
 import monolithic from 'fela-monolithic'
 
@@ -9,10 +10,14 @@ const createComponent = createComponentFactory(createElement, {
   renderer: PropTypes.object,
   theme: PropTypes.object
 })
-const createComponentWithProxy =  createComponentFactory(createElement, {
-  renderer: PropTypes.object,
-  theme: PropTypes.object
-}, true)
+const createComponentWithProxy = createComponentFactory(
+  createElement,
+  {
+    renderer: PropTypes.object,
+    theme: PropTypes.object
+  },
+  true
+)
 
 describe('Creating Components from Fela rules', () => {
   it('should return a Component', () => {
@@ -40,6 +45,35 @@ describe('Creating Components from Fela rules', () => {
 
     expect(element.props.className).toEqual('a b')
     expect(renderer.rules).toEqual('.a{color:black}.b{font-size:16}')
+  })
+
+  it('should include defaultProps if provided', () => {
+    const rule = props => ({
+      color: props.color,
+      fontSize: 16
+    })
+
+    const Comp = ({ color, className }) =>
+      <div className={className}>
+        {color}
+      </div>
+
+    Comp.defaultProps = {
+      color: 'red'
+    }
+
+    const component = createComponent(rule, Comp)
+
+    const renderer = createRenderer()
+
+    const element = component({}, { renderer })
+
+    console.log(element)
+
+    expect(element.type).toEqual(Comp)
+
+    expect(element.props.className).toEqual('a b')
+    expect(renderer.rules).toEqual('.a{color:red}.b{font-size:16}')
   })
 
   it('should use the theme for static rendering by default', () => {
@@ -77,7 +111,7 @@ describe('Creating Components from Fela rules', () => {
       {
         onClick: false,
         onHover: true,
-        color: true,
+        color: true
       },
       { renderer }
     )
@@ -230,7 +264,6 @@ describe('Creating Components from Fela rules', () => {
   })
 })
 
-
 describe('Creating Components with a Proxy for props from Fela rules', () => {
   it('should return a Component', () => {
     const rule = props => ({
@@ -294,7 +327,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
       {
         onClick: false,
         onHover: true,
-        color: true,
+        color: true
       },
       { renderer }
     )
@@ -317,7 +350,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
       {
         onClick: false,
         onHover: true,
-        color: true,
+        color: true
       },
       { renderer }
     )
