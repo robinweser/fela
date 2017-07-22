@@ -59,6 +59,7 @@ export default function createRenderer(
     // to achieve maximal lookup performance and memoization speed
     cache: {},
     styleNodes: {},
+    precompiled: {},
 
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
