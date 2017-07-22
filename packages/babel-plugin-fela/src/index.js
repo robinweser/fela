@@ -17,14 +17,23 @@ function generateHashCode(str) {
   return hash.toString(36)
 }
 
-export default function ({ types }, file) {
+export default function({ types, traverse }, file) {
   const {
     identifier,
+    blockStatement,
+    returnStatement,
+    objectProperty,
+    binaryExpression,
     isIdentifier,
     isVariableDeclarator,
     isStringLiteral,
     isNumericLiteral,
-    isObjectExpression
+    isObjectExpression,
+    isArrowFunctionExpression,
+    isFunctionExpression,
+    isFunctionDeclaration,
+    isReturnStatement,
+    isBlockStatement
   } = types
 
   function createStaticJSObject(props, path) {
@@ -52,61 +61,129 @@ export default function ({ types }, file) {
 
   return {
     visitor: {
-      CallExpression(path) {
+      CallExpression(path, parentPath) {
         if ((path.node.callee.name = 'createComponent')) {
           const rule = path.node.arguments[0]
 
+          let ruleDeclaration, func
+
+          console.log(rule)
           if (isIdentifier(rule)) {
             if (path.scope.hasBinding(rule.name)) {
-              const ruleDeclaration = path.scope.bindings[rule.name].path
+              const binded = path.scope.bindings[rule.name].path
+
+              if (
+                isVariableDeclarator(binded) ||
+                isFunctionDeclaration(binded)
+              ) {
+                ruleDeclaration = binded
+                func = isVariableDeclarator(binded)
+                  ? ruleDeclaration.node.init
+                  : ruleDeclaration.node
+              } else {
+                return
+              }
+            } else {
+              return
+            }
+          } else if (isFunctionDeclaration(rule)) {
+            ruleDeclaration = rule
+            func = rule.node
+          } else if (
+            isArrowFunctionExpression(rule) ||
+            isFunctionExpression(rule)
+          ) {
+            ruleDeclaration = rule
+            func = rule
+          } else {
+            return
+          }
+
+          if (func.params && func.params.length === 0) {
+            func.params.push('_')
+          }
+          if (func.params && func.params.length === 1) {
+            func.params.push(identifier('renderer'))
+          }
+
+          if (
+            func.params &&
+            func.params.length === 2 &&
+            (!isIdentifier(func.params[1]) ||
+              func.params[1].name !== 'renderer')
+          ) {
+            console.log('SHIT')
+            return
+          }
+
+          if (isArrowFunctionExpression(func)) {
+            console.log('ISARROW')
+
+            if (isObjectExpression(func.body)) {
+              console.log('ISOBJECT')
+
+              func.body = blockStatement([returnStatement(func.body)])
 
               if (isVariableDeclarator(ruleDeclaration)) {
-                let id,
-                  didTraverse
-
-                ruleDeclaration.traverse({
-                  ObjectExpression(childPath) {
-                    if (!didTraverse) {
-                      childPath.node.root = true
-                      didTraverse = true
-                    }
-
-                    if (childPath.node.root) {
-                      const props = childPath.node.properties
-
-                      const jsObject = createStaticJSObject(props, childPath)
-                      id = `_${generateHashCode(JSON.stringify(jsObject))}`
-
-                      childPath.node.properties.unshift(
-                        `_className: renderer.precompiled.${id}`
-                      )
-
-                      ruleDeclaration.traverse({
-                        BlockStatement(bPath) {
-                          bPath.node.body
-                            .unshift(`if (!renderer.precompiled.${id}) {
-  renderer.precompiled.${id} = renderer.renderRule(() => (${JSON.stringify(jsObject, null, 2)}))
-}`)
-                        },
-                        ArrowFunctionExpression(aPath) {
-                          if (aPath.node.params.length === 1) {
-                            aPath.node.params.push(identifier('renderer'))
-                          }
-                        }
-                      })
-                    }
-
-                    childPath.traverse({
-                      ObjectProperty(p) {
-                        if (p.node.shouldRemove) {
-                          p.remove(p.node)
-                        }
-                      }
-                    })
-                  }
-                })
+                ruleDeclaration.node.init = func
+              } else {
+                ruleDeclaration.node = func
               }
             }
+          }
+
+          let id, didTraverse
+
+          const traverser = {
+            ObjectExpression(childPath) {
+              if (!didTraverse) {
+                childPath.node.root = true
+                didTraverse = true
+              }
+
+              if (childPath.node.root) {
+                const props = childPath.node.properties
+
+                const jsObject = createStaticJSObject(props, childPath)
+                id = '_' + generateHashCode(JSON.stringify(jsObject))
+
+                childPath.node.properties.unshift(
+                  '_className: renderer.precompiled.' + id
+                )
+
+                traverse(
+                  func,
+                  {
+                    BlockStatement(bPath) {
+                      bPath.node.body
+                        .unshift(`if (!renderer.precompiled.${id}) {
+  renderer.precompiled.${id} = renderer.renderRule(() => (${JSON.stringify(
+                        jsObject,
+                        null,
+                        2
+                      )}))
+}`)
+                    }
+                  },
+                  childPath.scope,
+                  childPath
+                )
+              }
+
+              childPath.traverse({
+                ObjectProperty(p) {
+                  if (p.node.shouldRemove) {
+                    p.remove(p.node)
+                  }
+                }
+              })
+            }
+          }
+
+          if (ruleDeclaration.traverse) {
+            ruleDeclaration.traverse(traverser)
+          } else {
+            traverse(ruleDeclaration, traverser, path.scope, path)
           }
         }
       }
