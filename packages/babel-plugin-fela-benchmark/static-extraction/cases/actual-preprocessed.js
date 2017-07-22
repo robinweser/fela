@@ -1,15 +1,14 @@
 import webPreset from 'fela-preset-web'
-import { createRenderer } from '../../packages/501/index'
-
+import { createRenderer } from 'fela'
 import variations from './_variations'
 
-export const optimized501 = () => {
+export const preprocessedActual = () => {
   const renderer = createRenderer({ plugins: [...webPreset] })
   renderer.precompiled = {}
 
   const rule = ({ fontSize, width }) => {
     if (!renderer.precompiled[0]) {
-      renderer.precompiled[0] = renderer.renderRule(() => ({
+      renderer.precompiled[0] = renderer._renderStyleToClassNames({
         backgroundColor: 'black',
         lineHeight: 1.0,
         ':hover': {
@@ -19,7 +18,7 @@ export const optimized501 = () => {
           backgroundColor: 'yellow',
           color: 'green'
         }
-      }))
+      })
     }
 
     return {
