@@ -1,138 +1,102 @@
-function generateHashCode(str) {
-  let hash = 0
-  let iterator
-  let char
-  const length = str.length
+import { generateMonolithicClassName, arrayReduce, arrayEach } from 'fela-utils'
 
-  if (length === 0) {
-    return hash
-  }
-
-  for (iterator = 0; iterator < length; ++iterator) {
-    char = str.charCodeAt(iterator)
-    hash = (hash << 5) - hash + char
-    hash |= 0
-  }
-
-  return hash.toString(36)
-}
-
-export default function({ types, traverse }, file) {
-  const {
-    identifier,
-    blockStatement,
-    returnStatement,
-    objectProperty,
-    binaryExpression,
-    isIdentifier,
-    isVariableDeclarator,
-    isStringLiteral,
-    isNumericLiteral,
-    isObjectExpression,
-    isArrowFunctionExpression,
-    isFunctionExpression,
-    isFunctionDeclaration,
-    isReturnStatement,
-    isBlockStatement
-  } = types
-
-  function createStaticJSObject(props, path) {
-    return props.reduce((obj, node) => {
-      if (
-        !node.shorthand &&
-        (isStringLiteral(node.value) || isNumericLiteral(node.value))
-      ) {
-        obj[node.key.name] = node.value.value
-        node.shouldRemove = true
-      } else if (isObjectExpression(node.value)) {
-        obj[node.key.value] = createStaticJSObject(node.value.properties, path)
+export default function ({ types: t, traverse }, file) {
+  function extractStaticStyle(props, path) {
+    const staticStyle = arrayReduce(
+      props,
+      (style, node) => {
         if (
-          node.value.properties.filter(
-            node => !node.hasOwnProperty('shouldRemove')
-          ).length === 0
+          !node.shorthand &&
+          (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
         ) {
-          node.shouldRemove = true
+          style.push(node)
+        } else if (t.isObjectExpression(node.value)) {
+          style.push(
+            t.objectProperty(
+              node.key,
+              t.objectExpression(
+                extractStaticStyle(node.value.properties, path)
+              )
+            )
+          )
+        }
+
+        return style
+      },
+      []
+    )
+
+    arrayEach(staticStyle, prop => {
+      if (t.isObjectExpression(prop.value)) {
+        if (prop.value.properties.length === 0) {
+          props.splice(props.indexOf(prop), 1)
+        }
+      } else {
+        props.splice(props.indexOf(prop), 1)
+      }
+    })
+
+    return staticStyle
+  }
+
+  function getRuleScope(path) {
+    const rule = path.node.arguments[0]
+    let ruleDeclaration,
+      functionExpression
+
+    if (t.isIdentifier(rule)) {
+      if (path.scope.hasBinding(rule.name)) {
+        const binded = path.scope.bindings[rule.name].path
+
+        if (t.isVariableDeclarator(binded) || t.isFunctionDeclaration(binded)) {
+          ruleDeclaration = binded
+          functionExpression = t.isVariableDeclarator(binded)
+            ? ruleDeclaration.node.init
+            : ruleDeclaration.node
         }
       }
+    } else if (t.isFunctionDeclaration(rule)) {
+      ruleDeclaration = rule
+      functionExpression = rule.node
+    } else if (
+      t.isArrowFunctionExpression(rule) ||
+      t.isFunctionExpression(rule)
+    ) {
+      ruleDeclaration = rule
+      functionExpression = rule
+    }
 
-      return obj
-    }, {})
+    if (t.isArrowFunctionExpression(functionExpression)) {
+      if (t.isObjectExpression(functionExpression.body)) {
+        functionExpression.body = t.blockStatement([
+          t.returnStatement(functionExpression.body)
+        ])
+
+        if (t.isVariableDeclarator(ruleDeclaration)) {
+          ruleDeclaration.node.init = functionExpression
+        } else {
+          ruleDeclaration.node = functionExpression
+        }
+      }
+    }
+
+    return {
+      ruleDeclaration,
+      functionExpression
+    }
   }
 
   return {
     visitor: {
       CallExpression(path, parentPath) {
         if ((path.node.callee.name = 'createComponent')) {
-          const rule = path.node.arguments[0]
+          const { ruleDeclaration, functionExpression } = getRuleScope(path)
 
-          let ruleDeclaration, func
-
-          console.log(rule)
-          if (isIdentifier(rule)) {
-            if (path.scope.hasBinding(rule.name)) {
-              const binded = path.scope.bindings[rule.name].path
-
-              if (
-                isVariableDeclarator(binded) ||
-                isFunctionDeclaration(binded)
-              ) {
-                ruleDeclaration = binded
-                func = isVariableDeclarator(binded)
-                  ? ruleDeclaration.node.init
-                  : ruleDeclaration.node
-              } else {
-                return
-              }
-            } else {
-              return
-            }
-          } else if (isFunctionDeclaration(rule)) {
-            ruleDeclaration = rule
-            func = rule.node
-          } else if (
-            isArrowFunctionExpression(rule) ||
-            isFunctionExpression(rule)
-          ) {
-            ruleDeclaration = rule
-            func = rule
-          } else {
-            return
+          if (!ruleDeclaration || !functionExpression) {
+            return false
           }
 
-          if (func.params && func.params.length === 0) {
-            func.params.push('_')
-          }
-          if (func.params && func.params.length === 1) {
-            func.params.push(identifier('renderer'))
-          }
-
-          if (
-            func.params &&
-            func.params.length === 2 &&
-            (!isIdentifier(func.params[1]) ||
-              func.params[1].name !== 'renderer')
-          ) {
-            console.log('SHIT')
-            return
-          }
-
-          if (isArrowFunctionExpression(func)) {
-            console.log('ISARROW')
-
-            if (isObjectExpression(func.body)) {
-              console.log('ISOBJECT')
-
-              func.body = blockStatement([returnStatement(func.body)])
-
-              if (isVariableDeclarator(ruleDeclaration)) {
-                ruleDeclaration.node.init = func
-              } else {
-                ruleDeclaration.node = func
-              }
-            }
-          }
-
-          let id, didTraverse
+          let didTraverse
 
           const traverser = {
             ObjectExpression(childPath) {
@@ -144,39 +108,111 @@ export default function({ types, traverse }, file) {
               if (childPath.node.root) {
                 const props = childPath.node.properties
 
-                const jsObject = createStaticJSObject(props, childPath)
-                id = '_' + generateHashCode(JSON.stringify(jsObject))
+                const staticStyle = extractStaticStyle(props, childPath)
 
-                childPath.node.properties.unshift(
-                  '_className: renderer.precompiled.' + id
-                )
+                if (Object.keys(staticStyle).length > 0) {
+                  const id = generateMonolithicClassName(staticStyle)
 
-                traverse(
-                  func,
-                  {
-                    BlockStatement(bPath) {
-                      bPath.node.body
-                        .unshift(`if (!renderer.precompiled.${id}) {
-  renderer.precompiled.${id} = renderer.renderRule(() => (${JSON.stringify(
-                        jsObject,
-                        null,
-                        2
-                      )}))
-}`)
-                    }
-                  },
-                  childPath.scope,
-                  childPath
-                )
-              }
+                  let renderer
 
-              childPath.traverse({
-                ObjectProperty(p) {
-                  if (p.node.shouldRemove) {
-                    p.remove(p.node)
+                  if (
+                    functionExpression.params &&
+                    functionExpression.params.length === 0
+                  ) {
+                    functionExpression.params.push('_')
                   }
+
+                  if (
+                    functionExpression.params &&
+                    functionExpression.params.length === 2
+                  ) {
+                    if (!t.isIdentifier(functionExpression.params[1])) {
+                      return
+                    }
+
+                    if (functionExpression.params[1].name !== 'renderer') {
+                      renderer = functionExpression.params[1].name
+                    }
+                  }
+
+                  if (
+                    functionExpression.params &&
+                    functionExpression.params.length === 1
+                  ) {
+                    functionExpression.params.push(t.identifier('renderer'))
+                    renderer = 'renderer'
+                  }
+
+                  childPath.node.properties.unshift(
+                    t.objectProperty(
+                      t.identifier('_className'),
+                      t.memberExpression(
+                        t.memberExpression(
+                          t.identifier(renderer),
+                          t.identifier('cache')
+                        ),
+                        t.identifier(id)
+                      )
+                    )
+                  )
+
+                  let isRoot
+
+                  traverse(
+                    functionExpression,
+                    {
+                      BlockStatement(bPath) {
+                        if (!isRoot) {
+                          isRoot = true
+
+                          bPath.node.body.unshift(
+                            t.ifStatement(
+                              t.unaryExpression(
+                                '!',
+                                t.memberExpression(
+                                  t.memberExpression(
+                                    t.identifier(renderer),
+                                    t.identifier('cache')
+                                  ),
+                                  t.identifier(id)
+                                )
+                              ),
+                              t.blockStatement([
+                                t.expressionStatement(
+                                  t.assignmentExpression(
+                                    '=',
+                                    t.memberExpression(
+                                      t.memberExpression(
+                                        t.identifier(renderer),
+                                        t.identifier('cache')
+                                      ),
+                                      t.identifier(id)
+                                    ),
+                                    t.callExpression(
+                                      t.memberExpression(
+                                        t.identifier(renderer),
+                                        t.identifier('renderRule')
+                                      ),
+                                      [
+                                        t.ArrowFunctionExpression(
+                                          [],
+                                          t.objectExpression(staticStyle)
+                                        )
+                                      ]
+                                    )
+                                  )
+                                )
+                              ])
+                            )
+                          )
+                        }
+                      }
+                    },
+                    childPath.scope,
+                    childPath
+                  )
                 }
-              })
+              }
             }
           }
 

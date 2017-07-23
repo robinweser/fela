@@ -1,0 +1,26 @@
+{
+  "name": "babel-plugin-fela",
+  "version": "5.0.1",
+  "description": "Babel plugin to perform Fela optimizations and precomilation",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "babel-plugin",
+    "precomilation",
+    "optimization"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "fela-utils": "^5.0.3"
+  }
+}
