@@ -111,7 +111,7 @@ render(renderer)
 
 ## Contributing
 
-We highly appreciate any contribution. For more information follow the document [Contributing](CONTRIBUTING.md). Also, please read our [code of conduct](CODE_OF_CONDUCT.md).
+We highly appreciate any contribution. For more information follow the document [Contributing](.github/CONTRIBUTING.md). Also, please read our [code of conduct](CODE_OF_CONDUCT.md).
 
 
 ## Support
