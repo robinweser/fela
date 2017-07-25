@@ -10,7 +10,7 @@ Once rendered to the DOM, a change listener will subscribe to changes. The DOM n
 #### Development vs. Production
 > These two modes exist as [Chrome Developer Tools does not support `CSSStyleSheet.insertRule`](https://bugs.chromium.org/p/chromium/issues/detail?id=387952).
 
-**In production** it uses an optimized rendering mechanism based on [`CSSStyleSheet.insertRule`](https://developer.mozilla.org/en-US/docs/Web/api/fela/CSSStyleSheet/insertRule) to update as performant as possible.
+**In production** it uses an optimized rendering mechanism based on [`CSSStyleSheet.insertRule`](https://developer.mozilla.org/en-US/docs/Web/api/CSSStyleSheet/insertRule) to update as performant as possible.
 
 **In development** it uses `node.textContent` to update styles. This also implies that Fela is even faster in production, so be sure to use the production environment for production builds.
 
