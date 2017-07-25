@@ -9,10 +9,14 @@ const createComponent = createComponentFactory(createElement, {
   renderer: PropTypes.object,
   theme: PropTypes.object
 })
-const createComponentWithProxy =  createComponentFactory(createElement, {
-  renderer: PropTypes.object,
-  theme: PropTypes.object
-}, true)
+const createComponentWithProxy = createComponentFactory(
+  createElement,
+  {
+    renderer: PropTypes.object,
+    theme: PropTypes.object
+  },
+  true
+)
 
 describe('Creating Components from Fela rules', () => {
   it('should return a Component', () => {
@@ -77,7 +81,7 @@ describe('Creating Components from Fela rules', () => {
       {
         onClick: false,
         onHover: true,
-        color: true,
+        color: true
       },
       { renderer }
     )
@@ -230,7 +234,6 @@ describe('Creating Components from Fela rules', () => {
   })
 })
 
-
 describe('Creating Components with a Proxy for props from Fela rules', () => {
   it('should return a Component', () => {
     const rule = props => ({
@@ -294,7 +297,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
       {
         onClick: false,
         onHover: true,
-        color: true,
+        color: true
       },
       { renderer }
     )
@@ -317,7 +320,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
       {
         onClick: false,
         onHover: true,
-        color: true,
+        color: true
       },
       { renderer }
     )

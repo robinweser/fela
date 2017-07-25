@@ -21,12 +21,12 @@ describe('Connect Factory for bindings', () => {
       })
     }
 
-    const MyComponent = connect(rules)(({ styles }) => (
+    const MyComponent = connect(rules)(({ styles }) =>
       <div>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
       </div>
-    ))
+    )
 
     const renderer = createRenderer()
     const wrapper = mount(<MyComponent />, {

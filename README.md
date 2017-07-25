@@ -109,10 +109,14 @@ render(renderer)
 * [Kilvin](https://github.com/rofrischmann/kilvin) - Primitive React Layout Components with Fela
 * [Tel Aviv](https://github.com/dustin-H/telaviv) - React Universal Rendering
 
+## Contributing
+
+We highly appreciate any contribution. For more information follow the document [Contributing](.github/CONTRIBUTING.md). Also, please read our [code of conduct](CODE_OF_CONDUCT.md).
+
+
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/fela). <br>
-We highly appreciate any contribution.<br>
-We also love to get feedback.
+We love to get feedback.
 
 ## Who's using Fela?
 
