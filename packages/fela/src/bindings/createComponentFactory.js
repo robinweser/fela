@@ -1,11 +1,16 @@
 /* @flow */
-import { extractPassThroughProps, extractUsedProps, resolvePassThrough, resolveUsedProps } from 'fela-utils'
+import {
+  extractPassThroughProps,
+  extractUsedProps,
+  resolvePassThrough,
+  resolveUsedProps
+} from 'fela-utils'
 import combineRules from '../combineRules'
 
 export default function createComponentFactory(
   createElement: Function,
   contextTypes?: Object,
-  withProxy: boolean = false,
+  withProxy: boolean = false
 ): Function {
   return function createComponent(
     rule: Function,
@@ -28,9 +33,8 @@ export default function createComponentFactory(
 
       // improve developer experience with monolithic renderer
       if (renderer.prettySelectors) {
-        const componentName = typeof type === 'string'
-          ? type
-          : type.displayName || type.name || ''
+        const componentName =
+          typeof type === 'string' ? type : type.displayName || type.name || ''
 
         combinedRule.selectorPrefix = `${displayName}_${componentName}__`
       }
@@ -38,7 +42,7 @@ export default function createComponentFactory(
       const resolvedPassThrough = [
         ...resolvePassThrough(passThroughProps, ruleProps),
         ...resolvePassThrough(passThrough, ruleProps),
-        ...withProxy ? resolveUsedProps(usedProps, ruleProps) : []
+        ...(withProxy ? resolveUsedProps(usedProps, ruleProps) : [])
       ]
 
       // if the component renders into another Fela component

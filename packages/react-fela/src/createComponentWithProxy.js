@@ -4,7 +4,11 @@ import PropTypes from 'prop-types'
 
 import { createComponentFactory } from 'fela'
 
-export default createComponentFactory(createElement, {
-  renderer: PropTypes.object,
-  theme: PropTypes.object
-}, true)
+export default createComponentFactory(
+  createElement,
+  {
+    renderer: PropTypes.object,
+    theme: PropTypes.object
+  },
+  true
+)

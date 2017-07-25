@@ -2,7 +2,7 @@
 type BabelInterface = {
   types: Object
 }
-export default function ({ types }: BabelInterface) {
+export default function({ types }: BabelInterface) {
   const { stringLiteral } = types
 
   return {

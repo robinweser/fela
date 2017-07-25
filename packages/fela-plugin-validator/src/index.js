@@ -27,7 +27,9 @@ function validateStyleObject(
         }
         if (logInvalid) {
           console.error(
-            `${deleteInvalid ? '[Deleted] ' : ' '}Invalid nested property. Only use nested media queries, pseudo classes, child selectors or &-combinators.
+            `${deleteInvalid
+              ? '[Deleted] '
+              : ' '}Invalid nested property. Only use nested media queries, pseudo classes, child selectors or &-combinators.
               Maybe you forgot to add a plugin that resolves "${property}".`,
             {
               property,
@@ -59,7 +61,9 @@ function validateKeyframeObject(
     if (!isObject(value)) {
       if (logInvalid) {
         console.error(
-          `${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe value. An object was expected.`,
+          `${deleteInvalid
+            ? '[Deleted] '
+            : ' '}Invalid keyframe value. An object was expected.`,
           {
             percentage,
             style: value
