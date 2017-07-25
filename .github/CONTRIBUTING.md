@@ -43,6 +43,18 @@ You can also run all three of them at the same time:
 yarn check
 ```
 
+Format the code:
+
+```
+yarn prettier
+```
+
+Lint the code:
+
+```
+yarn lint
+```
+
 Note: If your tests use other fela packages as depedencies, you might need to run `yarn build` (it's a part of `yarn setup`).
 
 ## Tip for developing
@@ -50,14 +62,14 @@ Note: If your tests use other fela packages as depedencies, you might need to ru
 Fela contains many examples. It can be handy to smoke test your changes as a part of [example-react](http://fela.js.org/docs/introduction/Examples.html).
 
 ## Code Formatting
-We use [esformatter](https://github.com/millermedeiros/esformatter) which supports tons of configuration options for almost every single use case. If you're using [Atom](https://atom.io) we recommend [atom-esformatter](https://github.com/sindresorhus/atom-esformatter) with the **Format on Save** option enabled. As far as I know there also are plugins for several other editors. *Alternatively try the [esformatter CLI](https://github.com/millermedeiros/esformatter#cli)*.
+We use [prettier](https://prettier.io/), an opinionated code formatter. If you're using [Atom](https://atom.io) we recommend [prettier-atom](https://atom.io/packages/prettier-atom) with the **format on save**. If you're using [Sublime](https://www.sublimetext.com/) try [SublimeJSPrettier](https://github.com/jonlabelle/SublimeJsPrettier). For other integrations, please check the prettier's [homepage](https://prettier.io/).
 
 ## Guide-Lines
 1. Fork the repo and create your feature/bug branch from `develop`.
 2. If you've added code that should be tested, add tests!
 3. If you've changed APIs, update the documentation.
 4. Ensure that all tests pass (`yarn check`).
-5. Ensure your code is formatted correctly (esformatter)
+5. Ensure your code is formatted correctly if you don't run prettier on save (`yarn prettier`)
 
 ## Creating Issues
 ### Known Issues
