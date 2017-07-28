@@ -8,5 +8,5 @@ export default function resolveUsedProps(props: Array<string>, src: Object) {
       return output
     },
     []
-  ).filter(prop => prop !== 'innerRef')
+  ).filter(prop => prop !== 'innerRef' || prop !== 'is')
 }
