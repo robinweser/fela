@@ -46,6 +46,35 @@ describe('Creating Components from Fela rules', () => {
     expect(renderer.rules).toEqual('.a{color:black}.b{font-size:16}')
   })
 
+  it('should include defaultProps if provided', () => {
+    const rule = props => ({
+      color: props.color,
+      fontSize: 16
+    })
+
+    const Comp = ({ color, className }) =>
+      <div className={className}>
+        {color}
+      </div>
+
+    Comp.defaultProps = {
+      color: 'red'
+    }
+
+    const component = createComponent(rule, Comp)
+
+    const renderer = createRenderer()
+
+    const element = component({}, { renderer })
+
+    console.log(element)
+
+    expect(element.type).toEqual(Comp)
+
+    expect(element.props.className).toEqual('a b')
+    expect(renderer.rules).toEqual('.a{color:red}.b{font-size:16}')
+  })
+
   it('should use the theme for static rendering by default', () => {
     const rule = props => ({
       color: props.theme.color,
