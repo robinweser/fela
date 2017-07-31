@@ -67,8 +67,6 @@ describe('Creating Components from Fela rules', () => {
 
     const element = component({}, { renderer })
 
-    console.log(element)
-
     expect(element.type).toEqual(Comp)
 
     expect(element.props.className).toEqual('a b')
@@ -501,3 +499,24 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     expect(buttonInstance.type).toEqual('button')
   })
 })
+
+  it('should pass props except innerRef', () => {
+    const rule = props => ({
+      color: props.color,
+      fontSize: '16px'
+    })
+    const component = createComponentWithProxy(rule, 'div')
+
+    const renderer = createRenderer()
+
+    const element = component(
+      {
+        color: 'black',
+        innerRef: () => 'test'
+      },
+      { renderer }
+    )
+
+    expect(element.props.innerRef).toEqual(undefined)
+    expect(renderer.rules).toEqual('.a{color:black}.b{font-size:16px}')
+  })
