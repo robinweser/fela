@@ -67,8 +67,6 @@ describe('Creating Components from Fela rules', () => {
 
     const element = component({}, { renderer })
 
-    console.log(element)
-
     expect(element.type).toEqual(Comp)
 
     expect(element.props.className).toEqual('a b')
