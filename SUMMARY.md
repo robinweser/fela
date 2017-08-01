@@ -33,6 +33,7 @@
   * [5.2. Testing Fela Components](docs/recipes/TestingFelaComponents.md)
   * [5.3. Explicit Component displayName](docs/recipes/DisplayNameComponents.md)
   * [5.4. Monolithic Class Names](docs/recipes/MonolithicClassNames.md)
+  * [5.5. Using ref with React Component](docs/recipes/UsingRefWithReactComponent.md)
 * [6. API Reference](docs/API.md)
   * 6.1. fela
     * [6.1.1. createRenderer](docs/api/fela/createRenderer.md)

@@ -7,3 +7,4 @@ They are kind of best practice, but might turn out opinionated.
 * [Testing Fela Components](recipes/TestingFelaComponents.md)
 * [Explicit Component displayName](recipes/DisplayNameComponents.md)
 * [Monolithic Class Names](recipes/MonolithicClassNames.md)
+* [Using ref with React Component](recipes/UsingRefWithReactComponent.md)
