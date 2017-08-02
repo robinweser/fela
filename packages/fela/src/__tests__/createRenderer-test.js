@@ -332,7 +332,10 @@ describe('Renderer', () => {
       const family = renderer.renderFont(
         'Arial',
         ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
-        { localAlias: 'Arial', fontWeight: 300 }
+        {
+          localAlias: 'Arial',
+          fontWeight: 300
+        }
       )
 
       expect(family).toEqual('"Arial"')
@@ -343,7 +346,10 @@ describe('Renderer', () => {
       const family = renderer.renderFont(
         'Arial',
         ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
-        { localAlias: ['Arial', 'Arial-Regular'], fontWeight: 300 }
+        {
+          localAlias: ['Arial', 'Arial-Regular'],
+          fontWeight: 300
+        }
       )
 
       expect(family).toEqual('"Arial"')
