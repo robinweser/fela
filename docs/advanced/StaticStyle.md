@@ -24,7 +24,7 @@ renderer.renderStatic(styleObject, 'html,body,#app')
 
 ### CSS String
 Rendering CSS strings is especially helpful if you want to use third-party or legacy styles written in CSS.<br>
-This method is **not recommended as no further processing with plugins** is done. It only be used to insert large third-party CSS files.
+This method is **not recommended as no further processing with plugins** is done. It should only be used to insert large third-party CSS files.
 
 ```javascript
 import { createRenderer } from 'fela'
