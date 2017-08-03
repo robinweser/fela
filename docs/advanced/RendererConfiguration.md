@@ -12,7 +12,7 @@ We might introduce more configuration options with future releases, so be sure t
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
-|`selectorPrefix`| `string` | `''`| Prepend a static prefix to every every generated class and keyframe |
+|`selectorPrefix`| `string` | `''`| Prepend a static prefix to every generated class and keyframe |
 |`filterClassName`| `function` |  | Return whether the generated class name should be rerolled|
 
 ## Example
