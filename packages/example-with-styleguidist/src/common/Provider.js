@@ -1,13 +1,13 @@
 import React, { Children, isValidElement, cloneElement } from 'react'
 import PropTypes from 'prop-types'
+import { Provider as FelaProvider, ThemeProvider } from 'react-fela'
 import createRenderer from './createFelaRenderer'
 import createFontRenderer from './createFontRenderer'
-import { Provider as FelaProvider, ThemeProvider } from 'react-fela'
 
-// should be from another file. Use this to drive themes.
+// should be from another file. Use this to drive theme config.
 import defaultTheme from './base-ui-theme'
 
-// Use the below function to customer dev/prod mode plugins
+// Use the below function to customize dev/prod mode plugins
 const felaRenderer = createRenderer()
 
 class StyleProvider extends React.Component {

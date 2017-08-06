@@ -1,4 +1,4 @@
-import { lighten, darken } from 'polished'
+import { darken } from 'polished'
 
 const colorOffsetLight = 0.15
 const colorOffsetDark = 0.07

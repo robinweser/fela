@@ -38,8 +38,7 @@ const createRenderer = () => {
       })
     )
     plugins.push(whitelistMediaQuery(mediaQueries))
-    // enable statistics if set from server config.
-    if (__CLIENT__ && __STATISTICS__) {
+    if (__CLIENT__ && __STATISTICS__) { // eslint-disable-line no-undef
       // enabled via define plugin in styleguidist.config.js
       plugins.push(statistics())
     }
