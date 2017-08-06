@@ -4,4 +4,5 @@ export type FontProperties = {
   fontWeight?: string | number,
   fontStyle?: string,
   unicodeRange?: string,
+  localAlias?: string | Array<string>,
 };

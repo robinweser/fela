@@ -15,6 +15,7 @@ In addition to the required parameters, each font face accepts five other proper
 * `fontWeight`
 * `fontStyle`
 * `unicodeRange`
+* `localAlias` - ```String or Array<String>``` - Provides way to reference locally installed system fonts by name, if available.
 
 <br>
 

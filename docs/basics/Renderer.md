@@ -102,6 +102,7 @@ const files = [
 
 renderer.renderFont('Lato', files)
 renderer.renderFont('Lato-Bold', files, { fontWeight: 'bold' })
+renderer.renderFont('Lato-Bold', files, { fontWeight: 'bold', localAlias: ['Lato Bold', 'Lato-Bold'] })
 ```
 ```CSS
 @font-face {
@@ -113,6 +114,13 @@ renderer.renderFont('Lato-Bold', files, { fontWeight: 'bold' })
 @font-face {
   font-family: 'Lato-Bold';
   src: url('./fonts/Lato.ttf') format(truetype),
+       url('./fonts/Lato.woff') format(woff);
+  font-weight: bold
+}
+@font-face {
+  font-family: 'Lato-Bold';
+  src: local('Lato Bold'), local('Lato-Bold'),
+       url('./fonts/Lato.ttf') format(truetype),
        url('./fonts/Lato.woff') format(woff);
   font-weight: bold
 }

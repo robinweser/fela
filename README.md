@@ -111,7 +111,7 @@ render(renderer)
 
 ## Contributing
 
-We highly appreciate any contribution. For more information follow the document [Contributing](.github/CONTRIBUTING.md). Also, please read our [code of conduct](CODE_OF_CONDUCT.md).
+We highly appreciate any contribution. For more information follow the document [Contributing](.github/CONTRIBUTING.md).<br> Also, please read our [code of conduct](CODE_OF_CONDUCT.md).
 
 
 ## Support
@@ -120,7 +120,7 @@ We love to get feedback.
 
 ## Who's using Fela?
 
-> Your company is using Fela, but is not listed yet? [Add your company / organisation](https://github.com/rofrischmann/fela/edit/master/README.md#L121) 
+> Your company is using Fela, but is not listed yet? [Add your company / organisation](https://github.com/rofrischmann/fela/edit/master/README.md#L121)
 
 - [abilis](https://www.abilis.de)
 - [BdP LV RPS](http://www.bdp-rps.de)

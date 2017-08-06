@@ -1,6 +1,6 @@
 # Plugins
 
-We have learned that the renderer is the universal interface to render basic styles, but yet all it does it to cache and transform simple shape-conforming style objects into CSS markup. We do not have any fancy additional functionality such as auto-prefixing. That's where the built-in plugin system comes to the rescue!<br>
+We have learned that the renderer is the universal interface to render basic styles, but yet all it does is cache and transform simple shape-conforming style objects into CSS markup. We do not have any fancy additional functionality such as auto-prefixing. That's where the built-in plugin system comes to the rescue!<br>
 Plugins are functions that take a style object, alter its shape and return a new style object, which in most cases is the mutated input itself.
 Before the resolved style object gets cached and transformed to CSS, it is piped through each plugin.
 
