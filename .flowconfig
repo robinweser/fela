@@ -8,6 +8,9 @@
 .*/node_modules/react-native/*.*
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
 .*/node_modules/conventional-changelog-core/test/fixtures/_malformation.json
+.*/node_modules/polished/*.*
+.*/node_modules/findup/*.*
+.*/node_modules/jss/*.*
 
 module.name_mapper='(react-native)' -> 'empty/object'
 
