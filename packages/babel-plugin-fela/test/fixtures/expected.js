@@ -1,8 +1,8 @@
-import { createComponent } from 'react-fela'
+import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
-  if (!renderer.cache._asdsd) {
-    renderer.cache._asdsd = renderer.renderRule(() => ({
+  if (!renderer.cache.fktg8sm) {
+    renderer.cache.fktg8sm = renderer.renderRule(() => ({
       color: 'red',
       '@media (min-height: 300px)': {
         backgroundColor: 'red',
@@ -11,19 +11,15 @@ const rule = ({ fontSize, padding }, renderer) => {
           color: 'black'
         }
       }
-    }))
+    }));
   }
 
   return {
-    _className: renderer.cache._asdsd,
-    fontSize,
-    color: 'red',
-    '@media (min-height: 300px)': {
-      ':hover': {
-        paddingLeft: padding
+    _className: renderer.cache.fktg8sm,
+    fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
       }
     }
-  }
-}
+  };
+};
 
-export default createComponent(rule)
+export default createComponent(rule);

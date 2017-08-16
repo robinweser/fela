@@ -1,6 +1,12 @@
 import { Suite } from 'benchmark'
 import beautifyBenchmark from 'beautify-benchmark'
-import { unoptimizedActual, optimizedActual, preprocessedActual } from './cases'
+import {
+  unoptimizedActual,
+  optimizedActual,
+  preprocessedActual,
+  precompiledActual,
+  extractFileActual
+} from './cases'
 
 export const run = () => {
   console.log(
@@ -13,12 +19,14 @@ export const run = () => {
   testSuite.add('Actual unoptimized', () => unoptimizedActual())
   testSuite.add('Actual optimized', () => optimizedActual())
   testSuite.add('Actual preprocessed', () => preprocessedActual())
+  testSuite.add('Actual precompiled', () => precompiledActual())
+  testSuite.add('Actual file extracted', () => extractFileActual())
 
   testSuite.on('cycle', e => {
     beautifyBenchmark.add(e.target)
   })
 
-  testSuite.on('complete', function () {
+  testSuite.on('complete', function() {
     beautifyBenchmark.log()
     console.log(`Fastest is: ${this.filter('fastest').map('name')}`)
     console.log(
