@@ -17,10 +17,11 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [inferno-fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela) - Inferno
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle
+* [vue-fela](https://github.com/dustin-H/vue-fela) - Vue
 
 ### Plugins
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
-* [fela-plugin-embedded](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-embedded) - Automatically Resolves embedded font faces and keyframes within rules
+* [fela-plugin-embedded](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-embedded) - Automatically resolves embedded font faces and keyframes within rules
 * [fela-plugin-extend](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend) - Extend style objects based on conditions
 * [fela-plugin-fallback-value](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-fallback-value) - Resolves arrays of fallback values
 * [fela-plugin-friendly-pseudo-class](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-friendly-pseudo-class) - Transforms javascript-friendly pseudo class into valid syntax
@@ -41,7 +42,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-preset-dev](https://github.com/rofrischmann/fela/tree/master/packages/fela-preset-dev) - Preset for development mode
 
 ### Enhancers
-> **Warning**: Enhancers are still experimental and the API might change.
 
 * [fela-beautifier*](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
 * ~~[fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.~~ (*Deprecated*)
@@ -55,11 +55,12 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [cf-ui](https://github.com/cloudflare/cf-ui): Cloudflare UI Framework
 * [just-box](https://github.com/RafalFilipek/just-box): Create universal layouts in React and React-Native
 * [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components
+* [veel](https://github.com/queckezz/veel) - Base react styling components using fela with a design system
 
 ### Tools
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Helps to pass classNames to specific props
 * [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
-* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with autobound styles
+* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with auto-bound styles
 
 ### Utilities
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support

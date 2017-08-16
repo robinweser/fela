@@ -13,7 +13,7 @@ We might introduce more configuration options with future releases, so be sure t
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
 |`selectorPrefix`| `string` | `''`| Prepend a static prefix to every generated class and keyframe |
-|`filterClassName`| `function` |  | Return whether the generated class name should be rerolled|
+|`filterClassName`| `function` |  | Filter-function to filter used class names |
 
 ## Example
 ```javascript
@@ -25,7 +25,7 @@ import fallbackValue from 'fela-plugin-fallback-value'
 
 import beautifier from 'fela-beautifier'
 
-import { renderToString } from 'fela-dom/server'
+import { renderToString } from 'fela-dom'
 
 const config = {
   plugins: [ unit('em'), prefixer(), fallbackValue() ],

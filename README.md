@@ -85,19 +85,25 @@ render(renderer)
 * [Feedback](http://fela.js.org/docs/Feedback.html)
 * [Thanks](http://fela.js.org/docs/Thanks.html)
 
-## Posts
-* [**Style as a Function of State**](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [@rofrischmann](https://twitter.com/rofrischmann)*
-* [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [@steida](https://twitter.com/steida)*
+## Ecosystem
+There are several plugins, enhancers, bindings and tools that can be used together with Fela.<br>
+Check the [Ecosystem](http://fela.js.org/docs/introduction/Ecosystem.html) documentation.
 
 ## Examples
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](packages/example-react))
+    * [React Styleguidist](http://fela.js.org/docs/introduction/Examples.html#styleguidist) ([source](packages/example-with-styleguidist))
 * [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](packages/example-react-native))
 * [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](packages/example-preact))
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](packages/example-inferno))
 * [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](packages/example-angular2))
+    * [TypeScript](http://fela.js.org/docs/introduction/Examples.html#typescript) ([source](packages/example-angular2-typescript))
 * [Fela + Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
 * [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
 * [Fela + Cycle](https://github.com/wcastand/cycle-fela-example)
+
+## Posts
+* [**Style as a Function of State**](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [@rofrischmann](https://twitter.com/rofrischmann)*
+* [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [@steida](https://twitter.com/steida)*
 
 ## Workshop
 * [fela-workshop](https://github.com/tajo/fela-workshop) - demonstrates typical Fela usage, side by side examples of CSS and Fela, a playground project
@@ -108,10 +114,12 @@ render(renderer)
 * [Este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
 * [Kilvin](https://github.com/rofrischmann/kilvin) - Primitive React Layout Components with Fela
 * [Tel Aviv](https://github.com/dustin-H/telaviv) - React Universal Rendering
+* [Veel](https://github.com/queckezz/veel) - Base react styling components using fela with a design system
 
 ## Contributing
 
-We highly appreciate any contribution. For more information follow the document [Contributing](.github/CONTRIBUTING.md).<br> Also, please read our [code of conduct](CODE_OF_CONDUCT.md).
+We highly appreciate any contribution.<br>
+For more information follow the document [Contributing](.github/CONTRIBUTING.md).<br> Also, please read our [code of conduct](CODE_OF_CONDUCT.md).
 
 
 ## Support
