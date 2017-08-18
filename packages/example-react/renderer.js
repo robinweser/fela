@@ -8,6 +8,7 @@ import validator from 'fela-plugin-validator'
 import logger from 'fela-plugin-logger'
 import perf from 'fela-perf'
 import beautifier from 'fela-beautifier'
+import layoutDebugger from 'fela-layout-debugger'
 
 export default () => {
   const renderer = createRenderer({
@@ -20,7 +21,7 @@ export default () => {
       validator(),
       logger()
     ],
-    enhancers: [perf(), beautifier()]
+    enhancers: [perf(), beautifier(), layoutDebugger()]
   })
 
   renderer.renderStatic(
