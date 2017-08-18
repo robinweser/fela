@@ -118,11 +118,12 @@ export default function createRenderer(
       properties: FontProperties = {}
     ): string {
       const fontReference = family + JSON.stringify(properties)
-      const fontLocals = typeof properties.localAlias === 'string'
-        ? [properties.localAlias]
-        : properties.localAlias && properties.localAlias.constructor === Array
-          ? properties.localAlias.slice()
-          : []
+      const fontLocals =
+        typeof properties.localAlias === 'string'
+          ? [properties.localAlias]
+          : properties.localAlias && properties.localAlias.constructor === Array
+            ? properties.localAlias.slice()
+            : []
 
       if (!renderer.cache.hasOwnProperty(fontReference)) {
         const fontFamily = toCSSString(family)
