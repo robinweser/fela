@@ -17,7 +17,7 @@ describe('Generating a className', () => {
 
   it('should skip className if filtered out', () => {
     const filter = c => c !== 'ad'
-    let renderer = {
+    const renderer = {
       id: 28,
       getId() {
         return ++renderer.id
