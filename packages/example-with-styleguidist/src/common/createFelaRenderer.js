@@ -38,7 +38,9 @@ const createRenderer = () => {
       })
     )
     plugins.push(whitelistMediaQuery(mediaQueries))
-    if (__CLIENT__ && __STATISTICS__) { // eslint-disable-line no-undef
+    /* eslint-disable no-undef */
+    if (__CLIENT__ && __STATISTICS__) {
+      /* eslint-enable */
       // enabled via define plugin in styleguidist.config.js
       plugins.push(statistics())
     }

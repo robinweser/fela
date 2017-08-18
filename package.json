@@ -3,7 +3,7 @@
     "scripts": {
         "bootstrap": "lerna bootstrap",
         "build": "./scripts/build.sh",
-        "clean": "lerna clean --yes && rimraf packages/*/es && rimraf packages/*/lib",
+        "clean": "lerna clean --yes && rimraf _book && rimraf packages/*/es && rimraf packages/*/lib",
         "docs": "gitbook install && gitbook build && gh-pages -d _book",
         "check": "npm run format && npm run lint && npm run test:coverage && npm run flow",
         "format": "prettier --single-quote --no-semi --jsx-bracket-same-line --write \"packages/*/src/**/*.js\"",

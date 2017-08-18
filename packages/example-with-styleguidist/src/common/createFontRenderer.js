@@ -9,8 +9,6 @@ export default (renderer = createRenderer(), theme) => {
       theme.fonts[key] && theme.fonts[key].constructor === Array
         ? theme.fonts[key]
         : [theme.fonts[key]]
-    fontsArr.forEach(conf =>
-      renderer.renderFont(key, conf.files, conf.options)
-    )
+    fontsArr.forEach(conf => renderer.renderFont(key, conf.files, conf.options))
   })
 }
