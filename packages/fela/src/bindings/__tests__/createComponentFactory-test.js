@@ -500,23 +500,23 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
   })
 })
 
-  it('should pass props except innerRef', () => {
-    const rule = props => ({
-      color: props.color,
-      fontSize: '16px'
-    })
-    const component = createComponentWithProxy(rule, 'div')
-
-    const renderer = createRenderer()
-
-    const element = component(
-      {
-        color: 'black',
-        innerRef: () => 'test'
-      },
-      { renderer }
-    )
-
-    expect(element.props.innerRef).toEqual(undefined)
-    expect(renderer.rules).toEqual('.a{color:black}.b{font-size:16px}')
+it('should pass props except innerRef', () => {
+  const rule = props => ({
+    color: props.color,
+    fontSize: '16px'
   })
+  const component = createComponentWithProxy(rule, 'div')
+
+  const renderer = createRenderer()
+
+  const element = component(
+    {
+      color: 'black',
+      innerRef: () => 'test'
+    },
+    { renderer }
+  )
+
+  expect(element.props.innerRef).toEqual(undefined)
+  expect(renderer.rules).toEqual('.a{color:black}.b{font-size:16px}')
+})

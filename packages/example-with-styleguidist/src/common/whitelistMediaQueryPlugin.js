@@ -2,8 +2,13 @@
 const isObject = value => typeof value === 'object' && !Array.isArray(value)
 
 const flipKeysAndValues = input =>
-  Object.keys(input).reduce((obj, key) => ({ ...obj,
-    [input[key]]: key }), {})
+  Object.keys(input).reduce(
+    (obj, key) => ({
+      ...obj,
+      [input[key]]: key
+    }),
+    {}
+  )
 
 function checkMediaQuery(style, mediaQueryMap, aliases) {
   for (const property in style) {
