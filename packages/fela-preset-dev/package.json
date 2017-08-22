@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-dev",
-  "version": "5.0.5",
+  "version": "5.0.6",
   "description": "Fela plugin preset for web applications",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,7 +20,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-plugin-logger": "^5.0.2",
-    "fela-plugin-validator": "^5.0.5"
+    "fela-plugin-logger": "^5.0.3",
+    "fela-plugin-validator": "^5.0.6"
   }
 }

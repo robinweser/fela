@@ -1,6 +1,6 @@
 {
   "name": "fela-native",
-  "version": "5.0.5",
+  "version": "5.0.6",
   "description": "Fela Renderer for React Native",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -24,6 +24,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-utils": "^5.0.5"
+    "fela-utils": "^6.0.0"
   }
 }

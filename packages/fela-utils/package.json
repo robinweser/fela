@@ -1,6 +1,6 @@
 {
   "name": "fela-utils",
-  "version": "5.0.5",
+  "version": "6.0.0",
   "description": "Internal utilities for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -23,6 +23,6 @@
     "css-in-js-utils": "^1.0.3"
   },
   "devDependencies": {
-    "fela": "^5.1.0"
+    "fela": "^5.1.1"
   }
 }

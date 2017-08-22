@@ -1,6 +1,6 @@
 {
   "name": "react-fela",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "React bindings for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,8 +26,8 @@
     "react": "*"
   },
   "dependencies": {
-    "fela": "^5.1.0",
-    "fela-dom": "^5.0.6",
+    "fela": "^5.1.1",
+    "fela-dom": "^5.0.7",
     "prop-types": "^15.5.8"
   }
 }
