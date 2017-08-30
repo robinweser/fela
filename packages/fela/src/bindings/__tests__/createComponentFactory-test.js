@@ -52,10 +52,9 @@ describe('Creating Components from Fela rules', () => {
       fontSize: 16
     })
 
-    const Comp = ({ color, className }) =>
-      <div className={className}>
-        {color}
-      </div>
+    const Comp = ({ color, className }) => (
+      <div className={className}>{color}</div>
+    )
 
     Comp.defaultProps = {
       color: 'red'

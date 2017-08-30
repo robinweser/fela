@@ -31,9 +31,11 @@ class StyleProvider extends React.Component {
     return (
       <FelaProvider renderer={renderer || felaRenderer}>
         <ThemeProvider theme={theme}>
-          {isValidElement(child)
-            ? cloneElement(child, { ...this.props })
-            : child}
+          {isValidElement(child) ? (
+            cloneElement(child, { ...this.props })
+          ) : (
+            child
+          )}
         </ThemeProvider>
       </FelaProvider>
     )

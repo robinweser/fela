@@ -321,7 +321,9 @@ describe('Renderer', () => {
       const family = renderer.renderFont(
         'Arial',
         ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
-        { fontWeight: 300 }
+        {
+          fontWeight: 300
+        }
       )
 
       expect(family).toEqual('"Arial"')

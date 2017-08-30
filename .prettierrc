@@ -1,4 +1,3 @@
-// .prettierrc
 {
   "trailingComma": "none",
   "singleQuote": true,
@@ -7,6 +6,6 @@
   "parser": "babylon",
   "printWidth": 80,
   "tabWidth": 2,
-  "useTabs": false
+  "useTabs": false,
   "semi": false
 }
