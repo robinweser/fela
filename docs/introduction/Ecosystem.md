@@ -61,6 +61,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 ### Tools
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
+* [alef](https://github.com/as-com/alef) - Modified TypeScript port of Fela
 * [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js): Transform your CSS to JavaScript at compile time
 * [classnames](https://github.com/JedWatson/classnames): Manage and combine multiple className values safely
 * [css-functions](https://github.com/cssinjs/css-functions): Functional API to create CSS functions including value validation

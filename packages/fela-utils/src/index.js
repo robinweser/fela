@@ -23,6 +23,7 @@ import isBase64 from './isBase64'
 import isMediaQuery from './isMediaQuery'
 import isNestedSelector from './isNestedSelector'
 import isObject from './isObject'
+import isSafeClassName from './isSafeClassName'
 import isUndefinedValue from './isUndefinedValue'
 import isValidHTMLElement from './isValidHTMLElement'
 import minifyCSSString from './minifyCSSString'
@@ -68,6 +69,7 @@ export {
   isMediaQuery,
   isNestedSelector,
   isObject,
+  isSafeClassName,
   isUndefinedValue,
   isValidHTMLElement,
   minifyCSSString,

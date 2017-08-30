@@ -15,6 +15,7 @@ import {
   isNestedSelector,
   isUndefinedValue,
   isObject,
+  isSafeClassName,
   normalizeNestedProperty,
   applyMediaRulesInOrder,
   processStyleWithPlugins,
@@ -53,7 +54,7 @@ export default function createRenderer(
     // apply media rules in an explicit order to ensure
     // correct media query execution order
     mediaRules: applyMediaRulesInOrder(config.mediaQueryOrder || []),
-    filterClassName: config.filterClassName,
+    filterClassName: config.filterClassName || isSafeClassName,
 
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
