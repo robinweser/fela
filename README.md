@@ -1,4 +1,4 @@
-# Fela
+<h1><img alt="Fela" src="media/logo.png" width="203"/></h1>
 
 Fela is a small, performant and framework-agnostic toolbelt to handle styling in JavaScript.<br>
 It is dynamic by design and renders your styles depending on your application state.
