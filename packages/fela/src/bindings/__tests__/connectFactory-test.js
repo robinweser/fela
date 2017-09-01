@@ -39,6 +39,9 @@ describe('Connect Factory for bindings', () => {
       }
     })
 
-    expect([beautify(`<style>${renderer.renderToString()}</style>`), toJson(wrapper)]).toMatchSnapshot()
+    expect([
+      beautify(`<style>${renderer.renderToString()}</style>`),
+      toJson(wrapper)
+    ]).toMatchSnapshot()
   })
 })

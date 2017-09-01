@@ -5,6 +5,12 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 01/09/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela | 5.2.0 | ([#357](https://github.com/rofrischmann/fela/issues/357)) `renderer.filterClassName` now defaults to blocking class names including `ad` by default |
+| react-fela<br>inferno-fela<br>preact-fela | 5.3.0 | ([#362](https://github.com/rofrischmann/fela/pull/362)) The  `connect`-HoC now supports `defaultProps` |
+
 ## 22/08/17
 | Package | Version | Changes |
 | ---- | --- | --- |
