@@ -1,16 +1,17 @@
 # FAQ
 
 ## Table of contents
-#### General
 * [Can I use it together with CSS files?](#can-i-use-it-together-with-css-files)
 * [Can I use it together with inline styles?](#can-i-use-it-together-with-inline-styles)
+* [Can I use it without React?](#can-i-use-it-without-react)
+* [Can I use it with React Native?](#can-i-use-it-with-react-native)
+* [Can I use template strings?](#can-i-use-template-strings)
+* [Can I use objects instead of functions?](#can-i-use-objects-instead-of-functions)
 * [Is Fela production-ready?](#is-fela-production-ready)
 * [Where does the name "Fela" come from?](#where-does-the-name-fela-come-from)
 
-#### Convenience
-* [Can I write my styles as CSS?](#can-i-write-my-styles-as-css)
+---------
 
-## General
 #### Can I use it together with CSS Files?
 **Yes**. Fela is encapsulated and can be integrated into any kind of application and therefore can also be used together with other CSS files/classes.<br>
 Just remember that you might again get into specificity problems if you mix different CSS classes from different sources.
@@ -18,13 +19,22 @@ Just remember that you might again get into specificity problems if you mix diff
 #### Can I use it together with inline styles?
 **Yes**. You can always use inline styles together with Fela. It can be useful to overwrite single values for specific cases. Also state-depending styles might better fit as inline styles e.g. a progress bar which updates the inner width according to the progress. This might else lead to >100 rendered Fela classes.
 
+#### Can I use it without React?
+**Yes**. Fela is framework-agnostic by design, but works especially well with React and React-like view libraries. Checkout the official React bindings [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) as well as [Usage with React](guides/UsageWithReact.md).<br>
+It also works great with [Inferno](guides/UsageWithInferno.md), [Preact](guides/UsageWithPreact.md), [Vue](https://github.com/dustin-h/vue-fela), [Hyper](https://github.com/rofrischmann/fela/tree/master/packages/hyper-fela) and [Cycle](guides/UsageWithCycle.md).
+
+#### Can I use it with React Native?
+**Yes**. Next to React, Fela also supports React Native. It can also be used with [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) and shares a similar API with [fela](https://github.com/rofrischmann/fela/tree/master/packages/fela) itself. You just have to replace your `createRenderer`-method with the one exported by [fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native). Check out [Usage with React Native](guides/UsageWithReactNative.md) for more information.
+
+#### Can I use template strings?
+**Yes**. While you traditionally write your Fela styles in JavaScript object notation, there are several tools that allow styles written in pure CSS using [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings). You may try [react-styling](https://github.com/halt-hammerzeit/react-styling) for runtime transformation or even use [babel-plugin-css-in-js](https://github.com/jakecoxon/babel-plugin-css-to-js) which was in particular written for Fela rules.
+
+#### Can I use objects instead of functions?
+**No**. Except for static styles rendered using  [`renderer.renderStatic`](api/fela/Renderer.md#renderstaticstyle-selector), all style rules have to be pure functions of props. Read [Style as a Function of State](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch) for more information.
+
 #### Is Fela production-ready?
 **Yes**. As of version 1.0.0 Fela is production-ready and fully covered with tests. It is already used in many applications in production.
 
 #### Where does the name "Fela" come from?
 Fela actually is the name of a character in one of the author's favorite fantasy novel called ["Kingslayer Chronicles"](https://en.wikipedia.org/wiki/The_Kingkiller_Chronicle) by [Patrick Rothfuss](http://www.patrickrothfuss.com/content/index.asp). [Fela](http://kingkiller.wikia.com/wiki/Fela) is a young, attractive and smart woman practicing sculpturing among others at the university of Imre. She's one of [Kvothe](http://kingkiller.wikia.com/wiki/Kvothe)'s (the main protagonist), best friends there.<br>
 There is no deep connection to JavaScript styling in general, except the fact that she does sculpturing which seems to be kind of similar to what component styling is lately.
-
-## Convenience
-#### Can I write my styles as CSS?
-**Yes**. While you traditionally write your Fela styles in JavaScript object notation, there are several tools that allow styles written in pure CSS using [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings). You may try [react-styling](https://github.com/halt-hammerzeit/react-styling) for runtime transformation or even use [babel-plugin-css-in-js](https://github.com/jakecoxon/babel-plugin-css-to-js) which was in particular written for Fela rules.
