@@ -1,6 +1,6 @@
 {
   "name": "fela-dom",
-  "version": "5.0.7",
+  "version": "5.0.8",
   "description": "Fela package for working with the DOM",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -24,10 +24,10 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-tools": "^5.0.6",
-    "fela-utils": "^6.0.0"
+    "fela-tools": "^5.0.7",
+    "fela-utils": "^6.0.1"
   },
   "devDependencies": {
-    "fela": "^5.1.1"
+    "fela": "^5.2.0"
   }
 }

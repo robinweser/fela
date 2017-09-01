@@ -1,6 +1,6 @@
 {
     "name": "fela-layout-debugger",
-    "version": "6.0.0",
+    "version": "6.0.1",
     "description": "Fela enhancer to debug app layouts",
     "main": "lib/index.js",
     "module": "es/index.js",
@@ -25,9 +25,9 @@
         "styles-debugger": "0.0.5"
     },
     "peerDependencies": {
-        "fela": "^5.1.1"
+        "fela": "^5.2.0"
     },
     "devDependencies": {
-        "fela": "^5.1.1"
+        "fela": "^5.2.0"
     }
 }

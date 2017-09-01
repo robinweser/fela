@@ -1,6 +1,6 @@
 {
   "name": "fela",
-  "version": "5.1.1",
+  "version": "5.2.0",
   "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -25,11 +25,11 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "devDependencies": {
-    "fela-monolithic": "^5.0.6"
+    "fela-monolithic": "^5.0.7"
   },
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
-    "fela-tools": "^5.0.6",
-    "fela-utils": "^6.0.0"
+    "fela-tools": "^5.0.7",
+    "fela-utils": "^6.0.1"
   }
 }
