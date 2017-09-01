@@ -1,9 +1,10 @@
 # fela-layout-debugger
 
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-layout-debugger.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.62kb-brightgreen.svg">
+<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-layout-debugger.svg">
 
-Adds either colored outlines or a almost transparent background color to debug the application layout.<br>
+Uses [styles-debugger](https://github.com/kitze/styles-debugger) to add outlines and labels to every rule component.
+This helps to debug the application layout.<br>
 Same rules will always have the same color.
 
 ## Installation
@@ -25,33 +26,23 @@ const renderer = createRenderer({
 
 ### Configuration
 ##### Options
-| Option | Value | Default | Description |
-| --- | --- | --- | --- |
-| `mode` | `outline`, `backgroundColor` | `outline` | sets the debug mode |
-| `thickness` | *(number)* | `1` | outline thickness for `outline` mode |
-
+It takes an options object with the shape of the official [styles-debugger configuration options](https://github.com/kitze/styles-debugger#configuration-options).
 ##### Example
 ```javascript
 import { createRenderer } from 'fela'
 import layoutDebugger from 'fela-layout-debugger'
 
 const layoutDebuggerEnhancer = layoutDebugger({
-  mode: 'outline',
-  thickness: 4
+	pseudoElement: 'before',
+	color: 'red',
+	borderSize: 3,
+	position: 3
 })
 
 const renderer = createRenderer({
   enhancers: [ layoutDebuggerEnhancer ]
 })
 ```
-
-## Example
-#### background-mode
-![Preview Background](preview-background.png)
-
-#### outline-mode
-![Preview Outline](preview-outline.png)
-
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

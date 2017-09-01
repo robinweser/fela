@@ -15,6 +15,7 @@ import {
   isNestedSelector,
   isUndefinedValue,
   isObject,
+  isSafeClassName,
   normalizeNestedProperty,
   applyMediaRulesInOrder,
   processStyleWithPlugins,
@@ -53,6 +54,8 @@ export default function createRenderer(
     // apply media rules in an explicit order to ensure
     // correct media query execution order
     mediaRules: applyMediaRulesInOrder(config.mediaQueryOrder || []),
+    filterClassName: config.filterClassName || isSafeClassName,
+
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
     // use a flat cache object with pure string references
@@ -60,6 +63,10 @@ export default function createRenderer(
     cache: {},
     styleNodes: {},
     precompiled: {},
+
+    getNextRuleIdentifier() {
+      return ++renderer.uniqueRuleIdentifier
+    },
 
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
@@ -113,19 +120,31 @@ export default function createRenderer(
       properties: FontProperties = {}
     ): string {
       const fontReference = family + JSON.stringify(properties)
+      const fontLocals =
+        typeof properties.localAlias === 'string'
+          ? [properties.localAlias]
+          : properties.localAlias && properties.localAlias.constructor === Array
+            ? properties.localAlias.slice()
+            : []
 
       if (!renderer.cache.hasOwnProperty(fontReference)) {
         const fontFamily = toCSSString(family)
 
+        // remove the localAlias since we extraced the needed info
+        properties.localAlias && delete properties.localAlias
+
         // TODO: proper font family generation with error proofing
         const fontFace = {
           ...properties,
-          src: files
+          src: `${fontLocals.reduce(
+            (agg, local) => (agg += ` local(${checkFontUrl(local)}), `),
+            ''
+          )}${files
             .map(
               src =>
                 `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`
             )
-            .join(','),
+            .join(',')}`,
           fontFamily
         }
 
@@ -239,7 +258,10 @@ export default function createRenderer(
 
             const className =
               renderer.selectorPrefix +
-              generateClassName(++renderer.uniqueRuleIdentifier)
+              generateClassName(
+                renderer.getNextRuleIdentifier,
+                renderer.filterClassName
+              )
 
             renderer.cache[declarationReference] = className
 
@@ -265,7 +287,10 @@ export default function createRenderer(
             })
           }
 
-          classNames += ` ${renderer.cache[declarationReference]}`
+          // only append if we got a class cached
+          if (renderer.cache[declarationReference]) {
+            classNames += ` ${renderer.cache[declarationReference]}`
+          }
         }
       }
 

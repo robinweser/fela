@@ -5,6 +5,7 @@ export type DOMRenderer = {
   plugins: Array<Function>,
   mediaQueryOrder: Array<string>,
   selectorPrefix: string,
+  filterClassName: Function,
   listeners: Array<Function>,
   fontFaces: string,
   keyframes: string,
@@ -31,6 +32,7 @@ export type DOMRendererConfig = {
   enhancers?: Array<Function>,
   mediaQueryOrder?: Array<string>,
   selectorPrefix?: string,
+  filterClassName: Function
 };
 
 export type Change = {};

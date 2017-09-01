@@ -11,8 +11,11 @@ Array [
         color: red
     }
 </style>",
-  <ConnectedFelaComponent>
+  <ConnectedFelaComponent
+    color="red"
+>
     <Component
+        color="red"
         styles={
             Object {
                 "rule1": "a",

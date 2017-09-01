@@ -1,10 +1,16 @@
 /* @flow */
-import { extractPassThroughProps, resolvePassThrough } from 'fela-utils'
+import {
+  extractPassThroughProps,
+  extractUsedProps,
+  resolvePassThrough,
+  resolveUsedProps
+} from 'fela-utils'
 import combineRules from '../combineRules'
 
 export default function createComponentFactory(
   createElement: Function,
-  contextTypes?: Object
+  contextTypes?: Object,
+  withProxy: boolean = false
 ): Function {
   return function createComponent(
     rule: Function,
@@ -12,9 +18,11 @@ export default function createComponentFactory(
     passThroughProps: Array<string> | Function = []
   ): Function {
     const displayName = rule.name ? rule.name : 'FelaComponent'
+    const usedProps = withProxy ? extractUsedProps(rule) : {}
+    const defaultProps = type.defaultProps || {}
 
     const FelaComponent = (
-      { children, _felaRule, passThrough = [], ...ruleProps },
+      { children, _felaRule, passThrough = [], ...otherProps },
       { renderer, theme }
     ) => {
       if (!renderer) {
@@ -24,20 +32,23 @@ export default function createComponentFactory(
       }
 
       const combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule
+      const ruleProps = {
+        ...defaultProps,
+        ...otherProps
+      }
 
       // improve developer experience with monolithic renderer
       if (renderer.prettySelectors) {
-        const componentName = typeof type === 'string'
-          ? type
-          : type.displayName || type.name || ''
+        const componentName =
+          typeof type === 'string' ? type : type.displayName || type.name || ''
 
         combinedRule.selectorPrefix = `${displayName}_${componentName}__`
       }
-
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [
         ...resolvePassThrough(passThroughProps, ruleProps),
-        ...resolvePassThrough(passThrough, ruleProps)
+        ...resolvePassThrough(passThrough, ruleProps),
+        ...(withProxy ? resolveUsedProps(usedProps, ruleProps) : [])
       ]
 
       // if the component renders into another Fela component
@@ -71,6 +82,7 @@ export default function createComponentFactory(
         if (ruleProps.style) {
           componentProps.style = ruleProps.style
         }
+
         const cls = ruleProps.className ? `${ruleProps.className} ` : ''
         componentProps.className =
           cls + renderer.renderRule(combinedRule, ruleProps)

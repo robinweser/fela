@@ -1,6 +1,6 @@
 # Server Rendering
 As [already mentioned](../introduction/Benefits.md), Fela supports server-side rendering out of the box.
-All you need to to is call `renderToMarkup` once you are finished rendering styles and you will get the final HTML markup for the `<style>` elements.<br>
+All you need to do is call `renderToMarkup` once you are finished rendering styles and you will get the final HTML markup for the `<style>` elements.<br>
 That's it. No magic. No extra configuration.
 
 Usually you will render all styles on the server and inject the rendered CSS markup into the HTML markup which gets sent to the client.

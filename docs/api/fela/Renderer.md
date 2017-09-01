@@ -9,7 +9,7 @@ To create a new renderer instance, simply use the `createRenderer` method to act
 * [`renderRule(rule, [props])`](#renderrulerule-props)
 * [`renderKeyframe(keyframe, [props])`](#renderkeyframekeyframe-props)
 * [`renderFont(family, files, [properties])`](#renderfontfamily-files-properties)
-* [`renderStatic(style, [selector])`](#renderstaticstyle-reference)
+* [`renderStatic(style, [selector])`](#renderstaticstyle-selector)
 * [`renderToString()`](#rendertostring) *(Deprecated)*
 * [`subscribe(listener)`](#subscribelistener)
 * [`clear()`](#clear)

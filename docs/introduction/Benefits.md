@@ -18,6 +18,7 @@ Fela uses atomic class design to enable minimal markup size. That means, every s
 #### 6. High Performance
 Atomic class design also enables super fast rendering. Rendered declarations get cached and can therefore be reused immediately. Additionally, there are several performance benefits by rendering styles with JavaScript. First of all, CSS is only generated and attached as it is needed. Also, it uses single class selectors which are among the fastest CSS selectors available.<br>
 Check the [css-in-js-perf-tests](https://github.com/hellofresh/css-in-js-perf-tests#results) repository for benchmark results.
+Also check out [css-in-js-app](https://tuchk4.github.io/css-in-js-app/#/react-fela) for DOM rendering benchmark and comparison.
 
 #### 7. No Global State
 Contrary to many other JavaScript styling solutions, Fela does not use any global state. All the magic happens only inside the renderer instance.

@@ -11,6 +11,7 @@ export default function connectFactory(
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
+        static defaultProps = component.defaultProps || {}
 
         render() {
           const { renderer, theme } = this.context

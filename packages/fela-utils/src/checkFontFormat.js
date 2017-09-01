@@ -29,7 +29,8 @@ const base64Formats: { [string]: string } = {
 export default function checkFontFormat(src: string): string {
   if (isBase64(src)) {
     let mime = ''
-    for (let i = 5; ; i++) { // 'data:'.length === 5
+    for (let i = 5; ; i++) {
+      // 'data:'.length === 5
       const c = src.charAt(i)
 
       if (c === ';' || c === ',') {
@@ -46,7 +47,9 @@ export default function checkFontFormat(src: string): string {
 
     warning(
       true,
-      `A invalid base64 font was used. Please use one of the following mime type: ${Object.keys(base64Formats).join(', ')}.`
+      `A invalid base64 font was used. Please use one of the following mime type: ${Object.keys(
+        base64Formats
+      ).join(', ')}.`
     )
   } else {
     let extension = ''
@@ -68,7 +71,9 @@ export default function checkFontFormat(src: string): string {
 
     warning(
       true,
-      `A invalid font-format was used in "${src}". Use one of these: ${Object.keys(formats).join(', ')}.`
+      `A invalid font-format was used in "${src}". Use one of these: ${Object.keys(
+        formats
+      ).join(', ')}.`
     )
   }
   return ''

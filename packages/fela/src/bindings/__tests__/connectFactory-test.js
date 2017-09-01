@@ -16,8 +16,8 @@ describe('Connect Factory for bindings', () => {
       rule1: () => ({
         padding: 1
       }),
-      rule2: () => ({
-        color: 'red'
+      rule2: props => ({
+        color: props.color
       })
     }
 
@@ -27,6 +27,10 @@ describe('Connect Factory for bindings', () => {
         <span className={styles.rule2} />
       </div>
     ))
+
+    MyComponent.defaultProps = {
+      color: 'red'
+    }
 
     const renderer = createRenderer()
     const wrapper = mount(<MyComponent />, {

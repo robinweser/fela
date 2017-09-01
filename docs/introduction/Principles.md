@@ -12,7 +12,7 @@ Modern UI libraries such as [React](https://facebook.github.io/react/) provide n
 ```
 
 This simple concept allows us to compose multiple components into a complex and dynamic UI while always keeping what is displayed in sync with our application state.<br>
-Yet a component does not only describe **which** information is displayed, but also **how** it is displayed. In general we use CSS to style our components by creating static selectors that again define a fixed set of style declarations. This approach totally works fine as long as you have static a UI which only updates its displayed data, but does not suit dynamic a UI which alters its appearance depending on data it receives.<br>
+Yet a component does not only describe **which** information is displayed, but also **how** it is displayed. In general we use CSS to style our components by creating static selectors that again define a fixed set of style declarations. This approach totally works fine as long as you have a static UI which only updates its displayed data, but does not suit a dynamic UI which alters its appearance depending on data it receives.<br>
 **If the view is a function of state, your CSS should be too**, as it is part of your view.
 
 ```javascript

@@ -8,26 +8,26 @@ export default function createPlugin(config = defaultConfig) {
   return ({ types: t, traverse }, file) => {
     function extractStaticStyle(props, path) {
       const staticStyle = arrayReduce(
-				props,
-				(style, node) => {
-  if (
-						!node.shorthand &&
-						(t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
-					) {
-    style.push(node)
-  } else if (t.isObjectExpression(node.value)) {
-    style.push(
-							t.objectProperty(
-								node.key,
-								t.objectExpression(extractStaticStyle(node.value.properties, path))
-							)
-						)
-  }
+        props,
+        (style, node) => {
+          if (
+            !node.shorthand &&
+            (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
+          ) {
+            style.push(node)
+          } else if (t.isObjectExpression(node.value)) {
+            style.push(
+              t.objectProperty(
+                node.key,
+                t.objectExpression(extractStaticStyle(node.value.properties, path))
+              )
+            )
+          }
 
-  return style
-},
-				[]
-			)
+          return style
+        },
+        []
+      )
 
       arrayEach(staticStyle, prop => {
         if (t.isObjectExpression(prop.value)) {
@@ -54,8 +54,8 @@ export default function createPlugin(config = defaultConfig) {
           if (t.isVariableDeclarator(binded) || t.isFunctionDeclaration(binded)) {
             ruleDeclaration = binded
             functionExpression = t.isVariableDeclarator(binded)
-							? ruleDeclaration.node.init
-							: ruleDeclaration.node
+              ? ruleDeclaration.node.init
+              : ruleDeclaration.node
           }
         }
       } else if (t.isFunctionDeclaration(rule)) {
@@ -114,89 +114,89 @@ export default function createPlugin(config = defaultConfig) {
                     let renderer
 
                     if (functionExpression.params && functionExpression.params.length === 0) {
-                  functionExpression.params.push('_')
-                }
+                      functionExpression.params.push('_')
+                    }
 
                     if (functionExpression.params && functionExpression.params.length === 2) {
-                  if (!t.isIdentifier(functionExpression.params[1])) {
-                    return
-                  }
+                      if (!t.isIdentifier(functionExpression.params[1])) {
+                        return
+                      }
 
-                  if (functionExpression.params[1].name !== 'renderer') {
-                    renderer = functionExpression.params[1].name
-                  }
-                }
+                      if (functionExpression.params[1].name !== 'renderer') {
+                        renderer = functionExpression.params[1].name
+                      }
+                    }
 
                     if (functionExpression.params && functionExpression.params.length === 1) {
-                  functionExpression.params.push(t.identifier('renderer'))
-                  renderer = 'renderer'
-                }
+                      functionExpression.params.push(t.identifier('renderer'))
+                      renderer = 'renderer'
+                    }
 
                     childPath.node.properties.unshift(
-											t.objectProperty(
-												t.identifier('_className'),
-												t.memberExpression(
-													t.memberExpression(t.identifier(renderer), t.identifier('cache')),
-													t.identifier(id)
-												)
-											)
-										)
+                      t.objectProperty(
+                        t.identifier('_className'),
+                        t.memberExpression(
+                          t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                          t.identifier(id)
+                        )
+                      )
+                    )
 
                     let isRoot
 
                     traverse(
-											functionExpression,
-                  {
-                    BlockStatement(bPath) {
-                      if (!isRoot) {
-                      isRoot = true
+                      functionExpression,
+                      {
+                        BlockStatement(bPath) {
+                          if (!isRoot) {
+                            isRoot = true
 
-                      bPath.node.body.unshift(
-															t.ifStatement(
-																t.unaryExpression(
-																	'!',
-																	t.memberExpression(
-																		t.memberExpression(
-																			t.identifier(renderer),
-																			t.identifier('cache')
-																		),
-																		t.identifier(id)
-																	)
-																),
-																t.blockStatement([
-  t.expressionStatement(
-																		t.assignmentExpression(
-																			'=',
-																			t.memberExpression(
-																				t.memberExpression(
-																					t.identifier(renderer),
-																					t.identifier('cache')
-																				),
-																				t.identifier(id)
-																			),
-																			t.callExpression(
-																				t.memberExpression(
-																					t.identifier(renderer),
-																					t.identifier('renderRule')
-																				),
-  [
-    t.ArrowFunctionExpression(
-																						[],
-																						t.objectExpression(staticStyle)
-																					)
-  ]
-																			)
-																		)
-																	)
-])
-															)
-														)
-                    }
-                    }
-                  },
-											childPath.scope,
-											childPath
-										)
+                            bPath.node.body.unshift(
+                              t.ifStatement(
+                                t.unaryExpression(
+                                  '!',
+                                  t.memberExpression(
+                                    t.memberExpression(
+                                      t.identifier(renderer),
+                                      t.identifier('cache')
+                                    ),
+                                    t.identifier(id)
+                                  )
+                                ),
+                                t.blockStatement([
+                                  t.expressionStatement(
+                                    t.assignmentExpression(
+                                      '=',
+                                      t.memberExpression(
+                                        t.memberExpression(
+                                          t.identifier(renderer),
+                                          t.identifier('cache')
+                                        ),
+                                        t.identifier(id)
+                                      ),
+                                      t.callExpression(
+                                        t.memberExpression(
+                                          t.identifier(renderer),
+                                          t.identifier('renderRule')
+                                        ),
+                                        [
+                                          t.ArrowFunctionExpression(
+                                            [],
+                                            t.objectExpression(staticStyle)
+                                          )
+                                        ]
+                                      )
+                                    )
+                                  )
+                                ])
+                              )
+                            )
+                          }
+                        }
+                      },
+                      childPath.scope,
+                      childPath
+                    )
                   }
                 }
               }

@@ -12,7 +12,8 @@ We might introduce more configuration options with future releases, so be sure t
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
-|`selectorPrefix`| `string` | `''`| Prepend a static prefix to every every generated class and keyframe |
+|`selectorPrefix`| `string` | `''`| Prepend a static prefix to every generated class and keyframe |
+|`filterClassName`| `function` |  | Filter-function to filter used class names |
 
 ## Example
 ```javascript
@@ -24,7 +25,7 @@ import fallbackValue from 'fela-plugin-fallback-value'
 
 import beautifier from 'fela-beautifier'
 
-import { renderToString } from 'fela-dom/server'
+import { renderToString } from 'fela-dom'
 
 const config = {
   plugins: [ unit('em'), prefixer(), fallbackValue() ],
@@ -34,7 +35,8 @@ const config = {
     '(min-height: 300px)',
     '(min-height: 500px)'
   ],
-  selectorPrefix: 'fela_'
+  selectorPrefix: 'fela_',
+  filterClassName: className => className !== 'ad'
 }
 
 const renderer = createRenderer(config)
