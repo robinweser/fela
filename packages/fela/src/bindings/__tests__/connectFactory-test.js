@@ -16,8 +16,8 @@ describe('Connect Factory for bindings', () => {
       rule1: () => ({
         padding: 1
       }),
-      rule2: () => ({
-        color: 'red'
+      rule2: props => ({
+        color: props.color
       })
     }
 
@@ -28,6 +28,10 @@ describe('Connect Factory for bindings', () => {
       </div>
     ))
 
+    MyComponent.defaultProps = {
+      color: 'red'
+    }
+
     const renderer = createRenderer()
     const wrapper = mount(<MyComponent />, {
       context: {
@@ -35,9 +39,6 @@ describe('Connect Factory for bindings', () => {
       }
     })
 
-    expect([
-      beautify(`<style>${renderer.renderToString()}</style>`),
-      toJson(wrapper)
-    ]).toMatchSnapshot()
+    expect([beautify(`<style>${renderer.renderToString()}</style>`), toJson(wrapper)]).toMatchSnapshot()
   })
 })
