@@ -1,7 +1,6 @@
 # fela-plugin-important
 
-
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-important.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.52kb-brightgreen.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-important.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-important.svg">
 
 Adds `!important` to every declaration value. This helps to force specificity over third-party libraries.
 

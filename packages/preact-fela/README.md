@@ -1,8 +1,8 @@
 # Preact Fela
 
-Official [Preact](https://github.com/Preactjs/Preact) bindings for Fela.
+<img alt="npm version" src="https://badge.fury.io/js/preact-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/preact-fela.svg">
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/preact-fela.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.31kb-brightgreen.svg">
+Official [Preact](https://github.com/Preactjs/Preact) bindings for Fela.
 
 This package only includes Preact bindings for [Fela](http://github.com/rofrischmann/fela).<br>
 It assumes you already know about Fela and how to use it.
