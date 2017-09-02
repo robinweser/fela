@@ -1,11 +1,17 @@
 import { generateMonolithicClassName, arrayReduce, arrayEach } from 'fela-utils'
 
 const defaultConfig = {
-  precompile: true
+  precompile: false
 }
 
-export default function createPlugin(config = defaultConfig) {
-  return ({ types: t, traverse }, file) => {
+export default function createPlugin(config = {}) {
+  const configWithDefaults = {
+    ...defaultConfig,
+    ...config
+  }
+
+  return ({ types: t, traverse }) => {
+    // helper method to extract static style properties from AST objects
     function extractStaticStyle(props, path) {
       const staticStyle = arrayReduce(
         props,
@@ -40,6 +46,19 @@ export default function createPlugin(config = defaultConfig) {
       })
 
       return staticStyle
+    }
+
+    // helper to transform AST ObjectExpressions into JS objects
+    function createStaticJSObject(props, path) {
+      return props.reduce((obj, node) => {
+        if (!node.shorthand && (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))) {
+          obj[node.key.name] = node.value.value
+        } else if (t.isObjectExpression(node.value)) {
+          obj[node.key.value] = createStaticJSObject(node.value.properties, path)
+        }
+
+        return obj
+      }, {})
     }
 
     function getRuleScope(path) {
@@ -95,6 +114,27 @@ export default function createPlugin(config = defaultConfig) {
             }
 
             let didTraverse
+            let renderer
+
+            // pass renderer as second rule parameter if not already happening
+            if (functionExpression.params && functionExpression.params.length === 0) {
+              functionExpression.params.push('_')
+            }
+
+            if (functionExpression.params && functionExpression.params.length === 2) {
+              if (!t.isIdentifier(functionExpression.params[1])) {
+                return
+              }
+
+              if (functionExpression.params[1].name !== 'renderer') {
+                renderer = functionExpression.params[1].name
+              }
+            }
+
+            if (functionExpression.params && functionExpression.params.length === 1) {
+              functionExpression.params.push(t.identifier('renderer'))
+              renderer = 'renderer'
+            }
 
             const traverser = {
               ObjectExpression(childPath) {
@@ -106,32 +146,55 @@ export default function createPlugin(config = defaultConfig) {
                 if (childPath.node.root) {
                   const props = childPath.node.properties
 
-                  const staticStyle = extractStaticStyle(props, childPath)
+                  let id,
+                    blockBody
+                  let staticStyle = extractStaticStyle(props, childPath)
 
+                  // static style precompilation
+                  if (configWithDefaults.precompile && configWithDefaults.renderer) {
+                    const jsObject = createStaticJSObject(staticStyle)
+
+                    const className = configWithDefaults.renderer.renderRule(() => jsObject)
+
+                    if (className) {
+                      id = className.replace(/ /g, '')
+                      blockBody = t.blockStatement([
+                        t.expressionStatement(
+                          t.assignmentExpression(
+                            '=',
+                            t.memberExpression(
+                              t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                              t.identifier(id)
+                            ),
+                            t.stringLiteral(className)
+                          )
+                        )
+                      ])
+                    }
+                    staticStyle = {}
+                  }
+
+                  // simple static style prerendering
                   if (Object.keys(staticStyle).length > 0) {
-                    const id = generateMonolithicClassName(staticStyle)
+                    id = generateMonolithicClassName(staticStyle)
+                    blockBody = t.blockStatement([
+                      t.expressionStatement(
+                        t.assignmentExpression(
+                          '=',
+                          t.memberExpression(
+                            t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                            t.identifier(id)
+                          ),
+                          t.callExpression(
+                            t.memberExpression(t.identifier(renderer), t.identifier('renderRule')),
+                            [t.ArrowFunctionExpression([], t.objectExpression(staticStyle))]
+                          )
+                        )
+                      )
+                    ])
+                  }
 
-                    let renderer
-
-                    if (functionExpression.params && functionExpression.params.length === 0) {
-                      functionExpression.params.push('_')
-                    }
-
-                    if (functionExpression.params && functionExpression.params.length === 2) {
-                      if (!t.isIdentifier(functionExpression.params[1])) {
-                        return
-                      }
-
-                      if (functionExpression.params[1].name !== 'renderer') {
-                        renderer = functionExpression.params[1].name
-                      }
-                    }
-
-                    if (functionExpression.params && functionExpression.params.length === 1) {
-                      functionExpression.params.push(t.identifier('renderer'))
-                      renderer = 'renderer'
-                    }
-
+                  if (id && blockBody) {
                     childPath.node.properties.unshift(
                       t.objectProperty(
                         t.identifier('_className'),
@@ -163,32 +226,7 @@ export default function createPlugin(config = defaultConfig) {
                                     t.identifier(id)
                                   )
                                 ),
-                                t.blockStatement([
-                                  t.expressionStatement(
-                                    t.assignmentExpression(
-                                      '=',
-                                      t.memberExpression(
-                                        t.memberExpression(
-                                          t.identifier(renderer),
-                                          t.identifier('cache')
-                                        ),
-                                        t.identifier(id)
-                                      ),
-                                      t.callExpression(
-                                        t.memberExpression(
-                                          t.identifier(renderer),
-                                          t.identifier('renderRule')
-                                        ),
-                                        [
-                                          t.ArrowFunctionExpression(
-                                            [],
-                                            t.objectExpression(staticStyle)
-                                          )
-                                        ]
-                                      )
-                                    )
-                                  )
-                                ])
+                                blockBody
                               )
                             )
                           }

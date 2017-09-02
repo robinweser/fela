@@ -19,6 +19,7 @@ You may alternatively use `npm i --save react-fela`.
 * [`<Provider renderer>`](docs/Provider.md)
 * [`connect(mapStylesToProps)`](docs/connect.md)
 * [`createComponent(rule, [type], [passThroughProps])`](docs/createComponent.md)
+* [`createComponentWithProxy(rule, [type], [passThroughProps])`](docs/createComponentWithProxy.md)
 * [`<ThemeProvider theme [overwrite]>`](docs/ThemeProvider.md)
 
 ## Usage

@@ -1,4 +1,13 @@
 import createPlugin from './createPlugin'
 
-export default createPlugin()
+import { createRenderer } from 'fela'
+import webPreset from 'fela-preset-web'
+
+export default createPlugin({
+  renderer: createRenderer({
+    plugins: [...webPreset]
+  }),
+  precompile: true
+})
+
 export { createPlugin }
