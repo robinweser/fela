@@ -3,6 +3,7 @@ import arrayEach from './arrayEach'
 import arrayReduce from './arrayReduce'
 import checkFontFormat from './checkFontFormat'
 import checkFontUrl from './checkFontUrl'
+import clusterCache from './clusterCache'
 import createStyleNode from './createStyleNode'
 import createStyleTagMarkup from './createStyleTagMarkup'
 import cssifyFontFace from './cssifyFontFace'
@@ -19,6 +20,7 @@ import generateCSSSelector from './generateCSSSelector'
 import generateMonolithicClassName from './generateMonolithicClassName'
 import generateStaticReference from './generateStaticReference'
 import getStyleNode from './getStyleNode'
+import initializeStyleNodes from './initializeStyleNodes'
 import isBase64 from './isBase64'
 import isMediaQuery from './isMediaQuery'
 import isNestedSelector from './isNestedSelector'
@@ -33,13 +35,7 @@ import processStyleWithPlugins from './processStyleWithPlugins'
 import reflushStyleNodes from './reflushStyleNodes'
 import resolvePassThrough from './resolvePassThrough'
 import resolveUsedProps from './resolveUsedProps'
-import {
-  RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE,
-  CLEAR_TYPE
-} from './styleTypes'
+import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE, CLEAR_TYPE } from './styleTypes'
 import toCSSString from './toCSSString'
 import warning from './warning'
 
@@ -49,6 +45,7 @@ export {
   arrayReduce,
   checkFontFormat,
   checkFontUrl,
+  clusterCache,
   createStyleNode,
   createStyleTagMarkup,
   cssifyFontFace,
@@ -65,6 +62,7 @@ export {
   generateMonolithicClassName,
   generateStaticReference,
   getStyleNode,
+  initializeStyleNodes,
   isBase64,
   isMediaQuery,
   isNestedSelector,

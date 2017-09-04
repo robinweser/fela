@@ -44,17 +44,9 @@ function useMonolithicRenderer(
               media
             )
           } else if (isMediaQuery(property)) {
-            const combinedMediaQuery = generateCombinedMediaQuery(
-              media,
-              property.slice(6).trim()
-            )
+            const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
 
-            renderer._renderStyleToCache(
-              className,
-              value,
-              pseudo,
-              combinedMediaQuery
-            )
+            renderer._renderStyleToCache(className, value, pseudo, combinedMediaQuery)
           } else {
             // TODO: warning
           }
@@ -70,32 +62,22 @@ function useMonolithicRenderer(
     if (Object.keys(ruleSet).length > 0) {
       const css = cssifyObject(ruleSet)
       const selector = generateCSSSelector(className, pseudo)
-      const cssRule = generateCSSRule(selector, css)
 
-      if (media.length > 0) {
-        if (!renderer.mediaRules.hasOwnProperty(media)) {
-          renderer.mediaRules[media] = ''
-        }
-
-        renderer.mediaRules[media] += cssRule
-      } else {
-        renderer.rules += cssRule
-      }
-
-      renderer._emitChange({
+      const change = {
+        type: RULE_TYPE,
+        className,
         selector,
         declaration: css,
-        media,
+        media
+      }
 
-        type: RULE_TYPE
-      })
+      const declarationReference = selector + media
+      renderer.cache[declarationReference] = change
+      renderer._emitChange(change)
     }
   }
 
-  renderer._renderStyleToClassNames = (
-    style: Object,
-    rule: Function
-  ): string => {
+  renderer._renderStyleToClassNames = (style: Object, rule: Function): string => {
     if (Object.keys(style).length < 1) {
       return ''
     }
@@ -112,7 +94,7 @@ function useMonolithicRenderer(
 
     if (!renderer.cache.hasOwnProperty(className)) {
       renderer._renderStyleToCache(className, style)
-      renderer.cache[className] = true
+      renderer.cache[className] = {}
     }
 
     return className

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import { html as beautify } from 'js-beautify'
+import { renderToString } from 'fela-tools'
 import createRenderer from '../../createRenderer'
 import connectFactory from '../connectFactory'
 
@@ -40,7 +41,7 @@ describe('Connect Factory for bindings', () => {
     })
 
     expect([
-      beautify(`<style>${renderer.renderToString()}</style>`),
+      beautify(`<style>${renderToString(renderer)}</style>`),
       toJson(wrapper)
     ]).toMatchSnapshot()
   })

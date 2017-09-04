@@ -1,12 +1,10 @@
 /* @flow */
-import {
-  reflushStyleNodes,
-  getStyleNode,
-  RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE
-} from 'fela-utils'
+import clusterCache from './clusterCache'
+import getStyleNode from './getStyleNode'
+
+import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE } from './styleTypes'
+
+import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
 const sheetMap = {
   fontFaces: FONT_TYPE,
@@ -30,18 +28,18 @@ function initNode(
   }
 }
 
-export default function initStyleNodes(renderer: Object): void {
-  renderer.styleNodes = reflushStyleNodes()
+export default function initializeStyleNodes(renderer: DOMRenderer): void {
+  const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
   const baseNode = renderer.styleNodes[RULE_TYPE]
 
   for (const style in sheetMap) {
-    if (renderer[style].length > 0) {
-      initNode(renderer.styleNodes, baseNode, renderer[style], sheetMap[style])
+    if (cacheCluster[style].length > 0) {
+      initNode(renderer.styleNodes, baseNode, cacheCluster[style], sheetMap[style])
     }
   }
 
-  for (const media in renderer.mediaRules) {
-    const mediaCSS = renderer.mediaRules[media]
+  for (const media in cacheCluster.mediaRules) {
+    const mediaCSS = cacheCluster.mediaRules[media]
 
     if (mediaCSS.length > 0) {
       initNode(renderer.styleNodes, baseNode, mediaCSS, RULE_TYPE, media)
