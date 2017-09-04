@@ -4,6 +4,19 @@ const defaultConfig = {
   precompile: false
 }
 
+function diffRenderer(renderer) {
+  const { rules, mediaRules, fontFaces, keyframes, statics, cache } = renderer
+
+  return {
+    rules,
+    mediaRules,
+    fontFaces,
+    keyframes,
+    statics,
+    cache
+  }
+}
+
 export default function createPlugin(config = {}) {
   const configWithDefaults = {
     ...defaultConfig,
@@ -158,7 +171,7 @@ export default function createPlugin(config = {}) {
 
                     if (className) {
                       id = className.replace(/ /g, '')
-                      blockBody = t.blockStatement([
+                      const blockBodyItems = [
                         t.expressionStatement(
                           t.assignmentExpression(
                             '=',
@@ -169,8 +182,115 @@ export default function createPlugin(config = {}) {
                             t.stringLiteral(className)
                           )
                         )
-                      ])
+                      ]
+
+                      const diffedRenderer = diffRenderer(configWithDefaults.renderer)
+
+                      const checkedCaches = ['fontFaces', 'keyframes', 'statics', 'rules']
+
+                      // rehydrate all string caches
+                      checkedCaches.forEach(cache => {
+                        if (diffedRenderer[cache].length > 0) {
+                          blockBodyItems.push(
+                            t.ifStatement(
+                              t.binaryExpression(
+                                '===',
+                                t.callExpression(
+                                  t.memberExpression(
+                                    t.memberExpression(
+                                      t.identifier(renderer),
+                                      t.identifier('rules')
+                                    ),
+                                    t.identifier('indexOf')
+                                  ),
+                                  [t.stringLiteral(diffedRenderer[cache])]
+                                ),
+                                t.unaryExpression('-', t.numericLiteral(1))
+                              ),
+                              t.expressionStatement(
+                                t.assignmentExpression(
+                                  '+=',
+                                  t.memberExpression(t.identifier(renderer), t.identifier('rules')),
+                                  t.stringLiteral(diffedRenderer[cache])
+                                )
+                              )
+                            )
+                          )
+                        }
+                      })
+
+                      // rehydrate media query string caches
+                      for (const cache in diffedRenderer.mediaRules) {
+                        if (diffedRenderer.mediaRules[cache].length > 0) {
+                          blockBodyItems.push(
+                            t.ifStatement(
+                              t.binaryExpression(
+                                '===',
+                                t.callExpression(
+                                  t.memberExpression(
+                                    t.memberExpression(
+                                      t.memberExpression(
+                                        t.identifier(renderer),
+                                        t.identifier('mediaRules')
+                                      ),
+                                      t.stringLiteral(cache),
+                                      true
+                                    ),
+                                    t.identifier('indexOf')
+                                  ),
+                                  [t.stringLiteral(diffedRenderer.mediaRules[cache])]
+                                ),
+                                t.unaryExpression('-', t.numericLiteral(1))
+                              ),
+                              t.expressionStatement(
+                                t.assignmentExpression(
+                                  '+=',
+                                  t.memberExpression(
+                                    t.memberExpression(
+                                      t.identifier(renderer),
+                                      t.identifier('mediaRules')
+                                    ),
+                                    t.stringLiteral(cache),
+                                    true
+                                  ),
+                                  t.stringLiteral(diffedRenderer.mediaRules[cache])
+                                )
+                              )
+                            )
+                          )
+                        }
+                      }
+
+                      // rehydrate all cache elements
+                      for (const key in diffedRenderer.cache) {
+                        blockBodyItems.push(
+                          t.ifStatement(
+                            t.unaryExpression(
+                              '!',
+                              t.memberExpression(
+                                t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                                t.stringLiteral(key),
+                                true
+                              )
+                            ),
+                            t.expressionStatement(
+                              t.assignmentExpression(
+                                '=',
+                                t.memberExpression(
+                                  t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                                  t.stringLiteral(key),
+                                  true
+                                ),
+                                t.stringLiteral(diffedRenderer.cache[key])
+                              )
+                            )
+                          )
+                        )
+                      }
+
+                      blockBody = t.blockStatement(blockBodyItems)
                     }
+
                     staticStyle = {}
                   }
 
