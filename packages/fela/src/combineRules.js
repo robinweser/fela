@@ -6,10 +6,6 @@ import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 
 export default function combineRules(...rules: Array<Function>): Function {
-  return (props: Object, renderer: DOMRenderer | NativeRenderer): Object =>
-    arrayReduce(
-      rules,
-      (style, rule) => assignStyle(style, rule(props, renderer)),
-      {}
-    )
+  return (props, renderer) =>
+    arrayReduce(rules, (style, rule) => assignStyle(style, rule(props, renderer)), {})
 }

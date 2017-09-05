@@ -1,14 +1,28 @@
 /* @flow */
 import { Component } from 'preact'
-import { render } from 'fela-dom'
+import { render, rehydrateCache } from 'fela-dom'
+
+function hasDOM() {
+  return typeof window !== 'undefined'
+}
 
 export default class Provider extends Component {
+  constructor(props: Object, context: Object) {
+    super(props, context)
+
+    if (hasDOM()) {
+      rehydrateCache(this.props.renderer)
+    }
+  }
+
   getChildContext() {
     return { renderer: this.props.renderer }
   }
 
   componentDidMount() {
-    render(this.props.renderer, this.props.mountNode)
+    if (hasDOM()) {
+      render(this.props.renderer)
+    }
   }
 
   render() {

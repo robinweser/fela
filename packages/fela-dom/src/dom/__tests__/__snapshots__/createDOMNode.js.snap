@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Create style node should create new style nodes 1`] = `
+exports[`Creating DOM node should create new DOM nodes 1`] = `
 "<html>
 
 <head>
