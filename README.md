@@ -166,14 +166,14 @@ Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 ## Backers
 
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/fela#backer)]
+Thank you to all our backers!
 
 <a href="https://opencollective.com/fela#backers" target="_blank"><img src="https://opencollective.com/fela/backers.svg?width=890"></a>
 
 
 ## Sponsors
 
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/fela#sponsor)]
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
 
 <a href="https://opencollective.com/fela/sponsor/0/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/fela/sponsor/1/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/1/avatar.svg"></a>
