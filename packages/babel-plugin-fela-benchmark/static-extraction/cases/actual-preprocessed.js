@@ -2,11 +2,12 @@ import webPreset from 'fela-preset-web'
 import { createRenderer } from 'fela'
 import variations from './_variations'
 
-export const optimizedActual = () => {
+export const preprocessedActual = () => {
   const renderer = createRenderer({ plugins: [...webPreset] })
+
   const rule = ({ fontSize, width }) => {
     if (!renderer.cache[0]) {
-      renderer.cache[0] = renderer.renderRule(() => ({
+      renderer.cache[0] = renderer._renderStyleToClassNames({
         backgroundColor: 'black',
         lineHeight: 1.0,
         ':hover': {
@@ -16,7 +17,7 @@ export const optimizedActual = () => {
           backgroundColor: 'yellow',
           color: 'green'
         }
-      }))
+      })
     }
 
     return {

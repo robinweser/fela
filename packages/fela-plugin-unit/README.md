@@ -1,7 +1,6 @@
 # fela-plugin-unit
 
-
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-unit.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-1.53kb-brightgreen.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-unit.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-unit.svg">
 
 Always writing length values as string with a value applied seems not like the JavaScript way to do it. You can also use mathematics to process number values. <br>
 It is aware of unitless properties such as `lineHeight` and also adds units to multiple values inside an array.

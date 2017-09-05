@@ -1,16 +1,3 @@
-/* @flow */
-type BabelInterface = {
-  types: Object
-}
-export default function({ types }: BabelInterface) {
-  const { stringLiteral } = types
+import createPlugin from './createPlugin'
 
-  return {
-    visitor: {
-      Program(path: Object, file: any) {
-        path.body = stringLiteral('hello')
-        console.log(file)
-      }
-    }
-  }
-}
+export default createPlugin()

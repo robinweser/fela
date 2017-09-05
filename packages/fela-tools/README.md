@@ -2,7 +2,7 @@
 
 A set of useful tools to work with Fela.
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-tools.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.53kb-brightgreen.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-tools.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-tools.svg">
 
 ## Installation
 ```sh
