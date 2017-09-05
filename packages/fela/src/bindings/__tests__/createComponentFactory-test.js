@@ -52,7 +52,9 @@ describe('Creating Components from Fela rules', () => {
       fontSize: 16
     })
 
-    const Comp = ({ color, className }) => <div className={className}>{color}</div>
+    const Comp = ({ color, className }) => (
+      <div className={className}>{color}</div>
+    )
 
     Comp.defaultProps = {
       color: 'red'
@@ -154,7 +156,9 @@ describe('Creating Components from Fela rules', () => {
     )
 
     expect(element.props.foo).toEqual(true)
-    expect(renderToString(renderer)).toEqual('.a{color:black}.b{font-size:16px}')
+    expect(renderToString(renderer)).toEqual(
+      '.a{color:black}.b{font-size:16px}'
+    )
   })
 
   it('should compose styles', () => {
@@ -176,13 +180,17 @@ describe('Creating Components from Fela rules', () => {
     const element = ComposedComp({}, { renderer })
     const renderedElement = element.type(element.props, { renderer })
 
-    expect(renderToString(renderer)).toEqual('.a{color:red}.b{font-size:16px}.c{line-height:1.2}')
+    expect(renderToString(renderer)).toEqual(
+      '.a{color:red}.b{font-size:16px}.c{line-height:1.2}'
+    )
     expect(renderedElement.props.className).toEqual('a b c')
   })
 
   it('should compose passThrough props', () => {
     const component = createComponent(() => ({}), 'div', Object.keys)
-    const composedComponent = createComponent(() => ({}), component, ['onClick'])
+    const composedComponent = createComponent(() => ({}), component, [
+      'onClick'
+    ])
 
     const renderer = createRenderer()
 
@@ -222,7 +230,9 @@ describe('Creating Components from Fela rules', () => {
     const element = component({ color: 'black' }, { renderer })
 
     expect(element.props.className).toEqual('Button_div__abrv9k')
-    expect(renderToString(renderer)).toEqual('.Button_div__abrv9k{font-size:16}')
+    expect(renderToString(renderer)).toEqual(
+      '.Button_div__abrv9k{font-size:16}'
+    )
   })
 
   it('should use a dev-friendly className and the selectorPrefix', () => {
@@ -238,7 +248,9 @@ describe('Creating Components from Fela rules', () => {
     const element = component({ color: 'black' }, { renderer })
 
     expect(element.props.className).toEqual('Fela-Button_div__abrv9k')
-    expect(renderToString(renderer)).toEqual('.Fela-Button_div__abrv9k{font-size:16}')
+    expect(renderToString(renderer)).toEqual(
+      '.Fela-Button_div__abrv9k{font-size:16}'
+    )
   })
 
   it('should only use the rule name as displayName', () => {
@@ -389,7 +401,9 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     )
 
     expect(element.props.foo).toEqual(true)
-    expect(renderToString(renderer)).toEqual('.a{color:black}.b{font-size:16px}')
+    expect(renderToString(renderer)).toEqual(
+      '.a{color:black}.b{font-size:16px}'
+    )
   })
 
   it('should compose styles', () => {
@@ -411,13 +425,17 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const element = ComposedComp({}, { renderer })
     const renderedElement = element.type(element.props, { renderer })
 
-    expect(renderToString(renderer)).toEqual('.a{color:red}.b{font-size:16px}.c{line-height:1.2}')
+    expect(renderToString(renderer)).toEqual(
+      '.a{color:red}.b{font-size:16px}.c{line-height:1.2}'
+    )
     expect(renderedElement.props.className).toEqual('a b c')
   })
 
   it('should compose passThrough props', () => {
     const component = createComponentWithProxy(() => ({}), 'div', Object.keys)
-    const composedComponent = createComponentWithProxy(() => ({}), component, ['onClick'])
+    const composedComponent = createComponentWithProxy(() => ({}), component, [
+      'onClick'
+    ])
 
     const renderer = createRenderer()
 
@@ -457,7 +475,9 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const element = component({ color: 'black' }, { renderer })
 
     expect(element.props.className).toEqual('Button_div__abrv9k')
-    expect(renderToString(renderer)).toEqual('.Button_div__abrv9k{font-size:16}')
+    expect(renderToString(renderer)).toEqual(
+      '.Button_div__abrv9k{font-size:16}'
+    )
   })
 
   it('should use a dev-friendly className and the selectorPrefix', () => {
@@ -473,7 +493,9 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const element = component({ color: 'black' }, { renderer })
 
     expect(element.props.className).toEqual('Fela-Button_div__abrv9k')
-    expect(renderToString(renderer)).toEqual('.Fela-Button_div__abrv9k{font-size:16}')
+    expect(renderToString(renderer)).toEqual(
+      '.Fela-Button_div__abrv9k{font-size:16}'
+    )
   })
 
   it('should only use the rule name as displayName', () => {

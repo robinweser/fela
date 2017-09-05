@@ -15,6 +15,8 @@ describe('render', () => {
     }))
     renderer.renderFont('Lato', ['../Lato.ttf'], { fontWeight: 300 })
     render(renderer)
-    expect(beautify(document.documentElement.outerHTML, { indent_size: 2 })).toMatchSnapshot()
+    expect(
+      beautify(document.documentElement.outerHTML, { indent_size: 2 })
+    ).toMatchSnapshot()
   })
 })

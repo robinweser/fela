@@ -1,4 +1,4 @@
-import reflushStyleNodes from '../reflushStyleNodes'
+import connectDOMNodes from '../connectDOMNodes'
 
 describe('Reflush style nodes', () => {
   it('should load and process style nodes', () => {
@@ -22,10 +22,10 @@ describe('Reflush style nodes', () => {
         return true
       }
     }
-    const nodes = reflushStyleNodes(renderer)
 
-    console.log(renderer.cache)
-    expect(nodes).toEqual({
+    connectDOMNodes(renderer)
+
+    expect(renderer.nodes).toEqual({
       RULE: node1,
       'RULE(max-width: 800px)': node2
     })

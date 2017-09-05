@@ -1,5 +1,11 @@
 /* @flow */
-import { clusterCache, RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE } from 'fela-utils'
+import {
+  clusterCache,
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  FONT_TYPE,
+  STATIC_TYPE
+} from 'fela-utils'
 
 const sheetMap = {
   fontFaces: FONT_TYPE,

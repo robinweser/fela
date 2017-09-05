@@ -44,9 +44,17 @@ function useMonolithicRenderer(
               media
             )
           } else if (isMediaQuery(property)) {
-            const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
+            const combinedMediaQuery = generateCombinedMediaQuery(
+              media,
+              property.slice(6).trim()
+            )
 
-            renderer._renderStyleToCache(className, value, pseudo, combinedMediaQuery)
+            renderer._renderStyleToCache(
+              className,
+              value,
+              pseudo,
+              combinedMediaQuery
+            )
           } else {
             // TODO: warning
           }
@@ -77,7 +85,10 @@ function useMonolithicRenderer(
     }
   }
 
-  renderer._renderStyleToClassNames = (style: Object, rule: Function): string => {
+  renderer._renderStyleToClassNames = (
+    style: Object,
+    rule: Function
+  ): string => {
     if (Object.keys(style).length < 1) {
       return ''
     }

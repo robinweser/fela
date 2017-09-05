@@ -94,7 +94,9 @@ describe('Embedded plugin', () => {
     const rule = () => ({
       fontFace: {
         fontFamily: 'foo',
-        src: ['data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I'],
+        src: [
+          'data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I'
+        ],
         fontWeight: 500
       }
     })

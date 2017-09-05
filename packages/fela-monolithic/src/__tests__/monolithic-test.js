@@ -57,7 +57,9 @@ describe('Monolithic enhancer', () => {
 
     const className = renderer.renderRule(rule, { theme: { color: 'red' } })
 
-    expect(renderToString(renderer)).toEqual(`.${className}{color:red;font-size:15}`)
+    expect(renderToString(renderer)).toEqual(
+      `.${className}{color:red;font-size:15}`
+    )
   })
 
   it('should render pseudo classes', () => {

@@ -4,7 +4,6 @@ import arrayReduce from './arrayReduce'
 import checkFontFormat from './checkFontFormat'
 import checkFontUrl from './checkFontUrl'
 import clusterCache from './clusterCache'
-import createStyleNode from './createStyleNode'
 import createStyleTagMarkup from './createStyleTagMarkup'
 import cssifyFontFace from './cssifyFontFace'
 import cssifyKeyframe from './cssifyKeyframe'
@@ -19,8 +18,6 @@ import generateCSSRule from './generateCSSRule'
 import generateCSSSelector from './generateCSSSelector'
 import generateMonolithicClassName from './generateMonolithicClassName'
 import generateStaticReference from './generateStaticReference'
-import getStyleNode from './getStyleNode'
-import initializeStyleNodes from './initializeStyleNodes'
 import isBase64 from './isBase64'
 import isMediaQuery from './isMediaQuery'
 import isNestedSelector from './isNestedSelector'
@@ -30,12 +27,18 @@ import isUndefinedValue from './isUndefinedValue'
 import isValidHTMLElement from './isValidHTMLElement'
 import minifyCSSString from './minifyCSSString'
 import normalizeNestedProperty from './normalizeNestedProperty'
+import objectEach from './objectEach'
 import objectReduce from './objectReduce'
 import processStyleWithPlugins from './processStyleWithPlugins'
-import reflushStyleNodes from './reflushStyleNodes'
 import resolvePassThrough from './resolvePassThrough'
 import resolveUsedProps from './resolveUsedProps'
-import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE, CLEAR_TYPE } from './styleTypes'
+import {
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  FONT_TYPE,
+  STATIC_TYPE,
+  CLEAR_TYPE
+} from './styleTypes'
 import toCSSString from './toCSSString'
 import warning from './warning'
 
@@ -46,7 +49,6 @@ export {
   checkFontFormat,
   checkFontUrl,
   clusterCache,
-  createStyleNode,
   createStyleTagMarkup,
   cssifyFontFace,
   cssifyKeyframe,
@@ -61,8 +63,6 @@ export {
   generateCSSSelector,
   generateMonolithicClassName,
   generateStaticReference,
-  getStyleNode,
-  initializeStyleNodes,
   isBase64,
   isMediaQuery,
   isNestedSelector,
@@ -72,9 +72,9 @@ export {
   isValidHTMLElement,
   minifyCSSString,
   normalizeNestedProperty,
+  objectEach,
   objectReduce,
   processStyleWithPlugins,
-  reflushStyleNodes,
   resolvePassThrough,
   resolveUsedProps,
   RULE_TYPE,

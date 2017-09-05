@@ -1,7 +1,11 @@
 /* @flow */
 import { Component, Children } from 'react'
 import PropTypes from 'prop-types'
-import { render } from 'fela-dom'
+import { render, rehydrateCache } from 'fela-dom'
+
+function hasDOM(renderer) {
+  return !renderer.isNativeRenderer && typeof window !== 'undefined'
+}
 
 export default class Provider extends Component {
   static childContextTypes = { renderer: PropTypes.object }
@@ -9,14 +13,22 @@ export default class Provider extends Component {
     renderer: PropTypes.object.isRequired
   }
 
-  getChildContext() {
-    return { renderer: this.props.renderer }
+  constructor(props: Object, context: Object) {
+    super(props, context)
+
+    if (hasDOM(props.renderer)) {
+      rehydrateCache(this.props.renderer)
+    }
   }
 
   componentDidMount() {
-    if (!this.props.renderer.isNativeRenderer) {
-      render(this.props.renderer, this.props.mountNode)
+    if (hasDOM(this.props.renderer)) {
+      render(this.props.renderer)
     }
+  }
+
+  getChildContext() {
+    return { renderer: this.props.renderer }
   }
 
   render() {

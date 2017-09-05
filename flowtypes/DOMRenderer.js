@@ -7,24 +7,19 @@ export type DOMRenderer = {
   selectorPrefix: string,
   filterClassName: Function,
   listeners: Array<Function>,
-  fontFaces: string,
-  keyframes: string,
-  statics: string,
-  rules: string,
-  mediaRules: {[query: string]: string},
   uniqueRuleIdentifier: number,
   uniqueKeyframeIdentifier: number,
   cache: Cache,
+  nodes: Object,
   renderRule: Function,
   renderKeyframe: Function,
   renderStatic: Function,
   renderFont: Function,
-  renderToString: Function,
   subscribe: Function,
   clear: Function,
   _renderStyleToClassNames: Function,
-  _emitChange: Function,
-};
+  _emitChange: Function
+}
 
 export type DOMRendererConfig = {
   keyframePrefixes?: Array<string>,
@@ -32,7 +27,5 @@ export type DOMRendererConfig = {
   enhancers?: Array<Function>,
   mediaQueryOrder?: Array<string>,
   selectorPrefix?: string,
-  filterClassName: Function
-};
-
-export type Change = {};
+  filterClassName?: Function
+}

@@ -46,7 +46,7 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
 
-    styleNodes: {},
+    nodes: {},
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},
@@ -193,7 +193,6 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
             )
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
-
             classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery)
           } else {
             // TODO: warning
@@ -234,7 +233,7 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
 
           // only append if we got a class cached
           if (cachedClassName) {
-            classNames += ` ${cachedClassName}`
+            classNames += ' ' + cachedClassName
           }
         }
       }
