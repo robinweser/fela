@@ -133,11 +133,6 @@ Apart from all the packages managed within this repository, there are many commu
 * [veel](https://github.com/queckezz/veel) - Base react styling components using fela with a design system
 * [vue-fela](https://github.com/dustin-H/vue-fela) - Vue bindings for Fela
 
-## Contributing
-We highly appreciate any contribution.<br>
-For more information follow the [contribution guide](.github/CONTRIBUTING.md).<br>
-Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
-
 
 ## Support
 Got a question? Come and join us on [Gitter](https://gitter.im/rofrischmann/fela)! <br>
@@ -161,11 +156,14 @@ We'd love to help out. We also highly appreciate any feedback.
 - [V2](https://www.v2.com)
 
 
-## Contributors
+## Contributing
 
-This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
+This project exists thanks to all the people who contribute.
 <a href="graphs/contributors"><img src="https://opencollective.com/fela/contributors.svg?width=890" /></a>
 
+We highly appreciate any contribution.<br>
+For more information follow the [contribution guide](.github/CONTRIBUTING.md).<br>
+Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 ## Backers
 
