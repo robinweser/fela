@@ -59,3 +59,6 @@ Any information on how this might be achieved.
   If it is not reproductible, please note that.
   TODO: Remove the FEATURE REQUEST ONLY part.
 --------------------->
+
+<!-- Love fela? Please consider supporting our collective:
+👉  https://opencollective.com/fela/donate -->

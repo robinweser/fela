@@ -1,4 +1,5 @@
 import { createRenderer } from 'fela'
+import { renderToString } from 'fela-tools'
 import embedded from '../index'
 
 describe('Embedded plugin', () => {
@@ -19,14 +20,10 @@ describe('Embedded plugin', () => {
     const renderer = createRenderer({ plugins: [embedded()] })
     renderer.renderRule(rule)
 
-    expect(renderer.rules).toEqual(
-      '.a{color:red}.b{animation-name:k1}.c{font-family:"Arial"}'
-    )
-    expect(renderer.keyframes).toEqual(
-      '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}'
-    )
-    expect(renderer.fontFaces).toEqual(
-      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}"
+    expect(renderToString(renderer)).toEqual(
+      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}" +
+        '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}' +
+        '.a{color:red}.b{animation-name:k1}.c{font-family:"Arial"}'
     )
   })
 
@@ -60,14 +57,10 @@ describe('Embedded plugin', () => {
     const renderer = createRenderer({ plugins: [embedded()] })
     renderer.renderRule(rule)
 
-    expect(renderer.rules).toEqual(
-      '.a{color:red}.b{animation-name:k1,k2}.c{font-family:"Arial","Lato Light"}'
-    )
-    expect(renderer.keyframes).toEqual(
-      '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}@-webkit-keyframes k2{0%{background-color:red}100%{background-color:blue}}@-moz-keyframes k2{0%{background-color:red}100%{background-color:blue}}@keyframes k2{0%{background-color:red}100%{background-color:blue}}'
-    )
-    expect(renderer.fontFaces).toEqual(
-      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}@font-face{font-weight:400;src:url('baz.svg') format('svg'),url('asd.ttf') format('truetype');font-family:\"Lato Light\"}"
+    expect(renderToString(renderer)).toEqual(
+      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}@font-face{font-weight:400;src:url('baz.svg') format('svg'),url('asd.ttf') format('truetype');font-family:\"Lato Light\"}" +
+        '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}@-webkit-keyframes k2{0%{background-color:red}100%{background-color:blue}}@-moz-keyframes k2{0%{background-color:red}100%{background-color:blue}}@keyframes k2{0%{background-color:red}100%{background-color:blue}}' +
+        '.a{color:red}.b{animation-name:k1,k2}.c{font-family:"Arial","Lato Light"}'
     )
   })
 
@@ -90,14 +83,10 @@ describe('Embedded plugin', () => {
     const renderer = createRenderer({ plugins: [embedded()] })
     renderer.renderRule(rule)
 
-    expect(renderer.rules).toEqual(
-      '.a{color:red}.b:hover{animation-name:k1}.c:hover{font-family:"Arial"}'
-    )
-    expect(renderer.keyframes).toEqual(
-      '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}'
-    )
-    expect(renderer.fontFaces).toEqual(
-      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}"
+    expect(renderToString(renderer)).toEqual(
+      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}" +
+        '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}' +
+        '.a{color:red}.b:hover{animation-name:k1}.c:hover{font-family:"Arial"}'
     )
   })
 
@@ -113,9 +102,9 @@ describe('Embedded plugin', () => {
     })
     const renderer = createRenderer({ plugins: [embedded()] })
     renderer.renderRule(rule)
-    expect(renderer.rules).toEqual('.a{font-family:"foo"}')
-    expect(renderer.fontFaces).toEqual(
-      '@font-face{font-weight:500;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I) format(\'woff\');font-family:"foo"}'
+    expect(renderToString(renderer)).toEqual(
+      '@font-face{font-weight:500;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I) format(\'woff\');font-family:"foo"}' +
+        '.a{font-family:"foo"}'
     )
   })
 })

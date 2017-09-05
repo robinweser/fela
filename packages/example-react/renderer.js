@@ -12,16 +12,8 @@ import layoutDebugger from 'fela-layout-debugger'
 
 export default () => {
   const renderer = createRenderer({
-    plugins: [
-      embedded(),
-      prefixer(),
-      fallbackValue(),
-      unit(),
-      lvha(),
-      validator(),
-      logger()
-    ],
-    enhancers: [perf(), beautifier(), layoutDebugger()]
+    plugins: [embedded(), prefixer(), fallbackValue(), unit(), lvha(), validator(), logger()],
+    enhancers: [perf(), beautifier()]
   })
 
   renderer.renderStatic(

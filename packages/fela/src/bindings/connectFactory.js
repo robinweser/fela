@@ -7,7 +7,7 @@ export default function connectFactory(
   createElement: Function,
   contextTypes?: Object
 ): Function {
-  return function connect(rules: Object | Function): Function {
+  return function connect(rules: Object): Function {
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
@@ -21,30 +21,14 @@ export default function connectFactory(
             theme: theme || {}
           }
 
-          let styles
-
-          if (typeof rules === 'function') {
-            styles = rules(styleProps)(renderer)
-
-            // deprecation warning
-            if (process.env.NODE_ENV !== 'production' && !this.warnDeprecated) {
-              /* eslint-disable no-console */
-              console.warn(
-                'Using a `mapStylesToProps` function with `connect` is deprecated. It will be removed soon. Use a direct `rules` object. See https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/connect.md'
-              )
-              /* eslint-enable no-console */
-              this.warnDeprecated = true
-            }
-          } else {
-            styles = objectReduce(
-              rules,
-              (styleMap, rule, name) => {
-                styleMap[name] = renderer.renderRule(rule, styleProps)
-                return styleMap
-              },
-              {}
-            )
-          }
+          const styles = objectReduce(
+            rules,
+            (styleMap, rule, name) => {
+              styleMap[name] = renderer.renderRule(rule, styleProps)
+              return styleMap
+            },
+            {}
+          )
 
           return createElement(component, {
             ...this.props,

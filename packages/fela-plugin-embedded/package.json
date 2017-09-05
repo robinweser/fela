@@ -24,6 +24,7 @@
     "fela-utils": "^6.0.1"
   },
   "devDependencies": {
-    "fela": "^5.2.0"
+    "fela": "^5.2.0",
+    "fela-tools": "^5.0.7"
   }
 }
