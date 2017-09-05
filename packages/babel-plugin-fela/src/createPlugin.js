@@ -1,28 +1,19 @@
-import { generateMonolithicClassName, arrayReduce, arrayEach } from 'fela-utils'
+import { generateMonolithicClassName, arrayReduce, objectReduce, arrayEach } from 'fela-utils'
 
-const defaultConfig = {
-  precompile: false
-}
-
-function diffRenderer(renderer) {
-  const { rules, mediaRules, fontFaces, keyframes, statics, cache } = renderer
-
-  return {
-    rules,
-    mediaRules,
-    fontFaces,
-    keyframes,
-    statics,
-    cache
-  }
+function diffCache(oldCache, newCache) {
+  return objectReduce(
+    newCache,
+    (diff, entry, key) => {
+      if (!oldCache[key]) {
+        diff[key] = entry
+      }
+      return diff
+    },
+    {}
+  )
 }
 
 export default function createPlugin(config = {}) {
-  const configWithDefaults = {
-    ...defaultConfig,
-    ...config
-  }
-
   return ({ types: t, traverse }) => {
     // helper method to extract static style properties from AST objects
     function extractStaticStyle(props, path) {
@@ -164,10 +155,11 @@ export default function createPlugin(config = {}) {
                   let staticStyle = extractStaticStyle(props, childPath)
 
                   // static style precompilation
-                  if (configWithDefaults.precompile && configWithDefaults.renderer) {
+                  if (config.renderer) {
                     const jsObject = createStaticJSObject(staticStyle)
 
-                    const className = configWithDefaults.renderer.renderRule(() => jsObject)
+                    const oldCache = { ...config.renderer.cache }
+                    const className = config.renderer.renderRule(() => jsObject)
 
                     if (className) {
                       id = className.replace(/ /g, '')
@@ -184,85 +176,10 @@ export default function createPlugin(config = {}) {
                         )
                       ]
 
-                      const diffedRenderer = diffRenderer(configWithDefaults.renderer)
-
-                      const checkedCaches = ['fontFaces', 'keyframes', 'statics', 'rules']
-
-                      // rehydrate all string caches
-                      checkedCaches.forEach(cache => {
-                        if (diffedRenderer[cache].length > 0) {
-                          blockBodyItems.push(
-                            t.ifStatement(
-                              t.binaryExpression(
-                                '===',
-                                t.callExpression(
-                                  t.memberExpression(
-                                    t.memberExpression(
-                                      t.identifier(renderer),
-                                      t.identifier('rules')
-                                    ),
-                                    t.identifier('indexOf')
-                                  ),
-                                  [t.stringLiteral(diffedRenderer[cache])]
-                                ),
-                                t.unaryExpression('-', t.numericLiteral(1))
-                              ),
-                              t.expressionStatement(
-                                t.assignmentExpression(
-                                  '+=',
-                                  t.memberExpression(t.identifier(renderer), t.identifier('rules')),
-                                  t.stringLiteral(diffedRenderer[cache])
-                                )
-                              )
-                            )
-                          )
-                        }
-                      })
-
-                      // rehydrate media query string caches
-                      for (const cache in diffedRenderer.mediaRules) {
-                        if (diffedRenderer.mediaRules[cache].length > 0) {
-                          blockBodyItems.push(
-                            t.ifStatement(
-                              t.binaryExpression(
-                                '===',
-                                t.callExpression(
-                                  t.memberExpression(
-                                    t.memberExpression(
-                                      t.memberExpression(
-                                        t.identifier(renderer),
-                                        t.identifier('mediaRules')
-                                      ),
-                                      t.stringLiteral(cache),
-                                      true
-                                    ),
-                                    t.identifier('indexOf')
-                                  ),
-                                  [t.stringLiteral(diffedRenderer.mediaRules[cache])]
-                                ),
-                                t.unaryExpression('-', t.numericLiteral(1))
-                              ),
-                              t.expressionStatement(
-                                t.assignmentExpression(
-                                  '+=',
-                                  t.memberExpression(
-                                    t.memberExpression(
-                                      t.identifier(renderer),
-                                      t.identifier('mediaRules')
-                                    ),
-                                    t.stringLiteral(cache),
-                                    true
-                                  ),
-                                  t.stringLiteral(diffedRenderer.mediaRules[cache])
-                                )
-                              )
-                            )
-                          )
-                        }
-                      }
+                      const diffedCache = diffCache(oldCache, config.renderer.cache)
 
                       // rehydrate all cache elements
-                      for (const key in diffedRenderer.cache) {
+                      for (const key in diffedCache) {
                         blockBodyItems.push(
                           t.ifStatement(
                             t.unaryExpression(
@@ -281,7 +198,7 @@ export default function createPlugin(config = {}) {
                                   t.stringLiteral(key),
                                   true
                                 ),
-                                t.stringLiteral(diffedRenderer.cache[key])
+                                t.stringLiteral(diffedCache[key])
                               )
                             )
                           )
