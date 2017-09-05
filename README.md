@@ -7,6 +7,7 @@ It generates minimal, optimized CSS and therefore supports all common CSS featur
 
 Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) or with any other view library.It even supports [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html).
 
+[![Backers on Open Collective](https://opencollective.com/fela/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/fela/sponsors/badge.svg)](#sponsors)
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~3kb-brightgreen.svg"> <img alt="npm version" src="https://badge.fury.io/js/fela.svg"> <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
 
 <a href="https://app.codesponsor.io/link/pCQU3wY7qzomx7oGR27YYg5s/rofrischmann/fela" rel="nofollow"><img src="https://app.codesponsor.io/embed/pCQU3wY7qzomx7oGR27YYg5s/rofrischmann/fela.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
@@ -132,11 +133,6 @@ Apart from all the packages managed within this repository, there are many commu
 * [veel](https://github.com/queckezz/veel) - Base react styling components using fela with a design system
 * [vue-fela](https://github.com/dustin-H/vue-fela) - Vue bindings for Fela
 
-## Contributing
-We highly appreciate any contribution.<br>
-For more information follow the [contribution guide](.github/CONTRIBUTING.md).<br>
-Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
-
 
 ## Support
 Got a question? Come and join us on [Gitter](https://gitter.im/rofrischmann/fela)! <br>
@@ -158,6 +154,39 @@ We'd love to help out. We also highly appreciate any feedback.
 - [NinjaConcept](https://www.ninjaconcept.com)
 - [Optisure](https://www.optisure.de)
 - [V2](https://www.v2.com)
+
+
+## Contributing
+
+This project exists thanks to all the people who contribute.
+<a href="graphs/contributors"><img src="https://opencollective.com/fela/contributors.svg?width=890" /></a>
+
+We highly appreciate any contribution.<br>
+For more information follow the [contribution guide](.github/CONTRIBUTING.md).<br>
+Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/fela#backer)]
+
+<a href="https://opencollective.com/fela#backers" target="_blank"><img src="https://opencollective.com/fela/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/fela#sponsor)]
+
+<a href="https://opencollective.com/fela/sponsor/0/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/1/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/2/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/3/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/4/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/5/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/6/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/7/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/8/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/9/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/9/avatar.svg"></a>
+
 
 
 ## License
