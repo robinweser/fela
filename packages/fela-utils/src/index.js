@@ -34,7 +34,13 @@ import objectReduce from './objectReduce'
 import processStyleWithPlugins from './processStyleWithPlugins'
 import resolvePassThrough from './resolvePassThrough'
 import resolveUsedProps from './resolveUsedProps'
-import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE, CLEAR_TYPE } from './styleTypes'
+import {
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  FONT_TYPE,
+  STATIC_TYPE,
+  CLEAR_TYPE
+} from './styleTypes'
 import toCSSString from './toCSSString'
 import warning from './warning'
 

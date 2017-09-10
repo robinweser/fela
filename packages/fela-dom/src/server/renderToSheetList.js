@@ -43,7 +43,7 @@ export default function renderToSheetList(renderer: Object): Array<Sheet> {
     (list, css, media) => {
       if (css.length > 0) {
         list.push({
-          css: css,
+          css,
           type: RULE_TYPE,
           media
         })

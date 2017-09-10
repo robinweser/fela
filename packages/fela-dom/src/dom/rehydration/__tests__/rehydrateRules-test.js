@@ -14,7 +14,7 @@ describe('Rehydrating rules', () => {
     const css =
       '.a{color:red}.b{color:blue}.c:hover:active{border-color:2px solid rgb(255, 255, 0)}'
 
-    rehydrateRules(renderer, css)
+    rehydrateRules(renderer, renderer.cache, css)
 
     expect(renderer.cache).toEqual({
       colorred: {

@@ -5,11 +5,15 @@ import { arrayEach, generateCSSSelector, RULE_TYPE } from 'fela-utils'
 import rehydrateSupportRules from './rehydrateSupportRules'
 import rehydrateRules from './rehydrateRules'
 
-import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
+import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
 
 const rehydrationHandlers = {
   [RULE_TYPE]: (renderer, css, media) => {
-    const { ruleCss, supportCache } = rehydrateSupportRules(renderer, css, media)
+    const { ruleCss, supportCache } = rehydrateSupportRules(
+      renderer,
+      css,
+      media
+    )
     rehydrateRules(renderer, renderer.cache, ruleCss, media)
 
     renderer.cache = {

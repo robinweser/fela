@@ -7,5 +7,9 @@ import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 
 export default function combineRules(...rules: Array<Function>): Function {
   return (props, renderer) =>
-    arrayReduce(rules, (style, rule) => assignStyle(style, rule(props, renderer)), {})
+    arrayReduce(
+      rules,
+      (style, rule) => assignStyle(style, rule(props, renderer)),
+      {}
+    )
 }

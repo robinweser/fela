@@ -14,9 +14,9 @@ describe('Rehydrating @supports rules', () => {
     const css =
       '@supports(display:grid){.a{color:red}.b{color:blue}}@supports(display:grid) and (display:flex){.c{color:green}}'
 
-    rehydrateSupportRules(renderer, css)
+    const { supportCache } = rehydrateSupportRules(renderer, css)
 
-    expect(renderer.cache).toEqual({
+    expect(supportCache).toEqual({
       '(display:grid)colorred': {
         className: 'a',
         selector: '.a',

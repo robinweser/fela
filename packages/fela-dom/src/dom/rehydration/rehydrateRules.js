@@ -27,7 +27,8 @@ export default function rehydrateRules(
 
     renderer.getNextRuleIdentifier()
 
-    const declarationReference = support + media + pseudo + camelCaseProperty(property) + value
+    const declarationReference =
+      support + media + pseudo + camelCaseProperty(property) + value
     cache[declarationReference] = {
       type: RULE_TYPE,
       className,

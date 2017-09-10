@@ -5,4 +5,10 @@ import enhance from './enhance'
 import connectFactory from './bindings/connectFactory'
 import createComponentFactory from './bindings/createComponentFactory'
 
-export { createRenderer, combineRules, enhance, connectFactory, createComponentFactory }
+export {
+  createRenderer,
+  combineRules,
+  enhance,
+  connectFactory,
+  createComponentFactory
+}
