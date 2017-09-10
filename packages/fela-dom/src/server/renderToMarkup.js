@@ -1,6 +1,7 @@
 /* @flow */
 import {
   createStyleTagMarkup,
+  objectReduce,
   clusterCache,
   RULE_TYPE,
   KEYFRAME_TYPE,
@@ -18,21 +19,27 @@ const sheetMap = {
 export default function renderToMarkup(renderer: Object): string {
   const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
 
-  let markup = ''
+  const basicMarkup = objectReduce(
+    sheetMap,
+    (markup, type, key) => {
+      if (cacheCluster[key].length > 0) {
+        markup += createStyleTagMarkup(cacheCluster[key], type)
+      }
 
-  for (const style in sheetMap) {
-    if (cacheCluster[style].length > 0) {
-      markup += createStyleTagMarkup(cacheCluster[style], sheetMap[style])
-    }
-  }
+      return markup
+    },
+    ''
+  )
 
-  for (const media in cacheCluster.mediaRules) {
-    const mediaCSS = cacheCluster.mediaRules[media]
+  return objectReduce(
+    cacheCluster.mediaRules,
+    (markup, css, media) => {
+      if (css.length > 0) {
+        markup += createStyleTagMarkup(css, RULE_TYPE, media)
+      }
 
-    if (mediaCSS.length > 0) {
-      markup += createStyleTagMarkup(mediaCSS, RULE_TYPE, media)
-    }
-  }
-
-  return markup
+      return markup
+    },
+    basicMarkup
+  )
 }

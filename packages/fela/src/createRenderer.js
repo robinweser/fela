@@ -16,8 +16,8 @@ import {
   isUndefinedValue,
   isObject,
   isSafeClassName,
+  isSupport,
   normalizeNestedProperty,
-  applyMediaRulesInOrder,
   processStyleWithPlugins,
   toCSSString,
   checkFontFormat,
@@ -40,6 +40,7 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
+    isConnectedToDOM: false,
 
     filterClassName: config.filterClassName || isSafeClassName,
 
@@ -177,7 +178,8 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
     _renderStyleToClassNames(
       { _className, ...style }: Object,
       pseudo: string = '',
-      media: string = ''
+      media: string = '',
+      support: string = ''
     ): string {
       let classNames = _className || ''
 
@@ -189,16 +191,25 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
             classNames += renderer._renderStyleToClassNames(
               value,
               pseudo + normalizeNestedProperty(property),
-              media
+              media,
+              support
             )
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
-            classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery)
+            classNames += renderer._renderStyleToClassNames(
+              value,
+              pseudo,
+              combinedMediaQuery,
+              support
+            )
+          } else if (isSupport(property)) {
+            const combinedSupport = generateCombinedMediaQuery(support, property.slice(9).trim())
+            classNames += renderer._renderStyleToClassNames(value, pseudo, media, combinedSupport)
           } else {
             // TODO: warning
           }
         } else {
-          const declarationReference = media + pseudo + property + value
+          const declarationReference = support + media + pseudo + property + value
 
           if (!renderer.cache.hasOwnProperty(declarationReference)) {
             // we remove undefined values to enable
@@ -222,7 +233,8 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
               className,
               selector,
               declaration,
-              media
+              media,
+              support
             }
 
             renderer.cache[declarationReference] = change
@@ -233,7 +245,7 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
 
           // only append if we got a class cached
           if (cachedClassName) {
-            classNames += ' ' + cachedClassName
+            classNames += ` ${cachedClassName}`
           }
         }
       }

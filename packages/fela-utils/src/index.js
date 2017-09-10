@@ -10,6 +10,7 @@ import cssifyKeyframe from './cssifyKeyframe'
 import cssifyMediaQueryRules from './cssifyMediaQueryRules'
 import cssifyStaticStyle from './cssifyStaticStyle'
 import extractPassThroughProps from './extractPassThroughProps'
+import extractSupportQuery from './extractSupportQuery'
 import extractUsedProps from './extractUsedProps'
 import generateAnimationName from './generateAnimationName'
 import generateClassName from './generateClassName'
@@ -23,6 +24,7 @@ import isMediaQuery from './isMediaQuery'
 import isNestedSelector from './isNestedSelector'
 import isObject from './isObject'
 import isSafeClassName from './isSafeClassName'
+import isSupport from './isSupport'
 import isUndefinedValue from './isUndefinedValue'
 import isValidHTMLElement from './isValidHTMLElement'
 import minifyCSSString from './minifyCSSString'
@@ -32,13 +34,7 @@ import objectReduce from './objectReduce'
 import processStyleWithPlugins from './processStyleWithPlugins'
 import resolvePassThrough from './resolvePassThrough'
 import resolveUsedProps from './resolveUsedProps'
-import {
-  RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE,
-  CLEAR_TYPE
-} from './styleTypes'
+import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE, CLEAR_TYPE } from './styleTypes'
 import toCSSString from './toCSSString'
 import warning from './warning'
 
@@ -55,6 +51,7 @@ export {
   cssifyMediaQueryRules,
   cssifyStaticStyle,
   extractPassThroughProps,
+  extractSupportQuery,
   extractUsedProps,
   generateAnimationName,
   generateClassName,
@@ -68,6 +65,7 @@ export {
   isNestedSelector,
   isObject,
   isSafeClassName,
+  isSupport,
   isUndefinedValue,
   isValidHTMLElement,
   minifyCSSString,

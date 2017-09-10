@@ -114,13 +114,15 @@ There are tons of useful packages maintained within this repository including pl
 Apart from all the packages managed within this repository, there are many community third-party projects that are worth mentioning:
 
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
-* [base-styling-components](https://github.com/pitr12/base-styling-components): Abstract Box and Text Components
+* [base-styling-components](https://github.com/pitr12/base-styling-components) - Abstract Box and Text Components
+* [catstack](https://github.com/root-systems/catstack) - A modular mad science framework for teams working on production web apps
 * [cf-ui](https://github.com/cloudflare/cf-ui) - Cloudflare UI Framework
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle bindings for Fela
+* [dogstack](https://github.com/root-systems/dogstack) - A popular-choice grab-bag framework for teams working on production web apps
 * [este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
-* [fela-components](https://github.com/arturmuller/fela-components): Styling library for React and Fela
-* [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Generate class names for fela style rule and apply them as property on a wrapped component
-* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with auto-bound styles
+* [fela-components](https://github.com/arturmuller/fela-components) - Styling library for React and Fela
+* [fela-react-prop](https://github.com/codepunkt/fela-react-prop) - Generate class names for fela style rule and apply them as property on a wrapped component
+* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector) - Simplified react-fela `connect` with auto-bound styles
 * [frejya](https://github.com/benoneal/freyja): Pass styles as props to components
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript bindings for Fela
 * [kilvin](https://github.com/rofrischmann/kilvin) - Primitive React Layout Components with Fela

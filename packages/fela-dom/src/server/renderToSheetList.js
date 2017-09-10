@@ -1,6 +1,7 @@
 /* @flow */
 import {
   clusterCache,
+  objectReduce,
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
@@ -22,28 +23,34 @@ type Sheet = {
 export default function renderToSheetList(renderer: Object): Array<Sheet> {
   const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
 
-  const sheetList = []
+  const sheetList = objectReduce(
+    sheetMap,
+    (list, type, key) => {
+      if (cacheCluster[key].length > 0) {
+        list.push({
+          css: cacheCluster[key],
+          type
+        })
+      }
 
-  for (const style in sheetMap) {
-    if (cacheCluster[style].length > 0) {
-      sheetList.push({
-        css: cacheCluster[style],
-        type: sheetMap[style]
-      })
-    }
-  }
+      return list
+    },
+    []
+  )
 
-  for (const media in cacheCluster.mediaRules) {
-    const mediaCSS = cacheCluster.mediaRules[media]
+  return objectReduce(
+    cacheCluster.mediaRules,
+    (list, css, media) => {
+      if (css.length > 0) {
+        list.push({
+          css: css,
+          type: RULE_TYPE,
+          media
+        })
+      }
 
-    if (mediaCSS.length > 0) {
-      sheetList.push({
-        css: mediaCSS,
-        type: RULE_TYPE,
-        media
-      })
-    }
-  }
-
-  return sheetList
+      return list
+    },
+    sheetList
+  )
 }

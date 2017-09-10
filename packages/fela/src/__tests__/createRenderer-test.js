@@ -106,9 +106,7 @@ describe('Renderer', () => {
       const renderer = createRenderer()
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b:hover{color:blue}'
-      )
+      expect(renderToString(renderer)).toEqual('.a{color:red}.b:hover{color:blue}')
     })
 
     it('should prefix classNames', () => {
@@ -130,9 +128,7 @@ describe('Renderer', () => {
 
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b[bool=true]{color:blue}'
-      )
+      expect(renderToString(renderer)).toEqual('.a{color:red}.b[bool=true]{color:blue}')
     })
 
     it('should render child selectors', () => {
@@ -144,9 +140,7 @@ describe('Renderer', () => {
 
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b>div{color:blue}'
-      )
+      expect(renderToString(renderer)).toEqual('.a{color:red}.b>div{color:blue}')
     })
 
     it('should render pseudo class selectors', () => {
@@ -158,9 +152,7 @@ describe('Renderer', () => {
 
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b:hover{color:blue}'
-      )
+      expect(renderToString(renderer)).toEqual('.a{color:red}.b:hover{color:blue}')
     })
 
     it('should render any nested selector with the &-prefix', () => {
@@ -204,9 +196,7 @@ describe('Renderer', () => {
 
       renderer.renderKeyframe(keyframe)
 
-      expect(renderer.cache.hasOwnProperty(JSON.stringify(keyframe()))).toEqual(
-        true
-      )
+      expect(renderer.cache.hasOwnProperty(JSON.stringify(keyframe()))).toEqual(true)
     })
 
     it('should return a valid animation name', () => {
@@ -257,12 +247,8 @@ describe('Renderer', () => {
       }
 
       renderer.renderStatic(staticStyle, 'html,body')
-      expect(
-        renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')
-      ).toEqual(true)
-      expect(renderToString(renderer)).toEqual(
-        'html,body{margin:0;font-size:12px}'
-      )
+      expect(renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')).toEqual(true)
+      expect(renderToString(renderer)).toEqual('html,body{margin:0;font-size:12px}')
     })
 
     it('should allow multiple static styles for a single selector', () => {
@@ -277,12 +263,8 @@ describe('Renderer', () => {
       )
       renderer.renderStatic({ color: 'red' }, 'html,body')
 
-      expect(
-        renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')
-      ).toEqual(true)
-      expect(renderer.cache.hasOwnProperty('html,body{"color":"red"}')).toEqual(
-        true
-      )
+      expect(renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')).toEqual(true)
+      expect(renderer.cache.hasOwnProperty('html,body{"color":"red"}')).toEqual(true)
       expect(renderToString(renderer)).toEqual(
         'html,body{margin:0;font-size:12px}html,body{color:red}'
       )
@@ -295,11 +277,7 @@ describe('Renderer', () => {
       const family = 'Arial'
       const properties = { fontWeight: 300 }
 
-      renderer.renderFont(
-        family,
-        ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
-        properties
-      )
+      renderer.renderFont(family, ['../fonts/Arial.ttf', '../fonts/Arial.woff'], properties)
 
       const key = family + JSON.stringify(properties)
       expect(renderer.cache.hasOwnProperty(key)).toEqual(true)
@@ -308,41 +286,29 @@ describe('Renderer', () => {
     it('should return the font family', () => {
       const renderer = createRenderer()
 
-      const family = renderer.renderFont(
-        'Arial',
-        ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
-        {
-          fontWeight: 300
-        }
-      )
+      const family = renderer.renderFont('Arial', ['../fonts/Arial.ttf', '../fonts/Arial.woff'], {
+        fontWeight: 300
+      })
 
       expect(family).toEqual('"Arial"')
     })
     it('should return the font family when localAlias is provided as string', () => {
       const renderer = createRenderer()
 
-      const family = renderer.renderFont(
-        'Arial',
-        ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
-        {
-          localAlias: 'Arial',
-          fontWeight: 300
-        }
-      )
+      const family = renderer.renderFont('Arial', ['../fonts/Arial.ttf', '../fonts/Arial.woff'], {
+        localAlias: 'Arial',
+        fontWeight: 300
+      })
 
       expect(family).toEqual('"Arial"')
     })
     it('should return the font family when localAlias provided as array', () => {
       const renderer = createRenderer()
 
-      const family = renderer.renderFont(
-        'Arial',
-        ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
-        {
-          localAlias: ['Arial', 'Arial-Regular'],
-          fontWeight: 300
-        }
-      )
+      const family = renderer.renderFont('Arial', ['../fonts/Arial.ttf', '../fonts/Arial.woff'], {
+        localAlias: ['Arial', 'Arial-Regular'],
+        fontWeight: 300
+      })
 
       expect(family).toEqual('"Arial"')
     })
@@ -383,14 +349,16 @@ describe('Renderer', () => {
           className: 'a',
           selector: '.a',
           declaration: 'color:red',
-          media: ''
+          media: '',
+          support: ''
         },
         {
           type: RULE_TYPE,
           className: 'b',
           selector: '.b',
           declaration: 'color:blue',
-          media: '(min-height: 300px)'
+          media: '(min-height: 300px)',
+          support: ''
         }
       ])
     })
