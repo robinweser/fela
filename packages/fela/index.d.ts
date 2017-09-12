@@ -305,12 +305,12 @@ declare module "react-fela" {
    *
    * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/createComponentFactory.js#L15-L82}
    */
-  type FelaHtmlComponent<Props, Elem> = React.ComponentClass<Props & FelaInjectedProps & React.HTMLProps<Elem>>;
+  type FelaHtmlComponent<Props, Elem> = React.ComponentType<Props & FelaInjectedProps & React.HTMLProps<Elem>>;
 
   /**
    * Returns a stateless SVG React component with Fela styles.
    */
-  type FelaSvgComponent<Props, Elem extends SVGElement> = React.ComponentClass<Props & FelaInjectedProps & React.SVGAttributes<Element>>;
+  type FelaSvgComponent<Props, Elem extends SVGElement> = React.ComponentType<Props & FelaInjectedProps & React.SVGAttributes<Element>>;
 
   /**
    * By default, Fela returns a `div` stateless React component.
