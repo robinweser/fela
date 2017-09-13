@@ -9,15 +9,19 @@ function hasDOM(renderer) {
 
 export default class Provider extends Component {
   static childContextTypes = { renderer: PropTypes.object }
+  static defaultProps = {
+    rehydrate: true
+  }
   static propTypes = {
-    renderer: PropTypes.object.isRequired
+    renderer: PropTypes.object.isRequired,
+    rehydrate: PropTypes.bool.isRequired
   }
 
   constructor(props: Object, context: Object) {
     super(props, context)
 
-    if (hasDOM(props.renderer)) {
-      rehydrateCache(this.props.renderer)
+    if (props.rehydrate && hasDOM(props.renderer)) {
+      rehydrateCache(props.renderer)
     }
   }
 

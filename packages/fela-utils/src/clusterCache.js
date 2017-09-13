@@ -5,6 +5,35 @@ import objectReduce from './objectReduce'
 
 import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE } from './styleTypes'
 
+const handlers = {
+  [RULE_TYPE]: (cluster, { selector, declaration, support, media }) => {
+    const cssRule = generateCSSRule(selector, declaration, support)
+
+    if (media) {
+      if (!cluster.mediaRules[media]) {
+        cluster.mediaRules[media] = ''
+      }
+
+      cluster.mediaRules[media] += cssRule
+    } else {
+      cluster.rules += cssRule
+    }
+  },
+  [FONT_TYPE]: (cluster, { fontFace }) => {
+    cluster.fontFaces += fontFace
+  },
+  [KEYFRAME_TYPE]: (cluster, { keyframe }) => {
+    cluster.keyframes += keyframe
+  },
+  [STATIC_TYPE]: (cluster, { css, selector }) => {
+    if (selector) {
+      cluster.statics += generateCSSRule(selector, css)
+    } else {
+      cluster.statics += css
+    }
+  }
+}
+
 export default function clusterCache(
   cache: Object,
   mediaQueryOrder: Array<string> = []
@@ -14,38 +43,10 @@ export default function clusterCache(
   return objectReduce(
     cache,
     (cluster, entry, key) => {
-      // rules
-      if (entry.type === RULE_TYPE) {
-        const cssRule = generateCSSRule(entry.selector, entry.declaration)
+      const handler = handlers[entry.type]
 
-        if (entry.media) {
-          if (!cluster.mediaRules[entry.media]) {
-            cluster.mediaRules[entry.media] = ''
-          }
-
-          cluster.mediaRules[entry.media] += cssRule
-        } else {
-          cluster.rules += cssRule
-        }
-      }
-
-      // font faces
-      if (entry.type === FONT_TYPE) {
-        cluster.fontFaces += entry.fontFace
-      }
-
-      // keyframes
-      if (entry.type === KEYFRAME_TYPE) {
-        cluster.keyframes += entry.keyframe
-      }
-
-      // static
-      if (entry.type === STATIC_TYPE) {
-        if (entry.selector) {
-          cluster.statics += generateCSSRule(entry.selector, entry.css)
-        } else {
-          cluster.statics += entry.css
-        }
+      if (handler) {
+        handler(cluster, entry)
       }
 
       return cluster

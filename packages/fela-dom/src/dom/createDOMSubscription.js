@@ -13,8 +13,8 @@ import {
 import getDOMNode from './getDOMNode'
 
 const changeHandlers = {
-  [RULE_TYPE]: (node, { selector, declaration }) => {
-    const cssRule = generateCSSRule(selector, declaration)
+  [RULE_TYPE]: (node, { selector, declaration, support }) => {
+    const cssRule = generateCSSRule(selector, declaration, support)
 
     // only use insertRule in production as browser devtools might have
     // weird behavior if used together with insertRule at runtime

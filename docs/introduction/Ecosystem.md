@@ -53,31 +53,36 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-statistics*](https://github.com/rofrischmann/fela/tree/master/packages/fela-statistics) - Collects different metrics to analyze your styles
 
 ### Components
-* [base-styling-components](https://github.com/pitr12/base-styling-components): Abstract Box and Text Components
-* [cf-ui](https://github.com/cloudflare/cf-ui): Cloudflare UI Framework
-* [just-box](https://github.com/RafalFilipek/just-box): Create universal layouts in React and React-Native
-* [kilvin](https://github.com/rofrischmann/kilvin): Primitive React Layout Components
+* [base-styling-components](https://github.com/pitr12/base-styling-components) - Abstract Box and Text Components
+* [cf-ui](https://github.com/cloudflare/cf-ui) - Cloudflare UI Framework
+* [just-box](https://github.com/RafalFilipek/just-box) - Create universal layouts in React and React-Native
+* [kilvin](https://github.com/rofrischmann/kilvin) - Primitive React Layout Components
 * [veel](https://github.com/queckezz/veel) - Base react styling components using fela with a design system
+
+### Starter Kits
+* [catstack](https://github.com/root-systems/catstack) - A modular mad science framework for teams working on production web apps
+* [dogstack](https://github.com/root-systems/dogstack) - A popular-choice grab-bag framework for teams working on production web apps
+* [este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
 
 ### Tools
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
 * [alef](https://github.com/as-com/alef) - Modified TypeScript port of Fela
-* [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js): Transform your CSS to JavaScript at compile time
-* [classnames](https://github.com/JedWatson/classnames): Manage and combine multiple className values safely
-* [css-functions](https://github.com/cssinjs/css-functions): Functional API to create CSS functions including value validation
-* [css-spring](https://github.com/codepunkt/css-spring): Generate physics based css-keyframe animations for the css-in-js solution of your choice or plain css
-* [css-to-object](https://github.com/jxnblk/css-to-object): Convert flat CSS rules to JavaScript style objects
-* [fela-components](https://github.com/arturmuller/fela-components): Styling library for React and Fela
-* [fela-react-prop](https://github.com/codepunkt/fela-react-prop): Generate class names for fela style rule and apply them as property on a wrapped component
-* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector): Simplified react-fela `connect` with auto-bound styles
-* [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools): Useful tools for working with Fela
-* [frejya](https://github.com/benoneal/freyja): Pass styles as props to components
-* [objectify-css](https://github.com/lachlanjc/objectify-css): CLI for converting CSS rules to JavaScript style objects
-* [polished](https://github.com/styled-components/polished): A lightweight toolset for writing styles in JavaScript
-* [react-animations](https://github.com/FormidableLabs/react-animations): CSS animations to be used with CSS in JS solutions
-* [react-styling](https://github.com/halt-hammerzeit/react-styling): Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
-* [stile](https://github.com/bloodyowl/stile): Handle units and string values
-* [storybook-addon-props-fela](https://github.com/Kilix/storybook-addon-props-fela): Document the props of your Fela components in storybook.
+* [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js) - Transform your CSS to JavaScript at compile time
+* [classnames](https://github.com/JedWatson/classnames) - Manage and combine multiple className values safely
+* [css-functions](https://github.com/cssinjs/css-functions) - Functional API to create CSS functions including value validation
+* [css-spring](https://github.com/codepunkt/css-spring) - Generate physics based css-keyframe animations for the css-in-js solution of your choice or plain css
+* [css-to-object](https://github.com/jxnblk/css-to-object) - Convert flat CSS rules to JavaScript style objects
+* [fela-components](https://github.com/arturmuller/fela-components) - Styling library for React and Fela
+* [fela-react-prop](https://github.com/codepunkt/fela-react-prop) - Generate class names for fela style rule and apply them as property on a wrapped component
+* [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector) - Simplified react-fela `connect` with auto-bound styles
+* [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools) - Useful tools for working with Fela
+* [frejya](https://github.com/benoneal/freyja) - Pass styles as props to components
+* [objectify-css](https://github.com/lachlanjc/objectify-css) - CLI for converting CSS rules to JavaScript style objects
+* [polished](https://github.com/styled-components/polished) - A lightweight toolset for writing styles in JavaScript
+* [react-animations](https://github.com/FormidableLabs/react-animations) - CSS animations to be used with CSS in JS solutions
+* [react-styling](https://github.com/halt-hammerzeit/react-styling) - Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
+* [stile](https://github.com/bloodyowl/stile) - Handle units and string values
+* [storybook-addon-props-fela](https://github.com/Kilix/storybook-addon-props-fela) - Document the props of your Fela components in storybook.
 * [vashet](https://github.com/derHowie/vashet) - ClojureScript wrapper for Fela
 
 <br>

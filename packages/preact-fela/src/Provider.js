@@ -10,8 +10,8 @@ export default class Provider extends Component {
   constructor(props: Object, context: Object) {
     super(props, context)
 
-    if (hasDOM()) {
-      rehydrateCache(this.props.renderer)
+    if (props.rehydrate !== false && hasDOM()) {
+      rehydrateCache(props.renderer)
     }
   }
 
