@@ -8,7 +8,7 @@ export default function ThemeProviderFactory(
   BaseComponent: any,
   renderChildren: Function,
   statics?: Object
-): Object {
+): any {
   class ThemeProvider extends BaseComponent {
     theme: Object
 

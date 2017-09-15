@@ -443,14 +443,16 @@ describe('Renderer', () => {
           className: 'a',
           selector: '.a',
           declaration: 'color:red',
-          media: ''
+          media: '',
+          support: ''
         },
         {
           type: RULE_TYPE,
           className: 'b',
           selector: '.b',
           declaration: 'color:blue',
-          media: '(min-height: 300px)'
+          media: '(min-height: 300px)',
+          support: ''
         }
       ])
     })

@@ -1,41 +1,17 @@
 /* @flow */
 import { Component, Children } from 'react'
+import { ProviderFactory } from 'fela'
 import PropTypes from 'prop-types'
-import { render, rehydrateCache } from 'fela-dom'
 
-function hasDOM(renderer) {
-  return !renderer.isNativeRenderer && typeof window !== 'undefined'
-}
-
-export default class Provider extends Component {
-  static childContextTypes = {
+export default ProviderFactory(Component, children => Children.only(children), {
+  propTypes: {
+    renderer: PropTypes.object.isRequired,
+    rehydrate: PropTypes.bool.isRequired
+  },
+  childContextTypes: {
     renderer: PropTypes.object
+  },
+  defaultProps: {
+    rehydrate: true
   }
-  static propTypes = {
-    renderer: PropTypes.object.isRequired
-  }
-
-  constructor(props: Object, context: Object) {
-    super(props, context)
-
-    if (hasDOM(props.renderer)) {
-      rehydrateCache(this.props.renderer)
-    }
-  }
-
-  componentDidMount(): void {
-    if (hasDOM(this.props.renderer)) {
-      render(this.props.renderer)
-    }
-  }
-
-  getChildContext(): Object {
-    return {
-      renderer: this.props.renderer
-    }
-  }
-
-  render(): Object {
-    return Children.only(this.props.children)
-  }
-}
+})

@@ -16,8 +16,8 @@ import {
   isUndefinedValue,
   isObject,
   isSafeClassName,
+  isSupport,
   normalizeNestedProperty,
-  applyMediaRulesInOrder,
   processStyleWithPlugins,
   toCSSString,
   checkFontFormat,
@@ -45,6 +45,7 @@ export default function createRenderer(
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
+    isConnectedToDOM: false,
 
     filterClassName: config.filterClassName || isSafeClassName,
 
@@ -172,11 +173,7 @@ export default function createRenderer(
       }
     },
 
-    subscribe(
-      callback: Function
-    ): {
-      unsubscribe: Function
-    } {
+    subscribe(callback: Function): { unsubscribe: Function } {
       renderer.listeners.push(callback)
 
       return {
@@ -198,19 +195,22 @@ export default function createRenderer(
     _renderStyleToClassNames(
       { _className, ...style }: Object,
       pseudo: string = '',
-      media: string = ''
+      media: string = '',
+      support: string = ''
     ): string {
       let classNames = _className || ''
 
       for (const property in style) {
         const value = style[property]
 
+        // TODO: this whole part could be trimmed
         if (isObject(value)) {
           if (isNestedSelector(property)) {
             classNames += renderer._renderStyleToClassNames(
               value,
               pseudo + normalizeNestedProperty(property),
-              media
+              media,
+              support
             )
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(
@@ -220,13 +220,26 @@ export default function createRenderer(
             classNames += renderer._renderStyleToClassNames(
               value,
               pseudo,
-              combinedMediaQuery
+              combinedMediaQuery,
+              support
+            )
+          } else if (isSupport(property)) {
+            const combinedSupport = generateCombinedMediaQuery(
+              support,
+              property.slice(9).trim()
+            )
+            classNames += renderer._renderStyleToClassNames(
+              value,
+              pseudo,
+              media,
+              combinedSupport
             )
           } else {
             // TODO: warning
           }
         } else {
-          const declarationReference = media + pseudo + property + value
+          const declarationReference =
+            support + media + pseudo + property + value
 
           if (!renderer.cache.hasOwnProperty(declarationReference)) {
             // we remove undefined values to enable
@@ -255,7 +268,8 @@ export default function createRenderer(
               className,
               selector,
               declaration,
-              media
+              media,
+              support
             }
 
             renderer.cache[declarationReference] = change

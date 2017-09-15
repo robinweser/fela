@@ -9,6 +9,7 @@ export type DOMRenderer = {
   listeners: Array<Function>,
   uniqueRuleIdentifier: number,
   uniqueKeyframeIdentifier: number,
+  isConnectedToDOM: boolean,
   cache: Cache,
   nodes: Object,
   renderRule: Function,

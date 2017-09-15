@@ -1,6 +1,5 @@
 /* @flow */
 import {
-  applyMediaRulesInOrder,
   cssifyMediaQueryRules,
   objectReduce,
   clusterCache,
