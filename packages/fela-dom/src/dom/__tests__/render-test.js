@@ -10,13 +10,21 @@ describe('render', () => {
       color: 'blue'
     }))
     renderer.renderKeyframe(() => ({
-      '0%': { color: 'yellow' },
-      '100%': { color: 'orange' }
+      '0%': {
+        color: 'yellow'
+      },
+      '100%': {
+        color: 'orange'
+      }
     }))
-    renderer.renderFont('Lato', ['../Lato.ttf'], { fontWeight: 300 })
+    renderer.renderFont('Lato', ['../Lato.ttf'], {
+      fontWeight: 300
+    })
     render(renderer)
     expect(
-      beautify(document.documentElement.outerHTML, { indent_size: 2 })
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2
+      })
     ).toMatchSnapshot()
   })
 })

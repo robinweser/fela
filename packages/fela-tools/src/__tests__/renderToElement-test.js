@@ -16,16 +16,24 @@ describe('renderToElement', () => {
     }))
     renderToElement(renderer, node)
     expect(
-      beautify(document.documentElement.outerHTML, { indent_size: 2 })
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2
+      })
     ).toMatchSnapshot()
 
     // testing subscription change
     renderer.renderKeyframe(() => ({
-      '0%': { color: 'yellow' },
-      '100%': { color: 'orange' }
+      '0%': {
+        color: 'yellow'
+      },
+      '100%': {
+        color: 'orange'
+      }
     }))
     expect(
-      beautify(document.documentElement.outerHTML, { indent_size: 2 })
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2
+      })
     ).toMatchSnapshot()
   })
 })

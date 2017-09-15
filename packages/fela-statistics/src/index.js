@@ -91,7 +91,9 @@ function addStatistics(
   }
 
   renderer.getStatistics = (): Object => {
-    const currentStats = { ...statistics }
+    const currentStats = {
+      ...statistics
+    }
 
     const reuse = calculateReuse()
     currentStats.reuse = {

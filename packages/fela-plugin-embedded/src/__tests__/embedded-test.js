@@ -1,14 +1,19 @@
 import { createRenderer } from 'fela'
-import { renderToString } from 'fela-tools'
 import embedded from '../index'
+
+import renderToString from '../../../fela-tools/src/renderToString'
 
 describe('Embedded plugin', () => {
   it('should render inline keyframes & fonts', () => {
     const rule = () => ({
       color: 'red',
       animationName: {
-        '0%': { color: 'red' },
-        '100%': { color: 'blue' }
+        '0%': {
+          color: 'red'
+        },
+        '100%': {
+          color: 'blue'
+        }
       },
       fontFace: {
         fontFamily: 'Arial',
@@ -17,7 +22,9 @@ describe('Embedded plugin', () => {
       }
     })
 
-    const renderer = createRenderer({ plugins: [embedded()] })
+    const renderer = createRenderer({
+      plugins: [embedded()]
+    })
     renderer.renderRule(rule)
 
     expect(renderToString(renderer)).toEqual(
@@ -32,12 +39,20 @@ describe('Embedded plugin', () => {
       color: 'red',
       animationName: [
         {
-          '0%': { color: 'red' },
-          '100%': { color: 'blue' }
+          '0%': {
+            color: 'red'
+          },
+          '100%': {
+            color: 'blue'
+          }
         },
         {
-          '0%': { backgroundColor: 'red' },
-          '100%': { backgroundColor: 'blue' }
+          '0%': {
+            backgroundColor: 'red'
+          },
+          '100%': {
+            backgroundColor: 'blue'
+          }
         }
       ],
       fontFace: [
@@ -54,7 +69,9 @@ describe('Embedded plugin', () => {
       ]
     })
 
-    const renderer = createRenderer({ plugins: [embedded()] })
+    const renderer = createRenderer({
+      plugins: [embedded()]
+    })
     renderer.renderRule(rule)
 
     expect(renderToString(renderer)).toEqual(
@@ -69,8 +86,12 @@ describe('Embedded plugin', () => {
       color: 'red',
       ':hover': {
         animationName: {
-          '0%': { color: 'red' },
-          '100%': { color: 'blue' }
+          '0%': {
+            color: 'red'
+          },
+          '100%': {
+            color: 'blue'
+          }
         },
         fontFace: {
           fontFamily: 'Arial',
@@ -80,7 +101,9 @@ describe('Embedded plugin', () => {
       }
     })
 
-    const renderer = createRenderer({ plugins: [embedded()] })
+    const renderer = createRenderer({
+      plugins: [embedded()]
+    })
     renderer.renderRule(rule)
 
     expect(renderToString(renderer)).toEqual(
@@ -100,7 +123,9 @@ describe('Embedded plugin', () => {
         fontWeight: 500
       }
     })
-    const renderer = createRenderer({ plugins: [embedded()] })
+    const renderer = createRenderer({
+      plugins: [embedded()]
+    })
     renderer.renderRule(rule)
     expect(renderToString(renderer)).toEqual(
       '@font-face{font-weight:500;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I) format(\'woff\');font-family:"foo"}' +

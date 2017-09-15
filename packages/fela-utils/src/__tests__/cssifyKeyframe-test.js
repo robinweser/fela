@@ -5,8 +5,12 @@ describe('Cssifying keyframes', () => {
     expect(
       cssifyKeyframe(
         {
-          from: { color: 'blue' },
-          to: { color: 'red' }
+          from: {
+            color: 'blue'
+          },
+          to: {
+            color: 'red'
+          }
         },
         'foo'
       )
@@ -17,8 +21,12 @@ describe('Cssifying keyframes', () => {
     expect(
       cssifyKeyframe(
         {
-          from: { color: 'blue' },
-          to: { color: 'red' }
+          from: {
+            color: 'blue'
+          },
+          to: {
+            color: 'red'
+          }
         },
         'foo',
         ['-webkit-']
@@ -30,8 +38,12 @@ describe('Cssifying keyframes', () => {
     expect(
       cssifyKeyframe(
         {
-          from: { color: 'blue' },
-          to: { color: 'red' }
+          from: {
+            color: 'blue'
+          },
+          to: {
+            color: 'red'
+          }
         },
         'foo',
         ['-webkit-', '']

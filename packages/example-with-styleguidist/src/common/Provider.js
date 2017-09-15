@@ -28,15 +28,14 @@ class StyleProvider extends React.Component {
     const child = Children.only(children)
     // render all the fonts
     createFontRenderer(renderer || felaRenderer, theme)
+
+    const content = isValidElement(child)
+      ? cloneElement(child, this.props)
+      : children
+
     return (
       <FelaProvider renderer={renderer || felaRenderer}>
-        <ThemeProvider theme={theme}>
-          {isValidElement(child) ? (
-            cloneElement(child, { ...this.props })
-          ) : (
-            child
-          )}
-        </ThemeProvider>
+        <ThemeProvider theme={theme}>{content}</ThemeProvider>
       </FelaProvider>
     )
   }

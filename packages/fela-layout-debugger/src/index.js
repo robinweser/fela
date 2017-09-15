@@ -17,7 +17,11 @@ function addLayoutDebugger(
     const combinedRule = combineRules(
       rule,
       () => layoutDebugger(displayName),
-      () => ({ ':after': { lineHeight: 1.5 } })
+      () => ({
+        ':after': {
+          lineHeight: 1.5
+        }
+      })
     )
     return existingRenderRule(combinedRule, props)
   }

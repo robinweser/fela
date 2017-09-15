@@ -6,7 +6,9 @@ describe('Creating DOM node', () => {
     createDOMNode('RULE')
     createDOMNode('RULE', '(max-width: 800px)')
     expect(
-      beautify(document.documentElement.outerHTML, { indent_size: 2 })
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2
+      })
     ).toMatchSnapshot()
   })
 })

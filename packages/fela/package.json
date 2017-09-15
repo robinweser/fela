@@ -24,12 +24,9 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "devDependencies": {
-    "fela-monolithic": "^5.0.7",
-    "fela-tools": "^5.0.7"
-  },
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
-    "fela-utils": "^6.0.1"
+    "fela-utils": "^6.0.1",
+    "recompose": "^0.25.0"
   }
 }

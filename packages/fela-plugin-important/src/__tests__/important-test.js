@@ -31,13 +31,17 @@ describe('Important plugin', () => {
     const style = {
       color: 'blue',
       fontSize: 15,
-      ':hover': { color: 'red' }
+      ':hover': {
+        color: 'red'
+      }
     }
 
     expect(important()(style)).toEqual({
       color: 'blue!important',
       fontSize: '15!important',
-      ':hover': { color: 'red!important' }
+      ':hover': {
+        color: 'red!important'
+      }
     })
   })
 })

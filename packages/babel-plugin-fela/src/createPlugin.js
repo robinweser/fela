@@ -1,4 +1,9 @@
-import { generateMonolithicClassName, arrayReduce, objectReduce, arrayEach } from 'fela-utils'
+import {
+  generateMonolithicClassName,
+  arrayReduce,
+  objectReduce,
+  arrayEach
+} from 'fela-utils'
 
 function diffCache(oldCache, newCache) {
   return objectReduce(
@@ -29,7 +34,9 @@ export default function createPlugin(config = {}) {
             style.push(
               t.objectProperty(
                 node.key,
-                t.objectExpression(extractStaticStyle(node.value.properties, path))
+                t.objectExpression(
+                  extractStaticStyle(node.value.properties, path)
+                )
               )
             )
           }
@@ -55,10 +62,16 @@ export default function createPlugin(config = {}) {
     // helper to transform AST ObjectExpressions into JS objects
     function createStaticJSObject(props, path) {
       return props.reduce((obj, node) => {
-        if (!node.shorthand && (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))) {
+        if (
+          !node.shorthand &&
+          (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
+        ) {
           obj[node.key.name] = node.value.value
         } else if (t.isObjectExpression(node.value)) {
-          obj[node.key.value] = createStaticJSObject(node.value.properties, path)
+          obj[node.key.value] = createStaticJSObject(
+            node.value.properties,
+            path
+          )
         }
 
         return obj
@@ -67,14 +80,16 @@ export default function createPlugin(config = {}) {
 
     function getRuleScope(path) {
       const rule = path.node.arguments[0]
-      let ruleDeclaration,
-        functionExpression
+      let ruleDeclaration, functionExpression
 
       if (t.isIdentifier(rule)) {
         if (path.scope.hasBinding(rule.name)) {
           const binded = path.scope.bindings[rule.name].path
 
-          if (t.isVariableDeclarator(binded) || t.isFunctionDeclaration(binded)) {
+          if (
+            t.isVariableDeclarator(binded) ||
+            t.isFunctionDeclaration(binded)
+          ) {
             ruleDeclaration = binded
             functionExpression = t.isVariableDeclarator(binded)
               ? ruleDeclaration.node.init
@@ -84,14 +99,19 @@ export default function createPlugin(config = {}) {
       } else if (t.isFunctionDeclaration(rule)) {
         ruleDeclaration = rule
         functionExpression = rule.node
-      } else if (t.isArrowFunctionExpression(rule) || t.isFunctionExpression(rule)) {
+      } else if (
+        t.isArrowFunctionExpression(rule) ||
+        t.isFunctionExpression(rule)
+      ) {
         ruleDeclaration = rule
         functionExpression = rule
       }
 
       if (t.isArrowFunctionExpression(functionExpression)) {
         if (t.isObjectExpression(functionExpression.body)) {
-          functionExpression.body = t.blockStatement([t.returnStatement(functionExpression.body)])
+          functionExpression.body = t.blockStatement([
+            t.returnStatement(functionExpression.body)
+          ])
 
           if (t.isVariableDeclarator(ruleDeclaration)) {
             ruleDeclaration.node.init = functionExpression
@@ -121,11 +141,17 @@ export default function createPlugin(config = {}) {
             let renderer
 
             // pass renderer as second rule parameter if not already happening
-            if (functionExpression.params && functionExpression.params.length === 0) {
+            if (
+              functionExpression.params &&
+              functionExpression.params.length === 0
+            ) {
               functionExpression.params.push('_')
             }
 
-            if (functionExpression.params && functionExpression.params.length === 2) {
+            if (
+              functionExpression.params &&
+              functionExpression.params.length === 2
+            ) {
               if (!t.isIdentifier(functionExpression.params[1])) {
                 return
               }
@@ -135,7 +161,10 @@ export default function createPlugin(config = {}) {
               }
             }
 
-            if (functionExpression.params && functionExpression.params.length === 1) {
+            if (
+              functionExpression.params &&
+              functionExpression.params.length === 1
+            ) {
               functionExpression.params.push(t.identifier('renderer'))
               renderer = 'renderer'
             }
@@ -150,15 +179,16 @@ export default function createPlugin(config = {}) {
                 if (childPath.node.root) {
                   const props = childPath.node.properties
 
-                  let id,
-                    blockBody
+                  let id, blockBody
                   let staticStyle = extractStaticStyle(props, childPath)
 
                   // static style precompilation
                   if (config.renderer) {
                     const jsObject = createStaticJSObject(staticStyle)
 
-                    const oldCache = { ...config.renderer.cache }
+                    const oldCache = {
+                      ...config.renderer.cache
+                    }
                     const className = config.renderer.renderRule(() => jsObject)
 
                     if (className) {
@@ -168,7 +198,10 @@ export default function createPlugin(config = {}) {
                           t.assignmentExpression(
                             '=',
                             t.memberExpression(
-                              t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                              t.memberExpression(
+                                t.identifier(renderer),
+                                t.identifier('cache')
+                              ),
                               t.identifier(id)
                             ),
                             t.stringLiteral(className)
@@ -176,7 +209,10 @@ export default function createPlugin(config = {}) {
                         )
                       ]
 
-                      const diffedCache = diffCache(oldCache, config.renderer.cache)
+                      const diffedCache = diffCache(
+                        oldCache,
+                        config.renderer.cache
+                      )
 
                       // rehydrate all cache elements
                       for (const key in diffedCache) {
@@ -185,7 +221,10 @@ export default function createPlugin(config = {}) {
                             t.unaryExpression(
                               '!',
                               t.memberExpression(
-                                t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                                t.memberExpression(
+                                  t.identifier(renderer),
+                                  t.identifier('cache')
+                                ),
                                 t.stringLiteral(key),
                                 true
                               )
@@ -194,7 +233,10 @@ export default function createPlugin(config = {}) {
                               t.assignmentExpression(
                                 '=',
                                 t.memberExpression(
-                                  t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                                  t.memberExpression(
+                                    t.identifier(renderer),
+                                    t.identifier('cache')
+                                  ),
                                   t.stringLiteral(key),
                                   true
                                 ),
@@ -219,12 +261,23 @@ export default function createPlugin(config = {}) {
                         t.assignmentExpression(
                           '=',
                           t.memberExpression(
-                            t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                            t.memberExpression(
+                              t.identifier(renderer),
+                              t.identifier('cache')
+                            ),
                             t.identifier(id)
                           ),
                           t.callExpression(
-                            t.memberExpression(t.identifier(renderer), t.identifier('renderRule')),
-                            [t.ArrowFunctionExpression([], t.objectExpression(staticStyle))]
+                            t.memberExpression(
+                              t.identifier(renderer),
+                              t.identifier('renderRule')
+                            ),
+                            [
+                              t.ArrowFunctionExpression(
+                                [],
+                                t.objectExpression(staticStyle)
+                              )
+                            ]
                           )
                         )
                       )
@@ -236,7 +289,10 @@ export default function createPlugin(config = {}) {
                       t.objectProperty(
                         t.identifier('_className'),
                         t.memberExpression(
-                          t.memberExpression(t.identifier(renderer), t.identifier('cache')),
+                          t.memberExpression(
+                            t.identifier(renderer),
+                            t.identifier('cache')
+                          ),
                           t.identifier(id)
                         )
                       )

@@ -30,10 +30,15 @@ import {
   CLEAR_TYPE
 } from 'fela-utils'
 
-import type { DOMRenderer, DOMRendererConfig } from '../../../flowtypes/DOMRenderer'
+import type {
+  DOMRenderer,
+  DOMRendererConfig
+} from '../../../flowtypes/DOMRenderer'
 import type { FontProperties } from '../../../flowtypes/FontProperties'
 
-export default function createRenderer(config: DOMRendererConfig = {}): DOMRenderer {
+export default function createRenderer(
+  config: DOMRendererConfig = {}
+): DOMRenderer {
   let renderer: DOMRenderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
@@ -71,7 +76,9 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
 
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
-        const animationName = generateAnimationName(++renderer.uniqueKeyframeIdentifier)
+        const animationName = generateAnimationName(
+          ++renderer.uniqueKeyframeIdentifier
+        )
 
         const processedKeyframe = processStyleWithPlugins(
           renderer,
@@ -99,7 +106,11 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
       return renderer.cache[keyframeReference].name
     },
 
-    renderFont(family: string, files: Array<string>, properties: FontProperties = {}): string {
+    renderFont(
+      family: string,
+      files: Array<string>,
+      properties: FontProperties = {}
+    ): string {
       const fontReference = family + JSON.stringify(properties)
       const fontLocals =
         typeof properties.localAlias === 'string'
@@ -121,7 +132,10 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
             (agg, local) => (agg += ` local(${checkFontUrl(local)}), `),
             ''
           )}${files
-            .map(src => `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`)
+            .map(
+              src =>
+                `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`
+            )
             .join(',')}`,
           fontFamily
         }
@@ -158,11 +172,16 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
       }
     },
 
-    subscribe(callback: Function): { unsubscribe: Function } {
+    subscribe(
+      callback: Function
+    ): {
+      unsubscribe: Function
+    } {
       renderer.listeners.push(callback)
 
       return {
-        unsubscribe: () => renderer.listeners.splice(renderer.listeners.indexOf(callback), 1)
+        unsubscribe: () =>
+          renderer.listeners.splice(renderer.listeners.indexOf(callback), 1)
       }
     },
 
@@ -171,7 +190,9 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
       renderer.uniqueKeyframeIdentifier = 0
       renderer.cache = {}
 
-      renderer._emitChange({ type: CLEAR_TYPE })
+      renderer._emitChange({
+        type: CLEAR_TYPE
+      })
     },
 
     _renderStyleToClassNames(
@@ -192,8 +213,15 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
               media
             )
           } else if (isMediaQuery(property)) {
-            const combinedMediaQuery = generateCombinedMediaQuery(media, property.slice(6).trim())
-            classNames += renderer._renderStyleToClassNames(value, pseudo, combinedMediaQuery)
+            const combinedMediaQuery = generateCombinedMediaQuery(
+              media,
+              property.slice(6).trim()
+            )
+            classNames += renderer._renderStyleToClassNames(
+              value,
+              pseudo,
+              combinedMediaQuery
+            )
           } else {
             // TODO: warning
           }
@@ -204,7 +232,9 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
             // we remove undefined values to enable
             // usage of optional props without side-effects
             if (isUndefinedValue(value)) {
-              renderer.cache[declarationReference] = { className: '' }
+              renderer.cache[declarationReference] = {
+                className: ''
+              }
               /* eslint-disable no-continue */
               continue
               /* eslint-enable */
@@ -212,7 +242,10 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
 
             const className =
               renderer.selectorPrefix +
-              generateClassName(renderer.getNextRuleIdentifier, renderer.filterClassName)
+              generateClassName(
+                renderer.getNextRuleIdentifier,
+                renderer.filterClassName
+              )
 
             const declaration = cssifyDeclaration(property, value)
             const selector = generateCSSSelector(className, pseudo)
@@ -233,7 +266,7 @@ export default function createRenderer(config: DOMRendererConfig = {}): DOMRende
 
           // only append if we got a class cached
           if (cachedClassName) {
-            classNames += ' ' + cachedClassName
+            classNames += ` ${cachedClassName}`
           }
         }
       }

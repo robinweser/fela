@@ -6,12 +6,16 @@ describe('Remove undefined plugin', () => {
       color: 'blue',
       fontSize: undefined,
       border: 'undefinedpx solid blue',
-      ':hover': { color: ['rgba(0, 0, 0, 0.4)', undefined, 'black'] }
+      ':hover': {
+        color: ['rgba(0, 0, 0, 0.4)', undefined, 'black']
+      }
     }
 
     expect(removeUndefined()(style)).toEqual({
       color: 'blue',
-      ':hover': { color: ['rgba(0, 0, 0, 0.4)', 'black'] }
+      ':hover': {
+        color: ['rgba(0, 0, 0, 0.4)', 'black']
+      }
     })
   })
 })
