@@ -3,11 +3,19 @@ import PropTypes from 'prop-types'
 import { mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import { html as beautify } from 'js-beautify'
-import { renderToString } from 'fela-tools'
-import createRenderer from '../../createRenderer'
-import connectFactory from '../connectFactory'
 
-const connect = connectFactory(Component, createElement, {
+import createRenderer from '../../createRenderer'
+
+import connectFactory from '../connectFactory'
+import withThemeFactory from '../withThemeFactory'
+
+import renderToString from '../../../../fela-tools/src/renderToString'
+
+const withTheme = withThemeFactory(Component, createElement, {
+  theme: PropTypes.object
+})
+
+const connect = connectFactory(Component, createElement, withTheme, {
   renderer: PropTypes.object
 })
 

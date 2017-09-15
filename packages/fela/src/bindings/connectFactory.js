@@ -1,30 +1,25 @@
 /* @flow */
-import { objectReduce } from 'fela-utils'
+import { objectReduce, hoistStatics } from 'fela-utils'
 import generateDisplayName from './generateDisplayName'
 
 export default function connectFactory(
   BaseComponent: any,
   createElement: Function,
+  withTheme: Function,
   contextTypes?: Object
 ): Function {
   return function connect(rules: Object): Function {
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
-        static defaultProps = component.defaultProps || {}
 
         render() {
-          const { renderer, theme } = this.context
-
-          const styleProps = {
-            ...this.props,
-            theme: theme || {}
-          }
+          const { renderer } = this.context
 
           const styles = objectReduce(
             rules,
             (styleMap, rule, name) => {
-              styleMap[name] = renderer.renderRule(rule, styleProps)
+              styleMap[name] = renderer.renderRule(rule, this.props)
               return styleMap
             },
             {}
@@ -38,13 +33,11 @@ export default function connectFactory(
       }
 
       if (contextTypes) {
-        EnhancedComponent.contextTypes = {
-          ...component.contextTypes,
-          ...contextTypes
-        }
+        EnhancedComponent.contextTypes = contextTypes
       }
 
-      return EnhancedComponent
+      const themedComponent = withTheme(EnhancedComponent)
+      return hoistStatics(themedComponent, component)
     }
   }
 }

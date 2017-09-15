@@ -1,5 +1,6 @@
 /* @flow */
 import {
+  hoistStatics,
   extractPassThroughProps,
   extractUsedProps,
   resolvePassThrough,
@@ -9,6 +10,7 @@ import combineRules from '../combineRules'
 
 export default function createComponentFactory(
   createElement: Function,
+  withTheme: Function,
   contextTypes?: Object,
   withProxy: boolean = false
 ): Function {
@@ -18,12 +20,10 @@ export default function createComponentFactory(
     passThroughProps: Array<string> | Function = []
   ): Function {
     const displayName = rule.name ? rule.name : 'FelaComponent'
-    const usedProps = withProxy ? extractUsedProps(rule) : {}
-    const defaultProps = type.defaultProps || {}
 
     const FelaComponent = (
-      { children, _felaRule, passThrough = [], ...otherProps },
-      { renderer, theme }
+      { children, theme, _felaRule, passThrough = [], ...otherProps },
+      { renderer }
     ) => {
       if (!renderer) {
         throw new Error(
@@ -31,14 +31,11 @@ export default function createComponentFactory(
         )
       }
 
+      const usedProps = withProxy ? extractUsedProps(rule, theme) : {}
       const combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule
-      const ruleProps = {
-        ...defaultProps,
-        ...otherProps
-      }
 
       // improve developer experience with monolithic renderer
-      if (renderer.prettySelectors) {
+      if (process.env.NODE_ENV !== 'production' && renderer.prettySelectors) {
         const componentName =
           typeof type === 'string' ? type : type.displayName || type.name || ''
 
@@ -46,10 +43,15 @@ export default function createComponentFactory(
       }
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [
-        ...resolvePassThrough(passThroughProps, ruleProps),
-        ...resolvePassThrough(passThrough, ruleProps),
-        ...(withProxy ? resolveUsedProps(usedProps, ruleProps) : [])
+        ...resolvePassThrough(passThroughProps, otherProps),
+        ...resolvePassThrough(passThrough, otherProps),
+        ...(withProxy ? resolveUsedProps(usedProps, otherProps) : [])
       ]
+
+      const ruleProps = {
+        ...otherProps,
+        theme
+      }
 
       // if the component renders into another Fela component
       // we pass down the combinedRule as well as both
@@ -67,36 +69,34 @@ export default function createComponentFactory(
 
       const componentProps = extractPassThroughProps(
         resolvedPassThrough,
-        ruleProps
+        otherProps
       )
-
-      ruleProps.theme = theme || {}
 
       // fela-native support
       if (renderer.isNativeRenderer) {
         const felaStyle = renderer.renderRule(combinedRule, ruleProps)
-        componentProps.style = ruleProps.style
-          ? [ruleProps.style, felaStyle]
+        componentProps.style = otherProps.style
+          ? [otherProps.style, felaStyle]
           : felaStyle
       } else {
-        if (ruleProps.style) {
-          componentProps.style = ruleProps.style
+        if (otherProps.style) {
+          componentProps.style = otherProps.style
         }
 
-        const cls = ruleProps.className ? `${ruleProps.className} ` : ''
+        const cls = otherProps.className ? `${otherProps.className} ` : ''
         componentProps.className =
           cls + renderer.renderRule(combinedRule, ruleProps)
       }
 
-      if (ruleProps.id) {
-        componentProps.id = ruleProps.id
+      if (otherProps.id) {
+        componentProps.id = otherProps.id
       }
 
-      if (ruleProps.innerRef) {
-        componentProps.ref = ruleProps.innerRef
+      if (otherProps.innerRef) {
+        componentProps.ref = otherProps.innerRef
       }
 
-      const customType = ruleProps.is || type
+      const customType = otherProps.is || type
       return createElement(customType, componentProps, children)
     }
 
@@ -108,6 +108,7 @@ export default function createComponentFactory(
     FelaComponent.displayName = displayName
     FelaComponent._isFelaComponent = true
 
-    return FelaComponent
+    const themedComponent = withTheme(FelaComponent)
+    return hoistStatics(themedComponent, type)
   }
 }

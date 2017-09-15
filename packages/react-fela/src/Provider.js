@@ -8,7 +8,9 @@ function hasDOM(renderer) {
 }
 
 export default class Provider extends Component {
-  static childContextTypes = { renderer: PropTypes.object }
+  static childContextTypes = {
+    renderer: PropTypes.object
+  }
   static propTypes = {
     renderer: PropTypes.object.isRequired
   }
@@ -21,17 +23,19 @@ export default class Provider extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (hasDOM(this.props.renderer)) {
       render(this.props.renderer)
     }
   }
 
-  getChildContext() {
-    return { renderer: this.props.renderer }
+  getChildContext(): Object {
+    return {
+      renderer: this.props.renderer
+    }
   }
 
-  render() {
+  render(): Object {
     return Children.only(this.props.children)
   }
 }

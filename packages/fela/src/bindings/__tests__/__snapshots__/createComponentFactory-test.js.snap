@@ -1,0 +1,704 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creating Components from Fela rules should allow nested theme objects 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule>
+    <rule
+        theme={
+            Object {
+                "header": Object {
+                  "color": "black",
+                },
+              }
+        }
+    >
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should compose passThrough props 1`] = `
+Array [
+  "<style></style>",
+  <FelaComponent
+    color="red"
+    onClick={[Function]}
+>
+    <FelaComponent
+        color="red"
+        onClick={[Function]}
+        theme={Object {}}
+    >
+        <FelaComponent
+            _felaRule={[Function]}
+            color="red"
+            onClick={[Function]}
+            passThrough={
+                Array [
+                    "onClick",
+                  ]
+            }
+            theme={Object {}}
+        >
+            <FelaComponent
+                _felaRule={[Function]}
+                color="red"
+                onClick={[Function]}
+                passThrough={
+                    Array [
+                        "onClick",
+                      ]
+                }
+                theme={Object {}}
+            >
+                <div
+                    className=""
+                    color="red"
+                    onClick={[Function]}
+                />
+            </FelaComponent>
+        </FelaComponent>
+    </FelaComponent>
+</FelaComponent>,
+]
+`;
+
+exports[`Creating Components from Fela rules should compose styles 1`] = `
+Array [
+  "<style>
+    .a {
+        color: red
+    }
+
+    .b {
+        font-size: 16px
+    }
+
+    .c {
+        line-height: 1.2
+    }
+</style>",
+  <anotherRule>
+    <anotherRule
+        theme={Object {}}
+    >
+        <rule
+            _felaRule={[Function]}
+            passThrough={Array []}
+            theme={Object {}}
+        >
+            <rule
+                _felaRule={[Function]}
+                passThrough={Array []}
+                theme={Object {}}
+            >
+                <div
+                    className="a b c"
+                />
+            </rule>
+        </rule>
+    </anotherRule>
+</anotherRule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should include defaultProps if provided 1`] = `
+Array [
+  "<style>
+    .a {
+        color: red
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule
+    color="red"
+>
+    <rule
+        color="red"
+        theme={Object {}}
+    >
+        <Comp
+            className="a b"
+            color="red"
+        >
+            <div
+                className="a b"
+            >
+                red
+            </div>
+        </Comp>
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should only use passed props to render Fela rules 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16px
+    }
+</style>",
+  <rule
+    color="black"
+    data-foo={true}
+>
+    <rule
+        color="black"
+        data-foo={true}
+        theme={Object {}}
+    >
+        <div
+            className="a b"
+            data-foo={true}
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should only use the rule name as displayName 1`] = `
+Array [
+  "<style>
+    .a {
+        color: red
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <Button
+    is="button"
+>
+    <Button
+        is="button"
+        theme={Object {}}
+    >
+        <button
+            className="a b"
+        />
+    </Button>
+</Button>,
+]
+`;
+
+exports[`Creating Components from Fela rules should pass all props to the element 1`] = `
+Array [
+  "<style>
+    .a {
+        font-size: 16
+    }
+</style>",
+  <rule
+    data-foo={true}
+    onClick={false}
+>
+    <rule
+        data-foo={true}
+        onClick={false}
+        theme={Object {}}
+    >
+        <div
+            className="a"
+            data-foo={true}
+            onClick={false}
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should render fela rules depending on the passed props 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule
+    color="black"
+>
+    <rule
+        color="black"
+        theme={Object {}}
+    >
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should use a dev-friendly className and the selectorPrefix 1`] = `
+Array [
+  "<style>
+    .Fela-Button_div__abrv9k {
+        font-size: 16
+    }
+</style>",
+  <Button>
+    <Button
+        theme={Object {}}
+    >
+        <div
+            className="Fela-Button_div__abrv9k"
+        />
+    </Button>
+</Button>,
+]
+`;
+
+exports[`Creating Components from Fela rules should use a dev-friendly className with monolithic renderer 1`] = `
+Array [
+  "<style>
+    .Button_div__abrv9k {
+        font-size: 16
+    }
+</style>",
+  <Button>
+    <Button
+        theme={Object {}}
+    >
+        <div
+            className="Button_div__abrv9k"
+        />
+    </Button>
+</Button>,
+]
+`;
+
+exports[`Creating Components from Fela rules should use the theme for static rendering by default 1`] = `
+Array [
+  "<style>
+    .a {
+        color: red
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule>
+    <rule
+        theme={
+            Object {
+                "color": "red",
+              }
+        }
+    >
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should allow nested theme objects 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule>
+    <rule
+        theme={
+            Object {
+                "header": Object {
+                  "color": "black",
+                },
+              }
+        }
+    >
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should compose passThrough props 1`] = `
+Array [
+  "<style></style>",
+  <FelaComponent
+    color="red"
+    onClick={[Function]}
+>
+    <FelaComponent
+        color="red"
+        onClick={[Function]}
+        theme={Object {}}
+    >
+        <FelaComponent
+            _felaRule={[Function]}
+            color="red"
+            onClick={[Function]}
+            passThrough={
+                Array [
+                    "onClick",
+                    "onClick",
+                    "color",
+                  ]
+            }
+            theme={Object {}}
+        >
+            <FelaComponent
+                _felaRule={[Function]}
+                color="red"
+                onClick={[Function]}
+                passThrough={
+                    Array [
+                        "onClick",
+                        "onClick",
+                        "color",
+                      ]
+                }
+                theme={Object {}}
+            >
+                <div
+                    className=""
+                    color="red"
+                    onClick={[Function]}
+                />
+            </FelaComponent>
+        </FelaComponent>
+    </FelaComponent>
+</FelaComponent>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should compose styles 1`] = `
+Array [
+  "<style>
+    .a {
+        color: red
+    }
+
+    .b {
+        font-size: 16px
+    }
+
+    .c {
+        line-height: 1.2
+    }
+</style>",
+  <anotherRule>
+    <anotherRule
+        theme={Object {}}
+    >
+        <rule
+            _felaRule={[Function]}
+            passThrough={Array []}
+            theme={Object {}}
+        >
+            <rule
+                _felaRule={[Function]}
+                passThrough={Array []}
+                theme={Object {}}
+            >
+                <div
+                    className="a b c"
+                />
+            </rule>
+        </rule>
+    </anotherRule>
+</anotherRule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should not pass props used in rules to the element 1`] = `
+Array [
+  "<style>
+    .a {
+        color: true
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule
+    color={true}
+    data-foo={true}
+    onClick={false}
+>
+    <rule
+        color={true}
+        data-foo={true}
+        onClick={false}
+        theme={Object {}}
+    >
+        <div
+            className="a b"
+            data-foo={true}
+            onClick={false}
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should only use passed props to render Fela rules 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16px
+    }
+</style>",
+  <rule
+    color="black"
+    data-foo={true}
+>
+    <rule
+        color="black"
+        data-foo={true}
+        theme={Object {}}
+    >
+        <div
+            className="a b"
+            color="black"
+            data-foo={true}
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should only use the rule name as displayName 1`] = `
+Array [
+  "<style>
+    .a {
+        color: red
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <Button
+    is="button"
+>
+    <Button
+        is="button"
+        theme={Object {}}
+    >
+        <button
+            className="a b"
+        />
+    </Button>
+</Button>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should pass all props to the element 1`] = `
+Array [
+  "<style>
+    .a {
+        font-size: 16
+    }
+</style>",
+  <rule
+    data-foo={true}
+    onClick={false}
+>
+    <rule
+        data-foo={true}
+        onClick={false}
+        theme={Object {}}
+    >
+        <div
+            className="a"
+            data-foo={true}
+            onClick={false}
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should pass props used in rules specified in passThroughProps to the element 1`] = `
+Array [
+  "<style>
+    .a {
+        color: true
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule
+    color={true}
+    data-foo={true}
+    onClick={false}
+>
+    <rule
+        color={true}
+        data-foo={true}
+        onClick={false}
+        theme={Object {}}
+    >
+        <div
+            className="a b"
+            color={true}
+            data-foo={true}
+            onClick={false}
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should render fela rules depending on the passed props 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule
+    color="black"
+>
+    <rule
+        color="black"
+        theme={Object {}}
+    >
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should use a dev-friendly className and the selectorPrefix 1`] = `
+Array [
+  "<style>
+    .Fela-Button_div__abrv9k {
+        font-size: 16
+    }
+</style>",
+  <Button>
+    <Button
+        theme={Object {}}
+    >
+        <div
+            className="Fela-Button_div__abrv9k"
+        />
+    </Button>
+</Button>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should use a dev-friendly className with monolithic renderer 1`] = `
+Array [
+  "<style>
+    .Button_div__abrv9k {
+        font-size: 16
+    }
+</style>",
+  <Button>
+    <Button
+        theme={Object {}}
+    >
+        <div
+            className="Button_div__abrv9k"
+        />
+    </Button>
+</Button>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should use the theme for static rendering by default 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule>
+    <rule
+        theme={
+            Object {
+                "color": "black",
+              }
+        }
+    >
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`should pass props except innerRef 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16px
+    }
+</style>",
+  <rule
+    color="black"
+    innerRef={[Function]}
+>
+    <rule
+        color="black"
+        innerRef={[Function]}
+        theme={Object {}}
+    >
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;

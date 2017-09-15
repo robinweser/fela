@@ -16,7 +16,9 @@ export default class Provider extends Component {
   }
 
   getChildContext() {
-    return { renderer: this.props.renderer }
+    return {
+      renderer: this.props.renderer
+    }
   }
 
   componentDidMount() {
