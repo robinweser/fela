@@ -26,6 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
+    "fela-dom": "^5.0.8",
     "fela-utils": "^6.0.1",
     "recompose": "^0.25.0"
   }

@@ -15,12 +15,8 @@ export {
   combineRules,
   enhance,
   connectFactory,
-<<<<<<< HEAD
   createComponentFactory,
   ThemeProviderFactory,
   withThemeFactory,
   createTheme
-=======
-  createComponentFactory
->>>>>>> 91e1c98ca877bf6c7125f8665c028fe6c361870f
 }

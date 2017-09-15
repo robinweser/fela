@@ -62,15 +62,27 @@ exports[`Subscribing to the DOM should render media rules to single DOM nodes 1`
     .a {
       color: blue
     }
+
+    @supports (display: flex) {
+      .b {
+        display: flex
+      }
+    }
   </style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px)\\">
-    .b {
+    .c {
       color: red
     }
   </style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px) and (max-height: 500px)\\">
-    .c {
+    .d {
       color: yellow
+    }
+
+    @supports (display: grid) {
+      .e {
+        display: grid
+      }
     }
   </style>
 </head>
