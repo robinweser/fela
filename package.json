@@ -19,6 +19,7 @@
     "rootDir": "packages",
     "testPathIgnorePatterns": [
       "/mocks/",
+      "/__fixtures__/",
       "/lib/"
     ]
   },

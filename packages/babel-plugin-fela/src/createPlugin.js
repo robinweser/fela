@@ -18,7 +18,16 @@ function diffCache(oldCache, newCache) {
   )
 }
 
-export default function createPlugin(config = {}) {
+const defaultConfig = {
+  precompile: true
+}
+
+export default function createPlugin(userConfig = {}) {
+  const config = {
+    ...defaultConfig,
+    ...userConfig
+  }
+
   return ({ types: t, traverse }) => {
     // helper method to extract static style properties from AST objects
     function extractStaticStyle(props, path) {
@@ -183,7 +192,7 @@ export default function createPlugin(config = {}) {
                   let staticStyle = extractStaticStyle(props, childPath)
 
                   // static style precompilation
-                  if (config.renderer) {
+                  if (config.renderer && config.precompile) {
                     const jsObject = createStaticJSObject(staticStyle)
 
                     const oldCache = {
@@ -204,7 +213,16 @@ export default function createPlugin(config = {}) {
                               ),
                               t.identifier(id)
                             ),
-                            t.stringLiteral(className)
+                            t.objectExpression([
+                              t.objectProperty(
+                                t.identifier('type'),
+                                t.stringLiteral('PRECOMPILATION')
+                              ),
+                              t.objectProperty(
+                                t.identifier('className'),
+                                t.stringLiteral(className)
+                              )
+                            ])
                           )
                         )
                       ]
@@ -216,6 +234,20 @@ export default function createPlugin(config = {}) {
 
                       // rehydrate all cache elements
                       for (const key in diffedCache) {
+                        const cacheEntry = objectReduce(
+                          diffedCache[key],
+                          (entry, value, property) => {
+                            entry.push(
+                              t.objectProperty(
+                                t.identifier(property),
+                                t.stringLiteral(value)
+                              )
+                            )
+                            return entry
+                          },
+                          []
+                        )
+
                         blockBodyItems.push(
                           t.ifStatement(
                             t.unaryExpression(
@@ -240,7 +272,7 @@ export default function createPlugin(config = {}) {
                                   t.stringLiteral(key),
                                   true
                                 ),
-                                t.stringLiteral(diffedCache[key])
+                                t.objectExpression(cacheEntry)
                               )
                             )
                           )
@@ -267,18 +299,27 @@ export default function createPlugin(config = {}) {
                             ),
                             t.identifier(id)
                           ),
-                          t.callExpression(
-                            t.memberExpression(
-                              t.identifier(renderer),
-                              t.identifier('renderRule')
+                          t.objectExpression([
+                            t.objectProperty(
+                              t.identifier('type'),
+                              t.stringLiteral('PRERENDERING')
                             ),
-                            [
-                              t.ArrowFunctionExpression(
-                                [],
-                                t.objectExpression(staticStyle)
+                            t.objectProperty(
+                              t.identifier('className'),
+                              t.callExpression(
+                                t.memberExpression(
+                                  t.identifier(renderer),
+                                  t.identifier('renderRule')
+                                ),
+                                [
+                                  t.ArrowFunctionExpression(
+                                    [],
+                                    t.objectExpression(staticStyle)
+                                  )
+                                ]
                               )
-                            ]
-                          )
+                            )
+                          ])
                         )
                       )
                     ])
@@ -290,10 +331,13 @@ export default function createPlugin(config = {}) {
                         t.identifier('_className'),
                         t.memberExpression(
                           t.memberExpression(
-                            t.identifier(renderer),
-                            t.identifier('cache')
+                            t.memberExpression(
+                              t.identifier(renderer),
+                              t.identifier('cache')
+                            ),
+                            t.identifier(id)
                           ),
-                          t.identifier(id)
+                          t.identifier('className')
                         )
                       )
                     )
