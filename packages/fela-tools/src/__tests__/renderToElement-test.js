@@ -36,4 +36,12 @@ describe('renderToElement', () => {
       })
     ).toMatchSnapshot()
   })
+
+  it('should throw if an invalid DOM element is used', () => {
+    const renderer = createRenderer()
+
+    expect(() => renderToElement(renderer, {})).toThrow(
+      'You need to specify a valid element node (mountNode.nodeType = 1) to render into.'
+    )
+  })
 })

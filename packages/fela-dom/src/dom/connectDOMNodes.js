@@ -24,6 +24,7 @@ export default function connectDOMNodes(renderer: DOMRenderer): void {
   renderer.nodes = findDOMNodes()
 
   const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
+
   const baseNode = renderer.nodes[RULE_TYPE]
 
   objectEach(sheetMap, (type, key) => {
@@ -32,9 +33,9 @@ export default function connectDOMNodes(renderer: DOMRenderer): void {
     }
   })
 
-  objectEach(cacheCluster.mediaRules, (custeredCache, media) => {
-    if (custeredCache.length > 0) {
-      initDOMNode(renderer.nodes, baseNode, custeredCache, RULE_TYPE, media)
+  objectEach(cacheCluster.mediaRules, (clusteredCache, media) => {
+    if (clusteredCache.length > 0) {
+      initDOMNode(renderer.nodes, baseNode, clusteredCache, RULE_TYPE, media)
     }
   })
 }

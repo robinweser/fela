@@ -5,19 +5,6 @@ import {
   arrayEach
 } from 'fela-utils'
 
-function diffCache(oldCache, newCache) {
-  return objectReduce(
-    newCache,
-    (diff, entry, key) => {
-      if (!oldCache[key]) {
-        diff[key] = entry
-      }
-      return diff
-    },
-    {}
-  )
-}
-
 const defaultConfig = {
   precompile: true
 }
@@ -31,23 +18,29 @@ export default function createPlugin(userConfig = {}) {
   return ({ types: t, traverse }) => {
     // helper method to extract static style properties from AST objects
     function extractStaticStyle(props, path) {
+      const removeQueue = []
+
       const staticStyle = arrayReduce(
         props,
         (style, node) => {
+          const removeCallback = () => props.splice(props.indexOf(node), 1)
+
           if (
             !node.shorthand &&
             (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
           ) {
+            removeQueue.push(removeCallback)
             style.push(node)
           } else if (t.isObjectExpression(node.value)) {
+            const properties = extractStaticStyle(node.value.properties, path)
+
             style.push(
-              t.objectProperty(
-                node.key,
-                t.objectExpression(
-                  extractStaticStyle(node.value.properties, path)
-                )
-              )
+              t.objectProperty(node.key, t.objectExpression(properties))
             )
+
+            if (node.value.properties.length === 0) {
+              removeQueue.push(removeCallback)
+            }
           }
 
           return style
@@ -55,16 +48,7 @@ export default function createPlugin(userConfig = {}) {
         []
       )
 
-      arrayEach(staticStyle, prop => {
-        if (t.isObjectExpression(prop.value)) {
-          if (prop.value.properties.length === 0) {
-            props.splice(props.indexOf(prop), 1)
-          }
-        } else {
-          props.splice(props.indexOf(prop), 1)
-        }
-      })
-
+      removeQueue.forEach(cb => cb())
       return staticStyle
     }
 
@@ -87,6 +71,7 @@ export default function createPlugin(userConfig = {}) {
       }, {})
     }
 
+    // abstraction to compile arrow functions, function expressions and function declarations
     function getRuleScope(path) {
       const rule = path.node.arguments[0]
       let ruleDeclaration, functionExpression
@@ -139,10 +124,12 @@ export default function createPlugin(userConfig = {}) {
     return {
       visitor: {
         CallExpression(path, parentPath) {
-          if ((path.node.callee.name = 'createComponent')) {
+          // TODO: check if createComponent is imported from *-fela
+          if (path.node.callee.name === 'createComponent') {
             const { ruleDeclaration, functionExpression } = getRuleScope(path)
 
             if (!ruleDeclaration || !functionExpression) {
+              // TODO: Warning?
               return false
             }
 
@@ -154,7 +141,7 @@ export default function createPlugin(userConfig = {}) {
               functionExpression.params &&
               functionExpression.params.length === 0
             ) {
-              functionExpression.params.push('_')
+              functionExpression.params.push(t.identifier('_'))
             }
 
             if (
@@ -162,6 +149,7 @@ export default function createPlugin(userConfig = {}) {
               functionExpression.params.length === 2
             ) {
               if (!t.isIdentifier(functionExpression.params[1])) {
+                // TODO: Warning
                 return
               }
 
@@ -187,21 +175,22 @@ export default function createPlugin(userConfig = {}) {
 
                 if (childPath.node.root) {
                   const props = childPath.node.properties
+                  const shouldPrecompile = config.renderer && config.precompile
 
-                  let id, blockBody
+                  let id, blockBody, className
                   let staticStyle = extractStaticStyle(props, childPath)
 
                   // static style precompilation
-                  if (config.renderer && config.precompile) {
+                  if (shouldPrecompile) {
+                    const felaRenderer = config.renderer()
+
                     const jsObject = createStaticJSObject(staticStyle)
 
-                    const oldCache = {
-                      ...config.renderer.cache
-                    }
-                    const className = config.renderer.renderRule(() => jsObject)
+                    className = felaRenderer.renderRule(() => jsObject)
 
                     if (className) {
                       id = className.replace(/ /g, '')
+
                       const blockBodyItems = [
                         t.expressionStatement(
                           t.assignmentExpression(
@@ -217,25 +206,16 @@ export default function createPlugin(userConfig = {}) {
                               t.objectProperty(
                                 t.identifier('type'),
                                 t.stringLiteral('PRECOMPILATION')
-                              ),
-                              t.objectProperty(
-                                t.identifier('className'),
-                                t.stringLiteral(className)
                               )
                             ])
                           )
                         )
                       ]
 
-                      const diffedCache = diffCache(
-                        oldCache,
-                        config.renderer.cache
-                      )
-
                       // rehydrate all cache elements
-                      for (const key in diffedCache) {
+                      for (const key in felaRenderer.cache) {
                         const cacheEntry = objectReduce(
-                          diffedCache[key],
+                          felaRenderer.cache[key],
                           (entry, value, property) => {
                             entry.push(
                               t.objectProperty(
@@ -282,12 +262,13 @@ export default function createPlugin(userConfig = {}) {
                       blockBody = t.blockStatement(blockBodyItems)
                     }
 
-                    staticStyle = {}
+                    staticStyle = []
                   }
 
                   // simple static style prerendering
-                  if (Object.keys(staticStyle).length > 0) {
+                  if (staticStyle.length > 0) {
                     id = generateMonolithicClassName(staticStyle)
+
                     blockBody = t.blockStatement([
                       t.expressionStatement(
                         t.assignmentExpression(
@@ -326,21 +307,30 @@ export default function createPlugin(userConfig = {}) {
                   }
 
                   if (id && blockBody) {
-                    childPath.node.properties.unshift(
-                      t.objectProperty(
-                        t.identifier('_className'),
-                        t.memberExpression(
-                          t.memberExpression(
-                            t.memberExpression(
-                              t.identifier(renderer),
-                              t.identifier('cache')
-                            ),
-                            t.identifier(id)
-                          ),
-                          t.identifier('className')
+                    if (shouldPrecompile) {
+                      childPath.node.properties.unshift(
+                        t.objectProperty(
+                          t.identifier('_className'),
+                          t.stringLiteral(className)
                         )
                       )
-                    )
+                    } else {
+                      childPath.node.properties.unshift(
+                        t.objectProperty(
+                          t.identifier('_className'),
+                          t.memberExpression(
+                            t.memberExpression(
+                              t.memberExpression(
+                                t.identifier(renderer),
+                                t.identifier('cache')
+                              ),
+                              t.identifier(id)
+                            ),
+                            t.identifier('className')
+                          )
+                        )
+                      )
+                    }
 
                     let isRoot
 

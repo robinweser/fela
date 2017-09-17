@@ -1,4 +1,5 @@
 import { html as beautify } from 'js-beautify'
+
 import createDOMNode from '../createDOMNode'
 
 describe('Creating DOM node', () => {

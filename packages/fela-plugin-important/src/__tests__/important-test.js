@@ -44,4 +44,14 @@ describe('Important plugin', () => {
       }
     })
   })
+
+  it('should not add duplicate !important', () => {
+    const style = {
+      color: 'blue!important'
+    }
+
+    expect(important()(style)).toEqual({
+      color: 'blue!important'
+    })
+  })
 })

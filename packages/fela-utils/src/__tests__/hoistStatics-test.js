@@ -1,6 +1,16 @@
 import hoistStatics from '../hoistStatics'
 
 describe('Hoisting statics', () => {
+  it('should return the target if a string source is passed', () => {
+    class Foo {
+      static foo = 1
+    }
+
+    const hoisted = hoistStatics(Foo, 'div')
+
+    expect(hoisted).toEqual(Foo)
+  })
+
   it('should hoist static properties', () => {
     class Foo {
       static foo = 1

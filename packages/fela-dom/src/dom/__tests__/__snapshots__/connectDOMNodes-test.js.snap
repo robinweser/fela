@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connecting DOM nodes should initialize nodes 1`] = `
+Array [
+  Array [
+    "RULE",
+    "RULE(min-height: 800px)",
+  ],
+  "<html>
+
+<head>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
+    .a {
+      color: red
+    }
+  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-height: 800px)\\">
+    .b {
+      color: blue
+    }
+  </style>
+</head>
+
+<body></body>
+
+</html>",
+]
+`;

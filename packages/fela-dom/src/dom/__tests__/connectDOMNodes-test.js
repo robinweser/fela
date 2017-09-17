@@ -1,33 +1,45 @@
+import { html as beautify } from 'js-beautify'
+import { RULE_TYPE } from 'fela-utils'
+
 import connectDOMNodes from '../connectDOMNodes'
 
-describe('Reflush style nodes', () => {
-  it('should load and process style nodes', () => {
-    const node1 = document.createElement('style')
-    node1.setAttribute('data-fela-type', 'RULE')
-    node1.type = 'text/css'
-    node1.textContent = '.a{color:yellow}.a:hover{color:red}'
+describe('Connecting DOM nodes', () => {
+  it('should initialize nodes', () => {
+    const node = document.createElement('style')
+    node.setAttribute('data-fela-type', 'RULE')
+    node.type = 'text/css'
 
-    const node2 = document.createElement('style')
-    node2.setAttribute('data-fela-type', 'RULE')
-    node2.type = 'text/css'
-    node2.media = '(max-width: 800px)'
-    node2.textContent = '.b{color:blue}'
-
-    document.head.appendChild(node1)
-    document.head.appendChild(node2)
+    document.head.appendChild(node)
 
     const renderer = {
-      cache: {},
-      getNextRuleIdentifier() {
-        return true
+      cache: {
+        colorred: {
+          className: 'a',
+          selector: '.a',
+          declaration: 'color:red',
+          media: '',
+          support: '',
+          type: RULE_TYPE
+        },
+        colorblue: {
+          className: 'b',
+          selector: '.b',
+          declaration: 'color:blue',
+          media: '(min-height: 800px)',
+          support: '',
+          type: RULE_TYPE
+        }
       }
     }
 
     connectDOMNodes(renderer)
 
-    expect(renderer.nodes).toEqual({
-      RULE: node1,
-      'RULE(max-width: 800px)': node2
-    })
+    expect(renderer.nodes.RULE).toEqual(node)
+    expect([
+      Object.keys(renderer.nodes),
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2
+      })
+    ]).toMatchSnapshot()
   })
 })

@@ -14,4 +14,12 @@ describe('Generating static style references', () => {
       )
     ).toEqual('.foo{"color":"red"}')
   })
+
+  it('should return an empty string', () => {
+    expect(
+      generateStaticReference({
+        color: 'red'
+      })
+    ).toEqual('')
+  })
 })
