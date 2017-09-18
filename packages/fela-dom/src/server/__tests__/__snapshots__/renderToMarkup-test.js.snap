@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering to HTML markup should return a single HTML markup string 1`] = `
+"<style type=\\"text/css\\" data-fela-type=\\"STATIC\\">
+    * {
+        box-sizing: border-box
+    }
+
+    div {
+        display: flex
+    }
+</style>
+<style type=\\"text/css\\" data-fela-type=\\"RULE\\">
+    .a {
+        color: red
+    }
+</style>
+<style type=\\"text/css\\" data-fela-type=\\"RULE\\" media=\\"(min-height: 300px)\\">
+    .b {
+        color: blue
+    }
+</style>"
+`;

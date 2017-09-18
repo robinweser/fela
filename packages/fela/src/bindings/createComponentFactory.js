@@ -22,7 +22,7 @@ export default function createComponentFactory(
     const displayName = rule.name ? rule.name : 'FelaComponent'
 
     const FelaComponent = (
-      { children, theme, _felaRule, passThrough = [], ...otherProps },
+      { children, theme, _felaRule, css, passThrough = [], ...otherProps },
       { renderer }
     ) => {
       if (!renderer) {
@@ -32,7 +32,10 @@ export default function createComponentFactory(
       }
 
       const usedProps = withProxy ? extractUsedProps(rule, theme) : {}
-      const combinedRule = _felaRule ? combineRules(rule, _felaRule) : rule
+      const composedRule = _felaRule ? combineRules(rule, _felaRule) : rule
+      const combinedRule = css
+        ? combineRules(composedRule, () => css)
+        : composedRule
 
       // improve developer experience with monolithic renderer
       if (process.env.NODE_ENV !== 'production' && renderer.prettySelectors) {

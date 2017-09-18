@@ -1,12 +1,23 @@
 import path from 'path'
+import fs from 'fs'
+
 import { transformFileSync } from 'babel-core'
 import { createRenderer } from 'fela'
 import webPreset from 'fela-preset-web'
 
 import createPlugin from '../createPlugin'
 
+const fixturePath = '/__fixtures__/'
+
+const fixtures = fs
+  .readdirSync(path.join(__dirname, fixturePath))
+  .reduce((fixureList, file) => {
+    fixureList.push(file)
+    return fixureList
+  }, [])
+
 function transformFile(filename, plugin) {
-  const filePath = `/__fixtures__/${filename}.js`
+  const filePath = `${fixturePath}${filename}`
 
   return [
     filePath,
@@ -16,16 +27,6 @@ function transformFile(filename, plugin) {
     }).code
   ]
 }
-
-const fixtures = [
-  'createComponent',
-  'createComponentEmbedded',
-  'createComponentFunctionExpression',
-  'createComponentFunctionVariable',
-  'createComponentMergeClassName',
-  'createComponentRendererReference',
-  'createComponentEmptyParameter'
-]
 
 describe('Using babel-plugin-fela', () => {
   it('should prerender static styles as a separate rule', () => {

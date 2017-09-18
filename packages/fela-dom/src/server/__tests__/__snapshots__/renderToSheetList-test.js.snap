@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering to a sheet list should return a list of style sheets 1`] = `
+Array [
+  Object {
+    "css": "*{box-sizing:border-box}div{display:flex}",
+    "type": "STATIC",
+  },
+  Object {
+    "css": ".a{color:red}",
+    "type": "RULE",
+  },
+  Object {
+    "css": ".b{color:blue}",
+    "media": "(min-height: 300px)",
+    "type": "RULE",
+  },
+]
+`;

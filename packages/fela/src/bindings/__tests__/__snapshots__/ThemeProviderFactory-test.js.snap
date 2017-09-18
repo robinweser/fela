@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using the ThemeProvider should pass the theme to rule props 1`] = `
+<ThemeProvider
+  overwrite={false}
+  theme={
+    Object {
+      "color": "red",
+    }
+  }
+>
+  <WithTheme>
+    <Component
+      theme={
+        Object {
+          "color": "red",
+        }
+      }
+    >
+      <div>
+        {"color":"red"}
+      </div>
+    </Component>
+  </WithTheme>
+</ThemeProvider>
+`;
+
+exports[`Using the ThemeProvider should update child nodes if the theme updates 1`] = `
+<ThemeProvider
+  overwrite={false}
+  theme={
+    Object {
+      "color": "blue",
+    }
+  }
+>
+  <WithTheme>
+    <Component
+      theme={
+        Object {
+          "color": "blue",
+        }
+      }
+    >
+      <div>
+        {"color":"blue"}
+      </div>
+    </Component>
+  </WithTheme>
+</ThemeProvider>
+`;
+
+exports[`Using the ThemeProvider should update child nodes through shouldComponentUpdate 1`] = `
+<ThemeProvider
+  overwrite={false}
+  theme={
+    Object {
+      "color": "blue",
+    }
+  }
+>
+  <NoUpdate>
+    <WithTheme>
+      <Component
+        theme={
+          Object {
+            "color": "blue",
+          }
+        }
+      >
+        <div>
+          {"color":"blue"}
+        </div>
+      </Component>
+    </WithTheme>
+  </NoUpdate>
+</ThemeProvider>
+`;

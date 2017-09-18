@@ -16,31 +16,6 @@ describe('Rehydrating @supports rules', () => {
 
     const { supportCache } = rehydrateSupportRules(renderer, css)
 
-    expect(supportCache).toEqual({
-      '(display:grid)colorred': {
-        className: 'a',
-        selector: '.a',
-        declaration: 'color:red',
-        media: '',
-        support: '(display:grid)',
-        type: RULE_TYPE
-      },
-      '(display:grid)colorblue': {
-        className: 'b',
-        selector: '.b',
-        declaration: 'color:blue',
-        media: '',
-        support: '(display:grid)',
-        type: RULE_TYPE
-      },
-      '(display:grid) and (display:flex)colorgreen': {
-        className: 'c',
-        selector: '.c',
-        declaration: 'color:green',
-        media: '',
-        support: '(display:grid) and (display:flex)',
-        type: RULE_TYPE
-      }
-    })
+    expect(JSON.stringify(supportCache, null, 2)).toMatchSnapshot()
   })
 })

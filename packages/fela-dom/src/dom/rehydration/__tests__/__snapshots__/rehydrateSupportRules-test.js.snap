@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rehydrating @supports rules should rehydrate the renderer cache 1`] = `
+"{
+  \\"(display:grid)colorred\\": {
+    \\"type\\": \\"RULE\\",
+    \\"className\\": \\"a\\",
+    \\"selector\\": \\".a\\",
+    \\"declaration\\": \\"color:red\\",
+    \\"media\\": \\"\\",
+    \\"support\\": \\"(display:grid)\\"
+  },
+  \\"(display:grid)colorblue\\": {
+    \\"type\\": \\"RULE\\",
+    \\"className\\": \\"b\\",
+    \\"selector\\": \\".b\\",
+    \\"declaration\\": \\"color:blue\\",
+    \\"media\\": \\"\\",
+    \\"support\\": \\"(display:grid)\\"
+  },
+  \\"(display:grid) and (display:flex)colorgreen\\": {
+    \\"type\\": \\"RULE\\",
+    \\"className\\": \\"c\\",
+    \\"selector\\": \\".c\\",
+    \\"declaration\\": \\"color:green\\",
+    \\"media\\": \\"\\",
+    \\"support\\": \\"(display:grid) and (display:flex)\\"
+  }
+}"
+`;

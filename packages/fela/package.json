@@ -29,5 +29,8 @@
     "fela-dom": "^5.0.8",
     "fela-utils": "^6.0.1",
     "recompose": "^0.25.0"
+  },
+  "devDependencies": {
+    "react-native-mock": "^0.3.1"
   }
 }

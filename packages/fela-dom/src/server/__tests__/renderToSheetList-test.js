@@ -22,20 +22,6 @@ describe('Rendering to a sheet list', () => {
       'div'
     )
 
-    expect(renderToSheetList(renderer)).toEqual([
-      {
-        type: 'STATIC',
-        css: '*{box-sizing:border-box}div{display:flex}'
-      },
-      {
-        type: 'RULE',
-        css: '.a{color:red}'
-      },
-      {
-        type: 'RULE',
-        css: '.b{color:blue}',
-        media: '(min-height: 300px)'
-      }
-    ])
+    expect(renderToSheetList(renderer)).toMatchSnapshot()
   })
 })

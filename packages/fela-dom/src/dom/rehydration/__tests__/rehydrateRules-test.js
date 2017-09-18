@@ -16,31 +16,6 @@ describe('Rehydrating rules', () => {
 
     rehydrateRules(renderer, renderer.cache, css)
 
-    expect(renderer.cache).toEqual({
-      colorred: {
-        className: 'a',
-        selector: '.a',
-        declaration: 'color:red',
-        media: '',
-        support: '',
-        type: RULE_TYPE
-      },
-      colorblue: {
-        className: 'b',
-        selector: '.b',
-        declaration: 'color:blue',
-        media: '',
-        support: '',
-        type: RULE_TYPE
-      },
-      ':hover:activeborderColor2px solid rgb(255, 255, 0)': {
-        className: 'c',
-        selector: '.c:hover:active',
-        declaration: 'border-color:2px solid rgb(255, 255, 0)',
-        media: '',
-        support: '',
-        type: RULE_TYPE
-      }
-    })
+    expect(JSON.stringify(renderer.cache, null, 2)).toMatchSnapshot()
   })
 })

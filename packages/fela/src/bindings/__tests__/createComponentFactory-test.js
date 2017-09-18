@@ -229,6 +229,37 @@ describe('Creating Components from Fela rules', () => {
     ]).toMatchSnapshot()
   })
 
+  it('should add style properties to the rule', () => {
+    const rule = () => ({
+      color: 'blue',
+      fontSize: '16px'
+    })
+
+    const Comp = createComponent(rule)
+    const renderer = createRenderer()
+
+    const bgColor = 'red'
+
+    const wrapper = mount(
+      <Comp
+        css={{
+          fontSize: '14px',
+          backgroundColor: bgColor
+        }}
+      />,
+      {
+        context: {
+          renderer
+        }
+      }
+    )
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper)
+    ]).toMatchSnapshot()
+  })
+
   it('should compose passThrough props', () => {
     const Component = createComponent(() => ({}), 'div', Object.keys)
     const ComposedComponent = createComponent(() => ({}), Component, [
