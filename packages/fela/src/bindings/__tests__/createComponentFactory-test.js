@@ -229,7 +229,7 @@ describe('Creating Components from Fela rules', () => {
     ]).toMatchSnapshot()
   })
 
-  it('should add style properties to the rule', () => {
+  it('should extend the rule properties', () => {
     const rule = () => ({
       color: 'blue',
       fontSize: '16px'
@@ -242,7 +242,7 @@ describe('Creating Components from Fela rules', () => {
 
     const wrapper = mount(
       <Comp
-        css={{
+        extend={{
           fontSize: '14px',
           backgroundColor: bgColor
         }}

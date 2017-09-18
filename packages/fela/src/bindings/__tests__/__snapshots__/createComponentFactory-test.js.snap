@@ -1,45 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Creating Components from Fela rules should add style properties to the rule 1`] = `
-Array [
-  "<style>
-    .a {
-        color: blue
-    }
-
-    .b {
-        font-size: 14px
-    }
-
-    .c {
-        background-color: red
-    }
-</style>",
-  <rule
-    css={
-        Object {
-            "backgroundColor": "red",
-            "fontSize": "14px",
-          }
-    }
->
-    <rule
-        css={
-            Object {
-                "backgroundColor": "red",
-                "fontSize": "14px",
-              }
-        }
-        theme={Object {}}
-    >
-        <div
-            className="a b c"
-        />
-    </rule>
-</rule>,
-]
-`;
-
 exports[`Creating Components from Fela rules should allow nested theme objects 1`] = `
 Array [
   "<style>
@@ -151,6 +111,46 @@ Array [
         </rule>
     </anotherRule>
 </anotherRule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should extend the rule properties 1`] = `
+Array [
+  "<style>
+    .a {
+        color: blue
+    }
+
+    .b {
+        font-size: 14px
+    }
+
+    .c {
+        background-color: red
+    }
+</style>",
+  <rule
+    extend={
+        Object {
+            "backgroundColor": "red",
+            "fontSize": "14px",
+          }
+    }
+>
+    <rule
+        extend={
+            Object {
+                "backgroundColor": "red",
+                "fontSize": "14px",
+              }
+        }
+        theme={Object {}}
+    >
+        <div
+            className="a b c"
+        />
+    </rule>
+</rule>,
 ]
 `;
 
