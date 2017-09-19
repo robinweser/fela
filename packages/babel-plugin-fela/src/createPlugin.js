@@ -373,6 +373,21 @@ export default function createPlugin(userConfig = {}) {
               traverse(ruleDeclaration, traverser, path.scope, path)
             }
           }
+        },
+        JSXAttribute(node) {
+          if (
+            node.name.name === 'css' &&
+            t.isJSXExpressionContainer(node.value)
+          ) {
+            node.name.name = 'className'
+            node.value.expression = t.callExpression(
+              t.memberExpression(
+                t.identifier('renderer'),
+                t.identifier('renderRule')
+              ),
+              [t.arrowFunctionExpression([], node.value.expression)]
+            )
+          }
         }
       }
     }
