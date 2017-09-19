@@ -99,8 +99,12 @@ declare module "fela-logger" {
 
 declare module "fela-monolithic" {
   import { TEnhancer } from "fela";
+  
+  interface MonolithicOptions {
+    prettySelectors?: boolean;
+  }
 
-  export default function(): TEnhancer;
+  export default function(options: MonolithicOptions): TEnhancer;
 }
 
 declare module "fela-perf" {
