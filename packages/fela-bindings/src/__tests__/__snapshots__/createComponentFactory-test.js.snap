@@ -259,10 +259,10 @@ Array [
     }
 </style>",
   <Button
-    is="button"
+    as="button"
 >
     <Button
-        is="button"
+        as="button"
         theme={Object {}}
     >
         <button
@@ -582,13 +582,14 @@ Array [
     }
 </style>",
   <Button
-    is="button"
+    as="button"
 >
     <Button
-        is="button"
+        as="button"
         theme={Object {}}
     >
         <button
+            as="button"
             className="a b"
         />
     </Button>

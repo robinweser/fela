@@ -1,0 +1,30 @@
+{
+    "name": "fela-plugin-bidi",
+    "version": "1.0.0",
+    "description": "Fela plugin to enable direction-independent style authoring",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "jsnext:main": "es/index.js",
+    "files": [
+        "LICENSE",
+        "README.md",
+        "lib/**",
+        "es/**"
+    ],
+    "repository": "https://github.com/rofrischmann/fela/",
+    "keywords": [
+        "fela",
+        "fela-plugin",
+        "rtl",
+        "ltr",
+        "flow-relative",
+        "logical-properties-and-values",
+        "bidi",
+        "accessibility"
+    ],
+    "author": "TxHawks",
+    "license": "MIT",
+    "dependencies": {
+        "bidi-css-js": "^1.0.0"
+    }
+}

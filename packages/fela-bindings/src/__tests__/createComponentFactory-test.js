@@ -360,7 +360,7 @@ describe('Creating Components from Fela rules', () => {
     const Component = createComponent(Button)
     const renderer = createRenderer()
 
-    const wrapper = mount(<Component is="button" />, {
+    const wrapper = mount(<Component as="button" />, {
       context: {
         renderer
       }
@@ -661,7 +661,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const Component = createComponentWithProxy(Button)
     const renderer = createRenderer()
 
-    const wrapper = mount(<Component is="button" />, {
+    const wrapper = mount(<Component as="button" />, {
       context: {
         renderer
       }
