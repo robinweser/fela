@@ -1,6 +1,6 @@
 /* @flow */
 import { Component, Children } from 'react'
-import { ProviderFactory } from 'fela'
+import { ProviderFactory } from 'fela-bindings'
 import PropTypes from 'prop-types'
 
 export default ProviderFactory(Component, children => Children.only(children), {

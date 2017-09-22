@@ -2,9 +2,7 @@ import React, { createElement, Component, Children } from 'react'
 import PropTypes from 'prop-types'
 import { mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import { html as beautify } from 'js-beautify'
 
-import connectFactory from '../connectFactory'
 import withThemeFactory from '../withThemeFactory'
 import ThemeProviderFactory from '../ThemeProviderFactory'
 

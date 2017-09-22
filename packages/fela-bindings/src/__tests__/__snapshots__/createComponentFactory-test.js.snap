@@ -187,6 +187,37 @@ Array [
 ]
 `;
 
+exports[`Creating Components from Fela rules should not pass props to the element 1`] = `
+Array [
+  "<style>
+    .a {
+        color: true
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule
+    color={true}
+    onClick={false}
+    onHover={true}
+>
+    <rule
+        color={true}
+        onClick={false}
+        onHover={true}
+        theme={Object {}}
+    >
+        <div
+            className="a b"
+            onClick={false}
+        />
+    </rule>
+</rule>,
+]
+`;
+
 exports[`Creating Components from Fela rules should only use passed props to render Fela rules 1`] = `
 Array [
   "<style>

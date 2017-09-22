@@ -4,12 +4,11 @@ import { mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import { html as beautify } from 'js-beautify'
 
-import createRenderer from '../../createRenderer'
+import { renderToString } from 'fela-tools'
+import { createRenderer } from 'fela'
 
 import connectFactory from '../connectFactory'
 import withThemeFactory from '../withThemeFactory'
-
-import renderToString from '../../../../fela-tools/src/renderToString'
 
 const withTheme = withThemeFactory(Component, createElement, {
   theme: PropTypes.object

@@ -6,7 +6,7 @@ import {
   resolvePassThrough,
   resolveUsedProps
 } from 'fela-utils'
-import combineRules from '../combineRules'
+import { combineRules } from 'fela'
 
 export default function createComponentFactory(
   createElement: Function,

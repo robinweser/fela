@@ -1,7 +1,7 @@
 /* @flow */
 import { arrayEach } from 'fela-utils'
 
-import type { Theme } from '../../../../flowtypes/Theme'
+import type { Theme } from '../../../flowtypes/Theme'
 
 export default function createTheme(
   themeProperties: Object = {},

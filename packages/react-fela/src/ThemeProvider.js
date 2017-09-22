@@ -1,6 +1,6 @@
 /* @flow */
 import { Component, Children } from 'react'
-import { ThemeProviderFactory } from 'fela'
+import { ThemeProviderFactory } from 'fela-bindings'
 import PropTypes from 'prop-types'
 
 export default ThemeProviderFactory(

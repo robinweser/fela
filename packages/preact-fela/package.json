@@ -26,7 +26,7 @@
     "preact": "^8.0.0"
   },
   "dependencies": {
-    "fela": "^5.2.0",
+    "fela-bindings": "^6.0.0",
     "fela-dom": "^5.0.8"
   }
 }

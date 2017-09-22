@@ -1,19 +1,18 @@
-import React, { createElement, Component } from 'react'
+import React, { createElement, Component as BaseComponent } from 'react'
 import PropTypes from 'prop-types'
 import { mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import { html as beautify } from 'js-beautify'
 
+import { renderToString } from 'fela-tools'
+import { createRenderer } from 'fela'
+import monolithic from 'fela-monolithic'
+
 import createComponentFactory from '../createComponentFactory'
 import withThemeFactory from '../withThemeFactory'
 import createTheme from '../createTheme'
 
-import createRenderer from '../../createRenderer'
-
-import monolithic from '../../../../fela-monolithic/src/index'
-import renderToString from '../../../../fela-tools/src/renderToString'
-
-const withTheme = withThemeFactory(Component, createElement, {
+const withTheme = withThemeFactory(BaseComponent, createElement, {
   theme: PropTypes.object
 })
 
@@ -158,6 +157,11 @@ describe('Creating Components from Fela rules', () => {
         renderer
       }
     })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper)
+    ]).toMatchSnapshot()
   })
 
   it('should pass all props to the element', () => {

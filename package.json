@@ -50,6 +50,9 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
+    "fela": "^5.2.0",
+    "fela-monolithic": "^5.0.7",
+    "fela-tools": "^5.0.7",
     "flow-bin": "^0.38.0",
     "gh-pages": "^0.11.0",
     "gitbook-cli": "^2.3.0",
@@ -74,6 +77,7 @@
     "rimraf": "^2.6.1"
   },
   "dependencies": {
+    "fela-dom": "^5.0.8",
     "opencollective": "^1.0.3"
   },
   "collective": {
