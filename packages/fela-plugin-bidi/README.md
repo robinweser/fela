@@ -4,6 +4,8 @@
 
 Uses [bidi-css-js](https://github.com/TxHawks/bidi-css-js) to enable direction-independent style authoring based on the CSSWG's [CSS Logical Properties and Values](https://www.w3.org/TR/css-logical-1/) proposal.
 
+It is important to note that, when used as a Fela renderer plugin, this package is not a true polyfill for the proposal, as all `start` and `end` properties (and so on) are converted to `left` or `right` values (etc.), and will not automatically flip when the writing direction (`dir`) changes in the document.
+
 When used in conjunction with [fela-plugin-fallback-value](https://github.com/rofrischmann/fela/blob/master/packages/fela-plugin-fallback-value), `fela-plugin-bidi` must be passed to the `plugins` array _**after**_ `fela-plugin-fallback-value`, as it cannot handle the array used to pass fallbacks on its own.
 
 ## Installation
