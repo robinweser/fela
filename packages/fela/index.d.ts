@@ -291,7 +291,7 @@ declare module "react-fela" {
     /**
      * To change the type on runtime and/or for each component, you may use the is prop.
      */
-    is?: string;
+    as?: string | React.ComponentType<Props>;
     /**
      * This use case is especially important for library owners.
      * Instead of passing the passThroughProps to the createComponent call directly,

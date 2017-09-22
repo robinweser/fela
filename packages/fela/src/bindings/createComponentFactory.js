@@ -99,7 +99,7 @@ export default function createComponentFactory(
         componentProps.ref = otherProps.innerRef
       }
 
-      const customType = otherProps.is || type
+      const customType = otherProps.as || type
       return createElement(customType, componentProps, children)
     }
 
