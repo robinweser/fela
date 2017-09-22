@@ -1,7 +1,7 @@
 {
   "private": "true",
   "name": "babel-plugin-fela-benchmark",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
     "bench": "npm run static-extraction-all",
     "static-extraction-all": "npm run static-extraction-1 && npm run static-extraction-2 && npm run static-extraction-5 && npm run static-extraction-10 && npm run static-extraction-20",
@@ -21,10 +21,10 @@
     "babel-preset-react": "^6.16.0",
     "beautify-benchmark": "^0.2.4",
     "benchmark": "^2.1.2",
-    "fela": "^5.2.0",
-    "fela-preset-web": "^5.0.8",
-    "fela-tools": "^5.0.7",
-    "fela-utils": "^6.0.1",
+    "fela": "^6.0.0",
+    "fela-preset-web": "^5.0.9",
+    "fela-tools": "^5.0.8",
+    "fela-utils": "^7.0.0",
     "webpack": "^1.14.0"
   }
 }

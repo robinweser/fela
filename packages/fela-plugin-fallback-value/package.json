@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-fallback-value",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "description": "Fela plugin to resolve fallback values",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -22,6 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
-    "fela-utils": "^6.0.1"
+    "fela-utils": "^7.0.0"
   }
 }
