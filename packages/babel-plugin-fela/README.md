@@ -30,21 +30,21 @@ This will drastically improve any rule that renders multiple times.
 
 ```json
 {
-  "plugins": ["hello-world"]
+  "plugins": ["babel-plugin-fela"]
 }
 ```
 
 ##### Via CLI
 
 ```sh
-babel --plugins hello-world script.js
+babel --plugins babel-plugin-fela script.js
 ```
 
 ##### Via Node API
 
 ```javascript
 require('babel').transform('code', {
-  plugins: ['hello-world']
+  plugins: ['babel-plugin-fela']
 });
 ```
 
@@ -53,12 +53,15 @@ In order to achieve precompilation, the plugin must be aware of the Fela rendere
 We could use the Node API, but to be able to still use the other methods, we can also create our very own local plugin.<br>
 
 We just create a plugin file *(e.g. babelPluginFela.js)*:
+
+> Be aware that the we have to pass a function that returns the renderer rather than the renderer itself!
+
 ```javascript
 import createPlugin from 'babel-plugin-fela/lib/createPlugin'
 
 // add your personal fela configuration here
 import { createRenderer } from 'fela'
-const renderer = createRenderer()
+const renderer = () => createRenderer()
 
 // createPlugin accepts a single renderer option
 export default createPlugin({

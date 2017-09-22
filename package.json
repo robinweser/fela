@@ -12,8 +12,7 @@
     "release": "git pull --rebase && npm run build && lerna publish && npm run docs",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage",
-    "setup": "yarn run clean && yarn run bootstrap && yarn run build",
-    "postinstall": "opencollective postinstall"
+    "setup": "yarn run clean && yarn run bootstrap && yarn run build"
   },
   "jest": {
     "rootDir": "packages",
@@ -51,6 +50,7 @@
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
     "fela": "^5.2.0",
+    "fela-dom": "^5.0.8",
     "fela-monolithic": "^5.0.7",
     "fela-tools": "^5.0.7",
     "flow-bin": "^0.38.0",
@@ -75,14 +75,5 @@
     "react-test-renderer": "^15.5.4",
     "recompose": "^0.25.0",
     "rimraf": "^2.6.1"
-  },
-  "dependencies": {
-    "fela-dom": "^5.0.8",
-    "opencollective": "^1.0.3"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/fela",
-    "logo": "https://opencollective.com/opencollective/logo.txt"
   }
 }

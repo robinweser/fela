@@ -1,7 +1,7 @@
 /* @flow */
 import { createElement } from 'react'
 import PropTypes from 'prop-types'
-import { createComponentFactory } from 'fela'
+import { createComponentFactory } from 'fela-bindings'
 
 import withTheme from './withTheme'
 
