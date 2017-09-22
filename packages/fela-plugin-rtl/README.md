@@ -30,7 +30,7 @@ const renderer = createRenderer({
 {
   paddingLeft: 20,
   marginRight: '25px',
-  cursor: 'w',
+  cursor: 'w-resize',
   textShadow: 'red 2px 0'
 }
 ```
@@ -39,7 +39,7 @@ const renderer = createRenderer({
 {
   paddingRight: 20,
   marginleft: '25px',
-  cursor: 'e',
+  cursor: 'e-resize',
   textShadow: 'red -2px 0'
 }
 ```
