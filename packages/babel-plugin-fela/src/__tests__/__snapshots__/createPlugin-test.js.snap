@@ -2,7 +2,7 @@
 
 exports[`Using babel-plugin-fela should precompile static styles 1`] = `
 Array [
-  "/__fixtures__/createComponent.js",
+  "/__fixtures__/createComponent/createComponent.js",
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
@@ -63,7 +63,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should precompile static styles 2`] = `
 Array [
-  "/__fixtures__/createComponentEmbedded.js",
+  "/__fixtures__/createComponent/createComponentEmbedded.js",
   "import { createComponent } from 'react-fela';
 
 export default createComponent(({ fontSize, padding }, renderer) => {
@@ -122,7 +122,7 @@ export default createComponent(({ fontSize, padding }, renderer) => {
 
 exports[`Using babel-plugin-fela should precompile static styles 3`] = `
 Array [
-  "/__fixtures__/createComponentEmptyParameter.js",
+  "/__fixtures__/createComponent/createComponentEmptyParameter.js",
   "import { createComponent } from 'react-fela';
 
 const rule = (_, renderer) => {
@@ -175,7 +175,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should precompile static styles 4`] = `
 Array [
-  "/__fixtures__/createComponentFunctionExpression.js",
+  "/__fixtures__/createComponent/createComponentFunctionExpression.js",
   "import { createComponent } from 'react-fela';
 
 function rule({ fontSize, padding }, renderer) {
@@ -236,7 +236,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should precompile static styles 5`] = `
 Array [
-  "/__fixtures__/createComponentFunctionVariable.js",
+  "/__fixtures__/createComponent/createComponentFunctionVariable.js",
   "import { createComponent } from 'react-fela';
 
 const rule = function ({ fontSize, padding }, renderer) {
@@ -297,7 +297,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should precompile static styles 6`] = `
 Array [
-  "/__fixtures__/createComponentInvalidRenderer.js",
+  "/__fixtures__/createComponent/createComponentInvalidRenderer.js",
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, { foo }) => {
@@ -321,7 +321,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should precompile static styles 7`] = `
 Array [
-  "/__fixtures__/createComponentMergeClassName.js",
+  "/__fixtures__/createComponent/createComponentMergeClassName.js",
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
@@ -382,7 +382,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should precompile static styles 8`] = `
 Array [
-  "/__fixtures__/createComponentRendererReference.js",
+  "/__fixtures__/createComponent/createComponentRendererReference.js",
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, felaRenderer) => {
@@ -443,7 +443,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should prerender static styles as a separate rule 1`] = `
 Array [
-  "/__fixtures__/createComponent.js",
+  "/__fixtures__/createComponent/createComponent.js",
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
@@ -478,7 +478,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should prerender static styles as a separate rule 2`] = `
 Array [
-  "/__fixtures__/createComponentEmbedded.js",
+  "/__fixtures__/createComponent/createComponentEmbedded.js",
   "import { createComponent } from 'react-fela';
 
 export default createComponent(({ fontSize, padding }, renderer) => {
@@ -511,7 +511,7 @@ export default createComponent(({ fontSize, padding }, renderer) => {
 
 exports[`Using babel-plugin-fela should prerender static styles as a separate rule 3`] = `
 Array [
-  "/__fixtures__/createComponentEmptyParameter.js",
+  "/__fixtures__/createComponent/createComponentEmptyParameter.js",
   "import { createComponent } from 'react-fela';
 
 const rule = (_, renderer) => {
@@ -542,7 +542,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should prerender static styles as a separate rule 4`] = `
 Array [
-  "/__fixtures__/createComponentFunctionExpression.js",
+  "/__fixtures__/createComponent/createComponentFunctionExpression.js",
   "import { createComponent } from 'react-fela';
 
 function rule({ fontSize, padding }, renderer) {
@@ -577,7 +577,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should prerender static styles as a separate rule 5`] = `
 Array [
-  "/__fixtures__/createComponentFunctionVariable.js",
+  "/__fixtures__/createComponent/createComponentFunctionVariable.js",
   "import { createComponent } from 'react-fela';
 
 const rule = function ({ fontSize, padding }, renderer) {
@@ -612,7 +612,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should prerender static styles as a separate rule 6`] = `
 Array [
-  "/__fixtures__/createComponentInvalidRenderer.js",
+  "/__fixtures__/createComponent/createComponentInvalidRenderer.js",
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, { foo }) => {
@@ -636,7 +636,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should prerender static styles as a separate rule 7`] = `
 Array [
-  "/__fixtures__/createComponentMergeClassName.js",
+  "/__fixtures__/createComponent/createComponentMergeClassName.js",
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
@@ -672,7 +672,7 @@ export default createComponent(rule);",
 
 exports[`Using babel-plugin-fela should prerender static styles as a separate rule 8`] = `
 Array [
-  "/__fixtures__/createComponentRendererReference.js",
+  "/__fixtures__/createComponent/createComponentRendererReference.js",
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, felaRenderer) => {
@@ -702,5 +702,47 @@ const rule = ({ fontSize, padding }, felaRenderer) => {
 };
 
 export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should transform inline css props on HTML nodes 1`] = `
+Array [
+  "/__fixtures__/css-prop/ArrowFunctionComponent.js",
+  "const Button = () => <div className={renderer.renderRule(() => ({
+  color: 'red',
+  fontSize: 12
+}))}>
+    Hello
+  </div>;",
+]
+`;
+
+exports[`Using babel-plugin-fela should transform inline css props on HTML nodes 2`] = `
+Array [
+  "/__fixtures__/css-prop/ClassComponent.js",
+  "export default class Button {
+  render() {
+    return <div className={renderer.renderRule(() => ({
+      color: 'red',
+      fontSize: 12
+    }))}>
+        Hello
+      </div>;
+  }
+}",
+]
+`;
+
+exports[`Using babel-plugin-fela should transform inline css props on HTML nodes 3`] = `
+Array [
+  "/__fixtures__/css-prop/FunctionComponent.js",
+  "export default function Button() {
+  return <div className={renderer.renderRule(() => ({
+    color: 'red',
+    fontSize: 12
+  }))}>
+      Hello
+    </div>;
+}",
 ]
 `;
