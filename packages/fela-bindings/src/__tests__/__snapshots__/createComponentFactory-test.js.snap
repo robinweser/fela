@@ -589,7 +589,6 @@ Array [
         theme={Object {}}
     >
         <button
-            as="button"
             className="a b"
         />
     </Button>

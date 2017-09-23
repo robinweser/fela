@@ -22,7 +22,19 @@ export default function createComponentFactory(
     const displayName = rule.name ? rule.name : 'FelaComponent'
 
     const FelaComponent = (
-      { children, theme, _felaRule, extend, passThrough = [], ...otherProps },
+      {
+        children,
+        theme,
+        _felaRule,
+        extend,
+        innerRef,
+        id,
+        style,
+        as,
+        className,
+        passThrough = [],
+        ...otherProps
+      },
       { renderer }
     ) => {
       if (!renderer) {
@@ -78,28 +90,26 @@ export default function createComponentFactory(
       // fela-native support
       if (renderer.isNativeRenderer) {
         const felaStyle = renderer.renderRule(combinedRule, ruleProps)
-        componentProps.style = otherProps.style
-          ? [otherProps.style, felaStyle]
-          : felaStyle
+        componentProps.style = style ? [style, felaStyle] : felaStyle
       } else {
-        if (otherProps.style) {
-          componentProps.style = otherProps.style
+        if (style) {
+          componentProps.style = style
         }
 
-        const cls = otherProps.className ? `${otherProps.className} ` : ''
+        const cls = className ? `${className} ` : ''
         componentProps.className =
           cls + renderer.renderRule(combinedRule, ruleProps)
       }
 
-      if (otherProps.id) {
-        componentProps.id = otherProps.id
+      if (id) {
+        componentProps.id = id
       }
 
-      if (otherProps.innerRef) {
-        componentProps.ref = otherProps.innerRef
+      if (innerRef) {
+        componentProps.ref = innerRef
       }
 
-      const customType = otherProps.as || type
+      const customType = as || type
       return createElement(customType, componentProps, children)
     }
 
