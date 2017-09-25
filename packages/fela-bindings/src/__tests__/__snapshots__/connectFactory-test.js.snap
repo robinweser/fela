@@ -1,5 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Connect Factory for bindings should not pass through "theme" prop when used without "ThemeProvider" 1`] = `
+Array [
+  "<style>
+    .a {
+        padding: 1
+    }
+
+    .b {
+        color: red
+    }
+</style>",
+  <ConnectedFelaComponent
+    color="red"
+>
+    <ConnectedFelaComponent
+        color="red"
+        theme={Object {}}
+    >
+        <Component
+            color="red"
+            styles={
+                Object {
+                    "rule1": "a",
+                    "rule2": "b",
+                  }
+            }
+        >
+            <div
+                color="red"
+            >
+                <span
+                    className="a"
+                />
+                <span
+                    className="b"
+                />
+            </div>
+        </Component>
+    </ConnectedFelaComponent>
+</ConnectedFelaComponent>,
+]
+`;
+
 exports[`Connect Factory for bindings should process rules and create classNames 1`] = `
 Array [
   "<style>
@@ -26,7 +69,6 @@ Array [
                     "rule2": "b",
                   }
             }
-            theme={Object {}}
         >
             <div>
                 <span
