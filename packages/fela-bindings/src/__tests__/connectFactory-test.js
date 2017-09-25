@@ -52,4 +52,40 @@ describe('Connect Factory for bindings', () => {
       toJson(wrapper)
     ]).toMatchSnapshot()
   })
+
+  it('should not pass through "theme" prop when used without "ThemeProvider"', () => {
+    const rules = {
+      rule1: () => ({
+        padding: 1
+      }),
+      rule2: props => ({
+        color: props.color
+      })
+    }
+
+    const MyComponentDefaultProps = {
+      color: 'red'
+    }
+
+    const MyComponent = connect(rules)(({ styles, ...props }) => (
+      <div {...props}>
+        <span className={styles.rule1} />
+        <span className={styles.rule2} />
+      </div>
+    ))
+
+    MyComponent.defaultProps = MyComponentDefaultProps
+
+    const renderer = createRenderer()
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        renderer
+      }
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper)
+    ]).toMatchSnapshot()
+  })
 })
