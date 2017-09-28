@@ -23,6 +23,11 @@ const renderer = createRenderer({
   plugins: [ validator() ]
 })
 ```
+
+### Plugin ordering
+
+Make sure that you place the validator plugin *at the end* of your plugins array - or else you may get some false error / validation messages.
+
 ### Configuration
 ##### Options
 | Option | Value | Default | Description |
