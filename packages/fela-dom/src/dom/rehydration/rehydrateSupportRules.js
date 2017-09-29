@@ -3,12 +3,9 @@ import { extractSupportQuery } from 'fela-utils'
 
 import rehydrateRules from './rehydrateRules'
 
-import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
-
 const SUPPORT_REGEX = /@supports[^{]+\{([\s\S]+?})\s*}/g
 
 export default function rehydrateSupportRules(
-  renderer: DOMRenderer,
   css: string,
   media: string = ''
 ): Object {
@@ -23,8 +20,11 @@ export default function rehydrateSupportRules(
     const support = extractSupportQuery(ruleSet)
     ruleCss = ruleCss.replace(ruleSet, '')
 
-    rehydrateRules(renderer, supportCache, rules, media, support)
+    rehydrateRules(supportCache, rules, media, support)
   }
 
-  return { ruleCss, supportCache }
+  return {
+    ruleCss,
+    supportCache
+  }
 }

@@ -2,13 +2,10 @@
 import camelCaseProperty from 'css-in-js-utils/lib/camelCaseProperty'
 import { generateCSSSelector, RULE_TYPE } from 'fela-utils'
 
-import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
-
 const DECL_REGEX = /.([^:{]+)(:[^{]+)?{([^}]+)}/g
 const PROPERTY_VALUE_REGEX = /:(.+)/
 
 export default function rehydrateRules(
-  renderer: DOMRenderer,
   cache: Object,
   css: string,
   media: string = '',
@@ -24,8 +21,6 @@ export default function rehydrateRules(
     const [ruleSet, className, pseudo = '', declaration] = decl
     /* eslint-enable */
     const [property, value] = declaration.split(PROPERTY_VALUE_REGEX)
-
-    renderer.getNextRuleIdentifier()
 
     const declarationReference =
       support + media + pseudo + camelCaseProperty(property) + value

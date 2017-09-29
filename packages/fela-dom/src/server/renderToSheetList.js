@@ -21,7 +21,11 @@ type Sheet = {
 }
 
 export default function renderToSheetList(renderer: Object): Array<Sheet> {
-  const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
+  const cacheCluster = clusterCache(
+    renderer.cache,
+    renderer.mediaQueryOrder,
+    renderer.uniqueRuleIdentifier
+  )
 
   const sheetList = objectReduce(
     sheetMap,

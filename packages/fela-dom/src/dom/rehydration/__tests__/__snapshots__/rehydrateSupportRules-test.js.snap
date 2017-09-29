@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rehydrating @supports rules should rehydrate the renderer cache 1`] = `
-"{
+Array [
+  "{
   \\"(display:grid)colorred\\": {
     \\"type\\": \\"RULE\\",
     \\"className\\": \\"a\\",
@@ -26,5 +27,7 @@ exports[`Rehydrating @supports rules should rehydrate the renderer cache 1`] = `
     \\"media\\": \\"\\",
     \\"support\\": \\"(display:grid) and (display:flex)\\"
   }
-}"
+}",
+  ".x{color:yellow}",
+]
 `;

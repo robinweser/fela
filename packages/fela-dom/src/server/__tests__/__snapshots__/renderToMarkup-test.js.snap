@@ -11,6 +11,8 @@ exports[`Rendering to HTML markup should return a single HTML markup string 1`] 
     }
 </style>
 <style type=\\"text/css\\" data-fela-type=\\"RULE\\">
+    /*::2#*/
+
     .a {
         color: red
     }
