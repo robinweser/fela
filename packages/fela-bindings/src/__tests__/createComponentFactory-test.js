@@ -233,7 +233,7 @@ describe('Creating Components from Fela rules', () => {
     ]).toMatchSnapshot()
   })
 
-  it('should extend the rule properties', () => {
+  it('should extend the rule properties with an object', () => {
     const rule = () => ({
       color: 'blue',
       fontSize: '16px'
@@ -250,6 +250,38 @@ describe('Creating Components from Fela rules', () => {
           fontSize: '14px',
           backgroundColor: bgColor
         }}
+      />,
+      {
+        context: {
+          renderer
+        }
+      }
+    )
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper)
+    ]).toMatchSnapshot()
+  })
+
+  it('should extend the rule properties with a function', () => {
+    const rule = () => ({
+      color: 'blue',
+      fontSize: '16px'
+    })
+
+    const Comp = createComponent(rule)
+    const renderer = createRenderer()
+
+    const extendRule = props => ({
+      fontSize: '14px',
+      backgroundColor: props.bgColor
+    })
+
+    const wrapper = mount(
+      <Comp
+        extend={extendRule}
+        bgColor="red"
       />,
       {
         context: {

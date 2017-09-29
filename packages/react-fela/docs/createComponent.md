@@ -27,7 +27,7 @@ const Title = createComponent(title, 'div', [ 'data-foo', 'onClick' ])
 const greet = () => alert('Hello World')
 
 ReactDOM.render(
-  <Title fontSize={23} color='red' data-foo='bar' onClick={greet}>Hello World</Title>,
+  <Title fontSize={23} color="red" data-foo="bar" onClick={greet}>Hello World</Title>,
   document.getElementById('app')
 )
 // => <div className="a b c" data-foo="bar" onclick="...">Hello World</div>
@@ -55,7 +55,7 @@ This use case is especially important for library owners. Instead of passing the
 ```javascript
 import { createComponent } from 'react-fela'
 
-const title = props => ({
+const title = () => ({
   color: 'red'
 })
 
@@ -64,10 +64,42 @@ const Title = createComponent(title)
 const greet = () => alert('Hello World')
 
 ReactDOM.render(
-  <Title onClick={greet} passThrough={ [ 'onClick' ]}>Hello World</Title>,
+  <Title onClick={greet} passThrough={[ 'onClick' ]}>Hello World</Title>,
   document.getElementById('app')
 )
 // => <div className="a" onclick="...">Hello World</div>
+```
+
+#### Extending styles
+It's possible to extend component styles with an `extend` prop that can be either an object or a function.
+
+##### Example
+```javascript
+import { createComponent } from 'react-fela'
+
+const title = () => ({
+  color: 'red'
+})
+
+const Title = createComponent(title)
+
+ReactDOM.render(
+  <Title extend={{ color: 'blue' }}>Hello World</Title>,
+  document.getElementById('app')
+)
+// => <div className="a">Hello World</div>
+// => .a { color: blue }
+
+const extendTitle = props => ({
+  color: props.color
+})
+
+ReactDOM.render(
+  <Title extend={extendTitle} color="green">Hello World</Title>,
+  document.getElementById('app2')
+)
+// => <div className="a">Hello World</div>
+// => .a { color: green }
 ```
 
 ## Custom type on runtime
@@ -82,7 +114,7 @@ const title = props => ({
 const Title = createComponent(title)
 
 ReactDOM.render(
-  <Title as='h1'>Hello World</Title>,
+  <Title as="h1">Hello World</Title>,
   document.getElementById('app')
 )
 // => <h1 className="a">Hello World</h1>

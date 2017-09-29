@@ -44,10 +44,15 @@ export default function createComponentFactory(
       }
 
       const usedProps = withProxy ? extractUsedProps(rule, theme) : {}
-      const composedRule = _felaRule ? combineRules(rule, _felaRule) : rule
-      const combinedRule = extend
-        ? combineRules(composedRule, () => extend)
-        : composedRule
+
+      const rules = [rule];
+      if (_felaRule) {
+        rules.push(_felaRule)
+      }
+      if (extend) {
+        typeof extend === 'function' ? rules.push(extend) : rules.push(() => extend)
+      }
+      const combinedRule = combineRules(...rules)
 
       // improve developer experience with monolithic renderer
       if (process.env.NODE_ENV !== 'production' && renderer.prettySelectors) {
