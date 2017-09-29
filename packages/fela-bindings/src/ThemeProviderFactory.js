@@ -20,7 +20,7 @@ export default function ThemeProviderFactory(
     }
 
     componentWillReceiveProps(nextProps: Object): void {
-      if (this.props.theme !== nextProps.theme) {
+      if (shallowEqual(this.props.theme, nextProps.theme) === false) {
         this.theme.update(nextProps.theme)
       }
     }
