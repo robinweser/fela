@@ -7,7 +7,7 @@ Array [
     "type": "STATIC",
   },
   Object {
-    "css": ".a{color:red}",
+    "css": "/*::2#*/.a{color:red}",
     "type": "RULE",
   },
   Object {

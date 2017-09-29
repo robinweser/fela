@@ -17,7 +17,11 @@ const sheetMap = {
 }
 
 export default function renderToMarkup(renderer: Object): string {
-  const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
+  const cacheCluster = clusterCache(
+    renderer.cache,
+    renderer.mediaQueryOrder,
+    renderer.uniqueRuleIdentifier
+  )
 
   const basicMarkup = objectReduce(
     sheetMap,

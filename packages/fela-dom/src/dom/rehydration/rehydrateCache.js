@@ -9,12 +9,18 @@ import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
 
 const rehydrationHandlers = {
   [RULE_TYPE]: (renderer, css, media) => {
-    const { ruleCss, supportCache } = rehydrateSupportRules(
-      renderer,
-      css,
-      media
-    )
-    rehydrateRules(renderer, renderer.cache, ruleCss, media)
+    // try to read the uniqueRuleIdentifier
+    if (media.length === 0 && css.indexOf('#*/') !== -1) {
+      const [left, right] = css.split('#*/')
+      renderer.uniqueRuleIdentifier = parseInt(left.split('::')[1])
+
+      // it's ok to mutate
+      css = right
+    }
+
+    const { ruleCss, supportCache } = rehydrateSupportRules(css, media)
+
+    rehydrateRules(renderer.cache, ruleCss, media)
 
     renderer.cache = {
       ...renderer.cache,
