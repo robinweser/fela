@@ -148,6 +148,7 @@ The snapshot does not indicate anything has actually changed. Because the `class
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { createRenderer } from 'fela'
+import { renderToString } from 'fela-tools'
 
 // splits the css string into a more readable format (credit: este's source)
 const prettifyFelaString = (str) => str.replace(/\.[a-z]+/g, '\n    $&')
@@ -164,7 +165,7 @@ function felaSnapshot(component) {
         </Provider>
       )
       .toJSON(),
-    styles: prettifyFelaString(felaRenderer.renderToString())
+    styles: prettifyFelaString(renderToString(felaRenderer))
   }
 }
 
@@ -217,6 +218,7 @@ Here is the full example.
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { createRenderer } from 'fela'
+import { renderToString } from 'fela-tools'
 import { Provider, createComponent } from 'react-fela'
 
 const boxRules = ({ size = 10 }) => ({
@@ -240,7 +242,7 @@ function felaSnapshot(component) {
         </Provider>
       )
       .toJSON(),
-    styles: prettifyFelaString(felaRenderer.renderToString())
+    styles: prettifyFelaString(renderToString(felaRenderer))
   }
 }
 
@@ -263,6 +265,7 @@ You may also consider [Enzyme](http://airbnb.io/enzyme/) as your React renderer 
 import React from 'react'
 import { shallow as enzymeShallow } from 'enzyme'
 import { createRenderer } from 'fela'
+import { renderToString } from 'fela-tools'
 import toJson from 'enzyme-to-json'
 
 const shallow = (node, options = {}) => {
@@ -279,7 +282,7 @@ const shallow = (node, options = {}) => {
     return {
       component: toJson(this),
       // you should prettify this string
-      styles: renderer.renderToString()
+      styles: renderToString(renderer)
     }
   }
 
@@ -304,18 +307,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { mount as enzymeMount } from 'enzyme'
 import { createRenderer } from 'fela'
+import { renderToString } from 'fela-tools'
+import { createTheme } from 'fela-bindings'
 import toJson from 'enzyme-to-json'
+import myTheme from './my-theme'
+
 
 const mount = (node, options = {}) => {
   const renderer = createRenderer()
   const component = enzymeMount(node, {
     childContextTypes: {
       renderer: PropTypes.object,
-      // theme: PropTypes.object
+      theme: PropTypes.object
     },
     context: {
       renderer,
-      // theme
+      theme: createTheme(myTheme)
     },
     ...options
   })
@@ -324,7 +331,7 @@ const mount = (node, options = {}) => {
     return {
       component: toJson(this),
       // you should prettify this string
-      styles: renderer.renderToString()
+      styles: renderToString(renderer)
     }
   }
 
