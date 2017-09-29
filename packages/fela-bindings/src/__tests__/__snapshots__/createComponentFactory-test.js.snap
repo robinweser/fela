@@ -114,7 +114,39 @@ Array [
 ]
 `;
 
-exports[`Creating Components from Fela rules should extend the rule properties 1`] = `
+exports[`Creating Components from Fela rules should extend the rule properties with a function 1`] = `
+Array [
+  "<style>
+    .a {
+        color: blue
+    }
+
+    .b {
+        font-size: 14px
+    }
+
+    .c {
+        background-color: red
+    }
+</style>",
+  <rule
+    bgColor="red"
+    extend={[Function]}
+>
+    <rule
+        bgColor="red"
+        extend={[Function]}
+        theme={Object {}}
+    >
+        <div
+            className="a b c"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should extend the rule properties with an object 1`] = `
 Array [
   "<style>
     .a {
