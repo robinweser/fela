@@ -1,0 +1,706 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using babel-plugin-fela should precompile static styles 1`] = `
+Array [
+  "/__fixtures__/createComponent.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = ({ fontSize, padding }, renderer) => {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
+      type: 'PRECOMPILATION'
+    };
+    if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
+      type: 'RULE',
+      className: 'a',
+      selector: '.a',
+      declaration: 'color:red',
+      media: '',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
+      type: 'RULE',
+      className: 'b',
+      selector: '.b',
+      declaration: 'background-color:red',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
+      type: 'RULE',
+      className: 'c',
+      selector: '.c',
+      declaration: 'line-height:2',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
+      type: 'RULE',
+      className: 'd',
+      selector: '.d:hover',
+      declaration: 'color:black',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+  }
+
+  return {
+    _className: 'a b c d',
+
+    fontSize,
+
+    '@media (min-height: 300px)': {
+      ':hover': {
+        paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should precompile static styles 2`] = `
+Array [
+  "/__fixtures__/createComponentEmbedded.js",
+  "import { createComponent } from 'react-fela';
+
+export default createComponent(({ fontSize, padding }, renderer) => {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
+      type: 'PRECOMPILATION'
+    };
+    if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
+      type: 'RULE',
+      className: 'a',
+      selector: '.a',
+      declaration: 'color:red',
+      media: '',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
+      type: 'RULE',
+      className: 'b',
+      selector: '.b',
+      declaration: 'background-color:red',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
+      type: 'RULE',
+      className: 'c',
+      selector: '.c',
+      declaration: 'line-height:2',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
+      type: 'RULE',
+      className: 'd',
+      selector: '.d:hover',
+      declaration: 'color:black',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+  }
+
+  return {
+    _className: 'a b c d',
+
+    fontSize,
+
+    '@media (min-height: 300px)': {
+      ':hover': {
+        paddingLeft: padding
+      }
+    }
+  };
+});",
+]
+`;
+
+exports[`Using babel-plugin-fela should precompile static styles 3`] = `
+Array [
+  "/__fixtures__/createComponentEmptyParameter.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = (_, renderer) => {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
+      type: 'PRECOMPILATION'
+    };
+    if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
+      type: 'RULE',
+      className: 'a',
+      selector: '.a',
+      declaration: 'color:red',
+      media: '',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
+      type: 'RULE',
+      className: 'b',
+      selector: '.b',
+      declaration: 'background-color:red',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
+      type: 'RULE',
+      className: 'c',
+      selector: '.c',
+      declaration: 'line-height:2',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
+      type: 'RULE',
+      className: 'd',
+      selector: '.d:hover',
+      declaration: 'color:black',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+  }
+
+  return {
+    _className: 'a b c d'
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should precompile static styles 4`] = `
+Array [
+  "/__fixtures__/createComponentFunctionExpression.js",
+  "import { createComponent } from 'react-fela';
+
+function rule({ fontSize, padding }, renderer) {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
+      type: 'PRECOMPILATION'
+    };
+    if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
+      type: 'RULE',
+      className: 'a',
+      selector: '.a',
+      declaration: 'color:red',
+      media: '',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
+      type: 'RULE',
+      className: 'b',
+      selector: '.b',
+      declaration: 'background-color:red',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
+      type: 'RULE',
+      className: 'c',
+      selector: '.c',
+      declaration: 'line-height:2',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
+      type: 'RULE',
+      className: 'd',
+      selector: '.d:hover',
+      declaration: 'color:black',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+  }
+
+  return {
+    _className: 'a b c d',
+
+    fontSize,
+
+    '@media (min-height: 300px)': {
+      ':hover': {
+        paddingLeft: padding
+      }
+    }
+  };
+}
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should precompile static styles 5`] = `
+Array [
+  "/__fixtures__/createComponentFunctionVariable.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = function ({ fontSize, padding }, renderer) {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
+      type: 'PRECOMPILATION'
+    };
+    if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
+      type: 'RULE',
+      className: 'a',
+      selector: '.a',
+      declaration: 'color:red',
+      media: '',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
+      type: 'RULE',
+      className: 'b',
+      selector: '.b',
+      declaration: 'background-color:red',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
+      type: 'RULE',
+      className: 'c',
+      selector: '.c',
+      declaration: 'line-height:2',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
+      type: 'RULE',
+      className: 'd',
+      selector: '.d:hover',
+      declaration: 'color:black',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+  }
+
+  return {
+    _className: 'a b c d',
+
+    fontSize,
+
+    '@media (min-height: 300px)': {
+      ':hover': {
+        paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should precompile static styles 6`] = `
+Array [
+  "/__fixtures__/createComponentInvalidRenderer.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = ({ fontSize, padding }, { foo }) => {
+  return {
+    fontSize,
+    color: 'red',
+    '@media (min-height: 300px)': {
+      backgroundColor: 'red',
+      lineHeight: 2,
+      ':hover': {
+        color: 'black',
+        paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should precompile static styles 7`] = `
+Array [
+  "/__fixtures__/createComponentMergeClassName.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = ({ fontSize, padding }, renderer) => {
+  if (!renderer.cache.foobarabcd) {
+    renderer.cache.foobarabcd = {
+      type: 'PRECOMPILATION'
+    };
+    if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
+      type: 'RULE',
+      className: 'a',
+      selector: '.a',
+      declaration: 'color:red',
+      media: '',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
+      type: 'RULE',
+      className: 'b',
+      selector: '.b',
+      declaration: 'background-color:red',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
+      type: 'RULE',
+      className: 'c',
+      selector: '.c',
+      declaration: 'line-height:2',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
+      type: 'RULE',
+      className: 'd',
+      selector: '.d:hover',
+      declaration: 'color:black',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+  }
+
+  return {
+    _className: 'foo bar a b c d',
+
+    fontSize,
+
+    '@media (min-height: 300px)': {
+      ':hover': {
+        paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should precompile static styles 8`] = `
+Array [
+  "/__fixtures__/createComponentRendererReference.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = ({ fontSize, padding }, felaRenderer) => {
+  if (!felaRenderer.cache.abcd) {
+    felaRenderer.cache.abcd = {
+      type: 'PRECOMPILATION'
+    };
+    if (!felaRenderer.cache['colorred']) felaRenderer.cache['colorred'] = {
+      type: 'RULE',
+      className: 'a',
+      selector: '.a',
+      declaration: 'color:red',
+      media: '',
+      support: ''
+    };
+    if (!felaRenderer.cache['(min-height: 300px)backgroundColorred']) felaRenderer.cache['(min-height: 300px)backgroundColorred'] = {
+      type: 'RULE',
+      className: 'b',
+      selector: '.b',
+      declaration: 'background-color:red',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!felaRenderer.cache['(min-height: 300px)lineHeight2']) felaRenderer.cache['(min-height: 300px)lineHeight2'] = {
+      type: 'RULE',
+      className: 'c',
+      selector: '.c',
+      declaration: 'line-height:2',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+    if (!felaRenderer.cache['(min-height: 300px):hovercolorblack']) felaRenderer.cache['(min-height: 300px):hovercolorblack'] = {
+      type: 'RULE',
+      className: 'd',
+      selector: '.d:hover',
+      declaration: 'color:black',
+      media: '(min-height: 300px)',
+      support: ''
+    };
+  }
+
+  return {
+    _className: 'a b c d',
+
+    fontSize,
+
+    '@media (min-height: 300px)': {
+      ':hover': {
+        paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should prerender static styles as a separate rule 1`] = `
+Array [
+  "/__fixtures__/createComponent.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = ({ fontSize, padding }, renderer) => {
+  if (!renderer.cache.fktg8sm) {
+    renderer.cache.fktg8sm = {
+      type: 'PRERENDERING',
+      className: renderer.renderRule(() => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          backgroundColor: 'red',
+          lineHeight: 2,
+          ':hover': {
+            color: 'black'
+          }
+        }
+      }))
+    };
+  }
+
+  return {
+    _className: renderer.cache.fktg8sm.className,
+
+    fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should prerender static styles as a separate rule 2`] = `
+Array [
+  "/__fixtures__/createComponentEmbedded.js",
+  "import { createComponent } from 'react-fela';
+
+export default createComponent(({ fontSize, padding }, renderer) => {
+  if (!renderer.cache.f1kspy1w) {
+    renderer.cache.f1kspy1w = {
+      type: 'PRERENDERING',
+      className: renderer.renderRule(() => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          backgroundColor: 'red',
+          lineHeight: 2,
+          ':hover': {
+            color: 'black'
+          }
+        }
+      }))
+    };
+  }
+
+  return {
+    _className: renderer.cache.f1kspy1w.className,
+
+    fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
+      }
+    }
+  };
+});",
+]
+`;
+
+exports[`Using babel-plugin-fela should prerender static styles as a separate rule 3`] = `
+Array [
+  "/__fixtures__/createComponentEmptyParameter.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = (_, renderer) => {
+  if (!renderer.cache.f1skscba) {
+    renderer.cache.f1skscba = {
+      type: 'PRERENDERING',
+      className: renderer.renderRule(() => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          backgroundColor: 'red',
+          lineHeight: 2,
+          ':hover': {
+            color: 'black'
+          }
+        }
+      }))
+    };
+  }
+
+  return {
+    _className: renderer.cache.f1skscba.className
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should prerender static styles as a separate rule 4`] = `
+Array [
+  "/__fixtures__/createComponentFunctionExpression.js",
+  "import { createComponent } from 'react-fela';
+
+function rule({ fontSize, padding }, renderer) {
+  if (!renderer.cache.fwzo4wj) {
+    renderer.cache.fwzo4wj = {
+      type: 'PRERENDERING',
+      className: renderer.renderRule(() => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          backgroundColor: 'red',
+          lineHeight: 2,
+          ':hover': {
+            color: 'black'
+          }
+        }
+      }))
+    };
+  }
+
+  return {
+    _className: renderer.cache.fwzo4wj.className,
+
+    fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
+      }
+    }
+  };
+}
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should prerender static styles as a separate rule 5`] = `
+Array [
+  "/__fixtures__/createComponentFunctionVariable.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = function ({ fontSize, padding }, renderer) {
+  if (!renderer.cache.fjethht) {
+    renderer.cache.fjethht = {
+      type: 'PRERENDERING',
+      className: renderer.renderRule(() => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          backgroundColor: 'red',
+          lineHeight: 2,
+          ':hover': {
+            color: 'black'
+          }
+        }
+      }))
+    };
+  }
+
+  return {
+    _className: renderer.cache.fjethht.className,
+
+    fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should prerender static styles as a separate rule 6`] = `
+Array [
+  "/__fixtures__/createComponentInvalidRenderer.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = ({ fontSize, padding }, { foo }) => {
+  return {
+    fontSize,
+    color: 'red',
+    '@media (min-height: 300px)': {
+      backgroundColor: 'red',
+      lineHeight: 2,
+      ':hover': {
+        color: 'black',
+        paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should prerender static styles as a separate rule 7`] = `
+Array [
+  "/__fixtures__/createComponentMergeClassName.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = ({ fontSize, padding }, renderer) => {
+  if (!renderer.cache.f16z2hz2) {
+    renderer.cache.f16z2hz2 = {
+      type: 'PRERENDERING',
+      className: renderer.renderRule(() => ({
+        _className: 'foo bar',
+
+        color: 'red',
+        '@media (min-height: 300px)': {
+          backgroundColor: 'red',
+          lineHeight: 2,
+          ':hover': {
+            color: 'black'
+          }
+        }
+      }))
+    };
+  }
+
+  return {
+    _className: renderer.cache.f16z2hz2.className,
+    fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;
+
+exports[`Using babel-plugin-fela should prerender static styles as a separate rule 8`] = `
+Array [
+  "/__fixtures__/createComponentRendererReference.js",
+  "import { createComponent } from 'react-fela';
+
+const rule = ({ fontSize, padding }, felaRenderer) => {
+  if (!felaRenderer.cache.f1iq6kz0) {
+    felaRenderer.cache.f1iq6kz0 = {
+      type: 'PRERENDERING',
+      className: felaRenderer.renderRule(() => ({
+        color: 'red',
+        '@media (min-height: 300px)': {
+          backgroundColor: 'red',
+          lineHeight: 2,
+          ':hover': {
+            color: 'black'
+          }
+        }
+      }))
+    };
+  }
+
+  return {
+    _className: felaRenderer.cache.f1iq6kz0.className,
+
+    fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
+      }
+    }
+  };
+};
+
+export default createComponent(rule);",
+]
+`;

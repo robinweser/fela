@@ -6,4 +6,8 @@ describe('Cssifying media query rules', () => {
       '@media (min-height: 300px){color:red}'
     )
   })
+
+  it('should return an empty string', () => {
+    expect(cssifyMediaQueryRules('(min-height: 300px)', '')).toEqual('')
+  })
 })

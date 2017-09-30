@@ -18,6 +18,7 @@ const rule = props => ({
 The above example will not unconditionally render a red border as we can't tell which rule might be rendered before and therefore appears first in the stylesheet. There might have been another rule that renders `borderColor: red` which is rendered before this rule. Now rendering this rule, would cause `border: 1px solid black` to always be preferred based on how CSS specificity works.
 
 To solve this problem, you should not use shorthand and longhand properties together in a single rule. Perhaps the best is to avoid them at all. To give you an example, here's how you would write the above:
+
 ```javascript
 const rule = props => ({
   borderStyle: 'solid',

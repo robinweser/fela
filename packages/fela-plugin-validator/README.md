@@ -1,7 +1,6 @@
 # fela-plugin-validator
 
-
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.96kb-brightgreen.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-validator.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg">
 
 Enforces object validation for keyframes and rules.
 Logs invalid properties to the `console`. One might also enable automatic property deletion.
@@ -24,6 +23,11 @@ const renderer = createRenderer({
   plugins: [ validator() ]
 })
 ```
+
+### Plugin ordering
+
+Make sure that you place the validator plugin *at the end* of your plugins array - or else you may get some false error / validation messages.
+
 ### Configuration
 ##### Options
 | Option | Value | Default | Description |

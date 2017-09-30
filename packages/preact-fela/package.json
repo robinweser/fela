@@ -1,6 +1,6 @@
 {
   "name": "preact-fela",
-  "version": "5.2.0",
+  "version": "6.0.0",
   "description": "Preact bindings for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -22,9 +22,11 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "dependencies": {
-    "fela": "^5.1.0",
-    "fela-dom": "^5.0.6",
+  "peerDependencies": {
     "preact": "^8.0.0"
+  },
+  "dependencies": {
+    "fela-bindings": "^1.0.0",
+    "fela-dom": "^6.0.0"
   }
 }

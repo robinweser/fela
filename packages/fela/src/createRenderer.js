@@ -15,8 +15,9 @@ import {
   isNestedSelector,
   isUndefinedValue,
   isObject,
+  isSafeClassName,
+  isSupport,
   normalizeNestedProperty,
-  applyMediaRulesInOrder,
   processStyleWithPlugins,
   toCSSString,
   checkFontFormat,
@@ -28,8 +29,6 @@ import {
   FONT_TYPE,
   CLEAR_TYPE
 } from 'fela-utils'
-
-import { renderToString } from 'fela-tools'
 
 import type {
   DOMRenderer,
@@ -46,20 +45,21 @@ export default function createRenderer(
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
-    fontFaces: '',
-    keyframes: '',
-    statics: '',
-    rules: '',
-    // apply media rules in an explicit order to ensure
-    // correct media query execution order
-    mediaRules: applyMediaRulesInOrder(config.mediaQueryOrder || []),
+    isConnectedToDOM: false,
+
+    filterClassName: config.filterClassName || isSafeClassName,
+
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
+
+    nodes: {},
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},
-    styleNodes: {},
-    filterClassName: config.filterClassName,
+
+    getNextRuleIdentifier() {
+      return ++renderer.uniqueRuleIdentifier
+    },
 
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
@@ -94,17 +94,17 @@ export default function createRenderer(
           renderer.keyframePrefixes
         )
 
-        renderer.cache[keyframeReference] = animationName
-        renderer.keyframes += cssKeyframe
-
-        renderer._emitChange({
-          name: animationName,
+        const change = {
+          type: KEYFRAME_TYPE,
           keyframe: cssKeyframe,
-          type: KEYFRAME_TYPE
-        })
+          name: animationName
+        }
+
+        renderer.cache[keyframeReference] = change
+        renderer._emitChange(change)
       }
 
-      return renderer.cache[keyframeReference]
+      return renderer.cache[keyframeReference].name
     },
 
     renderFont(
@@ -142,17 +142,18 @@ export default function createRenderer(
         }
 
         const cssFontFace = cssifyFontFace(fontFace)
-        renderer.cache[fontReference] = fontFamily
-        renderer.fontFaces += cssFontFace
 
-        renderer._emitChange({
-          fontFamily,
+        const change = {
+          type: FONT_TYPE,
           fontFace: cssFontFace,
-          type: FONT_TYPE
-        })
+          fontFamily
+        }
+
+        renderer.cache[fontReference] = change
+        renderer._emitChange(change)
       }
 
-      return renderer.cache[fontReference]
+      return renderer.cache[fontReference].fontFamily
     },
 
     renderStatic(staticStyle: Object | string, selector?: string): void {
@@ -160,27 +161,16 @@ export default function createRenderer(
 
       if (!renderer.cache.hasOwnProperty(staticReference)) {
         const cssDeclarations = cssifyStaticStyle(staticStyle, renderer)
-        renderer.cache[staticReference] = ''
 
-        if (typeof staticStyle === 'string') {
-          renderer.statics += cssDeclarations
-
-          renderer._emitChange({
-            type: STATIC_TYPE,
-            css: cssDeclarations
-          })
-        } else if (selector) {
-          renderer.statics += generateCSSRule(selector, cssDeclarations)
+        const change = {
+          type: STATIC_TYPE,
+          css: cssDeclarations,
+          selector
         }
 
-        renderer._emitChange({
-          type: STATIC_TYPE,
-          css: cssDeclarations
-        })
+        renderer.cache[staticReference] = change
+        renderer._emitChange(change)
       }
-    },
-    renderToString(): string {
-      return renderToString(renderer)
     },
 
     subscribe(callback: Function): { unsubscribe: Function } {
@@ -193,57 +183,71 @@ export default function createRenderer(
     },
 
     clear() {
-      renderer.fontFaces = ''
-      renderer.keyframes = ''
-      renderer.statics = ''
-      renderer.rules = ''
-      renderer.mediaRules = applyMediaRulesInOrder(renderer.mediaQueryOrder)
       renderer.uniqueRuleIdentifier = 0
       renderer.uniqueKeyframeIdentifier = 0
       renderer.cache = {}
 
-      renderer._emitChange({ type: CLEAR_TYPE })
+      renderer._emitChange({
+        type: CLEAR_TYPE
+      })
     },
 
     _renderStyleToClassNames(
       { _className, ...style }: Object,
       pseudo: string = '',
-      media: string = ''
+      media: string = '',
+      support: string = ''
     ): string {
-      let classNames = _className || ''
+      let classNames = _className ? ` ${_className}` : ''
 
       for (const property in style) {
         const value = style[property]
 
+        // TODO: this whole part could be trimmed
         if (isObject(value)) {
           if (isNestedSelector(property)) {
             classNames += renderer._renderStyleToClassNames(
               value,
               pseudo + normalizeNestedProperty(property),
-              media
+              media,
+              support
             )
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(
               media,
               property.slice(6).trim()
             )
-
             classNames += renderer._renderStyleToClassNames(
               value,
               pseudo,
-              combinedMediaQuery
+              combinedMediaQuery,
+              support
+            )
+          } else if (isSupport(property)) {
+            const combinedSupport = generateCombinedMediaQuery(
+              support,
+              property.slice(9).trim()
+            )
+            classNames += renderer._renderStyleToClassNames(
+              value,
+              pseudo,
+              media,
+              combinedSupport
             )
           } else {
             // TODO: warning
           }
         } else {
-          const declarationReference = media + pseudo + property + value
+          const declarationReference =
+            support + media + pseudo + property + value
 
           if (!renderer.cache.hasOwnProperty(declarationReference)) {
             // we remove undefined values to enable
             // usage of optional props without side-effects
             if (isUndefinedValue(value)) {
-              renderer.cache[declarationReference] = ''
+              renderer.cache[declarationReference] = {
+                className: ''
+              }
               /* eslint-disable no-continue */
               continue
               /* eslint-enable */
@@ -252,38 +256,31 @@ export default function createRenderer(
             const className =
               renderer.selectorPrefix +
               generateClassName(
-                ++renderer.uniqueRuleIdentifier,
-                void 0,
+                renderer.getNextRuleIdentifier,
                 renderer.filterClassName
               )
 
-            renderer.cache[declarationReference] = className
-
-            const cssDeclaration = cssifyDeclaration(property, value)
+            const declaration = cssifyDeclaration(property, value)
             const selector = generateCSSSelector(className, pseudo)
-            const cssRule = generateCSSRule(selector, cssDeclaration)
 
-            if (media.length > 0) {
-              if (!renderer.mediaRules.hasOwnProperty(media)) {
-                renderer.mediaRules[media] = ''
-              }
-
-              renderer.mediaRules[media] += cssRule
-            } else {
-              renderer.rules += cssRule
+            const change = {
+              type: RULE_TYPE,
+              className,
+              selector,
+              declaration,
+              media,
+              support
             }
 
-            renderer._emitChange({
-              selector,
-              declaration: cssDeclaration,
-              media,
-              type: RULE_TYPE
-            })
+            renderer.cache[declarationReference] = change
+            renderer._emitChange(change)
           }
 
+          const cachedClassName = renderer.cache[declarationReference].className
+
           // only append if we got a class cached
-          if (renderer.cache[declarationReference]) {
-            classNames += ` ${renderer.cache[declarationReference]}`
+          if (cachedClassName) {
+            classNames += ` ${cachedClassName}`
           }
         }
       }

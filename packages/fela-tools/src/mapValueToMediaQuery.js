@@ -9,7 +9,9 @@ export default function mapValueToMediaQuery(
     queryValueMap,
     (style, value, query) => {
       if (typeof mapper === 'string') {
-        style[query] = { [mapper]: value }
+        style[query] = {
+          [mapper]: value
+        }
       } else {
         style[query] = mapper(value)
       }

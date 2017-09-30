@@ -23,7 +23,9 @@ describe('Prefixer plugin', () => {
   it('should prefix nested objects', () => {
     const style = {
       display: 'flex',
-      ':hover': { justifyContent: 'center' }
+      ':hover': {
+        justifyContent: 'center'
+      }
     }
 
     expect(prefixer()(style)).toEqual({

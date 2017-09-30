@@ -28,6 +28,17 @@ npm run client
 * Plugins
 * Server-side Rendering
 
+
+### Styleguidist
+Another example that covers the usage with [react-styleguidist](https://github.com/styleguidist/react-styleguidist).
+
+```sh
+git clone https://github.com/rofrischmann/fela.git
+cd fela/packages/example-with-styleguidist
+npm install
+npm run styleguide
+```
+
 ## Preact
 A simple example application using the [Preact bindings](https://github.com/rofrischmann/fela/tree/master/packages/preact-fela).
 The example is the same as the [React example](#react) above.

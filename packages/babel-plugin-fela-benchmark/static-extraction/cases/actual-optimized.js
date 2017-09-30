@@ -4,11 +4,9 @@ import variations from './_variations'
 
 export const optimizedActual = () => {
   const renderer = createRenderer({ plugins: [...webPreset] })
-  renderer.precompiled = {}
-
   const rule = ({ fontSize, width }) => {
-    if (!renderer.precompiled[0]) {
-      renderer.precompiled[0] = renderer.renderRule(() => ({
+    if (!renderer.cache[0]) {
+      renderer.cache[0] = renderer.renderRule(() => ({
         backgroundColor: 'black',
         lineHeight: 1.0,
         ':hover': {
@@ -22,7 +20,7 @@ export const optimizedActual = () => {
     }
 
     return {
-      _className: renderer.precompiled[0],
+      _className: renderer.cache[0],
       fontSize: `${fontSize}px`,
       width: `${width}px`,
       ':hover': {

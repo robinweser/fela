@@ -1,17 +1,9 @@
 /* @flow */
 import { Component } from 'preact'
-import { render } from 'fela-dom'
+import { ProviderFactory } from 'fela-bindings'
 
-export default class Provider extends Component {
-  getChildContext() {
-    return { renderer: this.props.renderer }
+export default ProviderFactory(Component, children => children[0], {
+  defaultProps: {
+    rehydrate: true
   }
-
-  componentDidMount() {
-    render(this.props.renderer, this.props.mountNode)
-  }
-
-  render() {
-    return this.props.children[0]
-  }
-}
+})

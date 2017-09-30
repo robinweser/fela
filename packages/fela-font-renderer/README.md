@@ -2,8 +2,7 @@
 
 > Deprecated: With fela 5.0.0 this enhancer is no longer required as fela-dom now renders fonts into its own stylesheet.
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-font-renderer.svg">
-<img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.47kb-brightgreen.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-font-renderer.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-font-renderer.svg">
 
 Allocates all `renderFont` calls to a separate renderer which renders into a separate `mountNode` to prevent refetching the `@font-face` every time.
 

@@ -1,7 +1,14 @@
 /* @flow */
 export default function generateCSSRule(
   selector: string,
-  cssDeclaration: string
+  cssDeclaration: string,
+  support?: string = ''
 ): string {
-  return `${selector}{${cssDeclaration}}`
+  const cssRule = `${selector}{${cssDeclaration}}`
+
+  if (support.length > 0) {
+    return `@supports ${support}{${cssRule}}`
+  }
+
+  return cssRule
 }

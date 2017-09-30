@@ -1,7 +1,6 @@
 # fela-plugin-extend
 
-
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-extend.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.60kb-brightgreen.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-extend.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-extend.svg">
 
 Allows styles to be extended with other style objects. Supports a condition-based API.
 

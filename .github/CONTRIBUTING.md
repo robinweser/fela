@@ -81,3 +81,35 @@ If you found a new bug or got a feature request feel free to file a new issue. F
 
 ## Sending Pull Requests
 If you are creating a pull request, try to use commit messages that are self-explanatory. Be sure to meet all guide-lines from above. If you're pushing a Work in Progress, please flag it and optionally add a description if something needs to be discussed.
+
+## Credits
+
+### Contributors
+
+Thank you to all the people who have already contributed to fela!
+<a href="graphs/contributors"><img src="https://opencollective.com/fela/contributors.svg?width=890" /></a>
+
+
+### Backers
+
+Thank you to all our backers! [[Become a backer](https://opencollective.com/fela#backer)]
+
+<a href="https://opencollective.com/fela#backers" target="_blank"><img src="https://opencollective.com/fela/backers.svg?width=890"></a>
+
+
+### Sponsors
+
+Thank you to all our sponsors! (please ask your company to also support this open source project by [becoming a sponsor](https://opencollective.com/fela#sponsor))
+
+<a href="https://opencollective.com/fela/sponsor/0/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/1/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/2/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/3/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/4/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/5/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/6/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/7/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/8/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/fela/sponsor/9/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/9/avatar.svg"></a>
+
+<!-- This `CONTRIBUTING.md` is based on @nayafia's template https://github.com/nayafia/contributing-template -->

@@ -1,8 +1,8 @@
 # Inferno Fela
 
-Official [Inferno](https://github.com/infernojs/inferno) bindings for Fela.
+<img alt="npm version" src="https://badge.fury.io/js/inferno-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/inferno-fela.svg">
 
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/inferno-fela.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.35kb-brightgreen.svg">
+Official [Inferno](https://github.com/infernojs/inferno) bindings for Fela.
 
 This package only includes Inferno bindings for [Fela](http://github.com/rofrischmann/fela).<br>
 It assumes you already know about Fela and how to use it.

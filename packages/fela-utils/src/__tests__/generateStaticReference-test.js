@@ -5,8 +5,21 @@ describe('Generating static style references', () => {
     expect(generateStaticReference('.foo{color:red}')).toEqual(
       '.foo{color:red}'
     )
-    expect(generateStaticReference({ color: 'red' }, '.foo')).toEqual(
-      '.foo{"color":"red"}'
-    )
+    expect(
+      generateStaticReference(
+        {
+          color: 'red'
+        },
+        '.foo'
+      )
+    ).toEqual('.foo{"color":"red"}')
+  })
+
+  it('should return an empty string', () => {
+    expect(
+      generateStaticReference({
+        color: 'red'
+      })
+    ).toEqual('')
   })
 })

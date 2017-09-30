@@ -1,11 +1,14 @@
 {
   "name": "fela",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
+  "scripts": {
+    "postinstall": "opencollective postinstall"
+  },
   "files": [
     "LICENSE",
     "README.md",
@@ -24,12 +27,17 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "devDependencies": {
-    "fela-monolithic": "^5.0.5"
-  },
   "dependencies": {
-    "css-in-js-utils": "^1.0.3",
-    "fela-tools": "^5.0.5",
-    "fela-utils": "^5.0.5"
+    "css-in-js-utils": "^2.0.0",
+    "fela-utils": "^7.0.0",
+    "opencollective": "^1.0.3"
+  },
+  "devDependencies": {
+    "fela-tools": "^5.0.8"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/fela",
+    "logo": "https://opencollective.com/opencollective/logo.txt"
   }
 }

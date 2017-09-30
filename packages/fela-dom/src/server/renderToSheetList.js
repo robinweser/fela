@@ -1,5 +1,12 @@
 /* @flow */
-import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE } from 'fela-utils'
+import {
+  clusterCache,
+  objectReduce,
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  FONT_TYPE,
+  STATIC_TYPE
+} from 'fela-utils'
 
 const sheetMap = {
   fontFaces: FONT_TYPE,
@@ -14,28 +21,40 @@ type Sheet = {
 }
 
 export default function renderToSheetList(renderer: Object): Array<Sheet> {
-  const sheetList = []
+  const cacheCluster = clusterCache(
+    renderer.cache,
+    renderer.mediaQueryOrder,
+    renderer.uniqueRuleIdentifier
+  )
 
-  for (const style in sheetMap) {
-    if (renderer[style].length > 0) {
-      sheetList.push({
-        css: renderer[style],
-        type: sheetMap[style]
-      })
-    }
-  }
+  const sheetList = objectReduce(
+    sheetMap,
+    (list, type, key) => {
+      if (cacheCluster[key].length > 0) {
+        list.push({
+          css: cacheCluster[key],
+          type
+        })
+      }
 
-  for (const media in renderer.mediaRules) {
-    const mediaCSS = renderer.mediaRules[media]
+      return list
+    },
+    []
+  )
 
-    if (mediaCSS.length > 0) {
-      sheetList.push({
-        css: mediaCSS,
-        type: RULE_TYPE,
-        media
-      })
-    }
-  }
+  return objectReduce(
+    cacheCluster.mediaRules,
+    (list, css, media) => {
+      if (css.length > 0) {
+        list.push({
+          css,
+          type: RULE_TYPE,
+          media
+        })
+      }
 
-  return sheetList
+      return list
+    },
+    sheetList
+  )
 }

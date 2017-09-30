@@ -22,6 +22,7 @@ Thumbs.db
 
 *.js.map
 package-lock.json
+yarn.lock
 packages/**/yarn.lock
 node_modules/
 npm-debug.log

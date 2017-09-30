@@ -20,7 +20,3 @@ class Form extends Component {
   }
 }
 ```
-
-Related Github Issues:
-[Fela](https://github.com/rofrischmann/fela/issues/190)
-[Styled Components](https://github.com/styled-components/styled-components/issues/102)

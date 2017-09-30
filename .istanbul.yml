@@ -1,2 +1,2 @@
 instrumentation:
-  excludes: ['modules/utils/warning.js']
+  excludes: ['./packages/fela-utils/src/warning.js']

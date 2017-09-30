@@ -1,15 +1,14 @@
 /* @flow */
 import arrayReduce from './arrayReduce'
 
-type MediaRules = { [mediaQuery: string]: string }
-export default function applyMediaRulesInOrder(
-  order: Array<string>
-): MediaRules {
+type MediaMap = { [mediaQuery: string]: any }
+
+export default function applyMediaRulesInOrder(order: Array<string>): MediaMap {
   return arrayReduce(
     order,
-    (mediaRules, query) => {
-      mediaRules[query] = ''
-      return mediaRules
+    (mediaMap, query) => {
+      mediaMap[query] = ''
+      return mediaMap
     },
     {}
   )

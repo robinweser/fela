@@ -1,0 +1,37 @@
+{
+  "name": "fela-bindings",
+  "version": "1.0.0",
+  "description": "Abstract binding factories for Fela",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "dynamic styling",
+    "stylesheet",
+    "css",
+    "styling",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "^6.0.0"
+  },
+  "dependencies": {
+    "fela-dom": "^6.0.0",
+    "fela-utils": "^7.0.0",
+    "recompose": "^0.25.0"
+  },
+  "devDependencies": {
+    "fela": "^6.0.0",
+    "fela-monolithic": "^5.0.8",
+    "fela-tools": "^5.0.8"
+  }
+}

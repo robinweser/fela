@@ -1,22 +1,9 @@
 /* @flow */
 import Component from 'inferno-component'
+import { ThemeProviderFactory } from 'fela-bindings'
 
-export default class ThemeProvider extends Component {
-  static defaultProps = { overwrite: false }
-
-  getChildContext() {
-    const { overwrite, theme } = this.props
-    const previousTheme = this.context.theme
-
-    return {
-      theme: {
-        ...(!overwrite ? previousTheme || {} : {}),
-        ...theme
-      }
-    }
+export default ThemeProviderFactory(Component, children => children, {
+  defaultProps: {
+    overwrite: false
   }
-
-  render() {
-    return this.props.children
-  }
-}
+})

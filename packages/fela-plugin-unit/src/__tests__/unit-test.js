@@ -26,23 +26,35 @@ describe('Unit plugin', () => {
   it('should add units to nested style objects', () => {
     const style = {
       width: 46,
-      ':hover': { height: 34 }
+      ':hover': {
+        height: 34
+      }
     }
 
     expect(unit('px')(style)).toEqual({
       width: '46px',
-      ':hover': { height: '34px' }
+      ':hover': {
+        height: '34px'
+      }
     })
   })
 
   it('should default to px', () => {
-    const style = { width: 46 }
-    expect(unit()(style)).toEqual({ width: '46px' })
+    const style = {
+      width: 46
+    }
+    expect(unit()(style)).toEqual({
+      width: '46px'
+    })
   })
 
   it('should accept units other than px', () => {
-    const style = { width: 46 }
-    expect(unit('em')(style)).toEqual({ width: '46em' })
+    const style = {
+      width: 46
+    }
+    expect(unit('em')(style)).toEqual({
+      width: '46em'
+    })
   })
 
   it('should add property specific units', () => {
