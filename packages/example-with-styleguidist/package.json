@@ -35,12 +35,12 @@
     "fela-preset-web": "^5.0.9",
     "fela-statistics": "^5.0.8",
     "lodash": "^4.17.4",
-    "polished": "1.3.0",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "polished": "1.7.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-fela": "^6.0.0",
-    "react-modal": "^2.2.2"
+    "react-modal": "^2.3.2"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -50,7 +50,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "loaders": "1.1.3",
-    "react-styleguidist": "6.0.8",
+    "react-styleguidist": "6.0.26",
     "webpack": "3.4.1"
   },
   "scripts": {

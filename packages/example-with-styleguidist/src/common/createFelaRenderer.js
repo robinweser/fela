@@ -22,10 +22,10 @@ const removePrefix = query => query.replace('@media ', '')
 
 const createRenderer = () => {
   const plugins = [
-    placeholderPrefixer(),
-    friendlyPsuedo(),
     ...webPreset,
     embedded(),
+    placeholderPrefixer(),
+    friendlyPsuedo(),
     namedMediaQuery(mediaQueries)
   ]
   const enhancers = []

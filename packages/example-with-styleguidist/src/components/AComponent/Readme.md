@@ -1,0 +1,5 @@
+AComponent example:
+
+```js
+<AComponent />
+```
