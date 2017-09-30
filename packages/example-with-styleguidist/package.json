@@ -32,6 +32,7 @@
     "fela-plugin-named-media-query": "^5.0.8",
     "fela-plugin-placeholder-prefixer": "^5.0.8",
     "fela-plugin-validator": "^5.0.8",
+    "fela-plugin-unit": "5.0.8",
     "fela-preset-web": "^5.0.9",
     "fela-statistics": "^5.0.8",
     "lodash": "^4.17.4",

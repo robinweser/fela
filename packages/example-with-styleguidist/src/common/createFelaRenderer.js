@@ -7,6 +7,7 @@ import beautifier from 'fela-beautifier'
 import statistics from 'fela-statistics'
 import webPreset from 'fela-preset-web'
 import namedMediaQuery from 'fela-plugin-named-media-query'
+import unit from 'fela-plugin-unit'
 import whitelistMediaQuery from './whitelistMediaQueryPlugin'
 import theme from './base-ui-theme'
 
@@ -24,6 +25,7 @@ const createRenderer = () => {
   const plugins = [
     ...webPreset,
     embedded(),
+    unit('px'),
     placeholderPrefixer(),
     friendlyPsuedo(),
     namedMediaQuery(mediaQueries)

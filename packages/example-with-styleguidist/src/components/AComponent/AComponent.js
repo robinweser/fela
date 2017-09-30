@@ -1,6 +1,5 @@
 import React from 'react'
 import { createComponent } from 'react-fela'
-import RandomButton from '../RandomButton/RandomButton';
 
 const __block = ({ size, isEnabled }) => ({
   width: `${size}`,
