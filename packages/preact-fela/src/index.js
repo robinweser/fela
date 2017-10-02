@@ -2,8 +2,8 @@
 import Provider from './Provider'
 import connect from './connect'
 import createComponent from './createComponent'
-import createComponent from './createComponentWithProxy'
-import createComponentWithProxy from './ThemeProvider'
+import createComponentWithProxy from './createComponentWithProxy'
+import ThemeProvider from './ThemeProvider'
 import withTheme from './withTheme'
 
 export {
