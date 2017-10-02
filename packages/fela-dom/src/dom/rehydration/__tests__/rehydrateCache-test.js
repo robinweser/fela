@@ -12,7 +12,7 @@ beforeEach(() => {
   }
 })
 
-describe('Rehydrating rules', () => {
+describe('Rehydrating the cache', () => {
   it('should rehydrate the renderer cache', () => {
     const serverRenderer = createRenderer({
       filterClassName: cls => cls !== 'a'
@@ -31,7 +31,38 @@ describe('Rehydrating rules', () => {
     document.head.innerHTML = renderToMarkup(serverRenderer)
 
     const clientRenderer = {
-      cache: {}
+      cache: {},
+      enableRehydration: true
+    }
+
+    rehydrateCache(clientRenderer)
+
+    expect([
+      clientRenderer.uniqueRuleIdentifier,
+      JSON.stringify(clientRenderer.cache, null, 2)
+    ]).toMatchSnapshot()
+  })
+
+  it('should not rehydrate', () => {
+    const serverRenderer = createRenderer({
+      filterClassName: cls => cls !== 'a'
+    })
+
+    serverRenderer.renderRule(() => ({
+      color: 'yellow',
+      ':hover': {
+        color: 'red'
+      },
+      '@media (max-width: 800px)': {
+        color: 'blue'
+      }
+    }))
+
+    document.head.innerHTML = renderToMarkup(serverRenderer)
+
+    const clientRenderer = {
+      cache: {},
+      enableRehydration: false
     }
 
     rehydrateCache(clientRenderer)

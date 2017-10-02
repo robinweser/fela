@@ -17,8 +17,17 @@ describe('Monolithic enhancer React integration', () => {
       color: 'red'
     }))
 
-    ReactTestRenderer.create(<Provider renderer={renderer}><Component /></Provider>)
-    ReactTestRenderer.create(<Provider renderer={renderer}><Component /></Provider>)
+    ReactTestRenderer.create(
+      <Provider renderer={renderer}>
+        <Component />
+      </Provider>
+    )
+
+    ReactTestRenderer.create(
+      <Provider renderer={renderer}>
+        <Component />
+      </Provider>
+    )
 
     expect(renderToString(renderer)).toMatchSnapshot()
   })

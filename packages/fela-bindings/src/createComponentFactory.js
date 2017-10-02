@@ -45,12 +45,14 @@ export default function createComponentFactory(
 
       const usedProps = withProxy ? extractUsedProps(rule, theme) : {}
 
-      const rules = [rule];
+      const rules = [rule]
       if (_felaRule) {
         rules.push(_felaRule)
       }
       if (extend) {
-        typeof extend === 'function' ? rules.push(extend) : rules.push(() => extend)
+        typeof extend === 'function'
+          ? rules.push(extend)
+          : rules.push(() => extend)
       }
       const combinedRule = combineRules(...rules)
 

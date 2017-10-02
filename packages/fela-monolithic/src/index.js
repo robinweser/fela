@@ -27,6 +27,9 @@ function useMonolithicRenderer(
 ): MonolithicRenderer {
   renderer.prettySelectors = prettySelectors
 
+  // monolithic output can not be rehydrated
+  renderer.enableRehydration = false
+
   renderer._renderStyleToCache = (
     className: string,
     style: Object,
@@ -64,12 +67,12 @@ function useMonolithicRenderer(
               support,
               property.slice(9).trim()
             )
-            classNames += renderer._renderStyleToClassNames(
+            renderer._renderStyleToCache(
+              className,
               value,
               pseudo,
               media,
-              combinedSupport,
-              support
+              combinedSupport
             )
           } else {
             // TODO: warning
