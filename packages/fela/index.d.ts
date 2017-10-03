@@ -266,6 +266,21 @@ declare module "react-fela" {
     mountNode?: any;
   }
 
+  interface FelaWithThemeProps {
+    /**
+     * ref to underlying component
+     *
+     * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/createComponentFactory.js#L68}
+     */
+    innerRef?: (instance: any) => void,
+    theme: object,
+  }
+  /**
+   * 
+   * @param {React.ComponentType} Component  - component to inject theme into.
+   */
+  export function withTheme<Props>(Component: React.ComponentType<FelaWithThemeProps & Props>): React.ComponentType<Props>;
+
   /**
    * Fela Provider
    *
@@ -289,7 +304,7 @@ declare module "react-fela" {
   interface FelaInjectedProps<Props> {
     theme?: any;
     /**
-     * To change the type on runtime and/or for each component, you may use the is prop.
+     * To change the type on runtime and/or for each component, you may use the as prop.
      */
     as?: string | React.ComponentType<Props>;
     /**
