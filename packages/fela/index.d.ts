@@ -319,6 +319,12 @@ declare module "react-fela" {
      * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/createComponentFactory.js#L68}
      */
     innerRef?: (instance: any) => void;
+    /**
+     * Extend component styles.
+     *
+     * @see {@link https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponent.md#extending-styles}
+     */
+    extend?: Style<Props>;
   }
 
   /**
