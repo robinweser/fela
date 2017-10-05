@@ -278,17 +278,11 @@ describe('Creating Components from Fela rules', () => {
       backgroundColor: props.bgColor
     })
 
-    const wrapper = mount(
-      <Comp
-        extend={extendRule}
-        bgColor="red"
-      />,
-      {
-        context: {
-          renderer
-        }
+    const wrapper = mount(<Comp extend={extendRule} bgColor="red" />, {
+      context: {
+        renderer
       }
-    )
+    })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),

@@ -15,10 +15,10 @@ describe('Combining rules', () => {
       padding: 20
     })
 
-    const combineRule = combineRules(rule, anotherRule)
+    const combinedRule = combineRules(rule, anotherRule)
 
     expect(
-      combineRule({
+      combinedRule({
         fontSize: 12,
         lineHeight: 10
       })
@@ -53,10 +53,10 @@ describe('Combining rules', () => {
       display: 'flex'
     })
 
-    const combineRule = combineRules(rule1, rule2, rule3, rule4)
+    const combinedRule = combineRules(rule1, rule2, rule3, rule4)
 
     expect(
-      combineRule({
+      combinedRule({
         fontSize: 12,
         lineHeight: 10,
         color: 'green'

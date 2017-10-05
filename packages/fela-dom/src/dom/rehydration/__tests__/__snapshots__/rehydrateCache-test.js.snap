@@ -1,6 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Rehydrating rules should rehydrate the renderer cache 1`] = `
+exports[`Rehydrating the cache should not rehydrate 1`] = `
+Array [
+  undefined,
+  "{}",
+]
+`;
+
+exports[`Rehydrating the cache should rehydrate the renderer cache 1`] = `
 Array [
   4,
   "{

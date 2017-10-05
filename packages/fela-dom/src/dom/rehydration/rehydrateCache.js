@@ -32,15 +32,17 @@ const rehydrationHandlers = {
 // rehydration (WIP)
 // TODO: static, keyframe, font
 export default function rehydrateCache(renderer: DOMRenderer): void {
-  return arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
-    const type = node.getAttribute('data-fela-type') || ''
-    const media = node.getAttribute('media') || ''
-    const css = node.textContent
+  if (renderer.enableRehydration) {
+    arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
+      const type = node.getAttribute('data-fela-type') || ''
+      const media = node.getAttribute('media') || ''
+      const css = node.textContent
 
-    const handler = rehydrationHandlers[type]
+      const handler = rehydrationHandlers[type]
 
-    if (handler) {
-      handler(renderer, css, media)
-    }
-  })
+      if (handler) {
+        handler(renderer, css, media)
+      }
+    })
+  }
 }

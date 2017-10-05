@@ -27,7 +27,7 @@
   "dependencies": {
     "fela-dom": "^6.0.0",
     "fela-utils": "^7.0.0",
-    "recompose": "^0.25.0"
+    "shallow-equal": "^1.0.0"
   },
   "devDependencies": {
     "fela": "^6.0.0",

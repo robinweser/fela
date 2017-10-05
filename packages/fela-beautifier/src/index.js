@@ -6,7 +6,7 @@ import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
 function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
   renderer.subscribe(() =>
-    objectEach(renderer.styleNodes, (node, key) => {
+    objectEach(renderer.nodes, (node, key) => {
       node.textContent = cssbeautify(node.textContent, options)
     })
   )
