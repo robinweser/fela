@@ -8,7 +8,7 @@ import {
   isMediaQuery
 } from 'fela-utils'
 
-type Type = 1 | 2 | 3 | 4 | 5
+import type { StyleType } from '../../../flowtypes/StyleType'
 
 function validateStyleObject(
   style: Object,
@@ -96,7 +96,11 @@ function validateKeyframeObject(
   }
 }
 
-function validateStyle(style: Object, type: Type, options: Object): Object {
+function validateStyle(
+  style: Object,
+  type: StyleType,
+  options: Object
+): Object {
   const { logInvalid, deleteInvalid } = options
 
   if (type === KEYFRAME_TYPE) {
@@ -114,7 +118,7 @@ const defaultOptions = {
 }
 
 export default function validator(options: Object = {}) {
-  return (style: Object, type: Type) =>
+  return (style: Object, type: StyleType) =>
     validateStyle(style, type, {
       ...defaultOptions,
       ...options

@@ -4,7 +4,6 @@ import { Dimensions } from 'react-native'
 /* @flow */
 import { match } from 'css-mediaquery'
 import { isObject, isMediaQuery } from 'fela-utils'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import DimensionProvider from './components/DimensionProvider'
 
@@ -29,7 +28,7 @@ function resolveMediaQuery(style: Object): Object {
           height
         })
       ) {
-        assignStyle(style, value)
+        renderer._mergeStyle(style, value)
       }
 
       delete style[property]

@@ -1,5 +1,6 @@
 /* @flow */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import {
   cssifyFontFace,
@@ -45,7 +46,6 @@ export default function createRenderer(
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
-    isConnectedToDOM: false,
 
     filterClassName: config.filterClassName || isSafeClassName,
 
@@ -53,6 +53,7 @@ export default function createRenderer(
     uniqueKeyframeIdentifier: 0,
 
     // internal feature flags
+    isConnectedToDOM: false,
     enableRehydration: true,
 
     nodes: {},
@@ -195,6 +196,8 @@ export default function createRenderer(
       })
     },
 
+    _mergeStyle: assignStyle,
+
     _renderStyleToClassNames(
       { _className, ...style }: Object,
       pseudo: string = '',
@@ -298,7 +301,6 @@ export default function createRenderer(
 
   // initial setup
   renderer.keyframePrefixes.push('')
-  renderer.clear()
 
   if (config.enhancers) {
     arrayEach(config.enhancers, enhancer => {
