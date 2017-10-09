@@ -23,6 +23,6 @@
     "fela": "^6.0.0"
   },
   "dependencies": {
-    "fela-utils": "^7.0.0"
+    "fela-utils": "^7.0.1"
   }
 }

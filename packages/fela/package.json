@@ -1,6 +1,6 @@
 {
   "name": "fela",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -29,11 +29,11 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
-    "fela-utils": "^7.0.0",
+    "fela-utils": "^7.0.1",
     "opencollective": "^1.0.3"
   },
   "devDependencies": {
-    "fela-tools": "^5.0.8"
+    "fela-tools": "^5.0.9"
   },
   "collective": {
     "type": "opencollective",
