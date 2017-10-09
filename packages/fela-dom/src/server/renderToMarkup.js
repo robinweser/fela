@@ -9,6 +9,8 @@ import {
   STATIC_TYPE
 } from 'fela-utils'
 
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
+
 const sheetMap = {
   fontFaces: FONT_TYPE,
   statics: STATIC_TYPE,
@@ -16,7 +18,7 @@ const sheetMap = {
   rules: RULE_TYPE
 }
 
-export default function renderToMarkup(renderer: Object): string {
+export default function renderToMarkup(renderer: DOMRenderer): string {
   const cacheCluster = clusterCache(
     renderer.cache,
     renderer.mediaQueryOrder,

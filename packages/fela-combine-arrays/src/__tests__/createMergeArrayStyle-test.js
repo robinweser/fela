@@ -2,7 +2,7 @@ import createMergeArrayStyle from '../createMergeArrayStyle'
 
 describe('Merging array values', () => {
   it('should merge properties', () => {
-    const mergeStyle = createMergeArrayStyle()
+    const mergeStyle = createMergeArrayStyle([])
 
     expect(
       mergeStyle({ color: 'red' }, { fontSize: 12 }, { lineHeight: 1 })
@@ -14,7 +14,7 @@ describe('Merging array values', () => {
   })
 
   it('should overwrite properties from right to left', () => {
-    const mergeStyle = createMergeArrayStyle()
+    const mergeStyle = createMergeArrayStyle([])
 
     expect(
       mergeStyle({ fontSize: 12 }, { fontSize: 16 }, { fontSize: 11 })
@@ -22,7 +22,7 @@ describe('Merging array values', () => {
   })
 
   it('should merge nested objects', () => {
-    const mergeStyle = createMergeArrayStyle()
+    const mergeStyle = createMergeArrayStyle([])
 
     expect(
       mergeStyle(
@@ -51,7 +51,7 @@ describe('Merging array values', () => {
   })
 
   it('should not overwrite objects other than the first one', () => {
-    const mergeStyle = createMergeArrayStyle()
+    const mergeStyle = createMergeArrayStyle([])
 
     const ob1 = { color: 'red' }
     const ob2 = { fontSize: 12 }
@@ -69,7 +69,7 @@ describe('Merging array values', () => {
   })
 
   it('should use the first object as base', () => {
-    const mergeStyle = createMergeArrayStyle()
+    const mergeStyle = createMergeArrayStyle([])
 
     const ob1 = { color: 'red' }
     const ob2 = { fontSize: 12 }
@@ -91,7 +91,7 @@ describe('Merging array values', () => {
   })
 
   it('should overwrite previous values when both values are array', () => {
-    const mergeStyle = createMergeArrayStyle()
+    const mergeStyle = createMergeArrayStyle([])
 
     const ob1 = { fontSize: ['10px', '10rem'] }
     const ob2 = { fontSize: ['10px', '20vw'] }
@@ -102,7 +102,7 @@ describe('Merging array values', () => {
   })
 
   it('should overwrite previous values when only the last value is an array', () => {
-    const mergeStyle = createMergeArrayStyle()
+    const mergeStyle = createMergeArrayStyle([])
 
     const ob1 = { fontSize: 10 }
     const ob2 = { fontSize: ['10px', '20vw'] }
@@ -113,7 +113,7 @@ describe('Merging array values', () => {
   })
 
   it('should overwrite previous values when only the first value is an array', () => {
-    const mergeStyle = createMergeArrayStyle()
+    const mergeStyle = createMergeArrayStyle([])
 
     const ob1 = { fontSize: ['10px', '10rem'] }
     const ob2 = { fontSize: 20 }
