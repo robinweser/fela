@@ -22,6 +22,7 @@ If you're searching for older version-based release notes please check out the o
 | babel-plugin-fela | 1.0.0 | ([#305](https://github.com/rofrischmann/fela/issues/305)) Babel plugin to optimize style rendering & performance |
 | fela-plugin-bidi | 1.0.0 | ([#381](https://github.com/rofrischmann/fela/issues/381)) An alternative to [fela-plugin-rtl](packages/fela-plugin-rtl) based on CSSWG's [Logical Properties and Values Level 1 proposal](https://www.w3.org/TR/css-logical-1/) |
 | fela-utils | 7.0.0 | Some utilities have been added and some removed/moved |
+
 All fela-utils dependents have been upgraded by a patch release to match the new version.
 
 ## 01/09/17
