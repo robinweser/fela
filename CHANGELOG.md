@@ -5,6 +5,14 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+
+## 09/10/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-dom | 6.0.1 | [(#405)](https://github.com/rofrischmann/fela/pull/405) fixed a bug that caused incorrect rehydration |
+| react-fela<br>inferno-fela<br>preact-fela | 6.0.1 | only pass passThroughProps that are **not** undefined<br> [(#416)](https://github.com/rofrischmann/fela/pull/416) fixed wrong withTheme exports<br>[(#397)](https://github.com/rofrischmann/fela/pull/397) [(#421)](https://github.com/rofrischmann/fela/pull/421) several small bug fixes<br/>[(#407)](https://github.com/rofrischmann/fela/pull/407) improved theming performance<br>[(#410)](https://github.com/rofrischmann/fela/pull/410) added support for rule functions passed as extend prop |
+| fela-combine-arrays | 1.0.0 | An enhancer to enable merging arrays while combining rules |
+
 ## 22/09/17
 | Package | Version | Changes |
 | ---- | --- | --- |
