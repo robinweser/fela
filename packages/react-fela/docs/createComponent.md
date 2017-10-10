@@ -42,13 +42,13 @@ Using the `passThroughProps` parameter allows us to pass props to the underlying
 
 If passing a className, it will automatically be concatenated with the Fela generated className. This allows composing multiple Fela Components.
 
-#### Functional passThroughProps [Deprecated: Read Note Below]
+#### Functional passThroughProps
 You may also pass a function of `props` as `passThroughProps`. It must return an array of prop names. e.g. to pass all props you can do:
 ```javascript
 const Title = createComponent(title, 'div', props => Object.keys(props))
 ```
 
-NOTE: The same can be achieved via [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops) and is recommended.
+Note: The same can be achieved via [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops) and is recommended.
 
 #### Dynamically passing props
 This use case is especially important for library owners. Instead of passing the `passThroughProps` to the `createComponent` call directly, one can also use the `passThrough` prop on the created component to achieve the same effect.

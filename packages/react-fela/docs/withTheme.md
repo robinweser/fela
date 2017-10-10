@@ -28,7 +28,7 @@ const RenderTreeFragment = (
 
 // => <div>The primary color is red</div>
 ```
-## Note
+## Tip
 
 > If components were accessing theme object directly via context before, this would not be possible since 6.0 release. You would have to wrap the component with *withTheme* Hoc and access the theme via props.
 
