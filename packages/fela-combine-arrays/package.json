@@ -1,12 +1,11 @@
 {
-  "name": "fela-statistics",
-  "version": "5.0.9",
-  "description": "Statistic generation tool for Fela",
+  "name": "fela-combine-arrays",
+  "version": "1.0.0",
+  "description": "Fela enhancer to merge array values when combining rules",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "files": [
-    "LICENSE",
     "README.md",
     "lib/**",
     "es/**"
@@ -14,17 +13,16 @@
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "fela-devtools",
-    "statistics",
-    "stats",
+    "fela-enhancer",
     "dx",
-    "devtools",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
+  "peerDependencies": {
+    "fela": "^6.0.0"
+  },
   "dependencies": {
-    "fela-utils": "^7.0.1",
-    "gzip-size": "^3.0.0"
+    "fela-utils": "^7.0.1"
   }
 }

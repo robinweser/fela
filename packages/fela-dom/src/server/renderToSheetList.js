@@ -8,19 +8,22 @@ import {
   STATIC_TYPE
 } from 'fela-utils'
 
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
+
 const sheetMap = {
   fontFaces: FONT_TYPE,
   statics: STATIC_TYPE,
   keyframes: KEYFRAME_TYPE,
   rules: RULE_TYPE
 }
+
 type Sheet = {
   css: string,
   type: RULE_TYPE | KEYFRAME_TYPE | FONT_TYPE | STATIC_TYPE,
   media?: string
 }
 
-export default function renderToSheetList(renderer: Object): Array<Sheet> {
+export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
   const cacheCluster = clusterCache(
     renderer.cache,
     renderer.mediaQueryOrder,
