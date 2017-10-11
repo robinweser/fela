@@ -233,6 +233,38 @@ describe('Creating Components from Fela rules', () => {
     ]).toMatchSnapshot()
   })
 
+  it('should pass style, as, id, className and innerRef to composed components', () => {
+    const rule = () => ({
+      color: 'blue',
+      fontSize: '16px'
+    })
+
+    const anotherRule = props => ({
+      color: props.color,
+      lineHeight: 1.2
+    })
+
+    const Comp = createComponent(rule)
+    const ComposedComp = createComponent(anotherRule, Comp)
+
+    ComposedComp.defaultProps = {
+      color: 'green'
+    }
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(<ComposedComp as="i" />, {
+      context: {
+        renderer
+      }
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper)
+    ]).toMatchSnapshot()
+  })
+
   it('should extend the rule properties with an object', () => {
     const rule = () => ({
       color: 'blue',

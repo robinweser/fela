@@ -83,6 +83,11 @@ export default function createComponentFactory(
           {
             _felaRule: combinedRule,
             passThrough: resolvedPassThrough,
+            innerRef,
+            id,
+            style,
+            as,
+            className,
             ...ruleProps
           },
           children

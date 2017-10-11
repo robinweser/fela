@@ -331,6 +331,54 @@ Array [
 ]
 `;
 
+exports[`Creating Components from Fela rules should pass style, as, id, className and innerRef to composed components 1`] = `
+Array [
+  "<style>
+    .a {
+        color: green
+    }
+
+    .b {
+        font-size: 16px
+    }
+
+    .c {
+        line-height: 1.2
+    }
+</style>",
+  <anotherRule
+    as="i"
+    color="green"
+>
+    <anotherRule
+        as="i"
+        color="green"
+        theme={Object {}}
+    >
+        <rule
+            _felaRule={[Function]}
+            as="i"
+            color="green"
+            passThrough={Array []}
+            theme={Object {}}
+        >
+            <rule
+                _felaRule={[Function]}
+                as="i"
+                color="green"
+                passThrough={Array []}
+                theme={Object {}}
+            >
+                <i
+                    className="a b c"
+                />
+            </rule>
+        </rule>
+    </anotherRule>
+</anotherRule>,
+]
+`;
+
 exports[`Creating Components from Fela rules should render fela rules depending on the passed props 1`] = `
 Array [
   "<style>
