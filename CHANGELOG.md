@@ -5,6 +5,8 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 11/10/17
+| Package | Version | Changes |
 
 ## 09/10/17
 | Package | Version | Changes |
