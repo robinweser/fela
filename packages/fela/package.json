@@ -6,9 +6,6 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
-  "scripts": {
-    "postinstall": "opencollective postinstall"
-  },
   "files": [
     "LICENSE",
     "README.md",
@@ -29,15 +26,9 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
-    "fela-utils": "^7.0.1",
-    "opencollective": "^1.0.3"
+    "fela-utils": "^7.0.1"
   },
   "devDependencies": {
     "fela-tools": "^5.0.9"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/fela",
-    "logo": "https://opencollective.com/opencollective/logo.txt"
   }
 }
