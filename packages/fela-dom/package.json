@@ -24,10 +24,10 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-tools": "^5.0.9",
-    "fela-utils": "^7.0.1"
+    "fela-tools": "5.0.9",
+    "fela-utils": "7.0.1"
   },
   "devDependencies": {
-    "fela": "^6.0.1"
+    "fela": "6.0.1"
   }
 }

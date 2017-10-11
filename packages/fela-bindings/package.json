@@ -21,17 +21,14 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "peerDependencies": {
-    "fela": "^6.0.1"
-  },
   "dependencies": {
-    "fela-dom": "^6.0.1",
-    "fela-utils": "^7.0.1",
-    "shallow-equal": "^1.0.0"
+    "fela-dom": "6.0.1",
+    "fela-utils": "7.0.1",
+    "shallow-equal": "1.0.0"
   },
   "devDependencies": {
-    "fela": "^6.0.1",
-    "fela-monolithic": "^5.0.9",
-    "fela-tools": "^5.0.9"
+    "fela": "6.0.1",
+    "fela-monolithic": "5.0.9",
+    "fela-tools": "5.0.9"
   }
 }

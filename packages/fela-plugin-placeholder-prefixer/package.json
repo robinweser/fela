@@ -23,7 +23,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-plugin-custom-property": "^5.0.9",
-    "fela-utils": "^7.0.1"
+    "fela-plugin-custom-property": "5.0.9",
+    "fela-utils": "7.0.1"
   }
 }

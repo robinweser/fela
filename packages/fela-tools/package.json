@@ -20,10 +20,10 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "^2.0.0",
-    "fela-utils": "^7.0.1"
+    "css-in-js-utils": "2.0.0",
+    "fela-utils": "7.0.1"
   },
   "devDependencies": {
-    "fela": "^6.0.1"
+    "fela": "6.0.1"
   }
 }

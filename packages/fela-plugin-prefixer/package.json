@@ -23,9 +23,9 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "^2.0.0",
-    "fela-plugin-fallback-value": "^5.0.10",
-    "fela-utils": "^7.0.1",
-    "inline-style-prefixer": "^3.0.0"
+    "css-in-js-utils": "2.0.0",
+    "fela-plugin-fallback-value": "5.0.10",
+    "fela-utils": "7.0.1",
+    "inline-style-prefixer": "3.0.8"
   }
 }
