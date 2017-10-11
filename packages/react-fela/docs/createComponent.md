@@ -6,7 +6,7 @@ It automatically composes rules and passed props for nested Fela components.
 
 ## Arguments
 1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
-2. `type` (*string?|[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?*): React Component or HTML element which is used as the render base element. Defaults to `div`.
+2. `type` (*string?|[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?*): React Component or HTML element which is used as the render base element. Defaults to `div`. Note: If a Component is passed, then it receives a className property.
 3. `passThroughProps` (*Array?|Function?*): A list of props that get passed to the underlying element. Alternatively a function of `props` that returns an array of prop names.
 
 ## Returns
@@ -47,6 +47,8 @@ You may also pass a function of `props` as `passThroughProps`. It must return an
 ```javascript
 const Title = createComponent(title, 'div', props => Object.keys(props))
 ```
+
+Note: The same can be achieved via [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops) and is recommended.
 
 #### Dynamically passing props
 This use case is especially important for library owners. Instead of passing the `passThroughProps` to the `createComponent` call directly, one can also use the `passThrough` prop on the created component to achieve the same effect.
@@ -122,4 +124,5 @@ ReactDOM.render(
 
 ## Related
 
+- [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops)
 - [Explicit displayName for React components](http://fela.js.org/docs/recipes/DisplayNameComponents.html)
