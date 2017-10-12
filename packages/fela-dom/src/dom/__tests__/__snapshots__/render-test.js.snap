@@ -87,3 +87,23 @@ exports[`render should not overwrite rehydrated styles 1`] = `
 
 </html>"
 `;
+
+exports[`render should not render multiple times 1`] = `
+"<html>
+
+<head>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
+    .a {
+      background-color: red
+    }
+
+    .b {
+      color: blue
+    }
+  </style>
+</head>
+
+<body></body>
+
+</html>"
+`;
