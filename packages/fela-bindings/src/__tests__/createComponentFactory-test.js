@@ -185,6 +185,34 @@ describe('Creating Components from Fela rules', () => {
     ]).toMatchSnapshot()
   })
 
+  it('should pass special props to the component', () => {
+    const rule = props => ({
+      color: props.as === 'i' ? props.color : 'red',
+      fontSize: 16
+    })
+
+    const Component = createComponent(rule)
+    const renderer = createRenderer()
+
+    const wrapper = mount(<Component color="blue" as="i" />, {
+      context: {
+        renderer
+      }
+    })
+
+    const wrapper2 = mount(<Component color="blue" />, {
+      context: {
+        renderer
+      }
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+      toJson(wrapper2)
+    ]).toMatchSnapshot()
+  })
+
   it('should only use passed props to render Fela rules', () => {
     const rule = props => ({
       color: props['data-foo'] && props.color,
