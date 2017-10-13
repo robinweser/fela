@@ -1,7 +1,7 @@
 {
   "name": "fela",
   "version": "6.0.2",
-  "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
+  "description": "Style as a Function of State",
   "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,6 +20,10 @@
     "stylesheet",
     "css",
     "styling",
+    "functional styling",
+    "functional css",
+    "atomic css",
+    "atomic design",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
