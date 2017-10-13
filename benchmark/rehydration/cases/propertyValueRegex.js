@@ -1,4 +1,4 @@
-const DECL_REGEX = /.([0-9a-z_-]+)(:[^{]+)?{([^}]+)}/gi
+const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]*)?{([^}]+)}/gi
 const PROPERTY_VALUE_REGEX = /:(.+)/
 
 function rehydrate(cache, css, media, support) {

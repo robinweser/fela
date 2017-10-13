@@ -1,4 +1,4 @@
-const DECL_REGEX = /.([0-9a-z_-]+)(:[^{]+)?{([^:]+):([^}]+)}/gi
+const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]*)?{([^:]+):([^}]+)}/gi
 
 function rehydrate(cache, css, media, support) {
   let decl
