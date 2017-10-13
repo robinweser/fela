@@ -1,6 +1,6 @@
 /* @flow */
 import { objectEach } from 'fela-utils'
-import { render, rehydrateCache } from 'fela-dom'
+import { render, rehydrate } from 'fela-dom'
 
 function hasDOM(renderer) {
   return !renderer.isNativeRenderer && typeof window !== 'undefined'
@@ -16,7 +16,7 @@ export default function ProviderFactory(
       super(props, context)
 
       if (props.rehydrate && hasDOM(props.renderer)) {
-        rehydrateCache(props.renderer)
+        rehydrate(props.renderer)
       }
     }
 

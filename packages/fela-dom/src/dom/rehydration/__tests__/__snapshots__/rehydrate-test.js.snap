@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rehydrating from DOM nodes should not rehydrate 1`] = `
+Array [
+  undefined,
+  "{}",
+]
+`;
+
+exports[`Rehydrating from DOM nodes should rehydrate the renderer cache 1`] = `
+Array [
+  undefined,
+  "{}",
+]
+`;
