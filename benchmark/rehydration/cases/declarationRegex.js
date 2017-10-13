@@ -1,11 +1,11 @@
-const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]*)?{([^:]+):([^}]+)}/gi
+const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}/gi
 
 function rehydrate(cache, css, media, support) {
   let decl
 
   while ((decl = DECL_REGEX.exec(css))) {
     // $FlowFixMe
-    const [ruleSet, className, pseudo, property, value] = decl
+    const [ruleSet, className, pseudo = '', property, value] = decl
     /* eslint-enable */
 
     const declarationReference = support + media + pseudo + property + value

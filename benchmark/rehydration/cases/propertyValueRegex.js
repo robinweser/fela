@@ -1,4 +1,4 @@
-const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]*)?{([^}]+)}/gi
+const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]+)?{([^}]+)}/gi
 const PROPERTY_VALUE_REGEX = /:(.+)/
 
 function rehydrate(cache, css, media, support) {
@@ -6,7 +6,7 @@ function rehydrate(cache, css, media, support) {
 
   while ((decl = DECL_REGEX.exec(css))) {
     // $FlowFixMe
-    const [ruleSet, className, pseudo, declaration] = decl
+    const [ruleSet, className, pseudo = '', declaration] = decl
     /* eslint-enable */
     const [property, value] = declaration.split(PROPERTY_VALUE_REGEX)
 
