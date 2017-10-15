@@ -25,10 +25,6 @@ export default function ThemeProviderFactory(
       }
     }
 
-    shouldComponentUpdate(nextProps: Object): boolean {
-      return !shallowEqual(this.props.theme, nextProps.theme)
-    }
-
     getChildContext(): Object {
       return {
         theme: this.theme

@@ -1,38 +1,45 @@
 /* @flow */
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import { isObject, arrayEach, objectEach } from 'fela-utils'
 
-import { isObject, arrayEach } from 'fela-utils'
+import type { StyleType } from '../../../flowtypes/StyleType'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 
 function extendStyle(
   style: Object,
   extension: Object,
-  extendPlugin: Function
+  extendPlugin: Function,
+  renderer: DOMRenderer | NativeRenderer
 ): void {
   // extend conditional style objects
   if (extension.hasOwnProperty('condition')) {
     if (extension.condition) {
-      assignStyle(style, extendPlugin(extension.style))
+      renderer._mergeStyle(style, extendPlugin(extension.style))
     }
   } else {
     // extend basic style objects
-    assignStyle(style, extension)
+    renderer._mergeStyle(style, extension)
   }
 }
 
-function extend(style: Object): Object {
-  for (const property in style) {
-    const value = style[property]
-
+function extend(
+  style: Object,
+  type: StyleType,
+  renderer: DOMRenderer | NativeRenderer
+): Object {
+  objectEach(style, (value, property) => {
     if (property === 'extend') {
       const extensions = [].concat(value)
 
-      arrayEach(extensions, extension => extendStyle(style, extension, extend))
+      arrayEach(extensions, extension =>
+        extendStyle(style, extension, extend, renderer)
+      )
       delete style[property]
     } else if (isObject(value)) {
       // support nested extend as well
-      style[property] = extend(value)
+      style[property] = extend(value, type, renderer)
     }
-  }
+  })
 
   return style
 }

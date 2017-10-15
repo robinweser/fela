@@ -1,26 +1,26 @@
 {
-    "name": "fela-plugin-extend",
-    "version": "5.0.8",
-    "description": "Fela plugin to extend style objects",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "jsnext:main": "es/index.js",
-    "files": [
-        "LICENSE",
-        "README.md",
-        "lib/**",
-        "es/**"
-    ],
-    "repository": "https://github.com/rofrischmann/fela/",
-    "keywords": [
-        "fela",
-        "fela-plugin",
-        "extend"
-    ],
-    "author": "Robin Frischmann",
-    "license": "MIT",
-    "dependencies": {
-        "css-in-js-utils": "^2.0.0",
-        "fela-utils": "^7.0.0"
-    }
+  "name": "fela-plugin-extend",
+  "version": "5.0.10",
+  "description": "Fela plugin to extend style objects",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "extend"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "css-in-js-utils": "2.0.0",
+    "fela-utils": "^7.0.2"
+  }
 }

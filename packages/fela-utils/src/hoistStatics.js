@@ -11,8 +11,8 @@ const basicStatics = {
   arity: true
 }
 
-const mergableStatics = ['contextTypes', 'defaultProps', 'propTypes']
-const blockedStatics = { childContextTypes: true }
+const mergableStatics = ['contextTypes', 'defaultProps']
+const blockedStatics = { childContextTypes: true, propTypes: true }
 
 export default function hoistStatics(target: Object, source: Object): Object {
   if (typeof source === 'string') {

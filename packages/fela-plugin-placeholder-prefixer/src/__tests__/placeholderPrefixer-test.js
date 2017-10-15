@@ -1,5 +1,9 @@
 import placeholderPrefixer from '../index'
 
+const rendererMock = {
+  _mergeStyle: Object.assign
+}
+
 describe('Placeholder prefixer plugin', () => {
   it('should add placeholder prefixes', () => {
     const style = {
@@ -9,7 +13,7 @@ describe('Placeholder prefixer plugin', () => {
       }
     }
 
-    expect(placeholderPrefixer()(style)).toEqual({
+    expect(placeholderPrefixer()(style, 'RULE_TYPE', rendererMock)).toEqual({
       width: 20,
       '::-webkit-input-placeholder': {
         color: 'red'

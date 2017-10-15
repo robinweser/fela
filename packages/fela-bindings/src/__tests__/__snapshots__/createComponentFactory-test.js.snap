@@ -331,6 +331,98 @@ Array [
 ]
 `;
 
+exports[`Creating Components from Fela rules should pass special props to the component 1`] = `
+Array [
+  "<style>
+    .a {
+        color: blue
+    }
+
+    .b {
+        font-size: 16
+    }
+
+    .c {
+        color: red
+    }
+</style>",
+  <rule
+    as="i"
+    color="blue"
+>
+    <rule
+        as="i"
+        color="blue"
+        theme={Object {}}
+    >
+        <i
+            className="a b"
+        />
+    </rule>
+</rule>,
+  <rule
+    color="blue"
+>
+    <rule
+        color="blue"
+        theme={Object {}}
+    >
+        <div
+            className="c b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should pass style, as, id, className and innerRef to composed components 1`] = `
+Array [
+  "<style>
+    .a {
+        color: green
+    }
+
+    .b {
+        font-size: 16px
+    }
+
+    .c {
+        line-height: 1.2
+    }
+</style>",
+  <anotherRule
+    as="i"
+    color="green"
+>
+    <anotherRule
+        as="i"
+        color="green"
+        theme={Object {}}
+    >
+        <rule
+            _felaRule={[Function]}
+            as="i"
+            color="green"
+            passThrough={Array []}
+            theme={Object {}}
+        >
+            <rule
+                _felaRule={[Function]}
+                as="i"
+                color="green"
+                passThrough={Array []}
+                theme={Object {}}
+            >
+                <i
+                    className="a b c"
+                />
+            </rule>
+        </rule>
+    </anotherRule>
+</anotherRule>,
+]
+`;
+
 exports[`Creating Components from Fela rules should render fela rules depending on the passed props 1`] = `
 Array [
   "<style>

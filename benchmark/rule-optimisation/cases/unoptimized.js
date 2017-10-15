@@ -1,8 +1,9 @@
 import webPreset from 'fela-preset-web'
 import { createRenderer } from 'fela'
+
 import variations from './_variations'
 
-export const unoptimizedActual = () => {
+export default function unoptimized() {
   const renderer = createRenderer({ plugins: [...webPreset] })
 
   const rule = ({ fontSize, width }) => ({
@@ -22,5 +23,4 @@ export const unoptimizedActual = () => {
   })
 
   variations.forEach(variation => renderer.renderRule(rule, variation))
-  return renderer.rules
 }

@@ -1,33 +1,30 @@
 {
-    "name": "fela-layout-debugger",
-    "version": "6.0.2",
-    "description": "Fela enhancer to debug app layouts",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "jsnext:main": "es/index.js",
-    "files": [
-        "LICENSE",
-        "README.md",
-        "lib/**",
-        "es/**"
-    ],
-    "repository": "https://github.com/rofrischmann/fela/",
-    "keywords": [
-        "fela",
-        "fela-enhancer",
-        "devTool",
-        "debugger",
-        "cssinjs"
-    ],
-    "author": "Robin Frischmann",
-    "license": "MIT",
-    "dependencies": {
-        "styles-debugger": "0.0.5"
-    },
-    "peerDependencies": {
-        "fela": "^6.0.0"
-    },
-    "devDependencies": {
-        "fela": "^6.0.0"
-    }
+  "name": "fela-layout-debugger",
+  "version": "6.0.4",
+  "description": "Fela enhancer to debug app layouts",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-enhancer",
+    "devTool",
+    "debugger",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "styles-debugger": "0.0.5"
+  },
+  "devDependencies": {
+    "fela": "^6.0.2"
+  }
 }

@@ -1,19 +1,25 @@
 /* @flow */
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
-
 import { isObject } from 'fela-utils'
 
-function resolveCustomProperty(style: Object, properties: Object): Object {
+import type { StyleType } from '../../../flowtypes/StyleType'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+
+function resolveCustomProperty(
+  style: Object,
+  properties: Object,
+  renderer: DOMRenderer | NativeRenderer
+): Object {
   for (const property in style) {
     const value = style[property]
 
     if (properties.hasOwnProperty(property)) {
-      assignStyle(style, properties[property](value))
+      renderer._mergeStyle(style, properties[property](value))
       delete style[property]
     }
 
     if (isObject(value)) {
-      style[property] = resolveCustomProperty(value, properties)
+      style[property] = resolveCustomProperty(value, properties, renderer)
     }
   }
 
@@ -21,5 +27,9 @@ function resolveCustomProperty(style: Object, properties: Object): Object {
 }
 
 export default function customProperty(properties: Object) {
-  return (style: Object) => resolveCustomProperty(style, properties)
+  return (
+    style: Object,
+    type: StyleType,
+    renderer: DOMRenderer | NativeRenderer
+  ) => resolveCustomProperty(style, properties, renderer)
 }

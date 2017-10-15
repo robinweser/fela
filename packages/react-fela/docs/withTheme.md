@@ -13,9 +13,12 @@ It will automatically be updated if the theme changes, even if the parent implem
 import React from 'react'
 import { ThemeProvider, withTheme } from 'react-fela'
 
-const ComponentWithTheme = ({ theme }) => (
+const Component = ({ theme }) => (
   <div>The primary color is {theme.primary}</div>
 )
+
+// gets access to theme object via prop
+const ComponentWithTheme = withTheme(Component)
 
 const RenderTreeFragment = (
   <ThemeProvider theme={{ primary: 'red' }}>
@@ -25,3 +28,8 @@ const RenderTreeFragment = (
 
 // => <div>The primary color is red</div>
 ```
+## Tip
+
+> If components were accessing theme object directly via context before, this would not be possible since 6.0 release. You would have to wrap the component with *withTheme* Hoc and access the theme via props.
+
+> Another way to access theme inside a custom component would be to pass in the component to createComponent and access theme object via props.

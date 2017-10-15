@@ -1,16 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Rehydrating the cache should not rehydrate 1`] = `
-Array [
-  undefined,
-  "{}",
-]
-`;
-
-exports[`Rehydrating the cache should rehydrate the renderer cache 1`] = `
+exports[`Rehydrating from DOM nodes should rehydrate the renderer cache 1`] = `
 Array [
   4,
   "{
+  \\"(max-width: 800px)colorblue\\": {
+    \\"type\\": \\"RULE\\",
+    \\"className\\": \\"d\\",
+    \\"selector\\": \\".d\\",
+    \\"declaration\\": \\"color:blue\\",
+    \\"media\\": \\"(max-width: 800px)\\",
+    \\"support\\": \\"\\"
+  },
   \\"coloryellow\\": {
     \\"type\\": \\"RULE\\",
     \\"className\\": \\"b\\",
@@ -25,14 +26,6 @@ Array [
     \\"selector\\": \\".c:hover\\",
     \\"declaration\\": \\"color:red\\",
     \\"media\\": \\"\\",
-    \\"support\\": \\"\\"
-  },
-  \\"(max-width: 800px)colorblue\\": {
-    \\"type\\": \\"RULE\\",
-    \\"className\\": \\"d\\",
-    \\"selector\\": \\".d\\",
-    \\"declaration\\": \\"color:blue\\",
-    \\"media\\": \\"(max-width: 800px)\\",
     \\"support\\": \\"\\"
   }
 }",
