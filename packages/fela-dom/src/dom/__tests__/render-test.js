@@ -5,6 +5,13 @@ import render from '../render'
 import rehydrateCache from '../rehydration/rehydrateCache'
 import renderToMarkup from '../../server/renderToMarkup'
 
+beforeEach(() => {
+  const head = document.head
+  while (head.firstChild) {
+    head.removeChild(head.firstChild)
+  }
+})
+
 describe('render', () => {
   it('should create style nodes and render CSS rules', () => {
     const renderer = createRenderer()
@@ -24,6 +31,24 @@ describe('render', () => {
       fontWeight: 300
     })
     render(renderer)
+    expect(
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2
+      })
+    ).toMatchSnapshot()
+  })
+
+  it('should not render multiple times', () => {
+    const renderer = createRenderer()
+
+    render(renderer)
+    render(renderer)
+
+    renderer.renderRule(() => ({
+      backgroundColor: 'red',
+      color: 'blue'
+    }))
+
     expect(
       beautify(document.documentElement.outerHTML, {
         indent_size: 2
