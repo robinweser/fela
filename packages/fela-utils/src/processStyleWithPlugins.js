@@ -15,10 +15,7 @@ export default function processStyleWithPlugins(
   if (renderer.plugins.length > 0) {
     return arrayReduce(
       renderer.plugins,
-      (processedStyle, plugin) => {
-        processedStyle = plugin(processedStyle, type, renderer, props)
-        return processedStyle
-      },
+      (processedStyle, plugin) => plugin(processedStyle, type, renderer, props),
       style
     )
   }

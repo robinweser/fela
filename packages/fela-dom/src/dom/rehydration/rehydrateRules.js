@@ -1,6 +1,5 @@
 /* @flow */
 import camelCaseProperty from 'css-in-js-utils/lib/camelCaseProperty'
-
 import { generateCSSSelector, RULE_TYPE } from 'fela-utils'
 
 const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}/gi
