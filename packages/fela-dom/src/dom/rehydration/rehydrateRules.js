@@ -1,9 +1,9 @@
 /* @flow */
 import camelCaseProperty from 'css-in-js-utils/lib/camelCaseProperty'
+import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import { generateCSSSelector, RULE_TYPE } from 'fela-utils'
 
-const DECL_REGEX = /.([^:{]+)(:[^{]+)?{([^}]+)}/g
-const PROPERTY_VALUE_REGEX = /:(.+)/
+const DECL_REGEX = /.([^:{]+)(:[^{]+)?{([^:]+):([^}]+)}/g
 
 export default function rehydrateRules(
   cache: Object,
@@ -18,9 +18,8 @@ export default function rehydrateRules(
   /* eslint-disable no-unused-vars,no-cond-assign */
   while ((decl = DECL_REGEX.exec(css))) {
     // $FlowFixMe
-    const [ruleSet, className, pseudo = '', declaration] = decl
+    const [ruleSet, className, pseudo = '', property, value] = decl
     /* eslint-enable */
-    const [property, value] = declaration.split(PROPERTY_VALUE_REGEX)
 
     const declarationReference =
       support + media + pseudo + camelCaseProperty(property) + value
@@ -28,7 +27,7 @@ export default function rehydrateRules(
       type: RULE_TYPE,
       className,
       selector: generateCSSSelector(className, pseudo),
-      declaration,
+      declaration: cssifyDeclaration(property, value),
       media,
       support
     }

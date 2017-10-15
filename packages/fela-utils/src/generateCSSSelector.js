@@ -1,5 +1,5 @@
 /* @flow */
-export default function getCSSSelector(
+export default function generateCSSSelector(
   className: string,
   pseudo: string = ''
 ): string {

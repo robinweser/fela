@@ -1,19 +1,12 @@
 import webPreset from 'fela-preset-web'
 import { createRenderer } from 'fela'
+
 import variations from './_variations'
 
-export const precompiledActual = () => {
+export default function precompiled() {
   const renderer = createRenderer({ plugins: [...webPreset] })
   const rule = ({ fontSize, width }) => {
     if (!renderer.cache[0]) {
-      renderer.rules +=
-        '.a{background-color:black}.b{line-height:1}.e:hover{color:red}'
-      if (!renderer.mediaRules['(min-width: 300px)']) {
-        renderer.mediaRules['(min-width: 300px)'] = ''
-      }
-      renderer.mediaRules['(min-width: 300px)'] +=
-        '.c{background-color:yellow}.d{color:green}'
-
       renderer.cache['backgroundColorblack'] = 'a'
       renderer.cache['lineHeight1'] = 'b'
       renderer.cache['(min-width: 300px)backgroundColoryellow'] = 'c'
@@ -37,5 +30,4 @@ export const precompiledActual = () => {
   }
 
   variations.forEach(variation => renderer.renderRule(rule, variation))
-  return renderer.rules
 }
