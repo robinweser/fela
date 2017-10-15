@@ -1,75 +1,53 @@
-import { RULE_TYPE } from 'fela-utils'
-
 import { createRenderer } from 'fela'
+import { renderToString } from 'fela-tools'
+import webPreset from 'fela-preset-web'
 
 import rehydrateCache from '../rehydrateCache'
-import renderToMarkup from '../../../server/renderToMarkup'
 
-beforeEach(() => {
-  const head = document.head
-  while (head.firstChild) {
-    head.removeChild(head.firstChild)
-  }
-})
+const sortObject = obj =>
+  Object.keys(obj)
+    .sort()
+    .reduce((newObj, key) => {
+      newObj[key] = obj[key]
+      return newObj
+    }, {})
 
 describe('Rehydrating the cache', () => {
-  it('should rehydrate the renderer cache', () => {
+  it('should work as expected', () => {
     const serverRenderer = createRenderer({
+      plugins: [...webPreset],
       filterClassName: cls => cls !== 'a'
     })
 
     serverRenderer.renderRule(() => ({
       color: 'yellow',
-      ':hover': {
-        color: 'red'
+      backgroundColor: 'red',
+      flex: 1,
+      '& #id > .foo ~ bar': {
+        backgroundColor: 'red'
       },
-      '@media (max-width: 800px)': {
-        color: 'blue'
+      '[alt="Hello"]': {
+        fontSize: 12
+      },
+      '@supports (display: grid)': {
+        color: 'blue',
+        '&.foo.bar': {
+          color: 'red'
+        }
+      },
+      ':hover': {
+        color: 'red',
+        '> h1': {
+          color: 'green'
+        }
       }
     }))
 
-    document.head.innerHTML = renderToMarkup(serverRenderer)
+    const css = renderToString(serverRenderer)
+    const cache = rehydrateCache(css)
 
-    const clientRenderer = {
-      cache: {},
-      enableRehydration: true
-    }
-
-    rehydrateCache(clientRenderer)
-
-    expect([
-      clientRenderer.uniqueRuleIdentifier,
-      JSON.stringify(clientRenderer.cache, null, 2)
-    ]).toMatchSnapshot()
-  })
-
-  it('should not rehydrate', () => {
-    const serverRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a'
-    })
-
-    serverRenderer.renderRule(() => ({
-      color: 'yellow',
-      ':hover': {
-        color: 'red'
-      },
-      '@media (max-width: 800px)': {
-        color: 'blue'
-      }
-    }))
-
-    document.head.innerHTML = renderToMarkup(serverRenderer)
-
-    const clientRenderer = {
-      cache: {},
-      enableRehydration: false
-    }
-
-    rehydrateCache(clientRenderer)
-
-    expect([
-      clientRenderer.uniqueRuleIdentifier,
-      JSON.stringify(clientRenderer.cache, null, 2)
-    ]).toMatchSnapshot()
+    expect(JSON.stringify(sortObject(cache), null, 2)).toEqual(
+      JSON.stringify(sortObject(serverRenderer.cache), null, 2)
+    )
   })
 })

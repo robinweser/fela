@@ -61,18 +61,14 @@ exports[`render should not overwrite rehydrated styles 1`] = `
 <head>
   <style type=\\"text/css\\" data-fela-type=\\"RULE\\">
     .b {
-      color: yellow
+      background-color: red
     }
 
     .c:hover {
       color: red
     }
 
-    .e {
-      background-color: red
-    }
-
-    .f {
+    .d {
       color: blue
     }
   </style>
