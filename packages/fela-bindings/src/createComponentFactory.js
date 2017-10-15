@@ -45,12 +45,14 @@ export default function createComponentFactory(
 
       const usedProps = withProxy ? extractUsedProps(rule, theme) : {}
 
-      const rules = [rule];
+      const rules = [rule]
       if (_felaRule) {
         rules.push(_felaRule)
       }
       if (extend) {
-        typeof extend === 'function' ? rules.push(extend) : rules.push(() => extend)
+        typeof extend === 'function'
+          ? rules.push(extend)
+          : rules.push(() => extend)
       }
       const combinedRule = combineRules(...rules)
 
@@ -70,7 +72,9 @@ export default function createComponentFactory(
 
       const ruleProps = {
         ...otherProps,
-        theme
+        theme,
+        as,
+        id
       }
 
       // if the component renders into another Fela component
@@ -81,6 +85,9 @@ export default function createComponentFactory(
           {
             _felaRule: combinedRule,
             passThrough: resolvedPassThrough,
+            innerRef,
+            style,
+            className,
             ...ruleProps
           },
           children

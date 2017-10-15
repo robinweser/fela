@@ -159,7 +159,108 @@ We'd love to help out. We also highly appreciate any feedback.
 ## Contributing
 
 This project exists thanks to all the people who contribute.
-<a href="graphs/contributors"><img src="https://opencollective.com/fela/contributors.svg?width=890" /></a>
+
+<a href="https://opencollective.com/fela/contributors/0/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/0/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/1/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/1/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/2/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/2/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/3/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/3/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/4/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/4/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/5/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/5/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/6/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/6/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/7/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/7/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/8/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/8/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/9/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/9/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/10/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/10/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/11/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/11/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/12/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/12/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/13/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/13/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/14/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/14/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/15/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/15/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/16/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/16/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/17/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/17/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/18/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/18/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/19/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/19/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/20/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/20/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/21/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/21/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/22/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/22/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/23/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/23/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/24/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/24/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/25/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/25/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/26/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/26/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/27/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/27/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/28/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/28/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/29/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/29/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/30/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/30/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/31/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/31/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/32/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/32/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/33/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/33/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/34/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/34/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/35/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/35/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/36/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/36/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/37/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/37/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/38/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/38/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/39/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/39/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/40/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/40/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/41/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/41/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/42/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/42/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/43/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/43/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/44/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/44/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/45/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/45/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/46/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/46/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/47/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/47/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/48/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/48/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/49/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/49/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/50/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/50/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/51/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/51/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/52/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/52/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/53/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/53/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/54/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/54/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/55/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/55/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/56/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/56/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/57/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/57/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/58/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/58/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/59/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/59/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/60/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/60/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/61/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/61/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/62/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/62/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/63/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/63/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/64/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/64/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/65/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/65/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/66/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/66/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/67/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/67/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/68/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/68/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/69/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/69/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/70/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/70/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/71/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/71/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/72/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/72/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/73/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/73/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/74/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/74/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/75/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/75/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/76/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/76/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/77/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/77/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/78/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/78/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/79/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/79/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/80/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/80/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/81/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/81/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/82/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/82/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/83/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/83/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/84/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/84/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/85/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/85/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/86/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/86/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/87/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/87/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/88/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/88/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/89/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/89/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/90/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/90/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/91/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/91/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/92/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/92/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/93/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/93/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/94/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/94/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/95/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/95/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/96/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/96/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/97/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/97/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/98/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/98/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/99/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/99/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/contributors/100/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/contributors/100/avatar.svg?requireActive=false"></a>
 
 We highly appreciate any contribution.<br>
 For more information follow the [contribution guide](.github/CONTRIBUTING.md).<br>
@@ -169,25 +270,28 @@ Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 Thank you to all our backers!
 
-<a href="https://opencollective.com/fela#backers" target="_blank"><img src="https://opencollective.com/fela/backers.svg?width=890"></a>
+<a href="https://opencollective.com/fela/backer/0/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/0/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/1/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/1/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/2/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/2/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/3/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/3/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/4/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/4/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/5/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/5/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/6/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/6/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/7/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/7/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/8/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/8/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/backer/9/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/9/avatar.svg?requireActive=false"></a>
 
 
 ## Sponsors
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
 
-<a href="https://opencollective.com/fela/sponsor/0/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/1/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/2/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/3/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/4/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/5/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/6/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/7/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/8/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/fela/sponsor/9/website" target="_blank"><img src="https://opencollective.com/fela/sponsor/9/avatar.svg"></a>
-
-
+<a href="https://opencollective.com/fela/sponsor/0/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/sponsor/0/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/sponsor/1/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/sponsor/1/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/sponsor/2/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/sponsor/2/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/sponsor/3/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/sponsor/3/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/sponsor/4/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/sponsor/4/avatar.svg?requireActive=false"></a>
+<a href="https://opencollective.com/fela/sponsor/5/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/sponsor/5/avatar.svg?requireActive=false"></a>
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

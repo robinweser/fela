@@ -91,4 +91,25 @@ describe('Hoisting statics', () => {
       baz: 3
     })
   })
+
+  it('should not hoist React statics', () => {
+    class Foo {
+      getChildContext() {
+        return {
+          foo: 1
+        }
+      }
+    }
+
+    Foo.childContextTypes = {
+      foo: 'bar'
+    }
+
+    class Bar {}
+
+    const hoisted = hoistStatics(Bar, Foo)
+
+    expect(hoisted.getChildContext).toEqual(undefined)
+    expect(hoisted.childContextTypes).toEqual(undefined)
+  })
 })

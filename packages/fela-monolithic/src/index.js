@@ -4,6 +4,7 @@ import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 
 import {
   isObject,
+  isSupport,
   isMediaQuery,
   isNestedSelector,
   isUndefinedValue,
@@ -26,11 +27,15 @@ function useMonolithicRenderer(
 ): MonolithicRenderer {
   renderer.prettySelectors = prettySelectors
 
+  // monolithic output can not be rehydrated
+  renderer.enableRehydration = false
+
   renderer._renderStyleToCache = (
     className: string,
     style: Object,
     pseudo: string = '',
-    media: string = ''
+    media: string = '',
+    support: string = ''
   ) => {
     const ruleSet = objectReduce(
       style,
@@ -41,7 +46,8 @@ function useMonolithicRenderer(
               className,
               value,
               pseudo + normalizeNestedProperty(property),
-              media
+              media,
+              support
             )
           } else if (isMediaQuery(property)) {
             const combinedMediaQuery = generateCombinedMediaQuery(
@@ -53,7 +59,20 @@ function useMonolithicRenderer(
               className,
               value,
               pseudo,
-              combinedMediaQuery
+              combinedMediaQuery,
+              support
+            )
+          } else if (isSupport(property)) {
+            const combinedSupport = generateCombinedMediaQuery(
+              support,
+              property.slice(9).trim()
+            )
+            renderer._renderStyleToCache(
+              className,
+              value,
+              pseudo,
+              media,
+              combinedSupport
             )
           } else {
             // TODO: warning
@@ -79,7 +98,7 @@ function useMonolithicRenderer(
         media
       }
 
-      const declarationReference = selector + media
+      const declarationReference = selector + media + support
       renderer.cache[declarationReference] = change
       renderer._emitChange(change)
     }

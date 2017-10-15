@@ -4,7 +4,6 @@ import arrayReduce from './arrayReduce'
 import checkFontFormat from './checkFontFormat'
 import checkFontUrl from './checkFontUrl'
 import clusterCache from './clusterCache'
-import createStyleTagMarkup from './createStyleTagMarkup'
 import cssifyFontFace from './cssifyFontFace'
 import cssifyKeyframe from './cssifyKeyframe'
 import cssifyMediaQueryRules from './cssifyMediaQueryRules'
@@ -52,7 +51,6 @@ export {
   checkFontFormat,
   checkFontUrl,
   clusterCache,
-  createStyleTagMarkup,
   cssifyFontFace,
   cssifyKeyframe,
   cssifyMediaQueryRules,

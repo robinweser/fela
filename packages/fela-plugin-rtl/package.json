@@ -1,26 +1,26 @@
 {
-    "name": "fela-plugin-rtl",
-    "version": "1.0.1",
-    "description": "Fela plugin to convert styles to RTL",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "jsnext:main": "es/index.js",
-    "files": [
-        "LICENSE",
-        "README.md",
-        "lib/**",
-        "es/**"
-    ],
-    "repository": "https://github.com/rofrischmann/fela/",
-    "keywords": [
-        "fela",
-        "fela-plugin",
-        "rtl",
-        "accessibility"
-    ],
-    "author": "Robin Frischmann",
-    "license": "MIT",
-    "dependencies": {
-        "rtl-css-js": "^1.1.3"
-    }
+  "name": "fela-plugin-rtl",
+  "version": "1.0.3",
+  "description": "Fela plugin to convert styles to RTL",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "rtl",
+    "accessibility"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "rtl-css-js": "1.1.3"
+  }
 }

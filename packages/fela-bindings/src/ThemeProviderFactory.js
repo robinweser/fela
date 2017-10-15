@@ -1,5 +1,5 @@
 /* @flow */
-import { shallowEqual } from 'recompose'
+import shallowEqual from 'shallow-equal/objects'
 import { objectEach } from 'fela-utils'
 
 import createTheme from './createTheme'
@@ -20,13 +20,9 @@ export default function ThemeProviderFactory(
     }
 
     componentWillReceiveProps(nextProps: Object): void {
-      if (shallowEqual(this.props.theme, nextProps.theme) === false) {
+      if (!shallowEqual(this.props.theme, nextProps.theme)) {
         this.theme.update(nextProps.theme)
       }
-    }
-
-    shouldComponentUpdate(nextProps: Object): boolean {
-      return shallowEqual(this.props.theme, nextProps.theme) === false
     }
 
     getChildContext(): Object {

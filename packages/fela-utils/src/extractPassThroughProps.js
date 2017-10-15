@@ -8,7 +8,10 @@ export default function extractPassThroughProps(
   return arrayReduce(
     passThrough,
     (output, property) => {
-      output[property] = ruleProps[property]
+      if (ruleProps.hasOwnProperty(property)) {
+        output[property] = ruleProps[property]
+      }
+
       return output
     },
     {}

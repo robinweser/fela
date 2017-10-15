@@ -13,7 +13,7 @@ We might introduce more configuration options with future releases, so be sure t
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
 |`selectorPrefix`| `string` | `''`| Prepend a static prefix to every generated class and keyframe |
-|`filterClassName`| `function` |  | Filter-function to filter used class names |
+|`filterClassName`| `function` | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names |
 
 ## Example
 ```javascript
@@ -35,8 +35,7 @@ const config = {
     '(min-height: 300px)',
     '(min-height: 500px)'
   ],
-  selectorPrefix: 'fela_',
-  filterClassName: className => className !== 'ad'
+  selectorPrefix: 'fela_'
 }
 
 const renderer = createRenderer(config)

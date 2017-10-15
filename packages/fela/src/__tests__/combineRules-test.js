@@ -1,5 +1,9 @@
 import combineRules from '../combineRules'
 
+const rendererMock = {
+  _mergeStyle: Object.assign
+}
+
 describe('Combining rules', () => {
   it('should create a combined rule', () => {
     const rule = props => ({
@@ -15,13 +19,16 @@ describe('Combining rules', () => {
       padding: 20
     })
 
-    const combineRule = combineRules(rule, anotherRule)
+    const combinedRule = combineRules(rule, anotherRule)
 
     expect(
-      combineRule({
-        fontSize: 12,
-        lineHeight: 10
-      })
+      combinedRule(
+        {
+          fontSize: 12,
+          lineHeight: 10
+        },
+        rendererMock
+      )
     ).toEqual({
       color: 'red',
       backgroundColor: 'blue',
@@ -53,14 +60,17 @@ describe('Combining rules', () => {
       display: 'flex'
     })
 
-    const combineRule = combineRules(rule1, rule2, rule3, rule4)
+    const combinedRule = combineRules(rule1, rule2, rule3, rule4)
 
     expect(
-      combineRule({
-        fontSize: 12,
-        lineHeight: 10,
-        color: 'green'
-      })
+      combinedRule(
+        {
+          fontSize: 12,
+          lineHeight: 10,
+          color: 'green'
+        },
+        rendererMock
+      )
     ).toEqual({
       color: 'green',
       display: 'flex',

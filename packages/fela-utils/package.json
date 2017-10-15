@@ -1,6 +1,6 @@
 {
   "name": "fela-utils",
-  "version": "7.0.0",
+  "version": "7.0.2",
   "description": "Internal utilities for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,9 +20,9 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "^2.0.0"
+    "css-in-js-utils": "2.0.0"
   },
   "devDependencies": {
-    "fela": "^6.0.0"
+    "fela": "^6.0.2"
   }
 }

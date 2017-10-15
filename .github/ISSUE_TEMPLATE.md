@@ -11,8 +11,8 @@
 #### Description
 Please try to add as much detail as possible.
 
-<!-- 
-  BUG REPORT ONLY 
+<!--
+  BUG REPORT ONLY
   ===============
 -->
 #### Steps to reproduce
@@ -29,7 +29,7 @@ Please try to add as much detail as possible.
 // your code here
 ```
 
-<!-- 
+<!--
   FEATURE REQUEST ONLY
   ====================
 -->
@@ -59,6 +59,3 @@ Any information on how this might be achieved.
   If it is not reproductible, please note that.
   TODO: Remove the FEATURE REQUEST ONLY part.
 --------------------->
-
-<!-- Love fela? Please consider supporting our collective:
-👉  https://opencollective.com/fela/donate -->

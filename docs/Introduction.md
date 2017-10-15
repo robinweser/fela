@@ -8,4 +8,3 @@ First we are going to focus on the motivation, principles and goals behind Fela,
 * [Drawbacks](introduction/Drawbacks.md)
 * [Ecosystem](introduction/Ecosystem.md)
 * [Examples](introduction/Examples.md)
-^

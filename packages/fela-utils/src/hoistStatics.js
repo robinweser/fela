@@ -11,12 +11,8 @@ const basicStatics = {
   arity: true
 }
 
-const mergableStatics = [
-  'childContextTypes',
-  'contextTypes',
-  'defaultProps',
-  'propTypes'
-]
+const mergableStatics = ['contextTypes', 'defaultProps']
+const blockedStatics = { childContextTypes: true, propTypes: true }
 
 export default function hoistStatics(target: Object, source: Object): Object {
   if (typeof source === 'string') {
@@ -28,7 +24,7 @@ export default function hoistStatics(target: Object, source: Object): Object {
   )
 
   arrayEach(statics, property => {
-    if (!target.hasOwnProperty(property)) {
+    if (!target.hasOwnProperty(property) && !blockedStatics[property]) {
       try {
         // Avoid failures from read-only properties
         const descriptor = Object.getOwnPropertyDescriptor(source, property)
