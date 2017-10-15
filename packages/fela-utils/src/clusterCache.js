@@ -36,12 +36,9 @@ const handlers = {
 
 export default function clusterCache(
   cache: Object,
-  mediaQueryOrder: Array<string> = [],
-  ruleIdentifier: number = 0
+  mediaQueryOrder: Array<string> = []
 ) {
   const mediaRules = applyMediaRulesInOrder(mediaQueryOrder)
-  const withRuleIdentifier =
-    ruleIdentifier > 0 ? `/*::${ruleIdentifier}#*/` : ''
 
   return objectReduce(
     cache,
@@ -59,7 +56,7 @@ export default function clusterCache(
       fontFaces: '',
       statics: '',
       keyframes: '',
-      rules: withRuleIdentifier
+      rules: ''
     }
   )
 }

@@ -2,7 +2,7 @@ import { html as beautify } from 'js-beautify'
 import { createRenderer } from 'fela'
 
 import render from '../render'
-import rehydrateCache from '../rehydration/rehydrateCache'
+import rehydrate from '../rehydration/rehydrate'
 import renderToMarkup from '../../server/renderToMarkup'
 
 beforeEach(() => {
@@ -77,7 +77,7 @@ describe('render', () => {
       filterClassName: cls => cls !== 'a'
     })
 
-    rehydrateCache(clientRenderer)
+    rehydrate(clientRenderer)
 
     clientRenderer.renderRule(() => ({
       backgroundColor: 'red',

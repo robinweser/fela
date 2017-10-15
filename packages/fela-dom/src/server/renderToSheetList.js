@@ -8,6 +8,8 @@ import {
   STATIC_TYPE
 } from 'fela-utils'
 
+import getRehydrationIndex from './getRehydrationIndex'
+
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 const sheetMap = {
@@ -24,11 +26,9 @@ type Sheet = {
 }
 
 export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
-  const cacheCluster = clusterCache(
-    renderer.cache,
-    renderer.mediaQueryOrder,
-    renderer.uniqueRuleIdentifier
-  )
+  const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
+
+  const rehydrationIndex = getRehydrationIndex(renderer)
 
   const sheetList = objectReduce(
     sheetMap,
@@ -36,6 +36,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
       if (cacheCluster[key].length > 0) {
         list.push({
           css: cacheCluster[key],
+          rehydration: rehydrationIndex,
           type
         })
       }
@@ -52,6 +53,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
         list.push({
           css,
           type: RULE_TYPE,
+          rehydration: rehydrationIndex,
           media
         })
       }

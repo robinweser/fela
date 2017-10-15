@@ -9,27 +9,26 @@ import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
 // rehydration (WIP)
 // TODO: static, keyframe, font
 export default function rehydrate(renderer: DOMRenderer): void {
-  if (renderer.enableRehydration) {
-    arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
+  arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
+    const rehydrationAttribute =
+      node.getAttribute('data-fela-rehydration') || -1
+    const rehydrationIndex = parseInt(rehydrationAttribute)
+
+    // skip rehydration if no rehydration index is set
+    // this index is set to -1 if something blocks rehydration
+    if (rehydrationIndex !== -1) {
       const type = node.getAttribute('data-fela-type') || ''
       const media = node.getAttribute('media') || ''
-      let css = node.textContent
+      const css = node.textContent
 
-      if (type === 'RULE_TYPE') {
-        // try to read the uniqueRuleIdentifier
-        if (media.length === 0 && css.indexOf('#*/') !== -1) {
-          const [left, right] = css.split('#*/')
-          renderer.uniqueRuleIdentifier = parseInt(left.split('::')[1])
+      renderer.uniqueRuleIdentifier = rehydrationIndex
 
-          // it's ok to mutate
-          css = right
-        }
-
+      if (type === RULE_TYPE) {
         renderer.cache = {
           ...rehydrateCache(css, media),
           ...renderer.cache
         }
       }
-    })
-  }
+    }
+  })
 }

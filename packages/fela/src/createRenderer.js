@@ -52,10 +52,6 @@ export default function createRenderer(
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
 
-    // internal feature flags
-    isConnectedToDOM: false,
-    enableRehydration: true,
-
     nodes: {},
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
