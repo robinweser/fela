@@ -4,7 +4,7 @@ Sometimes, you need to have an explicit displayName for your components rather t
 
 ## Using a HoC
 
-One way to handle this problem is is by using a HoC. We recommend [recompose](https://github.com/acdlite/recompose).
+One way to handle this problem this is by using a HoC. We recommend [recompose](https://github.com/acdlite/recompose).
 When you export your components, just use the HoC [setDisplayName](https://github.com/acdlite/recompose/blob/master/docs/API.md#setdisplayname).
 
 ```javascript
@@ -26,6 +26,6 @@ export default setDisplayName('Container')(Container)
 
 ## Other solutions
 
-Like i said ealier, there is no automatic solution to handle this case right now.
-But, there are possibilities with babel plugins that might help out. The most promising one is [babel-plugin-transform-react-stateless-component-name](https://github.com/wyze/babel-plugin-transform-react-stateless-component-name)
+Like I said ealier, there is no automatic solution to handle this case right now.
+But, there are possibilities with Babel plugins that might help out. The most promising one is [babel-plugin-transform-react-stateless-component-name](https://github.com/wyze/babel-plugin-transform-react-stateless-component-name).
 Right now, it can't handle HoCs, but people are working on it and maybe someday we'll be able to use Babel instead.
