@@ -8,6 +8,8 @@ import {
 } from 'fela-utils'
 import { combineRules } from 'fela'
 
+import { renderToString } from 'fela-tools'
+
 export default function createComponentFactory(
   createElement: Function,
   withTheme: Function,
@@ -99,20 +101,6 @@ export default function createComponentFactory(
         otherProps
       )
 
-      // fela-native support
-      if (renderer.isNativeRenderer) {
-        const felaStyle = renderer.renderRule(combinedRule, ruleProps)
-        componentProps.style = style ? [style, felaStyle] : felaStyle
-      } else {
-        if (style) {
-          componentProps.style = style
-        }
-
-        const cls = className ? `${className} ` : ''
-        componentProps.className =
-          cls + renderer.renderRule(combinedRule, ruleProps)
-      }
-
       if (id) {
         componentProps.id = id
       }
@@ -121,8 +109,41 @@ export default function createComponentFactory(
         componentProps.ref = innerRef
       }
 
+      const previousCacheKeys = Object.keys(renderer.cache)
+
+      // fela-native support
+      if (renderer.isNativeRenderer) {
+        const felaStyle = renderer.renderRule(combinedRule, ruleProps)
+        componentProps.style = style ? [style, felaStyle] : felaStyle
+      } else {
+        if (style) {
+          componentProps.style = style
+        }
+        const cls = className ? `${className} ` : ''
+        componentProps.className =
+          cls + renderer.renderRule(combinedRule, ruleProps)
+      }
+
       const customType = as || type
-      return createElement(customType, componentProps, children)
+      const element = createElement(customType, componentProps, children)
+
+      if (renderer.isProgressiveRenderer) {
+        const newCache = Object.keys(renderer.cache)
+          .filter(key => previousCacheKeys.indexOf(key) === -1)
+          .map(key => renderer.cache[key])
+
+        const css = renderToString({
+          cache: newCache,
+          mediaQueryOrder: renderer.mediaQueryOrder
+        })
+
+        return [
+          createElement('style', { dangerouslySetInnerHTML: { __html: css } }),
+          element
+        ]
+      }
+
+      return element
     }
 
     if (contextTypes) {
