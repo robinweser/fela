@@ -12,11 +12,13 @@
     "rule-optimisation:10": "VARIATIONS=10 babel-node rule-optimisation"
   },
   "dependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2015": "^6.24.1",
-    "beautify-benchmark": "^0.2.4",
-    "benchmark": "^2.1.2",
-    "fela": "^6.0.2",
-    "fela-preset-web": "^5.0.11"
+    "babel-cli": "6.18.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "beautify-benchmark": "0.2.4",
+    "benchmark": "2.1.2",
+    "fela": "6.0.2",
+    "fela-dom": "6.0.2",
+    "fela-preset-web": "5.0.11"
   }
 }
