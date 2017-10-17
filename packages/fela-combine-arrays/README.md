@@ -12,7 +12,7 @@ yarn add fela-combine-arrays
 You may alternatively use `npm i --save fela-combine-arrays`.
 
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+Make sure to read the documentation on [how to use enhancers](http://fela.js.org/docs/advanced/Enhancers.html).
 
 ```javascript
 import { createRenderer } from 'fela'

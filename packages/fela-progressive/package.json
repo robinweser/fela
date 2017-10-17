@@ -1,0 +1,27 @@
+{
+  "name": "fela-progressive",
+  "version": "1.0.0",
+  "description": "Fela enhancer to enable progressive style rendering",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-enhancer",
+    "dx",
+    "cssinjs",
+    "progressive",
+    "progressive rendering",
+    "SSR",
+    "server-side rendering",
+    "server rendering"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT"
+}

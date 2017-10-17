@@ -26,6 +26,9 @@ You may alternatively use `npm i --save fela-statistics`.
 
 
 ## Usage
+Make sure to read the documentation on [how to use enhancers](http://fela.js.org/docs/advanced/Enhancers.html).
+
+
 Adding the statistics enhancer will add a new function to the renderer called `getStatistics`.<br>
 You may call it at any given time, to get the current statistics object.
 
