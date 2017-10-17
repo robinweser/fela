@@ -18,6 +18,7 @@ import generateCSSRule from './generateCSSRule'
 import generateCSSSelector from './generateCSSSelector'
 import generateMonolithicClassName from './generateMonolithicClassName'
 import generateStaticReference from './generateStaticReference'
+import getRehydrationIndex from './getRehydrationIndex'
 import hoistStatics from './hoistStatics'
 import isBase64 from './isBase64'
 import isMediaQuery from './isMediaQuery'
@@ -65,6 +66,7 @@ export {
   generateCSSSelector,
   generateMonolithicClassName,
   generateStaticReference,
+  getRehydrationIndex,
   hoistStatics,
   isBase64,
   isMediaQuery,

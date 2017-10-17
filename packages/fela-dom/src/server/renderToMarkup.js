@@ -2,6 +2,7 @@
 import {
   objectReduce,
   clusterCache,
+  getRehydrationIndex,
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
@@ -9,7 +10,6 @@ import {
 } from 'fela-utils'
 
 import createStyleTagMarkup from './createStyleTagMarkup'
-import getRehydrationIndex from './getRehydrationIndex'
 
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
