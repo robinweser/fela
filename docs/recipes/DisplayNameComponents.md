@@ -4,7 +4,7 @@ Sometimes, you need to have an explicit displayName for your components rather t
 
 ## Using a HoC
 
-One way to handle this problem this is by using a HoC. We recommend [recompose](https://github.com/acdlite/recompose).
+One way to handle this problem is by using a HoC. We recommend [recompose](https://github.com/acdlite/recompose).
 When you export your components, just use the HoC [setDisplayName](https://github.com/acdlite/recompose/blob/master/docs/API.md#setdisplayname).
 
 ```javascript
