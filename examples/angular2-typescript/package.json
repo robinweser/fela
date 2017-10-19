@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "example-angular2-typescript",
+  "name": "angular2-typescript",
   "version": "2.0.11",
   "description": "Fela example with Angular2 in TypeScript",
   "scripts": {
