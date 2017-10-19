@@ -7,9 +7,6 @@
     "start": "npm run bundle & http-server -a 0.0.0.0 -p 9000",
     "bundle": "webpack app/main.js app/dist/main.bundle.js --config webpack.config.js --watch -d"
   },
-  "engines": {
-    "node": "6.2.1"
-  },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
