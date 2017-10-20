@@ -129,7 +129,7 @@ Renders a `@font-face` rule using the `family` as reference.
 
 ### Arguments
 1. `family` (*string*): A font family reference which is later required to use this font face.
-2. `files` (*string[]*): An array of valid source paths. It may either be relative (within your project) or absolute (hosted on an external server). It must have one of the following file extensions: `.woff`, `.eof`, `.ttf` or `.svg`.
+2. `files` (*string[]*): An array of valid source paths. It may either be relative (within your project) or absolute (hosted on an external server). It must have one of the following file extensions: `.woff`, `.woff2`, `.eof`, `.ttf` or `.svg`.
 3. `properties`(*Object?*): Additional font properties which are `fontVariant`, `fontWeight`, `fontStretch`, `fontStyle` and `unicodeRange`.
 
 ### Example
