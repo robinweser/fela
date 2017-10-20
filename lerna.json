@@ -1,9 +1,11 @@
 {
-  "lerna": "2.0.0-rc.4",
+  "lerna": "2.4.0",
   "version": "independent",
   "npmClient": "yarn",
+  "useWorkspaces": true,
   "packages": [
     "packages/*",
+    "examples/*",
     "benchmark"
   ]
 }

@@ -1,14 +1,11 @@
 {
   "private": true,
-  "name": "example-angular2",
+  "name": "angular2",
   "version": "2.0.1",
   "license": "MIT",
   "scripts": {
     "start": "npm run bundle & http-server -a 0.0.0.0 -p 9000",
     "bundle": "webpack app/main.js app/dist/main.bundle.js --config webpack.config.js --watch -d"
-  },
-  "engines": {
-    "node": "6.2.1"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
