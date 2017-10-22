@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-with-styleguidist",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "An Example to use fela with styleguidist",
   "homepage": "https://github.com/rofrischmann/fela",
   "repository": {

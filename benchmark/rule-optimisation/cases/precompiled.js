@@ -7,17 +7,54 @@ export default function precompiled() {
   const renderer = createRenderer({ plugins: [...webPreset] })
   const rule = ({ fontSize, width }) => {
     if (!renderer.cache[0]) {
-      renderer.cache['backgroundColorblack'] = 'a'
-      renderer.cache['lineHeight1'] = 'b'
-      renderer.cache['(min-width: 300px)backgroundColoryellow'] = 'c'
-      renderer.cache['(min-width: 300px)colorgreen'] = 'd'
-      renderer.cache[':hovercolorred'] = 'e'
+      renderer.cache['backgroundColorblack'] = {
+        type: 'RULE_TYPE',
+        selector: '.a',
+        className: 'a',
+        declaration: 'background-color:black',
+        media: '',
+        support: ''
+      }
+      renderer.cache['lineHeight1'] = {
+        type: 'RULE_TYPE',
+        selector: '.b',
+        className: 'b',
+        declaration: 'line-height:1',
+        media: '',
+        support: ''
+      }
+      renderer.cache[':hovercolorred'] = {
+        type: 'RULE_TYPE',
+        selector: '.c:pseudo',
+        className: 'c',
+        declaration: 'color:red',
+        media: '',
+        support: ''
+      }
+      renderer.cache['(min-width: 300px)backgroundColoryellow'] = {
+        type: 'RULE_TYPE',
+        selector: '.d',
+        className: 'd',
+        declaration: 'background-color:yellow',
+        media: '(min-width: 300px)',
+        support: ''
+      }
+      renderer.cache['(min-width: 300px)colorgreen'] = {
+        type: 'RULE_TYPE',
+        selector: '.e',
+        className: 'e',
+        declaration: 'color:green',
+        media: '(min-width: 300px)',
+        support: ''
+      }
 
-      renderer.cache[0] = 'a b c d e'
+      renderer.cache[0] = {
+        type: 'COMPILATION'
+      }
     }
 
     return {
-      _className: renderer.cache[0],
+      _className: 'a b c d e',
       fontSize: `${fontSize}px`,
       width: `${width}px`,
       ':hover': {

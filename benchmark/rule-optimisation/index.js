@@ -5,6 +5,8 @@ import unoptimized from './cases/unoptimized'
 import optimized from './cases/optimized'
 import preprocessed from './cases/preprocessed'
 import precompiled from './cases/precompiled'
+import rehydrated from './cases/rehydrated'
+import extracted from './cases/extracted'
 
 export const run = () => {
   console.log(
@@ -18,6 +20,8 @@ export const run = () => {
   testSuite.add('optimized', () => optimized())
   testSuite.add('preprocessed', () => preprocessed())
   testSuite.add('precompiled', () => precompiled())
+  testSuite.add('rehydrated', () => rehydrated())
+  testSuite.add('extracted', () => extracted())
 
   testSuite.on('cycle', e => {
     beautifyBenchmark.add(e.target)

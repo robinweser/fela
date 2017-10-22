@@ -42,7 +42,7 @@ export function createRenderer(
     },
 
     renderRule(rule: Function, props: Object = {}): Object {
-      const style = rule(props)
+      const style = rule(props, renderer)
       const reference = JSON.stringify(style)
 
       if (!renderer.cache.hasOwnProperty(reference)) {
