@@ -8,6 +8,7 @@ import statistics from 'fela-statistics'
 import webPreset from 'fela-preset-web'
 import namedMediaQuery from 'fela-plugin-named-media-query'
 import unit from 'fela-plugin-unit'
+import combineArrays from 'fela-combine-arrays'
 import whitelistMediaQuery from './whitelistMediaQueryPlugin'
 import theme from './base-ui-theme'
 
@@ -30,7 +31,7 @@ const createRenderer = () => {
     friendlyPsuedo(),
     namedMediaQuery(mediaQueries)
   ]
-  const enhancers = []
+  const enhancers = [combineArrays()]
 
   if (process.env.NODE_ENV === 'development') {
     plugins.push(

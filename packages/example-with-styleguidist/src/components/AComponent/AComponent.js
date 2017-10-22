@@ -20,7 +20,8 @@ const __block = ({ size, isEnabled }) => ({
 })
 
 const __absoluteElement = () => ({
-  position: 'absolute'
+  position: 'absolute',
+  opacity: '0'
 })
 /* post initial load add some properties to the above style from previous nested properties.
 
