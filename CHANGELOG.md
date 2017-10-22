@@ -5,6 +5,13 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 20/10/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-dom | 6.0.3 | [(#434)](https://github.com/rofrischmann/fela/pull/434) fixed rehydration errors and added some safety checks to only rehydrate under certain circumstances<br>[(#429)](https://github.com/rofrischmann/fela/pull/429) only subscribe to changes once per renderer within `render()` |
+| fela-preset-web | 7.0.0 | [(#433)](https://github.com/rofrischmann/fela/pull/433) added fela-plugin-embedded to the web preset |
+| fela-native | 5.0.11 | fixed a bug when combining rules |
+
 ## 11/10/17
 | Package | Version | Changes |
 | ---- | --- | --- |
