@@ -16,7 +16,10 @@ export default function createMergeArrayStyle(mergeProps?: Array<string>) {
           (merged, value, property) => {
             const baseValue = merged[property]
 
-            if (!mergeProps || mergeProps.indexOf(property) !== -1) {
+            if (
+              baseValue &&
+              (!mergeProps || mergeProps.indexOf(property) !== -1)
+            ) {
               merged[property] = [
                 ...arrayifyValue(baseValue),
                 ...arrayifyValue(value)
