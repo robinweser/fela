@@ -1,5 +1,0 @@
-AComponent example:
-
-```js
-<AComponent />
-```
