@@ -21,8 +21,8 @@
         "fela-plugin-prefixer": "^5.0.11",
         "fela-plugin-unit": "^5.0.10",
         "fela-plugin-validator": "^5.0.10",
-        "react": "^15.1.0",
-        "react-dom": "^15.1.0",
+        "react": "^16.0.0",
+        "react-dom": "^16.0.0",
         "react-fela": "^6.0.2"
     },
     "devDependencies": {

@@ -12,7 +12,15 @@ import layoutDebugger from 'fela-layout-debugger'
 
 export default () => {
   const renderer = createRenderer({
-    plugins: [embedded(), prefixer(), fallbackValue(), unit(), lvha(), validator(), logger()],
+    plugins: [
+      embedded(),
+      prefixer(),
+      fallbackValue(),
+      unit(),
+      lvha(),
+      validator(),
+      logger()
+    ],
     enhancers: [perf(), beautifier()]
   })
 
@@ -28,5 +36,6 @@ export default () => {
   )
 
   renderer.renderStatic({ display: 'flex' }, 'div')
+  renderer.isProgressiveRenderer = true
   return renderer
 }

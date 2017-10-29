@@ -1,10 +1,9 @@
 import { createRenderer } from 'fela'
 import React from 'react'
 import ReactTestRenderer from 'react-test-renderer'
+import { renderToString } from 'fela-tools'
+import { createComponent, Provider } from 'react-fela'
 import monolithic from '../index'
-
-import renderToString from '../../../fela-tools/src/renderToString'
-import { createComponent, Provider } from '../../../react-fela/src/index'
 
 const options = {
   enhancers: [monolithic()]

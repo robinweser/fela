@@ -10,7 +10,10 @@ import createRenderer from './renderer'
 
 const app = express()
 
-app.use('/bundle.js', proxy('localhost:8080', { forwardPath: () => '/bundle.js' }))
+app.use(
+  '/bundle.js',
+  proxy('localhost:8080', { forwardPath: () => '/bundle.js' })
+)
 
 app.get('/', (req, res) => {
   const renderer = createRenderer()
@@ -23,7 +26,11 @@ app.get('/', (req, res) => {
   )
   const appCSS = renderToMarkup(renderer)
 
-  res.write(indexHTML.replace('<!-- {{app}} -->', appHtml).replace('<!-- {{css}} -->', appCSS))
+  res.write(
+    indexHTML
+      .replace('<!-- {{app}} -->', appHtml)
+      .replace('<!-- {{css}} -->', appCSS)
+  )
   res.end()
 })
 

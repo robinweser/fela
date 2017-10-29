@@ -9,8 +9,8 @@ import {
   STATIC_TYPE
 } from 'fela-utils'
 
-import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
-import type { StyleType } from '../../../../flowtypes/StyleType'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { StyleType } from '../../../flowtypes/StyleType'
 
 const sheetMap = {
   fontFaces: FONT_TYPE,
@@ -28,7 +28,7 @@ export default function renderToComponentFactory(
     type: StyleType,
     media: string = ''
   ) {
-    const styleProps = {
+    const styleProps: Object = {
       dangerouslySetInnerHTML: { __html: css },
       'data-fela-rehydration': rehydrationIndex,
       'data-fela-type': type,
@@ -43,6 +43,8 @@ export default function renderToComponentFactory(
   }
 
   return function renderToComponent(renderer: DOMRenderer): any {
+    const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
+
     const rehydrationIndex = getRehydrationIndex(renderer)
 
     const componentList = objectReduce(

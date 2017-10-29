@@ -30,10 +30,9 @@ describe('Rehydrating from DOM nodes', () => {
 
     document.head.innerHTML = renderToMarkup(serverRenderer)
 
-    console.log(document.head.innerHTML)
-    const clientRenderer = {
-      cache: {}
-    }
+    const clientRenderer = createRenderer({
+      filterClassName: cls => cls !== 'a'
+    })
 
     rehydrate(clientRenderer)
 

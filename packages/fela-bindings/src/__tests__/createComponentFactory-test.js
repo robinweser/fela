@@ -1,6 +1,7 @@
 import React, { createElement, Component as BaseComponent } from 'react'
 import PropTypes from 'prop-types'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 import toJson from 'enzyme-to-json'
 import { html as beautify } from 'js-beautify'
 
@@ -10,19 +11,37 @@ import monolithic from 'fela-monolithic'
 
 import createComponentFactory from '../createComponentFactory'
 import withThemeFactory from '../withThemeFactory'
+import renderToComponentFactory from '../renderToComponentFactory'
+import ProgressiveStyleFactory from '../ProgressiveStyleFactory'
 import createTheme from '../createTheme'
+
+configure({ adapter: new Adapter() })
 
 const withTheme = withThemeFactory(BaseComponent, createElement, {
   theme: PropTypes.object
 })
 
-const createComponent = createComponentFactory(createElement, withTheme, {
-  renderer: PropTypes.object
-})
+const renderToComponent = renderToComponentFactory(createElement)
+
+const ProgressiveStyle = ProgressiveStyleFactory(
+  BaseComponent,
+  createElement,
+  renderToComponent
+)
+
+const createComponent = createComponentFactory(
+  createElement,
+  withTheme,
+  ProgressiveStyle,
+  {
+    renderer: PropTypes.object
+  }
+)
 
 const createComponentWithProxy = createComponentFactory(
   createElement,
   withTheme,
+  ProgressiveStyle,
   {
     renderer: PropTypes.object
   },
@@ -211,6 +230,32 @@ describe('Creating Components from Fela rules', () => {
       toJson(wrapper),
       toJson(wrapper2)
     ]).toMatchSnapshot()
+  })
+
+  it('should render progressive', () => {
+    const rule = props => ({
+      color: 'red',
+      fontSize: props.size
+    })
+
+    const Component = createComponent(rule)
+    const renderer = createRenderer()
+
+    renderer.isProgressiveRenderer = true
+
+    const wrapper = mount(<Component size="16px" />, {
+      context: {
+        renderer
+      }
+    })
+
+    const wrapper2 = mount(<Component size="18px" />, {
+      context: {
+        renderer
+      }
+    })
+
+    expect([toJson(wrapper), toJson(wrapper2)]).toMatchSnapshot()
   })
 
   it('should only use passed props to render Fela rules', () => {

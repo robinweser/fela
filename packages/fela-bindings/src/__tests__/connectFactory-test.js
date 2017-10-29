@@ -1,6 +1,7 @@
 import React, { createElement, Component } from 'react'
 import PropTypes from 'prop-types'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 import toJson from 'enzyme-to-json'
 import { html as beautify } from 'js-beautify'
 
@@ -17,6 +18,8 @@ const withTheme = withThemeFactory(Component, createElement, {
 const connect = connectFactory(Component, createElement, withTheme, {
   renderer: PropTypes.object
 })
+
+configure({ adapter: new Adapter() })
 
 describe('Connect Factory for bindings', () => {
   it('should process rules and create classNames', () => {

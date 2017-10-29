@@ -21,7 +21,9 @@ export default function rehydrate(renderer: DOMRenderer): void {
       const media = node.getAttribute('media') || ''
       const css = node.textContent
 
-      renderer.uniqueRuleIdentifier = rehydrationIndex
+      if (rehydrationIndex > renderer.uniqueRuleIdentifier) {
+        renderer.uniqueRuleIdentifier = rehydrationIndex
+      }
 
       if (type === RULE_TYPE) {
         renderer.cache = {

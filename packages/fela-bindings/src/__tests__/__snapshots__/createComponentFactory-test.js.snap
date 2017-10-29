@@ -43,24 +43,33 @@ Array [
     >
         <FelaComponent
             _felaRule={[Function]}
+            as={undefined}
+            className={undefined}
             color="red"
+            id={undefined}
+            innerRef={undefined}
             onClick={[Function]}
             passThrough={
                 Array [
                     "onClick",
                   ]
             }
+            style={undefined}
             theme={Object {}}
         >
             <FelaComponent
                 _felaRule={[Function]}
+                as={undefined}
+                className={undefined}
                 color="red"
+                id={undefined}
                 onClick={[Function]}
                 passThrough={
                     Array [
                         "onClick",
                       ]
                 }
+                style={undefined}
                 theme={Object {}}
             >
                 <div
@@ -96,12 +105,21 @@ Array [
     >
         <rule
             _felaRule={[Function]}
+            as={undefined}
+            className={undefined}
+            id={undefined}
+            innerRef={undefined}
             passThrough={Array []}
+            style={undefined}
             theme={Object {}}
         >
             <rule
                 _felaRule={[Function]}
+                as={undefined}
+                className={undefined}
+                id={undefined}
                 passThrough={Array []}
+                style={undefined}
                 theme={Object {}}
             >
                 <div
@@ -402,15 +420,22 @@ Array [
         <rule
             _felaRule={[Function]}
             as="i"
+            className={undefined}
             color="green"
+            id={undefined}
+            innerRef={undefined}
             passThrough={Array []}
+            style={undefined}
             theme={Object {}}
         >
             <rule
                 _felaRule={[Function]}
                 as="i"
+                className={undefined}
                 color="green"
+                id={undefined}
                 passThrough={Array []}
+                style={undefined}
                 theme={Object {}}
             >
                 <i
@@ -443,6 +468,201 @@ Array [
     >
         <div
             className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components from Fela rules should render progressive 1`] = `
+Array [
+  <rule
+    size="16px"
+>
+    <rule
+        size="16px"
+        theme={Object {}}
+    >
+        <ProgressiveStyle
+            cacheEntries={
+                Array [
+                    Object {
+                      "className": "a",
+                      "declaration": "color:red",
+                      "media": "",
+                      "selector": ".a",
+                      "support": "",
+                      "type": "RULE",
+                    },
+                    Object {
+                      "className": "b",
+                      "declaration": "font-size:16px",
+                      "media": "",
+                      "selector": ".b",
+                      "support": "",
+                      "type": "RULE",
+                    },
+                  ]
+            }
+            renderer={
+                Object {
+                    "_emitChange": [Function],
+                    "_mergeStyle": [Function],
+                    "_renderStyleToClassNames": [Function],
+                    "cache": Object {
+                      "colorred": Object {
+                        "className": "a",
+                        "declaration": "color:red",
+                        "media": "",
+                        "selector": ".a",
+                        "support": "",
+                        "type": "RULE",
+                      },
+                      "fontSize16px": Object {
+                        "className": "b",
+                        "declaration": "font-size:16px",
+                        "media": "",
+                        "selector": ".b",
+                        "support": "",
+                        "type": "RULE",
+                      },
+                      "fontSize18px": Object {
+                        "className": "c",
+                        "declaration": "font-size:18px",
+                        "media": "",
+                        "selector": ".c",
+                        "support": "",
+                        "type": "RULE",
+                      },
+                    },
+                    "clear": [Function],
+                    "filterClassName": [Function],
+                    "getNextRuleIdentifier": [Function],
+                    "isProgressiveRenderer": true,
+                    "keyframePrefixes": Array [
+                      "-webkit-",
+                      "-moz-",
+                      "",
+                    ],
+                    "listeners": Array [],
+                    "mediaQueryOrder": Array [],
+                    "nodes": Object {},
+                    "plugins": Array [],
+                    "renderFont": [Function],
+                    "renderKeyframe": [Function],
+                    "renderRule": [Function],
+                    "renderStatic": [Function],
+                    "selectorPrefix": "",
+                    "subscribe": [Function],
+                    "uniqueKeyframeIdentifier": 0,
+                    "uniqueRuleIdentifier": 3,
+                  }
+            }
+        >
+            <style
+                dangerouslySetInnerHTML={
+                    Object {
+                        "__html": ".a{color:red}.b{font-size:16px}",
+                      }
+                }
+                data-fela-rehydration={2}
+                data-fela-type="RULE"
+                type="text/css"
+            />
+        </ProgressiveStyle>
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+  <rule
+    size="18px"
+>
+    <rule
+        size="18px"
+        theme={Object {}}
+    >
+        <ProgressiveStyle
+            cacheEntries={
+                Array [
+                    Object {
+                      "className": "c",
+                      "declaration": "font-size:18px",
+                      "media": "",
+                      "selector": ".c",
+                      "support": "",
+                      "type": "RULE",
+                    },
+                  ]
+            }
+            renderer={
+                Object {
+                    "_emitChange": [Function],
+                    "_mergeStyle": [Function],
+                    "_renderStyleToClassNames": [Function],
+                    "cache": Object {
+                      "colorred": Object {
+                        "className": "a",
+                        "declaration": "color:red",
+                        "media": "",
+                        "selector": ".a",
+                        "support": "",
+                        "type": "RULE",
+                      },
+                      "fontSize16px": Object {
+                        "className": "b",
+                        "declaration": "font-size:16px",
+                        "media": "",
+                        "selector": ".b",
+                        "support": "",
+                        "type": "RULE",
+                      },
+                      "fontSize18px": Object {
+                        "className": "c",
+                        "declaration": "font-size:18px",
+                        "media": "",
+                        "selector": ".c",
+                        "support": "",
+                        "type": "RULE",
+                      },
+                    },
+                    "clear": [Function],
+                    "filterClassName": [Function],
+                    "getNextRuleIdentifier": [Function],
+                    "isProgressiveRenderer": true,
+                    "keyframePrefixes": Array [
+                      "-webkit-",
+                      "-moz-",
+                      "",
+                    ],
+                    "listeners": Array [],
+                    "mediaQueryOrder": Array [],
+                    "nodes": Object {},
+                    "plugins": Array [],
+                    "renderFont": [Function],
+                    "renderKeyframe": [Function],
+                    "renderRule": [Function],
+                    "renderStatic": [Function],
+                    "selectorPrefix": "",
+                    "subscribe": [Function],
+                    "uniqueKeyframeIdentifier": 0,
+                    "uniqueRuleIdentifier": 3,
+                  }
+            }
+        >
+            <style
+                dangerouslySetInnerHTML={
+                    Object {
+                        "__html": ".c{font-size:18px}",
+                      }
+                }
+                data-fela-rehydration={3}
+                data-fela-type="RULE"
+                type="text/css"
+            />
+        </ProgressiveStyle>
+        <div
+            className="a c"
         />
     </rule>
 </rule>,
@@ -557,7 +777,11 @@ Array [
     >
         <FelaComponent
             _felaRule={[Function]}
+            as={undefined}
+            className={undefined}
             color="red"
+            id={undefined}
+            innerRef={undefined}
             onClick={[Function]}
             passThrough={
                 Array [
@@ -566,11 +790,15 @@ Array [
                     "color",
                   ]
             }
+            style={undefined}
             theme={Object {}}
         >
             <FelaComponent
                 _felaRule={[Function]}
+                as={undefined}
+                className={undefined}
                 color="red"
+                id={undefined}
                 onClick={[Function]}
                 passThrough={
                     Array [
@@ -579,6 +807,7 @@ Array [
                         "color",
                       ]
                 }
+                style={undefined}
                 theme={Object {}}
             >
                 <div
@@ -614,12 +843,21 @@ Array [
     >
         <rule
             _felaRule={[Function]}
+            as={undefined}
+            className={undefined}
+            id={undefined}
+            innerRef={undefined}
             passThrough={Array []}
+            style={undefined}
             theme={Object {}}
         >
             <rule
                 _felaRule={[Function]}
+                as={undefined}
+                className={undefined}
+                id={undefined}
                 passThrough={Array []}
+                style={undefined}
                 theme={Object {}}
             >
                 <div

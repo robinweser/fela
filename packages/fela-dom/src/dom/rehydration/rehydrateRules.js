@@ -26,7 +26,7 @@ export default function rehydrateRules(
       type: RULE_TYPE,
       className,
       selector: generateCSSSelector(className, pseudo),
-      declaration: property + ':' + value,
+      declaration: `${property}:${value}`,
       media,
       support
     }

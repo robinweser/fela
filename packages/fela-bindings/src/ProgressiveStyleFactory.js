@@ -1,12 +1,14 @@
 /* @flow */
+import { arrayEach } from 'fela-utils'
+
 export default function ProgressiveStyleFactory(
-  createElement: Function,
   BaseComponent: any,
+  createElement: Function,
   renderToComponent: Function
 ): any {
-  return class ControlledStyle extends BaseComponent {
+  return class ProgressiveStyle extends BaseComponent {
     componentWillUnmount() {
-      arrayEach(this.props.cacheEntries, this.props.emitChange)
+      arrayEach(this.props.cacheEntries, this.props.renderer._emitChange)
     }
 
     shouldComponentUpdate() {
@@ -15,7 +17,7 @@ export default function ProgressiveStyleFactory(
 
     render() {
       return renderToComponent({
-        mediaQueryOrder: this.props.mediaQueryOrder,
+        ...this.props.renderer,
         cache: this.props.cacheEntries
       })
     }

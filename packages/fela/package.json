@@ -1,7 +1,7 @@
 {
   "name": "fela",
   "version": "6.0.2",
-  "description": "Style as a Function of State",
+  "description": "High-Performant State-Driven Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",

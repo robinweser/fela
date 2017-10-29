@@ -1,5 +1,6 @@
 /* @flow */
 import {
+  objectReduce,
   hoistStatics,
   extractPassThroughProps,
   extractUsedProps,
@@ -8,11 +9,10 @@ import {
 } from 'fela-utils'
 import { combineRules } from 'fela'
 
-import { renderToString } from 'fela-tools'
-
 export default function createComponentFactory(
   createElement: Function,
   withTheme: Function,
+  ProgressiveStyle: Function,
   contextTypes?: Object,
   withProxy: boolean = false
 ): Function {
@@ -109,7 +109,7 @@ export default function createComponentFactory(
         componentProps.ref = innerRef
       }
 
-      const previousCacheKeys = Object.keys(renderer.cache)
+      const previousCache = { ...renderer.cache }
 
       // fela-native support
       if (renderer.isNativeRenderer) {
@@ -128,17 +128,23 @@ export default function createComponentFactory(
       const element = createElement(customType, componentProps, children)
 
       if (renderer.isProgressiveRenderer) {
-        const newCache = Object.keys(renderer.cache)
-          .filter(key => previousCacheKeys.indexOf(key) === -1)
-          .map(key => renderer.cache[key])
+        const cacheEntries = objectReduce(
+          renderer.cache,
+          (entries, value, key) => {
+            if (!previousCache.hasOwnProperty(key)) {
+              entries.push(value)
+            }
 
-        const css = renderToString({
-          cache: newCache,
-          mediaQueryOrder: renderer.mediaQueryOrder
-        })
+            return entries
+          },
+          []
+        )
 
         return [
-          createElement('style', { dangerouslySetInnerHTML: { __html: css } }),
+          createElement(ProgressiveStyle, {
+            cacheEntries,
+            renderer
+          }),
           element
         ]
       }

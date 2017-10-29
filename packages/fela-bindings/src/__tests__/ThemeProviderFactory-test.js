@@ -1,10 +1,13 @@
 import React, { createElement, Component, Children } from 'react'
 import PropTypes from 'prop-types'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 import toJson from 'enzyme-to-json'
 
 import withThemeFactory from '../withThemeFactory'
 import ThemeProviderFactory from '../ThemeProviderFactory'
+
+configure({ adapter: new Adapter() })
 
 const withTheme = withThemeFactory(Component, createElement, {
   theme: PropTypes.object
@@ -85,6 +88,7 @@ describe('Using the ThemeProvider', () => {
     )
 
     wrapper.setProps({ theme: { color: 'blue' } })
+    wrapper.update()
 
     expect(toJson(wrapper)).toMatchSnapshot()
   })

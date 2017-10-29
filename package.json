@@ -1,4 +1,4 @@
-{
+ {
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -42,8 +42,9 @@
     "codeclimate-test-reporter": "^0.3.1",
     "cross-env": "^1.0.8",
     "css-in-js-utils": "^2.0.0",
-    "enzyme": "^2.8.2",
-    "enzyme-to-json": "^1.5.1",
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "enzyme-to-json": "^3.1.4",
     "eslint": "^3.14.0",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-flowtype": "^2.30.0",
@@ -70,10 +71,10 @@
     "lerna": "^2.0.0-rc.4",
     "preact": "^8.1.0",
     "prettier": "^1.7.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-native": "^0.45.0",
-    "react-test-renderer": "^15.5.4",
+    "react-test-renderer": "^16.0.0",
     "recompose": "^0.25.0",
     "rimraf": "^2.6.1"
   }
