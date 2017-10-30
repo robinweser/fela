@@ -266,7 +266,8 @@ We highly appreciate any contribution.<br>
 For more information follow the [contribution guide](.github/CONTRIBUTING.md).<br>
 Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 
-## Backers
+## Support Us
+Support Robin Frischmann's work on Fela and its ecosystem directly via *[Patreon](https://www.patreon.com)**
 
 Thank you to all our backers!
 
@@ -282,7 +283,7 @@ Thank you to all our backers!
 <a href="https://opencollective.com/fela/backer/9/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/9/avatar.svg?requireActive=false"></a>
 
 
-## Sponsors
+#### Sponsors
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
 
