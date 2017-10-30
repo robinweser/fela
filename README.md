@@ -167,7 +167,7 @@ Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 ## Support Us
 Support Robin Frischmann's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com).
 
-Or support us on Open Collective to fund community work.
+Or support us on Open Collective to fund community work.<br>
 Thank you to all our backers!
 
 <a href="https://opencollective.com/fela/backer/0/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/0/avatar.svg?requireActive=false"></a>
