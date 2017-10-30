@@ -12,7 +12,7 @@ Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/p
 ## Support Us
 Support Robin Frischmann's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com).
 
-Or support us on Open Collective to fund community work.<br>
+Or support us on [**Open Collective**](https://opencollective.com/fela) to fund community work.<br>
 Thank you to all our backers!
 
 <a href="https://opencollective.com/fela/backer/0/website?requireActive=false" target="_blank"><img src="https://opencollective.com/fela/backer/0/avatar.svg?requireActive=false"></a>
