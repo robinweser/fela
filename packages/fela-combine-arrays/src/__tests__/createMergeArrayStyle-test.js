@@ -21,6 +21,34 @@ describe('Merging array values', () => {
     ).toEqual({ fontSize: 11 })
   })
 
+  it('should not modify nested object values', () => {
+    const mergeStyle = createMergeArrayStyle()
+
+    expect(
+      mergeStyle(
+        { fontSize: 12 },
+        {
+          '> input': {
+            color: 'red'
+          }
+        }
+      )
+    ).toEqual({
+      fontSize: 12,
+      '> input': {
+        color: 'red'
+      }
+    })
+  })
+
+  it('should overwrite properties from right to left', () => {
+    const mergeStyle = createMergeArrayStyle([])
+
+    expect(
+      mergeStyle({ fontSize: 12 }, { fontSize: 16 }, { fontSize: 11 })
+    ).toEqual({ fontSize: 11 })
+  })
+
   it('should merge nested objects', () => {
     const mergeStyle = createMergeArrayStyle([])
 
