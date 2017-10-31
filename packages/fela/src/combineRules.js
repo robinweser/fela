@@ -9,6 +9,10 @@ export default function combineRules(...rules: Array<Function>): Function {
   return (props, renderer) => {
     const merge = renderer._mergeStyle || assignStyle
 
-    arrayReduce(rules, (style, rule) => merge(style, rule(props, renderer)), {})
+    return arrayReduce(
+      rules,
+      (style, rule) => merge(style, rule(props, renderer)),
+      {}
+    )
   }
 }
