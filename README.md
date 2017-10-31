@@ -10,7 +10,7 @@ Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/p
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~3kb-brightgreen.svg"> <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a> <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/fela/backers/badge.svg"></a> <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/fela/sponsors/badge.svg"></a>
 
 ## Support Us
-Support Robin Frischmann's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com).
+Support Robin Frischmann's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com/rofrischmann).
 
 Or support us on [**Open Collective**](https://opencollective.com/fela) to fund community work.<br>
 Thank you to all our backers!
