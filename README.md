@@ -1,9 +1,9 @@
 <h1><img alt="Fela" src="docs/res/logo.png" width="203"/></h1>
 
-Fela is a small, performant and framework-agnostic toolbelt to handle styling in JavaScript.<br>
+Fela is a small, high-performant and framework-agnostic toolbelt to handle state-driven styling in JavaScript.<br>
 It is dynamic by design and renders your styles depending on your application state.
 
-It generates minimal, optimized CSS and therefore supports all common CSS features such as media queries, pseudo classes, keyframes and font-faces. It supports universal rendering and ships with a powerful plugin API adding e.g. [vendor prefixing](packages/fela-plugin-prefixer) or [fallback value](packages/fela-plugin-fallback-value) support.
+It generates atomic CSS and supports all common CSS features such as media queries, pseudo classes, keyframes and font-faces. Fela ships with a powerful plugin API adding e.g. [vendor prefixing](packages/fela-plugin-prefixer) or [fallback value](packages/fela-plugin-fallback-value) support.
 
 Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) or with any other view library. It even supports [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html).
 
@@ -34,20 +34,20 @@ You may alternatively use `npm i --save fela`.
 
 ## Features
 * Dynamic styling
-* Universal rendering
-* Dead code elimination
 * High performance
-* Minimal CSS output
+* Scoped atomic CSS
+* Dead code elimination
 * Framework-agnostic
-* Pseudo classes & Media queries
-* Child & Attribute selectors
+* Universal rendering
+* Many CSS features
+* Huge ecosystem
 * Vendor prefixing
 * Component theming
-* Many useful plugins
 * Local namespace
 
 ## The Gist
-Fela is all about rendering styles, especially so called rules. A universal renderer will help us to render styles of all kind. Once rendered into a DOM node, a change listener will subscribe to changes and automatically add new rules.<br>
+Fela's core principle is to consider **style as a function of state**.
+The whole API and all plugins and bindings are built on that idea. It is reactive and auto-updates onces registered to the DOM.<br>
 The following example illustrates the key parts of Fela though it only shows the very basics.
 
 ```javascript
@@ -118,6 +118,7 @@ render(renderer)
 If you are coming from CSS and want to learn JavaScript Styling with Fela, there is a full-feature [fela-workshop](https://github.com/tajo/fela-workshop) which demonstrates typical Fela use cases. It teaches all important parts, step by step with simple examples. If you already know other CSS in JS solutions and are just switching to Fela, you might not need to do the whole workshop, but it still provides useful information to get started quickly.
 
 ## Posts & Talks
+* **CSS in JS: The Good & Bad Parts** ([Slides](https://speakerdeck.com/rofrischmann/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
 * [**Style as a Function of State**](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
 * [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [Daniel Steigerwald](https://twitter.com/steida)*
 * [**What is Fela?**](https://davidsinclair.io/thoughts/what-is-fela)<br> - *by [David Sinclair](https://davidsinclair.io)*
