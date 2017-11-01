@@ -23,7 +23,8 @@
   "license": "MIT",
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "fela-native": "^5.0.12"
   },
   "dependencies": {
     "css-in-js-utils": "2.0.0",
