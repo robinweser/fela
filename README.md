@@ -46,8 +46,10 @@ You may alternatively use `npm i --save fela`.
 * Local namespace
 
 ## The Gist
-Fela's core principle is to consider **style as a function of state**.
-The whole API and all plugins and bindings are built on that idea. It is reactive and auto-updates onces registered to the DOM.<br>
+Fela's core principle is to consider **style as a function of state**.<br>
+The whole API and all plugins and bindings are built on that idea.<br>
+It is reactive and auto-updates onces registered to the DOM.<br>
+
 The following example illustrates the key parts of Fela though it only shows the very basics.
 
 ```javascript
@@ -82,7 +84,7 @@ const renderer = createRenderer()
 // which can be attached to any element
 const className = renderer.renderRule(rule, { fontSize: 12 })
 
-// it uses atomic css design to reuse styles
+// it generates atomic css classes to reuse styles
 // on declaration base and to keep the markup minimal
 console.log(className) // => a b c d e f h
 
