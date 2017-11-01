@@ -1,6 +1,6 @@
 {
   "name": "fela",
-  "version": "6.0.3",
+  "version": "6.0.4",
   "description": "Style as a Function of State",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -30,9 +30,9 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "2.0.0",
-    "fela-utils": "^7.0.3"
+    "fela-utils": "^7.0.4"
   },
   "devDependencies": {
-    "fela-tools": "^5.0.11"
+    "fela-tools": "^5.0.12"
   }
 }

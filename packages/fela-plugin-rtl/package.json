@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-rtl",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Fela plugin to convert styles to RTL",
   "main": "lib/index.js",
   "module": "es/index.js",
