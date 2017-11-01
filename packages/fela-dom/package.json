@@ -24,11 +24,11 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-preset-web": "^7.0.0",
     "fela-tools": "^5.0.12",
     "fela-utils": "^7.0.4"
   },
   "devDependencies": {
+    "fela-preset-web": "^7.0.0",
     "fela": "^6.0.4"
   }
 }
