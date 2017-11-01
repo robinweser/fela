@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-angular2-typescript",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "Fela example with Angular2 in TypeScript",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
@@ -27,7 +27,7 @@
     "bootstrap": "^3.3.6",
     "core-js": "^2.4.0",
     "fela": "^6.0.4",
-    "fela-dom": "^6.0.4",
+    "fela-dom": "^6.0.5",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.27",

@@ -1,6 +1,6 @@
 {
   "name": "fela-dom",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "description": "Fela package for working with the DOM",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -28,7 +28,7 @@
     "fela-utils": "^7.0.4"
   },
   "devDependencies": {
-    "fela-preset-web": "^7.0.0",
-    "fela": "^6.0.4"
+    "fela": "^6.0.4",
+    "fela-preset-web": "^7.0.1"
   }
 }

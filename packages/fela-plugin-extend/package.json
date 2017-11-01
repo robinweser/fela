@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-extend",
-  "version": "5.0.12",
+  "version": "6.0.0",
   "description": "Fela plugin to extend style objects",
   "main": "lib/index.js",
   "module": "es/index.js",

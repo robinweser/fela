@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "example-react",
-    "version": "2.0.15",
+    "version": "2.0.16",
     "description": "Fela example with React",
     "scripts": {
         "client": "NODE_ENV=development webpack-dev-server",
@@ -12,7 +12,7 @@
     "dependencies": {
         "fela": "^6.0.4",
         "fela-beautifier": "^5.0.12",
-        "fela-dom": "^6.0.4",
+        "fela-dom": "^6.0.5",
         "fela-perf": "^5.0.3",
         "fela-plugin-embedded": "^5.1.7",
         "fela-plugin-fallback-value": "^5.0.13",
@@ -23,7 +23,7 @@
         "fela-plugin-validator": "^5.0.12",
         "react": "^15.1.0",
         "react-dom": "^15.1.0",
-        "react-fela": "^6.0.4"
+        "react-fela": "^6.0.5"
     },
     "devDependencies": {
         "babel-cli": "^6.24.1",
