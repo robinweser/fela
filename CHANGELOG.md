@@ -5,6 +5,15 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 31/10/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela | 6.0.4 | [(#442)](https://github.com/rofrischmann/fela/pull/442) added support for [Woff2](https://www.w3.org/TR/WOFF2/) font format  | 
+| fela-plugin-bidi | 2.0.0 | [(#449)](https://github.com/rofrischmann/fela/pull/449) updated to a new major version of [bidi-css-js](https://github.com/TxHawks/bidi-css-js) |
+| fela-combine-arrays | 1.0.3 | [(#451)](https://github.com/rofrischmann/fela/pull/451) fixed a bug where objects got converted to arrays |
+| fela-plugin-extend | 5.0.12 | [(#456)](https://github.com/rofrischmann/fela/pull/456) fixed a bug where nested extend objects could not be resolved |
+| fela-combine-arrays<br>fela-plugin-custom-property<br>fela-plugin-extend<br>fela-plugin-native-media-query<br>fela-plugin-simulate<br>fela |  | fixed a semantic versioning issue and added backwards compatibility |
+
 ## 20/10/17
 | Package | Version | Changes |
 | ---- | --- | --- |

@@ -1,5 +1,6 @@
 /* @flow */
 import { isObject } from 'fela-utils'
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import { NativeRenderer } from '../../../flowtypes/NativeRenderer'
@@ -11,6 +12,8 @@ function resolveSimulation(
   renderer: DOMRenderer | NativeRenderer,
   props: Object
 ): Object {
+  const merge = renderer._mergeStyle || assignStyle
+
   if (props.simulate) {
     for (const property in style) {
       const value = style[property]
@@ -18,7 +21,7 @@ function resolveSimulation(
       if (isObject(value) && props.simulate[property]) {
         const resolvedValue = resolveSimulation(value, type, renderer, props)
 
-        renderer._mergeStyle(style, resolvedValue)
+        merge(style, resolvedValue)
         delete style[property]
       }
     }
