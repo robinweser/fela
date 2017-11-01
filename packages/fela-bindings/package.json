@@ -22,7 +22,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-dom": "^6.0.4",
+    "fela-dom": "6.0.4",
     "fela-utils": "^7.0.4",
     "shallow-equal": "1.0.0"
   },
