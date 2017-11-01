@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-web",
-  "version": "6.0.1",
+  "version": "7.0.0",
   "description": "Fela plugin preset for web applications",
   "main": "lib/index.js",
   "module": "es/index.js",
