@@ -1,6 +1,6 @@
-/* @flow */
+/* @flow weak */
 /* eslint-disable import/no-mutable-exports */
-let warning = () => true
+let warning = (condition: any, message: any) => true
 
 if (process.env.NODE_ENV !== 'production') {
   warning = (condition: boolean, message: string): void => {

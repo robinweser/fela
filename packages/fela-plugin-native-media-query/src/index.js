@@ -15,7 +15,6 @@ function getOrientation(width: number, height: number): Orientation {
 
 function resolveMediaQuery(style: Object): Object {
   const { width, height } = Dimensions.get('window')
-
   for (const property in style) {
     const value = style[property]
 

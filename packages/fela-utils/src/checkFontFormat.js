@@ -6,6 +6,7 @@ const formats: {
   [string]: string
 } = {
   '.woff': 'woff',
+  '.woff2': 'woff2',
   '.eot': 'embedded-opentype',
   '.ttf': 'truetype',
   '.otf': 'opentype',
