@@ -31,6 +31,25 @@ const renderer = createRenderer({
 })
 ```
 
+You can also pass options to the plugins:
+```javascript
+import { createRenderer } from 'fela'
+import {createDevPreset} from 'fela-preset-dev'
+
+const renderer = createRenderer({
+  plugins: [
+    ...createDevPreset({
+      'fela-plugin-validator': [
+        {
+          logInvalid: true,
+          deleteInvalid: true
+        }
+      ]
+    })
+  ]
+})
+```
+
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
