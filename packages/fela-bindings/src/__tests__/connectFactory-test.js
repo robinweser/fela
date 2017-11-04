@@ -88,4 +88,43 @@ describe('Connect Factory for bindings', () => {
       toJson(wrapper)
     ]).toMatchSnapshot()
   })
+
+  it('should process rules and create classNames with rules as function', () => {
+    const rules = jest.fn(props => ({
+      rule1: {
+        padding: 1
+      },
+      rule2: {
+        color: props.color
+      }
+    }))
+
+    const MyComponent = connect(rules)(({ styles }) => (
+      <div>
+        <span className={styles.rule1} />
+        <span className={styles.rule2} />
+      </div>
+    ))
+
+    MyComponent.defaultProps = {
+      color: 'red'
+    }
+
+    const renderer = createRenderer()
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        renderer
+      }
+    })
+
+    expect(rules).toHaveBeenCalledWith({
+      color: 'red',
+      theme: {}
+    })
+    expect(rules).toHaveBeenCalledTimes(1)
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper)
+    ]).toMatchSnapshot()
+  })
 })

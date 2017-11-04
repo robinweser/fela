@@ -291,7 +291,11 @@ declare module "react-fela" {
 
   type PassThroughProps<Props> = Array<string> | PassThroughFunction<Props>;
 
-  export type RuleConfig<Props> = {[key: string]: Style<Props>};
+  type Rules<Props> = {[key: string]: Style<Props>}
+
+  type RulesFunction<Props> = (props: Props) => Rules<Props>
+
+  export type RuleConfig<Props> = Rules<Props> | RulesFunction<Props>;
 
   export interface FelaWithStylesProps<Props, Rules extends RuleConfig<Props & FelaWithThemeProps<Theme>>, Theme = any> extends FelaWithThemeProps<Theme> {
     styles: {[keys in keyof Rules]: string}
