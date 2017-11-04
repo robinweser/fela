@@ -242,11 +242,6 @@ declare module "fela-preset-dev" {
   export default presets;
 }
 
-/**
- * TODO:
- *
- * 1. definition for `connect` is missing
- */
 declare module "react-fela" {
   import * as React from "react";
   import { IRenderer } from "fela";
@@ -295,6 +290,26 @@ declare module "react-fela" {
   type PassThroughFunction<Props> = (props: Props) => Array<string>
 
   type PassThroughProps<Props> = Array<string> | PassThroughFunction<Props>;
+
+  export type RuleConfig<Props> = {[key: string]: Style<Props>};
+
+  export interface FelaWithStylesProps<Props, Rules extends RuleConfig<Props & FelaWithThemeProps<Theme>>, Theme = any> extends FelaWithThemeProps<Theme> {
+    styles: {[keys in keyof Rules]: string}
+  }
+
+  /**
+   *
+   * @param {React.ComponentType} Component  - component to inject theme into.
+   */
+  interface WithRules<Props, Rules extends RuleConfig<Props & FelaWithThemeProps<Theme>>, Theme = any>{
+    (Component: React.ComponentType<FelaWithStylesProps<Props, Rules, Theme> & Props>): React.ComponentType<Props>
+  }
+
+  /**
+   *
+   * @param {RuleConfig} rules  - rules that will be injected in the Component.
+   */
+  export function connect<Props, Rules extends RuleConfig<Props & FelaWithThemeProps<Theme>>, Theme = any>(rules: Rules): WithRules<Props, Rules, Theme>
 
   /**
    * Fela injects theme props.
