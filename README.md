@@ -120,7 +120,7 @@ render(renderer)
 If you are coming from CSS and want to learn JavaScript Styling with Fela, there is a full-feature [fela-workshop](https://github.com/tajo/fela-workshop) which demonstrates typical Fela use cases. It teaches all important parts, step by step with simple examples. If you already know other CSS in JS solutions and are just switching to Fela, you might not need to do the whole workshop, but it still provides useful information to get started quickly.
 
 ## Posts & Talks
-* **CSS in JS: The Good & Bad Parts** ([Slides](https://speakerdeck.com/rofrischmann/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
+* [**CSS in JS: The Good & Bad Parts**](https://youtu.be/X9iqnovPGyY?t=1h41m47s) ([Slides](https://speakerdeck.com/rofrischmann/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
 * [**Style as a Function of State**](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
 * [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [Daniel Steigerwald](https://twitter.com/steida)*
 * [**What is Fela?**](https://davidsinclair.io/thoughts/what-is-fela)<br> - *by [David Sinclair](https://davidsinclair.io)*
