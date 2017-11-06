@@ -3,19 +3,29 @@
   Please read the guide-lines at the bottom.
 ------------------------------------------->
 
-**Version**: 3.0.x
-**Environment**: DOM / Server / Both
-**Type**: Bug / Feature / Infrastructure / Docs / General
+**Type**: Bug / Feature / Infrastructure / Docs / Question
+<!------------------------------------------
+  Before choosing question, please consider asking on Gitter as we might close question issues
+------------------------------------------->
+
+
+| Packages | Version |
+| -------- | ------- |
+| fela     | 6.0.x   |
 
 -------------------
 #### Description
 Please try to add as much detail as possible.
 
-<!--
+<!---------------
   BUG REPORT ONLY
-  ===============
--->
+---------------->
+
 #### Steps to reproduce
+<!--------------------
+  If possible, please provide a url to a repository that reproduces the issue or bug. If not possible, try to explain what you've done below
+--------------------->
+
 1. First step
 2. Second step
 
@@ -29,10 +39,9 @@ Please try to add as much detail as possible.
 // your code here
 ```
 
-<!--
+<!--------------------
   FEATURE REQUEST ONLY
-  ====================
--->
+--------------------->
 #### Proposal
 Any information on how this might be achieved.
 
@@ -43,9 +52,7 @@ Any information on how this might be achieved.
 
 
 <!---------------------
-  =====================
   REPORTING GUIDE-LINES
-  =====================
 
   FEATURE REQUEST:
   If you have a feature request please fill out the form
