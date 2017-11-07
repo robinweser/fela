@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {connect, FelaWithStylesProps} from 'react-fela';
+import {connect, FelaWithStylesProps, Rules} from 'react-fela';
 import {Theme} from '../index'
 
 interface OwnProps {
@@ -18,7 +18,7 @@ const ComplexComponent = ({styles}: Props) => (
   </div>
 );
 
-export default connect<OwnProps, StyleKeys, Theme>(({fontScale, theme}) => ({
+export default connect<OwnProps, StyleKeys, Theme>(({fontScale, theme}): Rules<Props, StyleKeys> => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
