@@ -8,7 +8,7 @@ export default function connectFactory(
   withTheme: Function,
   contextTypes?: Object
 ): Function {
-  return function connect(rules: Object): Function {
+  return function connect(rules: Object | Function): Function {
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
@@ -16,10 +16,13 @@ export default function connectFactory(
         render() {
           const { renderer } = this.context
 
+          const preparedRules = typeof rules === 'function' ? rules(this.props) : rules
+
           const styles = objectReduce(
-            rules,
+            preparedRules,
             (styleMap, rule, name) => {
-              styleMap[name] = renderer.renderRule(rule, this.props)
+              const preparedRule = typeof rule !== 'function' ? () => rule : rule
+              styleMap[name] = renderer.renderRule(preparedRule, this.props)
               return styleMap
             },
             {}
