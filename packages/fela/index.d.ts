@@ -291,29 +291,31 @@ declare module "react-fela" {
 
   type PassThroughProps<Props> = Array<string> | PassThroughFunction<Props>;
 
-  type Rules<Props> = {[key: string]: Style<Props>}
+  type Rules<Props, StyleKeys extends string> = {[key in StyleKeys]: Style<Props>}
 
-  type RulesFunction<Props> = (props: Props) => Rules<Props>
+  type RulesFunction<Props, StyleKeys extends string> = (props: Props) => Rules<Props, StyleKeys>
 
-  export type RuleConfig<Props> = Rules<Props> | RulesFunction<Props>;
+  export type RulesConfig<Props, StyleKeys extends string> = Rules<Props, StyleKeys> | RulesFunction<Props, StyleKeys>
 
-  export interface FelaWithStylesProps<Props, Rules extends RuleConfig<Props & FelaWithThemeProps<Theme>>, Theme = any> extends FelaWithThemeProps<Theme> {
-    styles: {[keys in keyof Rules]: string}
+  export interface FelaWithStylesProps<StyleKeys extends string, Theme = any> extends FelaWithThemeProps<Theme> {
+    styles: {[keys in StyleKeys]: string}
   }
 
   /**
    *
-   * @param {React.ComponentType} Component  - component to inject theme into.
+   * @param {React.ComponentType} Component  - component to inject styles theme into.
    */
-  interface WithRules<Props, Rules extends RuleConfig<Props & FelaWithThemeProps<Theme>>, Theme = any>{
-    (Component: React.ComponentType<FelaWithStylesProps<Props, Rules, Theme> & Props>): React.ComponentType<Props>
+  interface WithRules<Props, StyleKeys extends string, Theme = any>{
+    (Component: React.ComponentType<FelaWithStylesProps<StyleKeys, Theme> & Props>): React.ComponentType<Props>
   }
 
   /**
    *
-   * @param {RuleConfig} rules  - rules that will be injected in the Component.
+   * @param {RulesConfig} rules  - rules that will be injected in the Component.
    */
-  export function connect<Props, Rules extends RuleConfig<Props & FelaWithThemeProps<Theme>>, Theme = any>(rules: Rules): WithRules<Props, Rules, Theme>
+  export function connect<Props, StyleKeys extends string, Theme = any>(
+    rules: RulesConfig<Props & FelaWithThemeProps<Theme>, StyleKeys>
+  ): WithRules<Props, StyleKeys, Theme>
 
   /**
    * Fela injects theme props.
