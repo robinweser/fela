@@ -171,5 +171,5 @@ const rule = props => ({
 * [FAQ - Rules](../FAQ.md#rules)
 
 #### Tools
-**[fela-stylesheet](https://github.com/rofrischmann/fela-stylesheet)**<br>
+**[StyleSheet](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/StyleSheet.md)**<br>
 Organize your rules grouped StyleSheets
