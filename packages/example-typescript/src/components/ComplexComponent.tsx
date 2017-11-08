@@ -6,14 +6,14 @@ interface OwnProps {
   fontScale: number
 }
 
-interface StyleKeys {
+interface Styles {
   container,
   firstSection,
   secondSection,
   thirdSection
 }
 
-type Props = OwnProps & FelaWithStylesProps<StyleKeys, Theme>
+type Props = OwnProps & FelaWithStylesProps<Styles, Theme>
 
 const ComplexComponent = ({styles}: Props) => (
   <div className={styles.container}>
@@ -23,7 +23,7 @@ const ComplexComponent = ({styles}: Props) => (
   </div>
 );
 
-export default connect<OwnProps, StyleKeys, Theme>(({fontScale, theme}): Rules<Props, StyleKeys> => ({
+export default connect<OwnProps, Styles, Theme>(({fontScale, theme}): Rules<Props, Styles> => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
