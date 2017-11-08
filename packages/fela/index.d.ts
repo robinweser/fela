@@ -291,21 +291,21 @@ declare module "react-fela" {
 
   type PassThroughProps<Props> = Array<string> | PassThroughFunction<Props>;
 
-  export type Rules<Props, StyleKeys extends string> = {[key in StyleKeys]: Style<Props>}
+  export type Rules<Props, StyleKeys> = {[key in keyof StyleKeys]: Style<Props>}
 
-  type RulesFunction<Props, StyleKeys extends string> = (props: Props) => Rules<Props, StyleKeys>
+  type RulesFunction<Props, StyleKeys> = (props: Props) => Rules<Props, StyleKeys>
 
-  export type RulesConfig<Props, StyleKeys extends string> = Rules<Props, StyleKeys> | RulesFunction<Props, StyleKeys>
+  export type RulesConfig<Props, StyleKeys> = Rules<Props, StyleKeys> | RulesFunction<Props, StyleKeys>
 
-  export interface FelaWithStylesProps<StyleKeys extends string, Theme = any> extends FelaWithThemeProps<Theme> {
-    styles: {[keys in StyleKeys]: string}
+  export interface FelaWithStylesProps<StyleKeys, Theme = any> extends FelaWithThemeProps<Theme> {
+    styles: {[keys in keyof StyleKeys]: string}
   }
 
   /**
    *
    * @param {React.ComponentType} Component  - component to inject styles theme into.
    */
-  interface WithRules<Props, StyleKeys extends string, Theme = any>{
+  interface WithRules<Props, StyleKeys, Theme = any>{
     (Component: React.ComponentType<FelaWithStylesProps<StyleKeys, Theme> & Props>): React.ComponentType<Props>
   }
 
@@ -313,7 +313,7 @@ declare module "react-fela" {
    *
    * @param {RulesConfig} rules  - rules that will be injected in the Component.
    */
-  export function connect<Props, StyleKeys extends string, Theme = any>(
+  export function connect<Props, StyleKeys, Theme = any>(
     rules: RulesConfig<Props & FelaWithThemeProps<Theme>, StyleKeys>
   ): WithRules<Props, StyleKeys, Theme>
 

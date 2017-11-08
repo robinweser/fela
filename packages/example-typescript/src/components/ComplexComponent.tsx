@@ -6,7 +6,12 @@ interface OwnProps {
   fontScale: number
 }
 
-type StyleKeys = 'container' | 'firstSection' | 'secondSection' | 'thirdSection'
+interface StyleKeys {
+  container,
+  firstSection,
+  secondSection,
+  thirdSection
+}
 
 type Props = OwnProps & FelaWithStylesProps<StyleKeys, Theme>
 
