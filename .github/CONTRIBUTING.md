@@ -62,11 +62,10 @@ Fela contains many examples. It can be handy to smoke test your changes as a par
 We use [prettier](https://prettier.io/), an opinionated code formatter. If you're using [Atom](https://atom.io) we recommend [prettier-atom](https://atom.io/packages/prettier-atom) with the **format on save**. If you're using [Sublime](https://www.sublimetext.com/) try [SublimeJSPrettier](https://github.com/jonlabelle/SublimeJsPrettier). For other integrations, please check the prettier's [homepage](https://prettier.io/).
 
 ## Guide-Lines
-1. Fork the repo and create your feature/bug branch from `develop`.
+1. Fork the repo and create your feature/bug branch from `master`.
 2. If you've added code that should be tested, add tests!
 3. If you've changed APIs, update the documentation.
 4. Ensure that all tests pass (`yarn check`).
-5. Ensure your code is formatted correctly if you don't run prettier on save (`yarn prettier`)
 
 ## Creating Issues
 ### Known Issues
