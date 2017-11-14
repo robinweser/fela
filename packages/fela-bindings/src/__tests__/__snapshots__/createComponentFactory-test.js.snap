@@ -331,6 +331,67 @@ Array [
 ]
 `;
 
+exports[`Creating Components from Fela rules should pass extended special props to the component 1`] = `
+Array [
+  "<style>
+    .a {
+        color: red
+    }
+
+    .b {
+        font-size: 16
+    }
+</style>",
+  <rule
+    color="blue"
+    testProp={
+        Object {
+            "tabIndex": "-1",
+          }
+    }
+>
+    <rule
+        color="blue"
+        testProp={
+            Object {
+                "tabIndex": "-1",
+              }
+        }
+        theme={Object {}}
+    >
+        <UnderlyingComp
+            className="a b"
+            testProp={
+                Object {
+                    "tabIndex": "-1",
+                  }
+            }
+        >
+            <div>
+                testProp exists
+            </div>
+        </UnderlyingComp>
+    </rule>
+</rule>,
+  <rule
+    color="blue"
+>
+    <rule
+        color="blue"
+        theme={Object {}}
+    >
+        <UnderlyingComp
+            className="a b"
+        >
+            <div>
+                testProp does not exist
+            </div>
+        </UnderlyingComp>
+    </rule>
+</rule>,
+]
+`;
+
 exports[`Creating Components from Fela rules should pass special props to the component 1`] = `
 Array [
   "<style>

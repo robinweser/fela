@@ -16,12 +16,14 @@ export default function connectFactory(
         render() {
           const { renderer } = this.context
 
-          const preparedRules = typeof rules === 'function' ? rules(this.props) : rules
+          const preparedRules =
+            typeof rules === 'function' ? rules(this.props) : rules
 
           const styles = objectReduce(
             preparedRules,
             (styleMap, rule, name) => {
-              const preparedRule = typeof rule !== 'function' ? () => rule : rule
+              const preparedRule =
+                typeof rule !== 'function' ? () => rule : rule
               styleMap[name] = renderer.renderRule(preparedRule, this.props)
               return styleMap
             },
