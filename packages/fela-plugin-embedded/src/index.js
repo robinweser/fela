@@ -1,5 +1,5 @@
 /* @flow */
-import { isObject } from 'fela-utils'
+import { isObject, arrayReduce } from 'fela-utils'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
@@ -19,11 +19,19 @@ function embedded(style: Object, type: Type, renderer: DOMRenderer): Object {
 
     if (property === 'fontFace' && typeof value === 'object') {
       if (Array.isArray(value)) {
-        style.fontFamily = value
-          .map(fontFace => renderFontFace(fontFace, renderer))
-          // we filter font faces to remove invalid formats
-          .filter(fontFace => fontFace)
-          .join(',')
+        style.fontFamily = arrayReduce(
+          value,
+          (fontFamilyList, fontFace) => {
+            const fontFamily = renderFontFace(fontFace, renderer)
+
+            if (fontFamily && fontFamilyList.indexOf(fontFamily) === -1) {
+              fontFamilyList.push(fontFamily)
+            }
+
+            return fontFamilyList
+          },
+          []
+        ).join(',')
       } else {
         style.fontFamily = renderFontFace(value, renderer)
       }

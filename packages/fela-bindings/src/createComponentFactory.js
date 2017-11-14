@@ -12,7 +12,8 @@ export default function createComponentFactory(
   createElement: Function,
   withTheme: Function,
   contextTypes?: Object,
-  withProxy: boolean = false
+  withProxy: boolean = false,
+  alwaysPassThroughProps: string[] = []
 ): Function {
   return function createComponent(
     rule: Function,
@@ -65,6 +66,7 @@ export default function createComponentFactory(
       }
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [
+        ...alwaysPassThroughProps,
         ...resolvePassThrough(passThroughProps, otherProps),
         ...resolvePassThrough(passThrough, otherProps),
         ...(withProxy ? resolveUsedProps(usedProps, otherProps) : [])

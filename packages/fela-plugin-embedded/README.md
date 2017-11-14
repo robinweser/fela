@@ -49,7 +49,7 @@ const renderer = createRenderer({
 }
 ```
 
-It also supports base64 encoded fonts:
+### Base64 encoded font-faces
 
 ```javascript
 {
@@ -59,6 +59,29 @@ It also supports base64 encoded fonts:
       'data:application/x-font-woff;charset=utf-8;base64,PASTE-BASE64-HERE'
     ]
   }
+}
+```
+
+### Multiple font-faces
+
+```javascript
+{
+  fontFace: [{
+      fontFamily: 'Arial',
+      fontWeight: 400
+      src: [
+        'arial-regular.svg',
+        'arial-regular.ttf'
+      ]
+    },
+    {
+      fontFamily: 'Arial',
+      fontWeight: 700,
+      src: [
+        'arial-bold.svg', 
+        'arial-bold.ttf'
+      ]
+    }]
 }
 ```
 
