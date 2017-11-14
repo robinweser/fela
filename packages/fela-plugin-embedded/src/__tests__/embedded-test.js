@@ -113,6 +113,33 @@ describe('Embedded plugin', () => {
     )
   })
 
+  it('should render inline fonts with same fontFamily', () => {
+    const rule = () => ({
+      color: 'red',
+      fontFace: [
+        {
+          fontFamily: 'Arial',
+          src: ['arial-regular.svg', 'arial-regular.ttf'],
+          fontWeight: 400
+        },
+        {
+          fontFamily: 'Arial',
+          src: ['arial-bold.svg', 'arial-bold.ttf'],
+          fontWeight: 700
+        }
+      ]
+    })
+
+    const renderer = createRenderer({
+      plugins: [embedded()]
+    })
+    renderer.renderRule(rule)
+
+    expect(renderToString(renderer)).toBe(
+      "@font-face{font-weight:400;src:url('arial-regular.svg') format('svg'),url('arial-regular.ttf') format('truetype');font-family:\"Arial\"}@font-face{font-weight:700;src:url('arial-bold.svg') format('svg'),url('arial-bold.ttf') format('truetype');font-family:\"Arial\"}.a{color:red}.b{font-family:\"Arial\"}"
+    )
+  })
+
   it('should render base64 fonts', () => {
     const rule = () => ({
       fontFace: {
