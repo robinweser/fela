@@ -1,6 +1,6 @@
 {
   "name": "fela-monolithic",
-  "version": "5.0.12",
+  "version": "5.0.13",
   "description": "Fela enhancer for having monolithic classnames",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -24,10 +24,10 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "2.0.0",
-    "fela-utils": "^7.0.4"
+    "fela-utils": "^7.0.5"
   },
   "devDependencies": {
-    "fela": "^6.0.4",
-    "fela-tools": "^5.0.12"
+    "fela": "^6.0.5",
+    "fela-tools": "^5.0.13"
   }
 }

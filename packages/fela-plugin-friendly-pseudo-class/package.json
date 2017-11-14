@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-friendly-pseudo-class",
-  "version": "5.0.12",
+  "version": "5.0.13",
   "description": "Fela plugin to support javascript-friendly pseudo class syntax",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,6 +21,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-utils": "^7.0.4"
+    "fela-utils": "^7.0.5"
   }
 }

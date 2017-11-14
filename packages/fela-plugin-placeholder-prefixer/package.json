@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-placeholder-prefixer",
-  "version": "5.0.13",
+  "version": "5.0.14",
   "description": "Fela plugin to add ::placeholder prefxies",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -23,7 +23,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-plugin-custom-property": "^6.0.0",
-    "fela-utils": "^7.0.4"
+    "fela-plugin-custom-property": "^6.0.1",
+    "fela-utils": "^7.0.5"
   }
 }
