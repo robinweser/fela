@@ -24,7 +24,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-utils": "5.0.3"
+    "fela-utils": "^7.0.4"
   },
   "devDependencies": {
     "assert": "1.4.1",

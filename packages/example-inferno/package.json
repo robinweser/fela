@@ -9,8 +9,14 @@
   },
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
-  "dependencies": {
-    "fela": "^6.0.4",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-inferno": "^3.2.0",
+    "babel-preset-es2015": "^6.24.0",
+    "concurrently": "^3.4.0",
+    "express-http-proxy": "^1.0.0",
+    "express": "^4.14.0",
     "fela-beautifier": "^5.0.12",
     "fela-dom": "^6.0.5",
     "fela-perf": "^5.0.3",
@@ -21,21 +27,13 @@
     "fela-plugin-prefixer": "^5.0.13",
     "fela-plugin-unit": "^5.0.12",
     "fela-plugin-validator": "^5.0.12",
-    "inferno": "^3.4.3",
+    "fela": "^6.0.4",
     "inferno-component": "^3.4.3",
     "inferno-fela": "^6.0.5",
-    "inferno-server": "^3.4.3"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-inferno": "^3.2.0",
-    "babel-preset-es2015": "^6.24.0",
-    "concurrently": "^3.4.0",
-    "express": "^4.14.0",
-    "express-http-proxy": "^1.0.0",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "inferno-server": "^3.4.3",
+    "inferno": "^3.4.3",
+    "webpack-dev-server": "^2.4.5",
+    "webpack": "^2.6.1"
   },
   "babel": {
     "presets": [

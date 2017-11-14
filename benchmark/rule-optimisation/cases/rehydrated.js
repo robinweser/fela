@@ -12,10 +12,10 @@ export default function rehydrated() {
       renderer.cache = {
         ...renderer.cache,
         ...rehydrateCache(
-          '.a{background-color:black};.b{line-height:1};.c:hover:{color:red}'
+          '.a{background-color:black}.b{line-height:1}.c:hover:{color:red}'
         ),
         ...rehydrateCache(
-          '.d{background-color:yellow};.e{color:green}',
+          '.d{background-color:yellow}.e{color:green}',
           '(min-width: 300px)'
         ),
         [0]: {
