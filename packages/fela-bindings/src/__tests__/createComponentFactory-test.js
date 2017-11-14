@@ -221,7 +221,7 @@ describe('Creating Components from Fela rules', () => {
     ]).toMatchSnapshot()
   })
 
-  it.only('should pass extended special props to the component', () => {
+  it('should pass extended special props to the component', () => {
     const rule = props => ({
       color: props.as === 'i' ? props.color : 'red',
       fontSize: 16
@@ -231,7 +231,7 @@ describe('Creating Components from Fela rules', () => {
       <div>{testProp ? 'testProp exists' : 'testProp does not exist'}</div>
     )
     const Component = createComponentWithExtraPassThrough(rule, UnderlyingComp)
-    // const Component = createComponentWithExtraPassThrough(rule, UnderlyingComp)
+
     const renderer = createRenderer()
 
     const wrapper = mount(

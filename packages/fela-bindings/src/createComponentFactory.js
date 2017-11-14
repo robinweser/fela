@@ -13,7 +13,7 @@ export default function createComponentFactory(
   withTheme: Function,
   contextTypes?: Object,
   withProxy: boolean = false,
-  alwaysPassThroughProps: string[] = []
+  alwaysPassThroughProps: Array<string> = []
 ): Function {
   return function createComponent(
     rule: Function,
