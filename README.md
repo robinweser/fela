@@ -61,13 +61,13 @@ const rule = state => ({
   textAlign: 'center',
   padding: '5px 10px',
   // directly use the state to compute style values
-  background: props.primary ? 'green' : 'blue',
+  background: state.primary ? 'green' : 'blue',
   fontSize: '18pt',
   borderRadius: 5,
 
   // deeply nest media queries and pseudo classes
   ':hover': {
-    background: props.primary ? 'chartreuse' : 'dodgerblue',
+    background: state.primary ? 'chartreuse' : 'dodgerblue',
     boxShadow: '0 0 2px rgb(70, 70, 70)'
   }
 })
