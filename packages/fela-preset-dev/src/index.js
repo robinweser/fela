@@ -1,21 +1,13 @@
-/* @flow weak */
+/* @flow */
 import logger from 'fela-plugin-logger'
 import validator from 'fela-plugin-validator'
 
 type Config = {
-  'fela-plugin-logger'?: Array<*>,
-  'fela-plugin-validator'?: Array<*>
+  alidator?: Array<any>
 }
 
 export const createDevPreset = (
-  {
-    'fela-plugin-logger': loggerConf = [
-      {
-        logMetaData: true
-      }
-    ],
-    'fela-plugin-validator': validatorConf = []
-  }: Config = {}
-) => [logger(...loggerConf), validator(...validatorConf)]
+  { validator: validatorConfig = [] }: Config = {}
+) => [logger(), validator(...validatorConfig)]
 
 export default createDevPreset()
