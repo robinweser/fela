@@ -54,42 +54,60 @@ The following example illustrates the key parts of Fela though it only shows the
 
 ```javascript
 import { createRenderer } from 'fela'
-import { render } from 'fela-dom'
 
-// rules are just plain functions of props
-// returning a valid object of style declarations
 const rule = props => ({
-  fontSize: props.fontSize + 'px',
-  marginTop: props.margin ? '15px' : 0,
-  color: 'red',
-  lineHeight: 1.4,
+  textAlign: 'center',
+  padding: '5px 10px',
+  // directly use the props to compute style values
+  background: props.primary ? 'green' : 'blue',
+  fontSize: '18pt',
+  borderRadius: 5,
+
+  // deeply nest media queries and pseudo classes
   ':hover': {
-    color: 'blue',
-    fontSize: props.fontSize + 2 + 'px'
-  },
-  // nest media queries and pseudo classes
-  // inside the style object
-  '@media (min-height: 300px)': {
-    backgroundColor: 'gray',
-    ':hover': {
-      color: 'black'
-    }
+    background: props.primary ? 'chartreuse' : 'dodgerblue',
+    boxShadow: '0 0 2px rgb(70, 70, 70)'
   }
 })
 
-// creates a new renderer to render styles
+
 const renderer = createRenderer()
+// fela generates atomic CSS classes in order to achieve
+// maximal style reuse and minimal CSS output
+const className = renderer.renderRule(rule, { 
+  success: true
+}) // =>  a b c d e f g
+```
+```CSS
+.a { text-align: center }
+.b { padding: 5px 10px }
+.c { background: green }
+.d { font-size: 18pt }
+.e { border-radius: 5px }
+.f:hover { box-shadow: 0 0 2px rgba(70, 70, 70) }
+.g:hover { background-color: chartreuse }
+```
 
-// rendering the rule returns a className reference
-// which can be attached to any element
-const className = renderer.renderRule(rule, { fontSize: 12 })
+### Primitive Components
+If you're using Fela, you're most likely also using React.<br>
+Using the [React bindings](packages/react-fela), you get powerful APIs to create primitive components.
 
-// it generates atomic css classes to reuse styles
-// on declaration base and to keep the markup minimal
-console.log(className) // => a b c d e f h
+> **Read**: [Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html) for a full guide.
 
-// renders all styles into the DOM
-render(renderer)
+```javascript
+import { createComponent, Provider } from 'react-fela'
+import { render } from 'react-dom'
+
+// using the above defined rule and fela renderer
+const Button = createComponent(rule, 'button')
+
+render(
+  <Provider renderer={renderer}>
+    <Button primary>Primary</Button>
+    <Button>Default</Button>
+  </Provider>,
+  document.body
+)
 ```
 
 ## Examples
