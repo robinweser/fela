@@ -1,23 +1,14 @@
 /* @flow */
+import reduce from 'lodash/reduce'
 import {
-  objectReduce,
   clusterCache,
   getRehydrationIndex,
-  RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE
+  sheetMap,
+  RULE_TYPE
 } from 'fela-utils'
 
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { StyleType } from '../../../flowtypes/StyleType'
-
-const sheetMap = {
-  fontFaces: FONT_TYPE,
-  statics: STATIC_TYPE,
-  keyframes: KEYFRAME_TYPE,
-  rules: RULE_TYPE
-}
 
 export default function renderToComponentFactory(
   createElement: Function
@@ -44,10 +35,9 @@ export default function renderToComponentFactory(
 
   return function renderToComponent(renderer: DOMRenderer): any {
     const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
-
     const rehydrationIndex = getRehydrationIndex(renderer)
 
-    const componentList = objectReduce(
+    const componentList = reduce(
       sheetMap,
       (list, type, key) => {
         if (cacheCluster[key].length > 0) {
@@ -61,7 +51,7 @@ export default function renderToComponentFactory(
       []
     )
 
-    return objectReduce(
+    return reduce(
       cacheCluster.mediaRules,
       (list, css, media) => {
         if (css.length > 0) {

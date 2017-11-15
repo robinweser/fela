@@ -1,4 +1,4 @@
- {
+{
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -71,10 +71,10 @@
     "lerna": "^2.0.0",
     "preact": "^8.2.6",
     "prettier": "^1.7.4",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
     "react-native": "^0.45.0",
-    "react-test-renderer": "^16.0.0",
+    "react-test-renderer": "^16.1.1",
     "recompose": "^0.25.0",
     "rimraf": "^2.6.1"
   }

@@ -3,6 +3,7 @@ import clusterCache from './clusterCache'
 import generateCombinedMediaQuery from './generateCombinedMediaQuery'
 import generateCSSRule from './generateCSSRule'
 import generateCSSSelector from './generateCSSSelector'
+import getRehydrationIndex from './getRehydrationIndex'
 import isMediaQuery from './isMediaQuery'
 import isNestedSelector from './isNestedSelector'
 import isSupport from './isSupport'
@@ -25,6 +26,7 @@ export {
   generateCombinedMediaQuery,
   generateCSSRule,
   generateCSSSelector,
+  getRehydrationIndex,
   isMediaQuery,
   isNestedSelector,
   isSupport,

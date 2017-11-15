@@ -1,10 +1,13 @@
 /* @flow */
 import reduce from 'lodash/reduce'
-
-import { clusterCache, sheetMap, RULE_TYPE } from 'fela-utils'
+import {
+  getRehydrationIndex,
+  clusterCache,
+  sheetMap,
+  RULE_TYPE
+} from 'fela-utils'
 
 import createStyleTagMarkup from './createStyleTagMarkup'
-import getRehydrationIndex from './getRehydrationIndex'
 
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 

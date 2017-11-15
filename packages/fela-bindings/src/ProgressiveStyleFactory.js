@@ -1,5 +1,5 @@
 /* @flow */
-import { arrayEach } from 'fela-utils'
+import forEach from 'lodash/forEach'
 
 export default function ProgressiveStyleFactory(
   BaseComponent: any,
@@ -8,7 +8,7 @@ export default function ProgressiveStyleFactory(
 ): any {
   return class ProgressiveStyle extends BaseComponent {
     componentWillUnmount() {
-      arrayEach(this.props.cacheEntries, this.props.renderer._emitChange)
+      forEach(this.props.cacheEntries, this.props.renderer._emitChange)
     }
 
     shouldComponentUpdate() {

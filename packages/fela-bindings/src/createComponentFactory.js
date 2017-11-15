@@ -1,5 +1,6 @@
 /* @flow */
 import { combineRules } from 'fela'
+import reduce from 'lodash/reduce'
 
 import hoistStatics from './hoistStatics'
 import extractPassThroughProps from './extractPassThroughProps'
@@ -128,7 +129,7 @@ export default function createComponentFactory(
       const element = createElement(customType, componentProps, children)
 
       if (renderer.isProgressiveRenderer) {
-        const cacheEntries = objectReduce(
+        const cacheEntries = reduce(
           renderer.cache,
           (entries, value, key) => {
             if (!previousCache.hasOwnProperty(key)) {

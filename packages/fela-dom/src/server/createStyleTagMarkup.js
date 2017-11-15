@@ -1,9 +1,9 @@
 /* @flow */
-type Type = 'RULE' | 'FONT' | 'KEYFRAME' | 'STATIC'
+import type { StyleType } from '../../../../flowtypes/StyleType'
 
 export default function createStyleMarkup(
   css: string,
-  type: Type,
+  type: StyleType,
   media: string = '',
   rehydrationIndex: number = -1
 ): string {

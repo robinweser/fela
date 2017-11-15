@@ -1,21 +1,18 @@
 /* @flow */
 import reduce from 'lodash/reduce'
 import {
+  getRehydrationIndex,
   clusterCache,
   sheetMap,
-  RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE
+  RULE_TYPE
 } from 'fela-utils'
 
-import getRehydrationIndex from './getRehydrationIndex'
-
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
+import type { StyleType } from '../../../../flowtypes/StyleType'
 
 type Sheet = {
   css: string,
-  type: RULE_TYPE | KEYFRAME_TYPE | FONT_TYPE | STATIC_TYPE,
+  type: StyleType,
   media?: string
 }
 

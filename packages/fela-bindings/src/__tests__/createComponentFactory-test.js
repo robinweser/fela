@@ -41,6 +41,7 @@ const createComponent = createComponentFactory(
 const createComponentWithExtraPassThrough = createComponentFactory(
   createElement,
   withTheme,
+  ProgressiveStyle,
   { renderer: PropTypes.object },
   false,
   ['testProp']
@@ -257,16 +258,13 @@ describe('Creating Components from Fela rules', () => {
       }
     })
 
-    const wrapper2 = mount(<Component size="18px" />, {          
+    const wrapper2 = mount(<Component size="18px" />, {
       context: {
         renderer
       }
     })
-                           
-    expect([
-      toJson(wrapper), 
-      toJson(wrapper2)
-    ]).toMatchSnapshot()
+
+    expect([toJson(wrapper), toJson(wrapper2)]).toMatchSnapshot()
   })
 
   it('should pass extended special props to the component', () => {
@@ -283,7 +281,8 @@ describe('Creating Components from Fela rules', () => {
     const renderer = createRenderer()
 
     const wrapper = mount(
-      <Component color="blue" testProp={{ tabIndex: '-1' }} />, {
+      <Component color="blue" testProp={{ tabIndex: '-1' }} />,
+      {
         context: {
           renderer
         }
@@ -291,12 +290,11 @@ describe('Creating Components from Fela rules', () => {
     )
 
     const wrapper2 = mount(<Component color="blue" />, {
-        context: {
-          renderer
-        }
+      context: {
+        renderer
       }
-    )
-                           
+    })
+
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
       toJson(wrapper),
