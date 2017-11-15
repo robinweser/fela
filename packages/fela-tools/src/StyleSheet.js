@@ -1,9 +1,9 @@
 /* @flow */
-import { objectReduce } from 'fela-utils'
+import reduce from 'lodash/reduce'
 
 export default {
   create(styleSheet: Object): Object {
-    return objectReduce(
+    return reduce(
       styleSheet,
       (ruleSheet, rule, ruleName) => {
         if (typeof rule === 'function') {

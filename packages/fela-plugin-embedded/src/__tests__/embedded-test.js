@@ -1,7 +1,7 @@
 import { createRenderer } from 'fela'
-import embedded from '../index'
+import { renderToString } from 'fela-tools'
 
-import renderToString from '../../../fela-tools/src/renderToString'
+import embedded from '../index'
 
 describe('Embedded plugin', () => {
   it('should render inline keyframes & fonts', () => {

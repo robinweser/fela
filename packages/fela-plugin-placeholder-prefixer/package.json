@@ -24,6 +24,6 @@
   "license": "MIT",
   "dependencies": {
     "fela-plugin-custom-property": "^6.0.1",
-    "fela-utils": "^7.0.5"
+    "lodash": "^4.17.4"
   }
 }

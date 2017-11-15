@@ -1,9 +1,10 @@
 /* @flow  */
 /* eslint-disable no-console */
+import isPlainObject from 'lodash/isPlainObject'
+
 import {
   RULE_TYPE,
   KEYFRAME_TYPE,
-  isObject,
   isNestedSelector,
   isMediaQuery
 } from 'fela-utils'
@@ -18,7 +19,7 @@ function validateStyleObject(
   for (const property in style) {
     const value = style[property]
 
-    if (isObject(value)) {
+    if (isPlainObject(value)) {
       if (isNestedSelector(property) || isMediaQuery(property)) {
         validateStyleObject(value, logInvalid, deleteInvalid)
       } else {
@@ -58,7 +59,7 @@ function validateKeyframeObject(
 ): void {
   for (const percentage in style) {
     const value = style[percentage]
-    if (!isObject(value)) {
+    if (!isPlainObject(value)) {
       if (logInvalid) {
         console.error(
           `${deleteInvalid

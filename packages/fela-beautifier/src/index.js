@@ -1,12 +1,12 @@
 /* @flow */
 import cssbeautify from 'cssbeautify'
-import { objectReduce, objectEach } from 'fela-utils'
+import forOwn from 'lodash/forOwn'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
 function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
   renderer.subscribe(() =>
-    objectEach(renderer.nodes, (node, key) => {
+    forOwn(renderer.nodes, (node, key) => {
       node.textContent = cssbeautify(node.textContent, options)
     })
   )

@@ -29,7 +29,7 @@ describe('preset-web-plugin', () => {
     const renderer = createRenderer({
       plugins: [
         ...createWebPreset({
-          'fela-plugin-unit': [
+          unit: [
             'em',
             {
               margin: '%'

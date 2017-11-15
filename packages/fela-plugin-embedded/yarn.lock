@@ -8,20 +8,6 @@ css-in-js-utils@2.0.0:
   dependencies:
     hyphenate-style-name "^1.0.2"
 
-fela-dom@^6.0.6:
-  version "6.0.6"
-  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-6.0.6.tgz#8cf324b5fd685d7f91c79eced37a9fb6820f297f"
-  dependencies:
-    fela-tools "^5.0.13"
-    fela-utils "^7.0.5"
-
-fela-monolithic@^5.0.13:
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/fela-monolithic/-/fela-monolithic-5.0.13.tgz#7b7fdd108280f9c496a39adb57c26f42ad532e5d"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.5"
-
 fela-tools@^5.0.13:
   version "5.0.13"
   resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.0.13.tgz#4ec2854475a879ac5ccf201c30b1888a055100ab"
@@ -49,7 +35,3 @@ hyphenate-style-name@^1.0.2:
 lodash@^4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
-
-shallow-equal@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"

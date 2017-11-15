@@ -17,7 +17,7 @@ describe('fela-preset-dev', () => {
 
   it('should allow per plugin configuration', () => {
     const configuredPreset = createDevPreset({
-      'fela-plugin-validator': [
+      validator: [
         {
           logInvalid: false
         }

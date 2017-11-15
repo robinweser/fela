@@ -20,7 +20,8 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "2.0.0"
+    "css-in-js-utils": "^2.0.0",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "fela": "^6.0.5"

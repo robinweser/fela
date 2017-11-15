@@ -1,9 +1,6 @@
-import {
-  generateMonolithicClassName,
-  arrayReduce,
-  objectReduce,
-  arrayEach
-} from 'fela-utils'
+import generateHash from 'string-hash'
+import reduce from 'lodash/reduce'
+import forEach from 'lodash/forEach'
 
 const defaultConfig = {
   precompile: true
@@ -20,7 +17,7 @@ export default function createPlugin(userConfig = {}) {
     function extractStaticStyle(props, path) {
       const removeQueue = []
 
-      const staticStyle = arrayReduce(
+      const staticStyle = reduce(
         props,
         (style, node) => {
           const removeCallback = () => props.splice(props.indexOf(node), 1)
@@ -214,7 +211,7 @@ export default function createPlugin(userConfig = {}) {
 
                       // rehydrate all cache elements
                       for (const key in felaRenderer.cache) {
-                        const cacheEntry = objectReduce(
+                        const cacheEntry = reduce(
                           felaRenderer.cache[key],
                           (entry, value, property) => {
                             entry.push(
@@ -267,7 +264,7 @@ export default function createPlugin(userConfig = {}) {
 
                   // simple static style prerendering
                   if (staticStyle.length > 0) {
-                    id = generateMonolithicClassName(staticStyle)
+                    id = generateHash(JSON.stringify(staticStyle))
 
                     blockBody = t.blockStatement([
                       t.expressionStatement(

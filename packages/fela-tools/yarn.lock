@@ -8,6 +8,23 @@ css-in-js-utils@2.0.0:
   dependencies:
     hyphenate-style-name "^1.0.2"
 
+fela-utils@^7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-7.0.5.tgz#62397db8abf8294bb160ba7575b31d68495283b2"
+  dependencies:
+    css-in-js-utils "2.0.0"
+
+fela@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/fela/-/fela-6.0.5.tgz#3631a39a4c1d94e5e281ec2b5ca66b71e3104fca"
+  dependencies:
+    css-in-js-utils "2.0.0"
+    fela-utils "^7.0.5"
+
 hyphenate-style-name@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
+
+lodash@^4.17.4:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"

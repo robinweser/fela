@@ -1,6 +1,8 @@
 /* @flow */
-import { objectReduce, hoistStatics } from 'fela-utils'
+import reduce from 'lodash/reduce'
+
 import generateDisplayName from './generateDisplayName'
+import hoistStatics from './hoistStatics'
 
 export default function connectFactory(
   BaseComponent: any,
@@ -19,7 +21,7 @@ export default function connectFactory(
           const preparedRules =
             typeof rules === 'function' ? rules(this.props) : rules
 
-          const styles = objectReduce(
+          const styles = reduce(
             preparedRules,
             (styleMap, rule, name) => {
               const preparedRule =

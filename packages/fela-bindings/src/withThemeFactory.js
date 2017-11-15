@@ -1,5 +1,5 @@
 /* @flow */
-import { hoistStatics } from 'fela-utils'
+import hoistStatics from './hoistStatics'
 
 export default function withThemeFactory(
   BaseComponent: any,

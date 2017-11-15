@@ -1,5 +1,5 @@
 /* @flow */
-import arrayEach from './arrayEach'
+import forEach from 'lodash/forEach'
 
 const basicStatics = {
   name: true,
@@ -14,7 +14,7 @@ const basicStatics = {
 const mergableStatics = ['contextTypes', 'defaultProps']
 const blockedStatics = { childContextTypes: true, propTypes: true }
 
-export default function hoistStatics(target: Object, source: Object): Object {
+export default function hoistStatics(target: any, source: any): any {
   if (typeof source === 'string') {
     return target
   }
@@ -23,7 +23,7 @@ export default function hoistStatics(target: Object, source: Object): Object {
     property => !basicStatics[property]
   )
 
-  arrayEach(statics, property => {
+  forEach(statics, property => {
     if (!target.hasOwnProperty(property) && !blockedStatics[property]) {
       try {
         // Avoid failures from read-only properties
@@ -33,7 +33,7 @@ export default function hoistStatics(target: Object, source: Object): Object {
     }
   })
 
-  arrayEach(mergableStatics, property => {
+  forEach(mergableStatics, property => {
     if (source[property]) {
       const targetStatics = target[property] || {}
 

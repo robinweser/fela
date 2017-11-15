@@ -2,6 +2,6 @@
 # yarn lockfile v1
 
 
-rtl-css-js@1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.1.3.tgz#247c99976d634a4ed78dfc0df8a17ff6540c8a2f"
+rtl-css-js@^1.1.3:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.8.0.tgz#af8ccdf5944bd8d6a2657fcf2e4a4e9adf62361b"

@@ -1,6 +1,6 @@
 /* @flow */
-import shallowEqual from 'shallow-equal/objects'
-import { objectEach } from 'fela-utils'
+import isEqual from 'lodash/isEqual'
+import forEach from 'lodash/forEach'
 
 import createTheme from './createTheme'
 
@@ -20,7 +20,7 @@ export default function ThemeProviderFactory(
     }
 
     componentWillReceiveProps(nextProps: Object): void {
-      if (!shallowEqual(this.props.theme, nextProps.theme)) {
+      if (!isEqual(this.props.theme, nextProps.theme)) {
         this.theme.update(nextProps.theme)
       }
     }
@@ -37,7 +37,7 @@ export default function ThemeProviderFactory(
   }
 
   if (statics) {
-    objectEach(statics, (value, key) => {
+    forEach(statics, (value, key) => {
       ThemeProvider[key] = value
     })
   }

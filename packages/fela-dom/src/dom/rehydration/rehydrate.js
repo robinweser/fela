@@ -1,6 +1,7 @@
 /* @flow */
+import forEach from 'lodash/forEach'
 import camelCaseProperty from 'css-in-js-utils/lib/camelCaseProperty'
-import { arrayEach, generateCSSSelector, RULE_TYPE } from 'fela-utils'
+import { generateCSSSelector, RULE_TYPE } from 'fela-utils'
 
 import rehydrateCache from './rehydrateCache'
 
@@ -9,7 +10,7 @@ import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
 // rehydration (WIP)
 // TODO: static, keyframe, font
 export default function rehydrate(renderer: DOMRenderer): void {
-  arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
+  forEach(document.querySelectorAll('[data-fela-type]'), node => {
     const rehydrationAttribute =
       node.getAttribute('data-fela-rehydration') || -1
     const rehydrationIndex = parseInt(rehydrationAttribute)
