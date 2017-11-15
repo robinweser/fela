@@ -95,7 +95,8 @@ The generated CSS output would look like this:
 
 ### Primitive Components
 If you're using Fela, you're most likely also using React.<br>
-Using the [React bindings](packages/react-fela), you get powerful APIs to create primitive components.
+Using the [React bindings](packages/react-fela), you get powerful APIs to create primitive components.<br>
+If you ever used [styled-components](https://www.styled-components.com), this will look very familiar.
 
 > **Read**: [Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html) for a full guide.
 
