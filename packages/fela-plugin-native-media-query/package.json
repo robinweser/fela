@@ -27,8 +27,9 @@
     "react-native": "*"
   },
   "dependencies": {
-    "css-in-js-utils": "2.0.0",
-    "css-mediaquery": "0.1.2",
-    "fela-utils": "^7.0.5"
+    "css-in-js-utils": "^2.0.0",
+    "css-mediaquery": "^0.1.2",
+    "fela-utils": "^7.0.5",
+    "lodash": "^4.17.4"
   }
 }

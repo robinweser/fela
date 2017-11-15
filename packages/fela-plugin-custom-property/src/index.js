@@ -1,5 +1,5 @@
 /* @flow */
-import { isObject } from 'fela-utils'
+import isPlainObject from 'lodash/isPlainObject'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
@@ -18,7 +18,7 @@ function resolveCustomProperty(
       delete style[property]
     }
 
-    if (isObject(value)) {
+    if (isPlainObject(value)) {
       style[property] = resolveCustomProperty(value, properties, renderer)
     }
   }

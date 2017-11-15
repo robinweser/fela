@@ -1,12 +1,15 @@
+/* @flow */
 export default function extractUsedProps(
   rule: Function,
   theme: Object = {}
 ): Array<string> {
+  const usedProps = []
+
   // if the browser doesn't support proxies
   // we simply return an empty props object
   // see https://github.com/rofrischmann/fela/issues/468
   if (typeof Proxy === 'undefined') {
-    return {}
+    return usedProps
   }
 
   const handler = props => ({
@@ -20,7 +23,6 @@ export default function extractUsedProps(
     }
   })
 
-  const usedProps = []
   const proxy = new Proxy({ theme }, handler(usedProps))
   rule(proxy)
   return usedProps

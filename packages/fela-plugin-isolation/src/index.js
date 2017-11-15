@@ -1,5 +1,5 @@
 /* @flow */
-import { arrayReduce } from 'fela-utils'
+import reduce from 'lodash/reduce'
 
 function addIsolation(style: Object, exclude: Array<string> = []): Object {
   if (style.isolation === false) {
@@ -9,7 +9,7 @@ function addIsolation(style: Object, exclude: Array<string> = []): Object {
     return style
   }
 
-  const excludedDeclarations = arrayReduce(
+  const excludedDeclarations = reduce(
     exclude,
     (exclusion, property) => {
       exclusion[property] = 'inherit'

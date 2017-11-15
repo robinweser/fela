@@ -1,5 +1,6 @@
 /* @flow */
-import { isObject, arrayEach, objectEach } from 'fela-utils'
+import isPlainObject from 'lodash/isPlainObject'
+import forEach from 'lodash/forEach'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
@@ -28,15 +29,15 @@ function extend(
   type: StyleType,
   renderer: DOMRenderer | NativeRenderer
 ): Object {
-  objectEach(style, (value, property) => {
+  forEach(style, (value, property) => {
     if (property === 'extend') {
       const extensions = [].concat(value)
 
-      arrayEach(extensions, extension =>
+      forEach(extensions, extension =>
         extendStyle(style, extension, extend, type, renderer)
       )
       delete style[property]
-    } else if (isObject(value)) {
+    } else if (isPlainObject(value)) {
       // support nested extend as well
       style[property] = extend(value, type, renderer)
     }

@@ -7,29 +7,19 @@ import LVHA from 'fela-plugin-lvha'
 import unit from 'fela-plugin-unit'
 
 type Config = {
-  'fela-plugin-extend'?: Array<*>,
-  'fela-plugin-embedded'?: Array<*>,
-  'fela-plugin-prefixer'?: Array<*>,
-  'fela-plugin-fallback-value'?: Array<*>,
-  'fela-plugin-lvha'?: Array<*>,
-  'fela-plugin-unit'?: Array<*>
+  extend?: Array<any>,
+  unit?: Array<any>
 }
+
 export const createWebPreset = (
-  {
-    'fela-plugin-extend': extendConf = [],
-    'fela-plugin-embedded': embeddedConf = [],
-    'fela-plugin-prefixer': prefixerConf = [],
-    'fela-plugin-fallback-value': fallbackValueConf = [],
-    'fela-plugin-lvha': lvhaConf = [],
-    'fela-plugin-unit': unitConf = []
-  }: Config = {}
+  { extend: extendConfig = [], unit: unitConfig = [] }: Config = {}
 ) => [
-  extend(...extendConf),
-  embedded(...embeddedConf),
-  prefixer(...prefixerConf),
-  fallbackValue(...fallbackValueConf),
-  LVHA(...lvhaConf),
-  unit(...unitConf)
+  extend(...extendConfig),
+  embedded(),
+  prefixer(),
+  fallbackValue(),
+  LVHA(),
+  unit(...unitConfig)
 ]
 
 export default createWebPreset()

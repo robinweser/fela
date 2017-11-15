@@ -1,17 +1,14 @@
 /* @flow */
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
+import { processStyleWithPlugins, STATIC_TYPE } from 'fela-utils'
 
 import minifyCSSString from './minifyCSSString'
-import processStyleWithPlugins from './processStyleWithPlugins'
 
-import { STATIC_TYPE } from './styleTypes'
-
-import type NativeRenderer from '../../../flowtypes/NativeRenderer'
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 
 export default function cssifyStaticStyle(
   staticStyle: string | Object,
-  renderer: DOMRenderer | NativeRenderer
+  renderer: DOMRenderer
 ): string {
   if (typeof staticStyle === 'string') {
     return minifyCSSString(staticStyle)
@@ -22,5 +19,6 @@ export default function cssifyStaticStyle(
     staticStyle,
     STATIC_TYPE
   )
+
   return cssifyObject(processedStaticStyle)
 }

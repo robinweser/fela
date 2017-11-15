@@ -16,7 +16,7 @@ export default function generateClassName(
   return generatedClassName
 }
 
-function generateUniqueClassName(id: number, className: string = '') {
+function generateUniqueClassName(id: number, className: string = ''): string {
   if (id <= charLength) {
     return chars[id - 1] + className
   }

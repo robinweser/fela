@@ -8,6 +8,13 @@ css-in-js-utils@2.0.0:
   dependencies:
     hyphenate-style-name "^1.0.2"
 
+fela-plugin-custom-property@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/fela-plugin-custom-property/-/fela-plugin-custom-property-6.0.1.tgz#a15d561cbb0ca1827d20235969db2adaf088642b"
+  dependencies:
+    css-in-js-utils "2.0.0"
+    fela-utils "^7.0.5"
+
 fela-utils@^7.0.5:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-7.0.5.tgz#62397db8abf8294bb160ba7575b31d68495283b2"

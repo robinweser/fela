@@ -1,5 +1,5 @@
 /* @flow */
-import { isObject } from 'fela-utils'
+import isPlainObject from 'lodash/isPlainObject'
 
 function addImportantToValue(value: any): any {
   if (
@@ -17,7 +17,7 @@ function addImportant(style: Object): Object {
   for (const property in style) {
     const value = style[property]
 
-    if (isObject(value)) {
+    if (isPlainObject(value)) {
       style[property] = addImportant(value)
     } else if (Array.isArray(value)) {
       style[property] = value.map(addImportantToValue)

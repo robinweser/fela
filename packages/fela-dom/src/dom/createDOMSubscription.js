@@ -1,13 +1,13 @@
 /* @flow */
 /* eslint-disable consistent-return */
+import forEach from 'lodash/forEach'
 import {
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
   STATIC_TYPE,
   CLEAR_TYPE,
-  generateCSSRule,
-  objectEach
+  generateCSSRule
 } from 'fela-utils'
 
 import getDOMNode from './getDOMNode'
@@ -49,7 +49,7 @@ export default function createDOMSubscription(nodes: Object): Function {
 
   return function changeSubscription(change) {
     if (change.type === CLEAR_TYPE) {
-      return objectEach(nodes, node => {
+      return forEach(nodes, node => {
         node.textContent = ''
       })
     }

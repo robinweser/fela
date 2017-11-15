@@ -1,13 +1,8 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import { StyleSheet } from 'react-native'
-
 /* @flow */
-import {
-  processStyleWithPlugins,
-  arrayEach,
-  RULE_TYPE,
-  CLEAR_TYPE
-} from 'fela-utils'
+import forEach from 'lodash/forEach'
+import { processStyleWithPlugins, RULE_TYPE, CLEAR_TYPE } from 'fela-utils'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import type {
@@ -69,12 +64,12 @@ export function createRenderer(
     _mergeStyle: assignStyle,
 
     _emitChange(change: Object): void {
-      arrayEach(renderer.listeners, listener => listener(change))
+      forEach(renderer.listeners, listener => listener(change))
     }
   }
 
   if (config.enhancers) {
-    arrayEach(config.enhancers, enhancer => {
+    forEach(config.enhancers, enhancer => {
       renderer = enhancer(renderer)
     })
   }

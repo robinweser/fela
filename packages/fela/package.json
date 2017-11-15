@@ -30,7 +30,8 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "2.0.0",
-    "fela-utils": "^7.0.5"
+    "fela-utils": "^7.0.5",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "fela-tools": "^5.0.13"

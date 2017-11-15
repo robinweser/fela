@@ -3,7 +3,8 @@ import { Dimensions } from 'react-native'
 
 /* @flow */
 import { match } from 'css-mediaquery'
-import { isObject, isMediaQuery } from 'fela-utils'
+import isPlainObject from 'lodash/isPlainObject'
+import { isMediaQuery } from 'fela-utils'
 
 import DimensionProvider from './components/DimensionProvider'
 
@@ -18,7 +19,7 @@ function resolveMediaQuery(style: Object): Object {
   for (const property in style) {
     const value = style[property]
 
-    if (isMediaQuery(property) && isObject(value)) {
+    if (isMediaQuery(property) && isPlainObject(value)) {
       if (
         match(property.slice(6).trim(), {
           type: 'screen',

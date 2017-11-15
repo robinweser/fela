@@ -1,12 +1,11 @@
 /* @flow */
-import {
-  hoistStatics,
-  extractPassThroughProps,
-  extractUsedProps,
-  resolvePassThrough,
-  resolveUsedProps
-} from 'fela-utils'
 import { combineRules } from 'fela'
+
+import hoistStatics from './hoistStatics'
+import extractPassThroughProps from './extractPassThroughProps'
+import extractUsedProps from './extractUsedProps'
+import resolvePassThrough from './resolvePassThrough'
+import resolveUsedProps from './resolveUsedProps'
 
 export default function createComponentFactory(
   createElement: Function,
@@ -44,7 +43,7 @@ export default function createComponentFactory(
         )
       }
 
-      const usedProps = withProxy ? extractUsedProps(rule, theme) : {}
+      const usedProps = withProxy ? extractUsedProps(rule, theme) : []
 
       const rules = [rule]
       if (_felaRule) {

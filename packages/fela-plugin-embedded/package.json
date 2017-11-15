@@ -20,8 +20,11 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
+  "peerDependencies": {
+    "fela": "^6.0.0"    
+  },
   "dependencies": {
-    "fela-utils": "^7.0.5"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "fela": "^6.0.5",

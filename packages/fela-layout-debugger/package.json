@@ -22,7 +22,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "styles-debugger": "0.0.5"
+    "styles-debugger": "^0.0.5"
   },
   "devDependencies": {
     "fela": "^6.0.5"
