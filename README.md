@@ -55,10 +55,12 @@ The following example illustrates the key parts of Fela though it only shows the
 ```javascript
 import { createRenderer } from 'fela'
 
-const rule = props => ({
+// A simple style rule is a pure function of state
+// that returns an object of style declarations
+const rule = state => ({
   textAlign: 'center',
   padding: '5px 10px',
-  // directly use the props to compute style values
+  // directly use the state to compute style values
   background: props.primary ? 'green' : 'blue',
   fontSize: '18pt',
   borderRadius: 5,
@@ -72,20 +74,23 @@ const rule = props => ({
 
 
 const renderer = createRenderer()
+
 // fela generates atomic CSS classes in order to achieve
 // maximal style reuse and minimal CSS output
 const className = renderer.renderRule(rule, { 
-  success: true
+  primary: true
 }) // =>  a b c d e f g
 ```
+
+The generated CSS output would look like this:
 ```CSS
 .a { text-align: center }
 .b { padding: 5px 10px }
 .c { background: green }
 .d { font-size: 18pt }
 .e { border-radius: 5px }
-.f:hover { box-shadow: 0 0 2px rgba(70, 70, 70) }
-.g:hover { background-color: chartreuse }
+.f:hover { background-color: chartreuse }
+.g:hover { box-shadow: 0 0 2px rgb(70, 70, 70) }
 ```
 
 ### Primitive Components
