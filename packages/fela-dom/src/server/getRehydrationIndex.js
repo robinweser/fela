@@ -1,5 +1,5 @@
 /* @flow */
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 const SELECTOR_PREFIX_REGEXP = /^[a-z0-9_-]*$/gi
 
