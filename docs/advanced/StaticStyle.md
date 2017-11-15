@@ -59,6 +59,20 @@ renderer.renderStatic(`
 `)
 ```
 
+### Existing CSS Files
+We can even directly import and use existing CSS files.<br>
+
+> **Note**: We still need a tool like [Webpack](https://github.com/webpack/webpack) combined with [css-loader](https://github.com/webpack-contrib/css-loader) to import CSS files within JavaScript files.
+
+```javascript
+import css from 'react-aspect-ratio/aspect-ratio.css';
+import { createRenderer } from 'fela'
+
+const renderer = createRenderer()
+
+renderer.renderStatic(css.toString())
+```
+
 <br>
 
 ---
