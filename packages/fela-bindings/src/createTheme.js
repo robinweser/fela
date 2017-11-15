@@ -1,5 +1,5 @@
 /* @flow */
-import { arrayEach } from 'fela-utils'
+import forEach from 'lodash/forEach'
 
 import type { Theme } from '../../../flowtypes/Theme'
 
@@ -32,7 +32,7 @@ export default function createTheme(
     _emitChange(): void {
       const properties = theme.get()
 
-      arrayEach(theme.listeners, listener => listener(properties))
+      forEach(theme.listeners, listener => listener(properties))
     }
   }
 

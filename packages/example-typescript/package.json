@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "name": "example-typescript",
+  "version": "1.0.1",
+  "description": "Fela example with React and Typescript",
+  "scripts": {
+    "start": "webpack-dev-server --open"
+  },
+  "author": "Sergei Grishchenko <s.i.grishchenko@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/html-webpack-plugin": "^2.28.0",
+    "@types/node": "^8.0.13",
+    "@types/webpack": "^3.0.4",
+    "html-webpack-plugin": "^2.29.0",
+    "html-webpack-template": "^6.0.2",
+    "ts-loader": "^2.3.0",
+    "ts-node": "^3.2.0",
+    "typescript": "^2.4.1",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1"
+  },
+  "dependencies": {
+    "@types/react": "^16.0.18",
+    "@types/react-dom": "^16.0.2",
+    "fela": "^6.0.5",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-fela": "^6.1.0"
+  }
+}

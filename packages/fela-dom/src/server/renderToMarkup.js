@@ -1,31 +1,19 @@
 /* @flow */
-import {
-  objectReduce,
-  clusterCache,
-  getRehydrationIndex,
-  RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE
-} from 'fela-utils'
+import reduce from 'lodash/reduce'
+
+import { clusterCache, sheetMap, RULE_TYPE } from 'fela-utils'
 
 import createStyleTagMarkup from './createStyleTagMarkup'
+import getRehydrationIndex from './getRehydrationIndex'
 
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
-
-const sheetMap = {
-  fontFaces: FONT_TYPE,
-  statics: STATIC_TYPE,
-  keyframes: KEYFRAME_TYPE,
-  rules: RULE_TYPE
-}
 
 export default function renderToMarkup(renderer: DOMRenderer): string {
   const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
 
   const rehydrationIndex = getRehydrationIndex(renderer)
 
-  const basicMarkup = objectReduce(
+  const basicMarkup = reduce(
     sheetMap,
     (markup, type, key) => {
       if (cacheCluster[key].length > 0) {
@@ -42,7 +30,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
     ''
   )
 
-  return objectReduce(
+  return reduce(
     cacheCluster.mediaRules,
     (markup, css, media) => {
       if (css.length > 0) {

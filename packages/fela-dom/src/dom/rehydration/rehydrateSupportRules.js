@@ -1,6 +1,5 @@
 /* @flow */
-import { extractSupportQuery } from 'fela-utils'
-
+import extractSupportQuery from './extractSupportQuery'
 import rehydrateRules from './rehydrateRules'
 
 const SUPPORT_REGEX = /@supports[^{]+\{([\s\S]+?})\s*}/g

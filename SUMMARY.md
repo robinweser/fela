@@ -5,7 +5,7 @@
   * [1.1. Motivation](docs/introduction/Motivation.md)
   * [1.2. Principles](docs/introduction/Principles.md)
   * [1.3. Benefits](docs/introduction/Benefits.md)
-  * [1.4. Drawbacks](docs/introduction/Drawbacks.md)
+  * [1.4. Caveats](docs/introduction/Caveats.md)
   * [1.5. Ecosystem](docs/introduction/Ecosystem.md)
   * [1.6. Examples](docs/introduction/Examples.md)
 * [2. Basics](docs/Basics.md)

@@ -1,7 +1,6 @@
 /* @flow */
 import isUnitlessProperty from 'css-in-js-utils/lib/isUnitlessProperty'
-
-import { isObject, warning } from 'fela-utils'
+import isPlainObject from 'lodash/isPlainObject'
 
 function addUnitIfNeeded(
   property: string,
@@ -30,7 +29,7 @@ function addUnit(
       const cssValue = style[property]
       const propertyUnit = propertyMap[property] || defaultUnit
 
-      if (isObject(cssValue)) {
+      if (isPlainObject(cssValue)) {
         style[property] = addUnit(cssValue, defaultUnit, propertyMap)
       } else if (Array.isArray(cssValue)) {
         style[property] = cssValue.map(val =>
@@ -49,12 +48,5 @@ export default function unit(
   defaultUnit: string = 'px',
   propertyMap: Object = {}
 ) {
-  warning(
-    defaultUnit.match(
-      /ch|em|ex|rem|vh|vw|vmin|vmax|px|cm|mm|in|pc|pt|mozmm|%/
-    ) !== null,
-    `You are using an invalid unit "${defaultUnit}". Consider using one of the following ch, em, ex, rem, vh, vw, vmin, vmax, px, cm, mm, in, pc, pt, mozmm or %.`
-  )
-
   return (style: Object) => addUnit(style, defaultUnit, propertyMap)
 }

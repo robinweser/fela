@@ -38,6 +38,14 @@ const createComponent = createComponentFactory(
   }
 )
 
+const createComponentWithExtraPassThrough = createComponentFactory(
+  createElement,
+  withTheme,
+  { renderer: PropTypes.object },
+  false,
+  ['testProp']
+)
+
 const createComponentWithProxy = createComponentFactory(
   createElement,
   withTheme,
@@ -249,13 +257,51 @@ describe('Creating Components from Fela rules', () => {
       }
     })
 
-    const wrapper2 = mount(<Component size="18px" />, {
+    const wrapper2 = mount(<Component size="18px" />, {          
       context: {
         renderer
       }
     })
+                           
+    expect([
+      toJson(wrapper), 
+      toJson(wrapper2)
+    ]).toMatchSnapshot()
+  })
 
-    expect([toJson(wrapper), toJson(wrapper2)]).toMatchSnapshot()
+  it('should pass extended special props to the component', () => {
+    const rule = props => ({
+      color: props.as === 'i' ? props.color : 'red',
+      fontSize: 16
+    })
+
+    const UnderlyingComp = ({ testProp }) => (
+      <div>{testProp ? 'testProp exists' : 'testProp does not exist'}</div>
+    )
+    const Component = createComponentWithExtraPassThrough(rule, UnderlyingComp)
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(
+      <Component color="blue" testProp={{ tabIndex: '-1' }} />, {
+        context: {
+          renderer
+        }
+      }
+    )
+
+    const wrapper2 = mount(<Component color="blue" />, {
+        context: {
+          renderer
+        }
+      }
+    )
+                           
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+      toJson(wrapper2)
+    ]).toMatchSnapshot()
   })
 
   it('should only use passed props to render Fela rules', () => {

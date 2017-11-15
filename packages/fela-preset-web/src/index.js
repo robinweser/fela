@@ -6,11 +6,20 @@ import fallbackValue from 'fela-plugin-fallback-value'
 import LVHA from 'fela-plugin-lvha'
 import unit from 'fela-plugin-unit'
 
-export default [
-  extend(),
+type Config = {
+  extend?: Array<any>,
+  unit?: Array<any>
+}
+
+export const createWebPreset = (
+  { extend: extendConfig = [], unit: unitConfig = [] }: Config = {}
+) => [
+  extend(...extendConfig),
   embedded(),
   prefixer(),
   fallbackValue(),
   LVHA(),
-  unit()
+  unit(...unitConfig)
 ]
+
+export default createWebPreset()

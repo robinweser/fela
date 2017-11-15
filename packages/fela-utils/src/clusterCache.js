@@ -1,7 +1,8 @@
 /* @flow */
+import reduce from 'lodash/reduce'
+
 import applyMediaRulesInOrder from './applyMediaRulesInOrder'
 import generateCSSRule from './generateCSSRule'
-import objectReduce from './objectReduce'
 
 import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE } from './styleTypes'
 
@@ -40,7 +41,7 @@ export default function clusterCache(
 ) {
   const mediaRules = applyMediaRulesInOrder(mediaQueryOrder)
 
-  return objectReduce(
+  return reduce(
     cache,
     (cluster, entry, key) => {
       const handler = handlers[entry.type]

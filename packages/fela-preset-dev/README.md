@@ -1,5 +1,7 @@
 # fela-preset-dev
 
+<img alt="npm version" src="https://badge.fury.io/js/fela-preset-dev.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-preset-dev.svg">
+
 A Fela plugin preset for development.
 
 > Do **not** use this preset in production!
@@ -27,6 +29,28 @@ const renderer = createRenderer({
   plugins: [
     // other plugins,
     ...devPreset
+  ]
+})
+```
+
+#### Configuration
+Some plugins also accept some configuration options.
+We can use the `createDevPreset` factory and pass the options using the plugin name as a key.
+
+```javascript
+import { createRenderer } from 'fela'
+import { createDevPreset } from 'fela-preset-dev'
+
+const renderer = createRenderer({
+  plugins: [
+    ...createDevPreset({
+      'validator': [
+        {
+          logInvalid: true,
+          deleteInvalid: true
+        }
+      ]
+    })
   ]
 })
 ```

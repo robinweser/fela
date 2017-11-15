@@ -1,10 +1,10 @@
 /* @flow */
-import arrayReduce from './arrayReduce'
+import reduce from 'lodash/reduce'
 
 type MediaMap = { [mediaQuery: string]: any }
 
 export default function applyMediaRulesInOrder(order: Array<string>): MediaMap {
-  return arrayReduce(
+  return reduce(
     order,
     (mediaMap, query) => {
       mediaMap[query] = ''

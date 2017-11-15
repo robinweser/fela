@@ -18,7 +18,8 @@ You may alternatively use `npm i --save fela-plugin-bidi`.
 ## Usage
 Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
 
-For details on what the plugin can and cannot do, please see the documentation in the [underlying library](https://github.com/TxHawks/bidi-css-js/blob/master/README.md).
+For details on what the plugin can and cannot do, please see the documentation in the [underlying library](https://github.com/TxHawks/bidi-css-js/blob/master/README.md). Please make sure to look at the
+note about four-directional shorthand properties, as there was a breaking change in version `2.0.0`.
 
 ```javascript
 import { createRenderer } from 'fela'

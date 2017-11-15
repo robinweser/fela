@@ -27,7 +27,8 @@ function addLogger(renderer: DOMRenderer, options: Object): DOMRenderer {
     if (options.logCSS) {
       console.log(formattedCSS)
     }
-    console.groupEnd(selector)
+
+    console.groupEnd()
   })
 
   return renderer

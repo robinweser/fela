@@ -1,9 +1,9 @@
 /* @flow */
-import { arrayReduce } from 'fela-utils'
+import reduce from 'lodash/reduce'
 
 export default function enhance(...enhancers: Array<Function>): Function {
   return createRenderer => config =>
-    arrayReduce(
+    reduce(
       enhancers,
       (enhancedRenderer, enhancer) => {
         enhancedRenderer = enhancer(enhancedRenderer)

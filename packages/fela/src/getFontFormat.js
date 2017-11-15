@@ -1,11 +1,11 @@
 /* @flow */
-import warning from './warning'
 import isBase64 from './isBase64'
 
 const formats: {
   [string]: string
 } = {
   '.woff': 'woff',
+  '.woff2': 'woff2',
   '.eot': 'embedded-opentype',
   '.ttf': 'truetype',
   '.otf': 'opentype',
@@ -30,7 +30,7 @@ const base64Formats: {
   'application/font-sfnt': 'sfnt'
 }
 
-export default function checkFontFormat(src: string): string {
+export default function getFontFormat(src: string): string {
   if (isBase64(src)) {
     let mime = ''
     for (let i = 5; ; i++) {
@@ -49,8 +49,7 @@ export default function checkFontFormat(src: string): string {
       return fmt
     }
 
-    warning(
-      true,
+    console.warn(
       `A invalid base64 font was used. Please use one of the following mime type: ${Object.keys(
         base64Formats
       ).join(', ')}.`
@@ -73,8 +72,7 @@ export default function checkFontFormat(src: string): string {
       return fmt
     }
 
-    warning(
-      true,
+    console.warn(
       `A invalid font-format was used in "${src}". Use one of these: ${Object.keys(
         formats
       ).join(', ')}.`

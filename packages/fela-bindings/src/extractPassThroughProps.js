@@ -1,11 +1,11 @@
 /* @flow  */
-import arrayReduce from './arrayReduce'
+import reduce from 'lodash/reduce'
 
 export default function extractPassThroughProps(
   passThrough: Array<string>,
   ruleProps: Object
 ): Object {
-  return arrayReduce(
+  return reduce(
     passThrough,
     (output, property) => {
       if (ruleProps.hasOwnProperty(property)) {

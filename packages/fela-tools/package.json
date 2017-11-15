@@ -1,6 +1,6 @@
 {
   "name": "fela-tools",
-  "version": "5.0.10",
+  "version": "5.0.13",
   "description": "Useful tools for working with Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -19,11 +19,15 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
+  "peerDependencies": {
+    "fela": "^6.0.0"
+  },
   "dependencies": {
     "css-in-js-utils": "2.0.0",
-    "fela-utils": "^7.0.2"
+    "fela-utils": "^7.0.5",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "fela": "^6.0.2"
+    "fela": "^6.0.5"
   }
 }

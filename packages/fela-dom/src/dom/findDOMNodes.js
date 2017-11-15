@@ -1,8 +1,8 @@
 /* @flow */
-import { arrayReduce } from 'fela-utils'
+import reduce from 'lodash/reduce'
 
-export default function selectDOMNodes() {
-  return arrayReduce(
+export default function selectDOMNodes(): Object {
+  return reduce(
     document.querySelectorAll('[data-fela-type]'),
     (DOMNodes, node) => {
       const type = node.getAttribute('data-fela-type') || ''

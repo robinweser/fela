@@ -1,20 +1,19 @@
 /* @flow */
-import {
-  objectReduce,
-  hoistStatics,
-  extractPassThroughProps,
-  extractUsedProps,
-  resolvePassThrough,
-  resolveUsedProps
-} from 'fela-utils'
 import { combineRules } from 'fela'
+
+import hoistStatics from './hoistStatics'
+import extractPassThroughProps from './extractPassThroughProps'
+import extractUsedProps from './extractUsedProps'
+import resolvePassThrough from './resolvePassThrough'
+import resolveUsedProps from './resolveUsedProps'
 
 export default function createComponentFactory(
   createElement: Function,
   withTheme: Function,
   ProgressiveStyle: Function,
   contextTypes?: Object,
-  withProxy: boolean = false
+  withProxy: boolean = false,
+  alwaysPassThroughProps: Array<string> = []
 ): Function {
   return function createComponent(
     rule: Function,
@@ -45,7 +44,7 @@ export default function createComponentFactory(
         )
       }
 
-      const usedProps = withProxy ? extractUsedProps(rule, theme) : {}
+      const usedProps = withProxy ? extractUsedProps(rule, theme) : []
 
       const rules = [rule]
       if (_felaRule) {
@@ -67,6 +66,7 @@ export default function createComponentFactory(
       }
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [
+        ...alwaysPassThroughProps,
         ...resolvePassThrough(passThroughProps, otherProps),
         ...resolvePassThrough(passThrough, otherProps),
         ...(withProxy ? resolveUsedProps(usedProps, otherProps) : [])

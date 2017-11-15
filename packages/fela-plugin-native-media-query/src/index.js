@@ -3,7 +3,8 @@ import { Dimensions } from 'react-native'
 
 /* @flow */
 import { match } from 'css-mediaquery'
-import { isObject, isMediaQuery } from 'fela-utils'
+import isPlainObject from 'lodash/isPlainObject'
+import { isMediaQuery } from 'fela-utils'
 
 import DimensionProvider from './components/DimensionProvider'
 
@@ -15,11 +16,10 @@ function getOrientation(width: number, height: number): Orientation {
 
 function resolveMediaQuery(style: Object): Object {
   const { width, height } = Dimensions.get('window')
-
   for (const property in style) {
     const value = style[property]
 
-    if (isMediaQuery(property) && isObject(value)) {
+    if (isMediaQuery(property) && isPlainObject(value)) {
       if (
         match(property.slice(6).trim(), {
           type: 'screen',

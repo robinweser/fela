@@ -1,35 +1,36 @@
 /* @flow */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import isPlainObject from 'lodash/isPlainObject'
+import forEach from 'lodash/forEach'
 
 import {
-  cssifyFontFace,
-  cssifyKeyframe,
-  cssifyStaticStyle,
-  generateAnimationName,
-  generateClassName,
   generateCombinedMediaQuery,
   generateCSSRule,
   generateCSSSelector,
-  generateStaticReference,
   isMediaQuery,
   isNestedSelector,
   isUndefinedValue,
-  isObject,
-  isSafeClassName,
   isSupport,
   normalizeNestedProperty,
   processStyleWithPlugins,
-  toCSSString,
-  checkFontFormat,
-  checkFontUrl,
-  arrayEach,
   STATIC_TYPE,
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
   CLEAR_TYPE
 } from 'fela-utils'
+
+import cssifyFontFace from './cssifyFontFace'
+import cssifyKeyframe from './cssifyKeyframe'
+import cssifyStaticStyle from './cssifyStaticStyle'
+import generateAnimationName from './generateAnimationName'
+import generateClassName from './generateClassName'
+import generateStaticReference from './generateStaticReference'
+import getFontFormat from './getFontFormat'
+import getFontUrl from './getFontUrl'
+import isSafeClassName from './isSafeClassName'
+import toCSSString from './toCSSString'
 
 import type {
   DOMRenderer,
@@ -130,12 +131,11 @@ export default function createRenderer(
         const fontFace = {
           ...properties,
           src: `${fontLocals.reduce(
-            (agg, local) => (agg += ` local(${checkFontUrl(local)}), `),
+            (agg, local) => (agg += ` local(${getFontUrl(local)}), `),
             ''
           )}${files
             .map(
-              src =>
-                `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`
+              src => `url(${getFontUrl(src)}) format('${getFontFormat(src)}')`
             )
             .join(',')}`,
           fontFamily
@@ -206,7 +206,7 @@ export default function createRenderer(
         const value = style[property]
 
         // TODO: this whole part could be trimmed
-        if (isObject(value)) {
+        if (isPlainObject(value)) {
           if (isNestedSelector(property)) {
             classNames += renderer._renderStyleToClassNames(
               value,
@@ -291,7 +291,7 @@ export default function createRenderer(
     },
 
     _emitChange(change: Object): void {
-      arrayEach(renderer.listeners, listener => listener(change))
+      forEach(renderer.listeners, listener => listener(change))
     }
   }
 
@@ -299,7 +299,7 @@ export default function createRenderer(
   renderer.keyframePrefixes.push('')
 
   if (config.enhancers) {
-    arrayEach(config.enhancers, enhancer => {
+    forEach(config.enhancers, enhancer => {
       renderer = enhancer(renderer)
     })
   }

@@ -1,22 +1,17 @@
 /* @flow */
+import reduce from 'lodash/reduce'
 import {
   clusterCache,
-  objectReduce,
-  getRehydrationIndex,
+  sheetMap,
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
   STATIC_TYPE
 } from 'fela-utils'
 
-import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
+import getRehydrationIndex from './getRehydrationIndex'
 
-const sheetMap = {
-  fontFaces: FONT_TYPE,
-  statics: STATIC_TYPE,
-  keyframes: KEYFRAME_TYPE,
-  rules: RULE_TYPE
-}
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 type Sheet = {
   css: string,
@@ -29,7 +24,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
 
   const rehydrationIndex = getRehydrationIndex(renderer)
 
-  const sheetList = objectReduce(
+  const sheetList = reduce(
     sheetMap,
     (list, type, key) => {
       if (cacheCluster[key].length > 0) {
@@ -45,7 +40,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
     []
   )
 
-  return objectReduce(
+  return reduce(
     cacheCluster.mediaRules,
     (list, css, media) => {
       if (css.length > 0) {

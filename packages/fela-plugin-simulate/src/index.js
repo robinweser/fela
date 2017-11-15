@@ -1,13 +1,13 @@
 /* @flow */
-import { isObject } from 'fela-utils'
+import isPlainObject from 'lodash/isPlainObject'
 
-import { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+import type { StyleType } from '../../../flowtypes/StyleType'
 
-type Type = 'KEYFRAME' | 'RULE' | 'STATIC'
 function resolveSimulation(
   style: Object,
-  type: Type,
+  type: StyleType,
   renderer: DOMRenderer | NativeRenderer,
   props: Object
 ): Object {
@@ -15,7 +15,7 @@ function resolveSimulation(
     for (const property in style) {
       const value = style[property]
 
-      if (isObject(value) && props.simulate[property]) {
+      if (isPlainObject(value) && props.simulate[property]) {
         const resolvedValue = resolveSimulation(value, type, renderer, props)
 
         renderer._mergeStyle(style, resolvedValue)
