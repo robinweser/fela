@@ -55,7 +55,7 @@ The following example illustrates the key parts of Fela though it only shows the
 ```javascript
 import { createRenderer } from 'fela'
 
-// A simple style rule is a pure function of state
+// a simple style rule is a pure function of state
 // that returns an object of style declarations
 const rule = state => ({
   textAlign: 'center',
