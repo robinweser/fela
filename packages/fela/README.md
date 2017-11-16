@@ -54,42 +54,66 @@ The following example illustrates the key parts of Fela though it only shows the
 
 ```javascript
 import { createRenderer } from 'fela'
-import { render } from 'fela-dom'
 
-// rules are just plain functions of props
-// returning a valid object of style declarations
-const rule = props => ({
-  fontSize: props.fontSize + 'px',
-  marginTop: props.margin ? '15px' : 0,
-  color: 'red',
-  lineHeight: 1.4,
+// a simple style rule is a pure function of state
+// that returns an object of style declarations
+const rule = state => ({
+  textAlign: 'center',
+  padding: '5px 10px',
+  // directly use the state to compute style values
+  background: state.primary ? 'green' : 'blue',
+  fontSize: '18pt',
+  borderRadius: 5,
+
+  // deeply nest media queries and pseudo classes
   ':hover': {
-    color: 'blue',
-    fontSize: props.fontSize + 2 + 'px'
-  },
-  // nest media queries and pseudo classes
-  // inside the style object
-  '@media (min-height: 300px)': {
-    backgroundColor: 'gray',
-    ':hover': {
-      color: 'black'
-    }
+    background: state.primary ? 'chartreuse' : 'dodgerblue',
+    boxShadow: '0 0 2px rgb(70, 70, 70)'
   }
 })
 
-// creates a new renderer to render styles
+
 const renderer = createRenderer()
 
-// rendering the rule returns a className reference
-// which can be attached to any element
-const className = renderer.renderRule(rule, { fontSize: 12 })
+// fela generates atomic CSS classes in order to achieve
+// maximal style reuse and minimal CSS output
+const className = renderer.renderRule(rule, { 
+  primary: true
+}) // =>  a b c d e f g
+```
 
-// it generates atomic css classes to reuse styles
-// on declaration base and to keep the markup minimal
-console.log(className) // => a b c d e f h
+The generated CSS output would look like this:
+```CSS
+.a { text-align: center }
+.b { padding: 5px 10px }
+.c { background: green }
+.d { font-size: 18pt }
+.e { border-radius: 5px }
+.f:hover { background-color: chartreuse }
+.g:hover { box-shadow: 0 0 2px rgb(70, 70, 70) }
+```
 
-// renders all styles into the DOM
-render(renderer)
+### Primitive Components
+If you're using Fela, you're most likely also using React.<br>
+Using the [React bindings](packages/react-fela), you get powerful APIs to create primitive components.<br>
+If you ever used [styled-components](https://www.styled-components.com), this will look very familiar.
+
+> **Read**: [Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html) for a full guide.
+
+```javascript
+import { createComponent, Provider } from 'react-fela'
+import { render } from 'react-dom'
+
+// using the above defined rule and fela renderer
+const Button = createComponent(rule, 'button')
+
+render(
+  <Provider renderer={renderer}>
+    <Button primary>Primary</Button>
+    <Button>Default</Button>
+  </Provider>,
+  document.body
+)
 ```
 
 ## Examples
