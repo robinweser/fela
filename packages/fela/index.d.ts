@@ -10,12 +10,12 @@ declare module "fela" {
   type TEnhancer = (renderer: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
 
   const enum TSubscribeMessageType {
-    rule = 'RULE_TYPE',
-    staticObject = 'RULE_TYPE',
-    keyframes = 'KEYFRAME_TYPE',
-    fontFace = 'FONT_TYPE',
-    staticString = 'STATIC_TYPE',
-    clear = 'CLEAR_TYPE'
+    rule = 'RULE',
+    staticObject = 'RULE',
+    keyframes = 'KEYFRAME',
+    fontFace = 'FONT',
+    staticString = 'STATIC',
+    clear = 'CLEAR'
   }
   interface ISubscribeMessage {
     type: TSubscribeMessageType;

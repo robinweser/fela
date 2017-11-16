@@ -7,8 +7,20 @@ describe('Rendering to HTML markup', () => {
   it('should return a single HTML markup string', () => {
     const rule = props => ({
       color: props.color,
+      '@supports (display:flex)': {
+        color: 'yellow'
+      },
+      '@supports (display:grid)': {
+        color: 'brown'
+      },
       '@media (min-height: 300px)': {
-        color: 'blue'
+        color: 'blue',
+        '@supports (display:flex)': {
+          color: 'green'
+        },
+        '@supports (display:grid)': {
+          color: 'black'
+        }
       }
     })
 
