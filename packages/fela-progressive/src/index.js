@@ -9,6 +9,4 @@ function setProgressiveRenderer(renderer: DOMRenderer): void {
 
 // right now, all it does is setting the isProgressiveRenderer flag
 // but there might be more functionality in the future
-export default function progressive() {
-  return setProgressiveRenderer
-}
+export default () => setProgressiveRenderer

@@ -8,6 +8,7 @@ import validator from 'fela-plugin-validator'
 import logger from 'fela-plugin-logger'
 import perf from 'fela-perf'
 import beautifier from 'fela-beautifier'
+//import progressive from 'fela-progressive'
 import layoutDebugger from 'fela-layout-debugger'
 
 export default () => {
@@ -36,5 +37,6 @@ export default () => {
   )
 
   renderer.renderStatic({ display: 'flex' }, 'div')
+  renderer.isProgressiveRenderer = true
   return renderer
 }

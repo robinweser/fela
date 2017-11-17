@@ -11,6 +11,7 @@ export default function createDOMNode(
   const head = getDocumentHead()
 
   const node = document.createElement('style')
+  console.log(node)
   node.setAttribute('data-fela-type', type)
   node.type = 'text/css'
 
@@ -20,7 +21,7 @@ export default function createDOMNode(
   } else {
     // if anchorNode is undefined it will
     // be added at the end by default
-    head.insertBefore(node, anchorNode)
+    head.appendChild(node)
   }
 
   return node
