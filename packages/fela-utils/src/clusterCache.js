@@ -8,7 +8,7 @@ import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE } from './styleTypes'
 
 const handlers = {
   [RULE_TYPE]: (cluster, { selector, declaration, support, media }) => {
-    const cssRule = generateCSSRule(selector, declaration, support)
+    const cssRule = generateCSSRule(selector, declaration)
 
     if (support) {
       if (media) {

@@ -1,26 +1,17 @@
 /* @flow */
 import reduce from 'lodash/reduce'
 
-import { clusterCache, sheetMap, RULE_TYPE } from 'fela-utils'
+import {
+  clusterCache,
+  cssifySupportRules,
+  sheetMap,
+  RULE_TYPE,
+} from 'fela-utils'
 
 import createStyleTagMarkup from './createStyleTagMarkup'
 import getRehydrationIndex from './getRehydrationIndex'
 
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
-
-function renderSupportRules(supportRules: Object): string {
-  return reduce(
-    supportRules,
-    (output, css) => {
-      if (css.length > 0) {
-        output += css
-      }
-
-      return output
-    },
-    ''
-  )
-}
 
 export default function renderToMarkup(renderer: DOMRenderer): string {
   const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
@@ -44,7 +35,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
     ''
   )
 
-  const support = renderSupportRules(cacheCluster.supportRules)
+  const support = cssifySupportRules(cacheCluster.supportRules)
 
   if (support) {
     styleMarkup += createStyleTagMarkup(
@@ -79,7 +70,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
 
       // support media rules
       if (cacheCluster.supportMediaRules[media]) {
-        const mediaSupport = renderSupportRules(
+        const mediaSupport = cssifySupportRules(
           cacheCluster.supportMediaRules[media]
         )
 
