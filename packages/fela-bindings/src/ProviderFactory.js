@@ -28,7 +28,7 @@ export default function ProviderFactory(
 
     getChildContext(): Object {
       return {
-        renderer: this.props.renderer
+        renderer: this.props.renderer,
       }
     }
 

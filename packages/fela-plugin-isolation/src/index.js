@@ -21,7 +21,7 @@ function addIsolation(style: Object, exclude: Array<string> = []): Object {
   return {
     all: 'initial',
     ...excludedDeclarations,
-    ...style
+    ...style,
   }
 }
 

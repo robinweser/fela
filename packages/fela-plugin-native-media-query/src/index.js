@@ -25,7 +25,7 @@ function resolveMediaQuery(style: Object): Object {
           type: 'screen',
           orientation: getOrientation(width, height),
           width,
-          height
+          height,
         })
       ) {
         renderer._mergeStyle(style, value)

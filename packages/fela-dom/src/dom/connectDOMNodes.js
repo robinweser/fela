@@ -1,7 +1,12 @@
 /* @flow */
 import forEach from 'lodash/forEach'
 
-import { clusterCache, sheetMap, RULE_TYPE } from 'fela-utils'
+import {
+  clusterCache,
+  cssifySupportRules,
+  sheetMap,
+  RULE_TYPE,
+} from 'fela-utils'
 
 import initDOMNode from './initDOMNode'
 import findDOMNodes from './findDOMNodes'
@@ -17,7 +22,7 @@ export default function connectDOMNodes(renderer: DOMRenderer): void {
     renderer.supportQueryOrder
   )
 
-  const baseNode = renderer.nodes[RULE_TYPE]
+  const baseNode = renderer.nodes[RULE_TYPE + false]
 
   forEach(sheetMap, (type, key) => {
     if (cacheCluster[key].length > 0) {
@@ -25,22 +30,46 @@ export default function connectDOMNodes(renderer: DOMRenderer): void {
     }
   })
 
-  forEach(cacheCluster.supportRules, clusteredCache => {
-    if (clusteredCache.length > 0) {
+  const support = cssifySupportRules(cacheCluster.supportRules)
+
+  if (support) {
+    initDOMNode(renderer.nodes, baseNode, support, RULE_TYPE, '', true)
+  }
+
+  const mediaKeys = Object.keys({
+    ...cacheCluster.supportMediaRules,
+    ...cacheCluster.mediaRules,
+  })
+
+  forEach(mediaKeys, media => {
+    if (
+      cacheCluster.mediaRules[media] &&
+      cacheCluster.mediaRules[media].length > 0
+    ) {
       initDOMNode(
         renderer.nodes,
         baseNode,
-        clusteredCache,
+        cacheCluster.mediaRules[media],
         RULE_TYPE,
-        media,
-        true
+        media
       )
     }
-  })
 
-  forEach(cacheCluster.mediaRules, (clusteredCache, media) => {
-    if (clusteredCache.length > 0) {
-      initDOMNode(renderer.nodes, baseNode, clusteredCache, RULE_TYPE, media)
+    if (cacheCluster.supportMediaRules[media]) {
+      const mediaSupport = cssifySupportRules(
+        cacheCluster.supportMediaRules[media]
+      )
+
+      if (mediaSupport.length > 0) {
+        initDOMNode(
+          renderer.nodes,
+          baseNode,
+          mediaSupport,
+          RULE_TYPE,
+          media,
+          true
+        )
+      }
     }
   })
 }

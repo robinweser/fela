@@ -5,15 +5,15 @@ describe('RTL plugin', () => {
     const style = {
       paddingLeft: 20,
       ':hover': {
-        marginRight: '25px'
-      }
+        marginRight: '25px',
+      },
     }
 
     expect(rtl()(style)).toEqual({
       paddingRight: 20,
       ':hover': {
-        marginLeft: '25px'
-      }
+        marginLeft: '25px',
+      },
     })
   })
 })

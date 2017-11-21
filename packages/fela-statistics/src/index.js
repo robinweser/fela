@@ -11,7 +11,7 @@ function lengthInUtf8Bytes(str: string): number {
 }
 
 type RendererWithStatistics = {
-  getStatistics: Function
+  getStatistics: Function,
 }
 
 function addStatistics(
@@ -20,7 +20,7 @@ function addStatistics(
   const statistics = {
     count: {
       classes: 0,
-      pseudoClasses: 0
+      pseudoClasses: 0,
     },
     usage: {},
     size: {},
@@ -29,7 +29,7 @@ function addStatistics(
     totalMediaQueryClasses: 0,
     totalClasses: 0,
     totalRenders: 0,
-    totalUsage: 0
+    totalUsage: 0,
   }
 
   function addClassNamesToUsage(classNames: string): void {
@@ -60,7 +60,7 @@ function addStatistics(
         if (!statistics.count[media]) {
           statistics.count[media] = {
             pseudoClasses: 0,
-            classes: 0
+            classes: 0,
           }
         }
 
@@ -91,13 +91,13 @@ function addStatistics(
 
   renderer.getStatistics = (): Object => {
     const currentStats = {
-      ...statistics
+      ...statistics,
     }
 
     const reuse = calculateReuse()
     currentStats.reuse = {
       percentage: `${reuse * 100}%`,
-      number: reuse
+      number: reuse,
     }
 
     const currentCSS = renderer.renderToString()
@@ -107,7 +107,7 @@ function addStatistics(
       bytes,
       bytesGzipped: gzipSize.sync(currentCSS),
       kbytes: Math.floor(bytes / 10) / 100,
-      kbytesGzipped: Math.floor(gzipSize.sync(currentCSS) / 10) / 100
+      kbytesGzipped: Math.floor(gzipSize.sync(currentCSS) / 10) / 100,
     }
 
     return currentStats

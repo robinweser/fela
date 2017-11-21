@@ -8,7 +8,7 @@ const basicStatics = {
   caller: true,
   callee: true,
   arguments: true,
-  arity: true
+  arity: true,
 }
 
 const mergableStatics = ['contextTypes', 'defaultProps']
@@ -39,7 +39,7 @@ export default function hoistStatics(target: any, source: any): any {
 
       target[property] = {
         ...source[property],
-        ...targetStatics
+        ...targetStatics,
       }
     }
   })

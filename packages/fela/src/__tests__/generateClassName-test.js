@@ -21,7 +21,7 @@ describe('Generating a className', () => {
       id: 28,
       getId() {
         return ++renderer.id
-      }
+      },
     }
 
     expect(generateClassName(renderer.getId, filter)).toEqual('ae')

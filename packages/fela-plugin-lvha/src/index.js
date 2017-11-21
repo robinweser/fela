@@ -6,7 +6,7 @@ const precedence = {
   ':visited': 1,
   ':hover': 2,
   ':focus': 3,
-  ':active': 4
+  ':active': 4,
 }
 
 const pseudoClasses = Object.keys(precedence)

@@ -9,7 +9,7 @@ export default class CounterButton extends Component {
   constructor() {
     super()
     this.state = {
-      value: 0
+      value: 0,
     }
   }
 
@@ -23,7 +23,7 @@ export default class CounterButton extends Component {
 	 */
   set(newValue) {
     this.setState({
-      value: parseInt(newValue, 10)
+      value: parseInt(newValue, 10),
     })
   }
 
@@ -32,7 +32,7 @@ export default class CounterButton extends Component {
 	 */
   increment() {
     this.setState({
-      value: this.state.value + 1
+      value: this.state.value + 1,
     })
   }
 

@@ -68,14 +68,14 @@ export default function createComponentFactory(
         ...alwaysPassThroughProps,
         ...resolvePassThrough(passThroughProps, otherProps),
         ...resolvePassThrough(passThrough, otherProps),
-        ...(withProxy ? resolveUsedProps(usedProps, otherProps) : [])
+        ...(withProxy ? resolveUsedProps(usedProps, otherProps) : []),
       ]
 
       const ruleProps = {
         ...otherProps,
         theme,
         as,
-        id
+        id,
       }
 
       // if the component renders into another Fela component
@@ -89,7 +89,7 @@ export default function createComponentFactory(
             innerRef,
             style,
             className,
-            ...ruleProps
+            ...ruleProps,
           },
           children
         )

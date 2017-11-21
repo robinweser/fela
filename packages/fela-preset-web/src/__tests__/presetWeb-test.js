@@ -7,7 +7,7 @@ describe('preset-web-plugin', () => {
   it('should work without config', () => {
     const renderer = createRenderer({
       plugins: [...webPreset],
-      enhancers: [combineArrays()]
+      enhancers: [combineArrays()],
     })
 
     const rule = () => ({
@@ -15,9 +15,9 @@ describe('preset-web-plugin', () => {
       extend: {
         condition: true,
         style: {
-          border: 'none'
-        }
-      }
+          border: 'none',
+        },
+      },
     })
 
     renderer.renderRule(rule)
@@ -32,12 +32,12 @@ describe('preset-web-plugin', () => {
           unit: [
             'em',
             {
-              margin: '%'
-            }
-          ]
-        })
+              margin: '%',
+            },
+          ],
+        }),
       ],
-      enhancers: [combineArrays()]
+      enhancers: [combineArrays()],
     })
 
     it('should allow per plugin configuration', () => {

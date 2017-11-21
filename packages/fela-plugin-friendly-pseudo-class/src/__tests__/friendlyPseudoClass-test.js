@@ -5,15 +5,15 @@ describe('Friendly pseudo class plugin', () => {
     const style = {
       width: 20,
       onHover: {
-        color: 'red'
-      }
+        color: 'red',
+      },
     }
 
     expect(friendlyPseudoClass()(style)).toEqual({
       width: 20,
       ':hover': {
-        color: 'red'
-      }
+        color: 'red',
+      },
     })
   })
 
@@ -23,9 +23,9 @@ describe('Friendly pseudo class plugin', () => {
       onHover: {
         width: 30,
         onFocus: {
-          color: 'red'
-        }
-      }
+          color: 'red',
+        },
+      },
     }
 
     expect(friendlyPseudoClass()(style)).toEqual({
@@ -33,9 +33,9 @@ describe('Friendly pseudo class plugin', () => {
       ':hover': {
         width: 30,
         ':focus': {
-          color: 'red'
-        }
-      }
+          color: 'red',
+        },
+      },
     })
   })
 
@@ -47,10 +47,10 @@ describe('Friendly pseudo class plugin', () => {
         onFocus: {
           color: 'red',
           onHover: {
-            color: 'blue'
-          }
-        }
-      }
+            color: 'blue',
+          },
+        },
+      },
     }
 
     expect(friendlyPseudoClass()(style)).toEqual({
@@ -60,10 +60,10 @@ describe('Friendly pseudo class plugin', () => {
         ':focus': {
           color: 'red',
           ':hover': {
-            color: 'blue'
-          }
-        }
-      }
+            color: 'blue',
+          },
+        },
+      },
     })
   })
 })

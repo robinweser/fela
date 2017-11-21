@@ -7,5 +7,5 @@ import withTheme from './withTheme'
 
 export default connectFactory(Component, createElement, withTheme, {
   renderer: PropTypes.object,
-  theme: PropTypes.object
+  theme: PropTypes.object,
 })

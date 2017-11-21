@@ -4,5 +4,5 @@ export default {
   fontFaces: FONT_TYPE,
   statics: STATIC_TYPE,
   keyframes: KEYFRAME_TYPE,
-  rules: RULE_TYPE
+  rules: RULE_TYPE,
 }

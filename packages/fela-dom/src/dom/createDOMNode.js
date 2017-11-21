@@ -21,11 +21,14 @@ export default function createDOMNode(
 
   if (media.length > 0) {
     node.media = media
+  }
+
+  if (support || media.length > 0) {
     head.appendChild(node)
-  } else {
-    // if anchorNode is undefined it will
-    // be added at the end by default
+  } else if (anchorNode) {
     head.insertBefore(node, anchorNode)
+  } else {
+    head.appendChild(node)
   }
 
   return node

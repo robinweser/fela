@@ -7,14 +7,14 @@ import renderToString from '../../../fela-tools/src/renderToString'
 import { createComponent, Provider } from '../../../react-fela/src/index'
 
 const options = {
-  enhancers: [monolithic()]
+  enhancers: [monolithic()],
 }
 
 describe('Monolithic enhancer React integration', () => {
   it('should render a single class', () => {
     const renderer = createRenderer(options)
     const Component = createComponent(() => ({
-      color: 'red'
+      color: 'red',
     }))
 
     ReactTestRenderer.create(

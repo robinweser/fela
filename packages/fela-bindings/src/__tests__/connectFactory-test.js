@@ -11,22 +11,22 @@ import connectFactory from '../connectFactory'
 import withThemeFactory from '../withThemeFactory'
 
 const withTheme = withThemeFactory(Component, createElement, {
-  theme: PropTypes.object
+  theme: PropTypes.object,
 })
 
 const connect = connectFactory(Component, createElement, withTheme, {
-  renderer: PropTypes.object
+  renderer: PropTypes.object,
 })
 
 describe('Connect Factory for bindings', () => {
   it('should process rules and create classNames', () => {
     const rules = {
       rule1: () => ({
-        padding: 1
+        padding: 1,
       }),
       rule2: props => ({
-        color: props.color
-      })
+        color: props.color,
+      }),
     }
 
     const MyComponent = connect(rules)(({ styles }) => (
@@ -37,34 +37,34 @@ describe('Connect Factory for bindings', () => {
     ))
 
     MyComponent.defaultProps = {
-      color: 'red'
+      color: 'red',
     }
 
     const renderer = createRenderer()
     const wrapper = mount(<MyComponent />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should not pass through "theme" prop when used without "ThemeProvider"', () => {
     const rules = {
       rule1: () => ({
-        padding: 1
+        padding: 1,
       }),
       rule2: props => ({
-        color: props.color
-      })
+        color: props.color,
+      }),
     }
 
     const MyComponentDefaultProps = {
-      color: 'red'
+      color: 'red',
     }
 
     const MyComponent = connect(rules)(({ styles, ...props }) => (
@@ -79,24 +79,24 @@ describe('Connect Factory for bindings', () => {
     const renderer = createRenderer()
     const wrapper = mount(<MyComponent />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should process rules and create classNames with rules as function', () => {
     const rules = jest.fn(props => ({
       rule1: {
-        padding: 1
+        padding: 1,
       },
       rule2: {
-        color: props.color
-      }
+        color: props.color,
+      },
     }))
 
     const MyComponent = connect(rules)(({ styles }) => (
@@ -107,24 +107,24 @@ describe('Connect Factory for bindings', () => {
     ))
 
     MyComponent.defaultProps = {
-      color: 'red'
+      color: 'red',
     }
 
     const renderer = createRenderer()
     const wrapper = mount(<MyComponent />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect(rules).toHaveBeenCalledWith({
       color: 'red',
-      theme: {}
+      theme: {},
     })
     expect(rules).toHaveBeenCalledTimes(1)
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 })

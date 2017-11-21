@@ -50,7 +50,7 @@ describe('Connecting DOM nodes', () => {
 
     connectDOMNodes(renderer)
 
-    expect(renderer.nodes.RULE).toEqual(node)
+    expect(renderer.nodes.RULEfalse).toEqual(node)
     expect([
       Object.keys(renderer.nodes),
       beautify(document.documentElement.outerHTML, {

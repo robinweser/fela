@@ -3,7 +3,7 @@ import logger from 'fela-plugin-logger'
 import validator from 'fela-plugin-validator'
 
 type Config = {
-  validator?: Array<any>
+  validator?: Array<any>,
 }
 
 export function createDevPreset(

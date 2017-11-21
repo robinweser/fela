@@ -35,7 +35,7 @@ export default function connectFactory(
           const { theme, ...propsWithoutTheme } = this.props
           return createElement(component, {
             ...propsWithoutTheme,
-            styles
+            styles,
           })
         }
       }

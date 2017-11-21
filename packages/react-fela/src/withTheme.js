@@ -4,5 +4,5 @@ import PropTypes from 'prop-types'
 import { withThemeFactory } from 'fela-bindings'
 
 export default withThemeFactory(Component, createElement, {
-  theme: PropTypes.object
+  theme: PropTypes.object,
 })

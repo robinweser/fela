@@ -9,16 +9,16 @@ export default ThemeProviderFactory(
   {
     propTypes: {
       theme: PropTypes.object.isRequired,
-      overwrite: PropTypes.bool
+      overwrite: PropTypes.bool,
     },
     childContextTypes: {
-      theme: PropTypes.object
+      theme: PropTypes.object,
     },
     contextTypes: {
-      theme: PropTypes.object
+      theme: PropTypes.object,
     },
     defaultProps: {
-      overwrite: false
-    }
+      overwrite: false,
+    },
   }
 )

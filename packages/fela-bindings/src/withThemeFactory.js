@@ -9,7 +9,7 @@ export default function withThemeFactory(
   return function withTheme(component: Object): Object {
     class WithTheme extends BaseComponent {
       state: {
-        theme: Object
+        theme: Object,
       }
 
       unsubscribe: ?Function
@@ -18,7 +18,7 @@ export default function withThemeFactory(
         super(props, context)
 
         this.state = {
-          theme: context.theme ? context.theme.get() : {}
+          theme: context.theme ? context.theme.get() : {},
         }
       }
 
@@ -26,7 +26,7 @@ export default function withThemeFactory(
         if (this.context.theme) {
           this.unsubscribe = this.context.theme.subscribe(properties =>
             this.setState({
-              theme: properties
+              theme: properties,
             })
           )
         }
@@ -51,7 +51,7 @@ export default function withThemeFactory(
 
         return createElement(component, {
           ...passProps,
-          theme: this.state.theme
+          theme: this.state.theme,
         })
       }
     }

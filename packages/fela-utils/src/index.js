@@ -1,4 +1,4 @@
-import applyMediaRulesInOrder from './applyMediaRulesInOrder'
+import applyKeysInOrder from './applyKeysInOrder'
 import clusterCache from './clusterCache'
 import cssifySupportRules from './cssifySupportRules'
 import generateCombinedMediaQuery from './generateCombinedMediaQuery'
@@ -22,7 +22,7 @@ import {
 } from './styleTypes'
 
 export {
-  applyMediaRulesInOrder,
+  applyKeysInOrder,
   clusterCache,
   cssifySupportRules,
   generateCombinedMediaQuery,

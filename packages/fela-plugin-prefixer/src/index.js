@@ -16,7 +16,7 @@ function addVendorPrefixes(style: Object): Object {
         prefixedStyle[property] = addVendorPrefixes(value)
       } else {
         const prefixedDeclaration = prefix({
-          [property]: style[property]
+          [property]: style[property],
         })
         const styleKeys = Object.keys(prefixedDeclaration)
 

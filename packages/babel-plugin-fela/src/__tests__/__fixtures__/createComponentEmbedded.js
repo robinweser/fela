@@ -8,7 +8,7 @@ export default createComponent(({ fontSize, padding }) => ({
     lineHeight: 2,
     ':hover': {
       color: 'black',
-      paddingLeft: padding
-    }
-  }
+      paddingLeft: padding,
+    },
+  },
 }))
