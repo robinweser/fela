@@ -22,7 +22,6 @@ type Sheet = {
 
 export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
   const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
-
   const rehydrationIndex = getRehydrationIndex(renderer)
 
   const sheetList = reduce(
@@ -41,16 +40,53 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
     []
   )
 
+  const support = cssifySupportRules(cacheCluster.supportRules)
+
+  if (support) {
+    sheetList.push({
+      css: support,
+      type: RULE_TYPE,
+      rehydration: rehydrationIndex,
+      support: true,
+    })
+  }
+
+  const mediaKeys = Object.keys({
+    ...cacheCluster.supportMediaRules,
+    ...cacheCluster.mediaRules,
+  })
+
   return reduce(
-    cacheCluster.mediaRules,
-    (list, css, media) => {
-      if (css.length > 0) {
+    mediaKeys,
+    (list, media) => {
+      // basic media query rules
+      if (
+        cacheCluster.mediaRules[media] &&
+        cacheCluster.mediaRules[media].length > 0
+      ) {
         list.push({
-          css,
+          css: cacheCluster.mediaRules[media],
           type: RULE_TYPE,
           rehydration: rehydrationIndex,
           media,
         })
+      }
+
+      // support media rules
+      if (cacheCluster.supportMediaRules[media]) {
+        const mediaSupport = cssifySupportRules(
+          cacheCluster.supportMediaRules[media]
+        )
+
+        if (mediaSupport.length > 0) {
+          list.push({
+            css: mediaSupport,
+            type: RULE_TYPE,
+            rehydration: rehydrationIndex,
+            support: true,
+            media,
+          })
+        }
       }
 
       return list

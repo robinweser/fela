@@ -15,7 +15,6 @@ import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 export default function renderToMarkup(renderer: DOMRenderer): string {
   const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
-
   const rehydrationIndex = getRehydrationIndex(renderer)
 
   let styleMarkup = reduce(
