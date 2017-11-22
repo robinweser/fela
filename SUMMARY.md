@@ -41,8 +41,9 @@
     * [6.1.4. enhance](docs/api/fela/enhance.md)
   * 6.2. fela-dom
     * [6.2.1. render](docs/api/fela-dom/render.md)
-    * [6.2.2. renderToMarkup](docs/api/fela-dom/renderToMarkup.md)
-    * [6.2.3. renderToSheetList](docs/api/fela-dom/renderToSheetList.md)
+    * [6.2.2. rehydrate](docs/api/fela-dom/rehydrate.md)
+    * [6.2.3. renderToMarkup](docs/api/fela-dom/renderToMarkup.md)
+    * [6.2.4. renderToSheetList](docs/api/fela-dom/renderToSheetList.md)
   * 6.3. fela-native
     * [6.3.1. createRenderer](docs/api/fela-native/createRenderer.md)
     * [6.3.2. Renderer](docs/api/fela-native/Renderer.md)
