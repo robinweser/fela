@@ -22,7 +22,7 @@ export default function connectDOMNodes(renderer: DOMRenderer): void {
     renderer.supportQueryOrder
   )
 
-  const baseNode = renderer.nodes[RULE_TYPE + false]
+  const baseNode = renderer.nodes[RULE_TYPE]
 
   forEach(sheetMap, (type, key) => {
     if (cacheCluster[key].length > 0) {

@@ -3,10 +3,10 @@
 exports[`Connecting DOM nodes should initialize nodes 1`] = `
 Array [
   Array [
-    "RULEfalse",
-    "RULEtrue",
-    "RULE(min-height: 800px)false",
-    "RULE(min-height: 800px)true",
+    "RULE",
+    "RULEsupport",
+    "RULE(min-height: 800px)",
+    "RULE(min-height: 800px)support",
   ],
   "<html>
 

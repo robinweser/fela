@@ -17,8 +17,8 @@ describe('Collecting fela DOM nodes', () => {
     document.head.appendChild(node2)
 
     expect(findDOMNodes()).toEqual({
-      RULEfalse: node1,
-      'RULE(max-width: 800px)false': node2,
+      RULE: node1,
+      'RULE(max-width: 800px)': node2,
     })
   })
 })

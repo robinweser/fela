@@ -8,7 +8,7 @@ export default function getDOMNode(
   media?: string = '',
   support?: boolean = false
 ): Object {
-  const key = type + media + support
+  const key = type + media + (support ? 'support' : '')
 
   if (!nodes.hasOwnProperty(key)) {
     nodes[key] = createDOMNode(type, baseNode, media, support)

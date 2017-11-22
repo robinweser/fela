@@ -7,7 +7,7 @@ export default function findDOMNodes(): Object {
     (nodes, node) => {
       const type = node.getAttribute('data-fela-type') || ''
       const media = node.getAttribute('media') || ''
-      const support = node.getAttribute('support') || false
+      const support = node.getAttribute('support') ? 'support' : ''
 
       nodes[type + media + support] = node
       return nodes

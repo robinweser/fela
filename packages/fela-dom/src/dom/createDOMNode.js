@@ -16,7 +16,7 @@ export default function createDOMNode(
   node.type = 'text/css'
 
   if (support) {
-    node.setAttribute('data-fela-support', true)
+    node.setAttribute('data-fela-support', 'true')
   }
 
   if (media.length > 0) {
