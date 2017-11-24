@@ -1,7 +1,7 @@
 {
   "name": "fela",
   "version": "6.0.5",
-  "description": "Style as a Function of State",
+  "description": "State-Driven Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -23,7 +23,9 @@
     "functional styling",
     "functional css",
     "atomic css",
+    "state-driven",
     "atomic design",
+    "state-driven styling",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
