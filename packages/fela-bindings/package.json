@@ -1,6 +1,6 @@
 {
   "name": "fela-bindings",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Abstract binding factories for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -22,12 +22,12 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-dom": "^6.0.6",
+    "fela-dom": "^7.0.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "fela": "^6.0.5",
-    "fela-monolithic": "^5.0.13",
-    "fela-tools": "^5.0.13"
+    "fela": "^6.1.0",
+    "fela-monolithic": "^5.0.14",
+    "fela-tools": "^5.0.14"
   }
 }
