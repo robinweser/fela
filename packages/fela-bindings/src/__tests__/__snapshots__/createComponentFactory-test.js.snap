@@ -13,7 +13,7 @@ Array [
 </style>",
   <rule>
     <rule
-        theme={
+        _felaTheme={
             Object {
                 "header": Object {
                   "color": "black",
@@ -37,9 +37,9 @@ Array [
     onClick={[Function]}
 >
     <FelaComponent
+        _felaTheme={Object {}}
         color="red"
         onClick={[Function]}
-        theme={Object {}}
     >
         <FelaComponent
             _felaRule={[Function]}
@@ -50,10 +50,10 @@ Array [
                     "onClick",
                   ]
             }
-            theme={Object {}}
         >
             <FelaComponent
                 _felaRule={[Function]}
+                _felaTheme={Object {}}
                 color="red"
                 onClick={[Function]}
                 passThrough={
@@ -61,7 +61,6 @@ Array [
                         "onClick",
                       ]
                 }
-                theme={Object {}}
             >
                 <div
                     className=""
@@ -92,17 +91,16 @@ Array [
 </style>",
   <anotherRule>
     <anotherRule
-        theme={Object {}}
+        _felaTheme={Object {}}
     >
         <rule
             _felaRule={[Function]}
             passThrough={Array []}
-            theme={Object {}}
         >
             <rule
                 _felaRule={[Function]}
+                _felaTheme={Object {}}
                 passThrough={Array []}
-                theme={Object {}}
             >
                 <div
                     className="a b c"
@@ -134,9 +132,9 @@ Array [
     extend={[Function]}
 >
     <rule
+        _felaTheme={Object {}}
         bgColor="red"
         extend={[Function]}
-        theme={Object {}}
     >
         <div
             className="a b c"
@@ -170,13 +168,13 @@ Array [
     }
 >
     <rule
+        _felaTheme={Object {}}
         extend={
             Object {
                 "backgroundColor": "red",
                 "fontSize": "14px",
               }
         }
-        theme={Object {}}
     >
         <div
             className="a b c"
@@ -201,8 +199,8 @@ Array [
     color="red"
 >
     <rule
+        _felaTheme={Object {}}
         color="red"
-        theme={Object {}}
     >
         <Comp
             className="a b"
@@ -236,10 +234,10 @@ Array [
     onHover={true}
 >
     <rule
+        _felaTheme={Object {}}
         color={true}
         onClick={false}
         onHover={true}
-        theme={Object {}}
     >
         <div
             className="a b"
@@ -266,9 +264,9 @@ Array [
     data-foo={true}
 >
     <rule
+        _felaTheme={Object {}}
         color="black"
         data-foo={true}
-        theme={Object {}}
     >
         <div
             className="a b"
@@ -294,8 +292,8 @@ Array [
     as="button"
 >
     <Button
+        _felaTheme={Object {}}
         as="button"
-        theme={Object {}}
     >
         <button
             className="a b"
@@ -317,9 +315,9 @@ Array [
     onClick={false}
 >
     <rule
+        _felaTheme={Object {}}
         data-foo={true}
         onClick={false}
-        theme={Object {}}
     >
         <div
             className="a"
@@ -351,13 +349,13 @@ Array [
     }
 >
     <rule
+        _felaTheme={Object {}}
         color="blue"
         testProp={
             Object {
                 "tabIndex": "-1",
               }
         }
-        theme={Object {}}
     >
         <UnderlyingComp
             className="a b"
@@ -377,8 +375,8 @@ Array [
     color="blue"
 >
     <rule
+        _felaTheme={Object {}}
         color="blue"
-        theme={Object {}}
     >
         <UnderlyingComp
             className="a b"
@@ -412,9 +410,9 @@ Array [
     color="blue"
 >
     <rule
+        _felaTheme={Object {}}
         as="i"
         color="blue"
-        theme={Object {}}
     >
         <i
             className="a b"
@@ -425,8 +423,8 @@ Array [
     color="blue"
 >
     <rule
+        _felaTheme={Object {}}
         color="blue"
-        theme={Object {}}
     >
         <div
             className="c b"
@@ -456,23 +454,22 @@ Array [
     color="green"
 >
     <anotherRule
+        _felaTheme={Object {}}
         as="i"
         color="green"
-        theme={Object {}}
     >
         <rule
             _felaRule={[Function]}
             as="i"
             color="green"
             passThrough={Array []}
-            theme={Object {}}
         >
             <rule
                 _felaRule={[Function]}
+                _felaTheme={Object {}}
                 as="i"
                 color="green"
                 passThrough={Array []}
-                theme={Object {}}
             >
                 <i
                     className="a b c"
@@ -499,8 +496,8 @@ Array [
     color="black"
 >
     <rule
+        _felaTheme={Object {}}
         color="black"
-        theme={Object {}}
     >
         <div
             className="a b"
@@ -519,7 +516,7 @@ Array [
 </style>",
   <Button>
     <Button
-        theme={Object {}}
+        _felaTheme={Object {}}
     >
         <div
             className="Fela-Button_div__abrv9k"
@@ -538,7 +535,7 @@ Array [
 </style>",
   <Button>
     <Button
-        theme={Object {}}
+        _felaTheme={Object {}}
     >
         <div
             className="Button_div__abrv9k"
@@ -561,7 +558,7 @@ Array [
 </style>",
   <rule>
     <rule
-        theme={
+        _felaTheme={
             Object {
                 "color": "red",
               }
@@ -588,7 +585,7 @@ Array [
 </style>",
   <rule>
     <rule
-        theme={
+        _felaTheme={
             Object {
                 "header": Object {
                   "color": "black",
@@ -612,9 +609,9 @@ Array [
     onClick={[Function]}
 >
     <FelaComponent
+        _felaTheme={Object {}}
         color="red"
         onClick={[Function]}
-        theme={Object {}}
     >
         <FelaComponent
             _felaRule={[Function]}
@@ -627,10 +624,10 @@ Array [
                     "color",
                   ]
             }
-            theme={Object {}}
         >
             <FelaComponent
                 _felaRule={[Function]}
+                _felaTheme={Object {}}
                 color="red"
                 onClick={[Function]}
                 passThrough={
@@ -640,7 +637,6 @@ Array [
                         "color",
                       ]
                 }
-                theme={Object {}}
             >
                 <div
                     className=""
@@ -671,17 +667,16 @@ Array [
 </style>",
   <anotherRule>
     <anotherRule
-        theme={Object {}}
+        _felaTheme={Object {}}
     >
         <rule
             _felaRule={[Function]}
             passThrough={Array []}
-            theme={Object {}}
         >
             <rule
                 _felaRule={[Function]}
+                _felaTheme={Object {}}
                 passThrough={Array []}
-                theme={Object {}}
             >
                 <div
                     className="a b c"
@@ -710,10 +705,10 @@ Array [
     onClick={false}
 >
     <rule
+        _felaTheme={Object {}}
         color={true}
         data-foo={true}
         onClick={false}
-        theme={Object {}}
     >
         <div
             className="a b"
@@ -741,9 +736,9 @@ Array [
     data-foo={true}
 >
     <rule
+        _felaTheme={Object {}}
         color="black"
         data-foo={true}
-        theme={Object {}}
     >
         <div
             className="a b"
@@ -770,8 +765,8 @@ Array [
     as="button"
 >
     <Button
+        _felaTheme={Object {}}
         as="button"
-        theme={Object {}}
     >
         <button
             className="a b"
@@ -793,9 +788,9 @@ Array [
     onClick={false}
 >
     <rule
+        _felaTheme={Object {}}
         data-foo={true}
         onClick={false}
-        theme={Object {}}
     >
         <div
             className="a"
@@ -824,10 +819,10 @@ Array [
     onClick={false}
 >
     <rule
+        _felaTheme={Object {}}
         color={true}
         data-foo={true}
         onClick={false}
-        theme={Object {}}
     >
         <div
             className="a b"
@@ -855,8 +850,8 @@ Array [
     color="black"
 >
     <rule
+        _felaTheme={Object {}}
         color="black"
-        theme={Object {}}
     >
         <div
             className="a b"
@@ -875,7 +870,7 @@ Array [
 </style>",
   <Button>
     <Button
-        theme={Object {}}
+        _felaTheme={Object {}}
     >
         <div
             className="Fela-Button_div__abrv9k"
@@ -894,7 +889,7 @@ Array [
 </style>",
   <Button>
     <Button
-        theme={Object {}}
+        _felaTheme={Object {}}
     >
         <div
             className="Button_div__abrv9k"
@@ -917,7 +912,7 @@ Array [
 </style>",
   <rule>
     <rule
-        theme={
+        _felaTheme={
             Object {
                 "color": "black",
               }
@@ -947,9 +942,9 @@ Array [
     innerRef={[Function]}
 >
     <rule
+        _felaTheme={Object {}}
         color="black"
         innerRef={[Function]}
-        theme={Object {}}
     >
         <div
             className="a b"

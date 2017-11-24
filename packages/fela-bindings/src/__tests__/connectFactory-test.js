@@ -9,9 +9,10 @@ import { createRenderer } from 'fela'
 
 import connectFactory from '../connectFactory'
 import withThemeFactory from '../withThemeFactory'
+import { THEME_CHANNEL } from '../themeChannel'
 
 const withTheme = withThemeFactory(Component, createElement, {
-  theme: PropTypes.object,
+  [THEME_CHANNEL]: PropTypes.object,
 })
 
 const connect = connectFactory(Component, createElement, withTheme, {
@@ -119,7 +120,7 @@ describe('Connect Factory for bindings', () => {
 
     expect(rules).toHaveBeenCalledWith({
       color: 'red',
-      theme: {},
+      _felaTheme: {},
     })
     expect(rules).toHaveBeenCalledTimes(1)
     expect([

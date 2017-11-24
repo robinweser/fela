@@ -24,7 +24,7 @@ export default function createComponentFactory(
     const FelaComponent = (
       {
         children,
-        theme,
+        _felaTheme,
         _felaRule,
         extend,
         innerRef,
@@ -43,7 +43,7 @@ export default function createComponentFactory(
         )
       }
 
-      const usedProps = withProxy ? extractUsedProps(rule, theme) : []
+      const usedProps = withProxy ? extractUsedProps(rule, _felaTheme) : []
 
       const rules = [rule]
       if (_felaRule) {
@@ -73,7 +73,7 @@ export default function createComponentFactory(
 
       const ruleProps = {
         ...otherProps,
-        theme,
+        theme: _felaTheme,
         as,
         id,
       }
@@ -89,7 +89,9 @@ export default function createComponentFactory(
             innerRef,
             style,
             className,
-            ...ruleProps,
+            as,
+            id,
+            ...otherProps,
           },
           children
         )
@@ -134,7 +136,7 @@ export default function createComponentFactory(
     FelaComponent.displayName = displayName
     FelaComponent._isFelaComponent = true
 
-    const themedComponent = withTheme(FelaComponent)
+    const themedComponent = withTheme(FelaComponent, '_felaTheme')
     return hoistStatics(themedComponent, type)
   }
 }

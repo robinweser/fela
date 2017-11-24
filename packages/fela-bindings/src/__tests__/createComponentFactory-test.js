@@ -11,9 +11,10 @@ import monolithic from 'fela-monolithic'
 import createComponentFactory from '../createComponentFactory'
 import withThemeFactory from '../withThemeFactory'
 import createTheme from '../createTheme'
+import { THEME_CHANNEL } from '../themeChannel'
 
 const withTheme = withThemeFactory(BaseComponent, createElement, {
-  theme: PropTypes.object,
+  [THEME_CHANNEL]: PropTypes.object,
 })
 
 const createComponent = createComponentFactory(createElement, withTheme, {
@@ -114,7 +115,7 @@ describe('Creating Components from Fela rules', () => {
     const wrapper = mount(<Component />, {
       context: {
         renderer,
-        theme,
+        [THEME_CHANNEL]: theme,
       },
     })
 
@@ -141,7 +142,7 @@ describe('Creating Components from Fela rules', () => {
     const wrapper = mount(<Component />, {
       context: {
         renderer,
-        theme,
+        [THEME_CHANNEL]: theme,
       },
     })
 
@@ -549,7 +550,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const wrapper = mount(<Component />, {
       context: {
         renderer,
-        theme,
+        [THEME_CHANNEL]: theme,
       },
     })
 
@@ -575,7 +576,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const wrapper = mount(<Component />, {
       context: {
         renderer,
-        theme,
+        [THEME_CHANNEL]: theme,
       },
     })
 
