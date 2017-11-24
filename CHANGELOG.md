@@ -14,6 +14,7 @@ If you're searching for older version-based release notes please check out the o
 | fela-preset-web<br>fela-preset-dev | 8.0.0<br>6.0.0 | [(#470)](https://github.com/rofrischmann/fela/pull/470) Preset configuration has been improved. The plugin keys have been renamed to just the actual plugin name (e.g. `fela-plugin-unit` => `unit`) |
 | fela | 6.1.0 | [(#472)](https://github.com/rofrischmann/fela/pull/472) To explicitly order `@supports` queries `createRenderer` now accepts a `supportQueryOrder` options which works identical to `mediaQueryOrder`. <br>[(#471)](https://github.com/rofrischmann/fela/pull/471) Fixed the `combineRules` TypeScript definition |
 | fela-bindings<br>react-fela<br>inferno-fela<br>preact-fela | 1.2.0<br>6.1.1<br>6.1.1<br>6.1.1 | [(#475)](https://github.com/rofrischmann/fela/pull/475) Use scoped context and props keys to avoid namespace conflicts for theming. `withTheme` accepts an additional `propName` argument to specify an alternative name instead of `theme`. |
+| fela-beautifier| 5.0.14 | More robust reactive client-side beautifier. |
 
 ## 14/11/17
 | Package | Version | Changes |
