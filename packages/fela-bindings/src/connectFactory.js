@@ -17,6 +17,7 @@ export default function connectFactory(
 
         render() {
           const { renderer } = this.context
+          const { _felaTheme, ...otherProps } = this.props
 
           const preparedRules =
             typeof rules === 'function' ? rules(this.props) : rules
@@ -26,15 +27,18 @@ export default function connectFactory(
             (styleMap, rule, name) => {
               const preparedRule =
                 typeof rule !== 'function' ? () => rule : rule
-              styleMap[name] = renderer.renderRule(preparedRule, this.props)
+              styleMap[name] = renderer.renderRule(preparedRule, {
+                ...otherProps,
+                theme: _felaTheme,
+              })
+
               return styleMap
             },
             {}
           )
 
-          const { theme, ...propsWithoutTheme } = this.props
           return createElement(component, {
-            ...propsWithoutTheme,
+            ...otherProps,
             styles,
           })
         }
@@ -44,7 +48,7 @@ export default function connectFactory(
         EnhancedComponent.contextTypes = contextTypes
       }
 
-      const themedComponent = withTheme(EnhancedComponent)
+      const themedComponent = withTheme(EnhancedComponent, '_felaTheme')
       return hoistStatics(themedComponent, component)
     }
   }

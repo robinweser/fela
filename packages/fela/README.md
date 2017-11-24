@@ -46,9 +46,9 @@ You may alternatively use `npm i --save fela`.
 * Local namespace
 
 ## The Gist
-Fela's core principle is to consider **style as a function of state**.<br>
+Fela's core principle is to consider [style as a function of state](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch).<br>
 The whole API and all plugins and bindings are built on that idea.<br>
-It is reactive and auto-updates onces registered to the DOM.<br>
+It is reactive and auto-updates once registered to the DOM.<br>
 
 The following example illustrates the key parts of Fela though it only shows the very basics.
 
@@ -64,7 +64,6 @@ const rule = state => ({
   background: state.primary ? 'green' : 'blue',
   fontSize: '18pt',
   borderRadius: 5,
-
   // deeply nest media queries and pseudo classes
   ':hover': {
     background: state.primary ? 'chartreuse' : 'dodgerblue',
@@ -104,7 +103,18 @@ If you ever used [styled-components](https://www.styled-components.com), this wi
 import { createComponent, Provider } from 'react-fela'
 import { render } from 'react-dom'
 
-// using the above defined rule and fela renderer
+const rule = state => ({
+  textAlign: 'center',
+  padding: '5px 10px',
+  background: state.primary ? 'green' : 'blue',
+  fontSize: '18pt',
+  borderRadius: 5,
+  ':hover': {
+    background: state.primary ? 'chartreuse' : 'dodgerblue',
+    boxShadow: '0 0 2px rgb(70, 70, 70)'
+  }
+})
+
 const Button = createComponent(rule, 'button')
 
 render(
@@ -135,6 +145,7 @@ render(
 * [Usage Guides](http://fela.js.org/docs/UsageGuides.html)
 * [Recipes](http://fela.js.org/docs/Recipes.html)
 * [API Reference](http://fela.js.org/docs/API.html)
+* [Migration Guide](http://fela.js.org/docs/MigrationGuide.html)
 * [Troubleshooting](http://fela.js.org/docs/Troubleshooting.html)
 * [FAQ](http://fela.js.org/docs/FAQ.html)
 * [Feedback](http://fela.js.org/docs/Feedback.html)
@@ -144,7 +155,7 @@ render(
 If you are coming from CSS and want to learn JavaScript Styling with Fela, there is a full-feature [fela-workshop](https://github.com/tajo/fela-workshop) which demonstrates typical Fela use cases. It teaches all important parts, step by step with simple examples. If you already know other CSS in JS solutions and are just switching to Fela, you might not need to do the whole workshop, but it still provides useful information to get started quickly.
 
 ## Posts & Talks
-* [**CSS in JS: The Good & Bad Parts**](https://youtu.be/X9iqnovPGyY?t=1h41m47s) ([Slides](https://speakerdeck.com/rofrischmann/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
+* [**CSS in JS: The Good & Bad Parts**](https://www.youtube.com/watch?v=95M-2YzyTno) ([Slides](https://speakerdeck.com/rofrischmann/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
 * [**Style as a Function of State**](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
 * [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [Daniel Steigerwald](https://twitter.com/steida)*
 * [**What is Fela?**](https://davidsinclair.io/thoughts/what-is-fela)<br> - *by [David Sinclair](https://davidsinclair.io)*

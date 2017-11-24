@@ -15,8 +15,8 @@ Array [
     color="red"
 >
     <ConnectedFelaComponent
+        _felaTheme={Object {}}
         color="red"
-        theme={Object {}}
     >
         <Component
             color="red"
@@ -58,8 +58,8 @@ Array [
     color="red"
 >
     <ConnectedFelaComponent
+        _felaTheme={Object {}}
         color="red"
-        theme={Object {}}
     >
         <Component
             color="red"
@@ -99,8 +99,8 @@ Array [
     color="red"
 >
     <ConnectedFelaComponent
+        _felaTheme={Object {}}
         color="red"
-        theme={Object {}}
     >
         <Component
             color="red"

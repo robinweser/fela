@@ -3,6 +3,7 @@ import isEqual from 'lodash/isEqual'
 import forEach from 'lodash/forEach'
 
 import createTheme from './createTheme'
+import { THEME_CHANNEL } from './themeChannel'
 
 export default function ThemeProviderFactory(
   BaseComponent: any,
@@ -15,7 +16,7 @@ export default function ThemeProviderFactory(
     constructor(props: Object, context: Object) {
       super(props, context)
 
-      const previousTheme = !props.overwrite && this.context.theme
+      const previousTheme = !props.overwrite && this.context[THEME_CHANNEL]
       this.theme = createTheme(props.theme, previousTheme)
     }
 
@@ -27,7 +28,7 @@ export default function ThemeProviderFactory(
 
     getChildContext(): Object {
       return {
-        theme: this.theme,
+        [THEME_CHANNEL]: this.theme,
       }
     }
 
