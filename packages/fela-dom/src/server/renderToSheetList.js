@@ -21,7 +21,12 @@ type Sheet = {
 }
 
 export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
-  const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
+  const cacheCluster = clusterCache(
+    renderer.cache,
+    renderer.mediaQueryOrder,
+    renderer.supportQueryOrder
+  )
+
   const rehydrationIndex = getRehydrationIndex(renderer)
 
   const sheetList = reduce(

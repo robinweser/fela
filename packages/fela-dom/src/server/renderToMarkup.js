@@ -14,7 +14,12 @@ import getRehydrationIndex from './getRehydrationIndex'
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 export default function renderToMarkup(renderer: DOMRenderer): string {
-  const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
+  const cacheCluster = clusterCache(
+    renderer.cache,
+    renderer.mediaQueryOrder,
+    renderer.supportQueryOrder
+  )
+
   const rehydrationIndex = getRehydrationIndex(renderer)
 
   let styleMarkup = reduce(

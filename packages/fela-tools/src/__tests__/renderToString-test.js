@@ -1,3 +1,4 @@
+import { css as beautify } from 'js-beautify'
 import { createRenderer } from 'fela'
 
 import renderToString from '../renderToString'
@@ -6,8 +7,30 @@ describe('Rendering to string', () => {
   it('should return a single CSS string', () => {
     const rule = props => ({
       color: props.color,
+      '@supports (display:flex)': {
+        color: 'yellow',
+      },
+      '@supports (display:grid)': {
+        color: 'brown',
+      },
       '@media (min-height: 300px)': {
         color: 'blue',
+        '@supports (display:flex)': {
+          color: 'green',
+        },
+        '@supports (display:grid)': {
+          color: 'black',
+        },
+      },
+
+      '@media (max-height: 300px)': {
+        '@supports (display:flex)': {
+          color: 'purple',
+        },
+      },
+
+      '@media (max-width: 300px)': {
+        color: 'grey',
       },
     })
 
@@ -23,8 +46,10 @@ describe('Rendering to string', () => {
       'div'
     )
 
-    expect(renderToString(renderer)).toEqual(
-      '*{box-sizing:border-box}div{display:flex}.a{color:red}@media (min-height: 300px){.b{color:blue}}'
-    )
+    expect(
+      beautify(renderToString(renderer), {
+        indent_size: 2,
+      })
+    ).toMatchSnapshot()
   })
 })

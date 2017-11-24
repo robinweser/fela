@@ -2,6 +2,7 @@
 import reduce from 'lodash/reduce'
 import {
   clusterCache,
+  cssifySupportRules,
   RULE_TYPE,
   KEYFRAME_TYPE,
   STATIC_TYPE,
@@ -11,16 +12,36 @@ import {
 import cssifyMediaQueryRules from './cssifyMediaQueryRules'
 
 export default function renderToString(renderer: Object): string {
-  const { fontFaces, statics, keyframes, rules, mediaRules } = clusterCache(
+  const {
+    fontFaces,
+    statics,
+    keyframes,
+    rules,
+    mediaRules,
+    supportRules,
+    supportMediaRules,
+  } = clusterCache(
     renderer.cache,
-    renderer.mediaQueryOrder
+    renderer.mediaQueryOrder,
+    renderer.supportQueryOrder
   )
 
-  const basicCSS = fontFaces + statics + keyframes + rules
+  const basicCSS =
+    fontFaces + statics + keyframes + rules + cssifySupportRules(supportRules)
+
+  const mediaKeys = Object.keys({
+    ...supportMediaRules,
+    ...mediaRules,
+  })
 
   return reduce(
-    mediaRules,
-    (css, rules, query) => css + cssifyMediaQueryRules(query, rules),
+    mediaKeys,
+    (css, query) => {
+      const mediaCSS = mediaRules[query] || ''
+      const supportCSS = cssifySupportRules(supportMediaRules[query] || {})
+
+      return css + cssifyMediaQueryRules(query, mediaCSS + supportCSS)
+    },
     basicCSS
   )
 }

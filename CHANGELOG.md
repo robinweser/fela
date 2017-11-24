@@ -8,10 +8,11 @@ If you're searching for older version-based release notes please check out the o
 ## 24/11/17
 | Package | Version | Changes |
 | ---- | --- | --- |
-| fela-dom | 7.0.0 | [(#472)](https://github.com/rofrischmann/fela/pull/472) `@supports` rules are now completely separated from basic rules. Serverside methods now return a new flag for `@supports` rules.<br>The deprecated `rehydrateCache` has been removed. Use `rehydrate` from now on. |
+| fela-dom | 7.0.0 | [(#472)](https://github.com/rofrischmann/fela/pull/472) `@supports` queries are now completely separated from basic rules. Serverside methods now return a new flag for `@supports` queries.<br>The deprecated `rehydrateCache` has been removed. Use `rehydrate` from now on. |
+| fela-tools | 5.0.14 | [(#472)](https://github.com/rofrischmann/fela/pull/472) updated `renderToString` to support the new `@supports` logic |
 | fela-utils | 8.0.0 | [(#470)](https://github.com/rofrischmann/fela/pull/470) Many internal utilites have been moved to the packages directly. Some helpers have been replaced with lodash equivalents. |
 | fela-preset-web<br>fela-preset-dev | 8.0.0<br>6.0.0 | [(#470)](https://github.com/rofrischmann/fela/pull/470) Preset configuration has been improved. The plugin keys have been renamed to just the actual plugin name (e.g. `fela-plugin-unit` => `unit`) |
-| fela | 6.0.6 | [(#471)](https://github.com/rofrischmann/fela/pull/471) Fixed the `combineRules` TypeScript definition |
+| fela | 6.1.0 | [(#472)](https://github.com/rofrischmann/fela/pull/472) To explicitly order `@supports` queries `createRenderer` now accepts a `supportQueryOrder` options which works identical to `mediaQueryOrder`. <br>[(#471)](https://github.com/rofrischmann/fela/pull/471) Fixed the `combineRules` TypeScript definition |
 | fela-bindings<br>react-fela<br>inferno-fela<br>preact-fela | 1.2.0<br>6.1.1<br>6.1.1<br>6.1.1 | [(#475)](https://github.com/rofrischmann/fela/pull/475) Use scoped context and props keys to avoid namespace conflicts for theming. `withTheme` accepts an additional `propName` argument to specify an alternative name instead of `theme`. |
 
 ## 14/11/17
