@@ -90,12 +90,12 @@ ReactDOM.render(<Responsive width='100%' widths={widths} />, document.body)
 
 ## Compact markup
 We now have a highly dynamic approach to responsive components, but it also really bloats the markup and, especially when inlined, significantly reduces the readability.<br><br>
-You may improve that using the [fela-plugin-named-media-query](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-named-media-query).
+You may improve that using the [fela-plugin-named-keys](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-named-keys).
 
 It let's us define some global alias for media query strings, which can then be used directly within Fela rules. With the following configuration:
 
 ```javascript
-const namedMediaQueryPlugin = namedMediaQuery({
+const namedKeysPlugin = namedKeys({
   phablet: '@media (min-width: 768px)',
   tablet: '@media (min-width: 1024px)',
   desktop: '@media (min-width: 1440px)'

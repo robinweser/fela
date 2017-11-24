@@ -1,7 +1,7 @@
 {
-  "name": "fela-plugin-named-media-query",
+  "name": "fela-plugin-named-keys",
   "version": "5.0.13",
-  "description": "Fela plugin to support named media query syntax",
+  "description": "Fela plugin to replace named keys",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -16,6 +16,7 @@
     "fela",
     "fela-plugin",
     "media query",
+    "supports",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
