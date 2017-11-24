@@ -1,15 +1,23 @@
 /* @flow */
 import cssbeautify from 'cssbeautify'
-import forOwn from 'lodash/forOwn'
+import forEach from 'lodash/forEach'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
 function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
-  renderer.subscribe(() =>
-    forOwn(renderer.nodes, (node, key) => {
-      node.textContent = cssbeautify(node.textContent, options)
+  function beautify() {
+    forEach(renderer.nodes, (node, key) => {
+      const beautifiedContent = cssbeautify(node.textContent, options)
+
+      if (node.textContent !== beautifiedContent) {
+        node.textContent = beautifiedContent
+      }
     })
-  )
+
+    setTimeout(beautify, 200)
+  }
+
+  beautify()
 
   return renderer
 }
