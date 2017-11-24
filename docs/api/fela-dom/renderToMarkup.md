@@ -1,14 +1,18 @@
 # `renderToMarkup(renderer)`
 
+> This method should only be used on the server.
+
 Renders all cached styles grouped CSS strings and returns a valid HTML markup with `<style>` elements. The elements are grouped and sorted in the following order:
 
 1. Fonts
 2. Static Styles
-3. Rules
-4. Media Query Rules
-5. Keyframes
+3. Keyframes
+4. Rules
+5. Support Rules
+6. Media Query Rules
+7. Support & Media Query Rules
 
-This method is used for universal rendering. The DOM renderer is able to reuse the rendered style elements and markup without updating the DOM again.
+The DOM renderer is able to rehydrate its cache from the markup in order to skip initial rendering.
 
 ### Returns
 (*string*): Single concatenated HTML markup string containing required `<style>` elements.
@@ -23,6 +27,9 @@ const renderer = createRenderer()
 const rule = ({ fontSize }) => ({
   fontSize: fontSize,
   color: 'blue',
+  '@supports (display: flex)': {
+    color: 'green'
+  },
   '@media (min-width: 300px)': {
     color: 'red'
   }
@@ -33,8 +40,12 @@ renderer.renderRule(rule, { fontSize: '12px' })
 
 const markup = renderToMarkup(renderer)
 
-console.log(markup)
-// <style type="text/css" data-fela-type="STATIC">html,body{box-sizing:border-box;margin:0}</style>
-// <style type="text/css" data-fela-type="RULE">.a{font-size:12px}.b{color:blue}</style>
-// <style type="text/css" data-fela-type="RULE" media="(min-width: 300px)">.c{color:red}</style>
+```
+The following markup would be returned:
+
+```HTML
+<style type="text/css" data-fela-type="STATIC">html,body{box-sizing:border-box;margin:0}</style>
+<style type="text/css" data-fela-type="RULE">.a{font-size:12px}.b{color:blue}</style>
+<style type="text/css" data-fela-type="RULE" data-fela-support>.c{color:green}</style>
+<style type="text/css" data-fela-type="RULE" media="(min-width: 300px)">.d{color:red}</style>
 ```
