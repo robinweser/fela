@@ -17,23 +17,23 @@ describe('render', () => {
     const renderer = createRenderer()
     renderer.renderRule(() => ({
       backgroundColor: 'red',
-      color: 'blue'
+      color: 'blue',
     }))
     renderer.renderKeyframe(() => ({
       '0%': {
-        color: 'yellow'
+        color: 'yellow',
       },
       '100%': {
-        color: 'orange'
-      }
+        color: 'orange',
+      },
     }))
     renderer.renderFont('Lato', ['../Lato.ttf'], {
-      fontWeight: 300
+      fontWeight: 300,
     })
     render(renderer)
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })
@@ -46,35 +46,35 @@ describe('render', () => {
 
     renderer.renderRule(() => ({
       backgroundColor: 'red',
-      color: 'blue'
+      color: 'blue',
     }))
 
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })
 
   it('should not overwrite rehydrated styles', () => {
     const serverRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a'
+      filterClassName: cls => cls !== 'a',
     })
 
     serverRenderer.renderRule(() => ({
       color: 'yellow',
       ':hover': {
-        color: 'red'
+        color: 'red',
       },
       '@media (max-width: 800px)': {
-        color: 'blue'
-      }
+        color: 'blue',
+      },
     }))
 
     document.head.innerHTML = renderToMarkup(serverRenderer)
 
     const clientRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a'
+      filterClassName: cls => cls !== 'a',
     })
 
     rehydrate(clientRenderer)
@@ -82,16 +82,16 @@ describe('render', () => {
     clientRenderer.renderRule(() => ({
       backgroundColor: 'red',
       ':hover': {
-        color: 'red'
+        color: 'red',
       },
-      color: 'blue'
+      color: 'blue',
     }))
 
     render(clientRenderer)
 
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })

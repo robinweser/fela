@@ -3,11 +3,14 @@ import reduce from 'lodash/reduce'
 
 type MediaMap = { [mediaQuery: string]: any }
 
-export default function applyMediaRulesInOrder(order: Array<string>): MediaMap {
+export default function applyKeysInOrder(
+  order: Array<string>,
+  initialValue: any = ''
+): MediaMap {
   return reduce(
     order,
     (mediaMap, query) => {
-      mediaMap[query] = ''
+      mediaMap[query] = initialValue
       return mediaMap
     },
     {}

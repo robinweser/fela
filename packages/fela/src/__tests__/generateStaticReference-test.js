@@ -8,7 +8,7 @@ describe('Generating static style references', () => {
     expect(
       generateStaticReference(
         {
-          color: 'red'
+          color: 'red',
         },
         '.foo'
       )
@@ -18,7 +18,7 @@ describe('Generating static style references', () => {
   it('should return an empty string', () => {
     expect(
       generateStaticReference({
-        color: 'red'
+        color: 'red',
       })
     ).toEqual('')
   })

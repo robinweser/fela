@@ -7,14 +7,15 @@ import {
   FONT_TYPE,
   STATIC_TYPE,
   CLEAR_TYPE,
-  generateCSSRule
+  generateCSSRule,
 } from 'fela-utils'
 
 import getDOMNode from './getDOMNode'
+import generateRule from './generateRule'
 
 const changeHandlers = {
   [RULE_TYPE]: (node, { selector, declaration, support }) => {
-    const cssRule = generateCSSRule(selector, declaration, support)
+    const cssRule = generateRule(selector, declaration, support)
 
     // only use insertRule in production as browser devtools might have
     // weird behavior if used together with insertRule at runtime
@@ -41,7 +42,7 @@ const changeHandlers = {
     } else {
       node.textContent += css
     }
-  }
+  },
 }
 
 export default function createDOMSubscription(nodes: Object): Function {
@@ -57,7 +58,14 @@ export default function createDOMSubscription(nodes: Object): Function {
     const handleChange = changeHandlers[change.type]
 
     if (handleChange) {
-      const node = getDOMNode(nodes, baseNode, change.type, change.media)
+      const node = getDOMNode(
+        nodes,
+        baseNode,
+        change.type,
+        change.media,
+        !!change.support
+      )
+
       handleChange(node, change)
     }
   }

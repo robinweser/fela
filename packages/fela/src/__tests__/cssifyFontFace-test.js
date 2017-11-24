@@ -6,7 +6,7 @@ describe('Cssifying font faces', () => {
       cssifyFontFace({
         fontFamily: '"Bar"',
         fontWeight: 300,
-        src: 'url(foo/bar.ttf) format(ttf)'
+        src: 'url(foo/bar.ttf) format(ttf)',
       })
     ).toEqual(
       '@font-face{font-family:"Bar";font-weight:300;src:url(foo/bar.ttf) format(ttf)}'

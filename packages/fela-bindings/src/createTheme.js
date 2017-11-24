@@ -19,7 +19,7 @@ export default function createTheme(
     get(): Object {
       return {
         ...theme.previousProperties,
-        ...theme.properties
+        ...theme.properties,
       }
     },
 
@@ -33,7 +33,7 @@ export default function createTheme(
       const properties = theme.get()
 
       forEach(theme.listeners, listener => listener(properties))
-    }
+    },
   }
 
   if (previousTheme) {

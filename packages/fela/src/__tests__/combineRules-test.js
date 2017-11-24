@@ -1,7 +1,7 @@
 import combineRules from '../combineRules'
 
 const rendererMock = {
-  _mergeStyle: Object.assign
+  _mergeStyle: Object.assign,
 }
 
 describe('Combining rules', () => {
@@ -10,13 +10,13 @@ describe('Combining rules', () => {
       color: 'red',
       fontSize: props.fontSize,
       lineHeight: props.lineHeight,
-      padding: 10
+      padding: 10,
     })
 
     const anotherRule = props => ({
       backgroundColor: 'blue',
       lineHeight: props.lineHeight * 2,
-      padding: 20
+      padding: 20,
     })
 
     const combinedRule = combineRules(rule, anotherRule)
@@ -25,7 +25,7 @@ describe('Combining rules', () => {
       combinedRule(
         {
           fontSize: 12,
-          lineHeight: 10
+          lineHeight: 10,
         },
         rendererMock
       )
@@ -34,7 +34,7 @@ describe('Combining rules', () => {
       backgroundColor: 'blue',
       fontSize: 12,
       lineHeight: 20,
-      padding: 20
+      padding: 20,
     })
   })
 
@@ -43,21 +43,21 @@ describe('Combining rules', () => {
       color: 'red',
       fontSize: props.fontSize,
       lineHeight: props.lineHeight,
-      padding: 10
+      padding: 10,
     })
 
     const rule2 = props => ({
       backgroundColor: 'blue',
       lineHeight: props.lineHeight * 2,
-      padding: 20
+      padding: 20,
     })
 
     const rule3 = props => ({
-      color: props.color
+      color: props.color,
     })
 
     const rule4 = () => ({
-      display: 'flex'
+      display: 'flex',
     })
 
     const combinedRule = combineRules(rule1, rule2, rule3, rule4)
@@ -67,7 +67,7 @@ describe('Combining rules', () => {
         {
           fontSize: 12,
           lineHeight: 10,
-          color: 'green'
+          color: 'green',
         },
         rendererMock
       )
@@ -77,7 +77,7 @@ describe('Combining rules', () => {
       backgroundColor: 'blue',
       fontSize: 12,
       lineHeight: 20,
-      padding: 20
+      padding: 20,
     })
   })
 })

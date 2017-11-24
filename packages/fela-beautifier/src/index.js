@@ -17,13 +17,13 @@ function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
 const defaultOptions = {
   indent: '  ',
   openbrace: 'end-of-line',
-  autosemicolon: false
+  autosemicolon: false,
 }
 
 export default function beautifier(options: Object = {}) {
   return (renderer: DOMRenderer) =>
     addBeautifier(renderer, {
       ...defaultOptions,
-      ...options
+      ...options,
     })
 }

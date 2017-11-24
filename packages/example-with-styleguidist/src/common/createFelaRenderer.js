@@ -15,7 +15,7 @@ const mediaQueries = {
   mobileWide: `@media (min-width: ${theme.breakpoints.mobileWide})`,
   tablet: `@media (min-width: ${theme.breakpoints.tablet})`,
   desktop: `@media (min-width: ${theme.breakpoints.desktop})`,
-  desktopLarge: `@media (min-width: ${theme.breakpoints.desktopLarge})`
+  desktopLarge: `@media (min-width: ${theme.breakpoints.desktopLarge})`,
 }
 
 const removePrefix = query => query.replace('@media ', '')
@@ -26,7 +26,7 @@ const createRenderer = () => {
     friendlyPsuedo(),
     ...webPreset,
     embedded(),
-    namedMediaQuery(mediaQueries)
+    namedMediaQuery(mediaQueries),
   ]
   const enhancers = []
 
@@ -34,7 +34,7 @@ const createRenderer = () => {
     plugins.push(
       validator({
         logInvalid: true,
-        deleteInvalid: true
+        deleteInvalid: true,
       })
     )
     plugins.push(whitelistMediaQuery(mediaQueries))
@@ -55,8 +55,8 @@ const createRenderer = () => {
       removePrefix(mediaQueries.mobileWide),
       removePrefix(mediaQueries.tablet),
       removePrefix(mediaQueries.desktop),
-      removePrefix(mediaQueries.desktopLarge)
-    ]
+      removePrefix(mediaQueries.desktopLarge),
+    ],
   })
 }
 

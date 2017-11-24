@@ -18,7 +18,7 @@ describe('Collecting fela DOM nodes', () => {
 
     expect(findDOMNodes()).toEqual({
       RULE: node1,
-      'RULE(max-width: 800px)': node2
+      'RULE(max-width: 800px)': node2,
     })
   })
 })

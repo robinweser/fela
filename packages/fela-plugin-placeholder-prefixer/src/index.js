@@ -7,7 +7,7 @@ const placeholderPrefixes = [
   '::-moz-placeholder',
   ':-ms-input-placeholder',
   ':-moz-placeholder',
-  '::placeholder'
+  '::placeholder',
 ]
 
 export default function placeholderPrefixer() {
@@ -20,6 +20,6 @@ export default function placeholderPrefixer() {
           return style
         },
         {}
-      )
+      ),
   })
 }

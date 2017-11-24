@@ -12,5 +12,5 @@ export {
   createComponent,
   createComponentWithProxy,
   ThemeProvider,
-  withTheme
+  withTheme,
 }

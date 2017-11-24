@@ -3,29 +3,29 @@ import createTheme from '../createTheme'
 describe('Creating a theme', () => {
   it('should return the properties', () => {
     const theme = createTheme({
-      color: 'red'
+      color: 'red',
     })
 
     expect(theme.get()).toEqual({
-      color: 'red'
+      color: 'red',
     })
   })
 
   it('should return the merged properties', () => {
     const previousTheme = createTheme({
       color: 'blue',
-      backgroundColor: 'red'
+      backgroundColor: 'red',
     })
     const theme = createTheme(
       {
-        color: 'red'
+        color: 'red',
       },
       previousTheme
     )
 
     expect(theme.get()).toEqual({
       color: 'red',
-      backgroundColor: 'red'
+      backgroundColor: 'red',
     })
   })
 })
@@ -34,35 +34,35 @@ describe('Updating a theme', () => {
   it('should update the properties', () => {
     const theme = createTheme({
       color: 'red',
-      backgroundColor: 'red'
+      backgroundColor: 'red',
     })
 
     theme.update({
-      color: 'blue'
+      color: 'blue',
     })
     expect(theme.get()).toEqual({
-      color: 'blue'
+      color: 'blue',
     })
   })
 
   it('should update the extended themes', () => {
     const previousTheme = createTheme({
       color: 'blue',
-      backgroundColor: 'red'
+      backgroundColor: 'red',
     })
     const theme = createTheme(
       {
-        color: 'red'
+        color: 'red',
       },
       previousTheme
     )
 
     previousTheme.update({
-      backgroundColor: 'blue'
+      backgroundColor: 'blue',
     })
     expect(theme.get()).toEqual({
       color: 'red',
-      backgroundColor: 'blue'
+      backgroundColor: 'blue',
     })
   })
 })
@@ -73,13 +73,13 @@ describe('Subscribing to changes', () => {
 
     const theme = createTheme({
       color: 'red',
-      backgroundColor: 'red'
+      backgroundColor: 'red',
     })
 
     theme.subscribe(subscriber)
 
     theme.update({
-      color: 'blue'
+      color: 'blue',
     })
     expect(subscriber).toHaveBeenCalledTimes(1)
   })
@@ -93,17 +93,17 @@ describe('Subscribing to changes', () => {
 
     const theme = createTheme({
       color: 'red',
-      backgroundColor: 'red'
+      backgroundColor: 'red',
     })
 
     theme.subscribe(subscriber)
 
     theme.update({
-      color: 'blue'
+      color: 'blue',
     })
 
     expect(props).toEqual({
-      color: 'blue'
+      color: 'blue',
     })
   })
 
@@ -112,19 +112,19 @@ describe('Subscribing to changes', () => {
 
     const theme = createTheme({
       color: 'red',
-      backgroundColor: 'red'
+      backgroundColor: 'red',
     })
 
     const unsubscribe = theme.subscribe(subscriber)
 
     theme.update({
-      color: 'blue'
+      color: 'blue',
     })
 
     unsubscribe()
 
     theme.update({
-      color: 'red'
+      color: 'red',
     })
 
     expect(subscriber).toHaveBeenCalledTimes(1)

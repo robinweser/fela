@@ -10,7 +10,7 @@ export default createComponentFactory(
   withTheme,
   {
     renderer: PropTypes.object,
-    theme: PropTypes.object
+    theme: PropTypes.object,
   },
   true
 )

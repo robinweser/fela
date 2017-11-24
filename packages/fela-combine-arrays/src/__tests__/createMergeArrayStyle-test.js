@@ -9,7 +9,7 @@ describe('Merging array values', () => {
     ).toEqual({
       color: 'red',
       fontSize: 12,
-      lineHeight: 1
+      lineHeight: 1,
     })
   })
 
@@ -29,15 +29,15 @@ describe('Merging array values', () => {
         { fontSize: 12 },
         {
           '> input': {
-            color: 'red'
-          }
+            color: 'red',
+          },
         }
       )
     ).toEqual({
       fontSize: 12,
       '> input': {
-        color: 'red'
-      }
+        color: 'red',
+      },
     })
   })
 
@@ -57,24 +57,24 @@ describe('Merging array values', () => {
         {
           fontSize: 12,
           ob2: { color: 'red' },
-          ob3: { color: 'red' }
+          ob3: { color: 'red' },
         },
         {
           fontSize: 16,
-          ob2: { fontSize: 12 }
+          ob2: { fontSize: 12 },
         },
         {
           fontSize: 11,
-          ob3: { color: 'blue' }
+          ob3: { color: 'blue' },
         }
       )
     ).toEqual({
       fontSize: 11,
       ob2: {
         color: 'red',
-        fontSize: 12
+        fontSize: 12,
       },
-      ob3: { color: 'blue' }
+      ob3: { color: 'blue' },
     })
   })
 
@@ -88,7 +88,7 @@ describe('Merging array values', () => {
 
     expect(newOb).toEqual({
       color: 'red',
-      fontSize: 12
+      fontSize: 12,
     })
 
     newOb.foo = 'bar'
@@ -106,7 +106,7 @@ describe('Merging array values', () => {
 
     expect(newOb).toEqual({
       color: 'red',
-      fontSize: 12
+      fontSize: 12,
     })
     expect(ob1).toEqual(newOb)
 
@@ -114,7 +114,7 @@ describe('Merging array values', () => {
     expect(ob1).toEqual({
       color: 'red',
       fontSize: 12,
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 
@@ -157,47 +157,47 @@ describe('Merging array values', () => {
     const ob1 = {
       extend: {
         foo: 1,
-        bar: 2
-      }
+        bar: 2,
+      },
     }
     const ob2 = {
       extend: {
-        baz: 3
-      }
+        baz: 3,
+      },
     }
 
     const ob3 = {
       extend: [
         {
-          faz: 1
+          faz: 1,
         },
         {
-          asd: 24
-        }
-      ]
+          asd: 24,
+        },
+      ],
     }
 
     const ob4 = {
       extend: [
         {
-          buz: 1
+          buz: 1,
         },
         {
-          bla: 3
-        }
-      ]
+          bla: 3,
+        },
+      ],
     }
 
     expect(mergeStyle({}, ob1, ob2)).toEqual({
-      extend: [{ foo: 1, bar: 2 }, { baz: 3 }]
+      extend: [{ foo: 1, bar: 2 }, { baz: 3 }],
     })
 
     expect(mergeStyle({}, ob1, ob2, ob3)).toEqual({
-      extend: [{ foo: 1, bar: 2 }, { baz: 3 }, { faz: 1 }, { asd: 24 }]
+      extend: [{ foo: 1, bar: 2 }, { baz: 3 }, { faz: 1 }, { asd: 24 }],
     })
 
     expect(mergeStyle({}, ob3, ob4)).toEqual({
-      extend: [{ faz: 1 }, { asd: 24 }, { buz: 1 }, { bla: 3 }]
+      extend: [{ faz: 1 }, { asd: 24 }, { buz: 1 }, { bla: 3 }],
     })
   })
 })

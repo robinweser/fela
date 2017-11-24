@@ -8,7 +8,7 @@ describe('LVHA plugin', () => {
       ':link': {},
       ':first-child': {},
       ':active': {},
-      ':visited': {}
+      ':visited': {},
     }
 
     expect(LVHA()(setting)).toEqual({
@@ -17,7 +17,7 @@ describe('LVHA plugin', () => {
       ':hover': {},
       ':focus': {},
       ':active': {},
-      ':first-child': {}
+      ':first-child': {},
     })
   })
 })

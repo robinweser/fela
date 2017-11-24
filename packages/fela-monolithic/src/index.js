@@ -13,7 +13,7 @@ import {
   generateCombinedMediaQuery,
   generateCSSSelector,
   generateCSSRule,
-  RULE_TYPE
+  RULE_TYPE,
 } from 'fela-utils'
 
 import generateMonolithicClassName from './generateMonolithicClassName'
@@ -95,7 +95,7 @@ function useMonolithicRenderer(
         className,
         selector,
         declaration: css,
-        media
+        media,
       }
 
       const declarationReference = selector + media + support

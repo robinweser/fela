@@ -8,7 +8,7 @@ import unit from 'fela-plugin-unit'
 
 type Config = {
   extend?: Array<any>,
-  unit?: Array<any>
+  unit?: Array<any>,
 }
 
 export const createWebPreset = (
@@ -19,7 +19,7 @@ export const createWebPreset = (
   prefixer(),
   fallbackValue(),
   LVHA(),
-  unit(...unitConfig)
+  unit(...unitConfig),
 ]
 
 export default createWebPreset()

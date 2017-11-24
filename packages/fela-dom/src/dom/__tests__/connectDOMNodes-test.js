@@ -19,7 +19,7 @@ describe('Connecting DOM nodes', () => {
           declaration: 'color:red',
           media: '',
           support: '',
-          type: RULE_TYPE
+          type: RULE_TYPE,
         },
         colorblue: {
           className: 'b',
@@ -27,9 +27,25 @@ describe('Connecting DOM nodes', () => {
           declaration: 'color:blue',
           media: '(min-height: 800px)',
           support: '',
-          type: RULE_TYPE
-        }
-      }
+          type: RULE_TYPE,
+        },
+        coloryellow: {
+          className: 'c',
+          selector: '.c',
+          declaration: 'color:yellow',
+          media: '',
+          support: '(display: flex)',
+          type: RULE_TYPE,
+        },
+        colorgreen: {
+          className: 'd',
+          selector: '.d',
+          declaration: 'color:green',
+          media: '(min-height: 800px)',
+          support: '(display: flex)',
+          type: RULE_TYPE,
+        },
+      },
     }
 
     connectDOMNodes(renderer)
@@ -38,8 +54,8 @@ describe('Connecting DOM nodes', () => {
     expect([
       Object.keys(renderer.nodes),
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
-      })
+        indent_size: 2,
+      }),
     ]).toMatchSnapshot()
   })
 })

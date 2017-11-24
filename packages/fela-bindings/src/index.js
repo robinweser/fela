@@ -11,5 +11,5 @@ export {
   ProviderFactory,
   ThemeProviderFactory,
   withThemeFactory,
-  createTheme
+  createTheme,
 }

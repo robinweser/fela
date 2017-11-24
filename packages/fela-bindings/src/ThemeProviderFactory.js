@@ -27,7 +27,7 @@ export default function ThemeProviderFactory(
 
     getChildContext(): Object {
       return {
-        theme: this.theme
+        theme: this.theme,
       }
     }
 

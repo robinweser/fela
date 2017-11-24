@@ -7,18 +7,18 @@ describe('Rendering to string', () => {
     const rule = props => ({
       color: props.color,
       '@media (min-height: 300px)': {
-        color: 'blue'
-      }
+        color: 'blue',
+      },
     })
 
     const renderer = createRenderer()
     renderer.renderRule(rule, {
-      color: 'red'
+      color: 'red',
     })
     renderer.renderStatic('*{box-sizing:border-box}')
     renderer.renderStatic(
       {
-        display: 'flex'
+        display: 'flex',
       },
       'div'
     )

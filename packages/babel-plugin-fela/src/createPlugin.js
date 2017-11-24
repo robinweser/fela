@@ -3,13 +3,13 @@ import reduce from 'lodash/reduce'
 import forEach from 'lodash/forEach'
 
 const defaultConfig = {
-  precompile: true
+  precompile: true,
 }
 
 export default function createPlugin(userConfig = {}) {
   const config = {
     ...defaultConfig,
-    ...userConfig
+    ...userConfig,
   }
 
   return ({ types: t, traverse }) => {
@@ -101,7 +101,7 @@ export default function createPlugin(userConfig = {}) {
       if (t.isArrowFunctionExpression(functionExpression)) {
         if (t.isObjectExpression(functionExpression.body)) {
           functionExpression.body = t.blockStatement([
-            t.returnStatement(functionExpression.body)
+            t.returnStatement(functionExpression.body),
           ])
 
           if (t.isVariableDeclarator(ruleDeclaration)) {
@@ -114,7 +114,7 @@ export default function createPlugin(userConfig = {}) {
 
       return {
         ruleDeclaration,
-        functionExpression
+        functionExpression,
       }
     }
 
@@ -203,10 +203,10 @@ export default function createPlugin(userConfig = {}) {
                               t.objectProperty(
                                 t.identifier('type'),
                                 t.stringLiteral('PRECOMPILATION')
-                              )
+                              ),
                             ])
                           )
-                        )
+                        ),
                       ]
 
                       // rehydrate all cache elements
@@ -293,13 +293,13 @@ export default function createPlugin(userConfig = {}) {
                                   t.ArrowFunctionExpression(
                                     [],
                                     t.objectExpression(staticStyle)
-                                  )
+                                  ),
                                 ]
                               )
-                            )
+                            ),
                           ])
                         )
-                      )
+                      ),
                     ])
                   }
 
@@ -354,14 +354,14 @@ export default function createPlugin(userConfig = {}) {
                               )
                             )
                           }
-                        }
+                        },
                       },
                       childPath.scope,
                       childPath
                     )
                   }
                 }
-              }
+              },
             }
 
             if (ruleDeclaration.traverse) {
@@ -370,8 +370,8 @@ export default function createPlugin(userConfig = {}) {
               traverse(ruleDeclaration, traverser, path.scope, path)
             }
           }
-        }
-      }
+        },
+      },
     }
   }
 }

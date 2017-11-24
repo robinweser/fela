@@ -23,7 +23,7 @@ export default function createMergeArrayStyle(mergeProps?: Array<string>) {
             ) {
               merged[property] = [
                 ...arrayifyValue(baseValue),
-                ...arrayifyValue(value)
+                ...arrayifyValue(value),
               ]
             } else if (isPlainObject(baseValue) && isPlainObject(value)) {
               merged[property] = mergeArrayStyle({}, baseValue, value)
