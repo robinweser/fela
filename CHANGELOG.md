@@ -5,6 +5,14 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 24/11/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-dom | 7.0.0 | [(#472)](https://github.com/rofrischmann/fela/pull/472) `@supports` rules are now completely separated from basic rules. Serverside methods now return a new flag for `@supports` rules.<br>The deprecated `rehydrateCache` has been removed. Use `rehydrate` from now on. |
+| fela-utils | 8.0.0 | [(#470)](https://github.com/rofrischmann/fela/pull/470) Many internal utilites have been moved to the packages directly. Some helpers have been replaced with lodash equivalents. |
+| fela-preset-web<br>fela-preset-dev | 8.0.0<br>6.0.0 | [(#470)](https://github.com/rofrischmann/fela/pull/470) Preset configuration has been improved. The plugin keys have been renamed to just the actual plugin name (e.g. `fela-plugin-unit` => `unit`) |
+| fela | 6.0.6 | [(#471)](https://github.com/rofrischmann/fela/pull/471) Fixed the `combineRules` TypeScript definition |
+
 ## 14/11/17
 | Package | Version | Changes |
 | ---- | --- | --- |
