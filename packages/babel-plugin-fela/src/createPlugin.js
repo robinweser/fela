@@ -1,5 +1,6 @@
 import generateHash from 'string-hash'
 import objectReduce from 'fast-loops/lib/objectReduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 import arrayEach from 'fast-loops/lib/arrayEach'
 
 const defaultConfig = {

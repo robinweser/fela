@@ -1,4 +1,5 @@
 /* @flow */
+import objectEach from 'fast-loops/lib/objectEach'
 import arrayEach from 'fast-loops/lib/arrayEach'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
@@ -32,7 +33,7 @@ function extend(
   type: StyleType,
   renderer: DOMRenderer | NativeRenderer
 ): Object {
-  forEach(style, (value, property) => {
+  objectEach(style, (value, property) => {
     if (property === 'extend') {
       const extensions = [].concat(value)
 
