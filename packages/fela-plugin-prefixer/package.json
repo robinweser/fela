@@ -26,6 +26,6 @@
     "css-in-js-utils": "^2.0.0",
     "fela-plugin-fallback-value": "^5.0.15",
     "inline-style-prefixer": "^3.0.8",
-    "lodash": "^4.17.4"
+    "fast-loops": "^1.0.0"
   }
 }

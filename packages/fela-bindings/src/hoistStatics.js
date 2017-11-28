@@ -1,5 +1,5 @@
 /* @flow */
-import forEach from 'lodash/forEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 const basicStatics = {
   name: true,
@@ -23,7 +23,7 @@ export default function hoistStatics(target: any, source: any): any {
     property => !basicStatics[property]
   )
 
-  forEach(statics, property => {
+  arrayEach(statics, property => {
     if (!target.hasOwnProperty(property) && !blockedStatics[property]) {
       try {
         // Avoid failures from read-only properties
@@ -33,7 +33,7 @@ export default function hoistStatics(target: any, source: any): any {
     }
   })
 
-  forEach(mergableStatics, property => {
+  arrayEach(mergableStatics, property => {
     if (source[property]) {
       const targetStatics = target[property] || {}
 

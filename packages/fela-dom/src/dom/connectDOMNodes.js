@@ -1,5 +1,6 @@
 /* @flow */
-import forEach from 'lodash/forEach'
+import objectEach from 'fast-loops/lib/objectEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 import {
   clusterCache,
@@ -24,7 +25,7 @@ export default function connectDOMNodes(renderer: DOMRenderer): void {
 
   const baseNode = renderer.nodes[RULE_TYPE]
 
-  forEach(sheetMap, (type, key) => {
+  objectEach(sheetMap, (type, key) => {
     if (cacheCluster[key].length > 0) {
       initDOMNode(renderer.nodes, baseNode, cacheCluster[key], type)
     }
@@ -41,7 +42,7 @@ export default function connectDOMNodes(renderer: DOMRenderer): void {
     ...cacheCluster.mediaRules,
   })
 
-  forEach(mediaKeys, media => {
+  arrayEach(mediaKeys, media => {
     if (
       cacheCluster.mediaRules[media] &&
       cacheCluster.mediaRules[media].length > 0

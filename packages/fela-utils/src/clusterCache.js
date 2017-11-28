@@ -1,5 +1,6 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 import applyKeysInOrder from './applyKeysInOrder'
 import generateCSSRule from './generateCSSRule'
@@ -63,7 +64,7 @@ export default function clusterCache(
   const mediaRules = applyKeysInOrder(mediaQueryOrder)
   const supportRules = applyKeysInOrder(supportQueryOrder)
 
-  const supportMediaRules = reduce(
+  const supportMediaRules = arrayReduce(
     mediaQueryOrder,
     (supportRules, media) => {
       supportRules[media] = applyKeysInOrder(supportQueryOrder)
@@ -72,7 +73,7 @@ export default function clusterCache(
     applyKeysInOrder(mediaQueryOrder, {})
   )
 
-  return reduce(
+  return objectReduce(
     cache,
     (cluster, entry, key) => {
       const handler = handlers[entry.type]

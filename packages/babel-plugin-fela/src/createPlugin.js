@@ -1,6 +1,6 @@
 import generateHash from 'string-hash'
-import reduce from 'lodash/reduce'
-import forEach from 'lodash/forEach'
+import objectReduce from 'fast-loops/lib/objectReduce'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 const defaultConfig = {
   precompile: true,
@@ -17,7 +17,7 @@ export default function createPlugin(userConfig = {}) {
     function extractStaticStyle(props, path) {
       const removeQueue = []
 
-      const staticStyle = reduce(
+      const staticStyle = objectReduce(
         props,
         (style, node) => {
           const removeCallback = () => props.splice(props.indexOf(node), 1)
@@ -45,27 +45,31 @@ export default function createPlugin(userConfig = {}) {
         []
       )
 
-      removeQueue.forEach(cb => cb())
+      arrayEach(removeQueue, cb => cb())
       return staticStyle
     }
 
     // helper to transform AST ObjectExpressions into JS objects
     function createStaticJSObject(props, path) {
-      return props.reduce((obj, node) => {
-        if (
-          !node.shorthand &&
-          (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
-        ) {
-          obj[node.key.name] = node.value.value
-        } else if (t.isObjectExpression(node.value)) {
-          obj[node.key.value] = createStaticJSObject(
-            node.value.properties,
-            path
-          )
-        }
+      return arrayReduce(
+        props,
+        (obj, node) => {
+          if (
+            !node.shorthand &&
+            (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
+          ) {
+            obj[node.key.name] = node.value.value
+          } else if (t.isObjectExpression(node.value)) {
+            obj[node.key.value] = createStaticJSObject(
+              node.value.properties,
+              path
+            )
+          }
 
-        return obj
-      }, {})
+          return obj
+        },
+        {}
+      )
     }
 
     // abstraction to compile arrow functions, function expressions and function declarations
@@ -211,7 +215,7 @@ export default function createPlugin(userConfig = {}) {
 
                       // rehydrate all cache elements
                       for (const key in felaRenderer.cache) {
-                        const cacheEntry = reduce(
+                        const cacheEntry = objectReduce(
                           felaRenderer.cache[key],
                           (entry, value, property) => {
                             entry.push(

@@ -1,6 +1,6 @@
 /* @flow */
-import isEqual from 'lodash/isEqual'
-import forEach from 'lodash/forEach'
+import shallowEqual from 'shallow-equal/objects'
+import objectEach from 'fast-loops/lib/objectEach'
 
 import createTheme from './createTheme'
 import { THEME_CHANNEL } from './themeChannel'
@@ -21,7 +21,7 @@ export default function ThemeProviderFactory(
     }
 
     componentWillReceiveProps(nextProps: Object): void {
-      if (!isEqual(this.props.theme, nextProps.theme)) {
+      if (!shallowEqual(this.props.theme, nextProps.theme)) {
         this.theme.update(nextProps.theme)
       }
     }
@@ -38,7 +38,7 @@ export default function ThemeProviderFactory(
   }
 
   if (statics) {
-    forEach(statics, (value, key) => {
+    objectEach(statics, (value, key) => {
       ThemeProvider[key] = value
     })
   }

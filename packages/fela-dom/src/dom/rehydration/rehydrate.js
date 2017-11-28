@@ -1,5 +1,5 @@
 /* @flow */
-import forEach from 'lodash/forEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 import { RULE_TYPE } from 'fela-utils'
 
 import rehydrateSupportRules from './rehydrateSupportRules'
@@ -10,7 +10,7 @@ import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 // rehydration (WIP)
 // TODO: static, keyframe, font
 export default function rehydrate(renderer: DOMRenderer): void {
-  forEach(document.querySelectorAll('[data-fela-type]'), node => {
+  arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
     const rehydrationAttribute =
       node.getAttribute('data-fela-rehydration') || -1
     const rehydrationIndex = parseInt(rehydrationAttribute)

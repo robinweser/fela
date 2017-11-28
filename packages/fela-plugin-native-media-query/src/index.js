@@ -3,12 +3,15 @@ import { Dimensions } from 'react-native'
 
 /* @flow */
 import { match } from 'css-mediaquery'
-import isPlainObject from 'lodash/isPlainObject'
 import { isMediaQuery } from 'fela-utils'
 
 import DimensionProvider from './components/DimensionProvider'
 
 type Orientation = 'landscape' | 'portrait'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function getOrientation(width: number, height: number): Orientation {
   return width > height ? 'landscape' : 'portrait'

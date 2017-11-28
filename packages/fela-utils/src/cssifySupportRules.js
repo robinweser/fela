@@ -1,10 +1,10 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 import generateCSSSupportRule from './generateCSSSupportRule'
 
 export default function cssifySupportRules(supportRules: Object): string {
-  return reduce(
+  return objectReduce(
     supportRules,
     (css, cssRules, support) => {
       if (cssRules.length > 0) {

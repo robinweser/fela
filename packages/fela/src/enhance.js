@@ -1,9 +1,9 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 export default function enhance(...enhancers: Array<Function>): Function {
   return createRenderer => config =>
-    reduce(
+    arrayReduce(
       enhancers,
       (enhancedRenderer, enhancer) => {
         enhancedRenderer = enhancer(enhancedRenderer)

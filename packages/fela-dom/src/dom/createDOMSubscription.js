@@ -1,6 +1,6 @@
 /* @flow */
 /* eslint-disable consistent-return */
-import forEach from 'lodash/forEach'
+import objectEach from 'fast-loops/lib/objectEach'
 import {
   RULE_TYPE,
   KEYFRAME_TYPE,
@@ -50,7 +50,7 @@ export default function createDOMSubscription(nodes: Object): Function {
 
   return function changeSubscription(change) {
     if (change.type === CLEAR_TYPE) {
-      return forEach(nodes, node => {
+      return objectEach(nodes, node => {
         node.textContent = ''
       })
     }

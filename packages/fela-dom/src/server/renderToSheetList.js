@@ -1,5 +1,6 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 import {
   clusterCache,
   cssifySupportRules,
@@ -29,7 +30,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
 
   const rehydrationIndex = getRehydrationIndex(renderer)
 
-  const sheetList = reduce(
+  const sheetList = objectReduce(
     sheetMap,
     (list, type, key) => {
       if (cacheCluster[key].length > 0) {
@@ -61,7 +62,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
     ...cacheCluster.mediaRules,
   })
 
-  return reduce(
+  return arrayReduce(
     mediaKeys,
     (list, media) => {
       // basic media query rules

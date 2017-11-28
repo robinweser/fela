@@ -19,8 +19,5 @@
     "cssinjs"
   ],
   "author": "Robin Frischmann",
-  "license": "MIT",
-  "dependencies": {
-    "lodash": "^4.17.4"
-  }
+  "license": "MIT"
 }

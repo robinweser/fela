@@ -1,5 +1,7 @@
 /* @flow */
-import isPlainObject from 'lodash/isPlainObject'
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function addImportantToValue(value: any): any {
   if (

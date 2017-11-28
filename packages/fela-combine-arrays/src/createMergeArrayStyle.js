@@ -1,18 +1,22 @@
 /* @flow */
-import reduce from 'lodash/reduce'
-import isPlainObject from 'lodash/isPlainObject'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 import arrayifyValue from './arrayifyValue'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 export default function createMergeArrayStyle(mergeProps?: Array<string>) {
   return function mergeArrayStyle(
     base: Object,
     ...extendingStyles: Array<Object>
   ): Object {
-    return reduce(
+    return arrayReduce(
       extendingStyles,
       (mergedStyle, style) =>
-        reduce(
+        objectReduce(
           style,
           (merged, value, property) => {
             const baseValue = merged[property]

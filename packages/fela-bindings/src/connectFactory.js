@@ -1,5 +1,5 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 import generateDisplayName from './generateDisplayName'
 import hoistStatics from './hoistStatics'
@@ -22,7 +22,7 @@ export default function connectFactory(
           const preparedRules =
             typeof rules === 'function' ? rules(this.props) : rules
 
-          const styles = reduce(
+          const styles = objectReduce(
             preparedRules,
             (styleMap, rule, name) => {
               const preparedRule =

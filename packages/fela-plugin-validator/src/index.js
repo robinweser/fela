@@ -1,7 +1,5 @@
 /* @flow  */
 /* eslint-disable no-console */
-import isPlainObject from 'lodash/isPlainObject'
-
 import {
   RULE_TYPE,
   KEYFRAME_TYPE,
@@ -10,6 +8,10 @@ import {
 } from 'fela-utils'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function validateStyleObject(
   style: Object,

@@ -1,8 +1,7 @@
 /* @flow */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
-import isPlainObject from 'lodash/isPlainObject'
-import forEach from 'lodash/forEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 import {
   generateCombinedMediaQuery,
@@ -37,6 +36,10 @@ import type {
   DOMRendererConfig,
 } from '../../../flowtypes/DOMRenderer'
 import type { FontProperties } from '../../../flowtypes/FontProperties'
+
+function isPlainObject(obj) {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 export default function createRenderer(
   config: DOMRendererConfig = {}
@@ -292,7 +295,7 @@ export default function createRenderer(
     },
 
     _emitChange(change: Object): void {
-      forEach(renderer.listeners, listener => listener(change))
+      arrayEach(renderer.listeners, listener => listener(change))
     },
   }
 
@@ -300,7 +303,7 @@ export default function createRenderer(
   renderer.keyframePrefixes.push('')
 
   if (config.enhancers) {
-    forEach(config.enhancers, enhancer => {
+    arrayEach(config.enhancers, enhancer => {
       renderer = enhancer(renderer)
     })
   }

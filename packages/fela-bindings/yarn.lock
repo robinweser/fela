@@ -2,54 +2,10 @@
 # yarn lockfile v1
 
 
-css-in-js-utils@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-2.0.0.tgz#5af1dd70f4b06b331f48d22a3d86e0786c0b9435"
-  dependencies:
-    hyphenate-style-name "^1.0.2"
+fast-loops@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fast-loops/-/fast-loops-1.0.0.tgz#2cdd7e0ff67343b2b5f5e627d855a50b4bed559a"
 
-fela-dom@^6.0.6:
-  version "6.0.6"
-  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-6.0.6.tgz#8cf324b5fd685d7f91c79eced37a9fb6820f297f"
-  dependencies:
-    fela-tools "^5.0.13"
-    fela-utils "^7.0.5"
-
-fela-monolithic@^5.0.13:
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/fela-monolithic/-/fela-monolithic-5.0.13.tgz#7b7fdd108280f9c496a39adb57c26f42ad532e5d"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.5"
-
-fela-tools@^5.0.13:
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.0.13.tgz#4ec2854475a879ac5ccf201c30b1888a055100ab"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.5"
-
-fela-utils@^7.0.5:
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-7.0.5.tgz#62397db8abf8294bb160ba7575b31d68495283b2"
-  dependencies:
-    css-in-js-utils "2.0.0"
-
-fela@^6.0.5:
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/fela/-/fela-6.0.5.tgz#3631a39a4c1d94e5e281ec2b5ca66b71e3104fca"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.5"
-
-hyphenate-style-name@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
-
-lodash@^4.17.4:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
-
-shallow-equal@1.0.0:
+shallow-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"

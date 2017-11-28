@@ -1,5 +1,5 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 function addIsolation(style: Object, exclude: Array<string> = []): Object {
   if (style.isolation === false) {
@@ -9,7 +9,7 @@ function addIsolation(style: Object, exclude: Array<string> = []): Object {
     return style
   }
 
-  const excludedDeclarations = reduce(
+  const excludedDeclarations = arrayReduce(
     exclude,
     (exclusion, property) => {
       exclusion[property] = 'inherit'

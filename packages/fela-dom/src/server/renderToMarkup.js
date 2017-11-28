@@ -1,6 +1,6 @@
 /* @flow */
-import reduce from 'lodash/reduce'
-
+import arrayReduce from 'fast-loops/lib/arrayReduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 import {
   clusterCache,
   cssifySupportRules,
@@ -22,7 +22,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
 
   const rehydrationIndex = getRehydrationIndex(renderer)
 
-  let styleMarkup = reduce(
+  let styleMarkup = objectReduce(
     sheetMap,
     (markup, type, key) => {
       if (cacheCluster[key].length > 0) {
@@ -56,7 +56,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
     ...cacheCluster.mediaRules,
   })
 
-  return reduce(
+  return arrayReduce(
     mediaKeys,
     (markup, media) => {
       // basic media query rules

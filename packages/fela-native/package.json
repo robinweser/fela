@@ -25,6 +25,6 @@
   "license": "MIT",
   "dependencies": {
     "fela-utils": "^8.0.0",
-    "lodash": "^4.17.4"
+    "fast-loops": "^1.0.0"
   }
 }

@@ -23,7 +23,8 @@
   "license": "MIT",
   "dependencies": {
     "fela-dom": "^7.0.0",
-    "lodash": "^4.17.4"
+    "fast-loops": "^1.0.0",
+    "shallow-equal": "^1.0.0"
   },
   "devDependencies": {
     "fela": "^6.1.0",

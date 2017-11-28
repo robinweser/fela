@@ -1,8 +1,8 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 export default function findDOMNodes(): Object {
-  return reduce(
+  return arrayReduce(
     document.querySelectorAll('[data-fela-type]'),
     (nodes, node) => {
       const type = node.getAttribute('data-fela-type') || ''

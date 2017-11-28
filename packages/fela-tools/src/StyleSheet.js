@@ -1,9 +1,9 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 export default {
   create(styleSheet: Object): Object {
-    return reduce(
+    return objectReduce(
       styleSheet,
       (ruleSheet, rule, ruleName) => {
         if (typeof rule === 'function') {

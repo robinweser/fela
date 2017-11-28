@@ -1,7 +1,6 @@
 /* @flow */
 /* eslint-disable no-continue */
-import isPlainObject from 'lodash/isPlainObject'
-import reduce from 'lodash/reduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 import {
   isSupport,
@@ -21,6 +20,10 @@ import generateMonolithicClassName from './generateMonolithicClassName'
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 import type MonolithicRenderer from '../../../flowtypes/MonolithicRenderer'
 
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
+
 function useMonolithicRenderer(
   renderer: DOMRenderer,
   prettySelectors: boolean = false
@@ -37,7 +40,7 @@ function useMonolithicRenderer(
     media: string = '',
     support: string = ''
   ) => {
-    const ruleSet = reduce(
+    const ruleSet = objectReduce(
       style,
       (ruleset, value, property) => {
         if (isPlainObject(value)) {

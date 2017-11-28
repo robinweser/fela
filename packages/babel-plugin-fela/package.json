@@ -24,7 +24,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.4",
+    "fast-loops": "^1.0.0",
     "string-hash": "^1.1.3"
   },
   "devDependencies": {

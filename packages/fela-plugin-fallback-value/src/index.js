@@ -1,6 +1,9 @@
 /* @flow */
-import isPlainObject from 'lodash/isPlainObject'
 import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function resolveFallbackValues(style: Object): Object {
   for (const property in style) {

@@ -24,7 +24,7 @@
     "fela": "^6.1.0"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "fast-loops": "^1.0.0"
   },
   "devDependencies": {
     "fela": "^6.1.0",

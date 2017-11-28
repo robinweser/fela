@@ -1,5 +1,5 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 import {
   clusterCache,
   cssifySupportRules,
@@ -34,7 +34,7 @@ export default function renderToString(renderer: Object): string {
     ...mediaRules,
   })
 
-  return reduce(
+  return arrayReduce(
     mediaKeys,
     (css, query) => {
       const mediaCSS = mediaRules[query] || ''

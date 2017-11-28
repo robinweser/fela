@@ -1,6 +1,6 @@
 /* @flow */
 import customProperty from 'fela-plugin-custom-property'
-import reduce from 'lodash/reduce'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 const placeholderPrefixes = [
   '::-webkit-input-placeholder',
@@ -13,7 +13,7 @@ const placeholderPrefixes = [
 export default function placeholderPrefixer() {
   return customProperty({
     '::placeholder': value =>
-      reduce(
+      arrayEach(
         placeholderPrefixes,
         (style, prefix) => {
           style[prefix] = value

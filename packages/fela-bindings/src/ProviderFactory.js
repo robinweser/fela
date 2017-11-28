@@ -1,9 +1,14 @@
 /* @flow */
 import { render, rehydrate } from 'fela-dom'
-import forEach from 'lodash/forEach'
+import objectEach from 'fast-loops/lib/objectEach'
 
 function hasDOM(renderer) {
-  return !renderer.isNativeRenderer && typeof window !== 'undefined'
+  return (
+    !renderer.isNativeRenderer &&
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.createElement
+  )
 }
 
 export default function ProviderFactory(
@@ -38,7 +43,7 @@ export default function ProviderFactory(
   }
 
   if (statics) {
-    forEach(statics, (value, key) => {
+    objectEach(statics, (value, key) => {
       Provider[key] = value
     })
   }

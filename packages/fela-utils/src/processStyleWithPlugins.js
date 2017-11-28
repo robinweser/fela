@@ -1,5 +1,5 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
@@ -12,7 +12,7 @@ export default function processStyleWithPlugins(
   props: Object = {}
 ) {
   if (renderer.plugins.length > 0) {
-    return reduce(
+    return arrayReduce(
       renderer.plugins,
       (processedStyle, plugin) => plugin(processedStyle, type, renderer, props),
       style
