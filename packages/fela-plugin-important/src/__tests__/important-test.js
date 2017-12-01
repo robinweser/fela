@@ -1,15 +1,17 @@
 import important from '../index'
 
 describe('Important plugin', () => {
-  it('should add !important to every number and string', () => {
+  it('should add !important to every number and string which are not animated', () => {
     const style = {
       color: 'blue',
       fontSize: 15,
+      animationName: 'k3',
     }
 
     expect(important()(style)).toEqual({
-      color: 'blue!important',
-      fontSize: '15!important',
+      color: 'blue',
+      fontSize: 15,
+      animationName: 'k3',
     })
   })
 
