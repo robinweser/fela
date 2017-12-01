@@ -15,23 +15,20 @@ function addImportantToValue(value: any): any {
   return value
 }
 
-/* Remove items with features of animation or keyframes from array 
-*  where '!imporatant' should be added 
-* 
-*  @return true if item is animation 
-*/ 
-function isAnimation(style: Object): Boolean {
+function isAnimation(style: Object): boolean {
   const styleNames = Object.getOwnPropertyNames(style)
   const resctrictions = [ 'from', 'to', '%', 'animation']
   let isAnimationItem = false
  
-  for(const property in styleNames) {
-    const value = styleNames[property]
-    
-    for(const res in resctrictions) {
-      isAnimationItem = value.includes(resctrictions[res]) || property.includes(resctrictions[res])
+  for(let i = 0; i < styleNames.length; i++) {
+    const property = styleNames[i].toString()
+    const value = style[styleNames[i]].toString()
+
+    for(let j = 0; j < resctrictions.length; j++) {
+      isAnimationItem = property.includes(resctrictions[j]) || value.includes(resctrictions[j])
     }
-  } 
+  }
+
   return isAnimationItem
 } 
  
