@@ -202,6 +202,7 @@ We'd love to help out. We also highly appreciate any feedback.
 - [Cloudflare](https://www.cloudflare.com)
 - [dm-drogerie markt](https://www.dm.de/arbeiten-und-lernen/arbeiten-bei-uns/filiadata-c534052.html)
 - [HelloFresh](https://www.hellofresh.de)
+- [Indoqa](https://www.indoqa.com)
 - [Kilix](http://kilix.fr)
 - [Lusk](https://lusk.io)
 - [MediaFire](https://m.mediafire.com)
