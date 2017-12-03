@@ -15,12 +15,21 @@ export default function connectFactory(
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
+        static _isFelaComponent = true
 
         render() {
           const { renderer } = this.context
-          const { extend, _felaTheme, _felaRules, ...otherProps } = this.props
+          const {
+            extend,
+            _felaTheme,
+            _felaRules,
+            ...otherProps
+          } = this.props
 
           const allRules = [rules]
+          if (_felaRules) {
+            allRules.push(_felaRules)
+          }
           if (extend) {
             allRules.push(extend)
           }
@@ -30,6 +39,16 @@ export default function connectFactory(
             ...otherProps,
             theme: _felaTheme,
           }, renderer)
+
+          if (component._isFelaComponent) {
+            return createElement(
+              component,
+              {
+                _felaRules: combinedRules,
+                ...otherProps,
+              }
+            )
+          }
 
           const styles = objectReduce(
             preparedRules,

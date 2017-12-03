@@ -171,4 +171,47 @@ describe('Connect Factory for bindings', () => {
       toJson(wrapper),
     ]).toMatchSnapshot()
   })
+
+  it('should compose styles', () => {
+    const rules = props => ({
+      rule1: {
+        padding: 1,
+      },
+      rule2: {
+        color: props.color,
+      },
+    })
+
+    const anotherRules = {
+      rule1: () => ({
+        padding: 2
+      }),
+      rule2: () => ({
+        fontSize: 16
+      })
+    }
+
+    const MyComponent = connect(anotherRules)(connect(rules)(({ styles }) => (
+      <div>
+        <span className={styles.rule1} />
+        <span className={styles.rule2} />
+      </div>
+    )))
+
+    MyComponent.defaultProps = {
+      color: 'red',
+    }
+
+    const renderer = createRenderer()
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
 })

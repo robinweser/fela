@@ -1,5 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Connect Factory for bindings should compose styles 1`] = `
+Array [
+  "<style>
+    .a {
+        padding: 2
+    }
+
+    .b {
+        color: red
+    }
+
+    .c {
+        font-size: 16
+    }
+</style>",
+  <FelaConnectedFelaComponent
+    color="red"
+>
+    <FelaConnectedFelaComponent
+        _felaTheme={Object {}}
+        color="red"
+    >
+        <ConnectedFelaComponent
+            _felaRules={[Function]}
+            color="red"
+        >
+            <ConnectedFelaComponent
+                _felaRules={[Function]}
+                _felaTheme={Object {}}
+                color="red"
+            >
+                <Component
+                    color="red"
+                    styles={
+                        Object {
+                            "rule1": "a",
+                            "rule2": "b c",
+                          }
+                    }
+                >
+                    <div>
+                        <span
+                            className="a"
+                        />
+                        <span
+                            className="b c"
+                        />
+                    </div>
+                </Component>
+            </ConnectedFelaComponent>
+        </ConnectedFelaComponent>
+    </FelaConnectedFelaComponent>
+</FelaConnectedFelaComponent>,
+]
+`;
+
 exports[`Connect Factory for bindings should extend the rule properties 1`] = `
 Array [
   "<style>

@@ -802,25 +802,25 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
       toJson(wrapper),
     ]).toMatchSnapshot()
   })
-})
 
-it('should pass props except innerRef', () => {
-  const rule = props => ({
-    color: props.color,
-    fontSize: '16px',
+  it('should pass props except innerRef', () => {
+    const rule = props => ({
+      color: props.color,
+      fontSize: '16px',
+    })
+    const Component = createComponentWithProxy(rule, 'div')
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(<Component color="black" innerRef={() => 'test'} />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
   })
-  const Component = createComponentWithProxy(rule, 'div')
-
-  const renderer = createRenderer()
-
-  const wrapper = mount(<Component color="black" innerRef={() => 'test'} />, {
-    context: {
-      renderer,
-    },
-  })
-
-  expect([
-    beautify(`<style>${renderToString(renderer)}</style>`),
-    toJson(wrapper),
-  ]).toMatchSnapshot()
 })
