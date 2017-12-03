@@ -1,5 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Connect Factory for bindings should extend the rule properties 1`] = `
+Array [
+  "<style>
+    .a {
+        padding: 2
+    }
+
+    .b {
+        color: red
+    }
+
+    .c {
+        font-size: 16
+    }
+</style>",
+  <ConnectedFelaComponent
+    color="red"
+    extend={
+        Object {
+            "rule1": Object {
+              "padding": 2,
+            },
+            "rule2": Object {
+              "fontSize": 16,
+            },
+          }
+    }
+>
+    <ConnectedFelaComponent
+        _felaTheme={Object {}}
+        color="red"
+        extend={
+            Object {
+                "rule1": Object {
+                  "padding": 2,
+                },
+                "rule2": Object {
+                  "fontSize": 16,
+                },
+              }
+        }
+    >
+        <Component
+            color="red"
+            styles={
+                Object {
+                    "rule1": "a",
+                    "rule2": "b c",
+                  }
+            }
+        >
+            <div>
+                <span
+                    className="a"
+                />
+                <span
+                    className="b c"
+                />
+            </div>
+        </Component>
+    </ConnectedFelaComponent>
+</ConnectedFelaComponent>,
+]
+`;
+
 exports[`Connect Factory for bindings should not pass through "theme" prop when used without "ThemeProvider" 1`] = `
 Array [
   "<style>

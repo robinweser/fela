@@ -1,38 +1,34 @@
 /* @flow */
 import objectReduce from 'fast-loops/lib/objectReduce'
-import objectEach from 'fast-loops/lib/objectEach'
 import combineRules from './combineRules'
 
-type MultiRule = {
-  [string]: Function | Object
+function safeRule(ruleOrObject: Function | Object) {
+  return typeof ruleOrObject === 'function'
+    ? ruleOrObject
+    : () => ruleOrObject
 }
 
-export default function combineMultiRules(...multiRules: Array<MultiRule>): MultiRule {
-  const aggregatedRules = objectReduce(
-    multiRules,
-    (aggregated, multiRule) => {
-      objectEach(multiRule, (value, key) => {
-        const rule =
-          typeof value === 'function' ? value : () => value
-
-        if (aggregated[key]) {
-          aggregated[key].push(rule)
-        } else {
-          aggregated[key] = [rule]
-        }
-      })
-
-      return aggregated
-    },
-    {}
-  )
-
-  return objectReduce(
-    aggregatedRules,
-    (multiRule, aggregatedRule, name) => ({
-      ...multiRule,
-      [name]: combineRules(...aggregatedRule)
-    }),
-    {}
-  )
+export default function combineMultiRules(...multiRules: Array<Function | Object>): Function {
+  return (props, renderer) => {
+    return objectReduce(
+      multiRules,
+      (resultStyleMap, multiRule) => ({
+        ...resultStyleMap,
+        ...objectReduce(
+          safeRule(multiRule)(props, renderer),
+          (styleMap, rule, name) => ({
+            ...styleMap,
+            [name]: resultStyleMap[name]
+              ? combineRules(
+                resultStyleMap[name],
+                safeRule(rule)
+              )
+              : safeRule(rule)
+            }),
+          {}
+        )
+      }),
+      {}
+    )
+  }
 }
