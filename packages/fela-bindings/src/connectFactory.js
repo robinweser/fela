@@ -66,6 +66,7 @@ export default function connectFactory(
           return createElement(component, {
             ...otherProps,
             styles,
+            rules: combinedRules
           })
         }
       }
