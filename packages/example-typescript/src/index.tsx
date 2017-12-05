@@ -1,10 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {createRenderer} from 'fela';
 import {Provider, ThemeProvider} from 'react-fela';
 import ComplexComponent from './components/ComplexComponent';
-
-const renderer = createRenderer();
+import {renderer} from "./felaConfig";
 
 export interface Theme {
   color: {
@@ -22,10 +20,18 @@ const theme: Theme = {
   }
 };
 
+const extendStyles = {
+  container: {
+    borderColor: 'black',
+    borderRadius: '10px',
+    borderStyle: 'solid'
+  }
+};
+
 ReactDOM.render(
   <Provider renderer={renderer}>
     <ThemeProvider theme={theme}>
-      <ComplexComponent fontScale={10} />
+      <ComplexComponent fontScale={10} extend={extendStyles}/>
     </ThemeProvider>
   </Provider>,
   document.getElementById("root"),
