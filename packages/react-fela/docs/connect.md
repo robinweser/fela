@@ -79,3 +79,100 @@ ReactDOM.render(
   document.getElementById('app')
 )
 ```
+
+## Extending styles
+It's possible to extend component styles with an `extend` prop that can be either an object or a function.
+
+### Example
+```javascript
+import { connect } from 'react-fela'
+
+const rules = props => ({
+  rule1: {
+    padding: 1,
+  },
+  rule2: {
+    color: props.color,
+  },
+})
+
+const MyComponent = connect(rules)(({ styles }) => (
+  <div>
+    <span className={styles.rule1} />
+    <span className={styles.rule2} />
+  </div>
+))
+
+const extend = {
+  rule1: {
+    padding: 2
+  },
+  rule2: {
+    fontSize: 16
+  }
+}
+
+<MyComponent extend={extend} />
+// => <div>
+// =>  <span className="a" />
+// =>  <span className="b c" />
+// => </div>
+// => .a { padding: 2 }
+// => .b { color: red }
+// => .c { font-size: 16 }
+```
+
+To extend the styles, you can also use the `reconnection` design.
+
+### Example
+```javascript
+const MyComponent = /* some definition */
+const MyStyledComponent = connect(rules)(MyComponent)
+const MyRestyledComponent = connect(anotherRules)(MyStyledComponent)
+```
+
+If you want to proxy the rules for child components, you can use the `rules` property on inside the component. 
+
+### Example
+```javascript
+const rules = props => ({
+  rule1: {
+    padding: 1,
+  },
+  rule2: {
+    color: props.color,
+  },
+})
+
+const MyComponent = connect(rules)(({ styles }) => (
+  <div>
+    <span className={styles.rule1} />
+    <span className={styles.rule2} />
+  </div>
+))
+
+const anotherRules = {
+  rule1: () => ({
+    padding: 2
+  }),
+  rule2: () => ({
+    fontSize: 16
+  })
+}
+
+const ProxyWrapper = connect(anotherRules)(({ rules: injectedRules }) => (
+  <div>
+    <MyComponent color="red" extend={injectedRules} />
+  </div>
+))
+```
+
+Inside the component, you get the `rules` always in a normalized state.
+This means that the `rules` will have roughly the following form:
+
+```javascript
+const rules = (props) => ({
+  rule1: (props) => ({/* some props adn values */}),
+  rule2: (props) => ({/* some props adn values */}),
+})
+```
