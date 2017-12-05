@@ -68,7 +68,9 @@ describe('Connect Factory for bindings', () => {
       color: 'red',
     }
 
-    const MyComponent = connect(rules)(({ styles, rules: injectedRules, ...props }) => (
+    const MyComponent = connect(
+      rules
+    )(({ styles, rules: injectedRules, ...props }) => (
       <div {...props}>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
@@ -118,10 +120,13 @@ describe('Connect Factory for bindings', () => {
       },
     })
 
-    expect(rules).toHaveBeenCalledWith({
-      color: 'red',
-      theme: {},
-    }, renderer)
+    expect(rules).toHaveBeenCalledWith(
+      {
+        color: 'red',
+        theme: {},
+      },
+      renderer
+    )
     expect(rules).toHaveBeenCalledTimes(1)
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
@@ -153,11 +158,11 @@ describe('Connect Factory for bindings', () => {
     const renderer = createRenderer()
     const extend = {
       rule1: {
-        padding: 2
+        padding: 2,
       },
       rule2: {
-        fontSize: 16
-      }
+        fontSize: 16,
+      },
     }
 
     const wrapper = mount(<MyComponent extend={extend} />, {
@@ -184,19 +189,21 @@ describe('Connect Factory for bindings', () => {
 
     const anotherRules = {
       rule1: () => ({
-        padding: 2
+        padding: 2,
       }),
       rule2: () => ({
-        fontSize: 16
-      })
+        fontSize: 16,
+      }),
     }
 
-    const MyComponent = connect(anotherRules)(connect(rules)(({ styles }) => (
-      <div>
-        <span className={styles.rule1} />
-        <span className={styles.rule2} />
-      </div>
-    )))
+    const MyComponent = connect(anotherRules)(
+      connect(rules)(({ styles }) => (
+        <div>
+          <span className={styles.rule1} />
+          <span className={styles.rule2} />
+        </div>
+      ))
+    )
 
     MyComponent.defaultProps = {
       color: 'red',
@@ -227,11 +234,11 @@ describe('Connect Factory for bindings', () => {
 
     const anotherRules = {
       rule1: () => ({
-        padding: 2
+        padding: 2,
       }),
       rule2: () => ({
-        fontSize: 16
-      })
+        fontSize: 16,
+      }),
     }
 
     const MyComponent = connect(rules)(({ styles }) => (

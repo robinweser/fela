@@ -14,7 +14,7 @@ describe('Combining multi rules', () => {
       content: props => ({
         lineHeight: props.lineHeight,
         padding: 10,
-      })
+      }),
     }
 
     const anotherMultiRule = props => ({
@@ -24,7 +24,7 @@ describe('Combining multi rules', () => {
       content: {
         lineHeight: props.lineHeight * 2,
         padding: 20,
-      }
+      },
     })
 
     const combinedMultiRule = combineMultiRules(multiRule, anotherMultiRule)
@@ -33,20 +33,16 @@ describe('Combining multi rules', () => {
         fontSize: 12,
         lineHeight: 10,
       },
-      rendererMock
+      rendererMock,
     ]
 
     expect.assertions(2)
-    expect(
-      combinedMultiRule(...params).header(...params)
-    ).toEqual({
+    expect(combinedMultiRule(...params).header(...params)).toEqual({
       color: 'red',
       backgroundColor: 'blue',
       fontSize: 12,
     })
-    expect(
-      combinedMultiRule(...params).content(...params)
-    ).toEqual({
+    expect(combinedMultiRule(...params).content(...params)).toEqual({
       lineHeight: 20,
       padding: 20,
     })

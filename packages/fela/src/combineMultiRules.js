@@ -3,12 +3,12 @@ import objectReduce from 'fast-loops/lib/objectReduce'
 import combineRules from './combineRules'
 
 function safeRule(ruleOrObject: Function | Object) {
-  return typeof ruleOrObject === 'function'
-    ? ruleOrObject
-    : () => ruleOrObject
+  return typeof ruleOrObject === 'function' ? ruleOrObject : () => ruleOrObject
 }
 
-export default function combineMultiRules(...multiRules: Array<Function | Object>): Function {
+export default function combineMultiRules(
+  ...multiRules: Array<Function | Object>
+): Function {
   return (props, renderer) => {
     return objectReduce(
       multiRules,
@@ -19,14 +19,11 @@ export default function combineMultiRules(...multiRules: Array<Function | Object
           (styleMap, rule, name) => ({
             ...styleMap,
             [name]: resultStyleMap[name]
-              ? combineRules(
-                resultStyleMap[name],
-                safeRule(rule)
-              )
-              : safeRule(rule)
-            }),
+              ? combineRules(resultStyleMap[name], safeRule(rule))
+              : safeRule(rule),
+          }),
           {}
-        )
+        ),
       }),
       {}
     )

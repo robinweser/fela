@@ -19,12 +19,7 @@ export default function connectFactory(
 
         render() {
           const { renderer } = this.context
-          const {
-            extend,
-            _felaTheme,
-            _felaRules,
-            ...otherProps
-          } = this.props
+          const { extend, _felaTheme, _felaRules, ...otherProps } = this.props
 
           const allRules = [rules]
           if (_felaRules) {
@@ -35,19 +30,19 @@ export default function connectFactory(
           }
 
           const combinedRules = combineMultiRules(...allRules)
-          const preparedRules = combinedRules({
-            ...otherProps,
-            theme: _felaTheme,
-          }, renderer)
+          const preparedRules = combinedRules(
+            {
+              ...otherProps,
+              theme: _felaTheme,
+            },
+            renderer
+          )
 
           if (component._isFelaComponent) {
-            return createElement(
-              component,
-              {
-                _felaRules: combinedRules,
-                ...otherProps,
-              }
-            )
+            return createElement(component, {
+              _felaRules: combinedRules,
+              ...otherProps,
+            })
           }
 
           const styles = objectReduce(
@@ -66,7 +61,7 @@ export default function connectFactory(
           return createElement(component, {
             ...otherProps,
             styles,
-            rules: combinedRules
+            rules: combinedRules,
           })
         }
       }
