@@ -2,8 +2,10 @@
 import objectReduce from 'fast-loops/lib/objectReduce'
 import combineRules from './combineRules'
 
-function safeRule(ruleOrObject: Function | Object) {
-  return typeof ruleOrObject === 'function' ? ruleOrObject : () => ruleOrObject
+function safeRule(ruleOrObject: Function | Object): Function {
+  return typeof ruleOrObject === 'function'
+    ? ruleOrObject
+    : () => ruleOrObject
 }
 
 export default function combineMultiRules(
