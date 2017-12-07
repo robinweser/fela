@@ -1,6 +1,6 @@
 /* @flow */
 import objectReduce from 'fast-loops/lib/objectReduce'
-import { combineMultiRules } from 'fela'
+import { combineMultiRules } from 'fela-tools'
 
 import generateDisplayName from './generateDisplayName'
 import hoistStatics from './hoistStatics'

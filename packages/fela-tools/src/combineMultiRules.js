@@ -1,6 +1,6 @@
 /* @flow */
 import objectReduce from 'fast-loops/lib/objectReduce'
-import combineRules from './combineRules'
+import { combineRules } from 'fela'
 
 function safeRule(ruleOrObject: Function | Object): Function {
   return typeof ruleOrObject === 'function'
