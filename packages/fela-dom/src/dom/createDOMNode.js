@@ -23,12 +23,14 @@ export default function createDOMNode(
     node.media = media
   }
 
+  const parentNode = anchorNode ? anchorNode.parentNode : head
+
   if (support || media.length > 0) {
-    head.appendChild(node)
+    parentNode.appendChild(node)
   } else if (anchorNode) {
-    head.insertBefore(node, anchorNode)
+    parentNode.insertBefore(node, anchorNode)
   } else {
-    head.appendChild(node)
+    parentNode.appendChild(node)
   }
 
   return node
