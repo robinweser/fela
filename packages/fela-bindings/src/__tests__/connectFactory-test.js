@@ -68,7 +68,9 @@ describe('Connect Factory for bindings', () => {
       color: 'red',
     }
 
-    const MyComponent = connect(rules)(({ styles, ...props }) => (
+    const MyComponent = connect(
+      rules
+    )(({ styles, rules: injectedRules, ...props }) => (
       <div {...props}>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
@@ -118,11 +120,147 @@ describe('Connect Factory for bindings', () => {
       },
     })
 
-    expect(rules).toHaveBeenCalledWith({
-      color: 'red',
-      _felaTheme: {},
-    })
+    expect(rules).toHaveBeenCalledWith(
+      {
+        color: 'red',
+        theme: {},
+      },
+      renderer
+    )
     expect(rules).toHaveBeenCalledTimes(1)
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
+  it('should extend the rule properties', () => {
+    const rules = props => ({
+      rule1: {
+        padding: 1,
+      },
+      rule2: {
+        color: props.color,
+      },
+    })
+
+    const MyComponent = connect(rules)(({ styles }) => (
+      <div>
+        <span className={styles.rule1} />
+        <span className={styles.rule2} />
+      </div>
+    ))
+
+    MyComponent.defaultProps = {
+      color: 'red',
+    }
+
+    const renderer = createRenderer()
+    const extend = {
+      rule1: {
+        padding: 2,
+      },
+      rule2: {
+        fontSize: 16,
+      },
+    }
+
+    const wrapper = mount(<MyComponent extend={extend} />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
+  it('should compose styles', () => {
+    const rules = props => ({
+      rule1: {
+        padding: 1,
+      },
+      rule2: {
+        color: props.color,
+      },
+    })
+
+    const anotherRules = {
+      rule1: () => ({
+        padding: 2,
+      }),
+      rule2: () => ({
+        fontSize: 16,
+      }),
+    }
+
+    const MyComponent = connect(anotherRules)(
+      connect(rules)(({ styles }) => (
+        <div>
+          <span className={styles.rule1} />
+          <span className={styles.rule2} />
+        </div>
+      ))
+    )
+
+    MyComponent.defaultProps = {
+      color: 'red',
+    }
+
+    const renderer = createRenderer()
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
+  it('should component receive rules prop with all combined rules', () => {
+    const rules = props => ({
+      rule1: {
+        padding: 1,
+      },
+      rule2: {
+        color: props.color,
+      },
+    })
+
+    const anotherRules = {
+      rule1: () => ({
+        padding: 2,
+      }),
+      rule2: () => ({
+        fontSize: 16,
+      }),
+    }
+
+    const MyComponent = connect(rules)(({ styles }) => (
+      <div>
+        <span className={styles.rule1} />
+        <span className={styles.rule2} />
+      </div>
+    ))
+
+    const ProxyWrapper = connect(anotherRules)(({ rules: injectedRules }) => (
+      <div>
+        <MyComponent color="red" extend={injectedRules} />
+      </div>
+    ))
+
+    const renderer = createRenderer()
+    const wrapper = mount(<ProxyWrapper />, {
+      context: {
+        renderer,
+      },
+    })
+
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
       toJson(wrapper),

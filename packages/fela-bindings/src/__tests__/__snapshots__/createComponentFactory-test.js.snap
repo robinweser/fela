@@ -802,6 +802,34 @@ Array [
 ]
 `;
 
+exports[`Creating Components with a Proxy for props from Fela rules should pass props except innerRef 1`] = `
+Array [
+  "<style>
+    .a {
+        color: black
+    }
+
+    .b {
+        font-size: 16px
+    }
+</style>",
+  <rule
+    color="black"
+    innerRef={[Function]}
+>
+    <rule
+        _felaTheme={Object {}}
+        color="black"
+        innerRef={[Function]}
+    >
+        <div
+            className="a b"
+        />
+    </rule>
+</rule>,
+]
+`;
+
 exports[`Creating Components with a Proxy for props from Fela rules should pass props used in rules specified in passThroughProps to the element 1`] = `
 Array [
   "<style>
@@ -917,34 +945,6 @@ Array [
                 "color": "black",
               }
         }
-    >
-        <div
-            className="a b"
-        />
-    </rule>
-</rule>,
-]
-`;
-
-exports[`should pass props except innerRef 1`] = `
-Array [
-  "<style>
-    .a {
-        color: black
-    }
-
-    .b {
-        font-size: 16px
-    }
-</style>",
-  <rule
-    color="black"
-    innerRef={[Function]}
->
-    <rule
-        _felaTheme={Object {}}
-        color="black"
-        innerRef={[Function]}
     >
         <div
             className="a b"

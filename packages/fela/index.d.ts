@@ -3,7 +3,16 @@ declare module "fela" {
   import { CSSProperties } from 'react';
 
   type TRuleProps = {};
-  type TRule<T = TRuleProps> = (props: T) => IStyle
+  export type TRule<T = TRuleProps> = (props: T) => IStyle
+
+  export type TMultiRuleObject<Props = TRuleProps, Styles = {}> = {[key in keyof Styles]: TRule<Props> | IStyle}
+  type TMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TMultiRuleObject<Props, Styles>
+  type TMultiRule<Props = TRuleProps, Styles = {}> = TMultiRuleObject<Props, Styles> | TMultiRuleFunction<Props, Styles>
+  type TPartialMultiRuleObject<Props = TRuleProps, Styles = {}> = Partial<TMultiRuleObject<Props, Styles>>
+  type TPartialMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TPartialMultiRuleObject<Props, Styles>
+  export type TPartialMultiRule<Props = TRuleProps, Styles = {}> = TPartialMultiRuleObject<Props, Styles> | TPartialMultiRuleFunction<Props, Styles>
+  export type TNormalizedMultiRule<Props = TRuleProps, Styles = {}> = (props: Props) => {[key in keyof Styles]: TRule<Props>}
+
   type TKeyFrame = TRule;
   type TRendererCreator = (config?: IConfig) => IRenderer;
   type TPlugin = (style: IStyle) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
@@ -46,11 +55,12 @@ declare module "fela" {
     selectorPrefix?: string;
   }
 
-  interface IStyle extends CSSProperties {
+  export interface IStyle extends CSSProperties {
     //TODO: add properties, missing in React.CSSProperties
   }
 
   function createRenderer(config?: IConfig): IRenderer;
+
   function combineRules<A, B>(a: TRule<A>, b: TRule<B>): TRule<A & B>
   function combineRules<A, B, C>(
     a: TRule<A>,
@@ -58,6 +68,18 @@ declare module "fela" {
     c: TRule<C>,
   ): TRule<A & B & C>
   function combineRules(...rules: Array<TRule>): TRule
+
+  function combineMultiRules<A, SA, B, SB>(
+    a: TMultiRule<A, SA>,
+    b: TMultiRule<B, SB>
+  ): TNormalizedMultiRule<A & B, SA & SB>
+  function combineMultiRules<A, SA, B, SB, C, SC>(
+    a: TMultiRule<A, SA>,
+    b: TMultiRule<B, SB>,
+    c: TMultiRule<C, SC>,
+  ): TNormalizedMultiRule<A & B & C, SA & SB & SC>
+  function combineMultiRules(...rules: Array<TMultiRule>): TNormalizedMultiRule
+
   function enhance(...enhancers: Array<TEnhancer>): (rendererCreator: TRendererCreator) => TRendererCreator;
 }
 
@@ -253,7 +275,15 @@ declare module "fela-preset-dev" {
 
 declare module "react-fela" {
   import * as React from "react";
-  import { IRenderer } from "fela";
+  import {
+    IRenderer,
+    TMultiRuleObject,
+    TMultiRule,
+    TPartialMultiRule,
+    TNormalizedMultiRule,
+    TRule,
+    IStyle
+  } from "fela";
 
   interface ThemeProviderProps {
     theme: object;
@@ -292,22 +322,21 @@ declare module "react-fela" {
    */
   export class Provider extends React.Component<ProviderProps, {}> { }
 
-  type StyleFunction<Props> = (props: Props) => React.CSSProperties;
-
-  type Style<Props> = React.CSSProperties | StyleFunction<Props>;
+  type Style<Props> = TRule<Props> | IStyle;
 
   type PassThroughFunction<Props> = (props: Props) => Array<string>
 
   type PassThroughProps<Props> = Array<string> | PassThroughFunction<Props>;
 
-  export type Rules<Props, Styles> = {[key in keyof Styles]: Style<Props>}
+  export type Rules<Props, Styles> = TMultiRuleObject<Props, Styles>
 
-  type RulesFunction<Props, Styles> = (props: Props) => Rules<Props, Styles>
+  export interface FelaWithStylesProps<Props, Styles, Theme = any> {
+    styles: {[key in keyof Styles]: string},
+    rules: TNormalizedMultiRule<Props & FelaWithThemeProps<Theme>, Styles>
+  }
 
-  export type RulesConfig<Props, Styles> = Rules<Props, Styles> | RulesFunction<Props, Styles>
-
-  export interface FelaWithStylesProps<Styles, Theme = any> extends FelaWithThemeProps<Theme> {
-    styles: {[key in keyof Styles]: string}
+  interface FelaWithStylesInjectedProps<Props, Styles, Theme = any> {
+    extend?: TPartialMultiRule<Props & FelaWithThemeProps<Theme>, Styles>
   }
 
   /**
@@ -315,15 +344,16 @@ declare module "react-fela" {
    * @param {React.ComponentType} Component  - component to inject styles theme into.
    */
   interface WithRules<Props, Styles, Theme = any>{
-    (Component: React.ComponentType<FelaWithStylesProps<Styles, Theme> & Props>): React.ComponentType<Props>
+    (Component: React.ComponentType<FelaWithStylesProps<Props, Styles, Theme> & Props>)
+      : React.ComponentType<Props & FelaWithStylesInjectedProps<Props, Styles, Theme>>
   }
 
   /**
    *
-   * @param {RulesConfig} rules  - rules that will be injected in the Component.
+   * @param {TMultiRule} rules  - rules that will be injected in the Component.
    */
   export function connect<Props, Styles, Theme = any>(
-    rules: RulesConfig<Props & FelaWithThemeProps<Theme>, Styles>
+    rules: TMultiRule<Props & FelaWithThemeProps<Theme>, Styles>
   ): WithRules<Props, Styles, Theme>
 
   /**

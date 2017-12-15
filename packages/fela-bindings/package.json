@@ -23,12 +23,12 @@
   "license": "MIT",
   "dependencies": {
     "fela-dom": "^7.0.0",
+    "fela-tools": "^5.0.14",
     "fast-loops": "^1.0.0",
     "shallow-equal": "^1.0.0"
   },
   "devDependencies": {
     "fela": "^6.1.0",
-    "fela-monolithic": "^5.0.14",
-    "fela-tools": "^5.0.14"
+    "fela-monolithic": "^5.0.14"
   }
 }

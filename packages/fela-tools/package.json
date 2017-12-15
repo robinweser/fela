@@ -24,10 +24,8 @@
   },
   "dependencies": {
     "css-in-js-utils": "2.0.0",
+    "fela": "^6.1.0",
     "fela-utils": "^8.0.0",
     "fast-loops": "^1.0.0"
-  },
-  "devDependencies": {
-    "fela": "^6.1.0"
   }
 }
