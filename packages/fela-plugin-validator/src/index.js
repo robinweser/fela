@@ -3,12 +3,15 @@
 import {
   RULE_TYPE,
   KEYFRAME_TYPE,
-  isObject,
   isNestedSelector,
-  isMediaQuery
+  isMediaQuery,
 } from 'fela-utils'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function validateStyleObject(
   style: Object,
@@ -18,7 +21,7 @@ function validateStyleObject(
   for (const property in style) {
     const value = style[property]
 
-    if (isObject(value)) {
+    if (isPlainObject(value)) {
       if (isNestedSelector(property) || isMediaQuery(property)) {
         validateStyleObject(value, logInvalid, deleteInvalid)
       } else {
@@ -33,7 +36,7 @@ function validateStyleObject(
               Maybe you forgot to add a plugin that resolves "${property}".`,
             {
               property,
-              value
+              value,
             }
           )
         }
@@ -58,7 +61,7 @@ function validateKeyframeObject(
 ): void {
   for (const percentage in style) {
     const value = style[percentage]
-    if (!isObject(value)) {
+    if (!isPlainObject(value)) {
       if (logInvalid) {
         console.error(
           `${deleteInvalid
@@ -66,7 +69,7 @@ function validateKeyframeObject(
             : ' '}Invalid keyframe value. An object was expected.`,
           {
             percentage,
-            style: value
+            style: value,
           }
         )
       }
@@ -85,7 +88,7 @@ function validateKeyframeObject(
               Expected either \`to\`, \`from\` or a percentage value between 0 and 100.`,
           {
             percentage,
-            style: value
+            style: value,
           }
         )
       }
@@ -114,13 +117,13 @@ function validateStyle(
 
 const defaultOptions = {
   logInvalid: true,
-  deleteInvalid: false
+  deleteInvalid: false,
 }
 
 export default function validator(options: Object = {}) {
   return (style: Object, type: StyleType) =>
     validateStyle(style, type, {
       ...defaultOptions,
-      ...options
+      ...options,
     })
 }

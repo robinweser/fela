@@ -1,13 +1,18 @@
 /* @flow */
-import { isObject, arrayReduce, objectReduce } from 'fela-utils'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 import arrayifyValue from './arrayifyValue'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 export default function createMergeArrayStyle(mergeProps?: Array<string>) {
   return function mergeArrayStyle(
     base: Object,
     ...extendingStyles: Array<Object>
-  ) {
+  ): Object {
     return arrayReduce(
       extendingStyles,
       (mergedStyle, style) =>
@@ -22,9 +27,9 @@ export default function createMergeArrayStyle(mergeProps?: Array<string>) {
             ) {
               merged[property] = [
                 ...arrayifyValue(baseValue),
-                ...arrayifyValue(value)
+                ...arrayifyValue(value),
               ]
-            } else if (isObject(baseValue) && isObject(value)) {
+            } else if (isPlainObject(baseValue) && isPlainObject(value)) {
               merged[property] = mergeArrayStyle({}, baseValue, value)
             } else {
               merged[property] = value

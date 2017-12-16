@@ -1,4 +1,4 @@
-# `withTheme(component)`
+# `withTheme(component, [propName])`
 
 Passes the local theme to the `component` via props. Therefore, any enhanced component must, at some point, be wrapped with a [`<ThemeProvider>`](ThemeProvider.md) component.
 
@@ -6,7 +6,8 @@ It will automatically be updated if the theme changes, even if the parent implem
 
 
 ## Arguments
-1. ([Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)): A valid React component.
+1. `component` (*[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)*): A valid React component.
+2. `propName` (*string?*): An alternative name that is used to pass the theme. Defaults to `theme`.
 
 ## Example
 ```javascript

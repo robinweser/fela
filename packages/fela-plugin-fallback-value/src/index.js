@@ -1,7 +1,9 @@
 /* @flow */
 import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
 
-import { isObject } from 'fela-utils'
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function resolveFallbackValues(style: Object): Object {
   for (const property in style) {
@@ -9,7 +11,7 @@ function resolveFallbackValues(style: Object): Object {
 
     if (Array.isArray(value)) {
       style[property] = resolveArrayValue(property, value)
-    } else if (isObject(value) && property !== 'fontFace') {
+    } else if (isPlainObject(value) && property !== 'fontFace') {
       style[property] = resolveFallbackValues(value)
     }
   }

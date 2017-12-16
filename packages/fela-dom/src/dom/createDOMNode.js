@@ -5,8 +5,9 @@ function getDocumentHead(): Object {
 
 export default function createDOMNode(
   type: string,
-  media: string = '',
-  anchorNode: Object
+  anchorNode?: Object,
+  media?: string = '',
+  support?: boolean = false
 ): Object {
   const head = getDocumentHead()
 
@@ -14,13 +15,22 @@ export default function createDOMNode(
   node.setAttribute('data-fela-type', type)
   node.type = 'text/css'
 
+  if (support) {
+    node.setAttribute('data-fela-support', 'true')
+  }
+
   if (media.length > 0) {
     node.media = media
-    head.appendChild(node)
+  }
+
+  const parentNode = anchorNode ? anchorNode.parentNode : head
+
+  if (support || media.length > 0) {
+    parentNode.appendChild(node)
+  } else if (anchorNode) {
+    parentNode.insertBefore(node, anchorNode)
   } else {
-    // if anchorNode is undefined it will
-    // be added at the end by default
-    head.insertBefore(node, anchorNode)
+    parentNode.appendChild(node)
   }
 
   return node

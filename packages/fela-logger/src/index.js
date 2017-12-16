@@ -36,13 +36,13 @@ function addLogger(renderer: DOMRenderer, options: Object): DOMRenderer {
 
 const defaultOptions = {
   logCSS: false,
-  formatCSS: false
+  formatCSS: false,
 }
 
 export default function logger(options: Object = {}) {
   return (renderer: DOMRenderer) =>
     addLogger(renderer, {
       ...defaultOptions,
-      ...options
+      ...options,
     })
 }

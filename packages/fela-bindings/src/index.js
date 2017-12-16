@@ -4,6 +4,7 @@ import ProviderFactory from './ProviderFactory'
 import ThemeProviderFactory from './ThemeProviderFactory'
 import withThemeFactory from './withThemeFactory'
 import createTheme from './createTheme'
+import { THEME_CHANNEL } from './themeChannel'
 
 export {
   connectFactory,
@@ -11,5 +12,6 @@ export {
   ProviderFactory,
   ThemeProviderFactory,
   withThemeFactory,
-  createTheme
+  createTheme,
+  THEME_CHANNEL,
 }

@@ -2,7 +2,7 @@
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-important.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-important.svg">
 
-Adds `!important` to every declaration value. This helps to force specificity over third-party libraries.
+Adds `!important` to every declaration value except animations item and keyframes. This helps to force specificity over third-party libraries. Animation items and keyframes with `!important` disrupt functionality of animations. [More about.](https://developer.mozilla.org/en-US/docs/Web/CSS/%40keyframes#!important_in_a_keyframe) 
 
 ## Installation
 ```sh

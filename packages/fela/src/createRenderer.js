@@ -1,41 +1,45 @@
 /* @flow */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 import {
-  cssifyFontFace,
-  cssifyKeyframe,
-  cssifyStaticStyle,
-  generateAnimationName,
-  generateClassName,
   generateCombinedMediaQuery,
   generateCSSRule,
   generateCSSSelector,
-  generateStaticReference,
   isMediaQuery,
   isNestedSelector,
   isUndefinedValue,
-  isObject,
-  isSafeClassName,
   isSupport,
   normalizeNestedProperty,
   processStyleWithPlugins,
-  toCSSString,
-  checkFontFormat,
-  checkFontUrl,
-  arrayEach,
   STATIC_TYPE,
   RULE_TYPE,
   KEYFRAME_TYPE,
   FONT_TYPE,
-  CLEAR_TYPE
+  CLEAR_TYPE,
 } from 'fela-utils'
+
+import cssifyFontFace from './cssifyFontFace'
+import cssifyKeyframe from './cssifyKeyframe'
+import cssifyStaticStyle from './cssifyStaticStyle'
+import generateAnimationName from './generateAnimationName'
+import generateClassName from './generateClassName'
+import generateStaticReference from './generateStaticReference'
+import getFontFormat from './getFontFormat'
+import getFontUrl from './getFontUrl'
+import isSafeClassName from './isSafeClassName'
+import toCSSString from './toCSSString'
 
 import type {
   DOMRenderer,
-  DOMRendererConfig
+  DOMRendererConfig,
 } from '../../../flowtypes/DOMRenderer'
 import type { FontProperties } from '../../../flowtypes/FontProperties'
+
+function isPlainObject(obj) {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 export default function createRenderer(
   config: DOMRendererConfig = {}
@@ -45,6 +49,7 @@ export default function createRenderer(
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
+    supportQueryOrder: config.supportQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
 
     filterClassName: config.filterClassName || isSafeClassName,
@@ -97,7 +102,7 @@ export default function createRenderer(
         const change = {
           type: KEYFRAME_TYPE,
           keyframe: cssKeyframe,
-          name: animationName
+          name: animationName,
         }
 
         renderer.cache[keyframeReference] = change
@@ -130,15 +135,14 @@ export default function createRenderer(
         const fontFace = {
           ...properties,
           src: `${fontLocals.reduce(
-            (agg, local) => (agg += ` local(${checkFontUrl(local)}), `),
+            (agg, local) => (agg += ` local(${getFontUrl(local)}), `),
             ''
           )}${files
             .map(
-              src =>
-                `url(${checkFontUrl(src)}) format('${checkFontFormat(src)}')`
+              src => `url(${getFontUrl(src)}) format('${getFontFormat(src)}')`
             )
             .join(',')}`,
-          fontFamily
+          fontFamily,
         }
 
         const cssFontFace = cssifyFontFace(fontFace)
@@ -146,7 +150,7 @@ export default function createRenderer(
         const change = {
           type: FONT_TYPE,
           fontFace: cssFontFace,
-          fontFamily
+          fontFamily,
         }
 
         renderer.cache[fontReference] = change
@@ -165,7 +169,7 @@ export default function createRenderer(
         const change = {
           type: STATIC_TYPE,
           css: cssDeclarations,
-          selector
+          selector,
         }
 
         renderer.cache[staticReference] = change
@@ -178,7 +182,7 @@ export default function createRenderer(
 
       return {
         unsubscribe: () =>
-          renderer.listeners.splice(renderer.listeners.indexOf(callback), 1)
+          renderer.listeners.splice(renderer.listeners.indexOf(callback), 1),
       }
     },
 
@@ -188,7 +192,7 @@ export default function createRenderer(
       renderer.cache = {}
 
       renderer._emitChange({
-        type: CLEAR_TYPE
+        type: CLEAR_TYPE,
       })
     },
 
@@ -206,7 +210,7 @@ export default function createRenderer(
         const value = style[property]
 
         // TODO: this whole part could be trimmed
-        if (isObject(value)) {
+        if (isPlainObject(value)) {
           if (isNestedSelector(property)) {
             classNames += renderer._renderStyleToClassNames(
               value,
@@ -248,7 +252,7 @@ export default function createRenderer(
             // usage of optional props without side-effects
             if (isUndefinedValue(value)) {
               renderer.cache[declarationReference] = {
-                className: ''
+                className: '',
               }
               /* eslint-disable no-continue */
               continue
@@ -271,7 +275,7 @@ export default function createRenderer(
               selector,
               declaration,
               media,
-              support
+              support,
             }
 
             renderer.cache[declarationReference] = change
@@ -292,7 +296,7 @@ export default function createRenderer(
 
     _emitChange(change: Object): void {
       arrayEach(renderer.listeners, listener => listener(change))
-    }
+    },
   }
 
   // initial setup

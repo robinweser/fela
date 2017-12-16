@@ -5,7 +5,7 @@ describe('Enhancing renderers', () => {
   it('should enhance a renderer', () => {
     const enhancer = renderer => ({
       ...renderer,
-      greet: name => `Hello ${name}`
+      greet: name => `Hello ${name}`,
     })
 
     const enhancedRenderer = enhance(enhancer)(createRenderer)()
@@ -16,12 +16,12 @@ describe('Enhancing renderers', () => {
   it('should enhance a renderer multiple times', () => {
     const enhancer = renderer => ({
       ...renderer,
-      greet: name => `Hello ${name}`
+      greet: name => `Hello ${name}`,
     })
 
     const anotherEnhancer = renderer => ({
       ...renderer,
-      foo: 'bar'
+      foo: 'bar',
     })
 
     const enhancedRenderer = enhance(enhancer, anotherEnhancer)(

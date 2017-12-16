@@ -1,6 +1,6 @@
 {
   "name": "fela-layout-debugger",
-  "version": "6.0.6",
+  "version": "6.0.8",
   "description": "Fela enhancer to debug app layouts",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -22,9 +22,9 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "styles-debugger": "0.0.5"
+    "styles-debugger": "^0.0.5"
   },
   "devDependencies": {
-    "fela": "^6.0.4"
+    "fela": "^6.1.0"
   }
 }

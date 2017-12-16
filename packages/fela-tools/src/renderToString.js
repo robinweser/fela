@@ -1,25 +1,47 @@
 /* @flow */
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 import {
-  cssifyMediaQueryRules,
-  objectReduce,
   clusterCache,
+  cssifySupportRules,
   RULE_TYPE,
   KEYFRAME_TYPE,
   STATIC_TYPE,
-  FONT_TYPE
+  FONT_TYPE,
 } from 'fela-utils'
 
+import cssifyMediaQueryRules from './cssifyMediaQueryRules'
+
 export default function renderToString(renderer: Object): string {
-  const { fontFaces, statics, keyframes, rules, mediaRules } = clusterCache(
+  const {
+    fontFaces,
+    statics,
+    keyframes,
+    rules,
+    mediaRules,
+    supportRules,
+    supportMediaRules,
+  } = clusterCache(
     renderer.cache,
-    renderer.mediaQueryOrder
+    renderer.mediaQueryOrder,
+    renderer.supportQueryOrder
   )
 
-  const basicCSS = fontFaces + statics + keyframes + rules
+  const basicCSS =
+    fontFaces + statics + keyframes + rules + cssifySupportRules(supportRules)
 
-  return objectReduce(
-    mediaRules,
-    (css, rules, query) => css + cssifyMediaQueryRules(query, rules),
+  const mediaKeys = Object.keys({
+    ...supportMediaRules,
+    ...mediaRules,
+  })
+
+  return arrayReduce(
+    mediaKeys,
+    (css, query) => {
+      const mediaCSS = mediaRules[query] || ''
+      const supportCSS = cssifySupportRules(supportMediaRules[query] || {})
+
+      return css + cssifyMediaQueryRules(query, mediaCSS + supportCSS)
+    },
     basicCSS
   )
 }

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering to string should return a single CSS string 1`] = `
+"* {
+  box-sizing: border-box
+}
+
+div {
+  display: flex
+}
+
+.a {
+  color: red
+}
+
+@supports (display:flex) {
+  .b {
+    color: yellow
+  }
+}
+
+@supports (display:grid) {
+  .c {
+    color: brown
+  }
+}
+
+@media (min-height: 300px) {
+  .d {
+    color: blue
+  }
+  @supports (display:flex) {
+    .e {
+      color: green
+    }
+  }
+  @supports (display:grid) {
+    .f {
+      color: black
+    }
+  }
+}
+
+@media (max-height: 300px) {
+  @supports (display: flex) {
+    .g {
+      color:purple
+    }
+  }
+}
+
+@media (max-width: 300px) {
+  .h {
+    color: grey
+  }
+}"
+`;

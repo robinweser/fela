@@ -1,5 +1,5 @@
 /* @flow */
-import { objectReduce } from 'fela-utils'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 export default {
   create(styleSheet: Object): Object {
@@ -17,5 +17,5 @@ export default {
       },
       {}
     )
-  }
+  },
 }

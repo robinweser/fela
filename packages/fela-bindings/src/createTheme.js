@@ -1,5 +1,5 @@
 /* @flow */
-import { arrayEach } from 'fela-utils'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 import type { Theme } from '../../../flowtypes/Theme'
 
@@ -19,7 +19,7 @@ export default function createTheme(
     get(): Object {
       return {
         ...theme.previousProperties,
-        ...theme.properties
+        ...theme.properties,
       }
     },
 
@@ -33,7 +33,7 @@ export default function createTheme(
       const properties = theme.get()
 
       arrayEach(theme.listeners, listener => listener(properties))
-    }
+    },
   }
 
   if (previousTheme) {

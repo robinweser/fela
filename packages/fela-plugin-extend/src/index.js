@@ -1,9 +1,14 @@
 /* @flow */
-import { isObject, arrayEach, objectEach } from 'fela-utils'
+import objectEach from 'fast-loops/lib/objectEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function extendStyle(
   style: Object,
@@ -36,7 +41,7 @@ function extend(
         extendStyle(style, extension, extend, type, renderer)
       )
       delete style[property]
-    } else if (isObject(value)) {
+    } else if (isPlainObject(value)) {
       // support nested extend as well
       style[property] = extend(value, type, renderer)
     }

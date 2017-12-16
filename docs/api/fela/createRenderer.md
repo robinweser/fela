@@ -23,10 +23,4 @@ const rule = props => ({
 const renderer = createRenderer()
 
 renderer.render(rule, { size: '12px' }) // => a b c
-
-
-console.log(renderer.renderToString())
-// .a{background-color:red}
-// .b{font-size:12px}
-// .c{color:blue}
 ```

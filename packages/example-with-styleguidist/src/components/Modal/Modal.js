@@ -9,15 +9,15 @@ import ReactModal from 'react-modal'
 export default class Modal extends Component {
   static propTypes = {
     isOpen: PropTypes.bool,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
   }
 
   render() {
     const { isOpen, children } = this.props
     const style = {
       overlay: {
-        zIndex: 999
-      }
+        zIndex: 999,
+      },
     }
     return (
       <ReactModal contentLabel="Modal" isOpen={isOpen} style={style}>

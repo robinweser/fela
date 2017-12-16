@@ -23,8 +23,8 @@ function transformFile(filename, plugin) {
     filePath,
     transformFileSync(path.join(__dirname, filePath), {
       plugins: [plugin],
-      babelrc: false
-    }).code
+      babelrc: false,
+    }).code,
   ]
 }
 
@@ -42,8 +42,8 @@ describe('Using babel-plugin-fela', () => {
       precompile: true,
       renderer: () =>
         createRenderer({
-          plugins: [...webPreset]
-        })
+          plugins: [...webPreset],
+        }),
     })
 
     fixtures.forEach(fixture => {

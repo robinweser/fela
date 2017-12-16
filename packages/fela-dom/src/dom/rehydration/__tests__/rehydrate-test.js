@@ -1,9 +1,16 @@
-import { RULE_TYPE } from 'fela-utils'
-
 import { createRenderer } from 'fela'
+import webPreset from 'fela-preset-web'
 
 import rehydrate from '../rehydrate'
 import renderToMarkup from '../../../server/renderToMarkup'
+
+const sortObject = obj =>
+  Object.keys(obj)
+    .sort()
+    .reduce((newObj, key) => {
+      newObj[key] = obj[key]
+      return newObj
+    }, {})
 
 beforeEach(() => {
   const head = document.head
@@ -15,30 +22,50 @@ beforeEach(() => {
 describe('Rehydrating from DOM nodes', () => {
   it('should rehydrate the renderer cache', () => {
     const serverRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a'
+      filterClassName: cls => cls !== 'a',
+      plugins: [...webPreset],
     })
 
     serverRenderer.renderRule(() => ({
       color: 'yellow',
-      ':hover': {
-        color: 'red'
+      backgroundColor: 'red',
+      flex: 1,
+      '& #id > .foo ~ bar': {
+        backgroundColor: 'red',
       },
-      '@media (max-width: 800px)': {
-        color: 'blue'
-      }
+      '[alt="Hello"]': {
+        fontSize: 12,
+      },
+      '@supports (display: grid)': {
+        color: 'blue',
+        '&.foo.bar': {
+          color: 'red',
+        },
+      },
+      ':hover': {
+        color: 'red',
+        '> h1': {
+          color: 'green',
+        },
+      },
     }))
 
     document.head.innerHTML = renderToMarkup(serverRenderer)
 
-    const clientRenderer = {
-      cache: {}
-    }
+    const clientRenderer = createRenderer({
+      filterClassName: cls => cls !== 'a',
+      plugins: [...webPreset],
+    })
 
     rehydrate(clientRenderer)
 
     expect([
       clientRenderer.uniqueRuleIdentifier,
-      JSON.stringify(clientRenderer.cache, null, 2)
+      clientRenderer.cache,
     ]).toMatchSnapshot()
+
+    expect(sortObject(clientRenderer.cache)).toEqual(
+      sortObject(serverRenderer.cache)
+    )
   })
 })

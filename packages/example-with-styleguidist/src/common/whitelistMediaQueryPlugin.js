@@ -5,7 +5,7 @@ const flipKeysAndValues = input =>
   Object.keys(input).reduce(
     (obj, key) => ({
       ...obj,
-      [input[key]]: key
+      [input[key]]: key,
     }),
     {}
   )

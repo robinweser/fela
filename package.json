@@ -3,17 +3,17 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "./scripts/build.sh",
-    "cle": "rimraf packages/*/package-lock.json",
-    "clean": "lerna clean --yes && rimraf coverage && rimraf _book && rimraf packages/*/es && rimraf packages/*/lib",
+    "clear": "lerna clean --yes && rimraf coverage && rimraf _book && rimraf packages/*/es && rimraf packages/*/lib",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
-    "check": "yarn run format && yarn run lint && yarn run test:coverage && yarn run flow",
+    "check": "yarn format && yarn lint && yarn coverage && yarn flow",
     "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
-    "release": "git pull --rebase && yarn run build && lerna publish && yarn run docs",
+    "release": "git pull --rebase && yarn build && lerna publish && yarn docs",
     "test": "cross-env BABEL_ENV=commonjs jest",
-    "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage",
-    "setup": "yarn run clean && yarn run bootstrap && yarn run build"
+    "coverage": "yarn test -- --coverage",
+    "watch": "yarn test -- --watch",
+    "setup": "yarn clear && yarn bootstrap && yarn build"
   },
   "jest": {
     "rootDir": "packages",

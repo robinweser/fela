@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-angular2",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "license": "MIT",
   "scripts": {
     "start": "npm run bundle & http-server -a 0.0.0.0 -p 9000",
@@ -10,7 +10,7 @@
   "engines": {
     "node": "6.2.1"
   },
-  "dependencies": {
+  "devDependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
     "@angular/core": "2.0.0-rc.4",
@@ -18,6 +18,11 @@
     "@angular/platform-browser": "2.0.0-rc.4",
     "@angular/platform-browser-dynamic": "2.0.0-rc.4",
     "@angular/router": "3.0.0-beta.2",
+    "babel-core": "6.10.4",
+    "babel-loader": "6.2.4",
+    "babel-plugin-transform-class-properties": "^6.10.2",
+    "babel-preset-angular2": "0.0.2",
+    "babel-preset-es2015": "6.9.0",
     "es6-promise": "3.2.1",
     "es6-shim": "0.35.1",
     "fela": "4.2.6",
@@ -25,19 +30,12 @@
     "http-server": "0.9.0",
     "localStorage": "1.0.3",
     "node-uuid": "1.4.7",
+    "raw-loader": "0.5.1",
     "reflect-metadata": "0.1.3",
     "rxjs": "5.0.0-beta.6",
     "todomvc-app-css": "2.0.6",
     "todomvc-common": "1.0.2",
+    "webpack": "1.13.1",
     "zone.js": "0.6.12"
-  },
-  "devDependencies": {
-    "babel-core": "6.10.4",
-    "babel-loader": "6.2.4",
-    "babel-plugin-transform-class-properties": "^6.10.2",
-    "babel-preset-angular2": "0.0.2",
-    "babel-preset-es2015": "6.9.0",
-    "raw-loader": "0.5.1",
-    "webpack": "1.13.1"
   }
 }

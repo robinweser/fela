@@ -10,7 +10,6 @@ To create a new renderer instance, simply use the `createRenderer` method to act
 * [`renderKeyframe(keyframe, [props])`](#renderkeyframekeyframe-props)
 * [`renderFont(family, files, [properties])`](#renderfontfamily-files-properties)
 * [`renderStatic(style, [selector])`](#renderstaticstyle-selector)
-* [`renderToString()`](#rendertostring) *(Deprecated)*
 * [`subscribe(listener)`](#subscribelistener)
 * [`clear()`](#clear)
 
@@ -53,7 +52,7 @@ const rule = props => ({
   alignItems: props.align
 })
 
-renderer.renderRule(rule, { justifyContent: 'center' }) // => a
+renderer.renderRule(rule, { justify: 'center' }) // => a
 // .a{justify-content:center}
 ```
 
@@ -199,44 +198,6 @@ div {
   display: flex
 }
 `)
-```
-
----
-
-## `renderToString()`
-
-> Deprecated! Use `renderToMarkup` from `fela-dom` for server-side rendering instead. Use `renderToString` from `fela-tools` if you want to render all styles into a single string.
-
-Renders all cached styles into a single CSS string. Styles are grouped in the following order:
-
-1. Fonts
-2. Static Styles
-3. Rules
-4. Media Query Rules (clustered)
-5. Keyframes
-
-### Returns
-(*string*): Single concatenated CSS string containing all cached styles by that time.
-
-### Example
-```javascript
-import { createRenderer } from 'fela'
-
-const renderer = createRenderer(mountNode)
-
-const rule = props => ({
-  fontSize: props.fontSize,
-  color: 'blue'
-})
-
-renderer.renderStatic('html,body{box-sizing:border-box;margin:0}').
-renderer.renderRule(rule, { fontSize: '12px' })
-
-const css = renderer.renderToString()
-
-console.log(css)
-// html,body{box-sizing:border-box;margin:0}
-// .a{font-size:12px}.b{color:blue}
 ```
 
 ---
