@@ -1,27 +1,26 @@
 /* @flow */
-import { isObject } from 'fela-utils'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+import type { StyleType } from '../../../flowtypes/StyleType'
 
-import { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
-type Type = 'KEYFRAME' | 'RULE' | 'STATIC'
 function resolveSimulation(
   style: Object,
-  type: Type,
+  type: StyleType,
   renderer: DOMRenderer | NativeRenderer,
   props: Object
 ): Object {
-  const merge = renderer._mergeStyle || assignStyle
-
   if (props.simulate) {
     for (const property in style) {
       const value = style[property]
 
-      if (isObject(value) && props.simulate[property]) {
+      if (isPlainObject(value) && props.simulate[property]) {
         const resolvedValue = resolveSimulation(value, type, renderer, props)
 
-        merge(style, resolvedValue)
+        renderer._mergeStyle(style, resolvedValue)
         delete style[property]
       }
     }

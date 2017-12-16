@@ -1,9 +1,14 @@
 /* @flow */
-import { objectEach } from 'fela-utils'
 import { render, rehydrate } from 'fela-dom'
+import objectEach from 'fast-loops/lib/objectEach'
 
 function hasDOM(renderer) {
-  return !renderer.isNativeRenderer && typeof window !== 'undefined'
+  return (
+    !renderer.isNativeRenderer &&
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.createElement
+  )
 }
 
 export default function ProviderFactory(
@@ -28,7 +33,7 @@ export default function ProviderFactory(
 
     getChildContext(): Object {
       return {
-        renderer: this.props.renderer
+        renderer: this.props.renderer,
       }
     }
 

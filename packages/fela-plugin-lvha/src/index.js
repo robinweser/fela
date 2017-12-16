@@ -1,12 +1,12 @@
 /* @flow */
-import { arrayEach } from 'fela-utils'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 const precedence = {
   ':link': 0,
   ':visited': 1,
   ':hover': 2,
   ':focus': 3,
-  ':active': 4
+  ':active': 4,
 }
 
 const pseudoClasses = Object.keys(precedence)
@@ -30,6 +30,4 @@ function orderLVHA(style: Object): Object {
   return style
 }
 
-export default function LVHA() {
-  return orderLVHA
-}
+export default () => orderLVHA

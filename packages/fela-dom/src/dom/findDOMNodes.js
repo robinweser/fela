@@ -1,15 +1,16 @@
 /* @flow */
-import { arrayReduce } from 'fela-utils'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
-export default function selectDOMNodes() {
+export default function findDOMNodes(): Object {
   return arrayReduce(
     document.querySelectorAll('[data-fela-type]'),
-    (DOMNodes, node) => {
+    (nodes, node) => {
       const type = node.getAttribute('data-fela-type') || ''
       const media = node.getAttribute('media') || ''
+      const support = node.getAttribute('support') ? 'support' : ''
 
-      DOMNodes[type + media] = node
-      return DOMNodes
+      nodes[type + media + support] = node
+      return nodes
     },
     {}
   )

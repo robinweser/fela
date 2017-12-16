@@ -54,7 +54,7 @@ exports[`Subscribing to the DOM should render keyframes to a DOM node 1`] = `
 </html>"
 `;
 
-exports[`Subscribing to the DOM should render media rules to single DOM nodes 1`] = `
+exports[`Subscribing to the DOM should render media rules and support rules to single DOM nodes 1`] = `
 "<html>
 
 <head>
@@ -62,7 +62,8 @@ exports[`Subscribing to the DOM should render media rules to single DOM nodes 1`
     .a {
       color: blue
     }
-
+  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\">
     @supports (display: flex) {
       .b {
         display: flex
@@ -78,7 +79,8 @@ exports[`Subscribing to the DOM should render media rules to single DOM nodes 1`
     .d {
       color: yellow
     }
-
+  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width: 300px) and (max-height: 500px)\\">
     @supports (display: grid) {
       .e {
         display: grid

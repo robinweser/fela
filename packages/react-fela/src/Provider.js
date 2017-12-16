@@ -6,12 +6,12 @@ import PropTypes from 'prop-types'
 export default ProviderFactory(Component, children => Children.only(children), {
   propTypes: {
     renderer: PropTypes.object.isRequired,
-    rehydrate: PropTypes.bool.isRequired
+    rehydrate: PropTypes.bool.isRequired,
   },
   childContextTypes: {
-    renderer: PropTypes.object
+    renderer: PropTypes.object,
   },
   defaultProps: {
-    rehydrate: true
-  }
+    rehydrate: true,
+  },
 })

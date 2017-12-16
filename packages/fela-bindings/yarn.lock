@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
-shallow-equal@1.0.0:
+fast-loops@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fast-loops/-/fast-loops-1.0.0.tgz#2cdd7e0ff67343b2b5f5e627d855a50b4bed559a"
+
+shallow-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"

@@ -6,9 +6,9 @@ const rule = () => ({
     backgroundColor: 'red',
     lineHeight: 2,
     ':hover': {
-      color: 'black'
-    }
-  }
+      color: 'black',
+    },
+  },
 })
 
 export default createComponent(rule)

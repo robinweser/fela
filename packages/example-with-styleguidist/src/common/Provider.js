@@ -14,12 +14,12 @@ class StyleProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     theme: PropTypes.object.isRequired,
-    renderer: PropTypes.object
+    renderer: PropTypes.object,
   }
 
   static defaultProps = {
     theme: defaultTheme,
-    renderer: null
+    renderer: null,
   }
 
   render() {

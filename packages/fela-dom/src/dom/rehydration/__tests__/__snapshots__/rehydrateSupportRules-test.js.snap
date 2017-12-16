@@ -1,33 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rehydrating @supports rules should rehydrate the renderer cache 1`] = `
-Array [
-  "{
-  \\"(display:grid)colorred\\": {
-    \\"type\\": \\"RULE\\",
-    \\"className\\": \\"a\\",
-    \\"selector\\": \\".a\\",
-    \\"declaration\\": \\"color:red\\",
-    \\"media\\": \\"\\",
-    \\"support\\": \\"(display:grid)\\"
+Object {
+  "(display:grid) and (display:flex)colorgreen": Object {
+    "className": "c",
+    "declaration": "color:green",
+    "media": "",
+    "selector": ".c",
+    "support": "(display:grid) and (display:flex)",
+    "type": "RULE",
   },
-  \\"(display:grid)colorblue\\": {
-    \\"type\\": \\"RULE\\",
-    \\"className\\": \\"b\\",
-    \\"selector\\": \\".b\\",
-    \\"declaration\\": \\"color:blue\\",
-    \\"media\\": \\"\\",
-    \\"support\\": \\"(display:grid)\\"
+  "(display:grid)colorblue": Object {
+    "className": "b",
+    "declaration": "color:blue",
+    "media": "",
+    "selector": ".b",
+    "support": "(display:grid)",
+    "type": "RULE",
   },
-  \\"(display:grid) and (display:flex)colorgreen\\": {
-    \\"type\\": \\"RULE\\",
-    \\"className\\": \\"c\\",
-    \\"selector\\": \\".c\\",
-    \\"declaration\\": \\"color:green\\",
-    \\"media\\": \\"\\",
-    \\"support\\": \\"(display:grid) and (display:flex)\\"
-  }
-}",
-  ".x{color:yellow}",
-]
+  "(display:grid)colorred": Object {
+    "className": "a",
+    "declaration": "color:red",
+    "media": "",
+    "selector": ".a",
+    "support": "(display:grid)",
+    "type": "RULE",
+  },
+}
 `;

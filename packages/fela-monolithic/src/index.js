@@ -1,25 +1,28 @@
 /* @flow */
 /* eslint-disable no-continue */
+import objectReduce from 'fast-loops/lib/objectReduce'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
-
 import {
-  isObject,
   isSupport,
   isMediaQuery,
   isNestedSelector,
   isUndefinedValue,
-  objectReduce,
   normalizeNestedProperty,
   processStyleWithPlugins,
-  generateMonolithicClassName,
   generateCombinedMediaQuery,
   generateCSSSelector,
   generateCSSRule,
-  RULE_TYPE
+  RULE_TYPE,
 } from 'fela-utils'
+
+import generateMonolithicClassName from './generateMonolithicClassName'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 import type MonolithicRenderer from '../../../flowtypes/MonolithicRenderer'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function useMonolithicRenderer(
   renderer: DOMRenderer,
@@ -40,7 +43,7 @@ function useMonolithicRenderer(
     const ruleSet = objectReduce(
       style,
       (ruleset, value, property) => {
-        if (isObject(value)) {
+        if (isPlainObject(value)) {
           if (isNestedSelector(property)) {
             renderer._renderStyleToCache(
               className,
@@ -95,7 +98,7 @@ function useMonolithicRenderer(
         className,
         selector,
         declaration: css,
-        media
+        media,
       }
 
       const declarationReference = selector + media + support

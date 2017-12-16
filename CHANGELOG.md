@@ -5,6 +5,37 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 24/11/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-dom | 7.0.0 | [(#472)](https://github.com/rofrischmann/fela/pull/472) `@supports` queries are now completely separated from basic rules. Serverside methods now return a new flag for `@supports` queries.<br>The deprecated `rehydrateCache` has been removed. Use `rehydrate` from now on. |
+| fela-tools | 5.0.14 | [(#472)](https://github.com/rofrischmann/fela/pull/472) updated `renderToString` to support the new `@supports` logic |
+| fela-utils | 8.0.0 | [(#470)](https://github.com/rofrischmann/fela/pull/470) Many internal utilites have been moved to the packages directly. Some helpers have been replaced with lodash equivalents. |
+| fela-preset-web<br>fela-preset-dev | 8.0.0<br>6.0.0 | [(#470)](https://github.com/rofrischmann/fela/pull/470) Preset configuration has been improved. The plugin keys have been renamed to just the actual plugin name (e.g. `fela-plugin-unit` => `unit`) |
+| fela | 6.1.0 | [(#472)](https://github.com/rofrischmann/fela/pull/472) To explicitly order `@supports` queries `createRenderer` now accepts a `supportQueryOrder` options which works identical to `mediaQueryOrder`. <br>[(#471)](https://github.com/rofrischmann/fela/pull/471) Fixed the `combineRules` TypeScript definition |
+| fela-bindings<br>react-fela<br>inferno-fela<br>preact-fela | 1.2.0<br>6.1.1<br>6.1.1<br>6.1.1 | [(#475)](https://github.com/rofrischmann/fela/pull/475) Use scoped context and props keys to avoid namespace conflicts for theming. `withTheme` accepts an additional `propName` argument to specify an alternative name instead of `theme`. |
+| fela-beautifier| 5.0.14 | More robust reactive client-side beautifier |
+| fela-plugin-named-keys| 1.0.0| Renamed `fela-plugin-named-media-query` to also support `@supports` replacements semantically |
+
+## 14/11/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-plugin-embedded | 5.2.0 | [(#462)](https://github.com/rofrischmann/fela/pull/462) The `fontFace` property now accepts an array of font face definitions. Duplicate font families will only be listed once. |
+| fela-bindings<br>react-fela<br>inferno-fela<br>preact-fela | 1.1.0<br>6.1.0<br>6.1.0<br>6.1.0 | [(#461)](https://github.com/rofrischmann/fela/pull/461) `connect` now also accepts a function that resolves to an object of rules<br>[(#466)](https://github.com/rofrischmann/fela/pull/466) `createComponentFactory` now accepts an array of props that are always passed down  |
+
+This release also adds some TypeScript definitions.
+
+## 02/11/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-preset-dev<br>fela-preset-web | 5.0.13<br>7.0.2 | [(#447)](https://github.com/rofrischmann/fela/pull/447) both presets are now fully configurable by accepting an object with the plugin names as keys |
+
+
+## 01/11/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-plugin-custom-property<br>fela-plugin-extend<br>fela-plugin-native-media-query<br>fela-plugin-simulate | major | remove backwards compatibility and add peer dependency for Fela > 6 |
+
 ## 31/10/17
 | Package | Version | Changes |
 | ---- | --- | --- |
@@ -12,7 +43,7 @@ If you're searching for older version-based release notes please check out the o
 | fela-plugin-bidi | 2.0.0 | [(#449)](https://github.com/rofrischmann/fela/pull/449) updated to a new major version of [bidi-css-js](https://github.com/TxHawks/bidi-css-js) |
 | fela-combine-arrays | 1.0.3 | [(#451)](https://github.com/rofrischmann/fela/pull/451) fixed a bug where objects got converted to arrays |
 | fela-plugin-extend | 5.0.12 | [(#456)](https://github.com/rofrischmann/fela/pull/456) fixed a bug where nested extend objects could not be resolved |
-| fela-combine-arrays<br>fela-plugin-custom-property<br>fela-plugin-extend<br>fela-plugin-native-media-query<br>fela-plugin-simulate<br>fela |  | fixed a semantic versioning issue and added backwards compatibility |
+| fela-plugin-custom-property<br>fela-plugin-extend<br>fela-plugin-native-media-query<br>fela-plugin-simulate |  | fixed a semantic versioning issue and added backwards compatibility |
 
 ## 20/10/17
 | Package | Version | Changes |

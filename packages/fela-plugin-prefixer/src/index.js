@@ -1,9 +1,13 @@
 /* @flow */
 import prefix from 'inline-style-prefixer/static'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 import fallbackValue from 'fela-plugin-fallback-value'
-import { isObject, objectReduce } from 'fela-utils'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 const resolveFallbackValues = fallbackValue()
 
@@ -11,11 +15,11 @@ function addVendorPrefixes(style: Object): Object {
   return objectReduce(
     style,
     (prefixedStyle, value, property) => {
-      if (isObject(value)) {
+      if (isPlainObject(value)) {
         prefixedStyle[property] = addVendorPrefixes(value)
       } else {
         const prefixedDeclaration = prefix({
-          [property]: style[property]
+          [property]: style[property],
         })
         const styleKeys = Object.keys(prefixedDeclaration)
 
@@ -42,6 +46,4 @@ function addVendorPrefixes(style: Object): Object {
   )
 }
 
-export default function prefixer() {
-  return addVendorPrefixes
-}
+export default () => addVendorPrefixes

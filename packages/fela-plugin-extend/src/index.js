@@ -1,10 +1,14 @@
 /* @flow */
-import { isObject, arrayEach, objectEach } from 'fela-utils'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import objectEach from 'fast-loops/lib/objectEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function extendStyle(
   style: Object,
@@ -13,16 +17,14 @@ function extendStyle(
   type: StyleType,
   renderer: DOMRenderer | NativeRenderer
 ): void {
-  const merge = renderer._mergeStyle || assignStyle
-
   // extend conditional style objects
   if (extension.hasOwnProperty('condition')) {
     if (extension.condition) {
-      merge(style, extendPlugin(extension.style, type, renderer))
+      renderer._mergeStyle(style, extendPlugin(extension.style, type, renderer))
     }
   } else {
     // extend basic style objects
-    merge(style, extension)
+    renderer._mergeStyle(style, extension)
   }
 }
 
@@ -39,7 +41,7 @@ function extend(
         extendStyle(style, extension, extend, type, renderer)
       )
       delete style[property]
-    } else if (isObject(value)) {
+    } else if (isPlainObject(value)) {
       // support nested extend as well
       style[property] = extend(value, type, renderer)
     }

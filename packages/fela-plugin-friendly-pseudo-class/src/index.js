@@ -1,5 +1,7 @@
 /* @flow */
-import { isObject } from 'fela-utils'
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 const regex = new RegExp('^on([A-Z])')
 
@@ -7,7 +9,7 @@ function friendlyPseudoClass(style: Object): Object {
   for (const property in style) {
     const value = style[property]
 
-    if (isObject(value)) {
+    if (isPlainObject(value)) {
       const resolvedValue = friendlyPseudoClass(value)
 
       if (regex.test(property)) {

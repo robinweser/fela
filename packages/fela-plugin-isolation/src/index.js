@@ -1,5 +1,5 @@
 /* @flow */
-import { arrayReduce } from 'fela-utils'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 function addIsolation(style: Object, exclude: Array<string> = []): Object {
   if (style.isolation === false) {
@@ -21,7 +21,7 @@ function addIsolation(style: Object, exclude: Array<string> = []): Object {
   return {
     all: 'initial',
     ...excludedDeclarations,
-    ...style
+    ...style,
   }
 }
 

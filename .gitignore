@@ -21,12 +21,12 @@ Thumbs.db
 *.vi
 
 *.js.map
-node_modules/
+**/node_modules/
 npm-debug.log
-lib/
-es
-coverage
-_book
+**/lib/
+**/es/
+**/coverage/
+**/_book
 examples/react/bundle.js
 
 \.history/

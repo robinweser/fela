@@ -1,15 +1,19 @@
 /* @flow */
-import { hoistStatics } from 'fela-utils'
+import hoistStatics from './hoistStatics'
+import { THEME_CHANNEL } from './themeChannel'
 
 export default function withThemeFactory(
   BaseComponent: any,
   createElement: Function,
   contextTypes?: Object
 ): Function {
-  return function withTheme(component: Object): Object {
+  return function withTheme(
+    component: Object,
+    propName?: string = 'theme'
+  ): Object {
     class WithTheme extends BaseComponent {
       state: {
-        theme: Object
+        theme: Object,
       }
 
       unsubscribe: ?Function
@@ -18,15 +22,15 @@ export default function withThemeFactory(
         super(props, context)
 
         this.state = {
-          theme: context.theme ? context.theme.get() : {}
+          theme: context[THEME_CHANNEL] ? context[THEME_CHANNEL].get() : {},
         }
       }
 
       componentWillMount() {
-        if (this.context.theme) {
-          this.unsubscribe = this.context.theme.subscribe(properties =>
+        if (this.context[THEME_CHANNEL]) {
+          this.unsubscribe = this.context[THEME_CHANNEL].subscribe(properties =>
             this.setState({
-              theme: properties
+              theme: properties,
             })
           )
         }
@@ -51,7 +55,7 @@ export default function withThemeFactory(
 
         return createElement(component, {
           ...passProps,
-          theme: this.state.theme
+          [propName]: this.state.theme,
         })
       }
     }
