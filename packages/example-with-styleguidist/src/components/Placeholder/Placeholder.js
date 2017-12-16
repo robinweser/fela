@@ -53,10 +53,15 @@ class Placeholder extends Component {
   }
 
   render() {
-    const { width, height, theme, styles: { __placeHolder } } = this.props
+    const {
+      width,
+      height,
+      styles: { __placeHolder: placeHolderClass },
+    } = this.props
     return (
       <img
-        className={__placeHolder}
+        alt={'random'}
+        className={placeHolderClass}
         src={this.getImageUrl()}
         width={width}
         height={height}

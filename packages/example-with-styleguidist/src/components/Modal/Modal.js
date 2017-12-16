@@ -12,6 +12,10 @@ export default class Modal extends Component {
     children: PropTypes.node.isRequired,
   }
 
+  static defaultProps = {
+    isOpen: false,
+  }
+
   render() {
     const { isOpen, children } = this.props
     const style = {

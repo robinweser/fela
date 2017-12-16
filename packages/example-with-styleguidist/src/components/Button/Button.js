@@ -28,7 +28,11 @@ const ButtonComponent = createComponent(__buttonStyle, 'button', [
  */
 export default function Button(props) {
   const { children, ...passDownProps } = props
-  return <ButtonComponent {...passDownProps}>{children}</ButtonComponent>
+  return (
+    <ButtonComponent {...passDownProps}>
+      {children}
+    </ButtonComponent>
+  )
 }
 Button.propTypes = {
   /** Button label */
