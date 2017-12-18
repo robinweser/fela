@@ -24,8 +24,8 @@ const __randomButton = props => ({
 class RandomButton extends Component {
   static propTypes = {
     /**
-		 * List of possible labels.
-		 */
+   * List of possible labels.
+   */
     variants: PropTypes.array.isRequired,
   }
 
@@ -34,6 +34,7 @@ class RandomButton extends Component {
     this.state = {
       label: sample(props.variants),
     }
+    this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick() {
@@ -45,7 +46,7 @@ class RandomButton extends Component {
   render() {
     const __buttonClass = this.props.styles.__randomButton
     return (
-      <button className={__buttonClass} onClick={this.handleClick.bind(this)}>
+      <button className={__buttonClass} onClick={this.handleClick}>
         {this.state.label}
       </button>
     )
