@@ -4,4 +4,10 @@ import renderToString from './renderToString'
 import combineMultiRules from './combineMultiRules'
 import StyleSheet from './StyleSheet'
 
-export { mapValueToMediaQuery, renderToElement, renderToString, combineMultiRules, StyleSheet }
+export {
+  mapValueToMediaQuery,
+  renderToElement,
+  renderToString,
+  combineMultiRules,
+  StyleSheet,
+}

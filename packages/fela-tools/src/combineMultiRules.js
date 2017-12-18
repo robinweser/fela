@@ -3,9 +3,7 @@ import objectReduce from 'fast-loops/lib/objectReduce'
 import { combineRules } from 'fela'
 
 function safeRule(ruleOrObject: Function | Object): Function {
-  return typeof ruleOrObject === 'function'
-    ? ruleOrObject
-    : () => ruleOrObject
+  return typeof ruleOrObject === 'function' ? ruleOrObject : () => ruleOrObject
 }
 
 export default function combineMultiRules(

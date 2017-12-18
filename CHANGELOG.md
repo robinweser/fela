@@ -5,6 +5,15 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 18/11/17
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-dom | 7.0.1 | `<style>`-elements are now appended to the right parentNode to avoid `DOMError: Not Found (Code 8)` |
+| fela-tools | 5.1.0 | [(#483)](https://github.com/rofrischmann/fela/pull/483) added the `combineMultiRules` helper to use `combineRules` on an object of rules |
+| fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela<br> | 1.3.0<br>6.2.0<br>6.2.0<br>6.2.0 | [(#483)](https://github.com/rofrischmann/fela/pull/483) added support for extending `connect` components using the `extend` prop |
+| preact-fela | 6.2.0 | [(#486)](https://github.com/rofrischmann/fela/pull/486) added a missing `withTheme` import |
+| fela-plugin-important | 6.0.0 | [(#478)](https://github.com/rofrischmann/fela/pull/478) `!important` is no longer added to animated properties and keyframes |
+
 ## 24/11/17
 | Package | Version | Changes |
 | ---- | --- | --- |

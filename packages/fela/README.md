@@ -129,12 +129,13 @@ render(
 ## Examples
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](packages/example-react))
     * [React Styleguidist](http://fela.js.org/docs/introduction/Examples.html#styleguidist) ([source](packages/example-with-styleguidist))
-* [Fela + React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](packages/example-react-native))
+    * [React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](packages/example-react-native))
+    * [ReasonReact](https://github.com/astrada/bs-react-fela-examples)
+    * [Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
 * [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](packages/example-preact))
 * [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](packages/example-inferno))
 * [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](packages/example-angular2))
     * [TypeScript](http://fela.js.org/docs/introduction/Examples.html#typescript) ([source](packages/example-angular2-typescript))
-* [Fela + Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
 * [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
 * [Fela + Cycle](https://github.com/wcastand/cycle-fela-example)
 
@@ -171,23 +172,31 @@ Apart from all the packages managed within this repository, there are many commu
 
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
 * [base-styling-components](https://github.com/pitr12/base-styling-components) - Abstract Box and Text Components
+* [bs-react-fela](https://github.com/astrada/bs-react-fela) - BuckleScript / ReasonReact bindings for Fela
 * [catstack](https://github.com/root-systems/catstack) - A modular mad science framework for teams working on production web apps
+* [css-in-js-playground](https://github.com/DSchau/css-in-js-playground) - A simple playground for CSS in JS solutions
 * [cf-ui](https://github.com/cloudflare/cf-ui) - Cloudflare UI Framework
+* [counter-component-with-react-mobx-fela](https://github.com/Mercateo/counter-component-with-react-mobx-fela) - Counter Component using Fela
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle bindings for Fela
 * [dogstack](https://github.com/root-systems/dogstack) - A popular-choice grab-bag framework for teams working on production web apps
 * [este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
 * [fela-components](https://github.com/arturmuller/fela-components) - Styling library for React and Fela
+* [fela-react-helpers](https://github.com/vlad-zhukov/fela-react-helpers) - A set of useful helpers for Fela
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop) - Generate class names for fela style rule and apply them as property on a wrapped component
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector) - Simplified react-fela `connect` with auto-bound styles
 * [frejya](https://github.com/benoneal/freyja): Pass styles as props to components
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript bindings for Fela
+* [htz-frontend](https://github.com/Haaretz/htz-frontend) - Source for Haaretz frontend app(s)
 * [kilvin](https://github.com/rofrischmann/kilvin) - Primitive React Layout Components with Fela
+* [olymp](https://github.com/olymp/olymp) - Create and build a next gen app using node, react, cssInJS and other cool stuff
+* [preact-fela-simple](https://github.com/pshev/preact-fela-simple) - Super simple Preact bindings for Fela
+* [reason-react-starter](https://github.com/drejohnson/reason-react-starter) - A ReasonReact starter kit using Fela
 * [storybook-addon-props-fela](https://github.com/Kilix/storybook-addon-props-fela): Document the props of your Fela components in storybook.
+* [superslider](https://github.com/adamgiacomelli/superslider) - Slider Component using Fela
 * [telaviv](https://github.com/dustin-H/telaviv) - React Universal Rendering
 * [vashet](https://github.com/derHowie/vashet) - ClojureScript wrapper for Fela
 * [veel](https://github.com/queckezz/veel) - Base react styling components using fela with a design system
 * [vue-fela](https://github.com/dustin-H/vue-fela) - Vue bindings for Fela
-
 
 ## Support
 Got a question? Come and join us on [Gitter](https://gitter.im/rofrischmann/fela)! <br>
@@ -198,6 +207,7 @@ We'd love to help out. We also highly appreciate any feedback.
 > Your company is using Fela, but is not listed yet? [Add your company / organisation](https://github.com/rofrischmann/fela/edit/master/README.md#L121)
 
 - [abilis](https://www.abilis.de)
+- [Bookmyshow](https://in.bookmyshow.com/events)
 - [BdP LV RPS](http://www.bdp-rps.de)
 - [Cloudflare](https://www.cloudflare.com)
 - [dm-drogerie markt](https://www.dm.de/arbeiten-und-lernen/arbeiten-bei-uns/filiadata-c534052.html)

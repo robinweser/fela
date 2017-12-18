@@ -35,9 +35,7 @@ class StyleProvider extends React.Component {
 
     return (
       <FelaProvider renderer={renderer || felaRenderer}>
-        <ThemeProvider theme={theme}>
-          {content}
-        </ThemeProvider>
+        <ThemeProvider theme={theme}>{content}</ThemeProvider>
       </FelaProvider>
     )
   }
