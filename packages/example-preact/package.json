@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "example-preact",
-    "version": "2.0.19",
+    "version": "2.0.20",
     "description": "Fela example with Preact",
     "scripts": {
         "client": "NODE_ENV=development webpack-dev-server",
@@ -29,7 +29,7 @@
         "fela-plugin-unit": "^5.0.15",
         "fela-plugin-validator": "^5.0.15",
         "preact": "^8.1.0",
-        "preact-fela": "^6.2.0",
+        "preact-fela": "^6.2.1",
         "preact-render-to-string": "^3.6.0",
         "webpack": "^2.6.1",
         "webpack-dev-server": "^2.4.5"

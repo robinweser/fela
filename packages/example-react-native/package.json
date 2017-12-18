@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-react-native",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
@@ -16,7 +16,7 @@
     "fela-tools": "^5.1.0",
     "fela-utils": "^8.0.1",
     "react": "^16.0.0-alpha.6",
-    "react-fela": "^6.2.0",
+    "react-fela": "^6.2.1",
     "react-native": "0.44.0"
   }
 }

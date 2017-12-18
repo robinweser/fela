@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-inferno",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "description": "Fela example with Inferno",
   "scripts": {
     "client": "NODE_ENV=development webpack-dev-server",
@@ -30,7 +30,7 @@
     "fela-plugin-validator": "^5.0.15",
     "inferno": "^3.4.3",
     "inferno-component": "^3.4.3",
-    "inferno-fela": "^6.2.0",
+    "inferno-fela": "^6.2.1",
     "inferno-server": "^3.4.3",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
