@@ -1,5 +1,6 @@
 /* @flow */
 import objectReduce from 'fast-loops/lib/objectReduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 import { combineRules } from 'fela'
 
 function safeRule(ruleOrObject: Function | Object): Function {
@@ -10,7 +11,7 @@ export default function combineMultiRules(
   ...multiRules: Array<Function | Object>
 ): Function {
   return (props, renderer) => {
-    return objectReduce(
+    return arrayReduce(
       multiRules,
       (resultStyleMap, multiRule) => ({
         ...resultStyleMap,
