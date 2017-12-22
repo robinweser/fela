@@ -1,22 +1,22 @@
 {
   "private": true,
   "name": "example-react-native",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "devDependencies": {
     "babel-preset-react-native": "^1.0.1",
     "create-react-native-app": "^0.0.6",
-    "fela": "^6.1.1",
-    "fela-dom": "^7.0.1",
-    "fela-native": "^5.0.15",
+    "fela": "^6.1.2",
+    "fela-dom": "^7.0.2",
+    "fela-native": "^5.0.16",
     "fela-plugin-extend": "^6.0.3",
-    "fela-plugin-native-media-query": "^6.0.3",
-    "fela-tools": "^5.1.0",
-    "fela-utils": "^8.0.1",
+    "fela-plugin-native-media-query": "^6.0.4",
+    "fela-tools": "^5.1.1",
+    "fela-utils": "^8.0.2",
     "react": "^16.0.0-alpha.6",
-    "react-fela": "^6.2.1",
+    "react-fela": "^6.2.2",
     "react-native": "0.44.0"
   }
 }

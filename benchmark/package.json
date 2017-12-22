@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "performance-benchmarks",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
     "bench": "npm run rehydration && npm run rule-optimisation",
     "rehydration": "babel-node rehydration",
@@ -17,8 +17,8 @@
     "babel-preset-stage-0": "6.24.1",
     "beautify-benchmark": "0.2.4",
     "benchmark": "2.1.2",
-    "fela": "^6.1.1",
-    "fela-dom": "^7.0.1",
-    "fela-preset-web": "^8.0.1"
+    "fela": "^6.1.2",
+    "fela-dom": "^7.0.2",
+    "fela-preset-web": "^8.0.2"
   }
 }
