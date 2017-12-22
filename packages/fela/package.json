@@ -1,6 +1,6 @@
 {
   "name": "fela",
-  "version": "6.1.2",
+  "version": "6.1.3",
   "description": "State-Driven Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -33,9 +33,9 @@
   "dependencies": {
     "css-in-js-utils": "2.0.0",
     "fast-loops": "^1.0.0",
-    "fela-utils": "^8.0.2"
+    "fela-utils": "^8.0.3"
   },
   "devDependencies": {
-    "fela-tools": "^5.1.1"
+    "fela-tools": "^5.1.2"
   }
 }

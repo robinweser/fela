@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-dev",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "description": "Fela plugin preset for web applications",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,6 +21,6 @@
   "license": "MIT",
   "dependencies": {
     "fela-plugin-logger": "^5.0.4",
-    "fela-plugin-validator": "^5.0.16"
+    "fela-plugin-validator": "^5.0.17"
   }
 }

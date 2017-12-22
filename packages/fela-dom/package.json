@@ -1,6 +1,6 @@
 {
   "name": "fela-dom",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "Fela package for working with the DOM",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,11 +25,11 @@
   "license": "MIT",
   "dependencies": {
     "fast-loops": "^1.0.0",
-    "fela-utils": "^8.0.2"
+    "fela-utils": "^8.0.3"
   },
   "devDependencies": {
-    "fela": "^6.1.2",
-    "fela-preset-web": "^8.0.2",
-    "fela-tools": "^5.1.1"
+    "fela": "^6.1.3",
+    "fela-preset-web": "^8.0.3",
+    "fela-tools": "^5.1.2"
   }
 }
