@@ -69,6 +69,18 @@ declare module "fela" {
   ): TRule<A & B & C>
   function combineRules(...rules: Array<TRule>): TRule
 
+  function enhance(...enhancers: Array<TEnhancer>): (rendererCreator: TRendererCreator) => TRendererCreator;
+}
+
+declare module "fela-dom" {
+  import { IRenderer } from 'fela';
+  function render(renderer: IRenderer): void;
+  function rehydrate(renderer: IRenderer): void;
+  function renderToMarkup(renderer: IRenderer): any;
+  function renderToSheetList(renderer: IRenderer): any;
+}
+
+declare module "fela-tools" {
   function combineMultiRules<A, SA, B, SB>(
     a: TMultiRule<A, SA>,
     b: TMultiRule<B, SB>
@@ -79,16 +91,6 @@ declare module "fela" {
     c: TMultiRule<C, SC>,
   ): TNormalizedMultiRule<A & B & C, SA & SB & SC>
   function combineMultiRules(...rules: Array<TMultiRule>): TNormalizedMultiRule
-
-  function enhance(...enhancers: Array<TEnhancer>): (rendererCreator: TRendererCreator) => TRendererCreator;
-}
-
-declare module "fela-dom" {
-  import { IRenderer } from 'fela';
-  function render(renderer: IRenderer): void;
-  function rehydrate(renderer: IRenderer): void;
-  function renderToMarkup(renderer: IRenderer): any;
-  function renderToSheetList(renderer: IRenderer): any;
 }
 
 /**
@@ -148,6 +150,22 @@ declare module "fela-statistics" {
   import { TEnhancer } from "fela";
 
   export default function(): TEnhancer;
+}
+
+declare module "fela-identifier" {
+  import { TRule, TEnhancer } from "fela";
+
+  interface Configs {
+    prefix?: string;
+    generator?: (name?: string, index?: number) => string;
+  }
+
+  type Identifier = (name?: string) => TRule & {
+    className: string;
+    toString(): string;
+  };
+
+  export default function(configs?: Configs): TEnhancer & Identifier;
 }
 
 /**
@@ -253,7 +271,7 @@ declare module "fela-plugin-validator" {
     deleteInvalid?: boolean;
   }
 
-  export default function(configs: Configs): TPlugin;
+  export default function(configs?: Configs): TPlugin;
 }
 
 /**
