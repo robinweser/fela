@@ -14,11 +14,12 @@ Many plugins and enhancers are already included in the [main repository](https:/
 ### Bindings
 * [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) - React & React Native
 * [preact-fela](https://github.com/rofrischmann/fela/tree/master/packages/preact-fela) - Preact
+* [preact-fela-simple](https://github.com/pshev/preact-fela-simple) - Preact *(alternative)*
 * [inferno-fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela) - Inferno
+* [bs-react-fela](https://github.com/astrada/bs-react-fela) - BuckleScript / ReasonReact
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle
 * [vue-fela](https://github.com/dustin-H/vue-fela) - Vue
-* [bs-react-fela](https://github.com/astrada/bs-react-fela) - BuckleScript/ReasonReact
 
 ### Plugins
 * [fela-plugin-bidi](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-bidi) - Enable direction-independent style authoring
@@ -45,7 +46,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-preset-dev](https://github.com/rofrischmann/fela/tree/master/packages/fela-preset-dev) - Preset for development mode
 
 ### Enhancers
-
 * [fela-beautifier*](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
 * [fela-combine-arrays](https://github.com/rofrischmann/fela/tree/master/packages/fela-combine-arrays) - Enable merging arrays when combining rules
 * ~~[fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.~~ (*Deprecated*)
@@ -58,28 +58,41 @@ Many plugins and enhancers are already included in the [main repository](https:/
 ### Components
 * [base-styling-components](https://github.com/pitr12/base-styling-components) - Abstract Box and Text Components
 * [cf-ui](https://github.com/cloudflare/cf-ui) - Cloudflare UI Framework
+* [counter-component-with-react-mobx-fela](https://github.com/Mercateo/counter-component-with-react-mobx-fela) - Counter Component using Fela
+* [htz-frontend](https://github.com/Haaretz/htz-frontend) - Source for Haaretz frontend app(s)
 * [just-box](https://github.com/RafalFilipek/just-box) - Create universal layouts in React and React-Native
 * [kilvin](https://github.com/rofrischmann/kilvin) - Primitive React Layout Components
-* [veel](https://github.com/queckezz/veel) - Base react styling components using fela with a design system
+* [olymp-fela](https://github.com/olymp/olymp/tree/master/packages/fela) - Simple collection of Fela Components for [olymp](https://github.com/olymp/olymp)
+* [refelaxbox](https://github.com/degroote22/refelaxbox/blob/master/package.json) - [reflexbox](https://github.com/jxnblk/reflexbox) fork using Fela
+* [selectless](https://github.com/Kilix/selectless) - Select in React with Context
+* [superslider](https://github.com/adamgiacomelli/superslider) - Slider Component using Fela
+* [veel](https://github.com/queckezz/veel) - Base React Styling Components using Fela with a Design System
 
 ### Starter Kits
 * [catstack](https://github.com/root-systems/catstack) - A modular mad science framework for teams working on production web apps
 * [dogstack](https://github.com/root-systems/dogstack) - A popular-choice grab-bag framework for teams working on production web apps
 * [este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
+* [olymp](https://github.com/olymp/olymp) - Create and build a next gen app using node, react, cssInJS and other cool stuff
+* [fullstack-pro](https://github.com/cdmbase/fullstack-pro) - Full Stack to create independent packages and to run on servers
+* [react-frontend-server-stack](https://github.com/cdmbase/react-frontend-server-stack/tree/master/packages/react-fela) - Most common react stack and pluggable packages to quickly start a universal react application
+* [reason-react-starter](https://github.com/drejohnson/reason-react-starter) - A starter for building universal web apps with ReactReason
 
 ### Tools
 * [aesthetic](https://github.com/milesj/aesthetic) - React style and theme layer with Fela support
 * [alef](https://github.com/as-com/alef) - Modified TypeScript port of Fela
 * [babel-plugin-css-to-js](https://github.com/jakecoxon/babel-plugin-css-to-js) - Transform your CSS to JavaScript at compile time
+* [bs-css-core](https://github.com/astrada/bs-css-core) - BuckleScript statically typed DSL for CSS
 * [classnames](https://github.com/JedWatson/classnames) - Manage and combine multiple className values safely
 * [css-functions](https://github.com/cssinjs/css-functions) - Functional API to create CSS functions including value validation
 * [css-spring](https://github.com/codepunkt/css-spring) - Generate physics based css-keyframe animations for the css-in-js solution of your choice or plain css
 * [css-to-object](https://github.com/jxnblk/css-to-object) - Convert flat CSS rules to JavaScript style objects
 * [fela-components](https://github.com/arturmuller/fela-components) - Styling library for React and Fela
+* [fela-react-helpers](https://github.com/vlad-zhukov/fela-react-helpers) - A set of useful helpers for Fela
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop) - Generate class names for fela style rule and apply them as property on a wrapped component
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector) - Simplified react-fela `connect` with auto-bound styles
 * [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools) - Useful tools for working with Fela
 * [frejya](https://github.com/benoneal/freyja) - Pass styles as props to components
+* [jest-fela-react](https://github.com/Kilix/jest-fela-react) - Nicer snapshots when using Jest and Fela
 * [objectify-css](https://github.com/lachlanjc/objectify-css) - CLI for converting CSS rules to JavaScript style objects
 * [polished](https://github.com/styled-components/polished) - A lightweight toolset for writing styles in JavaScript
 * [react-animations](https://github.com/FormidableLabs/react-animations) - CSS animations to be used with CSS in JS solutions

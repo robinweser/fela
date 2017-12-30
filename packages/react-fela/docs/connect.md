@@ -135,7 +135,7 @@ If you want to proxy the rules for child components, you can use the `rules` pro
 
 ### Example
 ```javascript
-const rules = props => ({
+const componentRules = props => ({
   rule1: {
     padding: 1,
   },
@@ -144,14 +144,14 @@ const rules = props => ({
   },
 })
 
-const MyComponent = connect(rules)(({ styles }) => (
+const MyComponent = connect(componentRules)(({ styles }) => (
   <div>
     <span className={styles.rule1} />
     <span className={styles.rule2} />
   </div>
 ))
 
-const anotherRules = {
+const proxyWrapperRules = {
   rule1: () => ({
     padding: 2
   }),
@@ -160,19 +160,21 @@ const anotherRules = {
   })
 }
 
-const ProxyWrapper = connect(anotherRules)(({ rules: injectedRules }) => (
+const ProxyWrapper = connect(proxyWrapperRules)(({ rules }) => (
   <div>
-    <MyComponent color="red" extend={injectedRules} />
+    <MyComponent color="red" extend={rules} />
   </div>
 ))
 ```
-
-Inside the component, you get the `rules` always in a normalized state.
-This means that the `rules` will have roughly the following form:
+The variable `rules` that is injected inside the component is the resulting multi-rule, 
+on the basis of which the property `styles` was formed. 
+This property is injected so that the parent component has the ability to control the styling of the child components 
+on the basis of its own styles.
+The underlying component is eventually passed a normalized `rules` object which looks like this:
 
 ```javascript
 const rules = (props) => ({
-  rule1: (props) => ({/* some props adn values */}),
-  rule2: (props) => ({/* some props adn values */}),
+  rule1: (props) => ({/* some props and values */}),
+  rule2: (props) => ({/* some props and values */}),
 })
 ```

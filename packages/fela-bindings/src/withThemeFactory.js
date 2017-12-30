@@ -43,18 +43,8 @@ export default function withThemeFactory(
       }
 
       render() {
-        const { innerRef, ...passProps } = this.props
-
-        if (innerRef) {
-          if (component._isFelaComponent) {
-            passProps.innerRef = innerRef
-          } else {
-            passProps.ref = innerRef
-          }
-        }
-
         return createElement(component, {
-          ...passProps,
+          ...this.props,
           [propName]: this.state.theme,
         })
       }

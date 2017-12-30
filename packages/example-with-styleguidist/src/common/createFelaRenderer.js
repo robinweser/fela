@@ -7,6 +7,8 @@ import beautifier from 'fela-beautifier'
 import statistics from 'fela-statistics'
 import webPreset from 'fela-preset-web'
 import namedMediaQuery from 'fela-plugin-named-media-query'
+import unit from 'fela-plugin-unit'
+import combineArrays from 'fela-combine-arrays'
 import whitelistMediaQuery from './whitelistMediaQueryPlugin'
 import theme from './base-ui-theme'
 
@@ -22,13 +24,14 @@ const removePrefix = query => query.replace('@media ', '')
 
 const createRenderer = () => {
   const plugins = [
+    unit('px'),
     placeholderPrefixer(),
     friendlyPsuedo(),
     ...webPreset,
     embedded(),
     namedMediaQuery(mediaQueries),
   ]
-  const enhancers = []
+  const enhancers = [combineArrays()]
 
   if (process.env.NODE_ENV === 'development') {
     plugins.push(
