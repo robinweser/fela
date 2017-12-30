@@ -3,7 +3,7 @@ import objectReduce from 'fast-loops/lib/objectReduce'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
-const defaultGenerator = (identifierName: string, index: number): string =>
+const defaultGenerator = (identifierName?: string, index: number): string =>
   index.toString()
 
 const isRenderer = (renderer: DOMRenderer): boolean =>
@@ -76,8 +76,11 @@ export default function identifier(config?: IdentifierConfig = {}) {
       .filter(chunk => chunk)
       .join('-')
 
-    const identifierRule = () => ({
+    const identifierRule = (() => ({
       [`--${identifierKey}`]: '',
+    }): {
+      className?: string,
+      toString?: () => string
     })
 
     identifierRule.className = identifierKey
