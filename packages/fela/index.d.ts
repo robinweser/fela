@@ -2,16 +2,8 @@ declare module "fela" {
 
   import { CSSProperties } from 'react';
 
-  type TRuleProps = {};
+  export type TRuleProps = {};
   export type TRule<T = TRuleProps> = (props: T) => IStyle
-
-  export type TMultiRuleObject<Props = TRuleProps, Styles = {}> = {[key in keyof Styles]: TRule<Props> | IStyle}
-  type TMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TMultiRuleObject<Props, Styles>
-  type TMultiRule<Props = TRuleProps, Styles = {}> = TMultiRuleObject<Props, Styles> | TMultiRuleFunction<Props, Styles>
-  type TPartialMultiRuleObject<Props = TRuleProps, Styles = {}> = Partial<TMultiRuleObject<Props, Styles>>
-  type TPartialMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TPartialMultiRuleObject<Props, Styles>
-  export type TPartialMultiRule<Props = TRuleProps, Styles = {}> = TPartialMultiRuleObject<Props, Styles> | TPartialMultiRuleFunction<Props, Styles>
-  export type TNormalizedMultiRule<Props = TRuleProps, Styles = {}> = (props: Props) => {[key in keyof Styles]: TRule<Props>}
 
   type TKeyFrame = TRule;
   type TRendererCreator = (config?: IConfig) => IRenderer;
@@ -81,6 +73,16 @@ declare module "fela-dom" {
 }
 
 declare module "fela-tools" {
+  import {TRule, TRuleProps, IStyle} from "fela";
+
+  export type TMultiRuleObject<Props = TRuleProps, Styles = {}> = {[key in keyof Styles]: TRule<Props> | IStyle}
+  type TMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TMultiRuleObject<Props, Styles>
+  export type TMultiRule<Props = TRuleProps, Styles = {}> = TMultiRuleObject<Props, Styles> | TMultiRuleFunction<Props, Styles>
+  type TPartialMultiRuleObject<Props = TRuleProps, Styles = {}> = Partial<TMultiRuleObject<Props, Styles>>
+  type TPartialMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TPartialMultiRuleObject<Props, Styles>
+  export type TPartialMultiRule<Props = TRuleProps, Styles = {}> = TPartialMultiRuleObject<Props, Styles> | TPartialMultiRuleFunction<Props, Styles>
+  export type TNormalizedMultiRule<Props = TRuleProps, Styles = {}> = (props: Props) => {[key in keyof Styles]: TRule<Props>}
+
   function combineMultiRules<A, SA, B, SB>(
     a: TMultiRule<A, SA>,
     b: TMultiRule<B, SB>
@@ -295,13 +297,15 @@ declare module "react-fela" {
   import * as React from "react";
   import {
     IRenderer,
+    TRule,
+    IStyle
+  } from "fela";
+  import {
     TMultiRuleObject,
     TMultiRule,
     TPartialMultiRule,
     TNormalizedMultiRule,
-    TRule,
-    IStyle
-  } from "fela";
+  } from "fela-tools";
 
   interface ThemeProviderProps {
     theme: object;
