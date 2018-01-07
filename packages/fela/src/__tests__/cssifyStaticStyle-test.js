@@ -20,7 +20,7 @@ describe('Cssifying static css declarations', () => {
       cssifyStaticStyle(
         {
           color: 'red',
-          WebkitTransitionDuration: 3
+          WebkitTransitionDuration: 3,
         },
         createRenderer()
       )

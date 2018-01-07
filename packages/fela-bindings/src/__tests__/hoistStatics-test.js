@@ -73,14 +73,14 @@ describe('Hoisting statics', () => {
 
     Foo.defaultProps = {
       foo: 1,
-      bar: 1
+      bar: 1,
     }
 
     class Bar {}
 
     Bar.defaultProps = {
       foo: 2,
-      baz: 3
+      baz: 3,
     }
 
     const hoisted = hoistStatics(Bar, Foo)
@@ -88,7 +88,7 @@ describe('Hoisting statics', () => {
     expect(hoisted.defaultProps).toEqual({
       foo: 2,
       bar: 1,
-      baz: 3
+      baz: 3,
     })
   })
 
@@ -96,13 +96,13 @@ describe('Hoisting statics', () => {
     class Foo {
       getChildContext() {
         return {
-          foo: 1
+          foo: 1,
         }
       }
     }
 
     Foo.childContextTypes = {
-      foo: 'bar'
+      foo: 'bar',
     }
 
     class Bar {}

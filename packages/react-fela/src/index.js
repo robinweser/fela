@@ -14,5 +14,5 @@ export {
   createComponentWithProxy,
   renderToComponent,
   ThemeProvider,
-  withTheme
+  withTheme,
 }

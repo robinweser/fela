@@ -14,7 +14,7 @@ const __randomButton = props => ({
   'font-weight': props.theme.weightSemiBold,
   'text-align': 'center',
   'vertical-align': 'middle',
-  cursor: 'pointer'
+  cursor: 'pointer',
 })
 
 /**
@@ -24,28 +24,29 @@ const __randomButton = props => ({
 class RandomButton extends Component {
   static propTypes = {
     /**
-		 * List of possible labels.
-		 */
-    variants: PropTypes.array.isRequired
+   * List of possible labels.
+   */
+    variants: PropTypes.array.isRequired,
   }
 
   constructor(props) {
     super()
     this.state = {
-      label: sample(props.variants)
+      label: sample(props.variants),
     }
+    this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick() {
     this.setState({
-      label: sample(this.props.variants)
+      label: sample(this.props.variants),
     })
   }
 
   render() {
     const __buttonClass = this.props.styles.__randomButton
     return (
-      <button className={__buttonClass} onClick={this.handleClick.bind(this)}>
+      <button className={__buttonClass} onClick={this.handleClick}>
         {this.state.label}
       </button>
     )

@@ -1,5 +1,5 @@
 /* @flow */
-import forEach from 'lodash/forEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 import type { Theme } from '../../../flowtypes/Theme'
 
@@ -19,7 +19,7 @@ export default function createTheme(
     get(): Object {
       return {
         ...theme.previousProperties,
-        ...theme.properties
+        ...theme.properties,
       }
     },
 
@@ -32,8 +32,8 @@ export default function createTheme(
     _emitChange(): void {
       const properties = theme.get()
 
-      forEach(theme.listeners, listener => listener(properties))
-    }
+      arrayEach(theme.listeners, listener => listener(properties))
+    },
   }
 
   if (previousTheme) {

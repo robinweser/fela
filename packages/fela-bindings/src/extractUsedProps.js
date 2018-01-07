@@ -20,7 +20,7 @@ export default function extractUsedProps(
       }
       props.push(key)
       return target[key]
-    }
+    },
   })
 
   const proxy = new Proxy({ theme }, handler(usedProps))

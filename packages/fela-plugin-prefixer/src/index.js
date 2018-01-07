@@ -1,22 +1,25 @@
 /* @flow */
 import prefix from 'inline-style-prefixer/static'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
-import isPlainObject from 'lodash/isPlainObject'
-import reduce from 'lodash/reduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 import fallbackValue from 'fela-plugin-fallback-value'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 const resolveFallbackValues = fallbackValue()
 
 function addVendorPrefixes(style: Object): Object {
-  return reduce(
+  return objectReduce(
     style,
     (prefixedStyle, value, property) => {
       if (isPlainObject(value)) {
         prefixedStyle[property] = addVendorPrefixes(value)
       } else {
         const prefixedDeclaration = prefix({
-          [property]: style[property]
+          [property]: style[property],
         })
         const styleKeys = Object.keys(prefixedDeclaration)
 

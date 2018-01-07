@@ -1,12 +1,12 @@
-import applyMediaRulesInOrder from '../applyMediaRulesInOrder'
+import applyKeysInOrder from '../applyKeysInOrder'
 
 describe('Applying media rules in order', () => {
   it('should prefill the media rules cache', () => {
     expect(
-      applyMediaRulesInOrder(['(min-height: 300px)', '(min-height: 500px)'])
+      applyKeysInOrder(['(min-height: 300px)', '(min-height: 500px)'])
     ).toEqual({
       '(min-height: 300px)': '',
-      '(min-height: 500px)': ''
+      '(min-height: 500px)': '',
     })
   })
 })

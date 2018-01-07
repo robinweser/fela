@@ -1,10 +1,14 @@
 /* @flow */
-import isPlainObject from 'lodash/isPlainObject'
-import forEach from 'lodash/forEach'
+import objectEach from 'fast-loops/lib/objectEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function extendStyle(
   style: Object,
@@ -29,11 +33,11 @@ function extend(
   type: StyleType,
   renderer: DOMRenderer | NativeRenderer
 ): Object {
-  forEach(style, (value, property) => {
+  objectEach(style, (value, property) => {
     if (property === 'extend') {
       const extensions = [].concat(value)
 
-      forEach(extensions, extension =>
+      arrayEach(extensions, extension =>
         extendStyle(style, extension, extend, type, renderer)
       )
       delete style[property]

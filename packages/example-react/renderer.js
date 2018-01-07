@@ -19,9 +19,9 @@ export default () => {
       unit(),
       lvha(),
       validator(),
-      logger()
+      logger(),
     ],
-    enhancers: [perf(), beautifier()]
+    enhancers: [perf(), beautifier()],
   })
 
   renderer.renderStatic(
@@ -30,7 +30,7 @@ export default () => {
       height: '100%',
       margin: 0,
       padding: 0,
-      fontFamily: 'Lato'
+      fontFamily: 'Lato',
     },
     'html,body,#app'
   )

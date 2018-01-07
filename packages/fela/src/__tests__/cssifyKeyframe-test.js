@@ -6,11 +6,11 @@ describe('Cssifying keyframes', () => {
       cssifyKeyframe(
         {
           from: {
-            color: 'blue'
+            color: 'blue',
           },
           to: {
-            color: 'red'
-          }
+            color: 'red',
+          },
         },
         'foo'
       )
@@ -22,11 +22,11 @@ describe('Cssifying keyframes', () => {
       cssifyKeyframe(
         {
           from: {
-            color: 'blue'
+            color: 'blue',
           },
           to: {
-            color: 'red'
-          }
+            color: 'red',
+          },
         },
         'foo',
         ['-webkit-']
@@ -39,11 +39,11 @@ describe('Cssifying keyframes', () => {
       cssifyKeyframe(
         {
           from: {
-            color: 'blue'
+            color: 'blue',
           },
           to: {
-            color: 'red'
-          }
+            color: 'red',
+          },
         },
         'foo',
         ['-webkit-', '']

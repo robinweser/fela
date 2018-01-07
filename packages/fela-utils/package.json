@@ -1,6 +1,6 @@
 {
   "name": "fela-utils",
-  "version": "7.0.5",
+  "version": "8.0.3",
   "description": "Internal utilities for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,9 +21,9 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
-    "lodash": "^4.17.4"
+    "fast-loops": "^1.0.0"
   },
   "devDependencies": {
-    "fela": "^6.0.5"
+    "fela": "^6.1.3"
   }
 }

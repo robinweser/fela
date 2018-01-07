@@ -13,7 +13,7 @@ describe('Extracting pass through props', () => {
         foo: null,
         bar: 2,
         baz: 3,
-        foobar: undefined
+        foobar: undefined,
       })
     ).toEqual({ foo: null, bar: 2 })
   })

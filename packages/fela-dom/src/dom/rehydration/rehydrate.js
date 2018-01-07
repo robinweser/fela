@@ -1,16 +1,16 @@
 /* @flow */
-import forEach from 'lodash/forEach'
-import camelCaseProperty from 'css-in-js-utils/lib/camelCaseProperty'
-import { generateCSSSelector, RULE_TYPE } from 'fela-utils'
+import arrayEach from 'fast-loops/lib/arrayEach'
+import { RULE_TYPE } from 'fela-utils'
 
-import rehydrateCache from './rehydrateCache'
+import rehydrateSupportRules from './rehydrateSupportRules'
+import rehydrateRules from './rehydrateRules'
 
-import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
+import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 
 // rehydration (WIP)
 // TODO: static, keyframe, font
 export default function rehydrate(renderer: DOMRenderer): void {
-  forEach(document.querySelectorAll('[data-fela-type]'), node => {
+  arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
     const rehydrationAttribute =
       node.getAttribute('data-fela-rehydration') || -1
     const rehydrationIndex = parseInt(rehydrationAttribute)
@@ -20,6 +20,7 @@ export default function rehydrate(renderer: DOMRenderer): void {
     if (rehydrationIndex !== -1) {
       const type = node.getAttribute('data-fela-type') || ''
       const media = node.getAttribute('media') || ''
+      const support = node.getAttribute('data-fela-support')
       const css = node.textContent
 
       if (rehydrationIndex > renderer.uniqueRuleIdentifier) {
@@ -27,9 +28,10 @@ export default function rehydrate(renderer: DOMRenderer): void {
       }
 
       if (type === RULE_TYPE) {
-        renderer.cache = {
-          ...rehydrateCache(css, media),
-          ...renderer.cache
+        if (support) {
+          rehydrateSupportRules(css, media, renderer.cache)
+        } else {
+          rehydrateRules(css, media, '', renderer.cache)
         }
       }
     }

@@ -1,9 +1,12 @@
 /* @flow */
-import isPlainObject from 'lodash/isPlainObject'
-import reduce from 'lodash/reduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { StyleType } from '../../../flowtypes/StyleType'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function renderFontFace({ fontFamily, src, ...otherProps }, renderer) {
   if (typeof fontFamily === 'string' && Array.isArray(src)) {
@@ -23,7 +26,7 @@ function embedded(
 
     if (property === 'fontFace' && typeof value === 'object') {
       if (Array.isArray(value)) {
-        style.fontFamily = reduce(
+        style.fontFamily = arrayReduce(
           value,
           (fontFamilyList, fontFace) => {
             const fontFamily = renderFontFace(fontFace, renderer)

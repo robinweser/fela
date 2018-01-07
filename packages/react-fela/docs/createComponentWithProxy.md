@@ -34,7 +34,6 @@ ReactDOM.render(
 
 Sometimes you need to be able to use a props in your rules and still pass it to the child. That's why `passThroughProp` is still available in `createComponentWithProxy`. Any props pass in the `passThroughProp` will be pass to the child even if you use it in your rules's component.
 
-### Example
 ## Example
 ```javascript
 import { createComponentWithProxy } from 'react-fela'

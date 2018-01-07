@@ -6,6 +6,7 @@ import renderToComponentFactory from './renderToComponentFactory'
 import ThemeProviderFactory from './ThemeProviderFactory'
 import withThemeFactory from './withThemeFactory'
 import createTheme from './createTheme'
+import { THEME_CHANNEL } from './themeChannel'
 
 export {
   connectFactory,
@@ -15,5 +16,6 @@ export {
   renderToComponentFactory,
   ThemeProviderFactory,
   withThemeFactory,
-  createTheme
+  createTheme,
+  THEME_CHANNEL,
 }

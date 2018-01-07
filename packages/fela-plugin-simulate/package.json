@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-simulate",
-  "version": "6.0.1",
+  "version": "6.0.3",
   "description": "Fela plugin to simulate pseudo classes and media queries",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,7 +25,6 @@
     "fela": "^6.0.0"
   },
   "dependencies": {
-    "css-in-js-utils": "^2.0.0",
-    "lodash": "^4.17.4"
+    "css-in-js-utils": "^2.0.0"
   }
 }

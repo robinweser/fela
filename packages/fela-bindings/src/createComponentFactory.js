@@ -26,7 +26,7 @@ export default function createComponentFactory(
     const FelaComponent = (
       {
         children,
-        theme,
+        _felaTheme,
         _felaRule,
         extend,
         innerRef,
@@ -45,7 +45,7 @@ export default function createComponentFactory(
         )
       }
 
-      const usedProps = withProxy ? extractUsedProps(rule, theme) : []
+      const usedProps = withProxy ? extractUsedProps(rule, _felaTheme) : []
 
       const rules = [rule]
       if (_felaRule) {
@@ -70,14 +70,14 @@ export default function createComponentFactory(
         ...alwaysPassThroughProps,
         ...resolvePassThrough(passThroughProps, otherProps),
         ...resolvePassThrough(passThrough, otherProps),
-        ...(withProxy ? resolveUsedProps(usedProps, otherProps) : [])
+        ...(withProxy ? resolveUsedProps(usedProps, otherProps) : []),
       ]
 
       const ruleProps = {
         ...otherProps,
-        theme,
+        theme: _felaTheme,
         as,
-        id
+        id,
       }
 
       // if the component renders into another Fela component
@@ -91,7 +91,9 @@ export default function createComponentFactory(
             innerRef,
             style,
             className,
-            ...ruleProps
+            as,
+            id,
+            ...otherProps,
           },
           children
         )
@@ -161,7 +163,7 @@ export default function createComponentFactory(
     FelaComponent.displayName = displayName
     FelaComponent._isFelaComponent = true
 
-    const themedComponent = withTheme(FelaComponent)
+    const themedComponent = withTheme(FelaComponent, '_felaTheme')
     return hoistStatics(themedComponent, type)
   }
 }

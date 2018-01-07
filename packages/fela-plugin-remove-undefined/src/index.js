@@ -1,6 +1,9 @@
 /* @flow */
-import isPlainObject from 'lodash/isPlainObject'
 import { isUndefinedValue } from 'fela-utils'
+
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function removeUndefined(style: Object): Object {
   for (const property in style) {

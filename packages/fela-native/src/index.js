@@ -1,13 +1,13 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import { StyleSheet } from 'react-native'
 /* @flow */
-import forEach from 'lodash/forEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 import { processStyleWithPlugins, RULE_TYPE, CLEAR_TYPE } from 'fela-utils'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import type {
   NativeRenderer,
-  NativeRendererConfig
+  NativeRendererConfig,
 } from '../../../flowtypes/NativeRenderer'
 
 export function createRenderer(
@@ -23,7 +23,7 @@ export function createRenderer(
       renderer.cache = {}
 
       renderer._emitChange({
-        type: CLEAR_TYPE
+        type: CLEAR_TYPE,
       })
     },
 
@@ -32,7 +32,7 @@ export function createRenderer(
 
       return {
         unsubscribe: () =>
-          renderer.listeners.splice(renderer.listeners.indexOf(callback), 1)
+          renderer.listeners.splice(renderer.listeners.indexOf(callback), 1),
       }
     },
 
@@ -49,12 +49,12 @@ export function createRenderer(
         )
 
         renderer.cache[reference] = StyleSheet.create({
-          style: processedStyle
+          style: processedStyle,
         })
 
         renderer._emitChange({
           type: RULE_TYPE,
-          style: processedStyle
+          style: processedStyle,
         })
       }
 
@@ -64,12 +64,12 @@ export function createRenderer(
     _mergeStyle: assignStyle,
 
     _emitChange(change: Object): void {
-      forEach(renderer.listeners, listener => listener(change))
-    }
+      arrayEach(renderer.listeners, listener => listener(change))
+    },
   }
 
   if (config.enhancers) {
-    forEach(config.enhancers, enhancer => {
+    arrayEach(config.enhancers, enhancer => {
       renderer = enhancer(renderer)
     })
   }

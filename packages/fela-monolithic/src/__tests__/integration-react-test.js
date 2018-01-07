@@ -6,14 +6,14 @@ import { createComponent, Provider } from 'react-fela'
 import monolithic from '../index'
 
 const options = {
-  enhancers: [monolithic()]
+  enhancers: [monolithic()],
 }
 
 describe('Monolithic enhancer React integration', () => {
   it('should render a single class', () => {
     const renderer = createRenderer(options)
     const Component = createComponent(() => ({
-      color: 'red'
+      color: 'red',
     }))
 
     ReactTestRenderer.create(

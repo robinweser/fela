@@ -1,9 +1,11 @@
-import applyMediaRulesInOrder from './applyMediaRulesInOrder'
+import applyKeysInOrder from './applyKeysInOrder'
 import clusterCache from './clusterCache'
+import cssifySupportRules from './cssifySupportRules'
 import generateCombinedMediaQuery from './generateCombinedMediaQuery'
 import generateCSSRule from './generateCSSRule'
 import generateCSSSelector from './generateCSSSelector'
 import getRehydrationIndex from './getRehydrationIndex'
+import generateCSSSupportRule from './generateCSSSupportRule'
 import isMediaQuery from './isMediaQuery'
 import isNestedSelector from './isNestedSelector'
 import isSupport from './isSupport'
@@ -17,16 +19,18 @@ import {
   KEYFRAME_TYPE,
   FONT_TYPE,
   STATIC_TYPE,
-  CLEAR_TYPE
+  CLEAR_TYPE,
 } from './styleTypes'
 
 export {
-  applyMediaRulesInOrder,
+  applyKeysInOrder,
   clusterCache,
+  cssifySupportRules,
   generateCombinedMediaQuery,
   generateCSSRule,
   generateCSSSelector,
   getRehydrationIndex,
+  generateCSSSupportRule,
   isMediaQuery,
   isNestedSelector,
   isSupport,
@@ -39,5 +43,5 @@ export {
   KEYFRAME_TYPE,
   FONT_TYPE,
   STATIC_TYPE,
-  CLEAR_TYPE
+  CLEAR_TYPE,
 }

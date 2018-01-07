@@ -9,21 +9,21 @@ describe('Embedded plugin', () => {
       color: 'red',
       animationName: {
         '0%': {
-          color: 'red'
+          color: 'red',
         },
         '100%': {
-          color: 'blue'
-        }
+          color: 'blue',
+        },
       },
       fontFace: {
         fontFamily: 'Arial',
         src: ['foo.svg', 'bar.ttf'],
-        fontWeight: 500
-      }
+        fontWeight: 500,
+      },
     })
 
     const renderer = createRenderer({
-      plugins: [embedded()]
+      plugins: [embedded()],
     })
     renderer.renderRule(rule)
 
@@ -40,37 +40,37 @@ describe('Embedded plugin', () => {
       animationName: [
         {
           '0%': {
-            color: 'red'
+            color: 'red',
           },
           '100%': {
-            color: 'blue'
-          }
+            color: 'blue',
+          },
         },
         {
           '0%': {
-            backgroundColor: 'red'
+            backgroundColor: 'red',
           },
           '100%': {
-            backgroundColor: 'blue'
-          }
-        }
+            backgroundColor: 'blue',
+          },
+        },
       ],
       fontFace: [
         {
           fontFamily: 'Arial',
           src: ['foo.svg', 'bar.ttf'],
-          fontWeight: 500
+          fontWeight: 500,
         },
         {
           fontFamily: 'Lato Light',
           src: ['baz.svg', 'asd.ttf'],
-          fontWeight: 400
-        }
-      ]
+          fontWeight: 400,
+        },
+      ],
     })
 
     const renderer = createRenderer({
-      plugins: [embedded()]
+      plugins: [embedded()],
     })
     renderer.renderRule(rule)
 
@@ -87,22 +87,22 @@ describe('Embedded plugin', () => {
       ':hover': {
         animationName: {
           '0%': {
-            color: 'red'
+            color: 'red',
           },
           '100%': {
-            color: 'blue'
-          }
+            color: 'blue',
+          },
         },
         fontFace: {
           fontFamily: 'Arial',
           src: ['foo.svg', 'bar.ttf'],
-          fontWeight: 500
-        }
-      }
+          fontWeight: 500,
+        },
+      },
     })
 
     const renderer = createRenderer({
-      plugins: [embedded()]
+      plugins: [embedded()],
     })
     renderer.renderRule(rule)
 
@@ -120,18 +120,18 @@ describe('Embedded plugin', () => {
         {
           fontFamily: 'Arial',
           src: ['arial-regular.svg', 'arial-regular.ttf'],
-          fontWeight: 400
+          fontWeight: 400,
         },
         {
           fontFamily: 'Arial',
           src: ['arial-bold.svg', 'arial-bold.ttf'],
-          fontWeight: 700
-        }
-      ]
+          fontWeight: 700,
+        },
+      ],
     })
 
     const renderer = createRenderer({
-      plugins: [embedded()]
+      plugins: [embedded()],
     })
     renderer.renderRule(rule)
 
@@ -145,13 +145,13 @@ describe('Embedded plugin', () => {
       fontFace: {
         fontFamily: 'foo',
         src: [
-          'data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I'
+          'data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I',
         ],
-        fontWeight: 500
-      }
+        fontWeight: 500,
+      },
     })
     const renderer = createRenderer({
-      plugins: [embedded()]
+      plugins: [embedded()],
     })
     renderer.renderRule(rule)
     expect(renderToString(renderer)).toEqual(

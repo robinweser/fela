@@ -13,13 +13,13 @@ const __buttonStyle = props => ({
   'vertical-align': 'middle',
   cursor: 'pointer',
   fontSize: `${props.theme.buttonSizes[props.size] ||
-    props.theme.buttonSizes['normal']}`
+    props.theme.buttonSizes['normal']}`,
 })
 
 const ButtonComponent = createComponent(__buttonStyle, 'button', [
   'color',
   'size',
-  'onClick'
+  'onClick',
 ])
 
 /**
@@ -34,14 +34,14 @@ Button.propTypes = {
   /** Button label */
   children: PropTypes.oneOfType([
     PropTypes.string.isRequired,
-    PropTypes.number.isRequired
+    PropTypes.number.isRequired,
   ]),
   /** The color for the button */
   color: PropTypes.string,
   /** The size of the button */
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   /** Gets called when the user clicks on the button */
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 }
 Button.defaultProps = {
   color: '#333',
@@ -49,6 +49,6 @@ Button.defaultProps = {
   /* eslint-disable no-console */
   onClick: event => {
     console.log('You have clicked me!', event.target)
-  }
+  },
   /* eslint-enable no-console */
 }

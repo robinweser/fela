@@ -5,7 +5,7 @@ import devPreset, { createDevPreset } from '../index'
 describe('fela-preset-dev', () => {
   it('should work without config', () => {
     const renderer = createRenderer({
-      plugins: [...devPreset]
+      plugins: [...devPreset],
     })
     const logger = jest
       .spyOn(global.console, 'log')
@@ -19,20 +19,20 @@ describe('fela-preset-dev', () => {
     const configuredPreset = createDevPreset({
       validator: [
         {
-          logInvalid: false
-        }
-      ]
+          logInvalid: false,
+        },
+      ],
     })
     const logger = jest
       .spyOn(global.console, 'error')
       .mockImplementation(() => {})
     const renderer = createRenderer({
-      plugins: [...configuredPreset]
+      plugins: [...configuredPreset],
     })
     renderer.renderRule(() => ({
       nested: {
-        color: 'yellow'
-      }
+        color: 'yellow',
+      },
     }))
     expect(logger).not.toHaveBeenCalled()
     logger.mockClear()

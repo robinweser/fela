@@ -1,5 +1,7 @@
 /* @flow */
-import isPlainObject from 'lodash/isPlainObject'
+function isPlainObject(obj: any): boolean {
+  return typeof obj === 'object' && !Array.isArray(obj)
+}
 
 function resolveNamedMediaQuery(style: Object, mediaQueryMap: Object) {
   for (const property in style) {

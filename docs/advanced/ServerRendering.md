@@ -8,23 +8,15 @@ Usually you will render all styles on the server and inject the rendered CSS mar
 ## Example
 The following code shows a simple server example using [express](https://github.com/expressjs/express) and [React](https://github.com/facebook/react).
 ```javascript
+import express from 'express'
 import React from 'react'
-import { renderToString } from 'react-dom'
-
 import { createRenderer } from 'fela'
 import { renderToMarkup } from 'fela-dom'
-
-import express from 'express'
 
 const rule = props => ({
   color: props.color,
   fontSize: '15px'
 })
-
-renderer.renderStatic({
-  margin: 0,
-  padding: 0,
-}, 'html, body')
 
 // simplified demo app
 const App = ({ renderer }) => (
@@ -54,13 +46,22 @@ const server = express()
 server.get('/', (req, res) => {
   const renderer = createRenderer()
 
+  renderer.renderStatic({
+    margin: 0,
+    padding: 0,
+  }, 'html, body')
+
   const htmlMarkup = renderToString(
     <App renderer={renderer} />
   )
 
   const styleMarkup = renderToMarkup(renderer)
   // inject the rendered html and css markup into the basic app html
-  res.write(appHTML.replace('{{app}}', htmlMarkup).replace('{{style}}', styleMarkup))
+  res.write(
+    appHTML
+    .replace('{{app}}', htmlMarkup)
+    .replace('{{style}}', styleMarkup)
+  )
   res.end()
 })
 // provide the content via localhost:8080
@@ -95,3 +96,5 @@ server.listen(8080, 'localhost')
 
 ### Related
 * [API reference - `renderToMarkup`](../api/fela-dom/renderToMarkup)
+* [API reference - `renderToSheetList`](../api/fela-dom/renderToSheetList)
+* [API reference - `rehydrate`](../api/fela-dom/rehydrate)

@@ -2,7 +2,7 @@
 import isBase64 from './isBase64'
 
 const formats: {
-  [string]: string
+  [string]: string,
 } = {
   '.woff': 'woff',
   '.woff2': 'woff2',
@@ -10,11 +10,11 @@ const formats: {
   '.ttf': 'truetype',
   '.otf': 'opentype',
   '.svg': 'svg',
-  '.svgz': 'svg'
+  '.svgz': 'svg',
 }
 
 const base64Formats: {
-  [string]: string
+  [string]: string,
 } = {
   'image/svg+xml': 'svg',
   'application/x-font-woff': 'woff',
@@ -27,7 +27,7 @@ const base64Formats: {
   'application/x-font-truetype': 'truetype',
   'application/x-font-opentype': 'opentype',
   'application/vnd.ms-fontobject': 'embedded-opentype',
-  'application/font-sfnt': 'sfnt'
+  'application/font-sfnt': 'sfnt',
 }
 
 export default function getFontFormat(src: string): string {

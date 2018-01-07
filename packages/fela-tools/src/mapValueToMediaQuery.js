@@ -1,16 +1,16 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 export default function mapValueToMediaQuery(
   queryValueMap: Object = {},
   mapper: Function | string
 ): Object {
-  return reduce(
+  return objectReduce(
     queryValueMap,
     (style, value, query) => {
       if (typeof mapper === 'string') {
         style[query] = {
-          [mapper]: value
+          [mapper]: value,
         }
       } else {
         style[query] = mapper(value)
