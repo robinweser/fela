@@ -24,6 +24,7 @@
   "dependencies": {
     "fast-loops": "^1.0.0",
     "fela-dom": "^7.0.4",
+    "fela-utils": "^8.0.3",
     "fela-tools": "^5.1.2",
     "shallow-equal": "^1.0.0"
   },

@@ -4,6 +4,7 @@ import objectReduce from 'fast-loops/lib/objectReduce'
 import {
   clusterCache,
   cssifySupportRules,
+  getRehydrationIndex,
   sheetMap,
   RULE_TYPE,
 } from 'fela-utils'

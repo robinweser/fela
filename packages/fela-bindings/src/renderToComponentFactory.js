@@ -1,10 +1,10 @@
 /* @flow */
-import reduce from 'lodash/reduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 import {
   clusterCache,
   getRehydrationIndex,
   sheetMap,
-  RULE_TYPE
+  RULE_TYPE,
 } from 'fela-utils'
 
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
@@ -23,7 +23,7 @@ export default function renderToComponentFactory(
       dangerouslySetInnerHTML: { __html: css },
       'data-fela-rehydration': rehydrationIndex,
       'data-fela-type': type,
-      type: 'text/css'
+      type: 'text/css',
     }
 
     if (media.length > 0) {
@@ -37,7 +37,7 @@ export default function renderToComponentFactory(
     const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
     const rehydrationIndex = getRehydrationIndex(renderer)
 
-    const componentList = reduce(
+    const componentList = objectReduce(
       sheetMap,
       (list, type, key) => {
         if (cacheCluster[key].length > 0) {
@@ -51,7 +51,7 @@ export default function renderToComponentFactory(
       []
     )
 
-    return reduce(
+    return objectReduce(
       cacheCluster.mediaRules,
       (list, css, media) => {
         if (css.length > 0) {

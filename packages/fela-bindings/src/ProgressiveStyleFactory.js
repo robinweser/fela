@@ -1,5 +1,5 @@
 /* @flow */
-import forEach from 'lodash/forEach'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 export default function ProgressiveStyleFactory(
   BaseComponent: any,
@@ -8,7 +8,7 @@ export default function ProgressiveStyleFactory(
 ): any {
   return class ProgressiveStyle extends BaseComponent {
     componentWillUnmount() {
-      forEach(this.props.cacheEntries, this.props.renderer._emitChange)
+      arrayEach(this.props.cacheEntries, this.props.renderer._emitChange)
     }
 
     shouldComponentUpdate() {
@@ -18,7 +18,7 @@ export default function ProgressiveStyleFactory(
     render() {
       return renderToComponent({
         ...this.props.renderer,
-        cache: this.props.cacheEntries
+        cache: this.props.cacheEntries,
       })
     }
   }
