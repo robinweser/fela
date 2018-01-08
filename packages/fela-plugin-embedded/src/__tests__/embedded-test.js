@@ -27,11 +27,7 @@ describe('Embedded plugin', () => {
     })
     renderer.renderRule(rule)
 
-    expect(renderToString(renderer)).toEqual(
-      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}" +
-        '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}' +
-        '.a{color:red}.b{animation-name:k1}.c{font-family:"Arial"}'
-    )
+    expect(renderToString(renderer)).toMatchSnapshot()
   })
 
   it('should render inline multiple keyframes & fonts', () => {
@@ -74,11 +70,7 @@ describe('Embedded plugin', () => {
     })
     renderer.renderRule(rule)
 
-    expect(renderToString(renderer)).toEqual(
-      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}@font-face{font-weight:400;src:url('baz.svg') format('svg'),url('asd.ttf') format('truetype');font-family:\"Lato Light\"}" +
-        '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}@-webkit-keyframes k2{0%{background-color:red}100%{background-color:blue}}@-moz-keyframes k2{0%{background-color:red}100%{background-color:blue}}@keyframes k2{0%{background-color:red}100%{background-color:blue}}' +
-        '.a{color:red}.b{animation-name:k1,k2}.c{font-family:"Arial","Lato Light"}'
-    )
+    expect(renderToString(renderer)).toMatchSnapshot()
   })
 
   it('should render nested inline keyframes & fonts', () => {
@@ -106,11 +98,7 @@ describe('Embedded plugin', () => {
     })
     renderer.renderRule(rule)
 
-    expect(renderToString(renderer)).toEqual(
-      "@font-face{font-weight:500;src:url('foo.svg') format('svg'),url('bar.ttf') format('truetype');font-family:\"Arial\"}" +
-        '@-webkit-keyframes k1{0%{color:red}100%{color:blue}}@-moz-keyframes k1{0%{color:red}100%{color:blue}}@keyframes k1{0%{color:red}100%{color:blue}}' +
-        '.a{color:red}.b:hover{animation-name:k1}.c:hover{font-family:"Arial"}'
-    )
+    expect(renderToString(renderer)).toMatchSnapshot()
   })
 
   it('should render inline fonts with same fontFamily', () => {
@@ -135,9 +123,7 @@ describe('Embedded plugin', () => {
     })
     renderer.renderRule(rule)
 
-    expect(renderToString(renderer)).toBe(
-      "@font-face{font-weight:400;src:url('arial-regular.svg') format('svg'),url('arial-regular.ttf') format('truetype');font-family:\"Arial\"}@font-face{font-weight:700;src:url('arial-bold.svg') format('svg'),url('arial-bold.ttf') format('truetype');font-family:\"Arial\"}.a{color:red}.b{font-family:\"Arial\"}"
-    )
+    expect(renderToString(renderer)).toMatchSnapshot()
   })
 
   it('should render base64 fonts', () => {
@@ -154,9 +140,6 @@ describe('Embedded plugin', () => {
       plugins: [embedded()],
     })
     renderer.renderRule(rule)
-    expect(renderToString(renderer)).toEqual(
-      '@font-face{font-weight:500;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAHwwABMAAAAA4I) format(\'woff\');font-family:"foo"}' +
-        '.a{font-family:"foo"}'
-    )
+    expect(renderToString(renderer)).toMatchSnapshot()
   })
 })
