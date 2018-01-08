@@ -54,3 +54,56 @@ exports[`render should create style nodes and render CSS rules 1`] = `
 
 </html>"
 `;
+
+exports[`render should not overwrite rehydrated styles 1`] = `
+"<html>
+
+<head>
+  <style type=\\"text/css\\" data-fela-rehydration=\\"4\\" data-fela-type=\\"RULE\\">
+    .b {
+      color: yellow
+    }
+
+    .c:hover {
+      color: red
+    }
+
+    .e {
+      background-color: red
+    }
+
+    .f {
+      color: blue
+    }
+  </style>
+  <style type=\\"text/css\\" data-fela-rehydration=\\"4\\" data-fela-type=\\"RULE\\" media=\\"(max-width: 800px)\\">
+    .d {
+      color: blue
+    }
+  </style>
+</head>
+
+<body></body>
+
+</html>"
+`;
+
+exports[`render should not render multiple times 1`] = `
+"<html>
+
+<head>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
+    .a {
+      background-color: red
+    }
+
+    .b {
+      color: blue
+    }
+  </style>
+</head>
+
+<body></body>
+
+</html>"
+`;

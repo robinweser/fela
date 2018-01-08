@@ -1,29 +1,37 @@
 /* @flow */
+import arrayReduce from 'fast-loops/lib/arrayReduce'
+import objectReduce from 'fast-loops/lib/objectReduce'
 import {
-  createStyleTagMarkup,
-  objectReduce,
   clusterCache,
+  cssifySupportRules,
+  sheetMap,
   RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE
 } from 'fela-utils'
 
-const sheetMap = {
-  fontFaces: FONT_TYPE,
-  statics: STATIC_TYPE,
-  keyframes: KEYFRAME_TYPE,
-  rules: RULE_TYPE
-}
+import createStyleTagMarkup from './createStyleTagMarkup'
+import getRehydrationIndex from './getRehydrationIndex'
 
-export default function renderToMarkup(renderer: Object): string {
-  const cacheCluster = clusterCache(renderer.cache, renderer.mediaQueryOrder)
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
-  const basicMarkup = objectReduce(
+export default function renderToMarkup(renderer: DOMRenderer): string {
+  const cacheCluster = clusterCache(
+    renderer.cache,
+    renderer.mediaQueryOrder,
+    renderer.supportQueryOrder
+  )
+
+  const rehydrationIndex = getRehydrationIndex(renderer)
+
+  let styleMarkup = objectReduce(
     sheetMap,
     (markup, type, key) => {
       if (cacheCluster[key].length > 0) {
-        markup += createStyleTagMarkup(cacheCluster[key], type)
+        markup += createStyleTagMarkup(
+          cacheCluster[key],
+          type,
+          '',
+          rehydrationIndex
+        )
       }
 
       return markup
@@ -31,15 +39,58 @@ export default function renderToMarkup(renderer: Object): string {
     ''
   )
 
-  return objectReduce(
-    cacheCluster.mediaRules,
-    (markup, css, media) => {
-      if (css.length > 0) {
-        markup += createStyleTagMarkup(css, RULE_TYPE, media)
+  const support = cssifySupportRules(cacheCluster.supportRules)
+
+  if (support) {
+    styleMarkup += createStyleTagMarkup(
+      support,
+      RULE_TYPE,
+      '',
+      rehydrationIndex,
+      true
+    )
+  }
+
+  const mediaKeys = Object.keys({
+    ...cacheCluster.supportMediaRules,
+    ...cacheCluster.mediaRules,
+  })
+
+  return arrayReduce(
+    mediaKeys,
+    (markup, media) => {
+      // basic media query rules
+      if (
+        cacheCluster.mediaRules[media] &&
+        cacheCluster.mediaRules[media].length > 0
+      ) {
+        markup += createStyleTagMarkup(
+          cacheCluster.mediaRules[media],
+          RULE_TYPE,
+          media,
+          rehydrationIndex
+        )
+      }
+
+      // support media rules
+      if (cacheCluster.supportMediaRules[media]) {
+        const mediaSupport = cssifySupportRules(
+          cacheCluster.supportMediaRules[media]
+        )
+
+        if (mediaSupport.length > 0) {
+          markup += createStyleTagMarkup(
+            mediaSupport,
+            RULE_TYPE,
+            media,
+            rehydrationIndex,
+            true
+          )
+        }
       }
 
       return markup
     },
-    basicMarkup
+    styleMarkup
   )
 }

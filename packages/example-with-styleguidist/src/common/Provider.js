@@ -14,24 +14,24 @@ class StyleProvider extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     theme: PropTypes.object.isRequired,
-    renderer: PropTypes.object
+    renderer: PropTypes.object,
   }
 
   static defaultProps = {
     theme: defaultTheme,
-    renderer: null
+    renderer: null,
   }
 
   render() {
     // props can contain a passed renderer. Useful for SSR.
-    const { children, theme, renderer } = this.props
+    const { children, theme, renderer, ...otherProps } = this.props
     const child = Children.only(children)
     // render all the fonts
     createFontRenderer(renderer || felaRenderer, theme)
 
     const content = isValidElement(child)
-      ? cloneElement(child, this.props)
-      : children
+      ? cloneElement(child, { ...otherProps })
+      : child
 
     return (
       <FelaProvider renderer={renderer || felaRenderer}>

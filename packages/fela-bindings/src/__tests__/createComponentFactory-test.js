@@ -11,20 +11,29 @@ import monolithic from 'fela-monolithic'
 import createComponentFactory from '../createComponentFactory'
 import withThemeFactory from '../withThemeFactory'
 import createTheme from '../createTheme'
+import { THEME_CHANNEL } from '../themeChannel'
 
 const withTheme = withThemeFactory(BaseComponent, createElement, {
-  theme: PropTypes.object
+  [THEME_CHANNEL]: PropTypes.object,
 })
 
 const createComponent = createComponentFactory(createElement, withTheme, {
-  renderer: PropTypes.object
+  renderer: PropTypes.object,
 })
+
+const createComponentWithExtraPassThrough = createComponentFactory(
+  createElement,
+  withTheme,
+  { renderer: PropTypes.object },
+  false,
+  ['testProp']
+)
 
 const createComponentWithProxy = createComponentFactory(
   createElement,
   withTheme,
   {
-    renderer: PropTypes.object
+    renderer: PropTypes.object,
   },
   true
 )
@@ -33,7 +42,7 @@ describe('Creating Components from Fela rules', () => {
   it('should return a Component', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const component = createComponent(rule)
@@ -44,7 +53,7 @@ describe('Creating Components from Fela rules', () => {
   it('should render fela rules depending on the passed props', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const renderer = createRenderer()
@@ -52,20 +61,20 @@ describe('Creating Components from Fela rules', () => {
 
     const wrapper = mount(<Component color="black" />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should include defaultProps if provided', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Comp = ({ color, className }) => (
@@ -73,7 +82,7 @@ describe('Creating Components from Fela rules', () => {
     )
 
     Comp.defaultProps = {
-      color: 'red'
+      color: 'red',
     }
 
     const Component = createComponent(rule, Comp)
@@ -81,72 +90,72 @@ describe('Creating Components from Fela rules', () => {
 
     const wrapper = mount(<Component />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should use the theme for static rendering by default', () => {
     const rule = props => ({
       color: props.theme.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponent(rule)
     const renderer = createRenderer()
     const theme = createTheme({
-      color: 'red'
+      color: 'red',
     })
 
     const wrapper = mount(<Component />, {
       context: {
         renderer,
-        theme
-      }
+        [THEME_CHANNEL]: theme,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should allow nested theme objects', () => {
     const rule = props => ({
       color: props.theme.header.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponent(rule)
     const renderer = createRenderer()
     const theme = createTheme({
       header: {
-        color: 'black'
-      }
+        color: 'black',
+      },
     })
 
     const wrapper = mount(<Component />, {
       context: {
         renderer,
-        theme
-      }
+        [THEME_CHANNEL]: theme,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should not pass props to the element', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponent(rule, 'div', ['onClick'])
@@ -154,20 +163,20 @@ describe('Creating Components from Fela rules', () => {
 
     const wrapper = mount(<Component onClick={false} onHover color />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should pass all props to the element', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponent(rule, 'div', Object.keys)
@@ -175,20 +184,83 @@ describe('Creating Components from Fela rules', () => {
 
     const wrapper = mount(<Component onClick={false} data-foo />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
+  it('should pass special props to the component', () => {
+    const rule = props => ({
+      color: props.as === 'i' ? props.color : 'red',
+      fontSize: 16,
+    })
+
+    const Component = createComponent(rule)
+    const renderer = createRenderer()
+
+    const wrapper = mount(<Component color="blue" as="i" />, {
+      context: {
+        renderer,
+      },
+    })
+
+    const wrapper2 = mount(<Component color="blue" />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+      toJson(wrapper2),
+    ]).toMatchSnapshot()
+  })
+
+  it('should pass extended special props to the component', () => {
+    const rule = props => ({
+      color: props.as === 'i' ? props.color : 'red',
+      fontSize: 16,
+    })
+
+    const UnderlyingComp = ({ testProp }) => (
+      <div>{testProp ? 'testProp exists' : 'testProp does not exist'}</div>
+    )
+    const Component = createComponentWithExtraPassThrough(rule, UnderlyingComp)
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(
+      <Component color="blue" testProp={{ tabIndex: '-1' }} />,
+      {
+        context: {
+          renderer,
+        },
+      }
+    )
+
+    const wrapper2 = mount(<Component color="blue" />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+      toJson(wrapper2),
     ]).toMatchSnapshot()
   })
 
   it('should only use passed props to render Fela rules', () => {
     const rule = props => ({
       color: props['data-foo'] && props.color,
-      fontSize: '16px'
+      fontSize: '16px',
     })
 
     const Component = createComponent(rule, 'div', ['data-foo'])
@@ -196,25 +268,25 @@ describe('Creating Components from Fela rules', () => {
 
     const wrapper = mount(<Component data-foo color="black" />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should compose styles', () => {
     const rule = () => ({
       color: 'blue',
-      fontSize: '16px'
+      fontSize: '16px',
     })
 
     const anotherRule = () => ({
       color: 'red',
-      lineHeight: 1.2
+      lineHeight: 1.2,
     })
 
     const Comp = createComponent(rule)
@@ -223,20 +295,52 @@ describe('Creating Components from Fela rules', () => {
 
     const wrapper = mount(<ComposedComp />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
-  it('should extend the rule properties', () => {
+  it('should pass style, as, id, className and innerRef to composed components', () => {
     const rule = () => ({
       color: 'blue',
-      fontSize: '16px'
+      fontSize: '16px',
+    })
+
+    const anotherRule = props => ({
+      color: props.color,
+      lineHeight: 1.2,
+    })
+
+    const Comp = createComponent(rule)
+    const ComposedComp = createComponent(anotherRule, Comp)
+
+    ComposedComp.defaultProps = {
+      color: 'green',
+    }
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(<ComposedComp as="i" />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
+  it('should extend the rule properties with an object', () => {
+    const rule = () => ({
+      color: 'blue',
+      fontSize: '16px',
     })
 
     const Comp = createComponent(rule)
@@ -248,26 +352,52 @@ describe('Creating Components from Fela rules', () => {
       <Comp
         extend={{
           fontSize: '14px',
-          backgroundColor: bgColor
+          backgroundColor: bgColor,
         }}
       />,
       {
         context: {
-          renderer
-        }
+          renderer,
+        },
       }
     )
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
+  it('should extend the rule properties with a function', () => {
+    const rule = () => ({
+      color: 'blue',
+      fontSize: '16px',
+    })
+
+    const Comp = createComponent(rule)
+    const renderer = createRenderer()
+
+    const extendRule = props => ({
+      fontSize: '14px',
+      backgroundColor: props.bgColor,
+    })
+
+    const wrapper = mount(<Comp extend={extendRule} bgColor="red" />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should compose passThrough props', () => {
     const Component = createComponent(() => ({}), 'div', Object.keys)
     const ComposedComponent = createComponent(() => ({}), Component, [
-      'onClick'
+      'onClick',
     ])
 
     const renderer = createRenderer()
@@ -276,21 +406,21 @@ describe('Creating Components from Fela rules', () => {
       <ComposedComponent onClick={() => true} color="red" />,
       {
         context: {
-          renderer
-        }
+          renderer,
+        },
       }
     )
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should only use the rule name as displayName', () => {
     const Button = () => ({
       color: 'red',
-      fontSize: 16
+      fontSize: 16,
     })
     const component = createComponent(Button)
 
@@ -299,7 +429,7 @@ describe('Creating Components from Fela rules', () => {
 
   it('should use a dev-friendly className with monolithic renderer', () => {
     const Button = () => ({
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponent(Button)
@@ -307,26 +437,26 @@ describe('Creating Components from Fela rules', () => {
     const renderer = createRenderer({
       enhancers: [
         monolithic({
-          prettySelectors: true
-        })
-      ]
+          prettySelectors: true,
+        }),
+      ],
     })
 
     const wrapper = mount(<Component />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should use a dev-friendly className and the selectorPrefix', () => {
     const Button = () => ({
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponent(Button)
@@ -334,41 +464,41 @@ describe('Creating Components from Fela rules', () => {
     const renderer = createRenderer({
       enhancers: [
         monolithic({
-          prettySelectors: true
-        })
+          prettySelectors: true,
+        }),
       ],
-      selectorPrefix: 'Fela-'
+      selectorPrefix: 'Fela-',
     })
 
     const wrapper = mount(<Component />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should only use the rule name as displayName', () => {
     const Button = () => ({
       color: 'red',
-      fontSize: 16
+      fontSize: 16,
     })
     const Component = createComponent(Button)
     const renderer = createRenderer()
 
     const wrapper = mount(<Component as="button" />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 })
@@ -377,7 +507,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
   it('should return a Component', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
     const component = createComponentWithProxy(rule)
 
@@ -387,7 +517,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
   it('should render fela rules depending on the passed props', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponentWithProxy(rule)
@@ -396,70 +526,70 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
 
     const wrapper = mount(<Component color="black" />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should use the theme for static rendering by default', () => {
     const rule = props => ({
       color: props.theme.color,
-      fontSize: 16
+      fontSize: 16,
     })
     const Component = createComponentWithProxy(rule)
     const renderer = createRenderer()
     const theme = createTheme({
-      color: 'black'
+      color: 'black',
     })
 
     const wrapper = mount(<Component />, {
       context: {
         renderer,
-        theme
-      }
+        [THEME_CHANNEL]: theme,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should allow nested theme objects', () => {
     const rule = props => ({
       color: props.theme.header.color,
-      fontSize: 16
+      fontSize: 16,
     })
     const Component = createComponentWithProxy(rule)
     const renderer = createRenderer()
     const theme = createTheme({
       header: {
-        color: 'black'
-      }
+        color: 'black',
+      },
     })
 
     const wrapper = mount(<Component />, {
       context: {
         renderer,
-        theme
-      }
+        [THEME_CHANNEL]: theme,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should not pass props used in rules to the element', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
     const Component = createComponentWithProxy(rule, 'div')
 
@@ -467,20 +597,20 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
 
     const wrapper = mount(<Component onClick={false} data-foo color />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should pass props used in rules specified in passThroughProps to the element', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
     const Component = createComponentWithProxy(rule, 'div', ['color'])
 
@@ -488,20 +618,20 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
 
     const wrapper = mount(<Component onClick={false} data-foo color />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should pass all props to the element', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponentWithProxy(rule, 'div', Object.keys)
@@ -510,20 +640,20 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
 
     const wrapper = mount(<Component onClick={false} data-foo />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should only use passed props to render Fela rules', () => {
     const rule = props => ({
       color: props['data-foo'] && props.color,
-      fontSize: '16px'
+      fontSize: '16px',
     })
 
     const Component = createComponentWithProxy(rule, 'div', ['data-foo'])
@@ -531,25 +661,25 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
 
     const wrapper = mount(<Component data-foo color="black" />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should compose styles', () => {
     const rule = () => ({
       color: 'blue',
-      fontSize: '16px'
+      fontSize: '16px',
     })
 
     const anotherRule = () => ({
       color: 'red',
-      lineHeight: 1.2
+      lineHeight: 1.2,
     })
 
     const Comp = createComponentWithProxy(rule)
@@ -559,13 +689,13 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
 
     const wrapper = mount(<ComposedComp />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
@@ -578,20 +708,20 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const onClick = () => true
     const wrapper = mount(<ComposedComp onClick={onClick} color="red" />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should only use the rule name as displayName', () => {
     const Button = () => ({
       color: 'red',
-      fontSize: 16
+      fontSize: 16,
     })
     const component = createComponentWithProxy(Button)
 
@@ -600,7 +730,7 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
 
   it('should use a dev-friendly className with monolithic renderer', () => {
     const Button = () => ({
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponentWithProxy(Button)
@@ -608,26 +738,26 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const renderer = createRenderer({
       enhancers: [
         monolithic({
-          prettySelectors: true
-        })
-      ]
+          prettySelectors: true,
+        }),
+      ],
     })
 
     const wrapper = mount(<Component />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should use a dev-friendly className and the selectorPrefix', () => {
     const Button = () => ({
-      fontSize: 16
+      fontSize: 16,
     })
 
     const Component = createComponentWithProxy(Button)
@@ -635,62 +765,62 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     const renderer = createRenderer({
       enhancers: [
         monolithic({
-          prettySelectors: true
-        })
+          prettySelectors: true,
+        }),
       ],
-      selectorPrefix: 'Fela-'
+      selectorPrefix: 'Fela-',
     })
 
     const wrapper = mount(<Component />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
 
   it('should only use the rule name as displayName', () => {
     const Button = () => ({
       color: 'red',
-      fontSize: 16
+      fontSize: 16,
     })
     const Component = createComponentWithProxy(Button)
     const renderer = createRenderer()
 
     const wrapper = mount(<Component as="button" />, {
       context: {
-        renderer
-      }
+        renderer,
+      },
     })
 
     expect([
       beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper)
+      toJson(wrapper),
     ]).toMatchSnapshot()
   })
-})
 
-it('should pass props except innerRef', () => {
-  const rule = props => ({
-    color: props.color,
-    fontSize: '16px'
+  it('should pass props except innerRef', () => {
+    const rule = props => ({
+      color: props.color,
+      fontSize: '16px',
+    })
+    const Component = createComponentWithProxy(rule, 'div')
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(<Component color="black" innerRef={() => 'test'} />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
   })
-  const Component = createComponentWithProxy(rule, 'div')
-
-  const renderer = createRenderer()
-
-  const wrapper = mount(<Component color="black" innerRef={() => 'test'} />, {
-    context: {
-      renderer
-    }
-  })
-
-  expect([
-    beautify(`<style>${renderToString(renderer)}</style>`),
-    toJson(wrapper)
-  ]).toMatchSnapshot()
 })

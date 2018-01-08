@@ -3,8 +3,8 @@ import { isValidHTMLElement } from 'fela-utils'
 
 import renderToString from './renderToString'
 
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
-import type DOMNode from '../../../flowtypes/DOMNode'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { DOMNode } from '../../../flowtypes/DOMNode'
 
 export default function renderToElement(
   renderer: DOMRenderer,

@@ -12,10 +12,8 @@
   "rules": {
     "semi": [ 2, "never" ],
     "object-curly-newline": [ 0 ],
-    "object-property-newline": [ 2, {
-      "allowMultiplePropertiesPerLine": false
-    }],
-    "comma-dangle": [ 2, "never" ],
+    "object-property-newline": [ 0 ],
+    "comma-dangle": [ 0 ],
     "react/jsx-filename-extension": [2, {
       "extensions": [".js", ".jsx"]
     }],

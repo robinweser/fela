@@ -11,9 +11,10 @@ We might introduce more configuration options with future releases, so be sure t
 |`plugins` | `function[]` |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
 |`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
-|`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which media query rules are rendered |
+|`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which `@media` queries are rendered |
+|`supportQueryOrder`| `string[]` | `[]`| An explicit order in which `@supports` queries are rendered |
 |`selectorPrefix`| `string` | `''`| Prepend a static prefix to every generated class and keyframe |
-|`filterClassName`| `function` |  | Filter-function to filter used class names |
+|`filterClassName`| `function` | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names |
 
 ## Example
 ```javascript
@@ -35,8 +36,7 @@ const config = {
     '(min-height: 300px)',
     '(min-height: 500px)'
   ],
-  selectorPrefix: 'fela_',
-  filterClassName: className => className !== 'ad'
+  selectorPrefix: 'fela_'
 }
 
 const renderer = createRenderer(config)

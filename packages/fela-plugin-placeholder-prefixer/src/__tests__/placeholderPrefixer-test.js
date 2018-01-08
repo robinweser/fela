@@ -1,31 +1,35 @@
 import placeholderPrefixer from '../index'
 
+const rendererMock = {
+  _mergeStyle: Object.assign,
+}
+
 describe('Placeholder prefixer plugin', () => {
   it('should add placeholder prefixes', () => {
     const style = {
       width: 20,
       '::placeholder': {
-        color: 'red'
-      }
+        color: 'red',
+      },
     }
 
-    expect(placeholderPrefixer()(style)).toEqual({
+    expect(placeholderPrefixer()(style, 'RULE_TYPE', rendererMock)).toEqual({
       width: 20,
       '::-webkit-input-placeholder': {
-        color: 'red'
+        color: 'red',
       },
       '::-moz-placeholder': {
-        color: 'red'
+        color: 'red',
       },
       ':-ms-input-placeholder': {
-        color: 'red'
+        color: 'red',
       },
       ':-moz-placeholder': {
-        color: 'red'
+        color: 'red',
       },
       '::placeholder': {
-        color: 'red'
-      }
+        color: 'red',
+      },
     })
   })
 })

@@ -1,15 +1,23 @@
 /* @flow */
 import cssbeautify from 'cssbeautify'
-import { objectReduce, objectEach } from 'fela-utils'
+import objectEach from 'fast-loops/lib/objectEach'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
 function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
-  renderer.subscribe(() =>
-    objectEach(renderer.styleNodes, (node, key) => {
-      node.textContent = cssbeautify(node.textContent, options)
+  function beautify() {
+    objectEach(renderer.nodes, (node, key) => {
+      const beautifiedContent = cssbeautify(node.textContent, options)
+
+      if (node.textContent !== beautifiedContent) {
+        node.textContent = beautifiedContent
+      }
     })
-  )
+
+    setTimeout(beautify, 200)
+  }
+
+  beautify()
 
   return renderer
 }
@@ -17,13 +25,13 @@ function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
 const defaultOptions = {
   indent: '  ',
   openbrace: 'end-of-line',
-  autosemicolon: false
+  autosemicolon: false,
 }
 
 export default function beautifier(options: Object = {}) {
   return (renderer: DOMRenderer) =>
     addBeautifier(renderer, {
       ...defaultOptions,
-      ...options
+      ...options,
     })
 }

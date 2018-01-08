@@ -8,9 +8,9 @@ const rule = ({ fontSize, padding }, { foo }) => ({
     lineHeight: 2,
     ':hover': {
       color: 'black',
-      paddingLeft: padding
-    }
-  }
+      paddingLeft: padding,
+    },
+  },
 })
 
 export default createComponent(rule)

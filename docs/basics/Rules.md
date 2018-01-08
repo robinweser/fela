@@ -142,7 +142,7 @@ const rule = props => ({
 ```
 
 #### 6. Other Selectors
-If you are familiar with CSS, you may have noticed that this was just very small subset of CSS selectors. While we only support the above selectors for a reason, we also understand that there might be some edge cases (mostly with third-party libraries) where you want to use other selectors as well. Therefore we provide the `&`-prefix for nested selectors.
+If you are familiar with CSS, you may have noticed that this was just a very small subset of CSS selectors. While we only support the above selectors for a reason, we also understand that there might be some edge cases (mostly with third-party libraries) where you want to use other selectors as well. Therefore we provide the `&`-prefix for nested selectors.
 
 > Warning: This is experimental. It basically renders the selector without any further validation.
 
@@ -168,8 +168,7 @@ const rule = props => ({
 ### Related
 * [Combined rules](../advanced/CombinedRules.md)
 * [API reference - `Renderer.renderRule`](../api/fela/Renderer.md#renderrulerule-props-defaultprops)
-* [FAQ - Rules](../FAQ.md#rules)
 
 #### Tools
-**[fela-stylesheet](https://github.com/rofrischmann/fela-stylesheet)**<br>
-Organize your rules grouped StyleSheets
+**[StyleSheet](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/StyleSheet.md)**<br>
+Organize your rules in grouped objects with named keys

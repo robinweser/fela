@@ -8,62 +8,62 @@ export default {
     Roboto: [
       {
         files: [
-          'https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff'
+          'https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff',
         ],
         options: {
           'font-style': 'normal',
           'font-weight': '300',
-          localAlias: ['Roboto Light', 'Roboto-Light']
-        }
+          localAlias: ['Roboto Light', 'Roboto-Light'],
+        },
       },
       {
         files: [
-          'https://fonts.gstatic.com/s/roboto/v15/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff'
+          'https://fonts.gstatic.com/s/roboto/v15/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff',
         ],
         options: {
           'font-style': 'normal',
           'font-weight': '400',
-          localAlias: ['Roboto', 'Roboto-Regular']
-        }
+          localAlias: ['Roboto', 'Roboto-Regular'],
+        },
       },
       {
         files: [
-          'https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff'
+          'https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff',
         ],
         options: {
           'font-style': 'normal',
           'font-weight': '500',
-          localAlias: ['Roboto Medium', 'Roboto-Medium']
-        }
+          localAlias: ['Roboto Medium', 'Roboto-Medium'],
+        },
       },
       {
         files: [
-          'https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff'
+          'https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff',
         ],
         options: {
           'font-style': 'normal',
           'font-weight': '700',
-          localAlias: ['Roboto Bold', 'Roboto-Bold']
-        }
-      }
+          localAlias: ['Roboto Bold', 'Roboto-Bold'],
+        },
+      },
     ],
     Handlee: {
       files: [
-        'https://fonts.gstatic.com/s/handlee/v5/lXdgF9zSHTlhzKRElEhHowLUuEpTyoUstqEm5AMlJo4.woff'
+        'https://fonts.gstatic.com/s/handlee/v5/lXdgF9zSHTlhzKRElEhHowLUuEpTyoUstqEm5AMlJo4.woff',
       ],
       options: {
         'font-style': 'normal',
         'font-weight': '400',
-        localAlias: ['Handlee Regular', 'Handlee-Regular']
-      }
-    }
+        localAlias: ['Handlee Regular', 'Handlee-Regular'],
+      },
+    },
   },
   breakpoints: {
     mobile: '13.6em',
     mobileWide: '30.4em',
     tablet: '47.2em',
     desktop: '64em',
-    desktopLarge: '97.6em'
+    desktopLarge: '97.6em',
   },
   gradient: {
     primary: 'linear-gradient(left, #76C4E2, #85CBA8)',
@@ -73,12 +73,12 @@ export default {
     five: 'linear-gradient(left, #8176B5, #F16975)',
     six: 'linear-gradient(left, #F16975, #F69259)',
     seven: 'linear-gradient(left, #F69259, #FFDB6F)',
-    eight: 'linear-gradient(left, #85CBA8, #FFDB6F)'
+    eight: 'linear-gradient(left, #85CBA8, #FFDB6F)',
   },
   buttonSizes: {
     small: '10px',
     normal: '14px',
-    large: '18px'
+    large: '18px',
   },
   fontSize: '12px',
   fontFamily: '"Roboto", "Handlee", sans-serif',
@@ -107,6 +107,6 @@ export default {
     level2: 100,
     level3: 200,
     level4: 500,
-    level5: 999
-  }
+    level5: 999,
+  },
 }

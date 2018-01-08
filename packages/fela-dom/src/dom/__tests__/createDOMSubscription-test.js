@@ -28,13 +28,13 @@ describe('Subscribing to the DOM', () => {
       backgroundColor: 'red',
       color: 'blue',
       ':hover': {
-        color: 'red'
-      }
+        color: 'red',
+      },
     }))
 
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })
@@ -50,14 +50,14 @@ describe('Subscribing to the DOM', () => {
     renderer.renderStatic(
       {
         backgroundColor: 'red',
-        color: 'blue'
+        color: 'blue',
       },
       'body, html'
     )
 
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })
@@ -72,17 +72,17 @@ describe('Subscribing to the DOM', () => {
 
     renderer.renderKeyframe(() => ({
       from: { color: 'red' },
-      to: { color: 'blue' }
+      to: { color: 'blue' },
     }))
 
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })
 
-  it('should render media rules to single DOM nodes', () => {
+  it('should render media rules and support rules to single DOM nodes', () => {
     const renderer = createRenderer()
 
     connectDOMNodes(renderer)
@@ -93,22 +93,22 @@ describe('Subscribing to the DOM', () => {
     renderer.renderRule(() => ({
       color: 'blue',
       '@supports (display: flex)': {
-        display: 'flex'
+        display: 'flex',
       },
       '@media (min-width: 300px)': {
         color: 'red',
         '@media (max-height: 500px)': {
           color: 'yellow',
           '@supports (display: grid)': {
-            display: 'grid'
-          }
-        }
-      }
+            display: 'grid',
+          },
+        },
+      },
     }))
 
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })
@@ -126,21 +126,21 @@ describe('Subscribing to the DOM', () => {
       '@media (min-width: 300px)': {
         color: 'red',
         '@media (max-height: 500px)': {
-          color: 'yellow'
-        }
-      }
+          color: 'yellow',
+        },
+      },
     }))
 
     renderer.renderKeyframe(() => ({
       from: { color: 'red' },
-      to: { color: 'blue' }
+      to: { color: 'blue' },
     }))
 
     renderer.clear()
 
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })
@@ -160,14 +160,14 @@ describe('Subscribing to the DOM', () => {
       '@media (min-width: 300px)': {
         color: 'red',
         '@media (max-height: 500px)': {
-          color: 'yellow'
-        }
-      }
+          color: 'yellow',
+        },
+      },
     }))
 
     renderer.renderKeyframe(() => ({
       from: { color: 'red' },
-      to: { color: 'blue' }
+      to: { color: 'blue' },
     }))
 
     const rules = {}
@@ -181,9 +181,9 @@ describe('Subscribing to the DOM', () => {
 
     expect([
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       }),
-      rules
+      rules,
     ]).toMatchSnapshot()
   })
 })

@@ -1,12 +1,13 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import { StyleSheet } from 'react-native'
-
 /* @flow */
-import { processStyleWithPlugins, arrayEach, RULE_TYPE } from 'fela-utils'
+import arrayEach from 'fast-loops/lib/arrayEach'
+import { processStyleWithPlugins, RULE_TYPE, CLEAR_TYPE } from 'fela-utils'
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import type {
   NativeRenderer,
-  NativeRendererConfig
+  NativeRendererConfig,
 } from '../../../flowtypes/NativeRenderer'
 
 export function createRenderer(
@@ -14,35 +15,58 @@ export function createRenderer(
 ): NativeRenderer {
   let renderer: NativeRenderer = {
     listeners: [],
+    cache: {},
     plugins: config.plugins || [],
     isNativeRenderer: true,
 
     clear(): void {
       renderer.cache = {}
-      renderer.ids = []
+
+      renderer._emitChange({
+        type: CLEAR_TYPE,
+      })
+    },
+
+    subscribe(callback: Function): { unsubscribe: Function } {
+      renderer.listeners.push(callback)
+
+      return {
+        unsubscribe: () =>
+          renderer.listeners.splice(renderer.listeners.indexOf(callback), 1),
+      }
     },
 
     renderRule(rule: Function, props: Object = {}): Object {
-      const style = rule(props)
+      const style = rule(props, renderer)
       const reference = JSON.stringify(style)
 
       if (!renderer.cache.hasOwnProperty(reference)) {
         const processedStyle = processStyleWithPlugins(
           renderer,
-          style,
-          RULE_TYPE
+          rule(props, renderer),
+          RULE_TYPE,
+          props
         )
+
         renderer.cache[reference] = StyleSheet.create({
-          style: processedStyle
+          style: processedStyle,
+        })
+
+        renderer._emitChange({
+          type: RULE_TYPE,
+          style: processedStyle,
         })
       }
 
       return renderer.cache[reference].style
-    }
-  }
+    },
 
-  // initial setup
-  renderer.clear()
+    _mergeStyle: assignStyle,
+
+    _emitChange(change: Object): void {
+      arrayEach(renderer.listeners, listener => listener(change))
+    },
+  }
 
   if (config.enhancers) {
     arrayEach(config.enhancers, enhancer => {

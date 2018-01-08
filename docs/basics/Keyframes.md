@@ -22,7 +22,6 @@ const keyframe = props => ({
 ### Related
 * [Rendering keyframes](Renderer.md#renderkeyframe)
 * [API reference - `Renderer.renderKeyframe` ](../api/fela/Renderer.md#renderkeyframekeyframe-props)
-* [FAQ - Keyframes](../FAQ.md#keyframes)
 
 #### Tools
 **[FormidableLabs/react-animations](https://github.com/FormidableLabs/react-animations)**<br>

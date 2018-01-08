@@ -1,19 +1,17 @@
 /* @flow */
-import camelCaseProperty from 'css-in-js-utils/lib/camelCaseProperty'
-import { generateCSSSelector, RULE_TYPE } from 'fela-utils'
+import { RULE_TYPE } from 'fela-utils'
 
-import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
+import generateCacheEntry from './generateCacheEntry'
+import generateDeclarationReference from './generateDeclarationReference'
 
-const DECL_REGEX = /.([^:{]+)(:[^{]+)?{([^}]+)}/g
-const PROPERTY_VALUE_REGEX = /:(.+)/
+const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}/gi
 
 export default function rehydrateRules(
-  renderer: DOMRenderer,
-  cache: Object,
   css: string,
   media: string = '',
-  support: string = ''
-) {
+  support?: string = '',
+  cache?: Object = {}
+): Object {
   let decl
 
   // This excellent parsing implementation was originally taken from Styletron and modified to fit Fela
@@ -21,21 +19,27 @@ export default function rehydrateRules(
   /* eslint-disable no-unused-vars,no-cond-assign */
   while ((decl = DECL_REGEX.exec(css))) {
     // $FlowFixMe
-    const [ruleSet, className, pseudo = '', declaration] = decl
+    const [ruleSet, className, pseudo, property, value] = decl
     /* eslint-enable */
-    const [property, value] = declaration.split(PROPERTY_VALUE_REGEX)
 
-    renderer.getNextRuleIdentifier()
-
-    const declarationReference =
-      support + media + pseudo + camelCaseProperty(property) + value
-    cache[declarationReference] = {
-      type: RULE_TYPE,
-      className,
-      selector: generateCSSSelector(className, pseudo),
-      declaration,
+    const declarationReference = generateDeclarationReference(
+      property,
+      value,
+      pseudo,
       media,
       support
-    }
+    )
+
+    cache[declarationReference] = generateCacheEntry(
+      RULE_TYPE,
+      className,
+      property,
+      value,
+      pseudo,
+      media,
+      support
+    )
   }
+
+  return cache
 }

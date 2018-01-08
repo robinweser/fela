@@ -4,13 +4,13 @@ import monolithic from '../index'
 import renderToString from '../../../fela-tools/src/renderToString'
 
 const options = {
-  enhancers: [monolithic()]
+  enhancers: [monolithic()],
 }
 
 describe('Monolithic enhancer', () => {
   it('should add a cache entry', () => {
     const rule = () => ({
-      color: 'red'
+      color: 'red',
     })
     const renderer = createRenderer(options)
 
@@ -22,15 +22,15 @@ describe('Monolithic enhancer', () => {
   it('should reuse classNames', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: '23px'
+      fontSize: '23px',
     })
     const renderer = createRenderer(options)
 
     const className1 = renderer.renderRule(rule, {
-      color: 'red'
+      color: 'red',
     })
     const className2 = renderer.renderRule(rule, {
-      color: 'red'
+      color: 'red',
     })
 
     expect(className1).toEqual(className2)
@@ -48,7 +48,7 @@ describe('Monolithic enhancer', () => {
   it('should remove undefined values', () => {
     const rule = props => ({
       color: props.color,
-      fontSize: '15px'
+      fontSize: '15px',
     })
     const renderer = createRenderer(options)
 
@@ -60,14 +60,14 @@ describe('Monolithic enhancer', () => {
   it('should allow nested props', () => {
     const rule = props => ({
       color: props.theme.color,
-      fontSize: 15
+      fontSize: 15,
     })
     const renderer = createRenderer(options)
 
     const className = renderer.renderRule(rule, {
       theme: {
-        color: 'red'
-      }
+        color: 'red',
+      },
     })
 
     expect(renderToString(renderer)).toEqual(
@@ -79,8 +79,8 @@ describe('Monolithic enhancer', () => {
     const rule = () => ({
       color: 'red',
       ':hover': {
-        color: 'blue'
-      }
+        color: 'blue',
+      },
     })
 
     const renderer = createRenderer(options)
@@ -93,11 +93,11 @@ describe('Monolithic enhancer', () => {
 
   it('should prefix classNames', () => {
     const rule = () => ({
-      color: 'red'
+      color: 'red',
     })
 
     const renderer = createRenderer({
-      selectorPrefix: 'fela_'
+      selectorPrefix: 'fela_',
     })
     const className = renderer.renderRule(rule)
 
@@ -109,8 +109,8 @@ describe('Monolithic enhancer', () => {
     const rule = () => ({
       color: 'red',
       '[bool=true]': {
-        color: 'blue'
-      }
+        color: 'blue',
+      },
     })
     const renderer = createRenderer(options)
 
@@ -125,8 +125,8 @@ describe('Monolithic enhancer', () => {
     const rule = () => ({
       color: 'red',
       '>div': {
-        color: 'blue'
-      }
+        color: 'blue',
+      },
     })
     const renderer = createRenderer(options)
 
@@ -141,11 +141,11 @@ describe('Monolithic enhancer', () => {
     const rule = () => ({
       color: 'red',
       '&~#foo': {
-        color: 'blue'
+        color: 'blue',
       },
       '& .bar': {
-        color: 'green'
-      }
+        color: 'green',
+      },
     })
     const renderer = createRenderer(options)
 
@@ -160,8 +160,8 @@ describe('Monolithic enhancer', () => {
     const rule = () => ({
       color: 'red',
       '@media (min-height:300px)': {
-        color: 'blue'
-      }
+        color: 'blue',
+      },
     })
 
     const renderer = createRenderer(options)
@@ -175,7 +175,7 @@ describe('Monolithic enhancer', () => {
   it('should use custom className if defined', () => {
     const rule = () => ({
       className: 'custom',
-      color: 'red'
+      color: 'red',
     })
 
     const renderer = createRenderer(options)
@@ -186,15 +186,15 @@ describe('Monolithic enhancer', () => {
 
   it('should generate pretty selectors', () => {
     const colorRed = () => ({
-      color: 'red'
+      color: 'red',
     })
 
     const renderer = createRenderer({
       enhancers: [
         monolithic({
-          prettySelectors: true
-        })
-      ]
+          prettySelectors: true,
+        }),
+      ],
     })
     renderer.renderRule(colorRed)
 
@@ -203,7 +203,7 @@ describe('Monolithic enhancer', () => {
 
   it('should generate pretty selectors using ruleName if defined', () => {
     const colorRed = () => ({
-      color: 'red'
+      color: 'red',
     })
 
     colorRed.ruleName = 'redColor'
@@ -211,9 +211,9 @@ describe('Monolithic enhancer', () => {
     const renderer = createRenderer({
       enhancers: [
         monolithic({
-          prettySelectors: true
-        })
-      ]
+          prettySelectors: true,
+        }),
+      ],
     })
     renderer.renderRule(colorRed)
 

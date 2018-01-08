@@ -12,8 +12,16 @@ import layoutDebugger from 'fela-layout-debugger'
 
 export default () => {
   const renderer = createRenderer({
-    plugins: [embedded(), prefixer(), fallbackValue(), unit(), lvha(), validator(), logger()],
-    enhancers: [perf(), beautifier()]
+    plugins: [
+      embedded(),
+      prefixer(),
+      fallbackValue(),
+      unit(),
+      lvha(),
+      validator(),
+      logger(),
+    ],
+    enhancers: [perf(), beautifier()],
   })
 
   renderer.renderStatic(
@@ -22,7 +30,7 @@ export default () => {
       height: '100%',
       margin: 0,
       padding: 0,
-      fontFamily: 'Lato'
+      fontFamily: 'Lato',
     },
     'html,body,#app'
   )

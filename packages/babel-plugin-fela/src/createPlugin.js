@@ -1,19 +1,17 @@
-import {
-  generateMonolithicClassName,
-  arrayReduce,
-  objectReduce,
-  arrayEach
-} from 'fela-utils'
+import generateHash from 'string-hash'
+import objectReduce from 'fast-loops/lib/objectReduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
+import arrayEach from 'fast-loops/lib/arrayEach'
 
 const defaultConfig = {
   precompile: true,
-  cssProp: true
+  cssProp: true,
 }
 
 export default function createPlugin(userConfig = {}) {
   const config = {
     ...defaultConfig,
-    ...userConfig
+    ...userConfig,
   }
 
   return ({ types: t, traverse }) => {
@@ -21,7 +19,7 @@ export default function createPlugin(userConfig = {}) {
     function extractStaticStyle(props, path) {
       const removeQueue = []
 
-      const staticStyle = arrayReduce(
+      const staticStyle = objectReduce(
         props,
         (style, node) => {
           const removeCallback = () => props.splice(props.indexOf(node), 1)
@@ -49,27 +47,31 @@ export default function createPlugin(userConfig = {}) {
         []
       )
 
-      removeQueue.forEach(cb => cb())
+      arrayEach(removeQueue, cb => cb())
       return staticStyle
     }
 
     // helper to transform AST ObjectExpressions into JS objects
     function createStaticJSObject(props, path) {
-      return props.reduce((obj, node) => {
-        if (
-          !node.shorthand &&
-          (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
-        ) {
-          obj[node.key.name] = node.value.value
-        } else if (t.isObjectExpression(node.value)) {
-          obj[node.key.value] = createStaticJSObject(
-            node.value.properties,
-            path
-          )
-        }
+      return arrayReduce(
+        props,
+        (obj, node) => {
+          if (
+            !node.shorthand &&
+            (t.isStringLiteral(node.value) || t.isNumericLiteral(node.value))
+          ) {
+            obj[node.key.name] = node.value.value
+          } else if (t.isObjectExpression(node.value)) {
+            obj[node.key.value] = createStaticJSObject(
+              node.value.properties,
+              path
+            )
+          }
 
-        return obj
-      }, {})
+          return obj
+        },
+        {}
+      )
     }
 
     // abstraction to compile arrow functions, function expressions and function declarations
@@ -105,7 +107,7 @@ export default function createPlugin(userConfig = {}) {
       if (t.isArrowFunctionExpression(functionExpression)) {
         if (t.isObjectExpression(functionExpression.body)) {
           functionExpression.body = t.blockStatement([
-            t.returnStatement(functionExpression.body)
+            t.returnStatement(functionExpression.body),
           ])
 
           if (t.isVariableDeclarator(ruleDeclaration)) {
@@ -118,7 +120,7 @@ export default function createPlugin(userConfig = {}) {
 
       return {
         ruleDeclaration,
-        functionExpression
+        functionExpression,
       }
     }
 
@@ -208,10 +210,10 @@ export default function createPlugin(userConfig = {}) {
                               t.objectProperty(
                                 t.identifier('type'),
                                 t.stringLiteral('PRECOMPILATION')
-                              )
+                              ),
                             ])
                           )
-                        )
+                        ),
                       ]
 
                       // rehydrate all cache elements
@@ -269,7 +271,7 @@ export default function createPlugin(userConfig = {}) {
 
                   // simple static style prerendering
                   if (staticStyle.length > 0) {
-                    id = generateMonolithicClassName(staticStyle)
+                    id = generateHash(JSON.stringify(staticStyle))
 
                     blockBody = t.blockStatement([
                       t.expressionStatement(
@@ -298,13 +300,13 @@ export default function createPlugin(userConfig = {}) {
                                   t.ArrowFunctionExpression(
                                     [],
                                     t.objectExpression(staticStyle)
-                                  )
+                                  ),
                                 ]
                               )
-                            )
+                            ),
                           ])
                         )
-                      )
+                      ),
                     ])
                   }
 
@@ -359,14 +361,14 @@ export default function createPlugin(userConfig = {}) {
                               )
                             )
                           }
-                        }
+                        },
                       },
                       childPath.scope,
                       childPath
                     )
                   }
                 }
-              }
+              },
             }
 
             if (ruleDeclaration.traverse) {
@@ -394,8 +396,8 @@ export default function createPlugin(userConfig = {}) {
               [t.arrowFunctionExpression([], path.node.value.expression)]
             )
           }
-        }
-      }
+        },
+      },
     }
   }
 }

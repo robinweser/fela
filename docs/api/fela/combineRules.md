@@ -28,12 +28,12 @@ const anotherRule = props => ({
 
 const superRule = combineRules(rule, anotherRule)
 
-renderer.renderRule(rule, { fontSize: '12px '}) // => c1 c2
-renderer.renderRule(anotherRule) // => c3
-renderer.renderRule(superRule, { fontSize: '12px' }) // c4 c5
+renderer.renderRule(rule, { fontSize: '12px '}) // => a b
+renderer.renderRule(anotherRule) // => c
+renderer.renderRule(superRule, { fontSize: '12px' }) // => a c
 
 console.log(renderer.renderToString())
-// .c1{color:red}.c2{font-size:12px}
-// .c3{color:blue}
-// .c4{color:blue}.c5{font-size:12px}
+// .a { font-size:12px }
+// .b { color:red }
+// .c { color:blue }
 ```

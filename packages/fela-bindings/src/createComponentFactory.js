@@ -1,18 +1,18 @@
 /* @flow */
-import {
-  hoistStatics,
-  extractPassThroughProps,
-  extractUsedProps,
-  resolvePassThrough,
-  resolveUsedProps
-} from 'fela-utils'
 import { combineRules } from 'fela'
+
+import hoistStatics from './hoistStatics'
+import extractPassThroughProps from './extractPassThroughProps'
+import extractUsedProps from './extractUsedProps'
+import resolvePassThrough from './resolvePassThrough'
+import resolveUsedProps from './resolveUsedProps'
 
 export default function createComponentFactory(
   createElement: Function,
   withTheme: Function,
   contextTypes?: Object,
-  withProxy: boolean = false
+  withProxy: boolean = false,
+  alwaysPassThroughProps: Array<string> = []
 ): Function {
   return function createComponent(
     rule: Function,
@@ -24,7 +24,7 @@ export default function createComponentFactory(
     const FelaComponent = (
       {
         children,
-        theme,
+        _felaTheme,
         _felaRule,
         extend,
         innerRef,
@@ -43,11 +43,18 @@ export default function createComponentFactory(
         )
       }
 
-      const usedProps = withProxy ? extractUsedProps(rule, theme) : {}
-      const composedRule = _felaRule ? combineRules(rule, _felaRule) : rule
-      const combinedRule = extend
-        ? combineRules(composedRule, () => extend)
-        : composedRule
+      const usedProps = withProxy ? extractUsedProps(rule, _felaTheme) : []
+
+      const rules = [rule]
+      if (_felaRule) {
+        rules.push(_felaRule)
+      }
+      if (extend) {
+        typeof extend === 'function'
+          ? rules.push(extend)
+          : rules.push(() => extend)
+      }
+      const combinedRule = combineRules(...rules)
 
       // improve developer experience with monolithic renderer
       if (process.env.NODE_ENV !== 'production' && renderer.prettySelectors) {
@@ -58,14 +65,17 @@ export default function createComponentFactory(
       }
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [
+        ...alwaysPassThroughProps,
         ...resolvePassThrough(passThroughProps, otherProps),
         ...resolvePassThrough(passThrough, otherProps),
-        ...(withProxy ? resolveUsedProps(usedProps, otherProps) : [])
+        ...(withProxy ? resolveUsedProps(usedProps, otherProps) : []),
       ]
 
       const ruleProps = {
         ...otherProps,
-        theme
+        theme: _felaTheme,
+        as,
+        id,
       }
 
       // if the component renders into another Fela component
@@ -76,7 +86,12 @@ export default function createComponentFactory(
           {
             _felaRule: combinedRule,
             passThrough: resolvedPassThrough,
-            ...ruleProps
+            innerRef,
+            style,
+            className,
+            as,
+            id,
+            ...otherProps,
           },
           children
         )
@@ -121,7 +136,7 @@ export default function createComponentFactory(
     FelaComponent.displayName = displayName
     FelaComponent._isFelaComponent = true
 
-    const themedComponent = withTheme(FelaComponent)
+    const themedComponent = withTheme(FelaComponent, '_felaTheme')
     return hoistStatics(themedComponent, type)
   }
 }

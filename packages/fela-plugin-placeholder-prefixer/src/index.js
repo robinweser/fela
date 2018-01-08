@@ -1,13 +1,13 @@
 /* @flow */
 import customProperty from 'fela-plugin-custom-property'
-import { arrayReduce } from 'fela-utils'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 const placeholderPrefixes = [
   '::-webkit-input-placeholder',
   '::-moz-placeholder',
   ':-ms-input-placeholder',
   ':-moz-placeholder',
-  '::placeholder'
+  '::placeholder',
 ]
 
 export default function placeholderPrefixer() {
@@ -20,6 +20,6 @@ export default function placeholderPrefixer() {
           return style
         },
         {}
-      )
+      ),
   })
 }

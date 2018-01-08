@@ -9,7 +9,7 @@ describe('Unit plugin', () => {
       WebkitFlex: 1,
       WebkitBorderRadius: 2,
       margin: [23, '45', '3px'],
-      opacity: [23, '5']
+      opacity: [23, '5'],
     }
 
     expect(unit('px')(style)).toEqual({
@@ -19,7 +19,7 @@ describe('Unit plugin', () => {
       WebkitFlex: 1,
       WebkitBorderRadius: '2px',
       margin: ['23px', '45px', '3px'],
-      opacity: [23, '5']
+      opacity: [23, '5'],
     })
   })
 
@@ -27,33 +27,33 @@ describe('Unit plugin', () => {
     const style = {
       width: 46,
       ':hover': {
-        height: 34
-      }
+        height: 34,
+      },
     }
 
     expect(unit('px')(style)).toEqual({
       width: '46px',
       ':hover': {
-        height: '34px'
-      }
+        height: '34px',
+      },
     })
   })
 
   it('should default to px', () => {
     const style = {
-      width: 46
+      width: 46,
     }
     expect(unit()(style)).toEqual({
-      width: '46px'
+      width: '46px',
     })
   })
 
   it('should accept units other than px', () => {
     const style = {
-      width: 46
+      width: 46,
     }
     expect(unit('em')(style)).toEqual({
-      width: '46em'
+      width: '46em',
     })
   })
 
@@ -62,18 +62,18 @@ describe('Unit plugin', () => {
       width: 46,
       height: 50,
       margin: 10,
-      fontSize: 15
+      fontSize: 15,
     }
     expect(
       unit('px', {
         margin: '%',
-        fontSize: 'pt'
+        fontSize: 'pt',
       })(style)
     ).toEqual({
       width: '46px',
       height: '50px',
       margin: '10%',
-      fontSize: '15pt'
+      fontSize: '15pt',
     })
   })
 })

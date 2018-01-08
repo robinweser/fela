@@ -21,6 +21,6 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: 12 })
+renderer.renderRule(rule, { size: 12 })
 // => { backgroundColor: 'red', fontSize: 12, color: 'blue' }
 ```

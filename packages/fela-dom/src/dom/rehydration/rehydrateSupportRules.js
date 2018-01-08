@@ -1,30 +1,22 @@
 /* @flow */
-import { extractSupportQuery } from 'fela-utils'
-
+import extractSupportQuery from './extractSupportQuery'
 import rehydrateRules from './rehydrateRules'
 
-import type DOMRenderer from '../../../../../flowtypes/DOMRenderer'
-
-const SUPPORT_REGEX = /@supports[^{]+\{([\s\S]+?})\s*}/g
+const SUPPORT_REGEX = /@supports[^{]+\{([\s\S]+?})\s*}/gi
 
 export default function rehydrateSupportRules(
-  renderer: DOMRenderer,
   css: string,
-  media: string = ''
+  media?: string = '',
+  cache?: Object = {}
 ): Object {
-  const supportCache = {}
-  let ruleCss = css
-
   let decl
 
   while ((decl = SUPPORT_REGEX.exec(css))) {
-    const [ruleSet, rules] = decl
+    const [ruleSet, cssRules] = decl
 
-    const support = extractSupportQuery(ruleSet)
-    ruleCss = ruleCss.replace(ruleSet, '')
-
-    rehydrateRules(renderer, supportCache, rules, media, support)
+    const supportQuery = extractSupportQuery(ruleSet)
+    rehydrateRules(cssRules, media, supportQuery, cache)
   }
 
-  return { ruleCss, supportCache }
+  return cache
 }

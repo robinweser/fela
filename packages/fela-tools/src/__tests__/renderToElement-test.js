@@ -12,27 +12,27 @@ describe('renderToElement', () => {
     // testing initial reender
     renderer.renderRule(() => ({
       backgroundColor: 'red',
-      color: 'blue'
+      color: 'blue',
     }))
     renderToElement(renderer, node)
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
 
     // testing subscription change
     renderer.renderKeyframe(() => ({
       '0%': {
-        color: 'yellow'
+        color: 'yellow',
       },
       '100%': {
-        color: 'orange'
-      }
+        color: 'orange',
+      },
     }))
     expect(
       beautify(document.documentElement.outerHTML, {
-        indent_size: 2
+        indent_size: 2,
       })
     ).toMatchSnapshot()
   })

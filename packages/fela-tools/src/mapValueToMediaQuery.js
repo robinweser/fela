@@ -1,5 +1,5 @@
 /* @flow */
-import { objectReduce } from 'fela-utils'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
 export default function mapValueToMediaQuery(
   queryValueMap: Object = {},
@@ -10,7 +10,7 @@ export default function mapValueToMediaQuery(
     (style, value, query) => {
       if (typeof mapper === 'string') {
         style[query] = {
-          [mapper]: value
+          [mapper]: value,
         }
       } else {
         style[query] = mapper(value)

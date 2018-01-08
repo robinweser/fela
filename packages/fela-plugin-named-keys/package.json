@@ -1,0 +1,24 @@
+{
+  "name": "fela-plugin-named-keys",
+  "version": "1.0.1",
+  "description": "Fela plugin to replace named keys",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "media query",
+    "supports",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT"
+}

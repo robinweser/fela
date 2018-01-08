@@ -1,24 +1,20 @@
 /* @flow */
-import arrayReduce from './arrayReduce'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
-import type NativeRenderer from '../../../flowtypes/NativeRenderer'
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
-
-type Type = 'RULE' | 'KEYFRAME' | 'STATIC'
+import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { StyleType } from '../../../flowtypes/StyleType'
 
 export default function processStyleWithPlugins(
   renderer: DOMRenderer | NativeRenderer,
   style: Object,
-  type: Type,
+  type: StyleType,
   props: Object = {}
 ) {
   if (renderer.plugins.length > 0) {
     return arrayReduce(
       renderer.plugins,
-      (processedStyle, plugin) => {
-        processedStyle = plugin(processedStyle, type, renderer, props)
-        return processedStyle
-      },
+      (processedStyle, plugin) => plugin(processedStyle, type, renderer, props),
       style
     )
   }

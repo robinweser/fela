@@ -102,7 +102,7 @@ const files = [
 
 renderer.renderFont('Lato', files)
 renderer.renderFont('Lato-Bold', files, { fontWeight: 'bold' })
-renderer.renderFont('Lato-Bold', files, { fontWeight: 'bold', localAlias: ['Lato Bold', 'Lato-Bold'] })
+renderer.renderFont('Lato-Bold-Alias', files, { fontWeight: 'bold', localAlias: ['Lato Bold', 'Lato-Bold'] })
 ```
 ```CSS
 @font-face {
@@ -118,8 +118,9 @@ renderer.renderFont('Lato-Bold', files, { fontWeight: 'bold', localAlias: ['Lato
   font-weight: bold
 }
 @font-face {
-  font-family: 'Lato-Bold';
-  src: local('Lato Bold'), local('Lato-Bold'),
+  font-family: 'Lato-Bold-Alias';
+  src: local('Lato Bold'), 
+       local('Lato-Bold'),
        url('./fonts/Lato.ttf') format(truetype),
        url('./fonts/Lato.woff') format(woff);
   font-weight: bold
@@ -139,7 +140,6 @@ Check out the [API reference - Renderer](../api/fela/Renderer.md) to learn about
 * [Renderer Configuration](../advanced/RendererConfiguration.md)
 * [API reference - Renderer](../api/fela/Renderer.md)
 * [API reference - `createRenderer`](../api/fela/createRenderer.md)
-* [FAQ - Renderer](../FAQ.md#renderer)
 
 #### Tools
 **[fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native)**<br>

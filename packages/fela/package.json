@@ -1,14 +1,11 @@
 {
   "name": "fela",
-  "version": "6.0.0",
-  "description": "Universal, Dynamic & High-Performance Styling in JavaScript",
+  "version": "6.1.3",
+  "description": "State-Driven Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
-  "scripts": {
-    "postinstall": "opencollective postinstall"
-  },
   "files": [
     "LICENSE",
     "README.md",
@@ -23,21 +20,22 @@
     "stylesheet",
     "css",
     "styling",
+    "functional styling",
+    "functional css",
+    "atomic css",
+    "state-driven",
+    "atomic design",
+    "state-driven styling",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "^2.0.0",
-    "fela-utils": "^7.0.0",
-    "opencollective": "^1.0.3"
+    "css-in-js-utils": "2.0.0",
+    "fast-loops": "^1.0.0",
+    "fela-utils": "^8.0.3"
   },
   "devDependencies": {
-    "fela-tools": "^5.0.8"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/fela",
-    "logo": "https://opencollective.com/opencollective/logo.txt"
+    "fela-tools": "^5.1.2"
   }
 }

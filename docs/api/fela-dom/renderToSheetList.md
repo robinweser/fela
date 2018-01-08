@@ -4,6 +4,7 @@ This advanced API is pretty similar to [`renderToMarkup`](renderToMarkup.md) as 
 Instead of returning a single string of HTML containing style elements, it returns a list of so called style sheets.
 Each style sheet contains everything we need to be able to render actual style elements on the server.
 
+> Check the [`renderToMarkup`](renderToMarkup.md) output in order to correctly create custom `style` elements that can be rehydrated.
 
 ### Returns
 (*Array*): List of style sheet objects
@@ -14,7 +15,8 @@ Every style sheet object has the following shape:
 type Sheet = {
   type: string,
   css: string,
-  media?: string
+  media?: string,
+  support?: boolean
 }
 ```
 
@@ -28,6 +30,9 @@ const renderer = createRenderer()
 const rule = ({ fontSize }) => ({
   fontSize: fontSize,
   color: 'blue',
+  '@supports (display: flex): {
+    color: 'green'
+  },
   '@media (min-width: 300px)': {
     color: 'red'
   }
@@ -36,11 +41,15 @@ const rule = ({ fontSize }) => ({
 renderer.renderStatic('html,body{box-sizing:border-box;margin:0}').
 renderer.renderRule(rule, { fontSize: '12px' })
 
-const markup = renderToSheetList(renderer)
+const sheetList = renderToSheetList(renderer)
+```
 
-
-markup.forEach(console.log)
-// { type: 'STATIC', css: 'html,body{box-sizing:border-box;margin:0}' }
-// { type: 'RULE', css: '.a{font-size:12px}.b{color:blue}' }
-// { type: 'RULE', css: '.c{color:red}', media: '(min-width: 300px)' }
+The following list would be returned:
+```javascript
+[
+  { type: 'STATIC', css: 'html,body{box-sizing:border-box;margin:0}' },
+  { type: 'RULE', css: '.a{font-size:12px}.b{color:blue}' },
+  { type: 'RULE', css: '.c{color:green}', support: true },
+  { type: 'RULE', css: '.d{color:red}', media: '(min-width: 300px)' },
+]
 ```
