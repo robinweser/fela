@@ -1,4 +1,3 @@
-import { RULE_TYPE } from 'fela-utils'
 import { renderToString } from 'fela-tools'
 
 import createRenderer from '../createRenderer'
