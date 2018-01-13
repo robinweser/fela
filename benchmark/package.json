@@ -5,6 +5,7 @@
   "scripts": {
     "bench": "npm run rehydration && npm run rule-optimisation",
     "rehydration": "babel-node rehydration",
+    "class-generation": "babel-node class-generation",
     "rule-optimisation": "npm run rule-optimisation:1 && npm run rule-optimisation:2 && npm run rule-optimisation:5 && npm run rule-optimisation:10",
     "rule-optimisation:1": "VARIATIONS=1 babel-node rule-optimisation",
     "rule-optimisation:2": "VARIATIONS=2 babel-node rule-optimisation",
