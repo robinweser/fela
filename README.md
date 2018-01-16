@@ -234,5 +234,3 @@ Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@rofrischmann](http://rofrischmann.de) and all the great contributors.
-
-<a href="https://app.codesponsor.io/link/pCQU3wY7qzomx7oGR27YYg5s/rofrischmann/fela" rel="nofollow" target="_blank"><img src="https://app.codesponsor.io/embed/pCQU3wY7qzomx7oGR27YYg5s/rofrischmann/fela.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
