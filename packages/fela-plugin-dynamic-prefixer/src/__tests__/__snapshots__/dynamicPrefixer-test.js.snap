@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dynamic Prefixer plugin should prefix styles 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "color": "blue",
+  "display": "-webkit-flex",
+  "transition": "200ms all linear",
+  "userSelect": "none",
+}
+`;

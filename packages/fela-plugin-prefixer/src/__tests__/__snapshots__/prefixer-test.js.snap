@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Prefixer plugin should prefix nested objects 1`] = `
+Object {
+  ":hover": Object {
+    "WebkitJustifyContent": "center;justify-content:center;-webkit-box-pack:center",
+  },
+  "display": Array [
+    "-webkit-box",
+    "-moz-box",
+    "-ms-flexbox",
+    "-webkit-flex",
+    "flex",
+  ],
+}
+`;
+
+exports[`Prefixer plugin should prefix styles 1`] = `
+Object {
+  "WebkitJustifyContent": "center;justify-content:center;-webkit-box-pack:center",
+  "display": Array [
+    "-webkit-box",
+    "-moz-box",
+    "-ms-flexbox",
+    "-webkit-flex",
+    "flex",
+  ],
+}
+`;
