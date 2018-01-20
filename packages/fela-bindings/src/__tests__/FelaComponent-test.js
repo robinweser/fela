@@ -2,7 +2,7 @@ import React, { Component, createElement } from 'react'
 import PropTypes from 'prop-types'
 import { mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import { html, css } from 'js-beautify'
+import { css } from 'js-beautify'
 
 import { renderToString } from 'fela-tools'
 import { createRenderer } from 'fela'
