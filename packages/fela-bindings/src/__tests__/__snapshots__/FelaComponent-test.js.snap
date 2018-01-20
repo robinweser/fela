@@ -2,15 +2,15 @@
 
 exports[`Using the FelaComponent component correctly combine extending rules 1`] = `
 Array [
-  ".a {
+  "._1staekf {
     font-size: 15px
 }
 
-.b {
+._sjf8sr {
     color: red
 }
 
-.c {
+._mqmbfs {
     background-color: blue
 }",
   <FelaComponent
@@ -24,7 +24,7 @@ Array [
         render={[Function]}
     >
         <div
-            className="a b c"
+            className="_1staekf _sjf8sr _mqmbfs"
         >
             I am red on blue and written in 15px.
         </div>
@@ -35,11 +35,11 @@ Array [
 
 exports[`Using the FelaComponent component correctly pass the theme 1`] = `
 Array [
-  ".a {
+  "._1staekf {
     font-size: 15px
 }
 
-.b {
+._sjf8sr {
     color: red
 }",
   <FelaComponent
@@ -51,7 +51,7 @@ Array [
         render={[Function]}
     >
         <div
-            className="a b"
+            className="_1staekf _sjf8sr"
         >
             I am red and written in 
             15px
@@ -64,11 +64,11 @@ Array [
 
 exports[`Using the FelaComponent component correctly render a fela rule 1`] = `
 Array [
-  ".a {
+  "._1y3zu8o {
     font-size: 12px
 }
 
-.b {
+._sjf8sr {
     color: red
 }",
   <FelaComponent
@@ -80,7 +80,7 @@ Array [
         render={[Function]}
     >
         <div
-            className="a b"
+            className="_1y3zu8o _sjf8sr"
         >
             I am red and written in 12px.
         </div>
