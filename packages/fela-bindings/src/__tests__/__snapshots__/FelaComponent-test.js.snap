@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using the FelaComponent component correctly combine extending rules 1`] = `
+Array [
+  ".a {
+    font-size: 15px
+}
+
+.b {
+    color: red
+}
+
+.c {
+    background-color: blue
+}",
+  <FelaComponent
+    color="red"
+    extend={[Function]}
+    fontSize="15px"
+    render={[Function]}
+    rule={[Function]}
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="a b c"
+        >
+            I am red on blue and written in 15px.
+        </div>
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
+
+exports[`Using the FelaComponent component correctly pass the theme 1`] = `
+Array [
+  ".a {
+    font-size: 15px
+}
+
+.b {
+    color: red
+}",
+  <FelaComponent
+    color="red"
+    render={[Function]}
+    rule={[Function]}
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="a b"
+        >
+            I am red and written in 
+            15px
+            .
+        </div>
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
+
+exports[`Using the FelaComponent component correctly render a fela rule 1`] = `
+Array [
+  ".a {
+    font-size: 12px
+}
+
+.b {
+    color: red
+}",
+  <FelaComponent
+    color="red"
+    render={[Function]}
+    rule={[Function]}
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="a b"
+        >
+            I am red and written in 12px.
+        </div>
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
