@@ -5,6 +5,7 @@ import arrayEach from 'fast-loops/lib/arrayEach'
 
 const defaultConfig = {
   precompile: true,
+  cssProp: true,
 }
 
 export default function createPlugin(userConfig = {}) {
@@ -124,6 +125,7 @@ export default function createPlugin(userConfig = {}) {
     }
 
     return {
+      inherits: require('babel-plugin-syntax-jsx'),
       visitor: {
         CallExpression(path, parentPath) {
           // TODO: check if createComponent is imported from *-fela
@@ -374,6 +376,25 @@ export default function createPlugin(userConfig = {}) {
             } else {
               traverse(ruleDeclaration, traverser, path.scope, path)
             }
+          }
+        },
+        JSXAttribute(path) {
+          if (!config.cssProp) {
+            return false
+          }
+
+          if (
+            path.node.name.name === 'css' &&
+            t.isJSXExpressionContainer(path.node.value)
+          ) {
+            path.node.name.name = 'className'
+            path.node.value.expression = t.callExpression(
+              t.memberExpression(
+                t.identifier('renderer'),
+                t.identifier('renderRule')
+              ),
+              [t.arrowFunctionExpression([], path.node.value.expression)]
+            )
           }
         },
       },

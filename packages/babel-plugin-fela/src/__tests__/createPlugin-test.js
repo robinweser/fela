@@ -9,12 +9,14 @@ import createPlugin from '../createPlugin'
 
 const fixturePath = '/__fixtures__/'
 
-const fixtures = fs
-  .readdirSync(path.join(__dirname, fixturePath))
-  .reduce((fixureList, file) => {
-    fixureList.push(file)
-    return fixureList
-  }, [])
+function getFixtures(folder) {
+  return fs
+    .readdirSync(path.join(__dirname, fixturePath, folder))
+    .reduce((fixtures, file) => {
+      fixtures.push(path.join(folder, file))
+      return fixtures
+    }, [])
+}
 
 function transformFile(filename, plugin) {
   const filePath = `${fixturePath}${filename}`
@@ -32,7 +34,7 @@ describe('Using babel-plugin-fela', () => {
   it('should prerender static styles as a separate rule', () => {
     const plugin = createPlugin()
 
-    fixtures.forEach(fixture => {
+    getFixtures('createComponent').forEach(fixture => {
       expect(transformFile(fixture, plugin)).toMatchSnapshot()
     })
   })
@@ -46,7 +48,17 @@ describe('Using babel-plugin-fela', () => {
         }),
     })
 
-    fixtures.forEach(fixture => {
+    getFixtures('createComponent').forEach(fixture => {
+      expect(transformFile(fixture, plugin)).toMatchSnapshot()
+    })
+  })
+
+  it('should transform inline css props on HTML nodes', () => {
+    const plugin = createPlugin({
+      cssProp: true
+    })
+
+    getFixtures('css-prop').forEach(fixture => {
       expect(transformFile(fixture, plugin)).toMatchSnapshot()
     })
   })
