@@ -7,13 +7,10 @@ It bundles several PRs that are ready to be released altogether.
 - [ ] Documentation
 
 ## Included PRs
-* https://github.com/rofrischmann/fela/pull/492
-* https://github.com/rofrischmann/fela/pull/495
-* https://github.com/rofrischmann/fela/pull/500
-* https://github.com/rofrischmann/fela/pull/501
+*
 
 ## WIP
-* https://github.com/rofrischmann/fela/pull/435
+*
 
 ## Versioning
 |                                   | Major | Minor | Patch |
