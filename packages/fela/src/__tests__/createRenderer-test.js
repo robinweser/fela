@@ -1,4 +1,3 @@
-import { RULE_TYPE } from 'fela-utils'
 import { renderToString } from 'fela-tools'
 
 import createRenderer from '../createRenderer'
@@ -9,8 +8,6 @@ describe('Renderer', () => {
       const renderer = createRenderer()
 
       expect(renderer.cache).toEqual({})
-      expect(renderer.uniqueRuleIdentifier).toEqual(0)
-      expect(renderer.uniqueKeyframeIdentifier).toEqual(0)
     })
 
     it('should apply enhancers directly', () => {
@@ -37,8 +34,6 @@ describe('Renderer', () => {
       renderer.clear()
 
       expect(renderer.cache).toEqual({})
-      expect(renderer.uniqueRuleIdentifier).toEqual(0)
-      expect(renderer.uniqueKeyframeIdentifier).toEqual(0)
     })
   })
 
@@ -72,8 +67,8 @@ describe('Renderer', () => {
       })
 
       expect(className1).toEqual(className2)
-      expect(className1).toEqual('a b')
-      expect(className3).toEqual('c b')
+      expect(className1).toMatchSnapshot()
+      expect(className3).toMatchSnapshot()
     })
 
     it('should return an empty string if the style is empty', () => {
@@ -94,8 +89,8 @@ describe('Renderer', () => {
 
       const className = renderer.renderRule(rule)
 
-      expect(className).toEqual('a')
-      expect(renderToString(renderer)).toEqual('.a{font-size:15px}')
+      expect(className).toMatchSnapshot()
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
 
     it('should allow nested props', () => {
@@ -111,7 +106,7 @@ describe('Renderer', () => {
         },
       })
 
-      expect(className).toEqual('a b')
+      expect(className).toMatchSnapshot()
     })
 
     it('should render pseudo classes', () => {
@@ -125,9 +120,7 @@ describe('Renderer', () => {
       const renderer = createRenderer()
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b:hover{color:blue}'
-      )
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
 
     it('should prefix classNames', () => {
@@ -140,8 +133,8 @@ describe('Renderer', () => {
       })
       const className = renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual('.fela_a{color:red}')
-      expect(className).toEqual('fela_a')
+      expect(renderToString(renderer)).toMatchSnapshot()
+      expect(className).toMatchSnapshot()
     })
 
     it('should render attribute selectors', () => {
@@ -155,9 +148,7 @@ describe('Renderer', () => {
 
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b[bool=true]{color:blue}'
-      )
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
 
     it('should render child selectors', () => {
@@ -171,9 +162,7 @@ describe('Renderer', () => {
 
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b>div{color:blue}'
-      )
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
 
     it('should render pseudo class selectors', () => {
@@ -187,9 +176,7 @@ describe('Renderer', () => {
 
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b:hover{color:blue}'
-      )
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
 
     it('should render any nested selector with the &-prefix', () => {
@@ -206,9 +193,7 @@ describe('Renderer', () => {
 
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b~#foo{color:blue}.c .bar{color:green}'
-      )
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
 
     it('should render media queries', () => {
@@ -222,9 +207,7 @@ describe('Renderer', () => {
       const renderer = createRenderer()
       renderer.renderRule(rule)
 
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}@media (min-height:300px){.b{color:blue}}'
-      )
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
   })
 
@@ -261,7 +244,7 @@ describe('Renderer', () => {
       const renderer = createRenderer()
       const animationName = renderer.renderKeyframe(keyframe)
 
-      expect(animationName).toEqual('k1')
+      expect(animationName).toMatchSnapshot()
     })
 
     it('should render dynamic keyframe variations', () => {
@@ -279,10 +262,8 @@ describe('Renderer', () => {
         color: 'red',
       })
 
-      expect(animationName).toEqual('k1')
-      expect(renderToString(renderer)).toEqual(
-        '@-webkit-keyframes k1{from{color:red}to{color:blue}}@-moz-keyframes k1{from{color:red}to{color:blue}}@keyframes k1{from{color:red}to{color:blue}}'
-      )
+      expect(animationName).toMatchSnapshot()
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
   })
 
@@ -309,9 +290,7 @@ describe('Renderer', () => {
       expect(
         renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')
       ).toEqual(true)
-      expect(renderToString(renderer)).toEqual(
-        'html,body{margin:0;font-size:12px}'
-      )
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
 
     it('should allow multiple static styles for a single selector', () => {
@@ -337,9 +316,7 @@ describe('Renderer', () => {
       expect(renderer.cache.hasOwnProperty('html,body{"color":"red"}')).toEqual(
         true
       )
-      expect(renderToString(renderer)).toEqual(
-        'html,body{margin:0;font-size:12px}html,body{color:red}'
-      )
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
   })
 
@@ -437,24 +414,7 @@ describe('Renderer', () => {
       renderer.subscribe(subscriber)
       renderer.renderRule(rule)
 
-      expect(changes).toEqual([
-        {
-          type: RULE_TYPE,
-          className: 'a',
-          selector: '.a',
-          declaration: 'color:red',
-          media: '',
-          support: '',
-        },
-        {
-          type: RULE_TYPE,
-          className: 'b',
-          selector: '.b',
-          declaration: 'color:blue',
-          media: '(min-height: 300px)',
-          support: '',
-        },
-      ])
+      expect(changes).toMatchSnapshot()
     })
 
     it('should return a unsubscribe method', () => {
