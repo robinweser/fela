@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-with-styleguidist",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "An Example to use fela with styleguidist",
   "homepage": "https://github.com/rofrischmann/fela",
   "repository": {
@@ -48,7 +48,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-fela": "^6.2.3",
+    "react-fela": "^6.2.4",
     "react-modal": "^2.2.2",
     "react-styleguidist": "6.1.0",
     "webpack": "3.4.1"

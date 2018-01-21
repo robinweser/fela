@@ -5,11 +5,11 @@ exports[`renderToElement should do initial and subscription render into node 1`]
 
 <head>
   <style type=\\"text/css\\">
-    .a {
+    ._p2crlx {
       background-color: red
     }
 
-    .b {
+    ._t2jx0m {
       color: blue
     }
   </style>
@@ -25,7 +25,7 @@ exports[`renderToElement should do initial and subscription render into node 2`]
 
 <head>
   <style type=\\"text/css\\">
-    @-webkit-keyframes k1 {
+    @-webkit-keyframes _2ahmm2 {
       0% {
         color: yellow
       }
@@ -34,7 +34,7 @@ exports[`renderToElement should do initial and subscription render into node 2`]
       }
     }
 
-    @-moz-keyframes k1 {
+    @-moz-keyframes _2ahmm2 {
       0% {
         color: yellow
       }
@@ -43,7 +43,7 @@ exports[`renderToElement should do initial and subscription render into node 2`]
       }
     }
 
-    @keyframes k1 {
+    @keyframes _2ahmm2 {
       0% {
         color: yellow
       }
@@ -52,11 +52,11 @@ exports[`renderToElement should do initial and subscription render into node 2`]
       }
     }
 
-    .a {
+    ._p2crlx {
       background-color: red
     }
 
-    .b {
+    ._t2jx0m {
       color: blue
     }
   </style>

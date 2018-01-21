@@ -23,12 +23,10 @@ import {
 import cssifyFontFace from './cssifyFontFace'
 import cssifyKeyframe from './cssifyKeyframe'
 import cssifyStaticStyle from './cssifyStaticStyle'
-import generateAnimationName from './generateAnimationName'
-import generateClassName from './generateClassName'
+import generateUniqueHash from './generateUniqueHash'
 import generateStaticReference from './generateStaticReference'
 import getFontFormat from './getFontFormat'
 import getFontUrl from './getFontUrl'
-import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
 
 import type {
@@ -52,19 +50,10 @@ export default function createRenderer(
     supportQueryOrder: config.supportQueryOrder || [],
     selectorPrefix: config.selectorPrefix || '',
 
-    filterClassName: config.filterClassName || isSafeClassName,
-
-    uniqueRuleIdentifier: 0,
-    uniqueKeyframeIdentifier: 0,
-
     nodes: {},
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},
-
-    getNextRuleIdentifier() {
-      return ++renderer.uniqueRuleIdentifier
-    },
 
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
@@ -73,6 +62,7 @@ export default function createRenderer(
         RULE_TYPE,
         props
       )
+
       return renderer._renderStyleToClassNames(processedStyle).slice(1)
     },
 
@@ -82,9 +72,7 @@ export default function createRenderer(
 
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
-        const animationName = generateAnimationName(
-          ++renderer.uniqueKeyframeIdentifier
-        )
+        const animationName = renderer._generateUniqueHash(keyframeReference)
 
         const processedKeyframe = processStyleWithPlugins(
           renderer,
@@ -187,8 +175,6 @@ export default function createRenderer(
     },
 
     clear() {
-      renderer.uniqueRuleIdentifier = 0
-      renderer.uniqueKeyframeIdentifier = 0
       renderer.cache = {}
 
       renderer._emitChange({
@@ -197,6 +183,7 @@ export default function createRenderer(
     },
 
     _mergeStyle: assignStyle,
+    _generateUniqueHash: generateUniqueHash,
 
     _renderStyleToClassNames(
       { _className, ...style }: Object,
@@ -261,10 +248,7 @@ export default function createRenderer(
 
             const className =
               renderer.selectorPrefix +
-              generateClassName(
-                renderer.getNextRuleIdentifier,
-                renderer.filterClassName
-              )
+              renderer._generateUniqueHash(declarationReference)
 
             const declaration = cssifyDeclaration(property, value)
             const selector = generateCSSSelector(className, pseudo)

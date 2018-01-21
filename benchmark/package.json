@@ -1,10 +1,11 @@
 {
   "private": true,
   "name": "performance-benchmarks",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "scripts": {
     "bench": "npm run rehydration && npm run rule-optimisation",
     "rehydration": "babel-node rehydration",
+    "class-generation": "babel-node class-generation",
     "rule-optimisation": "npm run rule-optimisation:1 && npm run rule-optimisation:2 && npm run rule-optimisation:5 && npm run rule-optimisation:10",
     "rule-optimisation:1": "VARIATIONS=1 babel-node rule-optimisation",
     "rule-optimisation:2": "VARIATIONS=2 babel-node rule-optimisation",
@@ -18,7 +19,7 @@
     "beautify-benchmark": "0.2.4",
     "benchmark": "2.1.2",
     "fela": "^6.1.3",
-    "fela-dom": "^7.0.3",
+    "fela-dom": "^7.0.4",
     "fela-preset-web": "^8.0.3"
   }
 }

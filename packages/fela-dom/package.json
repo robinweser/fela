@@ -1,6 +1,6 @@
 {
   "name": "fela-dom",
-  "version": "7.0.3",
+  "version": "7.0.4",
   "description": "Fela package for working with the DOM",
   "main": "lib/index.js",
   "module": "es/index.js",
