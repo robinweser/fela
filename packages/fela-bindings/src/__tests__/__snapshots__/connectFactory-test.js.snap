@@ -3,15 +3,15 @@
 exports[`Connect Factory for bindings should component receive rules prop with all combined rules 1`] = `
 Array [
   "<style>
-    .a {
+    ._16onwti {
         padding: 2
     }
 
-    .b {
+    ._xn368k {
         font-size: 16
     }
 
-    .c {
+    ._sjf8sr {
         color: red
     }
 </style>",
@@ -23,8 +23,8 @@ Array [
             rules={[Function]}
             styles={
                 Object {
-                    "rule1": "a",
-                    "rule2": "b",
+                    "rule1": "_16onwti",
+                    "rule2": "_xn368k",
                   }
             }
         >
@@ -43,17 +43,17 @@ Array [
                             rules={[Function]}
                             styles={
                                 Object {
-                                    "rule1": "a",
-                                    "rule2": "c b",
+                                    "rule1": "_16onwti",
+                                    "rule2": "_sjf8sr _xn368k",
                                   }
                             }
                         >
                             <div>
                                 <span
-                                    className="a"
+                                    className="_16onwti"
                                 />
                                 <span
-                                    className="c b"
+                                    className="_sjf8sr _xn368k"
                                 />
                             </div>
                         </Component>
@@ -69,15 +69,15 @@ Array [
 exports[`Connect Factory for bindings should compose styles 1`] = `
 Array [
   "<style>
-    .a {
+    ._16onwti {
         padding: 2
     }
 
-    .b {
+    ._sjf8sr {
         color: red
     }
 
-    .c {
+    ._xn368k {
         font-size: 16
     }
 </style>",
@@ -102,17 +102,17 @@ Array [
                     rules={[Function]}
                     styles={
                         Object {
-                            "rule1": "a",
-                            "rule2": "b c",
+                            "rule1": "_16onwti",
+                            "rule2": "_sjf8sr _xn368k",
                           }
                     }
                 >
                     <div>
                         <span
-                            className="a"
+                            className="_16onwti"
                         />
                         <span
-                            className="b c"
+                            className="_sjf8sr _xn368k"
                         />
                     </div>
                 </Component>
@@ -126,15 +126,15 @@ Array [
 exports[`Connect Factory for bindings should extend the rule properties 1`] = `
 Array [
   "<style>
-    .a {
+    ._16onwti {
         padding: 2
     }
 
-    .b {
+    ._sjf8sr {
         color: red
     }
 
-    .c {
+    ._xn368k {
         font-size: 16
     }
 </style>",
@@ -170,17 +170,17 @@ Array [
             rules={[Function]}
             styles={
                 Object {
-                    "rule1": "a",
-                    "rule2": "b c",
+                    "rule1": "_16onwti",
+                    "rule2": "_sjf8sr _xn368k",
                   }
             }
         >
             <div>
                 <span
-                    className="a"
+                    className="_16onwti"
                 />
                 <span
-                    className="b c"
+                    className="_sjf8sr _xn368k"
                 />
             </div>
         </Component>
@@ -192,11 +192,11 @@ Array [
 exports[`Connect Factory for bindings should not pass through "theme" prop when used without "ThemeProvider" 1`] = `
 Array [
   "<style>
-    .a {
+    ._ajw2h1 {
         padding: 1
     }
 
-    .b {
+    ._sjf8sr {
         color: red
     }
 </style>",
@@ -212,8 +212,8 @@ Array [
             rules={[Function]}
             styles={
                 Object {
-                    "rule1": "a",
-                    "rule2": "b",
+                    "rule1": "_ajw2h1",
+                    "rule2": "_sjf8sr",
                   }
             }
         >
@@ -221,10 +221,10 @@ Array [
                 color="red"
             >
                 <span
-                    className="a"
+                    className="_ajw2h1"
                 />
                 <span
-                    className="b"
+                    className="_sjf8sr"
                 />
             </div>
         </Component>
@@ -236,11 +236,11 @@ Array [
 exports[`Connect Factory for bindings should process rules and create classNames 1`] = `
 Array [
   "<style>
-    .a {
+    ._ajw2h1 {
         padding: 1
     }
 
-    .b {
+    ._sjf8sr {
         color: red
     }
 </style>",
@@ -256,17 +256,17 @@ Array [
             rules={[Function]}
             styles={
                 Object {
-                    "rule1": "a",
-                    "rule2": "b",
+                    "rule1": "_ajw2h1",
+                    "rule2": "_sjf8sr",
                   }
             }
         >
             <div>
                 <span
-                    className="a"
+                    className="_ajw2h1"
                 />
                 <span
-                    className="b"
+                    className="_sjf8sr"
                 />
             </div>
         </Component>
@@ -278,11 +278,11 @@ Array [
 exports[`Connect Factory for bindings should process rules and create classNames with rules as function 1`] = `
 Array [
   "<style>
-    .a {
+    ._ajw2h1 {
         padding: 1
     }
 
-    .b {
+    ._sjf8sr {
         color: red
     }
 </style>",
@@ -298,17 +298,17 @@ Array [
             rules={[Function]}
             styles={
                 Object {
-                    "rule1": "a",
-                    "rule2": "b",
+                    "rule1": "_ajw2h1",
+                    "rule2": "_sjf8sr",
                   }
             }
         >
             <div>
                 <span
-                    className="a"
+                    className="_ajw2h1"
                 />
                 <span
-                    className="b"
+                    className="_sjf8sr"
                 />
             </div>
         </Component>
