@@ -54,24 +54,9 @@ describe('Fela identifier enhancer', () => {
     expect(identifier().className).not.toEqual(identifier().className)
   })
 
-  it('two identifier enhancers should not affect with each other', () => {
-    const identifier1 = createIdentifier()
-    const renderer1 = createRenderer({ enhancers: [identifier1] })
-
-    const identifier2 = createIdentifier()
-    const renderer2 = createRenderer({ enhancers: [identifier2] })
-
-    expect(identifier1().className).toEqual(identifier2().className)
-
-    const identifierRule = identifier1()
-
-    expect(renderer1.filterClassName(identifierRule.className)).toBeFalsy()
-    expect(renderer2.filterClassName(identifierRule.className)).toBeTruthy()
-  })
-
   it('identifier rule should be combined with usual style rules', () => {
     const identifier = createIdentifier()
-    createRenderer({ enhancers: [identifier] })
+    const renderer = createRenderer({ enhancers: [identifier] })
 
     const identifierRule = identifier()
     const styleRule = () => ({
@@ -80,7 +65,7 @@ describe('Fela identifier enhancer', () => {
     })
     const combinedRule = combineRules(identifierRule, styleRule)
 
-    expect(combinedRule({}, {})).toMatchSnapshot()
+    expect(combinedRule({}, renderer)).toMatchSnapshot()
   })
 
   it('rule can have references to several identifiers', () => {
@@ -106,33 +91,6 @@ describe('Fela identifier enhancer', () => {
       identifierRule2.className
     )
     expect(renderer.renderRule(combinedRule)).toMatchSnapshot()
-  })
-
-  it('renderer should not use the class names that were used for identifiers', () => {
-    let renderer = createRenderer()
-
-    const styleRule = () => ({
-      color: 'red',
-      fontSize: '12px',
-    })
-
-    expect(renderer.renderRule(styleRule)).toBe('a b')
-
-    const generator = jest
-      .fn()
-      .mockImplementationOnce(() => 'a')
-      .mockImplementationOnce(() => 'b')
-
-    const identifier = createIdentifier({
-      prefix: '',
-      generator,
-    })
-    renderer = createRenderer({ enhancers: [identifier] })
-
-    identifier()
-    identifier()
-
-    expect(renderer.renderRule(styleRule)).toBe('c d')
   })
 
   it('identifier rule should not be contained in the output css', () => {
