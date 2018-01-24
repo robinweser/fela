@@ -209,6 +209,24 @@ describe('Renderer', () => {
 
       expect(renderToString(renderer)).toMatchSnapshot()
     })
+
+    it('should not cause a collision between classNames', () => {
+      const rule1 = () => ({
+        ':after': {
+          content: '"go"',
+        },
+      })
+
+      const rule2 = () => ({
+        ':after': {
+          content: '"Fn"',
+        },
+      })
+
+      const renderer = createRenderer()
+
+      expect(renderer.renderRule(rule1)).not.toBe(renderer.renderRule(rule2))
+    })
   })
 
   describe('Rendering keyframes', () => {
