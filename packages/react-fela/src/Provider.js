@@ -12,6 +12,7 @@ export default ProviderFactory(Component, children => Children.only(children), {
     renderer: PropTypes.object,
   },
   defaultProps: {
+    renderToDOM: true,
     rehydrate: true,
   },
 })

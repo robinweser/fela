@@ -20,7 +20,7 @@ exports[`Subscribing to the DOM should render keyframes to a DOM node 1`] = `
 
 <head>
   <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
-    @-webkit-keyframes k1 {
+    @-webkit-keyframes _13y0w5r {
       from {
         color: red
       }
@@ -29,7 +29,7 @@ exports[`Subscribing to the DOM should render keyframes to a DOM node 1`] = `
       }
     }
 
-    @-moz-keyframes k1 {
+    @-moz-keyframes _13y0w5r {
       from {
         color: red
       }
@@ -38,7 +38,7 @@ exports[`Subscribing to the DOM should render keyframes to a DOM node 1`] = `
       }
     }
 
-    @keyframes k1 {
+    @keyframes _13y0w5r {
       from {
         color: red
       }
@@ -59,30 +59,30 @@ exports[`Subscribing to the DOM should render media rules and support rules to s
 
 <head>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    .a {
+    ._t2jx0m {
       color: blue
     }
   </style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\">
     @supports (display: flex) {
-      .b {
+      ._ku62hq {
         display: flex
       }
     }
   </style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px)\\">
-    .c {
+    ._jm3j3e {
       color: red
     }
   </style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px) and (max-height: 500px)\\">
-    .d {
+    ._1wt986u {
       color: yellow
     }
   </style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width: 300px) and (max-height: 500px)\\">
     @supports (display: grid) {
-      .e {
+      ._16lql2s {
         display: grid
       }
     }
@@ -99,15 +99,15 @@ exports[`Subscribing to the DOM should render rules to a DOM node 1`] = `
 
 <head>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    .a {
+    ._p2crlx {
       background-color: red
     }
 
-    .b {
+    ._t2jx0m {
       color: blue
     }
 
-    .c:hover {
+    ._1401qjb:hover {
       color: red
     }
   </style>
@@ -145,7 +145,7 @@ Array [
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px)\\"></style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px) and (max-height: 500px)\\"></style>
   <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
-    @-webkit-keyframes k1 {
+    @-webkit-keyframes _13y0w5r {
       from {
         color: red
       }
@@ -154,7 +154,7 @@ Array [
       }
     }
 
-    @-moz-keyframes k1 {
+    @-moz-keyframes _13y0w5r {
       from {
         color: red
       }
@@ -163,7 +163,7 @@ Array [
       }
     }
 
-    @keyframes k1 {
+    @keyframes _13y0w5r {
       from {
         color: red
       }
@@ -180,17 +180,17 @@ Array [
   Object {
     "": Array [
       CSSStyleRule {
-        "__ends": 14,
+        "__ends": 20,
         "__starts": 0,
         "parentRule": null,
         "parentStyleSheet": CSSStyleSheet {
           "cssRules": [Circular],
           "parentStyleSheet": null,
         },
-        "selectorText": ".a",
+        "selectorText": "._t2jx0m",
         "style": CSSStyleDeclaration {
           "0": "color",
-          "__starts": 2,
+          "__starts": 8,
           "_importants": Object {
             "color": "",
           },
@@ -202,17 +202,17 @@ Array [
     ],
     "(min-width: 300px)": Array [
       CSSStyleRule {
-        "__ends": 13,
+        "__ends": 19,
         "__starts": 0,
         "parentRule": null,
         "parentStyleSheet": CSSStyleSheet {
           "cssRules": [Circular],
           "parentStyleSheet": null,
         },
-        "selectorText": ".b",
+        "selectorText": "._jm3j3e",
         "style": CSSStyleDeclaration {
           "0": "color",
-          "__starts": 2,
+          "__starts": 8,
           "_importants": Object {
             "color": "",
           },
@@ -224,17 +224,17 @@ Array [
     ],
     "(min-width: 300px) and (max-height: 500px)": Array [
       CSSStyleRule {
-        "__ends": 16,
+        "__ends": 23,
         "__starts": 0,
         "parentRule": null,
         "parentStyleSheet": CSSStyleSheet {
           "cssRules": [Circular],
           "parentStyleSheet": null,
         },
-        "selectorText": ".c",
+        "selectorText": "._1wt986u",
         "style": CSSStyleDeclaration {
           "0": "color",
-          "__starts": 2,
+          "__starts": 9,
           "_importants": Object {
             "color": "",
           },

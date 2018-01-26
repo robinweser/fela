@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Validator plugin should log into the console an error about the incorrect nested style 1`] = `
+Array [
+  Array [
+    " Invalid property \\"fontSize\\" with value \\"abc\\". Expected (<font-size>) but found 'abc'.",
+    Object {
+      "property": "fontSize",
+      "value": "abc",
+    },
+  ],
+]
+`;
+
+exports[`Validator plugin should log into the console an error about the incorrect style 1`] = `
+Array [
+  Array [
+    " Invalid property \\"fontSize\\" with value \\"abc\\". Expected (<font-size>) but found 'abc'.",
+    Object {
+      "property": "fontSize",
+      "value": "abc",
+    },
+  ],
+]
+`;
+
+exports[`Validator plugin should log into the console an error about the incorrect style in keyframe 1`] = `
+Array [
+  Array [
+    " Invalid property \\"fontSize\\" with value \\"10pxp\\". Unexpected token '10pxp'.",
+    Object {
+      "property": "fontSize",
+      "value": "10pxp",
+    },
+  ],
+  Array [
+    " Invalid property \\"fontSize\\" with value \\"10pxp\\". Rule is empty.",
+    Object {
+      "property": "fontSize",
+      "value": "10pxp",
+    },
+  ],
+  Array [
+    " Invalid property \\"fontSiz\\" with value \\"12px\\". Unknown property 'font-siz'.",
+    Object {
+      "property": "fontSiz",
+      "value": "12px",
+    },
+  ],
+]
+`;
+
+exports[`Validator plugin should log into the console an error about the invalid keyframe 1`] = `
+Array [
+  Array [
+    " Invalid keyframe value. An object was expected.",
+    Object {
+      "percentage": "from",
+      "style": 10,
+    },
+  ],
+  Array [
+    " Invalid keyframe value. An object was expected.",
+    Object {
+      "percentage": "to",
+      "style": 20,
+    },
+  ],
+]
+`;
+
+exports[`Validator plugin should log into the console an error about the invalid keyframe property 1`] = `
+Array [
+  Array [
+    " Invalid keyframe property.
+        Expected either \`to\`, \`from\` or a percentage value between 0 and 100.",
+    Object {
+      "percentage": "start",
+      "style": Object {
+        "fontSize": "10pxp",
+      },
+    },
+  ],
+  Array [
+    " Invalid keyframe property.
+        Expected either \`to\`, \`from\` or a percentage value between 0 and 100.",
+    Object {
+      "percentage": "end",
+      "style": Object {
+        "fontSiz": "12px",
+      },
+    },
+  ],
+]
+`;
+
+exports[`Validator plugin should log into the console an error about the invalid nested property 1`] = `
+Array [
+  Array [
+    " Invalid nested property. Only use nested media queries, pseudo classes, child selectors or &-combinators.
+          Maybe you forgot to add a plugin that resolves \\"wrong nested property\\".",
+    Object {
+      "property": "wrong nested property",
+      "value": Object {},
+    },
+  ],
+]
+`;

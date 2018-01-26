@@ -27,6 +27,7 @@
     "**/coverage/": true,
     "**/_book": true,
     "examples/react/bundle.js": true,
+    "\\.history/": true,
     "packages/example-react-native/# OSX": true,
     "packages/example-react-native/#": true,
     "packages/example-react-native/.DS_Store": true,
@@ -70,7 +71,10 @@
     "packages/example-angular2/*.log": true,
     "packages/example-angular2/app/dist": true,
     "packages/example-angular2-typescript/app/*.js": true,
-    "packages/example-angular2-typescript/app/*.map": true
+    "packages/example-angular2-typescript/app/*.map": true,
+    "packages/example-angular2-typescript/node_modules/express/node_modules/qs/node_modules": true,
+    "packages/example-angular2-typescript/node_modules/express/node_modules/mkdirp/node_modules/": true,
+    "packages/example-angular2-typescript/node_modules/express/node_modules/mkdirp/npm-debug.log": true
   },
   "files.exclude": {
     "# OS or Editor files": true,
@@ -100,6 +104,7 @@
     "**/coverage/": true,
     "**/_book": true,
     "examples/react/bundle.js": true,
+    "\\.history/": true,
     "packages/example-react-native/# OSX": true,
     "packages/example-react-native/#": true,
     "packages/example-react-native/.DS_Store": true,
@@ -143,6 +148,9 @@
     "packages/example-angular2/*.log": true,
     "packages/example-angular2/app/dist": true,
     "packages/example-angular2-typescript/app/*.js": true,
-    "packages/example-angular2-typescript/app/*.map": true
+    "packages/example-angular2-typescript/app/*.map": true,
+    "packages/example-angular2-typescript/node_modules/express/node_modules/qs/node_modules": true,
+    "packages/example-angular2-typescript/node_modules/express/node_modules/mkdirp/node_modules/": true,
+    "packages/example-angular2-typescript/node_modules/express/node_modules/mkdirp/npm-debug.log": true
   }
 }

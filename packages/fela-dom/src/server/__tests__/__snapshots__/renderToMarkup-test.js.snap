@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rendering to HTML markup should return a single HTML markup string 1`] = `
-"<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"STATIC\\">
+"<style type=\\"text/css\\" data-fela-type=\\"STATIC\\">
     * {
         box-sizing: border-box
     }
@@ -10,38 +10,38 @@ exports[`Rendering to HTML markup should return a single HTML markup string 1`] 
         display: flex
     }
 </style>
-<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\">
-    .a {
+<style type=\\"text/css\\" data-fela-type=\\"RULE\\">
+    ._sjf8sr {
         color: red
     }
 </style>
-<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\">
+<style type=\\"text/css\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\">
     @supports (display:flex) {
-        .b {
+        ._boueve {
             color: yellow
         }
     }
 
     @supports (display:grid) {
-        .c {
+        ._17la8zr {
             color: brown
         }
     }
 </style>
-<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" media=\\"(min-height: 300px)\\">
-    .d {
+<style type=\\"text/css\\" data-fela-type=\\"RULE\\" media=\\"(min-height: 300px)\\">
+    ._hfmgla {
         color: blue
     }
 </style>
-<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\" media=\\"(min-height: 300px)\\">
+<style type=\\"text/css\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\" media=\\"(min-height: 300px)\\">
     @supports (display:flex) {
-        .e {
+        ._14bkwh9 {
             color: green
         }
     }
 
     @supports (display:grid) {
-        .f {
+        ._110zmce {
             color: black
         }
     }

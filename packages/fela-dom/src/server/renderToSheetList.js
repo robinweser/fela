@@ -6,18 +6,14 @@ import {
   cssifySupportRules,
   sheetMap,
   RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE,
 } from 'fela-utils'
 
-import getRehydrationIndex from './getRehydrationIndex'
-
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
+import type { StyleType } from '../../../../flowtypes/StyleType'
 
 type Sheet = {
   css: string,
-  type: RULE_TYPE | KEYFRAME_TYPE | FONT_TYPE | STATIC_TYPE,
+  type: StyleType,
   media?: string,
 }
 
@@ -28,15 +24,12 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
     renderer.supportQueryOrder
   )
 
-  const rehydrationIndex = getRehydrationIndex(renderer)
-
   const sheetList = objectReduce(
     sheetMap,
     (list, type, key) => {
       if (cacheCluster[key].length > 0) {
         list.push({
           css: cacheCluster[key],
-          rehydration: rehydrationIndex,
           type,
         })
       }
@@ -52,7 +45,6 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
     sheetList.push({
       css: support,
       type: RULE_TYPE,
-      rehydration: rehydrationIndex,
       support: true,
     })
   }
@@ -73,7 +65,6 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
         list.push({
           css: cacheCluster.mediaRules[media],
           type: RULE_TYPE,
-          rehydration: rehydrationIndex,
           media,
         })
       }
@@ -88,7 +79,6 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
           list.push({
             css: mediaSupport,
             type: RULE_TYPE,
-            rehydration: rehydrationIndex,
             support: true,
             media,
           })
