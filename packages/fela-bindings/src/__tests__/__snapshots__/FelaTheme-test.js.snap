@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using the FelaTheme component correctly pass the theme down 1`] = `
+<FelaTheme
+  render={[Function]}
+>
+  <div>
+    The color is 
+    red
+    .
+  </div>
+</FelaTheme>
+`;

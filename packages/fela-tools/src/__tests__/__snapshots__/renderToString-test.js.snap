@@ -9,33 +9,33 @@ div {
   display: flex
 }
 
-.a {
+._sjf8sr {
   color: red
 }
 
 @supports (display:flex) {
-  .b {
+  ._boueve {
     color: yellow
   }
 }
 
 @supports (display:grid) {
-  .c {
+  ._17la8zr {
     color: brown
   }
 }
 
 @media (min-height: 300px) {
-  .d {
+  ._hfmgla {
     color: blue
   }
   @supports (display:flex) {
-    .e {
+    ._14bkwh9 {
       color: green
     }
   }
   @supports (display:grid) {
-    .f {
+    ._110zmce {
       color: black
     }
   }
@@ -43,14 +43,14 @@ div {
 
 @media (max-height: 300px) {
   @supports (display: flex) {
-    .g {
+    ._18n0rk6 {
       color:purple
     }
   }
 }
 
 @media (max-width: 300px) {
-  .h {
+  ._1gwhu9a {
     color: grey
   }
 }"

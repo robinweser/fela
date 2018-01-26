@@ -1,0 +1,30 @@
+{
+  "name": "fela-identifier",
+  "version": "1.0.0",
+  "description": "Fela enhancer to creation identifying rules",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-enhancer",
+    "cssinjs",
+    "identifier"
+  ],
+  "author": "Sergei Grishchenko <s.i.grishchenko@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fast-loops": "^1.0.0"
+  },
+  "devDependencies": {
+    "fela": "^6.1.0",
+    "fela-tools": "^5.0.14"
+  }
+}

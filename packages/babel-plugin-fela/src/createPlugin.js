@@ -269,7 +269,9 @@ export default function createPlugin(userConfig = {}) {
 
                   // simple static style prerendering
                   if (staticStyle.length > 0) {
-                    id = generateHash(JSON.stringify(staticStyle))
+                    id =
+                      '_' +
+                      generateHash(JSON.stringify(staticStyle)).toString(36)
 
                     blockBody = t.blockStatement([
                       t.expressionStatement(
