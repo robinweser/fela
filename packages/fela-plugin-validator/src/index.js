@@ -1,16 +1,35 @@
 /* @flow  */
-/* eslint-disable no-console */
 import {
   RULE_TYPE,
   KEYFRAME_TYPE,
   isNestedSelector,
   isMediaQuery,
+  isSupport,
 } from 'fela-utils'
+import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
+import { CSSLint } from 'csslint'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 
 function isPlainObject(obj: any): boolean {
   return typeof obj === 'object' && !Array.isArray(obj)
+}
+
+function handleError(
+  property: string,
+  style: Object,
+  logInvalid: boolean,
+  deleteInvalid: boolean,
+  message: string,
+  logObject: any
+): void {
+  if (deleteInvalid) {
+    delete style[property]
+  }
+  if (logInvalid) {
+    /* eslint-disable-next-line no-console */
+    console.error(`${deleteInvalid ? '[Deleted] ' : ' '}${message}`, logObject)
+  }
 }
 
 function validateStyleObject(
@@ -22,25 +41,46 @@ function validateStyleObject(
     const value = style[property]
 
     if (isPlainObject(value)) {
-      if (isNestedSelector(property) || isMediaQuery(property)) {
+      if (
+        isNestedSelector(property) ||
+        isMediaQuery(property) ||
+        isSupport(property)
+      ) {
         validateStyleObject(value, logInvalid, deleteInvalid)
       } else {
-        if (deleteInvalid) {
-          delete style[property]
-        }
-        if (logInvalid) {
-          console.error(
-            `${deleteInvalid
-              ? '[Deleted] '
-              : ' '}Invalid nested property. Only use nested media queries, pseudo classes, child selectors or &-combinators.
-              Maybe you forgot to add a plugin that resolves "${property}".`,
-            {
-              property,
-              value,
-            }
-          )
-        }
+        handleError(
+          property,
+          style,
+          logInvalid,
+          deleteInvalid,
+          `Invalid nested property. Only use nested media queries, pseudo classes, child selectors or &-combinators.
+          Maybe you forgot to add a plugin that resolves "${property}".`,
+          {
+            property,
+            value,
+          }
+        )
       }
+    } else {
+      const { messages } = CSSLint.verify(
+        `.fela {${cssifyDeclaration(property, value)};}`
+      )
+      messages.forEach(({ message }) => {
+        handleError(
+          property,
+          style,
+          logInvalid,
+          deleteInvalid,
+          `Invalid property "${property}" with value "${value}". ${message.replace(
+            / at line .+, col .+\./,
+            '.'
+          )}`,
+          {
+            property,
+            value,
+          }
+        )
+      })
     }
   }
 }
@@ -62,39 +102,37 @@ function validateKeyframeObject(
   for (const percentage in style) {
     const value = style[percentage]
     if (!isPlainObject(value)) {
-      if (logInvalid) {
-        console.error(
-          `${deleteInvalid
-            ? '[Deleted] '
-            : ' '}Invalid keyframe value. An object was expected.`,
-          {
-            percentage,
-            style: value,
-          }
-        )
-      }
-      if (deleteInvalid) {
-        delete style[percentage]
-      }
+      handleError(
+        percentage,
+        style,
+        logInvalid,
+        deleteInvalid,
+        'Invalid keyframe value. An object was expected.',
+        {
+          percentage,
+          style: value,
+        }
+      )
       // check for invalid percentage values, it only allows from, to or 0% - 100%
     } else if (
       percentage !== 'from' &&
       percentage !== 'to' &&
       !isValidPercentage(percentage)
     ) {
-      if (logInvalid) {
-        console.error(
-          `${deleteInvalid ? '[Deleted] ' : ' '}Invalid keyframe property.
-              Expected either \`to\`, \`from\` or a percentage value between 0 and 100.`,
-          {
-            percentage,
-            style: value,
-          }
-        )
-      }
-      if (deleteInvalid) {
-        delete style[percentage]
-      }
+      handleError(
+        percentage,
+        style,
+        logInvalid,
+        deleteInvalid,
+        `Invalid keyframe property.
+        Expected either \`to\`, \`from\` or a percentage value between 0 and 100.`,
+        {
+          percentage,
+          style: value,
+        }
+      )
+    } else {
+      validateStyleObject(value, logInvalid, deleteInvalid)
     }
   }
 }
