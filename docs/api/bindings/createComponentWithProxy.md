@@ -8,26 +8,30 @@ This can be used in different cases:
 - When you don't know exactly all the props you need to pass to the child.
 - If you writing a lib on top of fela and need the component to receive props without forcing the user to specify which props.
 
+## Imports
+```javascript
+// React
+import { createComponentWithProxy } from 'react-fela'
+
+// Preact
+import { createComponentWithProxy } from 'preact-fela'
+
+// Inferno
+import  { createComponentWithProxy } from 'inferno-fela'
+```
 
 ## Example
 ```javascript
-import { createComponentWithProxy } from 'react-fela'
-
-const title = props => ({
-  lineHeight: props['data-foo'] === 'bar' ? 1.2 : 1.5,
-  fontSize: props.fontSize + 'px',
-  color: props.color
+const title = ({ fontSize, small, color }) => ({
+  lineHeight: small ? 1.2 : 1.5,
+  fontSize: fontSize + 'px',
+  color: color
 })
 
 const Title = createComponentWithProxy(title, 'div')
 
-const greet = () => alert('Hello World')
-
-ReactDOM.render(
-  <Title fontSize={23} color='red' data-foo='bar' onClick={greet}>Hello World</Title>,
-  document.getElementById('app')
-)
-// => <div className="a b c"  onclick="...">Hello World</div>
+<Title fontSize={23} color='red' data-id="foo" onClick={...}>Hello World</Title>
+// => <div className="a b c" data-id="foo" onclick="...">Hello World</div>
 ```
 
 ## Tips
@@ -36,23 +40,16 @@ Sometimes you need to be able to use a props in your rules and still pass it to 
 
 ## Example
 ```javascript
-import { createComponentWithProxy } from 'react-fela'
-
-const title = props => ({
-  lineHeight: props['data-foo'] === 'bar' ? 1.2 : 1.5,
-  fontSize: props.fontSize + 'px',
-  color: props.color
+const input = ({ disabled, fontSize, color }) => ({
+  fontSize: fontSize + 'px',
+  color: disabled ? 'grey' : color
 })
 
-const Title = createComponentWithProxy(title, 'div', ['data-foo'])
+const Input = createComponentWithProxy(input, 'input', [ 'disabled' ])
 
-const greet = () => alert('Hello World')
 
-ReactDOM.render(
-  <Title fontSize={23} color='red' data-foo='bar' onClick={greet}>Hello World</Title>,
-  document.getElementById('app')
-)
-// => <div className="a b c"  data-foo="bar" onclick="...">Hello World</div>
+<Input fontSize={23} color='red' disabled />
+// => <input className="a b" disabled></input>
 ```
 
 ## Related

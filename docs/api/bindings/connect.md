@@ -5,15 +5,25 @@ It provides all classNames using the `styles` prop.
 
 ## Arguments
 1. `rules` (*Object* | *Function*): An object containing named rules which are provided to the component 
-or a function that produces such an object based on the properties of a React component.
+or a function that produces such an object based on the properties of a component.
 
 ## Returns
-(*Function*): Component connector that passes the classNames to a React component.
+(*Function*): Component connector that passes the classNames to a component.
+
+## Imports
+```javascript
+// React
+import { connect } from 'react-fela'
+
+// Preact
+import { connect } from 'preact-fela'
+
+// Inferno
+import  { connect } from 'inferno-fela'
+```
 
 ## Example
 ```javascript
-import { connect } from 'react-fela'
-
 const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.title}>{title}</h1>
@@ -45,10 +55,8 @@ ReactDOM.render(
   document.getElementById('app')
 )
 ```
-Another example with a function:
+Another example with a function using a theme:
 ```javascript
-import { connect, ThemeProvider } from 'react-fela'
-
 const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.title}>{title}</h1>
@@ -74,7 +82,7 @@ const theme = {
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <ConnectedHeader/>
+    <ConnectedHeader />
   </ThemeProvider>,
   document.getElementById('app')
 )
@@ -85,8 +93,6 @@ It's possible to extend component styles with an `extend` prop that can be eithe
 
 ### Example
 ```javascript
-import { connect } from 'react-fela'
-
 const rules = props => ({
   rule1: {
     padding: 1,

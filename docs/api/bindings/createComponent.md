@@ -6,31 +6,36 @@ It automatically composes rules and passed props for nested Fela components.
 
 ## Arguments
 1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
-2. `type` (*string?|[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?*): React Component or HTML element which is used as the render base element. Defaults to `div`. Note: If a Component is passed, then it receives a className property.
+2. `type` (*string?|[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?*): Component or HTML element which is used as the render base element. Defaults to `div`. Note: If a Component is passed, then it receives a className property.
 3. `passThroughProps` (*Array?|Function?*): A list of props that get passed to the underlying element. Alternatively a function of `props` that returns an array of prop names.
 
 ## Returns
-(*Function*): Stateless functional React component.
+(*Function*): Stateless functional component.
+
+## Imports
+```javascript
+// React
+import { createComponent } from 'react-fela'
+
+// Preact
+import { createComponent } from 'preact-fela'
+
+// Inferno
+import  { createComponent } from 'inferno-fela'
+```
 
 ## Example
 ```javascript
-import { createComponent } from 'react-fela'
-
-const title = props => ({
-  lineHeight: props['data-foo'] === 'bar' ? 1.2 : 1.5,
-  fontSize: props.fontSize + 'px',
-  color: props.color
+const title = ({ small, fontSize, color ) => ({
+  lineHeight: small ? 1.2 : 1.5,
+  fontSize: fontSize + 'px',
+  color: color
 })
 
-const Title = createComponent(title, 'div', [ 'data-foo', 'onClick' ])
+const Title = createComponent(title, 'div', [ 'onClick' ])
 
-const greet = () => alert('Hello World')
-
-ReactDOM.render(
-  <Title fontSize={23} color="red" data-foo="bar" onClick={greet}>Hello World</Title>,
-  document.getElementById('app')
-)
-// => <div className="a b c" data-foo="bar" onclick="...">Hello World</div>
+<Title fontSize={23} color="red" onClick={...}>Hello World</Title>,
+// => <div className="a b c" onclick="...">Hello World</div>
 ```
 
 ## Passing props
@@ -46,29 +51,25 @@ If passing a className, it will automatically be concatenated with the Fela gene
 You may also pass a function of `props` as `passThroughProps`. It must return an array of prop names. e.g. to pass all props you can do:
 ```javascript
 const Title = createComponent(title, 'div', props => Object.keys(props))
+
+// shorthand
+const Title = createComponent(title, 'div', Object.keys)
 ```
 
-Note: The same can be achieved via [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops) and is recommended.
+Note: The same can be achieved via [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops).
 
 #### Dynamically passing props
 This use case is especially important for library owners. Instead of passing the `passThroughProps` to the `createComponent` call directly, one can also use the `passThrough` prop on the created component to achieve the same effect.
 
 ##### Example
 ```javascript
-import { createComponent } from 'react-fela'
-
 const title = () => ({
   color: 'red'
 })
 
 const Title = createComponent(title)
 
-const greet = () => alert('Hello World')
-
-ReactDOM.render(
-  <Title onClick={greet} passThrough={[ 'onClick' ]}>Hello World</Title>,
-  document.getElementById('app')
-)
+<Title onClick={...} passThrough={[ 'onClick' ]}>Hello World</Title>,
 // => <div className="a" onclick="...">Hello World</div>
 ```
 
@@ -77,18 +78,13 @@ It's possible to extend component styles with an `extend` prop that can be eithe
 
 ##### Example
 ```javascript
-import { createComponent } from 'react-fela'
-
 const title = () => ({
   color: 'red'
 })
 
 const Title = createComponent(title)
 
-ReactDOM.render(
-  <Title extend={{ color: 'blue' }}>Hello World</Title>,
-  document.getElementById('app')
-)
+<Title extend={{ color: 'blue' }}>Hello World</Title>,
 // => <div className="a">Hello World</div>
 // => .a { color: blue }
 
@@ -96,10 +92,7 @@ const extendTitle = props => ({
   color: props.color
 })
 
-ReactDOM.render(
-  <Title extend={extendTitle} color="green">Hello World</Title>,
-  document.getElementById('app2')
-)
+<Title extend={extendTitle} color="green">Hello World</Title>,
 // => <div className="a">Hello World</div>
 // => .a { color: green }
 ```
@@ -107,18 +100,13 @@ ReactDOM.render(
 ## Custom type on runtime
 To change the `type` on runtime and/or for each component, you may use the `as` prop.
 ```javascript
-import { createComponent } from 'react-fela'
-
 const title = props => ({
   color: 'red'
 })
 
 const Title = createComponent(title)
 
-ReactDOM.render(
-  <Title as="h1">Hello World</Title>,
-  document.getElementById('app')
-)
+<Title as="h1">Hello World</Title>,
 // => <h1 className="a">Hello World</h1>
 ```
 
