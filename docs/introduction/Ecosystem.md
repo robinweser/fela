@@ -92,6 +92,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector) - Simplified react-fela `connect` with auto-bound styles
 * [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools) - Useful tools for working with Fela
 * [frejya](https://github.com/benoneal/freyja) - Pass styles as props to components
+* [gatsby-plugin-fela](https://github.com/mmintel/gatsby-plugin-fela) - Integrates fela with [Gatsby](http://gatsbyjs.org)
 * [jest-fela-react](https://github.com/Kilix/jest-fela-react) - Nicer snapshots when using Jest and Fela
 * [objectify-css](https://github.com/lachlanjc/objectify-css) - CLI for converting CSS rules to JavaScript style objects
 * [polished](https://github.com/styled-components/polished) - A lightweight toolset for writing styles in JavaScript
