@@ -185,6 +185,7 @@ Apart from all the packages managed within this repository, there are many commu
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop) - Generate class names for fela style rule and apply them as property on a wrapped component
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector) - Simplified react-fela `connect` with auto-bound styles
 * [frejya](https://github.com/benoneal/freyja): Pass styles as props to components
+* [gatsby-plugin-fela](https://github.com/mmintel/gatsby-plugin-fela) - Integrates fela with [Gatsby](http://gatsbyjs.org)
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript bindings for Fela
 * [htz-frontend](https://github.com/Haaretz/htz-frontend) - Source for Haaretz frontend app(s)
 * [kilvin](https://github.com/rofrischmann/kilvin) - Primitive React Layout Components with Fela
