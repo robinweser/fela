@@ -12,7 +12,7 @@ exports[`render should create style nodes and render CSS rules 1`] = `
     }
   </style>
   <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
-    @-webkit-keyframes _2ahmm2 {
+    @-webkit-keyframes k1 {
       0% {
         color: yellow
       }
@@ -21,7 +21,7 @@ exports[`render should create style nodes and render CSS rules 1`] = `
       }
     }
 
-    @-moz-keyframes _2ahmm2 {
+    @-moz-keyframes k1 {
       0% {
         color: yellow
       }
@@ -30,7 +30,7 @@ exports[`render should create style nodes and render CSS rules 1`] = `
       }
     }
 
-    @keyframes _2ahmm2 {
+    @keyframes k1 {
       0% {
         color: yellow
       }
@@ -40,11 +40,11 @@ exports[`render should create style nodes and render CSS rules 1`] = `
     }
   </style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    ._p2crlx {
+    .a {
       background-color: red
     }
 
-    ._t2jx0m {
+    .b {
       color: blue
     }
   </style>
@@ -59,25 +59,25 @@ exports[`render should not overwrite rehydrated styles 1`] = `
 "<html>
 
 <head>
-  <style type=\\"text/css\\" data-fela-type=\\"RULE\\">
-    ._guhc64 {
+  <style type=\\"text/css\\" data-fela-rehydration=\\"4\\" data-fela-type=\\"RULE\\">
+    .b {
       color: yellow
     }
 
-    ._1401qjb:hover {
+    .c:hover {
       color: red
     }
 
-    ._p2crlx {
+    .e {
       background-color: red
     }
 
-    ._t2jx0m {
+    .f {
       color: blue
     }
   </style>
-  <style type=\\"text/css\\" data-fela-type=\\"RULE\\" media=\\"(max-width: 800px)\\">
-    ._1lngh76 {
+  <style type=\\"text/css\\" data-fela-rehydration=\\"4\\" data-fela-type=\\"RULE\\" media=\\"(max-width: 800px)\\">
+    .d {
       color: blue
     }
   </style>
@@ -93,11 +93,11 @@ exports[`render should not render multiple times 1`] = `
 
 <head>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    ._p2crlx {
+    .a {
       background-color: red
     }
 
-    ._t2jx0m {
+    .b {
       color: blue
     }
   </style>

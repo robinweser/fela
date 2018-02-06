@@ -8,6 +8,8 @@ describe('Renderer', () => {
       const renderer = createRenderer()
 
       expect(renderer.cache).toEqual({})
+      expect(renderer.uniqueRuleIdentifier).toEqual(0)
+      expect(renderer.uniqueKeyframeIdentifier).toEqual(0)
     })
 
     it('should apply enhancers directly', () => {
@@ -34,6 +36,8 @@ describe('Renderer', () => {
       renderer.clear()
 
       expect(renderer.cache).toEqual({})
+      expect(renderer.uniqueRuleIdentifier).toEqual(0)
+      expect(renderer.uniqueKeyframeIdentifier).toEqual(0)
     })
   })
 

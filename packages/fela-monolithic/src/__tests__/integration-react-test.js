@@ -18,13 +18,13 @@ describe('Monolithic enhancer React integration', () => {
     }))
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer}>
+      <Provider renderer={renderer} renderToDOM={false}>
         <Component />
       </Provider>
     )
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer}>
+      <Provider renderer={renderer} renderToDOM={false}>
         <Component />
       </Provider>
     )
