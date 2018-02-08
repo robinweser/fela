@@ -20,6 +20,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle
 * [vue-fela](https://github.com/dustin-H/vue-fela) - Vue
+* [vue-fela-plugin](https://github.com/wagerfield/vue-fela) - Vue
 
 ### Plugins
 * [fela-plugin-bidi](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-bidi) - Enable direction-independent style authoring
