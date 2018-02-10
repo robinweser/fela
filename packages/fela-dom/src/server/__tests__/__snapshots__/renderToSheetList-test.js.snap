@@ -4,25 +4,30 @@ exports[`Rendering to a sheet list should return a list of style sheets 1`] = `
 Array [
   Object {
     "css": "*{box-sizing:border-box}div{display:flex}",
+    "rehydration": 6,
     "type": "STATIC",
   },
   Object {
-    "css": "._sjf8sr{color:red}",
+    "css": ".a{color:red}",
+    "rehydration": 6,
     "type": "RULE",
   },
   Object {
-    "css": "@supports (display:flex){._boueve{color:yellow}}@supports (display:grid){._17la8zr{color:brown}}",
+    "css": "@supports (display:flex){.b{color:yellow}}@supports (display:grid){.c{color:brown}}",
+    "rehydration": 6,
     "support": true,
     "type": "RULE",
   },
   Object {
-    "css": "._hfmgla{color:blue}",
+    "css": ".d{color:blue}",
     "media": "(min-height: 300px)",
+    "rehydration": 6,
     "type": "RULE",
   },
   Object {
-    "css": "@supports (display:flex){._14bkwh9{color:green}}@supports (display:grid){._110zmce{color:black}}",
+    "css": "@supports (display:flex){.e{color:green}}@supports (display:grid){.f{color:black}}",
     "media": "(min-height: 300px)",
+    "rehydration": 6,
     "support": true,
     "type": "RULE",
   },

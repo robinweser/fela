@@ -9,6 +9,7 @@ import {
 } from 'fela-utils'
 
 import createStyleTagMarkup from './createStyleTagMarkup'
+import getRehydrationIndex from './getRehydrationIndex'
 
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
@@ -19,11 +20,18 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
     renderer.supportQueryOrder
   )
 
+  const rehydrationIndex = getRehydrationIndex(renderer)
+
   let styleMarkup = objectReduce(
     sheetMap,
     (markup, type, key) => {
       if (cacheCluster[key].length > 0) {
-        markup += createStyleTagMarkup(cacheCluster[key], type, '')
+        markup += createStyleTagMarkup(
+          cacheCluster[key],
+          type,
+          '',
+          rehydrationIndex
+        )
       }
 
       return markup
@@ -34,7 +42,13 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
   const support = cssifySupportRules(cacheCluster.supportRules)
 
   if (support) {
-    styleMarkup += createStyleTagMarkup(support, RULE_TYPE, '', true)
+    styleMarkup += createStyleTagMarkup(
+      support,
+      RULE_TYPE,
+      '',
+      rehydrationIndex,
+      true
+    )
   }
 
   const mediaKeys = Object.keys({
@@ -53,7 +67,8 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
         markup += createStyleTagMarkup(
           cacheCluster.mediaRules[media],
           RULE_TYPE,
-          media
+          media,
+          rehydrationIndex
         )
       }
 
@@ -64,7 +79,13 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
         )
 
         if (mediaSupport.length > 0) {
-          markup += createStyleTagMarkup(mediaSupport, RULE_TYPE, media, true)
+          markup += createStyleTagMarkup(
+            mediaSupport,
+            RULE_TYPE,
+            media,
+            rehydrationIndex,
+            true
+          )
         }
       }
 

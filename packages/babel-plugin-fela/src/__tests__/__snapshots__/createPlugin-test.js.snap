@@ -6,38 +6,38 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
-  if (!renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r) {
-    renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r = {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
       type: 'PRECOMPILATION'
     };
     if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
       type: 'RULE',
-      className: '_sjf8sr',
-      selector: '._sjf8sr',
+      className: 'a',
+      selector: '.a',
       declaration: 'color:red',
       media: '',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
       type: 'RULE',
-      className: '_trbawt',
-      selector: '._trbawt',
+      className: 'b',
+      selector: '.b',
       declaration: 'background-color:red',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
       type: 'RULE',
-      className: '_jtk9xa',
-      selector: '._jtk9xa',
+      className: 'c',
+      selector: '.c',
       declaration: 'line-height:2',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
       type: 'RULE',
-      className: '_wh7g8r',
-      selector: '._wh7g8r:hover',
+      className: 'd',
+      selector: '.d:hover',
       declaration: 'color:black',
       media: '(min-height: 300px)',
       support: ''
@@ -45,7 +45,7 @@ const rule = ({ fontSize, padding }, renderer) => {
   }
 
   return {
-    _className: '_sjf8sr _trbawt _jtk9xa _wh7g8r',
+    _className: 'a b c d',
 
     fontSize,
 
@@ -67,38 +67,38 @@ Array [
   "import { createComponent } from 'react-fela';
 
 export default createComponent(({ fontSize, padding }, renderer) => {
-  if (!renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r) {
-    renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r = {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
       type: 'PRECOMPILATION'
     };
     if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
       type: 'RULE',
-      className: '_sjf8sr',
-      selector: '._sjf8sr',
+      className: 'a',
+      selector: '.a',
       declaration: 'color:red',
       media: '',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
       type: 'RULE',
-      className: '_trbawt',
-      selector: '._trbawt',
+      className: 'b',
+      selector: '.b',
       declaration: 'background-color:red',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
       type: 'RULE',
-      className: '_jtk9xa',
-      selector: '._jtk9xa',
+      className: 'c',
+      selector: '.c',
       declaration: 'line-height:2',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
       type: 'RULE',
-      className: '_wh7g8r',
-      selector: '._wh7g8r:hover',
+      className: 'd',
+      selector: '.d:hover',
       declaration: 'color:black',
       media: '(min-height: 300px)',
       support: ''
@@ -106,7 +106,7 @@ export default createComponent(({ fontSize, padding }, renderer) => {
   }
 
   return {
-    _className: '_sjf8sr _trbawt _jtk9xa _wh7g8r',
+    _className: 'a b c d',
 
     fontSize,
 
@@ -126,38 +126,38 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = (_, renderer) => {
-  if (!renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r) {
-    renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r = {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
       type: 'PRECOMPILATION'
     };
     if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
       type: 'RULE',
-      className: '_sjf8sr',
-      selector: '._sjf8sr',
+      className: 'a',
+      selector: '.a',
       declaration: 'color:red',
       media: '',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
       type: 'RULE',
-      className: '_trbawt',
-      selector: '._trbawt',
+      className: 'b',
+      selector: '.b',
       declaration: 'background-color:red',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
       type: 'RULE',
-      className: '_jtk9xa',
-      selector: '._jtk9xa',
+      className: 'c',
+      selector: '.c',
       declaration: 'line-height:2',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
       type: 'RULE',
-      className: '_wh7g8r',
-      selector: '._wh7g8r:hover',
+      className: 'd',
+      selector: '.d:hover',
       declaration: 'color:black',
       media: '(min-height: 300px)',
       support: ''
@@ -165,7 +165,7 @@ const rule = (_, renderer) => {
   }
 
   return {
-    _className: '_sjf8sr _trbawt _jtk9xa _wh7g8r'
+    _className: 'a b c d'
   };
 };
 
@@ -179,38 +179,38 @@ Array [
   "import { createComponent } from 'react-fela';
 
 function rule({ fontSize, padding }, renderer) {
-  if (!renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r) {
-    renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r = {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
       type: 'PRECOMPILATION'
     };
     if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
       type: 'RULE',
-      className: '_sjf8sr',
-      selector: '._sjf8sr',
+      className: 'a',
+      selector: '.a',
       declaration: 'color:red',
       media: '',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
       type: 'RULE',
-      className: '_trbawt',
-      selector: '._trbawt',
+      className: 'b',
+      selector: '.b',
       declaration: 'background-color:red',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
       type: 'RULE',
-      className: '_jtk9xa',
-      selector: '._jtk9xa',
+      className: 'c',
+      selector: '.c',
       declaration: 'line-height:2',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
       type: 'RULE',
-      className: '_wh7g8r',
-      selector: '._wh7g8r:hover',
+      className: 'd',
+      selector: '.d:hover',
       declaration: 'color:black',
       media: '(min-height: 300px)',
       support: ''
@@ -218,7 +218,7 @@ function rule({ fontSize, padding }, renderer) {
   }
 
   return {
-    _className: '_sjf8sr _trbawt _jtk9xa _wh7g8r',
+    _className: 'a b c d',
 
     fontSize,
 
@@ -240,38 +240,38 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = function ({ fontSize, padding }, renderer) {
-  if (!renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r) {
-    renderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r = {
+  if (!renderer.cache.abcd) {
+    renderer.cache.abcd = {
       type: 'PRECOMPILATION'
     };
     if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
       type: 'RULE',
-      className: '_sjf8sr',
-      selector: '._sjf8sr',
+      className: 'a',
+      selector: '.a',
       declaration: 'color:red',
       media: '',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
       type: 'RULE',
-      className: '_trbawt',
-      selector: '._trbawt',
+      className: 'b',
+      selector: '.b',
       declaration: 'background-color:red',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
       type: 'RULE',
-      className: '_jtk9xa',
-      selector: '._jtk9xa',
+      className: 'c',
+      selector: '.c',
       declaration: 'line-height:2',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
       type: 'RULE',
-      className: '_wh7g8r',
-      selector: '._wh7g8r:hover',
+      className: 'd',
+      selector: '.d:hover',
       declaration: 'color:black',
       media: '(min-height: 300px)',
       support: ''
@@ -279,7 +279,7 @@ const rule = function ({ fontSize, padding }, renderer) {
   }
 
   return {
-    _className: '_sjf8sr _trbawt _jtk9xa _wh7g8r',
+    _className: 'a b c d',
 
     fontSize,
 
@@ -325,38 +325,38 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
-  if (!renderer.cache.foobar_sjf8sr_trbawt_jtk9xa_wh7g8r) {
-    renderer.cache.foobar_sjf8sr_trbawt_jtk9xa_wh7g8r = {
+  if (!renderer.cache.foobarabcd) {
+    renderer.cache.foobarabcd = {
       type: 'PRECOMPILATION'
     };
     if (!renderer.cache['colorred']) renderer.cache['colorred'] = {
       type: 'RULE',
-      className: '_sjf8sr',
-      selector: '._sjf8sr',
+      className: 'a',
+      selector: '.a',
       declaration: 'color:red',
       media: '',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)backgroundColorred']) renderer.cache['(min-height: 300px)backgroundColorred'] = {
       type: 'RULE',
-      className: '_trbawt',
-      selector: '._trbawt',
+      className: 'b',
+      selector: '.b',
       declaration: 'background-color:red',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px)lineHeight2']) renderer.cache['(min-height: 300px)lineHeight2'] = {
       type: 'RULE',
-      className: '_jtk9xa',
-      selector: '._jtk9xa',
+      className: 'c',
+      selector: '.c',
       declaration: 'line-height:2',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!renderer.cache['(min-height: 300px):hovercolorblack']) renderer.cache['(min-height: 300px):hovercolorblack'] = {
       type: 'RULE',
-      className: '_wh7g8r',
-      selector: '._wh7g8r:hover',
+      className: 'd',
+      selector: '.d:hover',
       declaration: 'color:black',
       media: '(min-height: 300px)',
       support: ''
@@ -364,7 +364,7 @@ const rule = ({ fontSize, padding }, renderer) => {
   }
 
   return {
-    _className: 'foo bar _sjf8sr _trbawt _jtk9xa _wh7g8r',
+    _className: 'foo bar a b c d',
 
     fontSize,
 
@@ -386,38 +386,38 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, felaRenderer) => {
-  if (!felaRenderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r) {
-    felaRenderer.cache._sjf8sr_trbawt_jtk9xa_wh7g8r = {
+  if (!felaRenderer.cache.abcd) {
+    felaRenderer.cache.abcd = {
       type: 'PRECOMPILATION'
     };
     if (!felaRenderer.cache['colorred']) felaRenderer.cache['colorred'] = {
       type: 'RULE',
-      className: '_sjf8sr',
-      selector: '._sjf8sr',
+      className: 'a',
+      selector: '.a',
       declaration: 'color:red',
       media: '',
       support: ''
     };
     if (!felaRenderer.cache['(min-height: 300px)backgroundColorred']) felaRenderer.cache['(min-height: 300px)backgroundColorred'] = {
       type: 'RULE',
-      className: '_trbawt',
-      selector: '._trbawt',
+      className: 'b',
+      selector: '.b',
       declaration: 'background-color:red',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!felaRenderer.cache['(min-height: 300px)lineHeight2']) felaRenderer.cache['(min-height: 300px)lineHeight2'] = {
       type: 'RULE',
-      className: '_jtk9xa',
-      selector: '._jtk9xa',
+      className: 'c',
+      selector: '.c',
       declaration: 'line-height:2',
       media: '(min-height: 300px)',
       support: ''
     };
     if (!felaRenderer.cache['(min-height: 300px):hovercolorblack']) felaRenderer.cache['(min-height: 300px):hovercolorblack'] = {
       type: 'RULE',
-      className: '_wh7g8r',
-      selector: '._wh7g8r:hover',
+      className: 'd',
+      selector: '.d:hover',
       declaration: 'color:black',
       media: '(min-height: 300px)',
       support: ''
@@ -425,7 +425,7 @@ const rule = ({ fontSize, padding }, felaRenderer) => {
   }
 
   return {
-    _className: '_sjf8sr _trbawt _jtk9xa _wh7g8r',
+    _className: 'a b c d',
 
     fontSize,
 

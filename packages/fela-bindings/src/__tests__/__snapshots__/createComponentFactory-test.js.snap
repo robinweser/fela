@@ -3,11 +3,11 @@
 exports[`Creating Components from Fela rules should allow nested theme objects 1`] = `
 Array [
   "<style>
-    ._ddrzz3 {
+    .a {
         color: black
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -22,7 +22,7 @@ Array [
         }
     >
         <div
-            className="_ddrzz3 _xn368k"
+            className="a b"
         />
     </rule>
 </rule>,
@@ -77,15 +77,15 @@ Array [
 exports[`Creating Components from Fela rules should compose styles 1`] = `
 Array [
   "<style>
-    ._sjf8sr {
+    .a {
         color: red
     }
 
-    ._lsppwc {
+    .b {
         font-size: 16px
     }
 
-    ._tzgruh {
+    .c {
         line-height: 1.2
     }
 </style>",
@@ -103,7 +103,7 @@ Array [
                 passThrough={Array []}
             >
                 <div
-                    className="_sjf8sr _lsppwc _tzgruh"
+                    className="a b c"
                 />
             </rule>
         </rule>
@@ -115,15 +115,15 @@ Array [
 exports[`Creating Components from Fela rules should extend the rule properties with a function 1`] = `
 Array [
   "<style>
-    ._t2jx0m {
+    .a {
         color: blue
     }
 
-    ._1u2zkpq {
+    .b {
         font-size: 14px
     }
 
-    ._p2crlx {
+    .c {
         background-color: red
     }
 </style>",
@@ -137,7 +137,7 @@ Array [
         extend={[Function]}
     >
         <div
-            className="_t2jx0m _1u2zkpq _p2crlx"
+            className="a b c"
         />
     </rule>
 </rule>,
@@ -147,15 +147,15 @@ Array [
 exports[`Creating Components from Fela rules should extend the rule properties with an object 1`] = `
 Array [
   "<style>
-    ._t2jx0m {
+    .a {
         color: blue
     }
 
-    ._1u2zkpq {
+    .b {
         font-size: 14px
     }
 
-    ._p2crlx {
+    .c {
         background-color: red
     }
 </style>",
@@ -177,7 +177,7 @@ Array [
         }
     >
         <div
-            className="_t2jx0m _1u2zkpq _p2crlx"
+            className="a b c"
         />
     </rule>
 </rule>,
@@ -187,11 +187,11 @@ Array [
 exports[`Creating Components from Fela rules should include defaultProps if provided 1`] = `
 Array [
   "<style>
-    ._sjf8sr {
+    .a {
         color: red
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -203,11 +203,11 @@ Array [
         color="red"
     >
         <Comp
-            className="_sjf8sr _xn368k"
+            className="a b"
             color="red"
         >
             <div
-                className="_sjf8sr _xn368k"
+                className="a b"
             >
                 red
             </div>
@@ -220,11 +220,11 @@ Array [
 exports[`Creating Components from Fela rules should not pass props to the element 1`] = `
 Array [
   "<style>
-    ._fh8qsu {
+    .a {
         color: true
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -240,7 +240,7 @@ Array [
         onHover={true}
     >
         <div
-            className="_fh8qsu _xn368k"
+            className="a b"
             onClick={false}
         />
     </rule>
@@ -251,11 +251,11 @@ Array [
 exports[`Creating Components from Fela rules should only use passed props to render Fela rules 1`] = `
 Array [
   "<style>
-    ._ddrzz3 {
+    .a {
         color: black
     }
 
-    ._lsppwc {
+    .b {
         font-size: 16px
     }
 </style>",
@@ -269,7 +269,7 @@ Array [
         data-foo={true}
     >
         <div
-            className="_ddrzz3 _lsppwc"
+            className="a b"
             data-foo={true}
         />
     </rule>
@@ -280,11 +280,11 @@ Array [
 exports[`Creating Components from Fela rules should only use the rule name as displayName 1`] = `
 Array [
   "<style>
-    ._sjf8sr {
+    .a {
         color: red
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -296,7 +296,7 @@ Array [
         as="button"
     >
         <button
-            className="_sjf8sr _xn368k"
+            className="a b"
         />
     </Button>
 </Button>,
@@ -306,7 +306,7 @@ Array [
 exports[`Creating Components from Fela rules should pass all props to the element 1`] = `
 Array [
   "<style>
-    ._xn368k {
+    .a {
         font-size: 16
     }
 </style>",
@@ -320,7 +320,7 @@ Array [
         onClick={false}
     >
         <div
-            className="_xn368k"
+            className="a"
             data-foo={true}
             onClick={false}
         />
@@ -332,11 +332,11 @@ Array [
 exports[`Creating Components from Fela rules should pass extended special props to the component 1`] = `
 Array [
   "<style>
-    ._sjf8sr {
+    .a {
         color: red
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -358,7 +358,7 @@ Array [
         }
     >
         <UnderlyingComp
-            className="_sjf8sr _xn368k"
+            className="a b"
             testProp={
                 Object {
                     "tabIndex": "-1",
@@ -379,7 +379,7 @@ Array [
         color="blue"
     >
         <UnderlyingComp
-            className="_sjf8sr _xn368k"
+            className="a b"
         >
             <div>
                 testProp does not exist
@@ -393,15 +393,15 @@ Array [
 exports[`Creating Components from Fela rules should pass special props to the component 1`] = `
 Array [
   "<style>
-    ._t2jx0m {
+    .a {
         color: blue
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 
-    ._sjf8sr {
+    .c {
         color: red
     }
 </style>",
@@ -415,7 +415,7 @@ Array [
         color="blue"
     >
         <i
-            className="_t2jx0m _xn368k"
+            className="a b"
         />
     </rule>
 </rule>,
@@ -427,7 +427,7 @@ Array [
         color="blue"
     >
         <div
-            className="_sjf8sr _xn368k"
+            className="c b"
         />
     </rule>
 </rule>,
@@ -437,15 +437,15 @@ Array [
 exports[`Creating Components from Fela rules should pass style, as, id, className and innerRef to composed components 1`] = `
 Array [
   "<style>
-    ._1q2qxab {
+    .a {
         color: green
     }
 
-    ._lsppwc {
+    .b {
         font-size: 16px
     }
 
-    ._tzgruh {
+    .c {
         line-height: 1.2
     }
 </style>",
@@ -472,7 +472,7 @@ Array [
                 passThrough={Array []}
             >
                 <i
-                    className="_1q2qxab _lsppwc _tzgruh"
+                    className="a b c"
                 />
             </rule>
         </rule>
@@ -484,11 +484,11 @@ Array [
 exports[`Creating Components from Fela rules should render fela rules depending on the passed props 1`] = `
 Array [
   "<style>
-    ._ddrzz3 {
+    .a {
         color: black
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -500,7 +500,7 @@ Array [
         color="black"
     >
         <div
-            className="_ddrzz3 _xn368k"
+            className="a b"
         />
     </rule>
 </rule>,
@@ -548,11 +548,11 @@ Array [
 exports[`Creating Components from Fela rules should use the theme for static rendering by default 1`] = `
 Array [
   "<style>
-    ._sjf8sr {
+    .a {
         color: red
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -565,7 +565,7 @@ Array [
         }
     >
         <div
-            className="_sjf8sr _xn368k"
+            className="a b"
         />
     </rule>
 </rule>,
@@ -575,11 +575,11 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should allow nested theme objects 1`] = `
 Array [
   "<style>
-    ._ddrzz3 {
+    .a {
         color: black
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -594,7 +594,7 @@ Array [
         }
     >
         <div
-            className="_ddrzz3 _xn368k"
+            className="a b"
         />
     </rule>
 </rule>,
@@ -653,15 +653,15 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should compose styles 1`] = `
 Array [
   "<style>
-    ._sjf8sr {
+    .a {
         color: red
     }
 
-    ._lsppwc {
+    .b {
         font-size: 16px
     }
 
-    ._tzgruh {
+    .c {
         line-height: 1.2
     }
 </style>",
@@ -679,7 +679,7 @@ Array [
                 passThrough={Array []}
             >
                 <div
-                    className="_sjf8sr _lsppwc _tzgruh"
+                    className="a b c"
                 />
             </rule>
         </rule>
@@ -691,11 +691,11 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should not pass props used in rules to the element 1`] = `
 Array [
   "<style>
-    ._fh8qsu {
+    .a {
         color: true
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -711,7 +711,7 @@ Array [
         onClick={false}
     >
         <div
-            className="_fh8qsu _xn368k"
+            className="a b"
             data-foo={true}
             onClick={false}
         />
@@ -723,11 +723,11 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should only use passed props to render Fela rules 1`] = `
 Array [
   "<style>
-    ._ddrzz3 {
+    .a {
         color: black
     }
 
-    ._lsppwc {
+    .b {
         font-size: 16px
     }
 </style>",
@@ -741,7 +741,7 @@ Array [
         data-foo={true}
     >
         <div
-            className="_ddrzz3 _lsppwc"
+            className="a b"
             color="black"
             data-foo={true}
         />
@@ -753,11 +753,11 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should only use the rule name as displayName 1`] = `
 Array [
   "<style>
-    ._sjf8sr {
+    .a {
         color: red
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -769,7 +769,7 @@ Array [
         as="button"
     >
         <button
-            className="_sjf8sr _xn368k"
+            className="a b"
         />
     </Button>
 </Button>,
@@ -779,7 +779,7 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should pass all props to the element 1`] = `
 Array [
   "<style>
-    ._xn368k {
+    .a {
         font-size: 16
     }
 </style>",
@@ -793,7 +793,7 @@ Array [
         onClick={false}
     >
         <div
-            className="_xn368k"
+            className="a"
             data-foo={true}
             onClick={false}
         />
@@ -805,11 +805,11 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should pass props except innerRef 1`] = `
 Array [
   "<style>
-    ._ddrzz3 {
+    .a {
         color: black
     }
 
-    ._lsppwc {
+    .b {
         font-size: 16px
     }
 </style>",
@@ -823,7 +823,7 @@ Array [
         innerRef={[Function]}
     >
         <div
-            className="_ddrzz3 _lsppwc"
+            className="a b"
         />
     </rule>
 </rule>,
@@ -833,11 +833,11 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should pass props used in rules specified in passThroughProps to the element 1`] = `
 Array [
   "<style>
-    ._fh8qsu {
+    .a {
         color: true
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -853,7 +853,7 @@ Array [
         onClick={false}
     >
         <div
-            className="_fh8qsu _xn368k"
+            className="a b"
             color={true}
             data-foo={true}
             onClick={false}
@@ -866,11 +866,11 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should render fela rules depending on the passed props 1`] = `
 Array [
   "<style>
-    ._ddrzz3 {
+    .a {
         color: black
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -882,7 +882,7 @@ Array [
         color="black"
     >
         <div
-            className="_ddrzz3 _xn368k"
+            className="a b"
         />
     </rule>
 </rule>,
@@ -930,11 +930,11 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should use the theme for static rendering by default 1`] = `
 Array [
   "<style>
-    ._ddrzz3 {
+    .a {
         color: black
     }
 
-    ._xn368k {
+    .b {
         font-size: 16
     }
 </style>",
@@ -947,7 +947,7 @@ Array [
         }
     >
         <div
-            className="_ddrzz3 _xn368k"
+            className="a b"
         />
     </rule>
 </rule>,

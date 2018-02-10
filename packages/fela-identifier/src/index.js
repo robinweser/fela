@@ -26,7 +26,11 @@ export default function identifier(config?: IdentifierConfig = {}) {
     if (isRenderer(identifierName)) {
       enhanced = true
       const renderer: DOMRenderer = identifierName
+      const existingFilterClassName = renderer.filterClassName.bind(renderer)
       const existingRenderRule = renderer.renderRule.bind(renderer)
+
+      renderer.filterClassName = className =>
+        existingFilterClassName(className) && !idRepository[className]
 
       renderer.renderRule = (rule, props) => {
         const idClassNames = []
