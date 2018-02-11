@@ -45,7 +45,7 @@ export default function connectFactory(
             renderer.prettySelectors
           ) {
             const componentName =
-              typeof type === 'string'
+              typeof component === 'string'
                 ? component
                 : component.displayName || component.name || ''
 
