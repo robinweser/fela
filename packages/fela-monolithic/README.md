@@ -78,7 +78,7 @@ renderer.renderRule(redText) // => redText_137u7ef
 }
 ```
 
-If you use it together with `createComponent` from `react-fela`, `preact-fela` or `inferno-fela`, it will also add the component type or displayName to the rule. e.g.
+If you use it together with `createComponent` or `connect` from `react-fela`, `preact-fela` or `inferno-fela`, it will also add the component type or displayName to the rule. e.g.
 
 ```javascript
 import { createComponent } from 'react-fela'
