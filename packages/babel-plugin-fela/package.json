@@ -25,7 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "fast-loops": "^1.0.0",
-    "string-hash": "^1.1.3"
+    "fela-utils": "^8.0.3"
   },
   "devDependencies": {
     "assert": "1.4.1",

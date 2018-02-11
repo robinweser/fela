@@ -80,7 +80,7 @@ export default function identifier(config?: IdentifierConfig = {}) {
       [`--${identifierKey}`]: '',
     }): {
       className?: string,
-      toString?: () => string
+      toString?: () => string,
     })
 
     identifierRule.className = identifierKey

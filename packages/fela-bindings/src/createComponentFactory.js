@@ -61,7 +61,7 @@ export default function createComponentFactory(
         const componentName =
           typeof type === 'string' ? type : type.displayName || type.name || ''
 
-        combinedRule.selectorPrefix = `${displayName}_${componentName}__`
+        combinedRule.selectorPrefix = `${displayName}_${componentName}_`
       }
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [

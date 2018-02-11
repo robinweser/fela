@@ -198,7 +198,7 @@ describe('Monolithic enhancer', () => {
     })
     renderer.renderRule(colorRed)
 
-    expect(renderToString(renderer)).toEqual('.colorRed_137u7ef{color:red}')
+    expect(renderToString(renderer)).toEqual('.colorRed__137u7ef{color:red}')
   })
 
   it('should generate pretty selectors using ruleName if defined', () => {

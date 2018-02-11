@@ -1,4 +1,4 @@
-import generateHash from 'string-hash'
+import { generateUniqueHash } from 'fela-utils'
 import objectReduce from 'fast-loops/lib/objectReduce'
 import arrayReduce from 'fast-loops/lib/arrayReduce'
 import arrayEach from 'fast-loops/lib/arrayEach'
@@ -269,9 +269,7 @@ export default function createPlugin(userConfig = {}) {
 
                   // simple static style prerendering
                   if (staticStyle.length > 0) {
-                    id =
-                      '_' +
-                      generateHash(JSON.stringify(staticStyle)).toString(36)
+                    id = generateUniqueHash(staticStyle)
 
                     blockBody = t.blockStatement([
                       t.expressionStatement(

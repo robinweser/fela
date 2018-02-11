@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generating a unique hash should works with objects 1`] = `"_137u7ef"`;
