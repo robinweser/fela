@@ -75,10 +75,23 @@ export default function connectFactory(
             {}
           )
 
+          const boundRules = objectReduce(
+            preparedRules,
+            (ruleMap, rule, name) => {
+              ruleMap[name] = props => rule({
+                theme: _felaTheme,
+                ...props,
+              }, renderer)
+
+              return ruleMap
+            },
+            {}
+          )
+
           return createElement(component, {
             ...otherProps,
             styles,
-            rules: combinedRules,
+            rules: boundRules,
           })
         }
       }

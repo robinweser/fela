@@ -89,9 +89,12 @@ ReactDOM.render(
 ```
 
 ## Extending styles
+To extend the styles that are injected through the `connect`, there are several ways.
+
+### Extend property
 It's possible to extend component styles with an `extend` prop that can be either an object or a function.
 
-### Example
+#### Example
 ```javascript
 const rules = props => ({
   rule1: {
@@ -128,18 +131,20 @@ const extend = {
 // => .c { font-size: 16 }
 ```
 
+### Reconnection design
 To extend the styles, you can also use the `reconnection` design.
 
-### Example
+#### Example
 ```javascript
 const MyComponent = /* some definition */
 const MyStyledComponent = connect(rules)(MyComponent)
 const MyRestyledComponent = connect(anotherRules)(MyStyledComponent)
 ```
 
-If you want to proxy the rules for child components, you can use the `rules` property on inside the component. 
+## Proxying and Rules property
+If you want to proxy the rules for child components, you can use the `rules` property on inside the component. This is also convenient when you do not want to inline the styles that you plan to use for the extension.
 
-### Example
+#### Example
 ```javascript
 const componentRules = props => ({
   rule1: {
@@ -179,8 +184,12 @@ on the basis of its own styles.
 The underlying component is eventually passed a normalized `rules` object which looks like this:
 
 ```javascript
-const rules = (props) => ({
+const rules = {
   rule1: (props) => ({/* some props and values */}),
   rule2: (props) => ({/* some props and values */}),
-})
+}
+```
+Values of the `rules` object fields are rules. To properties that are passed to these rules, an automatically added `theme`, but if desired, it can be redefined in the following way: 
+```javascript
+rules.rule1({ theme: {/* some fields */} })
 ```
