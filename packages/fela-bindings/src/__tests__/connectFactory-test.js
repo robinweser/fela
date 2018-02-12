@@ -270,7 +270,7 @@ describe('Connect Factory for bindings', () => {
 
   it('should provide rules prop for connected component which is an object with rules in the values of fields', () => {
     const myTheme = {
-      padding: 1
+      padding: 1,
     }
 
     const rules = props => ({
@@ -288,7 +288,9 @@ describe('Connect Factory for bindings', () => {
       expect(injectedRules.rule2).toBeInstanceOf(Function)
 
       expect(injectedRules.rule1()).toEqual({ padding: 1 })
-      expect(injectedRules.rule1({ theme: { padding: 2 } })).toEqual({ padding: 2 })
+      expect(injectedRules.rule1({ theme: { padding: 2 } })).toEqual({
+        padding: 2,
+      })
 
       expect(injectedRules.rule2()).toEqual({ color: 'red' })
 

@@ -78,10 +78,14 @@ export default function connectFactory(
           const boundRules = objectReduce(
             preparedRules,
             (ruleMap, rule, name) => {
-              ruleMap[name] = props => rule({
-                theme: _felaTheme,
-                ...props,
-              }, renderer)
+              ruleMap[name] = props =>
+                rule(
+                  {
+                    theme: _felaTheme,
+                    ...props,
+                  },
+                  renderer
+                )
 
               return ruleMap
             },
