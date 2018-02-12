@@ -1,5 +1,6 @@
 /* @flow */
 import objectReduce from 'fast-loops/lib/objectReduce'
+import objectEach from 'fast-loops/lib/objectEach'
 import { combineMultiRules } from 'fela-tools'
 
 import generateDisplayName from './generateDisplayName'
@@ -37,6 +38,22 @@ export default function connectFactory(
             },
             renderer
           )
+
+          // improve developer experience with monolithic renderer
+          if (
+            process.env.NODE_ENV !== 'production' &&
+            renderer.prettySelectors
+          ) {
+            const componentName =
+              typeof component === 'string'
+                ? component
+                : component.displayName || component.name || ''
+
+            objectEach(preparedRules, (rule, name) => {
+              const displayName = rule.name ? rule.name : 'FelaComponent'
+              rule.selectorPrefix = `${displayName}_${componentName}_${name}_`
+            })
+          }
 
           if (component._isFelaComponent) {
             return createElement(component, {
