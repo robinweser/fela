@@ -447,8 +447,8 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
-  if (!renderer.cache.1258790278) {
-    renderer.cache.1258790278= {
+  if (!renderer.cache._ktg8sm) {
+    renderer.cache._ktg8sm = {
       type: 'PRERENDERING',
       className: renderer.renderRule(() => ({
         color: 'red',
@@ -464,7 +464,7 @@ const rule = ({ fontSize, padding }, renderer) => {
   }
 
   return {
-    _className: renderer.cache.1258790278.className,
+    _className: renderer.cache._ktg8sm.className,
 
     fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
       }
@@ -482,8 +482,8 @@ Array [
   "import { createComponent } from 'react-fela';
 
 export default createComponent(({ fontSize, padding }, renderer) => {
-  if (!renderer.cache.3434345636) {
-    renderer.cache.3434345636= {
+  if (!renderer.cache._1kspy1w) {
+    renderer.cache._1kspy1w = {
       type: 'PRERENDERING',
       className: renderer.renderRule(() => ({
         color: 'red',
@@ -499,7 +499,7 @@ export default createComponent(({ fontSize, padding }, renderer) => {
   }
 
   return {
-    _className: renderer.cache.3434345636.className,
+    _className: renderer.cache._1kspy1w.className,
 
     fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
       }
@@ -515,8 +515,8 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = (_, renderer) => {
-  if (!renderer.cache.3904749910) {
-    renderer.cache.3904749910= {
+  if (!renderer.cache._1skscba) {
+    renderer.cache._1skscba = {
       type: 'PRERENDERING',
       className: renderer.renderRule(() => ({
         color: 'red',
@@ -532,7 +532,7 @@ const rule = (_, renderer) => {
   }
 
   return {
-    _className: renderer.cache.3904749910.className
+    _className: renderer.cache._1skscba.className
   };
 };
 
@@ -546,8 +546,8 @@ Array [
   "import { createComponent } from 'react-fela';
 
 function rule({ fontSize, padding }, renderer) {
-  if (!renderer.cache.1994830291) {
-    renderer.cache.1994830291= {
+  if (!renderer.cache._wzo4wj) {
+    renderer.cache._wzo4wj = {
       type: 'PRERENDERING',
       className: renderer.renderRule(() => ({
         color: 'red',
@@ -563,7 +563,7 @@ function rule({ fontSize, padding }, renderer) {
   }
 
   return {
-    _className: renderer.cache.1994830291.className,
+    _className: renderer.cache._wzo4wj.className,
 
     fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
       }
@@ -581,8 +581,8 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = function ({ fontSize, padding }, renderer) {
-  if (!renderer.cache.1173747665) {
-    renderer.cache.1173747665= {
+  if (!renderer.cache._jethht) {
+    renderer.cache._jethht = {
       type: 'PRERENDERING',
       className: renderer.renderRule(() => ({
         color: 'red',
@@ -598,7 +598,7 @@ const rule = function ({ fontSize, padding }, renderer) {
   }
 
   return {
-    _className: renderer.cache.1173747665.className,
+    _className: renderer.cache._jethht.className,
 
     fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
       }
@@ -640,8 +640,8 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, renderer) => {
-  if (!renderer.cache.2598482558) {
-    renderer.cache.2598482558= {
+  if (!renderer.cache._16z2hz2) {
+    renderer.cache._16z2hz2 = {
       type: 'PRERENDERING',
       className: renderer.renderRule(() => ({
         _className: 'foo bar',
@@ -659,7 +659,7 @@ const rule = ({ fontSize, padding }, renderer) => {
   }
 
   return {
-    _className: renderer.cache.2598482558.className,
+    _className: renderer.cache._16z2hz2.className,
     fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
       }
     }
@@ -676,8 +676,8 @@ Array [
   "import { createComponent } from 'react-fela';
 
 const rule = ({ fontSize, padding }, felaRenderer) => {
-  if (!felaRenderer.cache.3309150636) {
-    felaRenderer.cache.3309150636= {
+  if (!felaRenderer.cache._1iq6kz0) {
+    felaRenderer.cache._1iq6kz0 = {
       type: 'PRERENDERING',
       className: felaRenderer.renderRule(() => ({
         color: 'red',
@@ -693,7 +693,7 @@ const rule = ({ fontSize, padding }, felaRenderer) => {
   }
 
   return {
-    _className: felaRenderer.cache.3309150636.className,
+    _className: felaRenderer.cache._1iq6kz0.className,
 
     fontSize, '@media (min-height: 300px)': { ':hover': { paddingLeft: padding
       }
