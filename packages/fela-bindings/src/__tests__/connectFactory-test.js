@@ -268,7 +268,7 @@ describe('Connect Factory for bindings', () => {
     ]).toMatchSnapshot()
   })
 
-  it.only('should provide rules prop for connected component which is an object with rules in the values of fields', () => {
+  it('should provide rules prop for connected component which is an object with rules in the values of fields', () => {
     const myTheme = {
       padding: 1
     }
