@@ -304,7 +304,6 @@ declare module "react-fela" {
     TMultiRuleObject,
     TMultiRule,
     TPartialMultiRule,
-    TNormalizedMultiRule,
   } from "fela-tools";
 
   interface ThemeProviderProps {
@@ -354,7 +353,7 @@ declare module "react-fela" {
 
   export interface FelaWithStylesProps<Props, Styles, Theme = any> {
     styles: {[key in keyof Styles]: string},
-    rules: TNormalizedMultiRule<Props & FelaWithThemeProps<Theme>, Styles>
+    rules: {[key in keyof Styles]: TRule<Props & Partial<FelaWithThemeProps<Theme>>>},
   }
 
   interface FelaWithStylesInjectedProps<Props, Styles, Theme = any> {

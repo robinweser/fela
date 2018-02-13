@@ -9,6 +9,7 @@ import { createRenderer } from 'fela'
 
 import connectFactory from '../connectFactory'
 import withThemeFactory from '../withThemeFactory'
+import createTheme from '../createTheme'
 import { THEME_CHANNEL } from '../themeChannel'
 
 const withTheme = withThemeFactory(Component, createElement, {
@@ -265,5 +266,43 @@ describe('Connect Factory for bindings', () => {
       beautify(`<style>${renderToString(renderer)}</style>`),
       toJson(wrapper),
     ]).toMatchSnapshot()
+  })
+
+  it('should provide rules prop for connected component which is an object with rules in the values of fields', () => {
+    const myTheme = {
+      padding: 1,
+    }
+
+    const rules = props => ({
+      rule1: ({ theme }) => ({
+        padding: theme.padding,
+      }),
+      rule2: {
+        color: props.color,
+      },
+    })
+
+    expect.assertions(5)
+    const MyComponent = connect(rules)(({ rules: injectedRules }) => {
+      expect(injectedRules.rule1).toBeInstanceOf(Function)
+      expect(injectedRules.rule2).toBeInstanceOf(Function)
+
+      expect(injectedRules.rule1()).toEqual({ padding: 1 })
+      expect(injectedRules.rule1({ theme: { padding: 2 } })).toEqual({
+        padding: 2,
+      })
+
+      expect(injectedRules.rule2()).toEqual({ color: 'red' })
+
+      return null
+    })
+
+    const renderer = createRenderer()
+    mount(<MyComponent color="red" />, {
+      context: {
+        renderer,
+        [THEME_CHANNEL]: createTheme(myTheme),
+      },
+    })
   })
 })

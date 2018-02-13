@@ -20,7 +20,12 @@ Array [
         _felaTheme={Object {}}
     >
         <Component
-            rules={[Function]}
+            rules={
+                Object {
+                    "rule1": [Function],
+                    "rule2": [Function],
+                  }
+            }
             styles={
                 Object {
                     "rule1": "a",
@@ -31,16 +36,31 @@ Array [
             <div>
                 <ConnectedFelaComponent
                     color="red"
-                    extend={[Function]}
+                    extend={
+                        Object {
+                            "rule1": [Function],
+                            "rule2": [Function],
+                          }
+                    }
                 >
                     <ConnectedFelaComponent
                         _felaTheme={Object {}}
                         color="red"
-                        extend={[Function]}
+                        extend={
+                            Object {
+                                "rule1": [Function],
+                                "rule2": [Function],
+                              }
+                        }
                     >
                         <Component
                             color="red"
-                            rules={[Function]}
+                            rules={
+                                Object {
+                                    "rule1": [Function],
+                                    "rule2": [Function],
+                                  }
+                            }
                             styles={
                                 Object {
                                     "rule1": "a",
@@ -99,7 +119,12 @@ Array [
             >
                 <Component
                     color="red"
-                    rules={[Function]}
+                    rules={
+                        Object {
+                            "rule1": [Function],
+                            "rule2": [Function],
+                          }
+                    }
                     styles={
                         Object {
                             "rule1": "a",
@@ -167,7 +192,12 @@ Array [
     >
         <Component
             color="red"
-            rules={[Function]}
+            rules={
+                Object {
+                    "rule1": [Function],
+                    "rule2": [Function],
+                  }
+            }
             styles={
                 Object {
                     "rule1": "a",
@@ -209,7 +239,12 @@ Array [
     >
         <Component
             color="red"
-            rules={[Function]}
+            rules={
+                Object {
+                    "rule1": [Function],
+                    "rule2": [Function],
+                  }
+            }
             styles={
                 Object {
                     "rule1": "a",
@@ -253,7 +288,12 @@ Array [
     >
         <Component
             color="red"
-            rules={[Function]}
+            rules={
+                Object {
+                    "rule1": [Function],
+                    "rule2": [Function],
+                  }
+            }
             styles={
                 Object {
                     "rule1": "a",
@@ -295,7 +335,12 @@ Array [
     >
         <Component
             color="red"
-            rules={[Function]}
+            rules={
+                Object {
+                    "rule1": [Function],
+                    "rule2": [Function],
+                  }
+            }
             styles={
                 Object {
                     "rule1": "a",
