@@ -27,17 +27,14 @@ const FelaComponent = FelaComponentFactory(
 )
 describe('Using the FelaComponent component', () => {
   it('correctly render a fela rule', () => {
-    const rule = ({ color }) => ({
-      fontSize: '12px',
-      color,
-    })
-
     const renderer = createRenderer()
 
     const wrapper = mount(
       <FelaComponent
-        rule={rule}
-        color="red"
+        style={{
+          fontSize: '12px',
+          color: 'red',
+        }}
         render={({ className }) => (
           <div className={className}>I am red and written in 12px.</div>
         )}
@@ -53,11 +50,6 @@ describe('Using the FelaComponent component', () => {
   })
 
   it('correctly pass the theme', () => {
-    const rule = ({ color, theme }) => ({
-      fontSize: theme.fontSize,
-      color,
-    })
-
     const themeContext = createTheme({
       fontSize: '15px',
     })
@@ -66,8 +58,10 @@ describe('Using the FelaComponent component', () => {
 
     const wrapper = mount(
       <FelaComponent
-        rule={rule}
-        color="red"
+        style={({ theme }) => ({
+          fontSize: theme.fontSize,
+          color: 'red',
+        })}
         render={({ className, theme }) => (
           <div className={className}>
             I am red and written in {theme.fontSize}.
@@ -85,28 +79,57 @@ describe('Using the FelaComponent component', () => {
     expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()
   })
 
-  it('correctly combine extending rules', () => {
-    const rule = ({ color }) => ({
-      fontSize: '12px',
-      color,
-    })
-
-    const extend = ({ fontSize }) => ({
-      fontSize,
-      backgroundColor: 'blue',
-    })
-
+  it('should default to a div', () => {
     const renderer = createRenderer()
 
     const wrapper = mount(
       <FelaComponent
-        rule={rule}
-        extend={extend}
-        color="red"
-        fontSize="15px"
-        render={({ className }) => (
-          <div className={className}>I am red on blue and written in 15px.</div>
-        )}
+        style={{
+          fontSize: '12px',
+          color: 'red',
+        }}
+      />,
+      {
+        context: {
+          renderer,
+        },
+      }
+    )
+
+    expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()
+  })
+
+  it('should render children in default mode', () => {
+    const renderer = createRenderer()
+
+    const wrapper = mount(
+      <FelaComponent
+        style={{
+          fontSize: '12px',
+          color: 'red',
+        }}>
+        <span>Hello World</span>
+      </FelaComponent>,
+      {
+        context: {
+          renderer,
+        },
+      }
+    )
+
+    expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()
+  })
+
+  it('should accept a string primitive as render target', () => {
+    const renderer = createRenderer()
+
+    const wrapper = mount(
+      <FelaComponent
+        style={{
+          fontSize: '12px',
+          color: 'red',
+        }}
+        render="span"
       />,
       {
         context: {

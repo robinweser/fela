@@ -1,4 +1,4 @@
-# `createComponentWithProxy(rule, [type], [passThroughProps])`
+# createComponentWithProxy
 
 Sometimes you need/want to pass all the props the to child element but doesn't know them all except the one you use in your rules. `createComponentWithProxy`allow you to pass all the props to the child by default except the props used in the rules.
 

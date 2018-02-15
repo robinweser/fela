@@ -15,7 +15,8 @@ You may alternatively use `npm i --save inferno-fela`.
 
 
 ## API
-This package does not ship separate API documentation as it implements the exact same API as the [react-fela](https://github.com/rofrischmann/fela/packages/react-fela) bindings. Check those out instead.
+For more information and best practices on how to effectively use this package, please check out the main [Fela Documention - Usage with Inferno](http://fela.js.org/docs/guides/UsageWithInferno.html). You will find some useful examples and a basic introduction on how to use Fela with Inferno.<br>
+Checkout the [API Reference - Bindings](http://fela.js.org/docs/API.html#bindings) for further technical information on how the React/Preact/Inferno bindings work.
 
 ## Usage
 For more information and best practices on how to effectively use this package, please check out the main [Fela Documention - Usage with Inferno](http://fela.js.org/docs/guides/UsageWithInferno.html). There you will also find some usage examples. This package only contains the pure API reference documentation.

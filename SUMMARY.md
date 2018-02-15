@@ -47,6 +47,7 @@
   * 6.3. fela-native
     * [6.3.1. createRenderer](docs/api/fela-native/createRenderer.md)
     * [6.3.2. Renderer](docs/api/fela-native/Renderer.md)
+  * 6.4. react/preact/inferno
 * [7. Migration Guide](MIGRATION.md)
 * [8. Troubleshooting](docs/Troubleshooting.md)
 * [9. FAQ](docs/FAQ.md)

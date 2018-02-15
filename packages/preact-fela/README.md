@@ -14,12 +14,9 @@ yarn add preact-fela
 You may alternatively use `npm i --save preact-fela`.
 
 
-
-## API
-This package does not ship separate API documentation as it implements the exact same API as the [react-fela](https://github.com/rofrischmann/fela/packages/react-fela) bindings. Check those out instead.
-
 ## Usage
-For more information and best practices on how to effectively use this package, please check out the main [Fela Documention - Usage with Preact](http://fela.js.org/docs/guides/UsageWithPreact.html). There you will also find some usage examples. This package only contains the pure API reference documentation.
+For more information and best practices on how to effectively use this package, please check out the main [Fela Documention - Usage with Peact](http://fela.js.org/docs/guides/UsageWithPreact.html). You will find some useful examples and a basic introduction on how to use Fela with Peact.<br>
+Checkout the [API Reference - Bindings](http://fela.js.org/docs/API.html#bindings) for further technical information on how the React/Preact/Inferno bindings work.
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>

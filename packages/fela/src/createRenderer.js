@@ -29,6 +29,7 @@ import generateStaticReference from './generateStaticReference'
 import getFontFormat from './getFontFormat'
 import getFontUrl from './getFontUrl'
 import isSafeClassName from './isSafeClassName'
+import resolveRule from './resolveRule'
 import toCSSString from './toCSSString'
 
 import type {
@@ -66,10 +67,10 @@ export default function createRenderer(
       return ++renderer.uniqueRuleIdentifier
     },
 
-    renderRule(rule: Function, props: Object = {}): string {
+    renderRule(rule: Object | Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
         renderer,
-        rule(props, renderer),
+        resolveRule(rule, props, renderer),
         RULE_TYPE,
         props
       )
