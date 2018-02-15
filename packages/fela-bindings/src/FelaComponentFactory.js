@@ -7,21 +7,20 @@ export default function FelaComponentFactory(
   FelaTheme: Function,
   contextTypes?: Object
 ): Function {
-  function FelaComponent(
-    { render, rule, extend, ...otherProps },
-    { renderer }
-  ) {
-    const combinedRule = extend ? combineRules(rule, extend) : rule
-
+  function FelaComponent({ render = 'div', style, children }, { renderer }) {
     return createElement(FelaTheme, {
-      render: theme =>
-        render({
-          className: renderer.renderRule(combinedRule, {
-            ...otherProps,
+      render: theme => {
+        const className = renderer.renderRule(style, theme)
+
+        if (render instanceof Function) {
+          return render({
+            className,
             theme,
-          }),
-          theme,
-        }),
+          })
+        }
+
+        return createElement(render, { className }, children)
+      },
     })
   }
 

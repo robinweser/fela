@@ -1,32 +1,28 @@
-# `<ThemeProvider>`
+# ThemeProvider
 
-The `<ThemeProvider>` component passes a single theme object down to its children. It can be used multiple times to achieve different themes for different parts of the component tree. It uses the [context](https://facebook.github.io/react/docs/context.html) feature to pass down the theme.
+ThemeProvider passes a single theme object down to its children. It can be used multiple times to compose different themes for different parts of the component tree. It uses the [context](https://facebook.github.io/react/docs/context.html) feature to pass down the theme.
 <br>
 Nested themes automatically get combined if not explicitly prevented. This helps if you only want to change or add a single value without repeating the whole theming used before.
 <br>
 <br>
-**The theme gets passed to both `createComponent` and `connect` via props.**
+[FelaComponent](FelaComponent.md), [createComponent](createComponent.md) and [connect](connect.md) automatically receive the theme as well.
 
 ## Props
-1. `theme` (*Object*): theme object with any information
-3. `overwrite` (*boolean*): overwrite all previous theme properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| theme | *Object* | | An object containing any theming information |
+| overwrite | *boolean?* | `false` | Replace any passed down theme instead of merging it |
 
 ## Imports
 ```javascript
-// React
 import { ThemeProvider } from 'react-fela'
-
-// Preact
 import { ThemeProvider } from 'preact-fela'
-
-// Inferno
-import  { ThemeProvider } from 'inferno-fela'
+import { ThemeProvider } from 'inferno-fela'
 ```
 
 ## Example
 ```javascript
-import React from 'react'
-
 const text = ({ theme }) => ({
   backgroundColor: theme.bgColor,
   fontSize: theme.fontSize,
@@ -47,7 +43,7 @@ const Text = createComponent(text)
 ```
 
 #### Overwriting themes
-The `overwrite` options help to prevent theme inheritance for nested `<ThemeProvider>` instances.
+The `overwrite` option help to prevent theme inheritance for nested ThemeProvider components.
 
 ```javascript
 const text = ({ theme }) => ({
@@ -56,7 +52,7 @@ const text = ({ theme }) => ({
 })
 
 const Text = createComponent(text)
-
+s
 
 <ThemeProvider theme={{ color: 'blue', fontSize: 15 }}>
   <Text>I am blue and 15px sized</Text>
