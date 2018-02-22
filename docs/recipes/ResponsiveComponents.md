@@ -46,10 +46,10 @@ const Responsive = ({ defaultWidth, mediumWidth, bigWidth }) => ({
 export default createComponent(Responsive)
 ```
 
-Now we can create multiple `<Responsive>` with different width values by using the `defaultWidth`, `mediumWidth` and `bigWidth` props. But as you may think, that's still pretty much hard-coded and does not scale well. Especially, because you can not modify the media query values through the props.
+Now we can create multiple `Responsive` instances with different width values by using the `defaultWidth`, `mediumWidth` and `bigWidth` props. But as you may think, that's still pretty much hard-coded and does not scale well. Especially, because you can not modify the media query values through the props.
 
 ## mapValueToMediaQuery
-This helper was created to solve the exact same problem which is mentioned above. It is shipped with [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools) (check the [API reference](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/mapValueToMediaQuery.md)).
+This helper was created to solve the exact same problem which is mentioned above. It is shipped with [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools) (check the [API Reference](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/mapValueToMediaQuery.md)).
 It takes an object with mediaQuery-value pairs and maps them to media queries. Pretty simple, but quite powerful in a declarative component world.
 
 > It is recommended to use it together with [fela-plugin-extend](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend) to be able to merge multiple properties with the same media query. Otherwise they'll be overwritten.
@@ -72,7 +72,7 @@ const Responsive = ({ width, widths }) => ({
 export default createComponent(Responsive)
 ```
 
-Now we can use the dynamic `<Responsive>` component with any media query.
+Now we can use the dynamic `Responsive` component with any media query.
 
 > The `width`, `widths` naming is just a pattern I found useful as I always use a default prop (usually doing mobile-first designs). For more clarity, you might also choose e.g. `width`, `responsiveWidth`.
 
@@ -85,7 +85,8 @@ const widths = {
   '@media (min-width: 1440px)': 1400
 }
 
-ReactDOM.render(<Responsive width='100%' widths={widths} />, document.body)
+// Usage
+<Responsive width='100%' widths={widths} />
 ```
 
 ## Compact markup
@@ -111,9 +112,6 @@ const widths = {
   desktop: 1400
 }
 
-ReactDOM.render(<Responsive width='100%' widths={widths} />, document.body)
-
-
-
-
+// Usage
+<Responsive width='100%' widths={widths} />
 ```

@@ -1,13 +1,18 @@
-# `renderToSheetList(renderer)`
+# renderToSheetList
 
-This advanced API is pretty similar to [`renderToMarkup`](renderToMarkup.md) as it also helps to render the renderer on the server.<br>
+This advanced API is pretty similar to [renderToMarkup](renderToMarkup.md) as it also helps to render the renderer on the server.<br>
 Instead of returning a single string of HTML containing style elements, it returns a list of so called style sheets.
 Each style sheet contains everything we need to be able to render actual style elements on the server.
 
-> Check the [`renderToMarkup`](renderToMarkup.md) output in order to correctly create custom `style` elements that can be rehydrated.
+> Check the [renderToMarkup](renderToMarkup.md) output in order to correctly create custom `style` elements that can be rehydrated.
+
+## Arguments
+| Argument | Type | Description |
+| --- | --- | --- |
+| renderer | [*Renderer*](../fela/Renderer.md) | The renderer providing the styles which are rendered to a list of sheet data. |
 
 ### Returns
-(*Array*): List of style sheet objects
+(*Object[]*): List of style sheet objects
 
 #### Shape
 Every style sheet object has the following shape:

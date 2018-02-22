@@ -134,4 +134,4 @@ You can find more informations [here](https://github.com/wcastand/cycle-fela) an
 
 ### Related
 * [cycle-fela](https://github.com/wcastand/cycle-fela)
-* [API reference - `combineRules` ](https://github.com/wcastand/fela/blob/master/docs/api/fela/combineRules.md)
+* [API Reference - `combineRules` ](https://github.com/wcastand/fela/blob/master/docs/api/fela/combineRules.md)

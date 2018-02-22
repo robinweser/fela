@@ -92,4 +92,4 @@ It does not matter whether `ruleA` and `ruleB` get rendered first or if they won
 ---
 
 ### Related
-* [API reference - `combineRules`](../api/fela/combineRules.md)
+* [API Reference - `combineRules`](../api/fela/combineRules.md)

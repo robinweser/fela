@@ -86,8 +86,8 @@ And that's it! Now every time you we call `renderer.renderRule(style, { hidden: 
 
 ### Configuration
 
-Sometimes your plugin requires some configuration. To achieve this, you may create a plugin factory.
-
+Sometimes your plugin requires some configuration.<br>
+To achieve this, you may create a plugin factory.<br>
 Let's say we want to configure the prop that adds `display:none`.
 ```javascript
 function hiddenPluginFactory (name) {

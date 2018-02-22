@@ -10,13 +10,8 @@ This can be used in different cases:
 
 ## Imports
 ```javascript
-// React
 import { createComponentWithProxy } from 'react-fela'
-
-// Preact
 import { createComponentWithProxy } from 'preact-fela'
-
-// Inferno
 import  { createComponentWithProxy } from 'inferno-fela'
 ```
 
@@ -54,5 +49,5 @@ const Input = createComponentWithProxy(input, 'input', [ 'disabled' ])
 
 ## Related
 
-- [createComponent documentation](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponent.md)
-- [Explicit displayName for React components](http://fela.js.org/docs/recipes/DisplayNameComponents.html)
+- [Recipe - Explicit Component displayName](../../recipes/DisplayNameComponents.md)
+- [API Reference - `createComponent`](createComponent.md)

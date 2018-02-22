@@ -1,32 +1,29 @@
 # createComponent
 
-This HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) creates a presentational React component using the rendered `rule` as className.
+A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) that creates a presentational React component using the rendered `rule` as className.
 
 It automatically composes rules and passed props for nested Fela components.
 
 ## Arguments
-1. `rule` (*Function*): A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject).
-2. `type` (*string?|[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?*): Component or HTML element which is used as the render base element. Defaults to `div`. Note: If a Component is passed, then it receives a className property.
-3. `passThroughProps` (*Array?|Function?*): A list of props that get passed to the underlying element. Alternatively a function of `props` that returns an array of prop names.
+| Argument | Type | Default | Description |
+| --- | --- | --- | --- |
+| rule | *Function* |  | A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject) |
+| type | *string?*<br>*[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?* | `div` | Component or HTML element which is used as the render base element.<br>**Note**: If a Component is passed, then it receives a className property. |
+| passThroughProps | *Array?*<br>*Function?* | | A list of props that get passed to the underlying element.<br>Alternatively a function of `props` that returns an array of prop names. |
 
 ## Returns
 (*Function*): Stateless functional component.
 
 ## Imports
 ```javascript
-// React
 import { createComponent } from 'react-fela'
-
-// Preact
 import { createComponent } from 'preact-fela'
-
-// Inferno
 import  { createComponent } from 'inferno-fela'
 ```
 
 ## Example
 ```javascript
-const title = ({ small, fontSize, color ) => ({
+const title = ({ small, fontSize, color }) => ({
   lineHeight: small ? 1.2 : 1.5,
   fontSize: fontSize + 'px',
   color: color
@@ -34,11 +31,11 @@ const title = ({ small, fontSize, color ) => ({
 
 const Title = createComponent(title, 'div', [ 'onClick' ])
 
-<Title fontSize={23} color="red" onClick={...}>Hello World</Title>,
-// => <div className="a b c" onclick="...">Hello World</div>
+<Title fontSize={23} color="red" onClick={...}>Hello World</Title>
+// <div className="a b c" onclick="...">Hello World</div>
 ```
 
-## Passing props
+## Passing Props
 Using the `passThroughProps` parameter allows us to pass props to the underlying DOM element. This is helpful if you want to pass e.g. events such as `onClick`. There are some props that are automatically passed and thus do not need to be specified explicitly:
 
 * `className`
@@ -56,12 +53,11 @@ const Title = createComponent(title, 'div', props => Object.keys(props))
 const Title = createComponent(title, 'div', Object.keys)
 ```
 
-Note: The same can be achieved via [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops).
+> **Note**: The same can be achieved via [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops).
 
-#### Dynamically passing props
+#### Dynamically passing Props
 This use case is especially important for library owners. Instead of passing the `passThroughProps` to the `createComponent` call directly, one can also use the `passThrough` prop on the created component to achieve the same effect.
 
-##### Example
 ```javascript
 const title = () => ({
   color: 'red'
@@ -73,10 +69,9 @@ const Title = createComponent(title)
 // => <div className="a" onclick="...">Hello World</div>
 ```
 
-#### Extending styles
+#### Extending Styles
 It's possible to extend component styles with an `extend` prop that can be either an object or a function.
 
-##### Example
 ```javascript
 const title = () => ({
   color: 'red'
@@ -97,7 +92,7 @@ const extendTitle = props => ({
 // => .a { color: green }
 ```
 
-## Custom type on runtime
+## Custom Type on Runtime
 To change the `type` on runtime and/or for each component, you may use the `as` prop.
 ```javascript
 const title = props => ({
@@ -112,5 +107,5 @@ const Title = createComponent(title)
 
 ## Related
 
-- [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops)
-- [Explicit displayName for React components](http://fela.js.org/docs/recipes/DisplayNameComponents.html)
+- [Recipe - Explicit Component displayName](../../recipes/DisplayNameComponents.md)
+- [API Reference - `createComponentWithProxy`](createComponentWithProxy.md)

@@ -50,7 +50,7 @@ const ConnectedHeader = connect({
   size="17px" />
 ```
 
-#### Using a function of props 
+#### Using a Function of Props 
 
 ```javascript
 const Header = ({ title, styles }) => (
@@ -81,7 +81,10 @@ const ConnectedHeader = connect(rules)(Header)
   size="17px" />
 ```
 
-## Extending styles
+## Extending Styles
+To extend the styles that are injected through the `connect`, there are several ways.
+
+#### Extend Property
 It's possible to extend component styles with an `extend` prop that can be either an object or a function.
 
 ```javascript
@@ -129,7 +132,6 @@ const extend = ({ bgColor }) => ({
 
 Instead of directly passing an `extend` object, one can also use the reconnection pattern to achieve the same effect.
 
-### Example
 ```javascript
 const Header = ({ title, styles }) => (
   <header className={styles.container}>
@@ -172,10 +174,9 @@ const ExtendedHeader = connect(extend)(ConnectedHeader)
   bgColor="blue" />
 ```
 
-#### Proxying rules to Child Components
-If you want to proxy the rules for child components, you can use the `rules` property on inside the component.
+## Proxying and Rules Property
+If you want to proxy the rules for child components, you can use the `rules` property on inside the component. This is also convenient when you do not want to inline the styles that you plan to use for the extension.
 
-### Example
 ```javascript
 const Header = ({ title, styles }) => (
   <header className={styles.container}>

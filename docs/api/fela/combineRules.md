@@ -1,4 +1,4 @@
-# `combineRules(...rules)`
+# combineRules
 
 A common pattern when styling elements is to have some base styles which get applied to every instance as well as some extended styles which get added based on some condition. Just concatenating classNames may lead to specificity problems as the last rendered rule always wins.<br>
 To solve this issue, `combineRules` allows you to compose multiple rules into a single super selector.<br>
@@ -6,7 +6,7 @@ To solve this issue, `combineRules` allows you to compose multiple rules into a 
 Combining rules actually is the best practice in terms of style composition as it prevents property specificity issues by default.
 
 ## Arguments
-1. `...rules` (*arguments*): Functions returning valid [style objects](../../basics/Rules.md#styleobject).
+Accepts a list of [Rules](../../advanced/Rules.md). 
 
 ## Returns
 (*Function*) A super selector which composes all `rules` from left to right.
@@ -31,9 +31,11 @@ const superRule = combineRules(rule, anotherRule)
 renderer.renderRule(rule, { fontSize: '12px '}) // => a b
 renderer.renderRule(anotherRule) // => c
 renderer.renderRule(superRule, { fontSize: '12px' }) // => a c
+```
 
-console.log(renderer.renderToString())
-// .a { font-size:12px }
-// .b { color:red }
-// .c { color:blue }
+The output CSS would be:
+```CSS
+.a { font-size:12px }
+.b { color:red }
+.c { color:blue }
 ```

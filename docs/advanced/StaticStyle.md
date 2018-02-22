@@ -80,4 +80,4 @@ renderer.renderStatic(css.toString())
 ---
 
 ### Related
-* [API reference - `Renderer.renderStatic`](../api/fela/Renderer.md#renderstaticstyle-selector)
+* [API Reference - `Renderer.renderStatic`](../api/fela/Renderer.md#renderstaticstyle-selector)

@@ -1,3 +1,3 @@
-import {createRenderer} from 'fela';
+import { createRenderer } from 'fela'
 
-export const renderer = createRenderer();
+export const renderer = createRenderer()

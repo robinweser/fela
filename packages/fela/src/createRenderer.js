@@ -29,7 +29,6 @@ import generateStaticReference from './generateStaticReference'
 import getFontFormat from './getFontFormat'
 import getFontUrl from './getFontUrl'
 import isSafeClassName from './isSafeClassName'
-import resolveRule from './resolveRule'
 import toCSSString from './toCSSString'
 
 import type {
@@ -67,14 +66,8 @@ export default function createRenderer(
       return ++renderer.uniqueRuleIdentifier
     },
 
-    renderRule(rule: Object | Function, props: Object = {}): string {
-      const processedStyle = processStyleWithPlugins(
-        renderer,
-        resolveRule(rule, props, renderer),
-        RULE_TYPE,
-        props
-      )
-      return renderer._renderStyleToClassNames(processedStyle).slice(1)
+    renderRule(rule: Function, props: Object = {}): string {
+      return renderer._renderStyle(rule(props, renderer), props)
     },
 
     renderKeyframe(keyframe: Function, props: Object = {}): string {
@@ -199,6 +192,16 @@ export default function createRenderer(
 
     _mergeStyle: assignStyle,
 
+        _renderStyle(style: Object = {}, props: Object = {}): string {
+      const processedStyle = processStyleWithPlugins(
+        renderer,
+        style,
+        RULE_TYPE,
+        props
+      )
+
+      return renderer._renderStyleToClassNames(processedStyle).slice(1)
+    }
     _renderStyleToClassNames(
       { _className, ...style }: Object,
       pseudo: string = '',

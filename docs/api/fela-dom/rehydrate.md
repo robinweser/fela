@@ -1,9 +1,11 @@
-# `rehydrate(renderer)`
+# rehydrate
 
 Rehydrates the renderer's cache from existing `<style>` elements.<br>It is primarily used to rehydrate the cache from server-rendered CSS.
 
 ## Arguments
-1. `renderer` ([*Renderer*](../fela/Renderer.md)): The renderer which's cache is rehydrated.
+| Argument | Type | Description |
+| --- | --- | --- |
+| renderer | [*Renderer*](../fela/Renderer.md) | The renderer which's cache is rehydrated. |
 
 
 ## Example
