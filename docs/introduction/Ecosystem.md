@@ -101,6 +101,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [stile](https://github.com/bloodyowl/stile) - Handle units and string values
 * [storybook-addon-props-fela](https://github.com/Kilix/storybook-addon-props-fela) - Document the props of your Fela components in storybook.
 * [vashet](https://github.com/derHowie/vashet) - ClojureScript wrapper for Fela
+* [black-box](https://github.com/rocketstation/black-box) - combines behavior, presentation, structure in one place & creates all-in-one components using only JS syntax
 
 <br>
 
