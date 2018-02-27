@@ -128,7 +128,7 @@ renderer.renderFont('Lato-Bold-Alias', files, { fontWeight: 'bold', localAlias: 
 ```
 
 ## Advanced API
-Check out the [API reference - Renderer](../api/fela/Renderer.md) to learn about all of its methods. This article only describes the basic rendering methods. It does not include `clear`, `subscribe` or even `renderStatic`.
+Check out the [API Reference - Renderer](../api/fela/Renderer.md) to learn about all of its methods. This article only describes the basic rendering methods. It does not include `clear`, `subscribe` or even `renderStatic`.
 
 <br>
 
@@ -138,8 +138,8 @@ Check out the [API reference - Renderer](../api/fela/Renderer.md) to learn about
 * [DOM Rendering](../advanced/DOMRendering.md)
 * [Server Rendering](../advanced/ServerRendering.md)
 * [Renderer Configuration](../advanced/RendererConfiguration.md)
-* [API reference - Renderer](../api/fela/Renderer.md)
-* [API reference - `createRenderer`](../api/fela/createRenderer.md)
+* [API Reference - Renderer](../api/fela/Renderer.md)
+* [API Reference - `createRenderer`](../api/fela/createRenderer.md)
 
 #### Tools
 **[fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native)**<br>

@@ -111,4 +111,4 @@ console.log(renderToString(renderer))
 ### Related
 * [Plugins](Plugins.md)
 * [Enhancers](Enhancers.md)
-* [API reference - `createRenderer`](../api/fela/createRenderer.md)
+* [API Reference - `createRenderer`](../api/fela/createRenderer.md)

@@ -2,16 +2,8 @@ declare module "fela" {
 
   import { CSSProperties } from 'react';
 
-  type TRuleProps = {};
+  export type TRuleProps = {};
   export type TRule<T = TRuleProps> = (props: T) => IStyle
-
-  export type TMultiRuleObject<Props = TRuleProps, Styles = {}> = {[key in keyof Styles]: TRule<Props> | IStyle}
-  type TMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TMultiRuleObject<Props, Styles>
-  type TMultiRule<Props = TRuleProps, Styles = {}> = TMultiRuleObject<Props, Styles> | TMultiRuleFunction<Props, Styles>
-  type TPartialMultiRuleObject<Props = TRuleProps, Styles = {}> = Partial<TMultiRuleObject<Props, Styles>>
-  type TPartialMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TPartialMultiRuleObject<Props, Styles>
-  export type TPartialMultiRule<Props = TRuleProps, Styles = {}> = TPartialMultiRuleObject<Props, Styles> | TPartialMultiRuleFunction<Props, Styles>
-  export type TNormalizedMultiRule<Props = TRuleProps, Styles = {}> = (props: Props) => {[key in keyof Styles]: TRule<Props>}
 
   type TKeyFrame = TRule;
   type TRendererCreator = (config?: IConfig) => IRenderer;
@@ -69,6 +61,28 @@ declare module "fela" {
   ): TRule<A & B & C>
   function combineRules(...rules: Array<TRule>): TRule
 
+  function enhance(...enhancers: Array<TEnhancer>): (rendererCreator: TRendererCreator) => TRendererCreator;
+}
+
+declare module "fela-dom" {
+  import { IRenderer } from 'fela';
+  function render(renderer: IRenderer): void;
+  function rehydrate(renderer: IRenderer): void;
+  function renderToMarkup(renderer: IRenderer): any;
+  function renderToSheetList(renderer: IRenderer): any;
+}
+
+declare module "fela-tools" {
+  import {TRule, TRuleProps, IStyle} from "fela";
+
+  export type TMultiRuleObject<Props = TRuleProps, Styles = {}> = {[key in keyof Styles]: TRule<Props> | IStyle}
+  type TMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TMultiRuleObject<Props, Styles>
+  export type TMultiRule<Props = TRuleProps, Styles = {}> = TMultiRuleObject<Props, Styles> | TMultiRuleFunction<Props, Styles>
+  type TPartialMultiRuleObject<Props = TRuleProps, Styles = {}> = Partial<TMultiRuleObject<Props, Styles>>
+  type TPartialMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TPartialMultiRuleObject<Props, Styles>
+  export type TPartialMultiRule<Props = TRuleProps, Styles = {}> = TPartialMultiRuleObject<Props, Styles> | TPartialMultiRuleFunction<Props, Styles>
+  export type TNormalizedMultiRule<Props = TRuleProps, Styles = {}> = (props: Props) => {[key in keyof Styles]: TRule<Props>}
+
   function combineMultiRules<A, SA, B, SB>(
     a: TMultiRule<A, SA>,
     b: TMultiRule<B, SB>
@@ -79,16 +93,6 @@ declare module "fela" {
     c: TMultiRule<C, SC>,
   ): TNormalizedMultiRule<A & B & C, SA & SB & SC>
   function combineMultiRules(...rules: Array<TMultiRule>): TNormalizedMultiRule
-
-  function enhance(...enhancers: Array<TEnhancer>): (rendererCreator: TRendererCreator) => TRendererCreator;
-}
-
-declare module "fela-dom" {
-  import { IRenderer } from 'fela';
-  function render(renderer: IRenderer): void;
-  function rehydrate(renderer: IRenderer): void;
-  function renderToMarkup(renderer: IRenderer): any;
-  function renderToSheetList(renderer: IRenderer): any;
 }
 
 /**
@@ -148,6 +152,22 @@ declare module "fela-statistics" {
   import { TEnhancer } from "fela";
 
   export default function(): TEnhancer;
+}
+
+declare module "fela-identifier" {
+  import { TRule, TEnhancer } from "fela";
+
+  interface Configs {
+    prefix?: string;
+    generator?: (name?: string, index?: number) => string;
+  }
+
+  type Identifier = (name?: string) => TRule & {
+    className: string;
+    toString(): string;
+  };
+
+  export default function(configs?: Configs): TEnhancer & Identifier;
 }
 
 /**
@@ -253,7 +273,7 @@ declare module "fela-plugin-validator" {
     deleteInvalid?: boolean;
   }
 
-  export default function(configs: Configs): TPlugin;
+  export default function(configs?: Configs): TPlugin;
 }
 
 /**
@@ -277,13 +297,14 @@ declare module "react-fela" {
   import * as React from "react";
   import {
     IRenderer,
-    TMultiRuleObject,
-    TMultiRule,
-    TPartialMultiRule,
-    TNormalizedMultiRule,
     TRule,
     IStyle
   } from "fela";
+  import {
+    TMultiRuleObject,
+    TMultiRule,
+    TPartialMultiRule,
+  } from "fela-tools";
 
   interface ThemeProviderProps {
     theme: object;
@@ -332,7 +353,7 @@ declare module "react-fela" {
 
   export interface FelaWithStylesProps<Props, Styles, Theme = any> {
     styles: {[key in keyof Styles]: string},
-    rules: TNormalizedMultiRule<Props & FelaWithThemeProps<Theme>, Styles>
+    rules: {[key in keyof Styles]: TRule<Props & Partial<FelaWithThemeProps<Theme>>>},
   }
 
   interface FelaWithStylesInjectedProps<Props, Styles, Theme = any> {

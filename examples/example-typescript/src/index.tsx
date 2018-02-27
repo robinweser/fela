@@ -1,24 +1,9 @@
 import * as React from "react";
+import {createRenderer} from "fela";
 import * as ReactDOM from "react-dom";
 import {Provider, ThemeProvider} from 'react-fela';
 import ComplexComponent from './components/ComplexComponent';
-import {renderer} from "./felaConfig";
-
-export interface Theme {
-  color: {
-    primary: string
-    secondary: string
-    additional: string
-  }
-}
-
-const theme: Theme = {
-  color: {
-    primary: 'lightblue',
-    secondary: 'orange',
-    additional: 'lightgreen'
-  }
-};
+import {theme} from "./Theme";
 
 const extendStyles = {
   container: {
@@ -27,6 +12,8 @@ const extendStyles = {
     borderStyle: 'solid'
   }
 };
+
+export const renderer = createRenderer();
 
 ReactDOM.render(
   <Provider renderer={renderer}>

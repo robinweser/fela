@@ -3,6 +3,10 @@
 Fela was always designed with React in mind, but is **not** bound to React by default. If you want to use it with React, you should also install the official [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
 
 ```sh
+# yarn
+yarn add react-fela
+
+# npm
 npm i --save react-fela
 ```
 
@@ -12,7 +16,7 @@ Where container components manage the application logic, presentational componen
 **If we strictly separate our components, we actually only use Fela for presentational components.**
 
 ### Presentational Components from Rules
-From the very beginning, react-fela ships the [`createComponent`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md) API. It basically creates primitive React components using the passed rule to style it. This works as easy as e.g. [styled-components](https://github.com/styled-components/styled-components).
+From the very beginning, react-fela ships the [`createComponent`](../api/bindings/createComponent.md) API. It basically creates primitive React components using the passed rule to style it. This works as easy as e.g. [styled-components](https://github.com/styled-components/styled-components).
 
 ```javascript
 import { createComponent } from 'react-fela'
@@ -74,13 +78,13 @@ const BorderedTitle = createComponent(bordered, Title)
 ```
 <img src='../res/react-3.png'>
 
-For advanced API documentation, please check out the [`createComponent`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md) API docs.<br>
+For advanced API documentation, please check out the [`createComponent`](../api/bindings/createComponent.md) API docs.<br>
 Amongst other things, you can learn how to pass props to the underlying element.
 
 
 ## Component Theming
-For flexible and yet simple component theming, react-fela ships the  [`<ThemeProvider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md) component.
-It leverages React's context to pass the theme to all child elements.
+For flexible and yet simple component theming, react-fela ships the  [ThemeProvider](../api/bindings/ThemeProvider.md) component.
+It leverages React's [context](https://facebook.github.io/react/docs/context.html) to pass the theme to all child elements.
 <br>
 
 The theme can then be accessed via `props.theme` within `createComponent`.
@@ -108,11 +112,26 @@ const Title = createComponent(title, 'h1')
 ```
 <img src='../res/react-4.png'>
 
-You may also nest multiple `<ThemeProvider>`. The `theme` object will then automatically get merged to extend the previous theme. To force overwrite the `theme` (without merging) you may pass a `overwrite` prop.
+You may also nest multiple ThemeProvider instances. The `theme` object will then automatically get merged to extend the previous theme. To force overwrite the `theme` (without merging) you may pass a `overwrite` prop.
 
+## Render Props
+If you prefer the render-props approach instead of using HoCs, we also provide APIs using the render-props pattern.
+
+```javascript 
+import { FelaComponent } from 'react-fela'
+
+// <div class="a b c">Padding everywhere</div>
+<FelaComponent style={{
+  padding: '25px',
+  backgroundColor: 'rgb(124, 114, 231)',
+  fontSize: '20px'
+}}>
+  Padding everywhere
+</FelaComponent>
+```
 
 ## Passing the Renderer
-We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/api/fela/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.
+We like to avoid using a global Fela renderer which is why the React bindings ship with a  [Provider](../api/bindings/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.
 ```javascript
 import { createRenderer } from 'fela'
 import { Provider } from 'react-fela'
@@ -133,8 +152,11 @@ render(
 
 ### Related
 * [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela)
-* [API reference - `Provider` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/Provider.md)
-* [API reference - `connect` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/connect.md)
-* [API reference - `createComponent` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md)
-* [API reference - `createComponentWithProxy` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponentWithProxy.md)
-* [API reference - `ThemeProvider`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md)
+* [API Reference - `Provider`](../api/bindings/Provider.md)
+* [API Reference - `connect`](../api/bindings/connect.md)
+* [API Reference - `createComponent`](../api/bindings/createComponent.md)
+* [API Reference - `createComponentWithProxy`](../api/bindings/createComponentWithProxy.md)
+* [API Reference - `FelaComponent`](../api/bindings/FelaComponent.md)
+* [API Reference - `ThemeProvider`](../api/bindings/ThemeProvider.md)
+* [API Reference - `FelaTheme`](../api/bindings/FelaTheme.md)
+* [API Reference - `withTheme`](../api/bindings/withTheme.md)

@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using the FelaComponent component correctly pass the theme 1`] = `
+Array [
+  ".a {
+    font-size: 15px
+}
+
+.b {
+    color: red
+}",
+  <FelaComponent
+    render={[Function]}
+    style={[Function]}
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="a b"
+        >
+            I am red and written in 
+            15px
+            .
+        </div>
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
+
+exports[`Using the FelaComponent component correctly render a fela rule 1`] = `
+Array [
+  ".a {
+    font-size: 12px
+}
+
+.b {
+    color: red
+}",
+  <FelaComponent
+    render={[Function]}
+    style={
+        Object {
+            "color": "red",
+            "fontSize": "12px",
+          }
+    }
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="a b"
+        >
+            I am red and written in 12px.
+        </div>
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
+
+exports[`Using the FelaComponent component should accept a string primitive as render target 1`] = `
+Array [
+  ".a {
+    font-size: 12px
+}
+
+.b {
+    color: red
+}",
+  <FelaComponent
+    render="span"
+    style={
+        Object {
+            "color": "red",
+            "fontSize": "12px",
+          }
+    }
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <span
+            className="a b"
+        />
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
+
+exports[`Using the FelaComponent component should default to a div 1`] = `
+Array [
+  ".a {
+    font-size: 12px
+}
+
+.b {
+    color: red
+}",
+  <FelaComponent
+    style={
+        Object {
+            "color": "red",
+            "fontSize": "12px",
+          }
+    }
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="a b"
+        />
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
+
+exports[`Using the FelaComponent component should render children in default mode 1`] = `
+Array [
+  ".a {
+    font-size: 12px
+}
+
+.b {
+    color: red
+}",
+  <FelaComponent
+    style={
+        Object {
+            "color": "red",
+            "fontSize": "12px",
+          }
+    }
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="a b"
+        >
+            <span>
+                Hello World
+            </span>
+        </div>
+    </FelaTheme>
+</FelaComponent>,
+]
+`;

@@ -5,6 +5,7 @@ import generateCombinedMediaQuery from './generateCombinedMediaQuery'
 import generateCSSRule from './generateCSSRule'
 import generateCSSSelector from './generateCSSSelector'
 import generateCSSSupportRule from './generateCSSSupportRule'
+import generateUniqueHash from './generateUniqueHash'
 import isMediaQuery from './isMediaQuery'
 import isNestedSelector from './isNestedSelector'
 import isSupport from './isSupport'
@@ -29,6 +30,7 @@ export {
   generateCSSRule,
   generateCSSSelector,
   generateCSSSupportRule,
+  generateUniqueHash,
   isMediaQuery,
   isNestedSelector,
   isSupport,

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {connect, withTheme, FelaWithStylesProps, FelaWithThemeProps, Rules} from 'react-fela';
-import {Theme} from '../index'
-import {renderer} from "../felaConfig";
+import {connect, FelaWithStylesProps, FelaWithThemeProps, Rules} from 'react-fela';
+import {Theme} from '../Theme'
 
 interface OwnProps {
   fontScale: number
@@ -14,8 +13,7 @@ interface Styles {
   thirdSection
 }
 
-type WithStylesProps = OwnProps & FelaWithStylesProps<OwnProps, Styles, Theme>
-type Props = WithStylesProps & FelaWithThemeProps<Theme>
+type Props = OwnProps & FelaWithStylesProps<OwnProps, Styles, Theme>
 
 const ComplexComponent = (props: Props) => {
   const {styles, rules} = props;
@@ -28,24 +26,28 @@ const ComplexComponent = (props: Props) => {
         <div className={styles.thirdSection}>Third Section</div>
       </div>
       <div>
-        {Object.entries(rules(props))
-          .map(([key, rule]) => `${key}: ${renderer.renderRule(rule, props)}`)
-          .join(' | ')}
+        {Object.entries(rules)
+          .map(([key, rule]) => (
+            <div key={key}>
+              {`${key}: ${JSON.stringify(rule(props))}`}
+            </div>
+          ))}
       </div>
     </div>
   );
 };
 
-export default connect<OwnProps, Styles, Theme>(({fontScale, theme}): Rules<Props, Styles> => ({
+type PropsWithTheme = Props & FelaWithThemeProps<Theme>
+export default connect<OwnProps, Styles, Theme>(({fontScale, theme}): Rules<PropsWithTheme, Styles> => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
   },
-  firstSection: {
+  firstSection: ({theme}) => ({
     backgroundColor: theme.color.primary,
     fontSize: `${5 * fontScale}px`
-  },
+  }),
   secondSection: {
     backgroundColor: theme.color.secondary,
     fontSize: `${7 * fontScale}px`
@@ -54,4 +56,4 @@ export default connect<OwnProps, Styles, Theme>(({fontScale, theme}): Rules<Prop
     backgroundColor: theme.color.additional,
     fontSize: `${10 * fontScale}px`
   },
-}))(withTheme<WithStylesProps, Theme>(ComplexComponent))
+}))(ComplexComponent)

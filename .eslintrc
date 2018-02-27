@@ -17,6 +17,7 @@
     "react/jsx-filename-extension": [2, {
       "extensions": [".js", ".jsx"]
     }],
+    "react/jsx-closing-bracket-location": [ 0 ],
     "import/no-extraneous-dependencies": [ 0 ],
     "react/prop-types": [ 0 ],
     "no-confusing-arrow": [ 0 ],

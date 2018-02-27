@@ -166,8 +166,8 @@ const rule = props => ({
 ---
 
 ### Related
-* [Combined rules](../advanced/CombinedRules.md)
-* [API reference - `Renderer.renderRule`](../api/fela/Renderer.md#renderrulerule-props-defaultprops)
+* [Combined Rules](../advanced/CombinedRules.md)
+* [API Reference - `Renderer.renderRule`](../api/fela/Renderer.md#renderrulerule-props-defaultprops)
 
 #### Tools
 **[StyleSheet](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/StyleSheet.md)**<br>

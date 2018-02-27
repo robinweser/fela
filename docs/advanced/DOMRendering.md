@@ -41,5 +41,5 @@ renderer.renderRule(rule, { size: '15px '}) // => a d c
 ---
 
 ### Related
-* [API reference - `render`](../api/fela-dom/render.md)
-* [API reference - `rehydrate`](../api/fela-dom/rehydrate)
+* [API Reference - `render`](../api/fela-dom/render.md)
+* [API Reference - `rehydrate`](../api/fela-dom/rehydrate)

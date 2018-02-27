@@ -1,4 +1,4 @@
-# `renderToMarkup(renderer)`
+# renderToMarkup
 
 > This method should only be used on the server.
 
@@ -13,6 +13,11 @@ Renders all cached styles grouped CSS strings and returns a valid HTML markup wi
 7. Support & Media Query Rules
 
 The DOM renderer is able to rehydrate its cache from the markup in order to skip initial rendering.
+
+## Arguments
+| Argument | Type | Description |
+| --- | --- | --- |
+| renderer | [*Renderer*](../fela/Renderer.md) | The renderer providing the styles which are rendered to stringified HTML markup. |
 
 ### Returns
 (*string*): Single concatenated HTML markup string containing required `<style>` elements.

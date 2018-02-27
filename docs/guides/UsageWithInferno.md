@@ -4,6 +4,10 @@ Inferno is a modern React-like UI library which ships an almost identical API, b
 Due to the fact it is really similar to React's API, the [Inferno bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela) are basically the same as the [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
 
 ```sh
+# yarn
+yarn add inferno-fela
+
+# npm
 npm i --save inferno-fela
 ```
 

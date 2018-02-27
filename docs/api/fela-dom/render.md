@@ -1,9 +1,12 @@
-# `render(renderer)`
+# render
 
-Renders all cached styles into the DOM. It also adds a change listener to automatically add newly rendered styles.<br>
+Renders all cached styles into the DOM.<br>
+It also adds a change listener to automatically add newly rendered styles.
 
 ## Arguments
-1. `renderer` ([*Renderer*](../fela/Renderer.md)): The renderer providing the styles which are rendered to the DOM.
+| Argument | Type | Description |
+| --- | --- | --- |
+| renderer | [*Renderer*](../fela/Renderer.md) | The renderer providing the styles which are rendered to the DOM. |
 
 
 ## Example

@@ -6,18 +6,18 @@ You should only have a single renderer which handles all styles of your whole ap
 To create a new renderer instance, simply use the `createRenderer` method to actually get a renderer instance.
 
 ## Methods
-* [`renderRule(rule, [props])`](#renderrulerule-props)
-* [`subscribe(listener)`](#subscribelistener)
-* [`clear()`](#clear)
+* [renderRule](#renderrule)
+* [subscribe](#subscribe)
+* [clear](#clear)
 
-## `renderRule(rule, [props])`
+## renderRule
 Renders a `rule` using the `props` to resolve it.
 
 ### Arguments
-1. `rule` (*Function*): A function which satisfies the [rule](../../basics/Rules.md) behavior. It **must** return a valid [style object](../../basics/Rules.md#styleobject).
-> Note: In addition to valid style objects, you also ``must``only use React Native supported properties.
-
-2. `props` (*Object?*): An object containing properties to resolve dynamic rule values. *Defaults to an empty object.*
+| Argument | Type | Default | Description |
+| --- | --- | --- | --- |
+| rule | *Function* | | A function which satisfies the [rule](../../basics/Rules.md) behavior.<br>It **must** return a valid [style object](../../basics/Rules.md#styleobject).<br>It **must** only use React Native supported properties. |
+| props | *Object?* | `{}` | An object containing properties to resolve dynamic rule values. |
 
 ### Returns
 (*string*): The style object provided by `StyleSheet.create`.
@@ -89,12 +89,14 @@ rule({ }) // => { color: 'green' }
 
 ---
 
-## `subscribe(listener)`
+## subscribe
 
 Adds a change `listener` to get notified when changes happen.
 
 ### Arguments
-1. `listener` (*Function*): A callback function that is called on every change. It passes a change object containing information on what actually got rendered or changed. Every change object at least has a unique `type` and optionally some meta data. In addition it passes the `renderer` that triggered the change.
+| Argument | Type | Description |
+| --- | --- | --- |
+| listener | *Function* | A callback function that is called on every change. It passes a change object containing information on what actually got rendered or changed. Every change object at least has a unique `type` and optionally some meta data. In addition it passes the `renderer` that triggered the change. |
 
 ### Returns
 (*Object*): An object containing the corresponding `unsubscribe`-method.
@@ -120,5 +122,5 @@ subscription.unsubscribe()
 
 ---
 
-## `clear()`
+## clear
 Clears the whole cache.

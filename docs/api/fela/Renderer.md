@@ -6,22 +6,24 @@ You should only have a single renderer which handles all styles of your whole ap
 To create a new renderer instance, simply use the `createRenderer` method to actually get a renderer instance.
 
 ## Methods
-* [`renderRule(rule, [props])`](#renderrulerule-props)
-* [`renderKeyframe(keyframe, [props])`](#renderkeyframekeyframe-props)
-* [`renderFont(family, files, [properties])`](#renderfontfamily-files-properties)
-* [`renderStatic(style, [selector])`](#renderstaticstyle-selector)
-* [`subscribe(listener)`](#subscribelistener)
-* [`clear()`](#clear)
+* [renderRule](#renderrule)
+* [renderKeyframe](#renderkeyframe)
+* [renderFont](#renderfont)
+* [renderStatic](#renderstatic)
+* [subscribe](#subscribe)
+* [clear](#clear)
 
-## `renderRule(rule, [props])`
+## renderRule
 Renders a `rule` using the `props` to resolve it.
 
 ### Arguments
-1. `rule` (*Function*): A function which satisfies the [rule](../../basics/Rules.md) behavior. It **must** return a valid [style object](../../basics/Rules.md#styleobject).
-2. `props` (*Object?*): An object containing properties to resolve dynamic rule values. *Defaults to an empty object.*
+| Argument | Type | Default | Description |
+| --- | --- | --- | --- |
+| rule | *Function* | | A function which satisfies the [rule](../../basics/Rules.md) behavior.<br>It **must** return a valid [style object](../../basics/Rules.md#styleobject). |
+| props | *Object?* | `{}` | An object containing properties to resolve dynamic rule values. |
 
 ### Returns
-(*string*): The CSS class name used to render the `rule`.
+(*string*): The resolving CSS class name.
 
 ### Example
 ```javascript
@@ -88,16 +90,18 @@ rule({ }) // => { color: 'green' }
 
 ---
 
-## `renderKeyframe(keyframe, [props])`
+## renderKeyframe`
 
 Renders a `keyframe` using the `props` to resolve it.
 
 ### Arguments
-1. `keyframe` (*Function*): A function which satisfies the [keyframe](../../basics/Keyframes.md) behavior. It **must** return a valid [keyframe object](../../basics/Keyframes.md#keyframeobject).
-2. `props` (*Object?*): An object containing properties to resolve dynamic keyframe values. *Defaults to an empty object.*
+| Argument | Type | Default | Description |
+| --- | --- | --- | --- |
+| keyframe | *Function* | | A function which satisfies the [keyframe](../../basics/Keyframes.md) behavior.<br>It **must** return a valid [keyframe object](../../basics/Keyframes.md#keyframeobject). |
+| props | *Object?* | `{}` | An object containing properties to resolve dynamic keyframe values. |
 
 ### Returns
-(*string*): The `@keyframes` animation name used to render the `keyframe`.
+(*string*): The resolving animation name.
 
 ### Example
 ```javascript
@@ -122,15 +126,19 @@ renderer.renderKeyframe(keyframe, { initialColor: 'black' }) // => k2
 
 ---
 
-## `renderFont(family, files, [properties])`
+## renderFont
 
 Renders a `@font-face` rule using the `family` as reference.
 
 ### Arguments
-1. `family` (*string*): A font family reference which is later required to use this font face.
-2. `files` (*string[]*): An array of valid source paths. It may either be relative (within your project) or absolute (hosted on an external server). It must have one of the following file extensions: `.woff`, `.woff2`, `.eof`, `.ttf` or `.svg`.
-3. `properties`(*Object?*): Additional font properties which are `fontVariant`, `fontWeight`, `fontStretch`, `fontStyle` and `unicodeRange`.
+| Argument | Type | Description |
+| --- | --- | --- |
+| family | *string* | A font family reference which is later required to use this font face. |
+| files | *string[]* | An array of valid source paths. It may either be relative (within your project) or absolute (hosted on an external server).<br>It must have one of the following file extensions: `.woff`, `.woff2`, `.eof`, `.ttf` or `.svg` |
+| properties | *Object?* | Additional font properties which are `fontVariant`, `fontWeight`, `fontStretch`, `fontStyle` and `unicodeRange`. |
 
+### Returns
+(*string*) The font family reference that was passed in.
 ### Example
 ```javascript
 import { createRenderer } from 'fela'
@@ -150,13 +158,15 @@ renderer.renderFont('Lato', files, { fontWeight: 300 })
 
 ---
 
-## `renderStatic(style, [selector])`
+## renderStatic
 
 Renders static styles.
 
 ### Arguments
-1. `style` (*string|Object*): Either a pure CSS string or an object of style declarations.
-2. `selector` (*string*): If `style` is passed as an object you **must** specify a `selector` selector.
+| Argument | Type | Description |
+| --- | --- | --- |
+| style | *string*<br>*Object* | Either a pure CSS string or an object of style declarations. |
+| selector | *string* | If `style` is passed as an object you **must** specify a `selector` selector. |
 
 ### Example
 ```javascript
@@ -202,12 +212,14 @@ div {
 
 ---
 
-## `subscribe(listener)`
+## subscribe
 
 Adds a change `listener` to get notified when changes happen.
 
 ### Arguments
-1. `listener` (*Function*): A callback function that is called on every change. It passes a change object containing information on what actually got rendered or changed. Every change object at least has a unique `type` and optionally some meta data. In addition it passes the `renderer` that triggered the change.
+| Argument | Type | Description |
+| --- | --- | --- |
+| listener | *Function* | A callback function that is called on every change. It passes a change object containing information on what actually got rendered or changed. Every change object at least has a unique `type` and optionally some meta data. In addition it passes the `renderer` that triggered the change. |
 
 ### Returns
 (*Object*): An object containing the corresponding `unsubscribe`-method.
@@ -234,5 +246,5 @@ subscription.unsubscribe()
 
 ---
 
-## `clear()`
+## clear
 Clears the whole cache and updates the DOM node to remove all CSS rules.

@@ -25,8 +25,10 @@ import cssifyKeyframe from './cssifyKeyframe'
 import cssifyStaticStyle from './cssifyStaticStyle'
 import generateAnimationName from './generateAnimationName'
 import generateClassName from './generateClassName'
+import generateFontSource from './generateFontSource'
 import generateStaticReference from './generateStaticReference'
 import getFontFormat from './getFontFormat'
+import getFontLocals from './getFontLocals'
 import getFontUrl from './getFontUrl'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
@@ -67,13 +69,7 @@ export default function createRenderer(
     },
 
     renderRule(rule: Function, props: Object = {}): string {
-      const processedStyle = processStyleWithPlugins(
-        renderer,
-        rule(props, renderer),
-        RULE_TYPE,
-        props
-      )
-      return renderer._renderStyleToClassNames(processedStyle).slice(1)
+      return renderer._renderStyle(rule(props, renderer), props)
     },
 
     renderKeyframe(keyframe: Function, props: Object = {}): string {
@@ -117,31 +113,17 @@ export default function createRenderer(
       files: Array<string>,
       properties: FontProperties = {}
     ): string {
+      const { localAlias, ...otherProperties } = properties
+
       const fontReference = family + JSON.stringify(properties)
-      const fontLocals =
-        typeof properties.localAlias === 'string'
-          ? [properties.localAlias]
-          : properties.localAlias && properties.localAlias.constructor === Array
-            ? properties.localAlias.slice()
-            : []
+      const fontLocals = getFontLocals(localAlias)
 
       if (!renderer.cache.hasOwnProperty(fontReference)) {
         const fontFamily = toCSSString(family)
 
-        // remove the localAlias since we extraced the needed info
-        properties.localAlias && delete properties.localAlias
-
-        // TODO: proper font family generation with error proofing
         const fontFace = {
-          ...properties,
-          src: `${fontLocals.reduce(
-            (agg, local) => (agg += ` local(${getFontUrl(local)}), `),
-            ''
-          )}${files
-            .map(
-              src => `url(${getFontUrl(src)}) format('${getFontFormat(src)}')`
-            )
-            .join(',')}`,
+          ...otherProperties,
+          src: generateFontSource(files, fontLocals),
           fontFamily,
         }
 
@@ -198,6 +180,16 @@ export default function createRenderer(
 
     _mergeStyle: assignStyle,
 
+    _renderStyle(style: Object = {}, props: Object = {}): string {
+      const processedStyle = processStyleWithPlugins(
+        renderer,
+        style,
+        RULE_TYPE,
+        props
+      )
+
+      return renderer._renderStyleToClassNames(processedStyle).slice(1)
+    },
     _renderStyleToClassNames(
       { _className, ...style }: Object,
       pseudo: string = '',
@@ -209,7 +201,6 @@ export default function createRenderer(
       for (const property in style) {
         const value = style[property]
 
-        // TODO: this whole part could be trimmed
         if (isPlainObject(value)) {
           if (isNestedSelector(property)) {
             classNames += renderer._renderStyleToClassNames(
@@ -241,7 +232,9 @@ export default function createRenderer(
               combinedSupport
             )
           } else {
-            // TODO: warning
+            console.warn(`The object key "${property}" is not a valid nested key in Fela. 
+Maybe you forgot to add a plugin to resolve it? 
+Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information.`)
           }
         } else {
           const declarationReference =

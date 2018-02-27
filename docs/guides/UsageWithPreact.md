@@ -4,7 +4,11 @@ Like Inferno, Preact is a modern React-like UI library which ships an almost ide
 Due to the fact that it is really similar to React's API, the [Preact bindings for Fela](https://github.com/rofrischmann/preact-fela) are basically the same as the [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
 
 ```sh
-npm i --save preact-fela
+# yarn
+yarn add react-fela
+
+# npm
+npm i --save react-fela
 ```
 
 Instead of providing duplicate documentation, we therefore want you to check out the [Usage with React](UsageWithReact.md) instead. Just "replace" React with Preact and you should be fine. There are only some differences which we are listing below.

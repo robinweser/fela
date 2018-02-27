@@ -13,16 +13,9 @@ yarn add react-fela
 ```
 You may alternatively use `npm i --save react-fela`.
 
-## API Reference
-* [`<Provider renderer>`](docs/Provider.md)
-* [`connect(rules)`](docs/connect.md)
-* [`createComponent(rule, [type], [passThroughProps])`](docs/createComponent.md)
-* [`createComponentWithProxy(rule, [type], [passThroughProps])`](docs/createComponentWithProxy.md)
-* [`<ThemeProvider theme [overwrite]>`](docs/ThemeProvider.md)
-* [`withTheme(component)`](docs/withTheme.md)
-
 ## Usage
-For more information and best practices on how to effectively use this package, please check out the main [Fela Documention - Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html). There you will also find some usage examples. This package only contains the pure API reference documentation.
+For more information and best practices on how to effectively use this package, please check out the main [Fela Documention - Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html). You will find some useful examples and a basic introduction on how to use Fela with React.<br>
+Checkout the [API Reference - Bindings](http://fela.js.org/docs/API.html#bindings) for further technical information on how the React/Preact/Inferno bindings work.
 
 
 ## License
