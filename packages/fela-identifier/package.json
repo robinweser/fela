@@ -24,7 +24,7 @@
     "fast-loops": "^1.0.0"
   },
   "devDependencies": {
-    "fela": "^6.1.0",
-    "fela-tools": "^5.0.14"
+    "fela": "^6.1.4",
+    "fela-tools": "^5.1.3"
   }
 }
