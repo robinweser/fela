@@ -19,7 +19,7 @@ function resolveCustomProperty(
       const resolved = properties[property](value)
       renderer._mergeStyle(style, resolved)
 
-      if (!Object.keys(resolved).includes(property)) {
+      if (!resolved.hasOwnProperty(property)) {
         delete style[property]
       }
     }

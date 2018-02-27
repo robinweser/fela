@@ -32,18 +32,16 @@ yarn add fela
 ```
 You may alternatively use `npm i --save fela`.
 
-## Features
-* Dynamic styling
-* High performance
-* Scoped atomic CSS
-* Dead code elimination
-* Framework-agnostic
-* Universal rendering
-* Many CSS features
-* Huge ecosystem
-* Vendor prefixing
-* Component theming
-* Local namespace
+## Benefits
+* High Predictablity
+* Dynamic Styling
+* Scoped Atomic CSS
+* Dead-Code Elimination
+* Framework-Agnostic
+* Huge Ecosystem
+* Component-Based Styling
+* Universal Rendering
+* Many CSS Features
 
 ## The Gist
 Fela's core principle is to consider [style as a function of state](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch).<br>
@@ -147,7 +145,6 @@ render(
 * [Recipes](http://fela.js.org/docs/Recipes.html)
 * [API Reference](http://fela.js.org/docs/API.html)
 * [Migration Guide](http://fela.js.org/docs/MigrationGuide.html)
-* [Troubleshooting](http://fela.js.org/docs/Troubleshooting.html)
 * [FAQ](http://fela.js.org/docs/FAQ.html)
 * [Feedback](http://fela.js.org/docs/Feedback.html)
 * [Thanks](http://fela.js.org/docs/Thanks.html)
@@ -221,8 +218,8 @@ We'd love to help out. We also highly appreciate any feedback.
 - [N26](https://n26.com)
 - [NinjaConcept](https://www.ninjaconcept.com)
 - [Optisure](https://www.optisure.de)
-- [V2](https://www.v2.com)
 - [Rocket Station](http://rstation.io)
+- [V2](https://www.v2.com)
 
 
 ## Contributing
