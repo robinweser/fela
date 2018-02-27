@@ -19,7 +19,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [bs-react-fela](https://github.com/astrada/bs-react-fela) - BuckleScript / ReasonReact
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle
-* [vue-fela](https://github.com/dustin-H/vue-fela) - Vue
+* [vue-fela](https://github.com/wagerfield/vue-fela) - Vue
 
 ### Plugins
 * [fela-plugin-bidi](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-bidi) - Enable direction-independent style authoring
@@ -92,6 +92,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-styles-connector](https://github.com/dustin-H/fela-styles-connector) - Simplified react-fela `connect` with auto-bound styles
 * [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools) - Useful tools for working with Fela
 * [frejya](https://github.com/benoneal/freyja) - Pass styles as props to components
+* [gatsby-plugin-fela](https://github.com/mmintel/gatsby-plugin-fela) - Integrates fela with [Gatsby](http://gatsbyjs.org)
 * [jest-fela-react](https://github.com/Kilix/jest-fela-react) - Nicer snapshots when using Jest and Fela
 * [objectify-css](https://github.com/lachlanjc/objectify-css) - CLI for converting CSS rules to JavaScript style objects
 * [polished](https://github.com/styled-components/polished) - A lightweight toolset for writing styles in JavaScript
@@ -100,6 +101,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [stile](https://github.com/bloodyowl/stile) - Handle units and string values
 * [storybook-addon-props-fela](https://github.com/Kilix/storybook-addon-props-fela) - Document the props of your Fela components in storybook.
 * [vashet](https://github.com/derHowie/vashet) - ClojureScript wrapper for Fela
+* [black-box](https://github.com/rocketstation/black-box) - combines behavior, presentation, structure in one place & creates all-in-one components using only JS syntax
 
 <br>
 

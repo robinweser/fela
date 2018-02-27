@@ -56,4 +56,18 @@ describe('Custom property plugin', () => {
       },
     })
   })
+
+  it('should not remove resolved properties', () => {
+    const padding = value => ({ padding: value })
+
+    const style = {
+      padding: '1em',
+    }
+
+    expect(
+      customProperty({ padding })(style, 'RULE_TYPE', rendererMock)
+    ).toEqual({
+      padding: '1em',
+    })
+  })
 })
