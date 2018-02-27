@@ -6,7 +6,7 @@ export default function resolveRule(
   rule: Object | Function,
   props?: Object = {},
   renderer?: DOMRenderer | NativeRenderer
-): Function {
+): Object {
   if (rule instanceof Function) {
     return rule(props, renderer)
   }
