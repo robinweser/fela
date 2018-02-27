@@ -5,7 +5,17 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
-## 18/11/17
+## 27/02/18
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela-identifier | 1.0.0 | [(#478)](https://github.com/rofrischmann/fela/pull/492) Initial release |
+| fela-bindings | 2.0.0 | [(#500)](https://github.com/rofrischmann/fela/pull/500) added FelaThemeFactory and FelaComponentFactory leveraging the render-props design pattern<br>[(#519)](https://github.com/rofrischmann/fela/pull/519) further improvements to the connectFactory including reconnection-ability and further extending mechanisms |
+| react-fela<br>preact-fela<br>inferno-fela | 7.0.0 | [(#500)](https://github.com/rofrischmann/fela/pull/500) implementing FelaTheme and FelaComponent using the abstract bindings<br>[(#519)](https://github.com/rofrischmann/fela/pull/519) implementing connect according to the changes in connectFactory |
+| fela-plugin-custom-property | 7.0.0 | [(#510)](https://github.com/rofrischmann/fela/pull/510) do not remove resolved keys if they're actually CSS properties |
+| babel-plugin-fela | 1.0.11 | [(#501)](https://github.com/rofrischmann/fela/pull/501) fixed an inconsistency that could lead to conflicting cache keys |
+| fela-plugin-validator | 5.1.0 | [(#503)](https://github.com/rofrischmann/fela/pull/503) added several improvements, now using csslint to validate CSS |
+
+## 18/12/17
 | Package | Version | Changes |
 | ---- | --- | --- |
 | fela-dom | 7.0.1 | `<style>`-elements are now appended to the right parentNode to avoid `DOMError: Not Found (Code 8)` |
