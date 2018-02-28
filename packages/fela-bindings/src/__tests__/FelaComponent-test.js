@@ -16,15 +16,11 @@ const FelaTheme = FelaThemeFactory(Component, {
   [THEME_CHANNEL]: PropTypes.object,
 })
 
-const FelaComponent = FelaComponentFactory(
-  Component,
-  createElement,
-  FelaTheme,
-  {
-    [THEME_CHANNEL]: PropTypes.object,
-    renderer: PropTypes.object,
-  }
-)
+const FelaComponent = FelaComponentFactory(createElement, FelaTheme, {
+  [THEME_CHANNEL]: PropTypes.object,
+  renderer: PropTypes.object,
+})
+
 describe('Using the FelaComponent component', () => {
   it('correctly render a fela rule', () => {
     const renderer = createRenderer()

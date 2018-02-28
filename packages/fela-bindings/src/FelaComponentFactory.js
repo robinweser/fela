@@ -4,7 +4,6 @@ import { combineRules } from 'fela'
 import resolveRule from './resolveRule'
 
 export default function FelaComponentFactory(
-  BaseComponent: any,
   createElement: Function,
   FelaTheme: Function,
   contextTypes?: Object
