@@ -1,6 +1,6 @@
 {
   "name": "fela-bindings",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Abstract binding factories for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "fela": "^6.1.4",
-    "fela-monolithic": "^5.0.18"
+    "fela-monolithic": "^5.0.19"
   }
 }
