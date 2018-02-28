@@ -24,7 +24,7 @@ function resolveCustomProperty(
       }
     }
 
-    if (isPlainObject(value)) {
+    if (style.hasOwnProperty(property) && isPlainObject(value)) {
       style[property] = resolveCustomProperty(value, properties, renderer)
     }
   }
