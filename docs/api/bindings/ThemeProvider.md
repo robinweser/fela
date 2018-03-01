@@ -22,6 +22,7 @@ import { ThemeProvider } from 'inferno-fela'
 ```
 
 ## Example
+
 ```javascript
 const text = ({ theme }) => ({
   backgroundColor: theme.bgColor,
@@ -31,15 +32,17 @@ const text = ({ theme }) => ({
 
 const Text = createComponent(text)
 
-<ThemeProvider theme={{ color: 'red', fontSize: 15 }}>
-  <Text>I am red and 15px sized</Text>
-  <ThemeProvider theme={{ color: 'blue' }}>
-    <Text>I am blue and 15px sized</Text>
+const Fragmet = () => (
+  <ThemeProvider theme={{ color: 'red', fontSize: '15px' }}>
+    <Text>I am red and 15px sized</Text>
+    <ThemeProvider theme={{ color: 'blue' }}>
+      <Text>I am blue and 15px sized</Text>
+    </ThemeProvider>
+    <ThemeProvider theme={{ bgColor: 'yellow' }}>
+      <Text>I am red and 15px sized with a yellow background</Text>
+    </ThemeProvider>
   </ThemeProvider>
-  <ThemeProvider theme={{ bgColor: 'yellow' }}>
-    <Text>I am red and 15px sized with a yellow background</Text>
-  </ThemeProvider>
-</ThemeProvider>
+)
 ```
 
 #### Overwriting themes
@@ -52,12 +55,13 @@ const text = ({ theme }) => ({
 })
 
 const Text = createComponent(text)
-s
 
-<ThemeProvider theme={{ color: 'blue', fontSize: 15 }}>
-  <Text>I am blue and 15px sized</Text>
-  <ThemeProvider overwrite theme={{ fontSize: 20 }}>
-    <Text>I am red and 20px sized</Text>
+const Fragment = () => (
+  <ThemeProvider theme={{ color: 'blue', fontSize: 15 }}>
+    <Text>I am blue and 15px sized</Text>
+    <ThemeProvider overwrite theme={{ fontSize: 20 }}>
+      <Text>I am red and 20px sized</Text>
+    </ThemeProvider>
   </ThemeProvider>
-</ThemeProvider>
+)
 ```
