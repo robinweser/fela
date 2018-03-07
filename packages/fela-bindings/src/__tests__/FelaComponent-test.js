@@ -54,7 +54,7 @@ describe('Using the FelaComponent component', () => {
 
     const wrapper = mount(
       <FelaComponent
-        style={({ theme }) => ({
+        style={theme => ({
           fontSize: theme.fontSize,
           color: 'red',
         })}
