@@ -7,6 +7,7 @@ FelaComponent is an alternative component to the [createComponent](createCompone
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
 | style | [*StyleObject*](../../basics/Rules.md#styleobject)<br>*Function*| | Either a valid style object or a function of `theme` |
+| rule | *Function*| | A function of `theme` and props|
 | render | *string?*<br>*Function* | `div` | Either a render function or a string primitive to render into.<br>If passing a render function is receives the specified render interface. |
 
 #### Interface
@@ -63,6 +64,32 @@ To access theme properties, we can simply pass a function of theme.
   })}
   render={({ className, theme }) => (
     <div className={className}>I am red on {theme.bgPrimary}.</div>
+  )}
+/>
+```
+
+#### Style Rule as a Function of Props and Theme
+Sometimes it is desirable to style a component as a function of both theme and
+props. The `rule` prop takes a callback, and passes it an object with `theme`
+and all props passed to FelaComponent except "style", "render" and "rule".
+
+This provides an API that is both compatible with createComponent, and allows
+using an externally defined function in such use cases. Hopefully, this can
+be help performance in hot paths by not requiring a function to be created on
+every render.
+
+
+```javascript
+const ruleFunction = ({ theme, bgc }) => ({
+  backgroundColor: bgc || 'red',
+  color: theme.bgPrimary,
+})
+
+<FelaComponent
+  bgc='blue',
+  rule={ruleFunction}
+  render={({ className, theme }) => (
+    <div className={className}>I am {theme.bgPrimary} on {bgc || 'red'}.</div>
   )}
 />
 ```

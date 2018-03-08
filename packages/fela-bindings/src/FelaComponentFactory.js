@@ -1,6 +1,4 @@
 /* @flow */
-import { combineRules } from 'fela'
-
 import resolveRule from './resolveRule'
 
 export default function FelaComponentFactory(
@@ -8,13 +6,16 @@ export default function FelaComponentFactory(
   FelaTheme: Function,
   contextTypes?: Object
 ): Function {
-  function FelaComponent({ render = 'div', style, children }, { renderer }) {
+  function FelaComponent(
+    { render = 'div', style, rule, children, ...restProps },
+    { renderer }
+  ) {
     return createElement(FelaTheme, {
       render: theme => {
-        const props = { theme }
+        const props = rule ? { theme, ...restProps } : theme
 
         const className = renderer._renderStyle(
-          resolveRule(style, props, renderer),
+          resolveRule(rule || style, props, renderer),
           props
         )
 

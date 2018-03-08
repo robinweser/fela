@@ -1,6 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Using the FelaComponent component correctly pass the theme 1`] = `
+exports[`Using the FelaComponent component correctly pass the theme and other props to the "rule" prop 1`] = `
+Array [
+  ".a {
+    font-size: 15px
+}
+
+.b {
+    background-color: blue
+}",
+  <FelaComponent
+    bgc="blue"
+    render={[Function]}
+    rule={[Function]}
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="a b"
+        >
+            I am red and written in 
+            15px
+            .
+        </div>
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
+
+exports[`Using the FelaComponent component correctly pass the theme to the "style" prop 1`] = `
 Array [
   ".a {
     font-size: 15px
