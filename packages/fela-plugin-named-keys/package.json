@@ -20,5 +20,8 @@
     "cssinjs"
   ],
   "author": "Robin Frischmann",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "isobject": "^3.0.1"
+  }
 }

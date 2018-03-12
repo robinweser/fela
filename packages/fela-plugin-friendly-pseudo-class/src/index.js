@@ -1,7 +1,5 @@
 /* @flow */
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
+import isPlainObject from 'isobject'
 
 const regex = new RegExp('^on([A-Z])')
 

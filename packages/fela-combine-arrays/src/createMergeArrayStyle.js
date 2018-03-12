@@ -1,12 +1,9 @@
 /* @flow */
 import arrayReduce from 'fast-loops/lib/arrayReduce'
 import objectReduce from 'fast-loops/lib/objectReduce'
+import isPlainObject from 'isobject'
 
 import arrayifyValue from './arrayifyValue'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 export default function createMergeArrayStyle(mergeProps?: Array<string>) {
   return function mergeArrayStyle(

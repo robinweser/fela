@@ -1,14 +1,11 @@
 /* @flow */
 import objectEach from 'fast-loops/lib/objectEach'
 import arrayEach from 'fast-loops/lib/arrayEach'
+import isPlainObject from 'isobject'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 function extendStyle(
   style: Object,
