@@ -24,6 +24,7 @@
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
     "csslint": "^1.0.5",
-    "fela-utils": "^8.0.4"
+    "fela-utils": "^8.0.4",
+    "isobject": "^3.0.1"
   }
 }
