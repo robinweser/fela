@@ -1,5 +1,5 @@
 /* @flow */
-import createElement from 'inferno-create-element'
+import { createElement } from 'inferno-create-element'
 import { createComponentFactory } from 'fela-bindings'
 
 import withTheme from './withTheme'
