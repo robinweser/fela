@@ -1,5 +1,5 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
+import Inferno, { Component } from 'inferno'
+
 import Label from '../components/Label'
 import Wrapper from '../components/Wrapper'
 import Text from '../components/Text'
@@ -25,9 +25,7 @@ export default class Input extends Component {
           onInput={this.setSize}
           defaultValue={this.state.size}
         />
-        <Label size={this.state.size}>
-          {this.state.size}
-        </Label>
+        <Label size={this.state.size}>{this.state.size}</Label>
       </Wrapper>
     )
   }

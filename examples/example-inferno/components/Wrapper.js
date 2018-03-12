@@ -10,9 +10,9 @@ const center = props => ({
   fontFace: {
     fontFamily: 'Lato',
     src: [
-      'https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff'
-    ]
-  }
+      'https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff',
+    ],
+  },
 })
 
 export default createComponent(center)
