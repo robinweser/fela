@@ -2,7 +2,8 @@
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-extend.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-extend.svg">
 
-Allows styles to be extended with other style objects. Supports a condition-based API.
+Allows styles to be extended with other style objects. Supports a condition-based API.<br>
+It automatically removes `null` and `undefined` values **before** merging styles.
 
 ## Installation
 ```sh

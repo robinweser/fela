@@ -146,4 +146,33 @@ describe('Extend plugin', () => {
       backgroundColor: 'blue',
     })
   })
+
+  it('should not convert null values to empty objects', () => {
+    const base = {
+      color: 'blue',
+      extend: {
+        backgroundColor: null,
+      },
+    }
+
+    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+      color: 'blue',
+    })
+  })
+
+  it('should not overwrite values with null or undefined', () => {
+    const base = {
+      color: 'blue',
+      backgroundColor: 'red',
+      extend: {
+        color: null,
+        backgroundColor: undefined,
+      },
+    }
+
+    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+      color: 'blue',
+      backgroundColor: 'red',
+    })
+  })
 })
