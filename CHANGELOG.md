@@ -5,10 +5,20 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 13/03/18
+| Package | Version | Changes |
+| ---- | --- | --- |
+| inferno-fela | 8.0.0 | [(#529)](https://github.com/rofrischmann/fela/pull/529) added support for Inferno 4.0<br>inferno-fela won't work with lower versions anymore | 
+| fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela<br> | 2.1.0<br>7.1.0<br>7.1.0<br>- | [(#526)](https://github.com/rofrischmann/fela/pull/526) fix incorrect theme pass-down<br>[(#527)](https://github.com/rofrischmann/fela/pull/527) FelaComponent now accepts a rule prop to support style as a function of state |
+| fela-plugin-bidi | 2.0.2 | [(#528)](https://github.com/rofrischmann/fela/pull/528) update [bidi-css-js](https://github.com/TxHawks/bidi-css-js) version |
+| fela-plugin-custom-property | 7.0.1 | [(#522)](https://github.com/rofrischmann/fela/pull/522) no longer resolving nested style objects if the property was removed |
+| fela-plugin-extend | 6.0.4 | [(#530)](https://github.com/rofrischmann/fela/pull/530) correctly resolve `null` values and remove `undefined` and `null` values before mergin styles |
+| fela-plugin-validator | 5.1.1 | [(#531)](https://github.com/rofrischmann/fela/pull/531) added an option to enable CSSLint validation (disabled by default) |
+
 ## 27/02/18
 | Package | Version | Changes |
 | ---- | --- | --- |
-| fela-identifier | 1.0.0 | [(#478)](https://github.com/rofrischmann/fela/pull/492) Initial release |
+| fela-identifier | 1.0.0 | [(#492)](https://github.com/rofrischmann/fela/pull/492) Initial release |
 | fela-bindings | 2.0.0 | [(#500)](https://github.com/rofrischmann/fela/pull/500) added FelaThemeFactory and FelaComponentFactory leveraging the render-props design pattern<br>[(#519)](https://github.com/rofrischmann/fela/pull/519) further improvements to the connectFactory including reconnection-ability and further extending mechanisms |
 | react-fela<br>preact-fela<br>inferno-fela | 7.0.0 | [(#500)](https://github.com/rofrischmann/fela/pull/500) implementing FelaTheme and FelaComponent using the abstract bindings<br>[(#519)](https://github.com/rofrischmann/fela/pull/519) implementing connect according to the changes in connectFactory |
 | fela-plugin-custom-property | 7.0.0 | [(#510)](https://github.com/rofrischmann/fela/pull/510) do not remove resolved keys if they're actually CSS properties |

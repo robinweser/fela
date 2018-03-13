@@ -25,7 +25,7 @@ export default function ProviderFactory(
       }
     }
 
-    componentDidMount(): void {
+    componentWillMount(): void {
       if (this.props.renderToDOM && hasDOM(this.props.renderer)) {
         render(this.props.renderer)
       }
