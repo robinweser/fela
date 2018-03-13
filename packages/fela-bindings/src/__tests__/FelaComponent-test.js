@@ -45,7 +45,7 @@ describe('Using the FelaComponent component', () => {
     expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()
   })
 
-  it('correctly pass the theme', () => {
+  it('correctly pass the theme to the "style" prop', () => {
     const themeContext = createTheme({
       fontSize: '15px',
     })
@@ -57,6 +57,37 @@ describe('Using the FelaComponent component', () => {
         style={theme => ({
           fontSize: theme.fontSize,
           color: 'red',
+        })}
+        render={({ className, theme }) => (
+          <div className={className}>
+            I am red and written in {theme.fontSize}.
+          </div>
+        )}
+      />,
+      {
+        context: {
+          [THEME_CHANNEL]: themeContext,
+          renderer,
+        },
+      }
+    )
+
+    expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()
+  })
+
+  it('correctly pass the theme and other props to the "rule" prop', () => {
+    const themeContext = createTheme({
+      fontSize: '15px',
+    })
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(
+      <FelaComponent
+        bgc="blue"
+        rule={({ theme, bgc }) => ({
+          fontSize: theme.fontSize,
+          backgroundColor: bgc || 'red',
         })}
         render={({ className, theme }) => (
           <div className={className}>

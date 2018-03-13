@@ -6,12 +6,17 @@ export default function FelaComponentFactory(
   FelaTheme: Function,
   contextTypes?: Object
 ): Function {
-  function FelaComponent({ render = 'div', style, children }, { renderer }) {
+  function FelaComponent(
+    { render = 'div', style, rule, children, ...restProps },
+    { renderer }
+  ) {
     return createElement(FelaTheme, {
       render: theme => {
+        const props = rule ? { theme, ...restProps } : theme
+
         const className = renderer._renderStyle(
-          resolveRule(style, theme, renderer),
-          theme
+          resolveRule(rule || style, props, renderer),
+          props
         )
 
         if (render instanceof Function) {
