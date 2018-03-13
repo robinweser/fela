@@ -4,10 +4,7 @@ import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 import objectReduce from 'fast-loops/lib/objectReduce'
 
 import fallbackValue from 'fela-plugin-fallback-value'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
+import isPlainObject from 'isobject'
 
 const resolveFallbackValues = fallbackValue()
 

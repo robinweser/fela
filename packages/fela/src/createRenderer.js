@@ -2,6 +2,7 @@
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 import arrayEach from 'fast-loops/lib/arrayEach'
+import isPlainObject from 'isobject'
 
 import {
   generateCombinedMediaQuery,
@@ -38,10 +39,6 @@ import type {
   DOMRendererConfig,
 } from '../../../flowtypes/DOMRenderer'
 import type { FontProperties } from '../../../flowtypes/FontProperties'
-
-function isPlainObject(obj) {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 export default function createRenderer(
   config: DOMRendererConfig = {}

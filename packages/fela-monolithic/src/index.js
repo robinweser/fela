@@ -2,6 +2,7 @@
 /* eslint-disable no-continue */
 import objectReduce from 'fast-loops/lib/objectReduce'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
+import isPlainObject from 'isobject'
 import {
   isSupport,
   isMediaQuery,
@@ -19,10 +20,6 @@ import generateMonolithicClassName from './generateMonolithicClassName'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 import type MonolithicRenderer from '../../../flowtypes/MonolithicRenderer'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 function useMonolithicRenderer(
   renderer: DOMRenderer,

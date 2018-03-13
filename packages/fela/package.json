@@ -33,7 +33,8 @@
   "dependencies": {
     "css-in-js-utils": "2.0.0",
     "fast-loops": "^1.0.0",
-    "fela-utils": "^8.0.4"
+    "fela-utils": "^8.0.4",
+    "isobject": "^3.0.1"
   },
   "devDependencies": {
     "fela-tools": "^5.1.3"

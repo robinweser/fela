@@ -1,11 +1,9 @@
 /* @flow */
+import isPlainObject from 'isobject'
+
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 import type { StyleType } from '../../../flowtypes/StyleType'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 function resolveSimulation(
   style: Object,

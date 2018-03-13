@@ -1,9 +1,6 @@
 /* @flow */
 import isUnitlessProperty from 'css-in-js-utils/lib/isUnitlessProperty'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
+import isPlainObject from 'isobject'
 
 function addUnitIfNeeded(
   property: string,

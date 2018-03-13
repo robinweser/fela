@@ -21,6 +21,9 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
+  "dependencies": {
+    "isobject": "^3.0.1"
+  },
   "peerDependencies": {
     "fela": "^6.0.0"
   }

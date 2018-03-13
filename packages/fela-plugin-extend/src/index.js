@@ -1,14 +1,14 @@
 /* @flow */
 import objectEach from 'fast-loops/lib/objectEach'
 import arrayEach from 'fast-loops/lib/arrayEach'
+import isPlainObject from 'isobject'
+import removeUndefinedPlugin from 'fela-plugin-remove-undefined'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
+const removeUndefined = removeUndefinedPlugin()
 
 function extendStyle(
   style: Object,
@@ -24,7 +24,7 @@ function extendStyle(
     }
   } else {
     // extend basic style objects
-    renderer._mergeStyle(style, extension)
+    renderer._mergeStyle(style, removeUndefined(extension))
   }
 }
 

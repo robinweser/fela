@@ -18,4 +18,22 @@ describe('Remove undefined plugin', () => {
       },
     })
   })
+
+  it('should remove all null values', () => {
+    const style = {
+      color: 'blue',
+      fontSize: null,
+      border: 'nullpx solid blue',
+      ':hover': {
+        color: ['rgba(0, 0, 0, 0.4)', null, 'black'],
+      },
+    }
+
+    expect(removeUndefined()(style)).toEqual({
+      color: 'blue',
+      ':hover': {
+        color: ['rgba(0, 0, 0, 0.4)', 'black'],
+      },
+    })
+  })
 })

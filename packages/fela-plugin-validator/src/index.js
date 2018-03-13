@@ -7,13 +7,10 @@ import {
   isSupport,
 } from 'fela-utils'
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
+import isPlainObject from 'isobject'
 import { CSSLint } from 'csslint'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 function handleError(
   property: string,

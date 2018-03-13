@@ -1,12 +1,9 @@
 /* @flow */
 import arrayReduce from 'fast-loops/lib/arrayReduce'
+import isPlainObject from 'isobject'
 
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { StyleType } from '../../../flowtypes/StyleType'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 function renderFontFace({ fontFamily, src, ...otherProps }, renderer) {
   if (typeof fontFamily === 'string' && Array.isArray(src)) {
