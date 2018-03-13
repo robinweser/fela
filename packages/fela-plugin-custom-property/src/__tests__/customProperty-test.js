@@ -70,4 +70,21 @@ describe('Custom property plugin', () => {
       padding: '1em',
     })
   })
+
+  it('should not resolve nested style objects if property was removed', () => {
+    expect(
+      customProperty({
+        padding: ({ t, l, b, r }) => {
+          const obj = {}
+
+          if (t != null) obj.paddingTop = t
+          if (l != null) obj.paddingLeft = l
+          if (b != null) obj.paddingBottom = b
+          if (r != null) obj.paddingRight = r
+
+          return obj
+        }
+      })({ padding: { l: '1px' } }, 'RULE_TYPE', rendererMock)
+    ).toEqual({ paddingLeft: '1px' })
+  })
 })
