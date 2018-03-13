@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-typescript",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Fela example with React and Typescript",
   "scripts": {
     "start": "webpack-dev-server --open"
@@ -23,9 +23,9 @@
   "dependencies": {
     "@types/react": "^16.0.18",
     "@types/react-dom": "^16.0.2",
-    "fela": "^6.1.4",
+    "fela": "^6.1.5",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-fela": "^7.0.1"
+    "react-fela": "^7.1.0"
   }
 }

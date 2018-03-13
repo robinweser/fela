@@ -1,6 +1,6 @@
 {
   "name": "fela-combine-arrays",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Fela enhancer to merge array values when combining rules",
   "main": "lib/index.js",
   "module": "es/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-remove-undefined",
-  "version": "5.0.18",
+  "version": "5.0.19",
   "description": "Fela plugin to remove invalid undefined values",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,7 +20,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-utils": "^8.0.4",
+    "fela-utils": "^8.0.5",
     "isobject": "^3.0.1"
   }
 }
