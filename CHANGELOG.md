@@ -9,7 +9,7 @@ If you're searching for older version-based release notes please check out the o
 | Package | Version | Changes |
 | ---- | --- | --- |
 | inferno-fela | 8.0.0 | [(#529)](https://github.com/rofrischmann/fela/pull/529) added support for Inferno 4.0<br>inferno-fela won't work with lower versions anymore | 
-| fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela<br> | 2.1.0<br>7.1.0<br>7.1.0<br>- | [(#526)](https://github.com/rofrischmann/fela/pull/526) fix incorrect theme pass-down<br>[(#527)](https://github.com/rofrischmann/fela/pull/527) FelaComponent now accepts a rule prop to support style as a function of state |
+| fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela<br> | 2.1.0<br>7.1.0<br>7.1.0<br>- | [(#526)](https://github.com/rofrischmann/fela/pull/526) fix incorrect theme pass-down<br>[(#527)](https://github.com/rofrischmann/fela/pull/527) FelaComponent now accepts a rule prop to support style as a function of state<br> [(#532)](https://github.com/rofrischmann/fela/issues/532) fela-dom's render is now called within `componentWillMount` rather than `componentDidMount` in Provider |
 | fela-plugin-bidi | 2.0.2 | [(#528)](https://github.com/rofrischmann/fela/pull/528) update [bidi-css-js](https://github.com/TxHawks/bidi-css-js) version |
 | fela-plugin-custom-property | 7.0.1 | [(#522)](https://github.com/rofrischmann/fela/pull/522) no longer resolving nested style objects if the property was removed |
 | fela-plugin-extend | 6.0.4 | [(#530)](https://github.com/rofrischmann/fela/pull/530) correctly resolve `null` values and remove `undefined` and `null` values before mergin styles |

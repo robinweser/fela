@@ -3,6 +3,10 @@
 This guide should help with migration from lower major versions.<br>
 It is sorted by packages.
 
+## Table of Contents
+- [fela-dom](#fela-dom)
+- [inferno-fela](#inferno-fela)
+
 ## fela-dom
 
 ### 7.0.0
@@ -21,3 +25,9 @@ const elements = sheetList.map(({ type, css, media, support }) =>
   />
 )
 ```
+
+## inferno-fela
+
+### 8.0.0
+In order to use inferno-fela > 8.0.0, Inferno > 4.0.0 is required.<br>
+If you can't upgrade to Inferno 4.0.0 yet, consider using inferno-fela 7.0.1.
