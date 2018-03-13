@@ -25,53 +25,6 @@ describe('Validator plugin', () => {
     expect(consoleSpy.mock.calls).toHaveLength(0)
   })
 
-  it('should log into the console an error about the incorrect style', () => {
-    validator()(
-      {
-        fontSize: 'abc',
-      },
-      RULE_TYPE
-    )
-
-    expect(consoleSpy.mock.calls).toMatchSnapshot()
-  })
-
-  it('should log into the console an error about the incorrect nested style', () => {
-    validator()(
-      {
-        ':hover': {
-          fontSize: 'abc',
-        },
-      },
-      RULE_TYPE
-    )
-
-    expect(consoleSpy.mock.calls).toMatchSnapshot()
-  })
-
-  it('should log into the console an error about the invalid nested property', () => {
-    validator()(
-      {
-        'wrong nested property': {},
-      },
-      RULE_TYPE
-    )
-
-    expect(consoleSpy.mock.calls).toMatchSnapshot()
-  })
-
-  it('should be an empty console output for correct keyframe', () => {
-    validator()(
-      {
-        from: { fontSize: '10px' },
-        to: { fontSize: '12px' },
-      },
-      KEYFRAME_TYPE
-    )
-
-    expect(consoleSpy.mock.calls).toHaveLength(0)
-  })
-
   it('should log into the console an error about the invalid keyframe', () => {
     validator()(
       {
@@ -84,27 +37,76 @@ describe('Validator plugin', () => {
     expect(consoleSpy.mock.calls).toMatchSnapshot()
   })
 
-  it('should log into the console an error about the invalid keyframe property', () => {
-    validator()(
-      {
-        start: { fontSize: '10pxp' },
-        end: { fontSiz: '12px' },
-      },
-      KEYFRAME_TYPE
-    )
+  describe('with useCSSLint', () => {
+    it('should log into the console an error about the incorrect style', () => {
+      validator({ useCSSLint: true })(
+        {
+          fontSize: 'abc',
+        },
+        RULE_TYPE
+      )
 
-    expect(consoleSpy.mock.calls).toMatchSnapshot()
-  })
+      expect(consoleSpy.mock.calls).toMatchSnapshot()
+    })
 
-  it('should log into the console an error about the incorrect style in keyframe', () => {
-    validator()(
-      {
-        from: { fontSize: '10pxp' },
-        to: { fontSiz: '12px' },
-      },
-      KEYFRAME_TYPE
-    )
+    it('should log into the console an error about the incorrect nested style', () => {
+      validator({ useCSSLint: true })(
+        {
+          ':hover': {
+            fontSize: 'abc',
+          },
+        },
+        RULE_TYPE
+      )
 
-    expect(consoleSpy.mock.calls).toMatchSnapshot()
+      expect(consoleSpy.mock.calls).toMatchSnapshot()
+    })
+
+    it('should log into the console an error about the invalid nested property', () => {
+      validator({ useCSSLint: true })(
+        {
+          'wrong nested property': {},
+        },
+        RULE_TYPE
+      )
+
+      expect(consoleSpy.mock.calls).toMatchSnapshot()
+    })
+
+    it('should be an empty console output for correct keyframe', () => {
+      validator({ useCSSLint: true })(
+        {
+          from: { fontSize: '10px' },
+          to: { fontSize: '12px' },
+        },
+        KEYFRAME_TYPE
+      )
+
+      expect(consoleSpy.mock.calls).toHaveLength(0)
+    })
+
+    it('should log into the console an error about the invalid keyframe property', () => {
+      validator({ useCSSLint: true })(
+        {
+          start: { fontSize: '10pxp' },
+          end: { fontSiz: '12px' },
+        },
+        KEYFRAME_TYPE
+      )
+
+      expect(consoleSpy.mock.calls).toMatchSnapshot()
+    })
+
+    it('should log into the console an error about the incorrect style in keyframe', () => {
+      validator({ useCSSLint: true })(
+        {
+          from: { fontSize: '10pxp' },
+          to: { fontSiz: '12px' },
+        },
+        KEYFRAME_TYPE
+      )
+
+      expect(consoleSpy.mock.calls).toMatchSnapshot()
+    })
   })
 })

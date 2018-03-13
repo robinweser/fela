@@ -2,8 +2,10 @@
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-validator.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg">
 
-Enforces object validation for keyframes and rules.
-Logs invalid properties to the `console`. A [csslint](https://github.com/CSSLint/csslint) is used to check the CSS. One might also enable automatic property deletion.
+Enforces object validation for keyframes and rules.<br>
+Logs invalid properties to the `console`. <br>
+If enabled, [csslint](https://github.com/CSSLint/csslint) is used to check the CSS.<br>
+One might also enable automatic property deletion.
 
 ## Installation
 ```sh
@@ -32,8 +34,9 @@ Make sure that you place the validator plugin *at the end* of your plugins array
 ##### Options
 | Option | Value | Default | Description |
 | --- | --- | --- | --- |
-| `logInvalid` | *(boolean)* | `true` | logs invalid properties/values |
-| `deleteInvalid` | *(boolean)* | `false` | deletes invalid properties/values |
+| logInvalid | *(boolean?)* | `true` | logs invalid properties/values |
+| deleteInvalid | *(boolean?)* | `false` | deletes invalid properties/values |
+| useCSSLint | *(boolean?)* | `false` | use CSSLint for style validation |
 
 ##### Example
 ```javascript
@@ -42,7 +45,8 @@ import validator from 'fela-plugin-validator'
 
 const validatorPlugin = validator({
   logInvalid: true,
-  deleteInvalid: true
+  deleteInvalid: true,
+  useCSSLint: true
 })
 
 const renderer = createRenderer({
