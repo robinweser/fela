@@ -312,11 +312,11 @@ const mount = (node, options = {}) => {
   const component = enzymeMount(node, {
     childContextTypes: {
       renderer: PropTypes.object,
-      theme: PropTypes.object
+      _FELA_THEME_: PropTypes.object
     },
     context: {
       renderer,
-      theme: createTheme(myTheme)
+      _FELA_THEME_: createTheme(myTheme)
     },
     ...options
   })
