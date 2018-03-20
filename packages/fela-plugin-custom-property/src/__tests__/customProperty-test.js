@@ -83,7 +83,7 @@ describe('Custom property plugin', () => {
           if (r != null) obj.paddingRight = r
 
           return obj
-        }
+        },
       })({ padding: { l: '1px' } }, 'RULE_TYPE', rendererMock)
     ).toEqual({ paddingLeft: '1px' })
   })
