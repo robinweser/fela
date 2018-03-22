@@ -8,11 +8,11 @@ import generateDisplayName from './generateDisplayName'
 import hoistStatics from './hoistStatics'
 
 export type ConnectConfig = {
-  pure?: boolean
+  pure?: boolean,
 }
 
 const defaultConfig: ConnectConfig = {
-  pure: true
+  pure: true,
 }
 
 export default function connectFactory(
@@ -21,7 +21,10 @@ export default function connectFactory(
   withTheme: Function,
   contextTypes?: Object
 ): Function {
-  return function connect(rules: Object | Function, config: ConnectConfig = {}): Function {
+  return function connect(
+    rules: Object | Function,
+    config: ConnectConfig = {}
+  ): Function {
     const connectConfig = {
       ...defaultConfig,
       ...config,
