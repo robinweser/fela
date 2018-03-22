@@ -305,4 +305,21 @@ describe('Connect Factory for bindings', () => {
       },
     })
   })
+
+  it.only('should implement pure component wrapper', () => {
+    const renderMock = jest.fn(() => null)
+
+    const MyComponent = connect({})(renderMock)
+
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        renderer: createRenderer(),
+      },
+    })
+
+    wrapper.update()
+    wrapper.update()
+
+    expect(renderMock).toHaveBeenCalledTimes(1)
+  })
 })
