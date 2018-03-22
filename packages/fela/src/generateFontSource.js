@@ -24,7 +24,7 @@ export default function generateFontSource(
       const fileFormat = getFontFormat(fileSource)
       const fileUrl = getFontUrl(fileSource)
 
-      return `${prefix}url(${fileUrl}) format('${fileFormat}')`
+      return `${src}${prefix}url(${fileUrl}) format('${fileFormat}')`
     },
     localSource
   )

@@ -25,6 +25,6 @@
     "string-hash": "^1.1.3"
   },
   "devDependencies": {
-    "fela": "^6.1.5"
+    "fela": "^6.1.6"
   }
 }
