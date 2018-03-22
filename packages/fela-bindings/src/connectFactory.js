@@ -7,20 +7,36 @@ import shallowCompare from 'react-addons-shallow-compare'
 import generateDisplayName from './generateDisplayName'
 import hoistStatics from './hoistStatics'
 
+export type ConnectConfig = {
+  pure?: boolean
+}
+
+const defaultConfig: ConnectConfig = {
+  pure: true
+}
+
 export default function connectFactory(
   BaseComponent: any,
   createElement: Function,
   withTheme: Function,
   contextTypes?: Object
 ): Function {
-  return function connect(rules: Object | Function): Function {
+  return function connect(rules: Object | Function, config: ConnectConfig = {}): Function {
+    const connectConfig = {
+      ...defaultConfig,
+      ...config,
+    }
+
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
         static _isFelaComponent = true
 
         shouldComponentUpdate(nextProps, nextState) {
-          return shallowCompare(this, nextProps, nextState)
+          if (connectConfig.pure) {
+            return shallowCompare(this, nextProps, nextState)
+          }
+          return true
         }
 
         render() {
