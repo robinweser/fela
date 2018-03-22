@@ -306,7 +306,7 @@ describe('Connect Factory for bindings', () => {
     })
   })
 
-  it.only('should implement pure component wrapper', () => {
+  it('should implement pure component wrapper', () => {
     const renderMock = jest.fn(() => null)
 
     const MyComponent = connect({})(renderMock)

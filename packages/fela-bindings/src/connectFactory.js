@@ -2,6 +2,7 @@
 import objectReduce from 'fast-loops/lib/objectReduce'
 import objectEach from 'fast-loops/lib/objectEach'
 import { combineMultiRules } from 'fela-tools'
+import shallowCompare from 'react-addons-shallow-compare'
 
 import generateDisplayName from './generateDisplayName'
 import hoistStatics from './hoistStatics'
@@ -17,6 +18,10 @@ export default function connectFactory(
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
         static _isFelaComponent = true
+
+        shouldComponentUpdate(nextProps, nextState) {
+          return shallowCompare(this, nextProps, nextState)
+        }
 
         render() {
           const { renderer } = this.context
