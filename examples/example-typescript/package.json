@@ -23,9 +23,9 @@
   "dependencies": {
     "@types/react": "^16.0.18",
     "@types/react-dom": "^16.0.2",
-    "fela": "^6.1.5",
+    "fela": "^6.1.7",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-fela": "^7.1.0"
+    "react-fela": "^7.2.0"
   }
 }
