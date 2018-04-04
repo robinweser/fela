@@ -29,7 +29,7 @@
     "fela-utils": "^8.0.5"
   },
   "devDependencies": {
-    "fela": "^6.1.5",
+    "fela": "^6.1.6",
     "fela-preset-web": "^8.0.5",
     "fela-tools": "^5.1.4"
   }
