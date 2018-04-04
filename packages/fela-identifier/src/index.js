@@ -53,9 +53,10 @@ export default function identifier(config?: IdentifierConfig = {}) {
           {}
         )
 
-        return [...idClassNames, existingRenderRule(() => cleanedStyle)].join(
-          ' '
-        )
+        const modifiedRule = () => cleanedStyle
+        Object.assign(modifiedRule, rule)
+
+        return [...idClassNames, existingRenderRule(modifiedRule)].join(' ')
       }
 
       return renderer

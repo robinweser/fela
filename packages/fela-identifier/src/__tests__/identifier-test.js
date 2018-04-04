@@ -1,5 +1,10 @@
+import React from 'react'
+import { connect } from 'react-fela'
+import { mount } from 'enzyme'
+import toJson from 'enzyme-to-json'
 import { createRenderer, combineRules } from 'fela'
 import { renderToString } from 'fela-tools'
+import monolithic from 'fela-monolithic'
 import createIdentifier from '../index'
 
 describe('Fela identifier enhancer', () => {
@@ -148,5 +153,37 @@ describe('Fela identifier enhancer', () => {
     renderer.renderRule(combinedRule)
 
     expect(renderToString(renderer)).toMatchSnapshot()
+  })
+
+  it('identifier enhancer should not remove meta information in rule', () => {
+    const identifier = createIdentifier()
+    const renderer = createRenderer({
+      enhancers: [monolithic({ prettySelectors: true }), identifier],
+    })
+
+    const rules = {
+      rule1: () => ({
+        padding: 1,
+      }),
+      rule2: () => ({
+        color: 'red',
+      }),
+    }
+
+    const MyComponent = ({ styles }) => (
+      <div>
+        <span className={styles.rule1} />
+        <span className={styles.rule2} />
+      </div>
+    )
+
+    const MyConnectedComponent = connect(rules)(MyComponent)
+
+    const wrapper = mount(<MyConnectedComponent />, {
+      context: {
+        renderer,
+      },
+    })
+    expect(toJson(wrapper)).toMatchSnapshot()
   })
 })

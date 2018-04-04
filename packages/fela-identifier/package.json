@@ -25,6 +25,8 @@
   },
   "devDependencies": {
     "fela": "^6.1.6",
-    "fela-tools": "^5.1.4"
+    "fela-monolithic": "^5.0.20",
+    "fela-tools": "^5.1.4",
+    "react-fela": "^7.1.0"
   }
 }
