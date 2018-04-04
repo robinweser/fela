@@ -21,7 +21,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "^6.1.6"
+    "fela": "^6.1.7"
   },
   "dependencies": {
     "fast-loops": "^1.0.0",
