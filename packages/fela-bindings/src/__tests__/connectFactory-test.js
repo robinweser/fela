@@ -305,4 +305,38 @@ describe('Connect Factory for bindings', () => {
       },
     })
   })
+
+  it('should implement pure component wrapper', () => {
+    const renderMock = jest.fn(() => null)
+
+    const MyComponent = connect({})(renderMock)
+
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        renderer: createRenderer(),
+      },
+    })
+
+    wrapper.update()
+    wrapper.update()
+
+    expect(renderMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('should accept the parameter disabling pure component behavior', () => {
+    const renderMock = jest.fn(() => null)
+
+    const MyComponent = connect({}, { pure: false })(renderMock)
+
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        renderer: createRenderer(),
+      },
+    })
+
+    wrapper.update()
+    wrapper.update()
+
+    expect(renderMock).toHaveBeenCalledTimes(3)
+  })
 })
