@@ -383,6 +383,23 @@ describe('Renderer', () => {
 
       expect(family).toEqual('"Arial"')
     })
+    it('should create a valid src list', () => {
+      const renderer = createRenderer()
+      const family = 'Arial'
+      const properties = {}
+
+      renderer.renderFont(
+        family,
+        ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
+        properties
+      )
+
+      const key = family + JSON.stringify(properties)
+      const src = renderer.cache[key].fontFace.match(/.*(src:.*);.*$/)[1]
+      expect(src).toEqual(
+        "src:url('../fonts/Arial.ttf') format('truetype'),url('../fonts/Arial.woff') format('woff')"
+      )
+    })
   })
 
   describe('Subscribing to the Renderer', () => {

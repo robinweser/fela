@@ -29,7 +29,7 @@
     "shallow-equal": "^1.0.0"
   },
   "devDependencies": {
-    "fela": "^6.1.5",
+    "fela": "^6.1.6",
     "fela-monolithic": "^5.0.20"
   }
 }
