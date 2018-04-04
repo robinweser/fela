@@ -1,12 +1,20 @@
 # connect
 
-A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) that provides the ability to map rendered classes to the component's props using the `styles` key. It is especially useful if we want to style a huge tree of primitive DOM elements e.g. doing basic layouting.
+A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) that provides the ability to map rendered classes to the component's props using the `styles` key. It is especially useful if we want to style a huge tree of primitive DOM elements e.g. doing basic layouting. This HoC produces a pure component. Behavior by default can be disabled using the configuration parameter.
 
 ## Arguments
 
 | Argument | Type | Description |
 | --- | --- | --- |
 | rules | *Object*<br>*Function* | An object containing named rules or a function that produces such an object based on the props of a component. |
+| config | *Object?* | An object containing settings to configure Wrapper Component. |
+
+## Configuration parameters
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| pure | *boolean* | `true` | A parameter that enables / disables the behavior when the output component is pure. |
+
 
 ## Returns
 (*Function*): Component connector that passes the `styles` object to a component.
@@ -79,6 +87,10 @@ const ConnectedHeader = connect(rules)(Header)
   title="Hello World"
   color="red" 
   size="17px" />
+```
+#### Disable Pure Component Behavior
+```javascript
+const ConnectedHeader = connect(rules, { pure: false })(Header)
 ```
 
 ## Extending Styles
