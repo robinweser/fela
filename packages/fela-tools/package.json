@@ -20,12 +20,12 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "^6.1.3"
+    "fela": "^6.1.6"
   },
   "dependencies": {
     "css-in-js-utils": "2.0.0",
     "fast-loops": "^1.0.0",
-    "fela": "^6.1.5",
+    "fela": "^6.1.6",
     "fela-utils": "^8.0.5"
   }
 }

@@ -25,6 +25,6 @@
     "styles-debugger": "^0.0.5"
   },
   "devDependencies": {
-    "fela": "^6.1.5"
+    "fela": "^6.1.6"
   }
 }

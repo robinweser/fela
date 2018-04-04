@@ -22,7 +22,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "^6.0.0"
+    "fela": "^6.1.6"
   },
   "dependencies": {
     "css-in-js-utils": "^2.0.0",

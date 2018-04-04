@@ -29,7 +29,7 @@
     "isobject": "^3.0.1"
   },
   "devDependencies": {
-    "fela": "^6.1.5",
+    "fela": "^6.1.6",
     "fela-tools": "^5.1.4",
     "react-fela": "^7.1.0"
   }
