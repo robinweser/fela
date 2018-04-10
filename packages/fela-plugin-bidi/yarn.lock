@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-bidi-css-js@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/bidi-css-js/-/bidi-css-js-2.1.0.tgz#c608fead16c81a9b9df372736b0ab6789e63f0d4"
+bidi-css-js@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/bidi-css-js/-/bidi-css-js-3.1.0.tgz#369c611b0ac6b5fc8e834f7c36b2eada60a7fe61"
   dependencies:
-    rtl-css-js "^1.4.2"
+    rtl-css-js "^1.9.0"
 
-rtl-css-js@^1.4.2:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.7.0.tgz#0a9b0a5ddcc7181b0b41977264f39647ba705770"
+rtl-css-js@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.9.0.tgz#3052f8ba39c7afd1450b06602a7606480c5dcc7f"
