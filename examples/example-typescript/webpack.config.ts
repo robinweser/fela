@@ -10,6 +10,7 @@ export default {
         contentBase: dist,
         port: 9000,
     },
+    mode: "development",
     devtool: "source-map",
     entry: index,
     module: {

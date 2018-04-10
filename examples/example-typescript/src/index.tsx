@@ -10,7 +10,7 @@ const extendStyles = {
     borderColor: 'black',
     borderRadius: '10px',
     borderStyle: 'solid'
-  }
+  } as React.CSSProperties
 };
 
 export const renderer = createRenderer();
