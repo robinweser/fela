@@ -5,10 +5,13 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
-## 22/03/18
+## 04/04/18
 | Package | Version | Changes |
 | ---- | --- | --- |
-| fela | 6.1.6 | [(#545)](https://github.com/rofrischmann/fela/pull/545) fix rendering of multiple source files in `renderer.renderFont` |
+| fela | 6.1.7 | [(#545)](https://github.com/rofrischmann/fela/pull/545) fix rendering of multiple source files in `renderer.renderFont` |
+| fela-bindings | 2.2.0 | [(#546)](https://github.com/rofrischmann/fela/pull/546) use `pureComponent` in in `connect` HOC |
+| fela-plugin-bidi | 2.0.3 | [(#536)](https://github.com/rofrischmann/fela/pull/536) update underlying dependency to add support for PascalCased browser prefixed CSS properties (Webkit* and Moz*) |
+| fela-identifier | 1.0.2 | [(#541)](https://github.com/rofrischmann/fela/pull/541) fix selectors when using fela-identifier and fela-monolithic together |
 
 ## 13/03/18
 | Package | Version | Changes |
