@@ -50,7 +50,7 @@ The `overwrite` option help to prevent theme inheritance for nested ThemeProvide
 
 ```javascript
 const text = ({ theme }) => ({
-  fontSiz: theme.fontSize,
+  fontSize: theme.fontSize,
   color: theme.color || 'red'
 })
 
