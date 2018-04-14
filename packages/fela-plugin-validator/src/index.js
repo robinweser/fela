@@ -53,7 +53,13 @@ function validateStyleObject(
         isMediaQuery(property) ||
         isSupport(property)
       ) {
-        validateStyleObject(value, logInvalid, deleteInvalid, useCSSLint)
+        validateStyleObject(
+          value,
+          logInvalid,
+          deleteInvalid,
+          useCSSLint,
+          cssRules
+        )
       } else {
         handleError(
           property,
@@ -191,9 +197,9 @@ export default function validator(options: Object = {}) {
 
   preparedOptions.cssRules = isPlainObject(useCSSLint)
     ? {
-      ...defaultRules,
-      ...useCSSLint,
-    }
+        ...defaultRules,
+        ...useCSSLint,
+      }
     : defaultRules
 
   return (style: Object, type: StyleType) =>
