@@ -22,7 +22,7 @@ describe('Validator plugin', () => {
       RULE_TYPE
     )
 
-    expect(consoleSpy.mock.calls).toHaveLength(0)
+    expect(consoleSpy).not.toHaveBeenCalled()
   })
 
   it('should log into the console an error about the invalid keyframe', () => {
@@ -82,7 +82,7 @@ describe('Validator plugin', () => {
         KEYFRAME_TYPE
       )
 
-      expect(consoleSpy.mock.calls).toHaveLength(0)
+      expect(consoleSpy).not.toHaveBeenCalled()
     })
 
     it('should log into the console an error about the invalid keyframe property', () => {
@@ -107,6 +107,21 @@ describe('Validator plugin', () => {
       )
 
       expect(consoleSpy.mock.calls).toMatchSnapshot()
+    })
+
+    it('should not log into the console an error if current rule disabled', () => {
+      validator({
+        useCSSLint: {
+          important: false,
+        },
+      })(
+        {
+          fontSize: '10px !important',
+        },
+        RULE_TYPE
+      )
+
+      expect(consoleSpy).not.toHaveBeenCalled()
     })
   })
 })
