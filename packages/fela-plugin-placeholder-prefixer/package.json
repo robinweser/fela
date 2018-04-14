@@ -24,6 +24,6 @@
   "license": "MIT",
   "dependencies": {
     "fast-loops": "^1.0.0",
-    "fela-plugin-custom-property": "^7.0.1"
+    "fela-plugin-custom-property": "^7.0.2"
   }
 }

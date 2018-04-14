@@ -17,8 +17,8 @@
     "babel-preset-stage-0": "6.24.1",
     "beautify-benchmark": "0.2.4",
     "benchmark": "2.1.2",
-    "fela": "^6.1.5",
-    "fela-dom": "^7.0.6",
-    "fela-preset-web": "^8.0.5"
+    "fela": "^6.1.7",
+    "fela-dom": "^7.0.7",
+    "fela-preset-web": "^8.0.6"
   }
 }
