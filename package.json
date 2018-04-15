@@ -8,7 +8,7 @@
     "check": "yarn format && yarn lint && yarn coverage && yarn flow",
     "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
-    "lint": "eslint packages/*/src/**/*.js",
+    "lint": "eslint ./packages/*/src/**/*.js",
     "release": "git pull --rebase && yarn build && lerna publish && yarn docs",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test -- --coverage",
