@@ -125,15 +125,15 @@ render(
 ```
 
 ## Examples
-* [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](packages/example-react))
-    * [React Styleguidist](http://fela.js.org/docs/introduction/Examples.html#styleguidist) ([source](packages/example-with-styleguidist))
-    * [React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](packages/example-react-native))
+* [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/example-react))
+    * [React Styleguidist](http://fela.js.org/docs/introduction/Examples.html#styleguidist) ([source](examples/example-with-styleguidist))
+    * [React Native](http://fela.js.org/docs/introduction/Examples.html#react-native) ([source](examples/example-react-native))
     * [ReasonReact](https://github.com/astrada/bs-react-fela-examples)
     * [Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
-* [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](packages/example-preact))
-* [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](packages/example-inferno))
-* [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](packages/example-angular2))
-    * [TypeScript](http://fela.js.org/docs/introduction/Examples.html#typescript) ([source](packages/example-angular2-typescript))
+* [Fela + Preact](http://fela.js.org/docs/introduction/Examples.html#preact) ([source](examples/example-preact))
+* [Fela + Inferno](http://fela.js.org/docs/introduction/Examples.html#inferno) ([source](examples/example-inferno))
+* [Fela + Angular 2](http://fela.js.org/docs/introduction/Examples.html#angular-2) ([source](examples/example-angular2))
+    * [TypeScript](http://fela.js.org/docs/introduction/Examples.html#typescript) ([source](examples/example-angular2-typescript))
 * [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
 * [Fela + Cycle](https://github.com/wcastand/cycle-fela-example)
 
@@ -220,6 +220,7 @@ We'd love to help out. We also highly appreciate any feedback.
 - [NinjaConcept](https://www.ninjaconcept.com)
 - [Optisure](https://www.optisure.de)
 - [Rocket Station](http://rstation.io)
+- [Root Systems](https://www.rootsystems.nz)
 - [Space Between](https://www.spacebetween.co.uk/)
 - [V2](https://www.v2.com)
 - [Zendesk](https://www.zendesk.com)

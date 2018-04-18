@@ -9,7 +9,7 @@ A simple example application using the [React bindings](https://github.com/rofri
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/packages/example-react
+cd fela/examples/example-react
 npm install
 # starts the universal rendered application at localhost:8080
 npm start
@@ -34,7 +34,7 @@ Another example that covers the usage with [react-styleguidist](https://github.c
 
 ```sh
 git clone https://github.com/rofrischmann/fela.git
-cd fela/packages/example-with-styleguidist
+cd fela/examples/example-with-styleguidist
 npm install
 npm run styleguide
 ```
@@ -46,7 +46,7 @@ The example is the same as the [React example](#react) above.
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/packages/example-preact
+cd fela/examples/example-preact
 npm install
 # starts the universal rendered application at localhost:8080
 npm start
@@ -62,7 +62,7 @@ The example is the same as the [React example](#react) above.
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/packages/example-inferno
+cd fela/examples/example-inferno
 npm install
 # starts the universal rendered application at localhost:8080
 npm start
@@ -77,7 +77,7 @@ A simple example application using the [React bindings](https://github.com/rofri
 ```sh
 git clone https://github.com/rofrischmann/fela.git
 
-cd fela/packages/example-react-native
+cd fela/examples/example-react-native
 npm install
 npm start
 ```
@@ -96,7 +96,7 @@ The code examples are based on the build-chain as used in [Angular 2 ESNext Todo
 
 ```sh
 git clone https://github.com/rofrischmann/fela.git
-cd fela/packages/example-angular2
+cd fela/examples/example-angular2
 npm install
 npm run start
 ```
@@ -110,7 +110,7 @@ npm run start
 The same example is also available in TypeScript. It also covers Fela typings.
 ```sh
 git clone https://github.com/rofrischmann/fela.git
-cd fela/packages/example-angular2-typescript
+cd fela/examples/example-angular2-typescript
 npm install
 npm run start
 ```

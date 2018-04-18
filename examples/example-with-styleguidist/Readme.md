@@ -4,7 +4,7 @@ How to start locally:
 
 ```
 git clone https://github.com:rofrischmann/fela.git
-cd packages/example-with-styleguidist
+cd examples/example-with-styleguidist
 npm install
 npm run styleguide
 ```

@@ -69,14 +69,14 @@ describe('Connect Factory for bindings', () => {
       color: 'red',
     }
 
-    const MyComponent = connect(
-      rules
-    )(({ styles, rules: injectedRules, ...props }) => (
-      <div {...props}>
-        <span className={styles.rule1} />
-        <span className={styles.rule2} />
-      </div>
-    ))
+    const MyComponent = connect(rules)(
+      ({ styles, rules: injectedRules, ...props }) => (
+        <div {...props}>
+          <span className={styles.rule1} />
+          <span className={styles.rule2} />
+        </div>
+      )
+    )
 
     MyComponent.defaultProps = MyComponentDefaultProps
 
