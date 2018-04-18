@@ -750,10 +750,6 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bowser@^1.7.3:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.8.0.tgz#889d46ac922ec5db8297672747362ef836781ba7"
-
 brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -842,12 +838,6 @@ cryptiles@2.x.x:
   dependencies:
     boom "2.x.x"
 
-css-in-js-utils@2.0.0, css-in-js-utils@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-2.0.0.tgz#5af1dd70f4b06b331f48d22a3d86e0786c0b9435"
-  dependencies:
-    hyphenate-style-name "^1.0.2"
-
 dashdash@^1.12.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
@@ -917,79 +907,6 @@ extglob@^0.3.1:
 extsprintf@1.3.0, extsprintf@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.3.0.tgz#96918440e3041a7a414f8c52e3c574eb3c3e1e05"
-
-fela-dom@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-6.0.2.tgz#bbc475a1b636f1eb93568a63c49290a1ddb0cd81"
-  dependencies:
-    fela-tools "^5.0.10"
-    fela-utils "^7.0.2"
-
-fela-plugin-extend@^5.0.10:
-  version "5.0.10"
-  resolved "https://registry.yarnpkg.com/fela-plugin-extend/-/fela-plugin-extend-5.0.10.tgz#a19b3cba418a29a2eb021c00cd5624290a88b28d"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.2"
-
-fela-plugin-fallback-value@^5.0.11:
-  version "5.0.11"
-  resolved "https://registry.yarnpkg.com/fela-plugin-fallback-value/-/fela-plugin-fallback-value-5.0.11.tgz#9ece11c646681fb1dd4d21c97ab974980a986584"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.2"
-
-fela-plugin-lvha@^5.0.10:
-  version "5.0.10"
-  resolved "https://registry.yarnpkg.com/fela-plugin-lvha/-/fela-plugin-lvha-5.0.10.tgz#f0d58e9b0c0fbe2d5ecdb6a2badcbd7afeaaacfb"
-  dependencies:
-    fela-utils "^7.0.2"
-
-fela-plugin-prefixer@^5.0.11:
-  version "5.0.11"
-  resolved "https://registry.yarnpkg.com/fela-plugin-prefixer/-/fela-plugin-prefixer-5.0.11.tgz#29bf22b8a2c431e1616c2d8d494f8221890412b0"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-plugin-fallback-value "^5.0.11"
-    fela-utils "^7.0.2"
-    inline-style-prefixer "3.0.8"
-
-fela-plugin-unit@^5.0.10:
-  version "5.0.10"
-  resolved "https://registry.yarnpkg.com/fela-plugin-unit/-/fela-plugin-unit-5.0.10.tgz#3e990fe1f57fe1327b83ddf63f73a73ec8bae39e"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.2"
-
-fela-preset-web@5.0.11:
-  version "5.0.11"
-  resolved "https://registry.yarnpkg.com/fela-preset-web/-/fela-preset-web-5.0.11.tgz#3d67a952e99b0ba712797e1368587fe72e3f19e1"
-  dependencies:
-    fela-plugin-extend "^5.0.10"
-    fela-plugin-fallback-value "^5.0.11"
-    fela-plugin-lvha "^5.0.10"
-    fela-plugin-prefixer "^5.0.11"
-    fela-plugin-unit "^5.0.10"
-
-fela-tools@^5.0.10:
-  version "5.0.10"
-  resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.0.10.tgz#ee0cfa462b30fc1be4db86cf9924467ae9f2eaef"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.2"
-
-fela-utils@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-7.0.2.tgz#2c772a09f913c7ad1bd4a7849efc9cae90168194"
-  dependencies:
-    css-in-js-utils "2.0.0"
-
-fela@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/fela/-/fela-6.0.2.tgz#2cc7e0f8799edf0e3c7ff5f6860ba8859f64eb88"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.2"
 
 filename-regex@^2.0.0:
   version "2.0.1"
@@ -1169,10 +1086,6 @@ http-signature@~1.1.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
-hyphenate-style-name@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
-
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -1187,13 +1100,6 @@ inherits@2, inherits@^2.0.1, inherits@~2.0.0, inherits@~2.0.3:
 ini@~1.3.0:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
-
-inline-style-prefixer@3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-3.0.8.tgz#8551b8e5b4d573244e66a34b04f7d32076a2b534"
-  dependencies:
-    bowser "^1.7.3"
-    css-in-js-utils "^2.0.0"
 
 invariant@^2.2.2:
   version "2.2.2"
