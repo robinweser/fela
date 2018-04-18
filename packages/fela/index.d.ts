@@ -271,6 +271,7 @@ declare module "fela-plugin-validator" {
   interface Configs {
     logInvalid?: boolean;
     deleteInvalid?: boolean;
+    useCSSLint?: boolean | object;
   }
 
   export default function(configs?: Configs): TPlugin;

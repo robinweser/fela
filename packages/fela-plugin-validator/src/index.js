@@ -12,6 +12,14 @@ import { CSSLint } from 'csslint'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 
+const defaultRules = CSSLint.getRules().reduce(
+  (rules, { id }) => ({
+    ...rules,
+    [id]: 1,
+  }),
+  {}
+)
+
 function handleError(
   property: string,
   style: Object,
@@ -33,7 +41,8 @@ function validateStyleObject(
   style: Object,
   logInvalid: boolean,
   deleteInvalid: boolean,
-  useCSSLint: boolean
+  useCSSLint: boolean,
+  cssRules: Object
 ): void {
   for (const property in style) {
     const value = style[property]
@@ -44,7 +53,13 @@ function validateStyleObject(
         isMediaQuery(property) ||
         isSupport(property)
       ) {
-        validateStyleObject(value, logInvalid, deleteInvalid, useCSSLint)
+        validateStyleObject(
+          value,
+          logInvalid,
+          deleteInvalid,
+          useCSSLint,
+          cssRules
+        )
       } else {
         handleError(
           property,
@@ -59,29 +74,28 @@ function validateStyleObject(
           }
         )
       }
-    } else {
-      if (useCSSLint) {
-        const { messages } = CSSLint.verify(
-          `.fela {${cssifyDeclaration(property, value)};}`
-        )
+    } else if (useCSSLint) {
+      const { messages } = CSSLint.verify(
+        `.fela {${cssifyDeclaration(property, value)};}`,
+        cssRules
+      )
 
-        messages.forEach(({ message }) => {
-          handleError(
+      messages.forEach(({ message }) => {
+        handleError(
+          property,
+          style,
+          logInvalid,
+          deleteInvalid,
+          `Invalid property "${property}" with value "${value}". ${message.replace(
+            / at line .+, col .+\./,
+            '.'
+          )}`,
+          {
             property,
-            style,
-            logInvalid,
-            deleteInvalid,
-            `Invalid property "${property}" with value "${value}". ${message.replace(
-              / at line .+, col .+\./,
-              '.'
-            )}`,
-            {
-              property,
-              value,
-            }
-          )
-        })
-      }
+            value,
+          }
+        )
+      })
     }
   }
 }
@@ -99,7 +113,8 @@ function validateKeyframeObject(
   style: Object,
   logInvalid: boolean,
   deleteInvalid: boolean,
-  useCSSLint: boolean
+  useCSSLint: boolean,
+  cssRules: Object
 ): void {
   for (const percentage in style) {
     const value = style[percentage]
@@ -134,7 +149,13 @@ function validateKeyframeObject(
         }
       )
     } else {
-      validateStyleObject(value, logInvalid, deleteInvalid, useCSSLint)
+      validateStyleObject(
+        value,
+        logInvalid,
+        deleteInvalid,
+        useCSSLint,
+        cssRules
+      )
     }
   }
 }
@@ -144,12 +165,18 @@ function validateStyle(
   type: StyleType,
   options: Object
 ): Object {
-  const { logInvalid, deleteInvalid, useCSSLint } = options
+  const { logInvalid, deleteInvalid, useCSSLint, cssRules } = options
 
   if (type === KEYFRAME_TYPE) {
-    validateKeyframeObject(style, logInvalid, deleteInvalid, useCSSLint)
+    validateKeyframeObject(
+      style,
+      logInvalid,
+      deleteInvalid,
+      useCSSLint,
+      cssRules
+    )
   } else if (type === RULE_TYPE) {
-    validateStyleObject(style, logInvalid, deleteInvalid, useCSSLint)
+    validateStyleObject(style, logInvalid, deleteInvalid, useCSSLint, cssRules)
   }
 
   return style
@@ -162,9 +189,19 @@ const defaultOptions = {
 }
 
 export default function validator(options: Object = {}) {
+  const { useCSSLint } = options
+  const preparedOptions = {
+    ...defaultOptions,
+    ...options,
+  }
+
+  preparedOptions.cssRules = isPlainObject(useCSSLint)
+    ? {
+        ...defaultRules,
+        ...useCSSLint,
+      }
+    : defaultRules
+
   return (style: Object, type: StyleType) =>
-    validateStyle(style, type, {
-      ...defaultOptions,
-      ...options,
-    })
+    validateStyle(style, type, preparedOptions)
 }

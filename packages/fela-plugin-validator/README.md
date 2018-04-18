@@ -36,7 +36,7 @@ Make sure that you place the validator plugin *at the end* of your plugins array
 | --- | --- | --- | --- |
 | logInvalid | *(boolean?)* | `true` | logs invalid properties/values |
 | deleteInvalid | *(boolean?)* | `false` | deletes invalid properties/values |
-| useCSSLint | *(boolean?)* | `false` | use CSSLint for style validation |
+| useCSSLint | *(boolean?)*<br>*(Object?)* | `false` | use CSSLint for style validation. <br> If an object is transferred, it will be interpreted as a set of rules for the validation (see [here](https://github.com/CSSLint/csslint/wiki/Rules)) |
 
 ##### Example
 ```javascript
