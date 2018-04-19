@@ -29,6 +29,7 @@
     "fela-plugin-unit": "^5.0.16",
     "fela-plugin-validator": "^5.1.1",
     "inferno": "^4.0.0",
+    "inferno-create-element": "^4.0.0",
     "inferno-fela": "^8.1.0",
     "inferno-server": "^4.0.0",
     "webpack": "^2.6.1",
