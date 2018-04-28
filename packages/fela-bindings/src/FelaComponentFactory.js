@@ -7,17 +7,19 @@ export default function FelaComponentFactory(
   contextTypes?: Object
 ): Function {
   function FelaComponent(
-    { render = 'div', style, rule, children, ...restProps },
+    { children, customClass, render = 'div', rule, style, ...restProps },
     { renderer }
   ) {
     return createElement(FelaTheme, {
       render: theme => {
         const props = rule ? { theme, ...restProps } : theme
 
-        const className = renderer._renderStyle(
+        const className = `${customClass
+          ? `${customClass} `
+          : ''}${renderer._renderStyle(
           resolveRule(rule || style, props, renderer),
           props
-        )
+        )}`
 
         if (render instanceof Function) {
           return render({
