@@ -1758,6 +1758,10 @@ indexof@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/indexof/-/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
 
+inferno-create-element@^4.0.0:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/inferno-create-element/-/inferno-create-element-4.0.8.tgz#3536fe8a186953eec2e03f12d6071515e11b7abb"
+
 inferno-server@^4.0.0:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/inferno-server/-/inferno-server-4.0.8.tgz#13b6189bf563a74331979fff491cde7de3aaff22"
