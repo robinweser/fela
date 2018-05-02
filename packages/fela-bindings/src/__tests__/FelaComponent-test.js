@@ -45,6 +45,29 @@ describe('Using the FelaComponent component', () => {
     expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()
   })
 
+  it('correctly concat "customClass" with className', () => {
+    const renderer = createRenderer()
+
+    const wrapper = mount(
+      <FelaComponent
+        customClass="custom-class"
+        style={{
+          color: 'red',
+        }}
+        render={({ className }) => (
+          <div className={className}>I am red and have a custom class.</div>
+        )}
+      />,
+      {
+        context: {
+          renderer,
+        },
+      }
+    )
+
+    expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()
+  })
+
   it('correctly pass the theme to the "style" prop', () => {
     const themeContext = createTheme({
       fontSize: '15px',

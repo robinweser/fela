@@ -6,6 +6,7 @@ FelaComponent is an alternative component to the [createComponent](createCompone
 
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
+| customClass | string | class(es) to prepend before the generated classes |
 | style | [*StyleObject*](../../basics/Rules.md#styleobject)<br>*Function*| | Either a valid style object or a function of `theme` |
 | rule | *Function*| | A function of `theme` and props|
 | render | *string?*<br>*Function* | `div` | Either a render function or a string primitive to render into.<br>If passing a render function is receives the specified render interface. |
@@ -108,4 +109,21 @@ Children will automatically be passed down. If not specified at all, it will ren
 >
   I am red on blue
 </FelaComponent>
+```
+
+#### Add Custom Classes
+The common use case of needing to add a custom class to the generated ones, e.g.
+for integration with 3rd party libraries, can be handled using the `customClass`
+prop.
+
+```javascript
+<FelaComponent
+  customClass="my-custom-class"
+  style={{ color: 'red' }}
+>
+  I am red and have a custom class
+</FelaComponent>
+// <div class="my-custom-class a">
+//  I am red and have a custom class
+// </div>
 ```

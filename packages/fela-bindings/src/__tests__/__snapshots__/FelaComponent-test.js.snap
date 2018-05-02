@@ -1,5 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Using the FelaComponent component correctly concat "customClass" with className 1`] = `
+Array [
+  ".a {
+    color: red
+}",
+  <FelaComponent
+    customClass="custom-class"
+    render={[Function]}
+    style={
+        Object {
+            "color": "red",
+          }
+    }
+>
+    <FelaTheme
+        render={[Function]}
+    >
+        <div
+            className="custom-class a"
+        >
+            I am red and have a custom class.
+        </div>
+    </FelaTheme>
+</FelaComponent>,
+]
+`;
+
 exports[`Using the FelaComponent component correctly pass the theme and other props to the "rule" prop 1`] = `
 Array [
   ".a {
