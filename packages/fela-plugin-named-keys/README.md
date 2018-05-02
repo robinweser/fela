@@ -41,7 +41,7 @@ const namedKeysPlugin = namedKeys({
   desktop: '@media (min-width: 1024px)',
   tablet: '@media (min-width: 768px)',
   supportsFlex: '@supports (display: flex)',
-  supportsGrid: '@supports (display: grid)
+  supportsGrid: '@supports (display: grid)'
 })
 
 const renderer = createRenderer({
