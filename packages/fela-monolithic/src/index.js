@@ -27,9 +27,6 @@ function useMonolithicRenderer(
 ): MonolithicRenderer {
   renderer.prettySelectors = prettySelectors
 
-  // monolithic output can not be rehydrated
-  renderer.enableRehydration = false
-
   renderer._renderStyleToCache = (
     className: string,
     style: Object,
@@ -139,6 +136,22 @@ function useMonolithicRenderer(
     )
     return renderer._renderStyleToClassNames(processedStyle, rule)
   }
+
+  renderer.subscribe(event => {
+    if (event.type === 'REHYDRATATION_FINISHED') {
+      // Repair cache for monolithic usage
+      renderer.cache = Object.keys(renderer.cache).reduce((acc, key) => {
+        const item = renderer.cache[key]
+        if (item.type === 'RULE') {
+          return Object.assign(acc, {
+            [item.className + item.media + item.support]: item,
+          })
+        }
+        return Object.assign(acc, { [key]: item })
+      }, {})
+    }
+  })
+
 
   return renderer
 }

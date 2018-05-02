@@ -34,4 +34,6 @@ export default function rehydrate(renderer: DOMRenderer): void {
       }
     }
   })
+
+  renderer._emitChange({ type: 'REHYDRATATION_FINISHED' })
 }
