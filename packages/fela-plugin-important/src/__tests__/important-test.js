@@ -57,6 +57,16 @@ describe('Important plugin', () => {
     })
   })
 
+  it('should not add !important to the className property', () => {
+    const style = {
+      className: 'foo',
+    }
+
+    expect(important()(style)).toEqual({
+      className: 'foo',
+    })
+  })
+
   it('should add !important to only every element which is NOT keyframe (using %)', () => {
     const style = {
       '0%': {
