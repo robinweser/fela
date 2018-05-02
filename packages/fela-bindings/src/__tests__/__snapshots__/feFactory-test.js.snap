@@ -75,7 +75,7 @@ Array [
                 render={[Function]}
             >
                 <div
-                    className="a b"
+                    className="foo-bar baz a b"
                 >
                     Hello
                 </div>

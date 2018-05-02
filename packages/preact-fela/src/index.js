@@ -7,6 +7,7 @@ import FelaTheme from './FelaTheme'
 import Provider from './Provider'
 import ThemeProvider from './ThemeProvider'
 import withTheme from './withTheme'
+import fe from './fe'
 
 export {
   connect,
@@ -17,4 +18,5 @@ export {
   Provider,
   ThemeProvider,
   withTheme,
+  fe,
 }

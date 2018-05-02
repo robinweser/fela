@@ -6,6 +6,7 @@ import ProviderFactory from './ProviderFactory'
 import ThemeProviderFactory from './ThemeProviderFactory'
 import withThemeFactory from './withThemeFactory'
 import createTheme from './createTheme'
+import feFactory from './feFactory'
 import { THEME_CHANNEL } from './themeChannel'
 
 export {
@@ -17,5 +18,6 @@ export {
   ThemeProviderFactory,
   withThemeFactory,
   createTheme,
+  feFactory,
   THEME_CHANNEL,
 }
