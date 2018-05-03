@@ -76,4 +76,16 @@ describe('Unit plugin', () => {
       fontSize: '15pt',
     })
   })
+
+  it('should not add unit to 0', () => {
+    const style = {
+      width: 0,
+      height: '0',
+    }
+
+    expect(unit('px')(style)).toEqual({
+      width: 0,
+      height: '0',
+    })
+  })
 })
