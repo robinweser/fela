@@ -17,7 +17,6 @@ export default function feFactory(
             type,
             {
               ...otherProps,
-              style: inlineStyle,
               className: renderProps.className,
             },
             ...children
