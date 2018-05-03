@@ -152,7 +152,6 @@ function useMonolithicRenderer(
     }
   })
 
-
   return renderer
 }
 

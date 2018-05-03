@@ -5,7 +5,7 @@ export default function feFactory(
   createElement: Function,
   FelaComponent: Function
 ) {
-  return function fe(type, props = {}, ...children) {
+  return function fe(type: any, props: Object = {}, ...children: any) {
     const { style, className, ...otherProps } = props
 
     if (style) {
