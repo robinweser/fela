@@ -3,12 +3,12 @@
 Fe is a convenient replacement for `createElement`.<br>
 It is heavily inspired by [glam](https://github.com/threepointone/glam) and basically works the same.
 
-Fe directly renders inline style objects, which are passed to JSX components.<br>
+Fe directly renders inline style objects, which are passed to the `css` prop of JSX components.<br>
 It uses [FelaComponent](FelaComponent.md) internally.
 
 ## Usage
 Fe is especially made to replace `createElement` when using JSX.<br>
-The best way to achieve that, is to use the `/* @jsx fe */` override. 
+The best way to achieve that, is to use the `/* @jsx fe */` override.
 
 ```javascript
 /* @jsx fe */
@@ -32,7 +32,7 @@ const style = {
 
 // => <div class="a b">Hello</div>
 const Fragment = () => (
-  <div style={style}>
+  <div css={style}>
     Hello
   </div>
 )
@@ -52,7 +52,7 @@ const style = {
 
 // => <div class="custom-class a b">Hello</div>
 const Fragment = () => (
-  <div style={style} className="custom-class">
+  <div css={style} className="custom-class">
     Hello
   </div>
 )

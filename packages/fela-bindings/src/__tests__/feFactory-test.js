@@ -38,7 +38,7 @@ describe('Using fe', () => {
       fe(
         'div',
         {
-          style: {
+          css: {
             color: 'red',
             ':hover': {
               color: 'blue',
@@ -65,7 +65,7 @@ describe('Using fe', () => {
         'div',
         {
           className: 'foo-bar baz',
-          style: {
+          css: {
             color: 'red',
             ':hover': {
               color: 'blue',

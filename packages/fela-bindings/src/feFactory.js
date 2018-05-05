@@ -6,11 +6,11 @@ export default function feFactory(
   FelaComponent: Function
 ) {
   return function fe(type: any, props: Object = {}, ...children: any) {
-    const { style, className, ...otherProps } = props
+    const { css, className, ...otherProps } = props
 
-    if (style) {
+    if (css) {
       return createElement(FelaComponent, {
-        style,
+        style: css,
         customClass: className,
         render: renderProps =>
           createElement(
