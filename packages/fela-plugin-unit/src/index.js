@@ -10,8 +10,9 @@ function addUnitIfNeeded(
   const valueType = typeof value
   /* eslint-disable eqeqeq */
   if (
-    valueType === 'number' ||
-    (valueType === 'string' && value == parseFloat(value))
+    (valueType === 'number' ||
+      (valueType === 'string' && value == parseFloat(value))) &&
+    value != 0
   ) {
     value += propertyUnit
   }
