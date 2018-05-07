@@ -40,9 +40,12 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 The bindings documentation covers all React-like APIs that are officially shipped with Fela.
 This includes React, Preact and Inferno.
 
-* [`<Provider renderer>`](api/bindings/Provider.md)
-* [`<ThemeProvider theme [overwrite]>`](api/bindings/ThemeProvider.md)
-* [`withTheme(component)`](docs/withTheme.md)
 * [`connect(rules)`](api/bindings/connect.md)
 * [`createComponent(rule, [type], [passThroughProps])`](api/bindings/createComponent.md)
 * [`createComponentWithProxy(rule, [type], [passThroughProps])`](api/bindings/createComponentWithProxy.md)
+* [`fe(type, [props], [children])`](api/bindings/fe.md)
+* [`<FelaComponent style render [customClass]>`](api/bindings/FelaComponent.md)
+* [`<FelaTheme theme render>`](api/bindings/FelaTheme.md)
+* [`<Provider renderer>`](api/bindings/Provider.md)
+* [`<ThemeProvider theme [overwrite]>`](api/bindings/ThemeProvider.md)
+* [`withTheme(component)`](docs/withTheme.md)
