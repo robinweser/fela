@@ -13,7 +13,8 @@ export default function rehydrate(renderer: DOMRenderer): void {
   arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
     const rehydrationAttribute =
       node.getAttribute('data-fela-rehydration') || -1
-    const rehydrationIndex = parseInt(rehydrationAttribute)
+    const rehydrationIndex =
+      renderer.uniqueRuleIdentifier || parseInt(rehydrationAttribute, 10)
 
     // skip rehydration if no rehydration index is set
     // this index is set to -1 if something blocks rehydration
