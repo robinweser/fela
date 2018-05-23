@@ -5,6 +5,17 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 23/05/18
+| Package | Version | Changes |
+| ---- | --- | --- |
+| fela<br>fela-plugin-extend<br>fela-plugin-fallback-value<br>fela-tools | 6.1.8<br>6.0.6<br>5.0.18<br>5.1.6 | [(#549)](https://github.com/rofrischmann/fela/pull/545) fix semVer range of `css-in-js-utils` dependency |
+| fela-plugin-validator | 5.2.0 | [(#554)](https://github.com/rofrischmann/fela/pull/554) allow custom `cssLint` configuration |
+| fela-dom<br>fela-monolithic | 7.0.8<br>5.0.22 | [(#559)](https://github.com/rofrischmann/fela/pull/559) fix regeneration of hydrated monolithic classes |
+| fela-bindings<br>react-fela<br>inferno-fela<br>preact-fela<br> | 2.3.0<br>7.3.0<br>8.2.0<br>7.3.0 |[(#560)](https://github.com/rofrischmann/fela/pull/560) Concatenate `customClass` with generated classes in `felaComponent`<br>[(#564)](https://github.com/rofrischmann/fela/pull/564) add support for `fe` jsx pragma |
+| fela-plugin-important | 6.0.2 | [(#563)](https://github.com/rofrischmann/fela/pull/563) don't add `!important` to generated classes when using fela-monolithic |
+| fela-plugin-unit | 5.0.17 | [(#565)](https://github.com/rofrischmann/fela/pull/565) don't append unit to zero-values |
+| fela-dom | 7.0.8 | [(#566)](https://github.com/rofrischmann/fela/pull/566) fix rehydration id |
+
 ## 04/04/18
 | Package | Version | Changes |
 | ---- | --- | --- |

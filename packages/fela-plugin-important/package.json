@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-important",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "Fela plugin that adds !important to every value",
   "main": "lib/index.js",
   "module": "es/index.js",
