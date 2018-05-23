@@ -68,4 +68,45 @@ describe('Rehydrating from DOM nodes', () => {
       sortObject(serverRenderer.cache)
     )
   })
+
+  it('should continue in rehydratation with correct rehydratation index', () => {
+    const serverRenderer = createRenderer({
+      plugins: [...webPreset],
+    })
+
+    serverRenderer.renderRule(() => ({
+      color: 'yellow',
+      backgroundColor: 'red',
+    }))
+
+    expect(serverRenderer.uniqueRuleIdentifier).toBe(2)
+
+    document.head.innerHTML = renderToMarkup(serverRenderer)
+
+    const clientRenderer = createRenderer({
+      plugins: [...webPreset],
+    })
+
+    rehydrate(clientRenderer)
+
+    expect(clientRenderer.uniqueRuleIdentifier).toBe(2)
+
+    // simulates e.g. page transition with new component rule
+    rehydrate(clientRenderer)
+
+    clientRenderer.renderRule(() => ({
+      color: 'black',
+    }))
+
+    expect(clientRenderer.uniqueRuleIdentifier).toBe(3)
+
+    // simulates e.g. page transition with new component rule
+    rehydrate(clientRenderer)
+
+    clientRenderer.renderRule(() => ({
+      color: 'purple',
+    }))
+
+    expect(clientRenderer.uniqueRuleIdentifier).toBe(4)
+  })
 })
