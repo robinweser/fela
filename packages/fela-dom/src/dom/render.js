@@ -8,7 +8,7 @@ export default function render(renderer: DOMRenderer): void {
   if (!renderer.updateSubscription) {
     connectDOMNodes(renderer)
 
-    renderer.updateSubscription = createDOMSubscription(renderer.nodes)
+    renderer.updateSubscription = createDOMSubscription(renderer)
     renderer.subscribe(renderer.updateSubscription)
   }
 }

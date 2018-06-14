@@ -1,6 +1,6 @@
-import { renderToString } from 'fela-tools'
-
 import createRenderer from '../createRenderer'
+
+import renderToString from '../../../fela-tools/src/renderToString'
 
 describe('Renderer', () => {
   describe('Instantiating a new renderer', () => {

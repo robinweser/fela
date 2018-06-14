@@ -3,6 +3,13 @@ import { RULE_TYPE } from 'fela-utils'
 
 import connectDOMNodes from '../connectDOMNodes'
 
+beforeEach(() => {
+  const head = document.head
+  while (head.firstChild) {
+    head.removeChild(head.firstChild)
+  }
+})
+
 describe('Connecting DOM nodes', () => {
   it('should initialize nodes', () => {
     const node = document.createElement('style')
@@ -19,6 +26,7 @@ describe('Connecting DOM nodes', () => {
           declaration: 'color:red',
           media: '',
           support: '',
+          pseudo: '',
           type: RULE_TYPE,
         },
         colorblue: {
@@ -27,6 +35,7 @@ describe('Connecting DOM nodes', () => {
           declaration: 'color:blue',
           media: '(min-height: 800px)',
           support: '',
+          pseudo: '',
           type: RULE_TYPE,
         },
         coloryellow: {
@@ -35,6 +44,7 @@ describe('Connecting DOM nodes', () => {
           declaration: 'color:yellow',
           media: '',
           support: '(display: flex)',
+          pseudo: '',
           type: RULE_TYPE,
         },
         colorgreen: {
@@ -43,6 +53,7 @@ describe('Connecting DOM nodes', () => {
           declaration: 'color:green',
           media: '(min-height: 800px)',
           support: '(display: flex)',
+          pseudo: '',
           type: RULE_TYPE,
         },
       },

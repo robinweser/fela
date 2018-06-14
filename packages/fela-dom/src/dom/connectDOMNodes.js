@@ -20,7 +20,8 @@ export default function connectDOMNodes(renderer: DOMRenderer): void {
   const cacheCluster = clusterCache(
     renderer.cache,
     renderer.mediaQueryOrder,
-    renderer.supportQueryOrder
+    renderer.supportQueryOrder,
+    renderer.ruleOrder
   )
 
   const baseNode = renderer.nodes[RULE_TYPE]

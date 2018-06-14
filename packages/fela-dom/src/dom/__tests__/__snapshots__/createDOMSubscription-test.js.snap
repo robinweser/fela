@@ -187,6 +187,7 @@ Array [
           "cssRules": [Circular],
           "parentStyleSheet": null,
         },
+        "score": 0,
         "selectorText": ".a",
         "style": CSSStyleDeclaration {
           "0": "color",
@@ -209,6 +210,7 @@ Array [
           "cssRules": [Circular],
           "parentStyleSheet": null,
         },
+        "score": 0,
         "selectorText": ".b",
         "style": CSSStyleDeclaration {
           "0": "color",
@@ -231,6 +233,7 @@ Array [
           "cssRules": [Circular],
           "parentStyleSheet": null,
         },
+        "score": 0,
         "selectorText": ".c",
         "style": CSSStyleDeclaration {
           "0": "color",

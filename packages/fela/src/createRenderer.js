@@ -49,8 +49,16 @@ export default function createRenderer(
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     supportQueryOrder: config.supportQueryOrder || [],
-    selectorPrefix: config.selectorPrefix || '',
+    ruleOrder: [
+      /^:link/,
+      /^:visited/,
+      /^:hover/,
+      /^:focus-within/,
+      /^:focus/,
+      /^:active/,
+    ],
 
+    selectorPrefix: config.selectorPrefix || '',
     filterClassName: config.filterClassName || isSafeClassName,
 
     uniqueRuleIdentifier: 0,
@@ -264,6 +272,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
               className,
               selector,
               declaration,
+              pseudo,
               media,
               support,
             }

@@ -25,7 +25,8 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
   const cacheCluster = clusterCache(
     renderer.cache,
     renderer.mediaQueryOrder,
-    renderer.supportQueryOrder
+    renderer.supportQueryOrder,
+    renderer.ruleOrder
   )
 
   const rehydrationIndex = getRehydrationIndex(renderer)

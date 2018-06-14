@@ -7,25 +7,45 @@ import {
   FONT_TYPE,
   STATIC_TYPE,
   CLEAR_TYPE,
+  getRuleScore,
   generateCSSRule,
 } from 'fela-utils'
 
 import getDOMNode from './getDOMNode'
 import generateRule from './generateRule'
 
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
+
 const changeHandlers = {
-  [RULE_TYPE]: (node, { selector, declaration, support }) => {
+  [RULE_TYPE]: (node, { selector, declaration, support, pseudo }, renderer) => {
     const cssRule = generateRule(selector, declaration, support)
 
     // only use insertRule in production as browser devtools might have
     // weird behavior if used together with insertRule at runtime
     if (process.env.NODE_ENV !== 'production') {
+      // TODO: how to leverage rule scores in devmode?
       node.textContent += cssRule
       return
     }
 
     try {
-      node.sheet.insertRule(cssRule, node.sheet.cssRules.length)
+      const score = getRuleScore(renderer.ruleOrder, pseudo)
+      const cssRules = node.sheet.cssRules
+
+      let index = cssRules.length
+
+      // TODO: instead of checking the score every time
+      // we could save the latest score=0 index to quickly inject
+      // basic styles and only check for score!=0 (e.g. pseudo classes)
+      for (let i = 0, len = cssRules.length; i < len; ++i) {
+        if (cssRules[i].score > score) {
+          index = i
+          break
+        }
+      }
+
+      node.sheet.insertRule(cssRule, index)
+      cssRules[index].score = score
     } catch (e) {
       // TODO: warning?
     }
@@ -45,12 +65,12 @@ const changeHandlers = {
   },
 }
 
-export default function createDOMSubscription(nodes: Object): Function {
-  const baseNode = nodes[RULE_TYPE]
+export default function createDOMSubscription(renderer: DOMRenderer): Function {
+  const baseNode = renderer.nodes[RULE_TYPE]
 
   return function changeSubscription(change) {
     if (change.type === CLEAR_TYPE) {
-      return objectEach(nodes, node => {
+      return objectEach(renderer.nodes, node => {
         node.textContent = ''
       })
     }
@@ -59,14 +79,14 @@ export default function createDOMSubscription(nodes: Object): Function {
 
     if (handleChange) {
       const node = getDOMNode(
-        nodes,
+        renderer.nodes,
         baseNode,
         change.type,
         change.media,
         !!change.support
       )
 
-      handleChange(node, change)
+      handleChange(node, change, renderer)
     }
   }
 }

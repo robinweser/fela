@@ -11,7 +11,7 @@ export default function initDOMNode(
 ): void {
   const node = getDOMNode(nodes, baseNode, type, media, support)
   // in case that there is a node coming from server already
-  // but rules are not matchnig
+  // but rules are not matching
   if (node.textContent !== css) {
     node.textContent = css
   }

@@ -1,5 +1,136 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`render should correctly sort rules 1`] = `
+Array [
+  CSSStyleRule {
+    "__ends": 14,
+    "__starts": 0,
+    "parentRule": null,
+    "parentStyleSheet": CSSStyleSheet {
+      "cssRules": [Circular],
+      "parentStyleSheet": null,
+    },
+    "score": 0,
+    "selectorText": ".a",
+    "style": CSSStyleDeclaration {
+      "0": "color",
+      "__starts": 2,
+      "_importants": Object {
+        "color": "",
+      },
+      "color": "blue",
+      "length": 1,
+      "parentRule": [Circular],
+    },
+  },
+  CSSStyleRule {
+    "__ends": 13,
+    "__starts": 0,
+    "parentRule": null,
+    "parentStyleSheet": CSSStyleSheet {
+      "cssRules": [Circular],
+      "parentStyleSheet": null,
+    },
+    "score": 0,
+    "selectorText": ".e",
+    "style": CSSStyleDeclaration {
+      "0": "color",
+      "__starts": 2,
+      "_importants": Object {
+        "color": "",
+      },
+      "color": "red",
+      "length": 1,
+      "parentRule": [Circular],
+    },
+  },
+  CSSStyleRule {
+    "__ends": 19,
+    "__starts": 0,
+    "parentRule": null,
+    "parentStyleSheet": CSSStyleSheet {
+      "cssRules": [Circular],
+      "parentStyleSheet": null,
+    },
+    "score": 3,
+    "selectorText": ".c:hover",
+    "style": CSSStyleDeclaration {
+      "0": "color",
+      "__starts": 8,
+      "_importants": Object {
+        "color": "",
+      },
+      "color": "red",
+      "length": 1,
+      "parentRule": [Circular],
+    },
+  },
+  CSSStyleRule {
+    "__ends": 20,
+    "__starts": 0,
+    "parentRule": null,
+    "parentStyleSheet": CSSStyleSheet {
+      "cssRules": [Circular],
+      "parentStyleSheet": null,
+    },
+    "score": 3,
+    "selectorText": ".f:hover",
+    "style": CSSStyleDeclaration {
+      "0": "color",
+      "__starts": 8,
+      "_importants": Object {
+        "color": "",
+      },
+      "color": "blue",
+      "length": 1,
+      "parentRule": [Circular],
+    },
+  },
+  CSSStyleRule {
+    "__ends": 28,
+    "__starts": 0,
+    "parentRule": null,
+    "parentStyleSheet": CSSStyleSheet {
+      "cssRules": [Circular],
+      "parentStyleSheet": null,
+    },
+    "score": 4,
+    "selectorText": ".b:focus-within",
+    "style": CSSStyleDeclaration {
+      "0": "color",
+      "__starts": 15,
+      "_importants": Object {
+        "color": "",
+      },
+      "color": "black",
+      "length": 1,
+      "parentRule": [Circular],
+    },
+  },
+  CSSStyleRule {
+    "__ends": 23,
+    "__starts": 0,
+    "parentRule": null,
+    "parentStyleSheet": CSSStyleSheet {
+      "cssRules": [Circular],
+      "parentStyleSheet": null,
+    },
+    "score": 6,
+    "selectorText": ".d:active",
+    "style": CSSStyleDeclaration {
+      "0": "color",
+      "__starts": 9,
+      "_importants": Object {
+        "color": "",
+      },
+      "color": "yellow",
+      "length": 1,
+      "parentRule": [Circular],
+    },
+  },
+]
+`;
+
 exports[`render should create style nodes and render CSS rules 1`] = `
 "<html>
 
@@ -64,16 +195,16 @@ exports[`render should not overwrite rehydrated styles 1`] = `
       color: yellow
     }
 
-    .c:hover {
-      color: red
-    }
-
     .e {
       background-color: red
     }
 
     .f {
       color: blue
+    }
+
+    .c:hover {
+      color: red
     }
   </style>
   <style type=\\"text/css\\" data-fela-rehydration=\\"4\\" data-fela-type=\\"RULE\\" media=\\"(max-width: 800px)\\">

@@ -21,7 +21,7 @@ describe('Subscribing to the DOM', () => {
 
     connectDOMNodes(renderer)
 
-    const updateSubscription = createDOMSubscription(renderer.nodes)
+    const updateSubscription = createDOMSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -44,7 +44,7 @@ describe('Subscribing to the DOM', () => {
 
     connectDOMNodes(renderer)
 
-    const updateSubscription = createDOMSubscription(renderer.nodes)
+    const updateSubscription = createDOMSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderStatic(
@@ -67,7 +67,7 @@ describe('Subscribing to the DOM', () => {
 
     connectDOMNodes(renderer)
 
-    const updateSubscription = createDOMSubscription(renderer.nodes)
+    const updateSubscription = createDOMSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderKeyframe(() => ({
@@ -87,7 +87,7 @@ describe('Subscribing to the DOM', () => {
 
     connectDOMNodes(renderer)
 
-    const updateSubscription = createDOMSubscription(renderer.nodes)
+    const updateSubscription = createDOMSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -118,7 +118,7 @@ describe('Subscribing to the DOM', () => {
 
     connectDOMNodes(renderer)
 
-    const updateSubscription = createDOMSubscription(renderer.nodes)
+    const updateSubscription = createDOMSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -152,7 +152,7 @@ describe('Subscribing to the DOM', () => {
 
     connectDOMNodes(renderer)
 
-    const updateSubscription = createDOMSubscription(renderer.nodes)
+    const updateSubscription = createDOMSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({

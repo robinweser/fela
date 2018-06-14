@@ -12,6 +12,10 @@ beforeEach(() => {
   }
 })
 
+afterEach(() => {
+  process.env.NODE_ENV = 'test'
+})
+
 describe('render', () => {
   it('should create style nodes and render CSS rules', () => {
     const renderer = createRenderer()
@@ -94,5 +98,37 @@ describe('render', () => {
         indent_size: 2,
       })
     ).toMatchSnapshot()
+  })
+
+  it('should correctly sort rules', () => {
+    process.env.NODE_ENV = 'production'
+
+    const renderer = createRenderer()
+    render(renderer)
+
+    renderer.renderRule(() => ({
+      color: 'blue',
+      ':focus-within': {
+        color: 'black',
+      },
+      ':hover': {
+        color: 'red',
+      },
+      ':active': {
+        color: 'yellow',
+      },
+    }))
+
+    renderer.renderRule(() => ({
+      color: 'red',
+      ':hover': {
+        color: 'blue',
+      },
+      ':active': {
+        color: 'yellow',
+      },
+    }))
+
+    expect(document.styleSheets[0].cssRules).toMatchSnapshot()
   })
 })
