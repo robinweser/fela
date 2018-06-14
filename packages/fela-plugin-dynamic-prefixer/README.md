@@ -1,3 +1,5 @@
+> **Deprecated!**<br>The dynamic prefixer plugin (fela-plugin-dynamic-prefixer) is deprecated, please remove it from your Fela configuration.<br>inline-style-prefixer will remove its dynamic version due to increasing issues with newer browers, browser detection and false prefixing.<br>Use the static prefixer plugin (fela-plugin-prefixer) instead. See https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-prefixer`)
+
 # fela-plugin-dynamic-prefixer
 
 <img alt="npm version" src="https://badge.fury.io/js/ffela-plugin-dynamic-prefixer.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-dynamic-prefixer.svg">
