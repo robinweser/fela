@@ -1,6 +1,7 @@
+> **Deprecated!**<br>The Font Renderer Enhancer (fela-font-renderer) is deprecated, please remove it from your Fela configuration.<br>Font Renderering was heavily improved within Fela making this package obsolete nowadays. See http://fela.js.org/docs/basics/Renderer.html#renderfont
+
 # fela-font-renderer
 
-> Deprecated: With fela 5.0.0 this enhancer is no longer required as fela-dom now renders fonts into its own stylesheet.
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-font-renderer.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-font-renderer.svg">
 

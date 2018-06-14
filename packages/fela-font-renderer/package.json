@@ -1,7 +1,6 @@
 {
   "name": "fela-font-renderer",
   "version": "5.0.24",
-  "private": true,
   "description": "Fela enhancer to render fonts into a separate stylesheet",
   "main": "lib/index.js",
   "module": "es/index.js",
