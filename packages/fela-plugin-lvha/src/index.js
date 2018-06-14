@@ -1,6 +1,8 @@
 /* @flow */
 import arrayEach from 'fast-loops/lib/arrayEach'
 
+import deprecate from './deprecate'
+
 const precedence = {
   ':link': 0,
   ':visited': 1,
@@ -12,6 +14,11 @@ const precedence = {
 const pseudoClasses = Object.keys(precedence)
 
 function orderLVHA(style: Object): Object {
+  deprecate(`
+The LVHA plugin (fela-plugin-lvha) is deprecated, please remove it from your Fela configuration.
+It is obsolete as sorting is now handled by the renderer itself. See https://github.com/rofrischmann/fela/pull/573
+  `)
+
   const pseudoList = []
 
   for (const property in style) {

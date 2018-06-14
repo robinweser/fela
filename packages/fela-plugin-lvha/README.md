@@ -1,3 +1,6 @@
+> **Deprecated!**<br>The LVHA plugin (fela-plugin-lvha) is deprecated, please remove it from your Fela configuration.<br>
+It is obsolete as sorting is now handled by the renderer itself. See https://github.com/rofrischmann/fela/pull/573
+  
 # fela-plugin-lvha
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-lvha.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-lvha.svg">
