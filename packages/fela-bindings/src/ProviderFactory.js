@@ -24,19 +24,12 @@ export default function ProviderFactory(
     constructor(props: Object, context: Object) {
       super(props, context)
 
-      if (hasDOM(props.renderer) && props.renderToDOM) {
-        render(props.renderer)
-      }
-    }
-
-    componentDidMount() {
-      if (
-        !this.props.renderer.devMode &&
-        hasDOM(this.props.renderer) &&
-        hasServerRenderedStyle()
-      ) {
-        // CLEAR NODES
-        console.log('HAS REHYDRATED STYLES')
+      if (hasDOM(props.renderer)) {
+        if (props.rehydrate && hasServerRenderedStyle()) {
+          rehydrate(props.renderer)
+        } else if (props.renderToDOM) {
+          render(props.renderer)
+        }
       }
     }
 

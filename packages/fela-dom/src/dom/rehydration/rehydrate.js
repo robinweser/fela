@@ -1,9 +1,12 @@
 /* @flow */
 import arrayEach from 'fast-loops/lib/arrayEach'
+import objectEach from 'fast-loops/lib/objectEach'
 import { RULE_TYPE } from 'fela-utils'
 
 import rehydrateSupportRules from './rehydrateSupportRules'
 import rehydrateRules from './rehydrateRules'
+
+import render from '../render'
 
 import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 
@@ -36,5 +39,5 @@ export default function rehydrate(renderer: DOMRenderer): void {
     }
   })
 
-  renderer._emitChange({ type: 'REHYDRATATION_FINISHED' })
+  render(renderer)
 }
