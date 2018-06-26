@@ -11,7 +11,7 @@ import {
   generateCSSRule,
 } from 'fela-utils'
 
-import getDOMNode from './getDOMNode'
+import getNodeFromCache from './getNodeFromCache'
 import generateRule from './generateRule'
 
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
@@ -22,7 +22,7 @@ const changeHandlers = {
 
     // only use insertRule in production as browser devtools might have
     // weird behavior if used together with insertRule at runtime
-    if (process.env.NODE_ENV !== 'production') {
+    if (renderer.devMode) {
       // TODO: how to leverage rule scores in devmode?
       node.textContent += cssRule
       return
@@ -66,21 +66,19 @@ const changeHandlers = {
 }
 
 export default function createDOMSubscription(renderer: DOMRenderer): Function {
-  const baseNode = renderer.nodes[RULE_TYPE]
-
-  return function changeSubscription(change) {
+  return change => {
     if (change.type === CLEAR_TYPE) {
-      return objectEach(renderer.nodes, node => {
-        node.textContent = ''
-      })
+      return
+      // return objectEach(renderer.nodes, node =>
+      //   node.parentNode.removeChild(node)
+      // )
     }
 
     const handleChange = changeHandlers[change.type]
 
     if (handleChange) {
-      const node = getDOMNode(
-        renderer.nodes,
-        baseNode,
+      const node = getNodeFromCache(
+        renderer,
         change.type,
         change.media,
         !!change.support

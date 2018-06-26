@@ -60,6 +60,7 @@ export default function createRenderer(
 
     selectorPrefix: config.selectorPrefix || '',
     filterClassName: config.filterClassName || isSafeClassName,
+    devMode: false,
 
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
