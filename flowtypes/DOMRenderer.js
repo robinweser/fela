@@ -19,7 +19,7 @@ export type DOMRenderer = {
   subscribe: Function,
   clear: Function,
   _renderStyleToClassNames: Function,
-  _emitChange: Function
+  _emitChange: Function,
 }
 
 export type DOMRendererConfig = {
@@ -28,5 +28,5 @@ export type DOMRendererConfig = {
   enhancers?: Array<Function>,
   mediaQueryOrder?: Array<string>,
   selectorPrefix?: string,
-  filterClassName?: Function
+  filterClassName?: Function,
 }

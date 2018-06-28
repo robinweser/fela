@@ -34,7 +34,7 @@ const changeHandlers = {
 
       let index = cssRules.length
 
-      // TODO: instead of checking the score every time
+      // TODO: (PERF) instead of checking the score every time
       // we could save the latest score=0 index to quickly inject
       // basic styles and only check for score!=0 (e.g. pseudo classes)
       for (let i = 0, len = cssRules.length; i < len; ++i) {
@@ -65,26 +65,18 @@ const changeHandlers = {
   },
 }
 
-export default function createDOMSubscription(renderer: DOMRenderer): Function {
+export default function createSubscription(renderer: DOMRenderer): Function {
   return change => {
     if (change.type === CLEAR_TYPE) {
-      return
-      // return objectEach(renderer.nodes, node =>
-      //   node.parentNode.removeChild(node)
-      // )
+      return objectEach(renderer.nodes, node =>
+        node.parentNode.removeChild(node)
+      )
     }
 
     const handleChange = changeHandlers[change.type]
 
     if (handleChange) {
-      const node = getNodeFromCache(
-        renderer,
-        change.type,
-        change.media,
-        !!change.support
-      )
-
-      handleChange(node, change, renderer)
+      handleChange(getNodeFromCache(change, renderer), change, renderer)
     }
   }
 }

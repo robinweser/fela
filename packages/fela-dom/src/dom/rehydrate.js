@@ -3,12 +3,12 @@ import arrayEach from 'fast-loops/lib/arrayEach'
 import objectEach from 'fast-loops/lib/objectEach'
 import { RULE_TYPE } from 'fela-utils'
 
-import rehydrateSupportRules from './rehydrateSupportRules'
-import rehydrateRules from './rehydrateRules'
+import rehydrateSupportRules from './rehydration/rehydrateSupportRules'
+import rehydrateRules from './rehydration/rehydrateRules'
 
-import render from '../render'
+import render from './render'
 
-import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 // rehydration (WIP)
 // TODO: static, keyframe, font
