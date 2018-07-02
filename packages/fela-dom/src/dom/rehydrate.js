@@ -5,6 +5,7 @@ import { RULE_TYPE } from 'fela-utils'
 
 import rehydrateSupportRules from './rehydration/rehydrateSupportRules'
 import rehydrateRules from './rehydration/rehydrateRules'
+import calculateNodeScore from './connection/calculateNodeScore'
 
 import render from './render'
 
@@ -13,6 +14,8 @@ import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 // rehydration (WIP)
 // TODO: static, keyframe, font
 export default function rehydrate(renderer: DOMRenderer): void {
+  render(renderer)
+
   arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
     const rehydrationAttribute =
       node.getAttribute('data-fela-rehydration') || -1
@@ -29,6 +32,15 @@ export default function rehydrate(renderer: DOMRenderer): void {
 
       renderer.uniqueRuleIdentifier = rehydrationIndex
 
+      const reference = type + media + support
+      renderer.nodes[reference] = {
+        score: calculateNodeScore(
+          { type, media, support },
+          renderer.mediaQueryOrder
+        ),
+        node,
+      }
+
       if (type === RULE_TYPE) {
         if (support) {
           rehydrateSupportRules(css, media, renderer.cache)
@@ -38,6 +50,4 @@ export default function rehydrate(renderer: DOMRenderer): void {
       }
     }
   })
-
-  render(renderer)
 }

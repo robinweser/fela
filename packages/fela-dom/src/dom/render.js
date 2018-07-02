@@ -9,7 +9,7 @@ export default function render(renderer: DOMRenderer): void {
   if (!renderer.updateSubscription) {
     renderer.nodes = {}
 
-    renderer.updateSubscription = createDOMSubscription(renderer)
+    renderer.updateSubscription = createSubscription(renderer)
     renderer.subscribe(renderer.updateSubscription)
 
     // simulate rendering to ensure all styles rendered prior to

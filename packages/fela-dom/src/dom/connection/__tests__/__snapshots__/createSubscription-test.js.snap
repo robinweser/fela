@@ -3,12 +3,7 @@
 exports[`Subscribing to the DOM should clear all DOM nodes 1`] = `
 "<html>
 
-<head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px)\\"></style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px) and (max-height: 500px)\\"></style>
-  <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\"></style>
-</head>
+<head></head>
 
 <body></body>
 
@@ -58,35 +53,11 @@ exports[`Subscribing to the DOM should render media rules and support rules to s
 "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    .a {
-      color: blue
-    }
-  </style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\">
-    @supports (display: flex) {
-      .b {
-        display: flex
-      }
-    }
-  </style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px)\\">
-    .c {
-      color: red
-    }
-  </style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px) and (max-height: 500px)\\">
-    .d {
-      color: yellow
-    }
-  </style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width: 300px) and (max-height: 500px)\\">
-    @supports (display: grid) {
-      .e {
-        display: grid
-      }
-    }
-  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px)\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px) and (max-height: 500px)\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width: 300px) and (max-height: 500px)\\"></style>
 </head>
 
 <body></body>
@@ -98,19 +69,7 @@ exports[`Subscribing to the DOM should render rules to a DOM node 1`] = `
 "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    .a {
-      background-color: red
-    }
-
-    .b {
-      color: blue
-    }
-
-    .c:hover {
-      color: red
-    }
-  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
 </head>
 
 <body></body>
@@ -141,9 +100,6 @@ Array [
   "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px)\\"></style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px) and (max-height: 500px)\\"></style>
   <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
     @-webkit-keyframes k1 {
       from {
@@ -172,6 +128,9 @@ Array [
       }
     }
   </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px)\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width: 300px) and (max-height: 500px)\\"></style>
 </head>
 
 <body></body>

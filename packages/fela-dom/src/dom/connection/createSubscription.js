@@ -14,7 +14,7 @@ import {
 import getNodeFromCache from './getNodeFromCache'
 import generateRule from './generateRule'
 
-import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
+import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 
 const changeHandlers = {
   [RULE_TYPE]: (node, { selector, declaration, support, pseudo }, renderer) => {
@@ -68,7 +68,7 @@ const changeHandlers = {
 export default function createSubscription(renderer: DOMRenderer): Function {
   return change => {
     if (change.type === CLEAR_TYPE) {
-      return objectEach(renderer.nodes, node =>
+      return objectEach(renderer.nodes, ({ node }) =>
         node.parentNode.removeChild(node)
       )
     }

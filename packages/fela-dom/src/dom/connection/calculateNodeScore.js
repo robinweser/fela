@@ -24,7 +24,7 @@ export default function calculateNodeScore(
   { type, support, media }: NodeAttributes,
   mediaQueryOrder: Array<string>
 ) {
-  switch (attributes.type) {
+  switch (type) {
     case FONT_TYPE:
       return 0
     case STATIC_TYPE:

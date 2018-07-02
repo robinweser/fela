@@ -1,8 +1,8 @@
 import { html as beautify } from 'js-beautify'
-import { createRenderer } from 'fela'
 
-import createDOMSubscription from '../createDOMSubscription'
-import connectDOMNodes from '../connectDOMNodes'
+import createSubscription from '../createSubscription'
+
+import createRenderer from '../../../../../fela/src/createRenderer'
 
 beforeEach(() => {
   const head = document.head
@@ -19,9 +19,7 @@ describe('Subscribing to the DOM', () => {
   it('should render rules to a DOM node', () => {
     const renderer = createRenderer()
 
-    connectDOMNodes(renderer)
-
-    const updateSubscription = createDOMSubscription(renderer)
+    const updateSubscription = createSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -42,9 +40,7 @@ describe('Subscribing to the DOM', () => {
   it('should render static styles to a DOM node', () => {
     const renderer = createRenderer()
 
-    connectDOMNodes(renderer)
-
-    const updateSubscription = createDOMSubscription(renderer)
+    const updateSubscription = createSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderStatic(
@@ -65,9 +61,7 @@ describe('Subscribing to the DOM', () => {
   it('should render keyframes to a DOM node', () => {
     const renderer = createRenderer()
 
-    connectDOMNodes(renderer)
-
-    const updateSubscription = createDOMSubscription(renderer)
+    const updateSubscription = createSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderKeyframe(() => ({
@@ -85,9 +79,7 @@ describe('Subscribing to the DOM', () => {
   it('should render media rules and support rules to single DOM nodes', () => {
     const renderer = createRenderer()
 
-    connectDOMNodes(renderer)
-
-    const updateSubscription = createDOMSubscription(renderer)
+    const updateSubscription = createSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -116,9 +108,7 @@ describe('Subscribing to the DOM', () => {
   it('should clear all DOM nodes', () => {
     const renderer = createRenderer()
 
-    connectDOMNodes(renderer)
-
-    const updateSubscription = createDOMSubscription(renderer)
+    const updateSubscription = createSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -150,9 +140,7 @@ describe('Subscribing to the DOM', () => {
 
     process.env.NODE_ENV = 'production'
 
-    connectDOMNodes(renderer)
-
-    const updateSubscription = createDOMSubscription(renderer)
+    const updateSubscription = createSubscription(renderer)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({

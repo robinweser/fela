@@ -1,8 +1,8 @@
-import { createRenderer } from 'fela'
-import webPreset from 'fela-preset-web'
-
 import rehydrate from '../rehydrate'
-import renderToMarkup from '../../../server/renderToMarkup'
+
+import renderToMarkup from '../../server/renderToMarkup'
+import createRenderer from '../../../../fela/src/createRenderer'
+import webPreset from '../../../../fela-preset-web/src/index'
 
 const sortObject = obj =>
   Object.keys(obj)

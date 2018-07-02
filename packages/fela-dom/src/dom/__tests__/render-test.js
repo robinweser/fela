@@ -2,7 +2,7 @@ import { html as beautify } from 'js-beautify'
 import { createRenderer } from 'fela'
 
 import render from '../render'
-import rehydrate from '../rehydration/rehydrate'
+import rehydrate from '../rehydrate'
 import renderToMarkup from '../../server/renderToMarkup'
 
 beforeEach(() => {
@@ -91,13 +91,30 @@ describe('render', () => {
       color: 'blue',
     }))
 
-    render(clientRenderer)
+    function getStyleSheetStyles(node) {
+      const media = node.media
+      const sheet = node.sheet
+      let rules = {}
 
-    expect(
-      beautify(document.documentElement.outerHTML, {
-        indent_size: 2,
-      })
-    ).toMatchSnapshot()
+      for (var i = 0; i < sheet.cssRules.length; ++i) {
+        const rule = sheet.cssRules[i]
+        const key = sheet.cssRules.indexOf(rule) + '_' + rule.selectorText
+        rules[key] = {}
+
+        for (var j = 0; j < rule.style.length; ++j) {
+          const property = rule.style[j]
+          rules[key][property] = rule.style[property]
+        }
+      }
+
+      return { _media: media, ...rules }
+    }
+
+    const styleSheets = Object.keys(clientRenderer.nodes).map(key =>
+      getStyleSheetStyles(clientRenderer.nodes[key].node)
+    )
+
+    expect(styleSheets).toMatchSnapshot()
   })
 
   it('should correctly sort rules', () => {
