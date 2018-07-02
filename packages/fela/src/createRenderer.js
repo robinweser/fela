@@ -33,6 +33,7 @@ import getFontLocals from './getFontLocals'
 import getFontUrl from './getFontUrl'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
+import validateSelectorPrefix from './validateSelectorPrefix'
 
 import type {
   DOMRenderer,
@@ -49,9 +50,18 @@ export default function createRenderer(
     plugins: config.plugins || [],
     mediaQueryOrder: config.mediaQueryOrder || [],
     supportQueryOrder: config.supportQueryOrder || [],
-    selectorPrefix: config.selectorPrefix || '',
+    ruleOrder: [
+      /^:link/,
+      /^:visited/,
+      /^:hover/,
+      /^:focus-within/,
+      /^:focus/,
+      /^:active/,
+    ],
 
+    selectorPrefix: validateSelectorPrefix(config.selectorPrefix),
     filterClassName: config.filterClassName || isSafeClassName,
+    devMode: config.devMode || false,
 
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
@@ -264,6 +274,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
               className,
               selector,
               declaration,
+              pseudo,
               media,
               support,
             }
