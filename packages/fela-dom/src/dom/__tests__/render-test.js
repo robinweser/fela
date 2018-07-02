@@ -1,9 +1,12 @@
 import { html as beautify } from 'js-beautify'
-import { createRenderer } from 'fela'
 
 import render from '../render'
 import rehydrate from '../rehydrate'
 import renderToMarkup from '../../server/renderToMarkup'
+
+import createRenderer from '../../../../fela/src/createRenderer'
+
+import getStyleSheetStyle from '../__helpers__/getStyleSheetStyle'
 
 beforeEach(() => {
   const head = document.head
@@ -12,11 +15,7 @@ beforeEach(() => {
   }
 })
 
-afterEach(() => {
-  process.env.NODE_ENV = 'test'
-})
-
-describe('render', () => {
+describe('render (production)', () => {
   it('should create style nodes and render CSS rules', () => {
     const renderer = createRenderer()
     renderer.renderRule(() => ({
@@ -35,11 +34,12 @@ describe('render', () => {
       fontWeight: 300,
     })
     render(renderer)
-    expect(
-      beautify(document.documentElement.outerHTML, {
-        indent_size: 2,
-      })
-    ).toMatchSnapshot()
+
+    const styleSheets = Object.keys(renderer.nodes).map(key =>
+      getStyleSheetStyle(renderer.nodes[key].node)
+    )
+
+    expect(styleSheets).toMatchSnapshot()
   })
 
   it('should not render multiple times', () => {
@@ -53,11 +53,11 @@ describe('render', () => {
       color: 'blue',
     }))
 
-    expect(
-      beautify(document.documentElement.outerHTML, {
-        indent_size: 2,
-      })
-    ).toMatchSnapshot()
+    const styleSheets = Object.keys(renderer.nodes).map(key =>
+      getStyleSheetStyle(renderer.nodes[key].node)
+    )
+
+    expect(styleSheets).toMatchSnapshot()
   })
 
   it('should not overwrite rehydrated styles', () => {
@@ -91,35 +91,14 @@ describe('render', () => {
       color: 'blue',
     }))
 
-    function getStyleSheetStyles(node) {
-      const media = node.media
-      const sheet = node.sheet
-      let rules = {}
-
-      for (var i = 0; i < sheet.cssRules.length; ++i) {
-        const rule = sheet.cssRules[i]
-        const key = sheet.cssRules.indexOf(rule) + '_' + rule.selectorText
-        rules[key] = {}
-
-        for (var j = 0; j < rule.style.length; ++j) {
-          const property = rule.style[j]
-          rules[key][property] = rule.style[property]
-        }
-      }
-
-      return { _media: media, ...rules }
-    }
-
     const styleSheets = Object.keys(clientRenderer.nodes).map(key =>
-      getStyleSheetStyles(clientRenderer.nodes[key].node)
+      getStyleSheetStyle(clientRenderer.nodes[key].node)
     )
 
     expect(styleSheets).toMatchSnapshot()
   })
 
   it('should correctly sort rules', () => {
-    process.env.NODE_ENV = 'production'
-
     const renderer = createRenderer()
     render(renderer)
 
@@ -146,6 +125,130 @@ describe('render', () => {
       },
     }))
 
-    expect(document.styleSheets[0].cssRules).toMatchSnapshot()
+    const styleSheets = Object.keys(renderer.nodes).map(key =>
+      getStyleSheetStyle(renderer.nodes[key].node)
+    )
+
+    expect(styleSheets).toMatchSnapshot()
+  })
+})
+
+describe('render (development)', () => {
+  it('should create style nodes and render CSS rules', () => {
+    const renderer = createRenderer({ devMode: true })
+    renderer.renderRule(() => ({
+      backgroundColor: 'red',
+      color: 'blue',
+    }))
+    renderer.renderKeyframe(() => ({
+      '0%': {
+        color: 'yellow',
+      },
+      '100%': {
+        color: 'orange',
+      },
+    }))
+    renderer.renderFont('Lato', ['../Lato.ttf'], {
+      fontWeight: 300,
+    })
+    render(renderer)
+
+    expect(
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2,
+      })
+    ).toMatchSnapshot()
+  })
+
+  it('should not render multiple times', () => {
+    const renderer = createRenderer({ devMode: true })
+
+    render(renderer)
+    render(renderer)
+
+    renderer.renderRule(() => ({
+      backgroundColor: 'red',
+      color: 'blue',
+    }))
+
+    expect(
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2,
+      })
+    ).toMatchSnapshot()
+  })
+
+  it('should not overwrite rehydrated styles', () => {
+    const serverRenderer = createRenderer({
+      filterClassName: cls => cls !== 'a',
+      devMode: true,
+    })
+
+    serverRenderer.renderRule(() => ({
+      color: 'yellow',
+      ':hover': {
+        color: 'red',
+      },
+      '@media (max-width: 800px)': {
+        color: 'blue',
+      },
+    }))
+
+    document.head.innerHTML = renderToMarkup(serverRenderer)
+
+    const clientRenderer = createRenderer({
+      filterClassName: cls => cls !== 'a',
+      devMode: true,
+    })
+
+    rehydrate(clientRenderer)
+
+    clientRenderer.renderRule(() => ({
+      backgroundColor: 'red',
+      ':hover': {
+        color: 'red',
+      },
+      color: 'blue',
+    }))
+
+    expect(
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2,
+      })
+    ).toMatchSnapshot()
+  })
+
+  it('should correctly sort rules', () => {
+    const renderer = createRenderer({ devMode: true })
+    render(renderer)
+
+    renderer.renderRule(() => ({
+      color: 'blue',
+      ':focus-within': {
+        color: 'black',
+      },
+      ':hover': {
+        color: 'red',
+      },
+      ':active': {
+        color: 'yellow',
+      },
+    }))
+
+    renderer.renderRule(() => ({
+      color: 'red',
+      ':hover': {
+        color: 'blue',
+      },
+      ':active': {
+        color: 'yellow',
+      },
+    }))
+
+    expect(
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2,
+      })
+    ).toMatchSnapshot()
   })
 })

@@ -18,8 +18,8 @@
     "jest": {
         "rootDir": "packages",
         "testPathIgnorePatterns": [
-            "/mocks/",
             "/__fixtures__/",
+            "/__helpers__/",
             "/lib/"
         ]
     },

@@ -14,6 +14,8 @@ import {
 import getNodeFromCache from './getNodeFromCache'
 import generateRule from './generateRule'
 
+import renderToSheetList from '../../server/renderToSheetList'
+
 import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 
 const changeHandlers = {
@@ -23,8 +25,20 @@ const changeHandlers = {
     // only use insertRule in production as browser devtools might have
     // weird behavior if used together with insertRule at runtime
     if (renderer.devMode) {
-      // TODO: how to leverage rule scores in devmode?
-      node.textContent += cssRule
+      // TODO: refactor this super hacky devMode version of sorted output
+      const sheetList = renderToSheetList(renderer)
+
+      const media = node.getAttribute('media') || undefined
+      const support = node.getAttribute('data-fela-support') || undefined
+
+      const sheet = sheetList.find(
+        sheet =>
+          sheet.type === RULE_TYPE &&
+          sheet.media === media &&
+          sheet.support === support
+      )
+
+      node.textContent = sheet ? sheet.css : ''
       return
     }
 

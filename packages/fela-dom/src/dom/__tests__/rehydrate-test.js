@@ -4,13 +4,7 @@ import renderToMarkup from '../../server/renderToMarkup'
 import createRenderer from '../../../../fela/src/createRenderer'
 import webPreset from '../../../../fela-preset-web/src/index'
 
-const sortObject = obj =>
-  Object.keys(obj)
-    .sort()
-    .reduce((newObj, key) => {
-      newObj[key] = obj[key]
-      return newObj
-    }, {})
+import sortObject from '../__helpers__/sortObject'
 
 beforeEach(() => {
   const head = document.head
