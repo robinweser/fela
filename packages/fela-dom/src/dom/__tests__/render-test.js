@@ -7,13 +7,9 @@ import renderToMarkup from '../../server/renderToMarkup'
 import createRenderer from '../../../../fela/src/createRenderer'
 
 import getStyleSheetStyle from '../__helpers__/getStyleSheetStyle'
+import cleanHead from '../__helpers__/cleanHead'
 
-beforeEach(() => {
-  const head = document.head
-  while (head.firstChild) {
-    head.removeChild(head.firstChild)
-  }
-})
+beforeEach(cleanHead)
 
 describe('render (production)', () => {
   it('should create style nodes and render CSS rules', () => {

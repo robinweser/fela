@@ -82,9 +82,12 @@ const changeHandlers = {
 export default function createSubscription(renderer: DOMRenderer): Function {
   return change => {
     if (change.type === CLEAR_TYPE) {
-      return objectEach(renderer.nodes, ({ node }) =>
+      objectEach(renderer.nodes, ({ node }) =>
         node.parentNode.removeChild(node)
       )
+
+      renderer.nodes = {}
+      return
     }
 
     const handleChange = changeHandlers[change.type]

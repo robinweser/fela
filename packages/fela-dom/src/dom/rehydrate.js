@@ -1,6 +1,5 @@
 /* @flow */
 import arrayEach from 'fast-loops/lib/arrayEach'
-import objectEach from 'fast-loops/lib/objectEach'
 import { RULE_TYPE, getRuleScore } from 'fela-utils'
 
 import rehydrateSupportRules from './rehydration/rehydrateSupportRules'

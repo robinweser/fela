@@ -3,7 +3,7 @@ import objectEach from 'fast-loops/lib/objectEach'
 
 import createSubscription from './connection/createSubscription'
 
-import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 export default function render(renderer: DOMRenderer): void {
   if (!renderer.updateSubscription) {

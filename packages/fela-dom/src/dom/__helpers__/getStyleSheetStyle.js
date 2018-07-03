@@ -4,6 +4,7 @@ export default function getStyleSheetStyle(node) {
   const { media, sheet, textContent } = node
 
   const type = node.getAttribute('data-fela-type')
+  const support = node.getAttribute('data-fela-support') || false
 
   if (type !== RULE_TYPE) {
     return { _type: type, style: textContent }
@@ -23,5 +24,5 @@ export default function getStyleSheetStyle(node) {
     }
   }
 
-  return { _type: type, _media: media, style: rules }
+  return { _type: type, _media: media, _support: support, style: rules }
 }

@@ -1,13 +1,7 @@
 /* @flow */
-import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
+import objectReduce from 'fast-loops/lib/objectReduce'
 
-function objectFind(obj: Object, query: Function) {
-  for (const key in obj) {
-    if (query(obj[key], key, obj)) {
-      return key
-    }
-  }
-}
+import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
 
 export default function createNode(
   nodes: Object,
@@ -28,7 +22,16 @@ export default function createNode(
     node.media = media
   }
 
-  const moreSpecificReference = objectFind(nodes, node => node.score > score)
+  // we calculate the most next bigger style node
+  // to correctly inject the node just before it
+  const moreSpecificReference = objectReduce(
+    nodes,
+    (closest, node, reference) =>
+      node.score > score && (!closest || nodes[closest].score > node.score)
+        ? reference
+        : closest,
+    undefined
+  )
 
   if (moreSpecificReference) {
     head.insertBefore(node, nodes[moreSpecificReference].node)

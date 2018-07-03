@@ -40,6 +40,13 @@ exports[`render (development) should create style nodes and render CSS rules 1`]
 "<html>
 
 <head>
+  <style data-fela-type=\\"FONT\\" type=\\"text/css\\">
+    @font-face {
+      font-weight: 300;
+      src: url('../Lato.ttf') format('truetype');
+      font-family: \\"Lato\\"
+    }
+  </style>
   <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
     @-webkit-keyframes k1 {
       0% {
@@ -66,13 +73,6 @@ exports[`render (development) should create style nodes and render CSS rules 1`]
       100% {
         color: orange
       }
-    }
-  </style>
-  <style data-fela-type=\\"FONT\\" type=\\"text/css\\">
-    @font-face {
-      font-weight: 300;
-      src: url('../Lato.ttf') format('truetype');
-      font-family: \\"Lato\\"
     }
   </style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
@@ -148,6 +148,7 @@ exports[`render (production) should correctly sort rules 1`] = `
 Array [
   Object {
     "_media": "",
+    "_support": false,
     "_type": "RULE",
     "style": Object {
       "0_.a": Object {
@@ -177,6 +178,7 @@ exports[`render (production) should create style nodes and render CSS rules 1`] 
 Array [
   Object {
     "_media": "",
+    "_support": false,
     "_type": "RULE",
     "style": Object {
       "0_.a": Object {
@@ -202,6 +204,7 @@ exports[`render (production) should not overwrite rehydrated styles 1`] = `
 Array [
   Object {
     "_media": "",
+    "_support": false,
     "_type": "RULE",
     "style": Object {
       "0_.b": Object {
@@ -220,6 +223,7 @@ Array [
   },
   Object {
     "_media": "(max-width: 800px)",
+    "_support": false,
     "_type": "RULE",
     "style": Object {
       "0_.d": Object {
@@ -234,6 +238,7 @@ exports[`render (production) should not render multiple times 1`] = `
 Array [
   Object {
     "_media": "",
+    "_support": false,
     "_type": "RULE",
     "style": Object {
       "0_.a": Object {
