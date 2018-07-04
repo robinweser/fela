@@ -1,9 +1,9 @@
 /* @flow */
 export default function getRuleScore(
-  ruleOrder: Array<any>,
+  ruleOrder: Array<any> = [],
   pseudo: string = ''
 ): number {
-  if (pseudo.length === 0) {
+  if (ruleOrder.length === 0 || pseudo.length === 0) {
     return 0
   }
 
