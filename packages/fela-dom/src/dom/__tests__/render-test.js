@@ -69,6 +69,9 @@ describe('render (production)', () => {
       '@media (max-width: 800px)': {
         color: 'blue',
       },
+      '@supports (display:flex)': {
+        color: 'green',
+      },
     }))
 
     document.head.innerHTML = renderToMarkup(serverRenderer)
@@ -85,6 +88,12 @@ describe('render (production)', () => {
         color: 'red',
       },
       color: 'blue',
+      '@supports (display:flex)': {
+        color: 'green',
+      },
+      '@supports (display:grid)': {
+        color: 'black',
+      },
     }))
 
     const styleSheets = Object.keys(clientRenderer.nodes).map(key =>
@@ -187,6 +196,9 @@ describe('render (development)', () => {
       },
       '@media (max-width: 800px)': {
         color: 'blue',
+      },
+      '@supports (display:flex)': {
+        color: 'green',
       },
     }))
 

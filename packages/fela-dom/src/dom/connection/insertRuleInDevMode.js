@@ -1,4 +1,6 @@
 /* @flow */
+import { RULE_TYPE } from 'fela-utils'
+
 import renderToSheetList from '../../server/renderToSheetList'
 
 // This method is quite hacky and in-performant, but yet

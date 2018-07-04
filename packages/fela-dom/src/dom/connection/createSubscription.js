@@ -12,7 +12,7 @@ import {
 } from 'fela-utils'
 
 import getNodeFromCache from './getNodeFromCache'
-import generateRule from './generateRule'
+import insertRule from './insertRule'
 
 import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 
@@ -32,14 +32,18 @@ export default function createSubscription(renderer: DOMRenderer): Function {
     switch (change.type) {
       case KEYFRAME_TYPE:
         node.textContent += change.keyframe
+        break
       case FONT_TYPE:
         node.textContent += change.fontFace
+        break
       case STATIC_TYPE:
         node.textContent += change.selector
           ? generateCSSRule(change.selector, change.css)
           : change.css
+        break
       case RULE_TYPE:
         insertRule(change, renderer, node)
+        break
     }
   }
 }

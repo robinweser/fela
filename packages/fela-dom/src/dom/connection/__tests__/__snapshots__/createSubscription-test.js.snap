@@ -151,7 +151,13 @@ Array [
     "_media": "",
     "_support": "true",
     "_type": "RULE",
-    "style": Object {},
+    "style": Object {
+      "(display: flex)": Object {
+        "0_.b": Object {
+          "display": "flex",
+        },
+      },
+    },
   },
   Object {
     "_media": "(min-width: 300px)",
@@ -177,7 +183,13 @@ Array [
     "_media": "(min-width: 300px) and (max-height: 500px)",
     "_support": "true",
     "_type": "RULE",
-    "style": Object {},
+    "style": Object {
+      "(display: grid)": Object {
+        "0_.e": Object {
+          "display": "grid",
+        },
+      },
+    },
   },
   Object {
     "_type": "KEYFRAME",

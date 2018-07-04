@@ -50,9 +50,13 @@ export default function rehydrate(renderer: DOMRenderer): void {
         }
 
         arrayEach(node.sheet.cssRules, rule => {
+          const selectorText = rule.conditionText
+            ? rule.cssRules[0].selectorText
+            : rule.selectorText
+
           rule.score = getRuleScore(
             renderer.ruleOrder,
-            rule.selectorText.split(CLASSNAME_REGEX)[1]
+            selectorText.split(CLASSNAME_REGEX)[1]
           )
         })
       }

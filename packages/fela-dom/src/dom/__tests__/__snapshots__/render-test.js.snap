@@ -95,16 +95,16 @@ exports[`render (development) should not overwrite rehydrated styles 1`] = `
 "<html>
 
 <head>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"4\\" data-fela-type=\\"RULE\\">
+  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\">
     .b {
       color: yellow
     }
 
-    .e {
+    .f {
       background-color: red
     }
 
-    .f {
+    .g {
       color: blue
     }
 
@@ -112,7 +112,14 @@ exports[`render (development) should not overwrite rehydrated styles 1`] = `
       color: red
     }
   </style>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"4\\" data-fela-type=\\"RULE\\" media=\\"(max-width: 800px)\\">
+  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\">
+    @supports (display:flex) {
+      .e {
+        color: green
+      }
+    }
+  </style>
+  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" media=\\"(max-width: 800px)\\">
     .d {
       color: blue
     }
@@ -210,14 +217,31 @@ Array [
       "0_.b": Object {
         "color": "yellow",
       },
-      "1_.e": Object {
+      "1_.f": Object {
         "background-color": "red",
       },
-      "2_.f": Object {
+      "2_.g": Object {
         "color": "blue",
       },
       "3_.c:hover": Object {
         "color": "red",
+      },
+    },
+  },
+  Object {
+    "_media": "",
+    "_support": "true",
+    "_type": "RULE",
+    "style": Object {
+      "(display:flex)": Object {
+        "0_.e": Object {
+          "color": "green",
+        },
+      },
+      "(display:grid)": Object {
+        "0_.h": Object {
+          "color": "black",
+        },
       },
     },
   },
@@ -228,6 +252,23 @@ Array [
     "style": Object {
       "0_.d": Object {
         "color": "blue",
+      },
+    },
+  },
+  Object {
+    "_media": "",
+    "_support": "true",
+    "_type": "RULE",
+    "style": Object {
+      "(display:flex)": Object {
+        "0_.e": Object {
+          "color": "green",
+        },
+      },
+      "(display:grid)": Object {
+        "0_.h": Object {
+          "color": "black",
+        },
       },
     },
   },

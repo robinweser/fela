@@ -37,6 +37,7 @@ Array [
               },
             },
             "clear": [Function],
+            "devMode": false,
             "filterClassName": [Function],
             "getNextRuleIdentifier": [Function],
             "keyframePrefixes": Array [
@@ -133,6 +134,7 @@ Array [
               },
             },
             "clear": [Function],
+            "devMode": false,
             "filterClassName": [Function],
             "getNextRuleIdentifier": [Function],
             "keyframePrefixes": Array [
