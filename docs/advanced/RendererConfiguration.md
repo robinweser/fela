@@ -13,7 +13,7 @@ We might introduce more configuration options with future releases, so be sure t
 |`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
 |`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which `@media` queries are rendered |
 |`supportQueryOrder`| `string[]` | `[]`| An explicit order in which `@supports` queries are rendered |
-|`selectorPrefix`| `string` | `''`| Prepend a static prefix to every generated class and keyframe |
+|`selectorPrefix`| `string` | `''`| Prepend a static prefix to every generated class and keyframe. It must only consist of `a-zA-Z0-9-_` and start with `a-zA-Z_`. |
 |`filterClassName`| `function` | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names |
 
 ## Example

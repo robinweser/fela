@@ -15,6 +15,7 @@ const rule = ({ fontSize, padding }, renderer) => {
       className: 'a',
       selector: '.a',
       declaration: 'color:red',
+      pseudo: '',
       media: '',
       support: ''
     };
@@ -23,6 +24,7 @@ const rule = ({ fontSize, padding }, renderer) => {
       className: 'b',
       selector: '.b',
       declaration: 'background-color:red',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -31,6 +33,7 @@ const rule = ({ fontSize, padding }, renderer) => {
       className: 'c',
       selector: '.c',
       declaration: 'line-height:2',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -39,6 +42,7 @@ const rule = ({ fontSize, padding }, renderer) => {
       className: 'd',
       selector: '.d:hover',
       declaration: 'color:black',
+      pseudo: ':hover',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -76,6 +80,7 @@ export default createComponent(({ fontSize, padding }, renderer) => {
       className: 'a',
       selector: '.a',
       declaration: 'color:red',
+      pseudo: '',
       media: '',
       support: ''
     };
@@ -84,6 +89,7 @@ export default createComponent(({ fontSize, padding }, renderer) => {
       className: 'b',
       selector: '.b',
       declaration: 'background-color:red',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -92,6 +98,7 @@ export default createComponent(({ fontSize, padding }, renderer) => {
       className: 'c',
       selector: '.c',
       declaration: 'line-height:2',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -100,6 +107,7 @@ export default createComponent(({ fontSize, padding }, renderer) => {
       className: 'd',
       selector: '.d:hover',
       declaration: 'color:black',
+      pseudo: ':hover',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -135,6 +143,7 @@ const rule = (_, renderer) => {
       className: 'a',
       selector: '.a',
       declaration: 'color:red',
+      pseudo: '',
       media: '',
       support: ''
     };
@@ -143,6 +152,7 @@ const rule = (_, renderer) => {
       className: 'b',
       selector: '.b',
       declaration: 'background-color:red',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -151,6 +161,7 @@ const rule = (_, renderer) => {
       className: 'c',
       selector: '.c',
       declaration: 'line-height:2',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -159,6 +170,7 @@ const rule = (_, renderer) => {
       className: 'd',
       selector: '.d:hover',
       declaration: 'color:black',
+      pseudo: ':hover',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -188,6 +200,7 @@ function rule({ fontSize, padding }, renderer) {
       className: 'a',
       selector: '.a',
       declaration: 'color:red',
+      pseudo: '',
       media: '',
       support: ''
     };
@@ -196,6 +209,7 @@ function rule({ fontSize, padding }, renderer) {
       className: 'b',
       selector: '.b',
       declaration: 'background-color:red',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -204,6 +218,7 @@ function rule({ fontSize, padding }, renderer) {
       className: 'c',
       selector: '.c',
       declaration: 'line-height:2',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -212,6 +227,7 @@ function rule({ fontSize, padding }, renderer) {
       className: 'd',
       selector: '.d:hover',
       declaration: 'color:black',
+      pseudo: ':hover',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -249,6 +265,7 @@ const rule = function ({ fontSize, padding }, renderer) {
       className: 'a',
       selector: '.a',
       declaration: 'color:red',
+      pseudo: '',
       media: '',
       support: ''
     };
@@ -257,6 +274,7 @@ const rule = function ({ fontSize, padding }, renderer) {
       className: 'b',
       selector: '.b',
       declaration: 'background-color:red',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -265,6 +283,7 @@ const rule = function ({ fontSize, padding }, renderer) {
       className: 'c',
       selector: '.c',
       declaration: 'line-height:2',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -273,6 +292,7 @@ const rule = function ({ fontSize, padding }, renderer) {
       className: 'd',
       selector: '.d:hover',
       declaration: 'color:black',
+      pseudo: ':hover',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -334,6 +354,7 @@ const rule = ({ fontSize, padding }, renderer) => {
       className: 'a',
       selector: '.a',
       declaration: 'color:red',
+      pseudo: '',
       media: '',
       support: ''
     };
@@ -342,6 +363,7 @@ const rule = ({ fontSize, padding }, renderer) => {
       className: 'b',
       selector: '.b',
       declaration: 'background-color:red',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -350,6 +372,7 @@ const rule = ({ fontSize, padding }, renderer) => {
       className: 'c',
       selector: '.c',
       declaration: 'line-height:2',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -358,6 +381,7 @@ const rule = ({ fontSize, padding }, renderer) => {
       className: 'd',
       selector: '.d:hover',
       declaration: 'color:black',
+      pseudo: ':hover',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -395,6 +419,7 @@ const rule = ({ fontSize, padding }, felaRenderer) => {
       className: 'a',
       selector: '.a',
       declaration: 'color:red',
+      pseudo: '',
       media: '',
       support: ''
     };
@@ -403,6 +428,7 @@ const rule = ({ fontSize, padding }, felaRenderer) => {
       className: 'b',
       selector: '.b',
       declaration: 'background-color:red',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -411,6 +437,7 @@ const rule = ({ fontSize, padding }, felaRenderer) => {
       className: 'c',
       selector: '.c',
       declaration: 'line-height:2',
+      pseudo: '',
       media: '(min-height: 300px)',
       support: ''
     };
@@ -419,6 +446,7 @@ const rule = ({ fontSize, padding }, felaRenderer) => {
       className: 'd',
       selector: '.d:hover',
       declaration: 'color:black',
+      pseudo: ':hover',
       media: '(min-height: 300px)',
       support: ''
     };

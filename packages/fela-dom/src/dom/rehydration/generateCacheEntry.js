@@ -17,6 +17,7 @@ export default function generateCacheEntry(
     className,
     selector: generateCSSSelector(className, pseudo),
     declaration: property + ':' + value,
+    pseudo,
     media,
     support,
   }
