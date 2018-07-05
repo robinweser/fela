@@ -18,6 +18,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [inferno-fela](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela) - Inferno
 * [bs-react-fela](https://github.com/astrada/bs-react-fela) - BuckleScript / ReasonReact
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript
+* [vashet](https://github.com/derHowie/vashet) - ClojureScript
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle
 * [vue-fela](https://github.com/wagerfield/vue-fela) - Vue
 
@@ -35,8 +36,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-named-keys](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-named-keys) - Replaces named keys with valid syntax
 * [fela-plugin-placeholder-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-placeholder-prefixer) - Adds all `::placeholder` prefixes
 * [fela-plugin-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-prefixer) - Adds all vendor prefixes to the styles
-* [fela-plugin-dynamic-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-dynamic-prefixer) - Adds minimum set of vendor prefixes to the styles by evaluating the userAgent
-* [fela-plugin-remove-undefined](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-remove-undefined) - Removes `undefined` values and string values containing `undefined`
 * [fela-plugin-rtl](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-rtl) - Converts styles to their right-to-left counterpart
 * [fela-plugin-unit](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-unit) - Automatically adds units to values if needed
 * [fela-plugin-validator*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-validator) - Validates, logs & optionally deletes invalid properties for keyframes and rules
@@ -48,7 +47,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 ### Enhancers
 * [fela-beautifier*](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
 * [fela-combine-arrays](https://github.com/rofrischmann/fela/tree/master/packages/fela-combine-arrays) - Enable merging arrays when combining rules
-* ~~[fela-font-renderer](https://github.com/rofrischmann/fela/tree/master/packages/fela-font-renderer): Allocates `renderFont` calls to a separate Renderer instance to prevent refetching `@font-face` files every time.~~ (*Deprecated*)
 * [fela-layout-debugger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-layout-debugger) - Adds colored outlines or backgroundColors to debug layouts
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-monolithic](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic) - Render component-based (monolithic) CSS classes (rather than atomic)
@@ -100,7 +98,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [react-styling](https://github.com/halt-hammerzeit/react-styling) - Write your styles as CSS with [ECMAScript 2015 template strings](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
 * [stile](https://github.com/bloodyowl/stile) - Handle units and string values
 * [storybook-addon-props-fela](https://github.com/Kilix/storybook-addon-props-fela) - Document the props of your Fela components in storybook.
-* [vashet](https://github.com/derHowie/vashet) - ClojureScript wrapper for Fela
 * [black-box](https://github.com/rocketstation/black-box) - combines behavior, presentation, structure in one place & creates all-in-one components using only JS syntax
 
 <br>

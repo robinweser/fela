@@ -11,7 +11,7 @@ FelaComponent is an alternative component to the [createComponent](createCompone
 | rule | *Function*| | A function of `theme` and props|
 | render | *string?*<br>*Function* | `div` | Either a render function or a string primitive to render into.<br>If passing a render function is receives the specified render interface. |
 
-#### Interface
+#### Render Interface
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
 | className | *string* | | The class names for the rendered *style* object |

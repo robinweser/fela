@@ -90,7 +90,7 @@ rule({ }) // => { color: 'green' }
 
 ---
 
-## renderKeyframe`
+## renderKeyframe
 
 Renders a `keyframe` using the `props` to resolve it.
 
