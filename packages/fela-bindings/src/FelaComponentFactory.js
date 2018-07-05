@@ -14,9 +14,9 @@ export default function FelaComponentFactory(
       render: theme => {
         const props = rule ? { theme, ...restProps } : theme
 
-        const className = `${customClass
-          ? `${customClass} `
-          : ''}${renderer._renderStyle(
+        const className = `${
+          customClass ? `${customClass} ` : ''
+        }${renderer._renderStyle(
           resolveRule(rule || style, props, renderer),
           props
         )}`
