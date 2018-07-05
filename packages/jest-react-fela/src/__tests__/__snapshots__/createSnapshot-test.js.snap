@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creating Snapshots with Fela should always use a clean setup 1`] = `
+".a {
+  color: red;
+}
+.b {
+  background-color: blue;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Creating Snapshots with Fela should always use a clean setup 2`] = `
+".a {
+  color: red;
+}
+.b {
+  background-color: green;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Creating Snapshots with Fela should return both html and css 1`] = `
+".a {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.b {
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+.e:hover {
+  color: blue;
+}
+@media (min-width: 300px) {
+  .c {
+    background-color: black;
+  }
+  .d:hover {
+    color: green;
+  }
+}
+
+
+<div className=a b c d e />;
+"
+`;
+
+exports[`Creating Snapshots with Fela should return formatted html and css 1`] = `
+".a {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.b {
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+.e:hover {
+  color: blue;
+}
+@media (min-width: 300px) {
+  .c {
+    background-color: black;
+  }
+  .d:hover {
+    color: green;
+  }
+}
+
+
+<div className=a b c d e />;
+"
+`;
