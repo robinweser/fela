@@ -31,6 +31,7 @@ const renderer = createRenderer({
 | --- | --- | --- | --- |
 | unit | `ch`, `em`, `ex`, `rem`, `vh`, `vw`, `vmin`, `vmax`, `px`, `cm`, `mm`, `in`, `pc`, `pt`, `mozmm` | `px` | unit which gets applied |
 | unitPerProperty | *(Object)* | `{}` | Default units per property |
+| isUnitlessProperty | *(Function)* | [`util function`](https://github.com/rofrischmann/css-in-js-utils/blob/master/modules/isUnitlessProperty.js) | check whether property should remain unitless |
 
 ##### Example
 ```javascript

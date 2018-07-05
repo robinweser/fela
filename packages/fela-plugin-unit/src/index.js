@@ -1,5 +1,5 @@
 /* @flow */
-import isUnitlessProperty from 'css-in-js-utils/lib/isUnitlessProperty'
+import defaultIsUnitlessProperty from 'css-in-js-utils/lib/isUnitlessProperty'
 import isPlainObject from 'isobject'
 
 function addUnitIfNeeded(
@@ -23,7 +23,8 @@ function addUnitIfNeeded(
 function addUnit(
   style: Object,
   defaultUnit: string,
-  propertyMap: Object
+  propertyMap: Object,
+  isUnitlessProperty: Function
 ): Object {
   for (const property in style) {
     if (!isUnitlessProperty(property)) {
@@ -31,7 +32,12 @@ function addUnit(
       const propertyUnit = propertyMap[property] || defaultUnit
 
       if (isPlainObject(cssValue)) {
-        style[property] = addUnit(cssValue, defaultUnit, propertyMap)
+        style[property] = addUnit(
+          cssValue,
+          defaultUnit,
+          propertyMap,
+          isUnitlessProperty
+        )
       } else if (Array.isArray(cssValue)) {
         style[property] = cssValue.map(val =>
           addUnitIfNeeded(property, val, propertyUnit)
@@ -47,7 +53,9 @@ function addUnit(
 
 export default function unit(
   defaultUnit: string = 'px',
-  propertyMap: Object = {}
+  propertyMap: Object = {},
+  isUnitlessProperty: Function = defaultIsUnitlessProperty
 ) {
-  return (style: Object) => addUnit(style, defaultUnit, propertyMap)
+  return (style: Object) =>
+    addUnit(style, defaultUnit, propertyMap, isUnitlessProperty)
 }
