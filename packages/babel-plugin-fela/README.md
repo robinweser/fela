@@ -1,3 +1,6 @@
+> **Deprecated!**<br>The Fela Babel plugin (babel-plugin-fela) is deprecated, please remove it from your Babel configuration.<br>
+It's use could lead to false output with newer Fela versions and doesn't add much value at all.
+
 # babel-plugin-fela
 
 A babel plugin to optimize Fela rules.<br>
