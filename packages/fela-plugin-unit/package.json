@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-unit",
-  "version": "5.0.17",
+  "version": "5.1.0",
   "description": "Fela plugin to automatically add units if required",
   "main": "lib/index.js",
   "module": "es/index.js",
