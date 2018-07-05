@@ -6,7 +6,7 @@ import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
 function getRuleScore(
   baseScore: number,
   media: string = '',
-  mediaQueryOrder: Object = []
+  mediaQueryOrder: Array<string> = []
 ) {
   if (media.length === 0) {
     return baseScore

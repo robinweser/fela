@@ -3,6 +3,8 @@ import { RULE_TYPE } from 'fela-utils'
 
 import renderToSheetList from '../../server/renderToSheetList'
 
+import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
+
 // This method is quite hacky and in-performant, but yet
 // the most simple way to respect rule sorting even in devMode
 export default function updateNodeInDevMode(

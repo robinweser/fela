@@ -7,6 +7,8 @@ import {
 
 import insertRuleInDevMode from './insertRuleInDevMode'
 
+import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
+
 export default function insertRule(
   { selector, declaration, support, pseudo }: Object,
   renderer: DOMRenderer,

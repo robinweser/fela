@@ -5,7 +5,7 @@ export default function queryNode({
   type,
   media,
   support,
-}: NodeAttributes): Object {
+}: NodeAttributes): ?Object {
   const mediaQuery = media ? `[media="${media}"]` : ''
   const supportQuery = support ? '[data-fela-support="true"]' : ''
 
