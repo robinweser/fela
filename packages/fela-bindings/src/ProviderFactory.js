@@ -4,6 +4,7 @@ import objectEach from 'fast-loops/lib/objectEach'
 
 function hasDOM(renderer) {
   return (
+    renderer &&
     !renderer.isNativeRenderer &&
     typeof window !== 'undefined' &&
     window.document &&
