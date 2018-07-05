@@ -1,3 +1,5 @@
+> **Deprecated!**<br>The remove undefined plugin (fela-plugin-remove-undefined) is deprecated, please remove it from your Fela configuration.<br>Fela automatically removes 'undefined' values making this plugin obsolete.
+
 # fela-plugin-remove-undefined
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-remove-undefined.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-remove-undefined.svg">
