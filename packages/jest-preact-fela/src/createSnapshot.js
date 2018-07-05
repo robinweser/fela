@@ -1,6 +1,5 @@
-import React, { createElement } from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-fela'
+import { createElement, render } from 'preact'
+import { Provider } from 'preact-fela'
 
 import { createSnapshotFactory } from 'jest-fela-bindings'
 

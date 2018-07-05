@@ -1,7 +1,7 @@
 {
-  "name": "fela-plugin-extend",
-  "version": "6.0.7",
-  "description": "Fela plugin to extend style objects",
+  "name": "jest-react-fela",
+  "version": "1.0.0",
+  "description": "Jest helpers for react-fela",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -14,18 +14,19 @@
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "fela-plugin",
-    "extend"
+    "react-fela",
+    "testing",
+    "react",
+    "jest",
+    "jest-utils"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "^6.1.7"
+    "preact": "*",
+    "preact-fela": "*"
   },
   "dependencies": {
-    "css-in-js-utils": "^2.0.0",
-    "fast-loops": "^1.0.0",
-    "fela-utils": "^8.0.8",
-    "isobject": "^3.0.1"
+    "jest-fela-bindings": "^1.0.0"
   }
 }

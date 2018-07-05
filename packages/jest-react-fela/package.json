@@ -1,7 +1,7 @@
 {
   "name": "jest-react-fela",
   "version": "1.0.0",
-  "description": "Jest utilites for react-fela",
+  "description": "Jest helpers for react-fela",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -28,8 +28,6 @@
     "react-fela": "*"
   },
   "dependencies": {
-    "fela-tools": "^5.1.6",
-    "htmltojsx": "^0.3.0",
-    "prettier": "^1.13.7"
+    "jest-fela-bindings": "^1.0.0"
   }
 }

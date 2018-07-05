@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { createElement } from 'react'
+import { render } from 'react-dom'
 
-import createSnapshot from '../createSnapshot'
+import createSnapshotFactory from '../createSnapshotFactory'
 
 import FelaComponent from '../../../react-fela/src/FelaComponent'
+import Provider from '../../../react-fela/src/Provider'
 import createRenderer from '../../../fela/src/createRenderer'
 import webPreset from '../../../fela-preset-web/src/index'
+
+const createSnapshot = createSnapshotFactory(createElement, render, Provider)
 
 describe('Creating Snapshots with Fela', () => {
   it('should return formatted html and css', () => {

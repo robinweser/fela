@@ -1,6 +1,6 @@
-# fela-bindings
+# jest-fela-bindings
 
-fela-bindings is a private package and is only intended for advanced use. While it follows semantic versioning, it's API is undocumented and may change without prior notice.
+jest-fela-bindings is a private package and is only intended for advanced use. While it follows semantic versioning, it's API is undocumented and may change without prior notice.
 
 
 ## License
