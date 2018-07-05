@@ -1,4 +1,5 @@
 import enhance from '../enhance'
+
 import createRenderer from '../createRenderer'
 
 describe('Enhancing renderers', () => {
