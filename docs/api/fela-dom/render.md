@@ -23,7 +23,7 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => a b c
+renderer.renderRule(rule, { size: '12px' }) // => a b c
 
 render(renderer)
 

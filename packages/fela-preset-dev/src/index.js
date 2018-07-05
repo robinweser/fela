@@ -6,9 +6,9 @@ type Config = {
   validator?: Array<any>,
 }
 
-export function createDevPreset(
-  { validator: validatorConfig = [] }: Config = {}
-) {
+export function createDevPreset({
+  validator: validatorConfig = [],
+}: Config = {}) {
   return [logger(), validator(...validatorConfig)]
 }
 

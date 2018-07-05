@@ -69,14 +69,14 @@ describe('Connect Factory for bindings', () => {
       color: 'red',
     }
 
-    const MyComponent = connect(
-      rules
-    )(({ styles, rules: injectedRules, ...props }) => (
-      <div {...props}>
-        <span className={styles.rule1} />
-        <span className={styles.rule2} />
-      </div>
-    ))
+    const MyComponent = connect(rules)(
+      ({ styles, rules: injectedRules, ...props }) => (
+        <div {...props}>
+          <span className={styles.rule1} />
+          <span className={styles.rule2} />
+        </div>
+      )
+    )
 
     MyComponent.defaultProps = MyComponentDefaultProps
 
@@ -326,7 +326,10 @@ describe('Connect Factory for bindings', () => {
   it('should accept the parameter disabling pure component behavior', () => {
     const renderMock = jest.fn(() => null)
 
-    const MyComponent = connect({}, { pure: false })(renderMock)
+    const MyComponent = connect(
+      {},
+      { pure: false }
+    )(renderMock)
 
     const wrapper = mount(<MyComponent />, {
       context: {
