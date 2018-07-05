@@ -1,7 +1,7 @@
 {
-  "name": "jest-react-fela",
+  "name": "jest-inferno-fela",
   "version": "1.0.0",
-  "description": "Jest helpers for react-fela",
+  "description": "Jest helpers for inferno-fela",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -14,9 +14,9 @@
   "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "react-fela",
+    "inferno-fela",
     "testing",
-    "react",
+    "inferno",
     "jest",
     "jest-utils"
   ],
