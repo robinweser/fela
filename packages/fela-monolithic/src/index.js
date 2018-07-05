@@ -128,13 +128,22 @@ function useMonolithicRenderer(
   }
 
   renderer.renderRule = (rule: Function, props: Object = {}): string => {
+    return renderer._renderStyle(rule(props, renderer), props, rule)
+  }
+
+  renderer._renderStyle = (
+    style: Object = {},
+    props: Object = {},
+    rule?: Function
+  ): string => {
     const processedStyle = processStyleWithPlugins(
       renderer,
-      rule(props, renderer),
+      style,
       RULE_TYPE,
       props
     )
-    return renderer._renderStyleToClassNames(processedStyle, rule)
+
+    return renderer._renderStyleToClassNames(processedStyle, rule || {})
   }
 
   renderer.subscribe(event => {
