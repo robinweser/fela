@@ -1,0 +1,36 @@
+{
+  "name": "fela-enzyme",
+  "version": "1.0.0",
+  "description": "Tools for working with Fela in the context of enzyme",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "dynamic styling",
+    "stylesheet",
+    "css",
+    "styling",
+    "cssinjs"
+  ],
+  "author": "Hamid Aghdaee",
+  "license": "MIT",
+  "peerDependencies": {
+    "enzyme": "*",
+    "enzyme-to-json": "*",
+    "react": "*"
+  },
+  "dependencies": {
+    "cssbeautify": "^0.3.1",
+    "fela": "^6.1.9",
+    "fela-tools": "^5.1.7",
+    "react-fela": "^7.3.1"
+  }
+}
