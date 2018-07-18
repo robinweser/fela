@@ -14,10 +14,11 @@ function removeUndefined(style: Object) {
       style[key] = removeUndefined(value)
     } else if (Array.isArray(value)) {
       style[key] = value.filter(val => !isUndefinedValue(val))
-    } else {
+    } else if (isUndefinedValue(value)) {
       delete style[key]
     }
   })
+  return style
 }
 
 function extendStyle(
