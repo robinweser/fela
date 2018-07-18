@@ -2,13 +2,23 @@
 import objectEach from 'fast-loops/lib/objectEach'
 import arrayEach from 'fast-loops/lib/arrayEach'
 import isPlainObject from 'isobject'
-import removeUndefinedPlugin from 'fela-plugin-remove-undefined'
+import { isUndefinedValue } from 'fela-utils'
 
 import type { StyleType } from '../../../flowtypes/StyleType'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 
-const removeUndefined = removeUndefinedPlugin()
+function removeUndefined(style: Object) {
+  objectEach(style, (value, key) => {
+    if (isPlainObject(value)) {
+      style[key] = removeUndefined(value)
+    } else if (Array.isArray(value)) {
+      style[key] = value.filter(val => !isUndefinedValue(val))
+    } else {
+      delete style[key]
+    }
+  })
+}
 
 function extendStyle(
   style: Object,
