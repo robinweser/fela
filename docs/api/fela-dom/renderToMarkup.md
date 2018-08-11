@@ -49,8 +49,8 @@ const markup = renderToMarkup(renderer)
 The following markup would be returned:
 
 ```HTML
-<style type="text/css" data-fela-type="STATIC">html,body{box-sizing:border-box;margin:0}</style>
-<style type="text/css" data-fela-type="RULE">.a{font-size:12px}.b{color:blue}</style>
-<style type="text/css" data-fela-type="RULE" data-fela-support>.c{color:green}</style>
-<style type="text/css" data-fela-type="RULE" media="(min-width: 300px)">.d{color:red}</style>
+<style type="text/css" data-fela-type="STATIC" data-fela-rehydration="4">html,body{box-sizing:border-box;margin:0}</style>
+<style type="text/css" data-fela-type="RULE" data-fela-rehydration="4">.a{font-size:12px}.b{color:blue}</style>
+<style type="text/css" data-fela-type="RULE" data-fela-rehydration="4" data-fela-support>.c{color:green}</style>
+<style type="text/css" data-fela-type="RULE" data-fela-rehydration="4" media="(min-width: 300px)">.d{color:red}</style>
 ```
