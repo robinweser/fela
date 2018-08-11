@@ -82,7 +82,22 @@ const rule = props => ({
 })
 ```
 
-#### 4. Attribute Selectors
+
+#### 4. Support Queries
+Another useful CSS feature are [support queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports).<br>
+They're used to conditionally apply CSS values **only** if a certain CSS feature is supported by the targeted browser. This helps to provide the best experience for both modern and old browsers.
+
+```javascript
+const rule = props => ({
+  // fallback value
+  display: 'block',
+  '@supports (display:flex)': {
+    display: 'flex'
+  }
+})
+```
+
+#### 5. Attribute Selectors
 To be able to style elements according to their attributes, Fela introduces a special syntax for nested attribute selectors. It allows dynamic styles depending on passed attributes which adds another level of precise element selection.
 
 The API reflects the original [CSS attribute selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Attribute_selectors) and therefore allows the following operators:
@@ -113,7 +128,7 @@ const rule = props => ({
 })
 ```
 
-#### 5. Child Selectors
+#### 6. Child Selectors
 Fela also supports a special syntax for child element styling know as [child selectors](https://developer.mozilla.org/es/docs/Web/CSS/Child_selectors) in CSS.
 They should only be used for third-party class manipulation or semantic problems e.g. *parent component which defines how child components are ordered depending on some state.*
 
@@ -141,7 +156,7 @@ const rule = props => ({
 })
 ```
 
-#### 6. Other Selectors
+#### 7. Other Selectors
 If you are familiar with CSS, you may have noticed that this was just a very small subset of CSS selectors. While we only support the above selectors for a reason, we also understand that there might be some edge cases (mostly with third-party libraries) where you want to use other selectors as well. Therefore we provide the `&`-prefix for nested selectors.
 
 > Warning: This is experimental. It basically renders the selector without any further validation.
@@ -170,5 +185,5 @@ const rule = props => ({
 * [API Reference - `Renderer.renderRule`](../api/fela/Renderer.md#renderrulerule-props-defaultprops)
 
 #### Tools
-**[StyleSheet](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/StyleSheet.md)**<br>
+**[fela-tools/StyleSheet](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/StyleSheet.md)**<br>
 Organize your rules in grouped objects with named keys

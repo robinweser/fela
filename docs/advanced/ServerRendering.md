@@ -95,6 +95,6 @@ server.listen(8080, 'localhost')
 ---
 
 ### Related
-* [API Reference - `renderToMarkup`](../api/fela-dom/renderToMarkup)
-* [API Reference - `renderToSheetList`](../api/fela-dom/renderToSheetList)
-* [API Reference - `rehydrate`](../api/fela-dom/rehydrate)
+* [API Reference - `renderToMarkup`](../api/fela-dom/renderToMarkup.md)
+* [API Reference - `renderToSheetList`](../api/fela-dom/renderToSheetList.md)
+* [API Reference - `rehydrate`](../api/fela-dom/rehydrate.md)

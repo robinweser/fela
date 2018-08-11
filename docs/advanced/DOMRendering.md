@@ -29,7 +29,7 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => a b c
+renderer.renderRule(rule, { size: '12px' }) // => a b c
 
 render(renderer)
 
@@ -43,4 +43,4 @@ renderer.renderRule(rule, { size: '15px '}) // => a d c
 
 ### Related
 * [API Reference - `render`](../api/fela-dom/render.md)
-* [API Reference - `rehydrate`](../api/fela-dom/rehydrate)
+* [API Reference - `rehydrate`](../api/fela-dom/rehydrate.md)

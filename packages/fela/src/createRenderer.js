@@ -33,6 +33,7 @@ import getFontLocals from './getFontLocals'
 import getFontUrl from './getFontUrl'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
+import validateSelectorPrefix from './validateSelectorPrefix'
 
 import type {
   DOMRenderer,
@@ -58,7 +59,7 @@ export default function createRenderer(
       /^:active/,
     ],
 
-    selectorPrefix: config.selectorPrefix || '',
+    selectorPrefix: validateSelectorPrefix(config.selectorPrefix),
     filterClassName: config.filterClassName || isSafeClassName,
     devMode: config.devMode || false,
 

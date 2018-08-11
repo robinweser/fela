@@ -12,7 +12,11 @@ const basicStatics = {
 }
 
 const mergableStatics = ['contextTypes', 'defaultProps']
-const blockedStatics = { childContextTypes: true, propTypes: true }
+const blockedStatics = {
+  childContextTypes: true,
+  propTypes: true,
+  getDerivedStateFromProps: true,
+}
 
 export default function hoistStatics(target: any, source: any): any {
   if (typeof source === 'string') {
