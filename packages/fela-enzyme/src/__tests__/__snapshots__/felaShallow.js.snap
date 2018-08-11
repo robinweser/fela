@@ -1,0 +1,228 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`felaShallow Regular React Component should return a snapshot of the component, shallow rendered 1`] = `
+Object {
+  "component": <FelaComponent />,
+  "styles": "
+
+",
+}
+`;
+
+exports[`felaShallow Regular React Component should return be able to find child Fela Component and capture its snapshot 1`] = `
+Object {
+  "component": <div
+    className="a"
+/>,
+  "styles": "
+.a {
+  color: black
+}
+",
+}
+`;
+
+exports[`felaShallow component created with createComponent should return a formatted snapshot object with DOM and styles 1`] = `
+Object {
+  "component": <div
+    className="a"
+/>,
+  "styles": "
+.a {
+  color: black
+}
+",
+}
+`;
+
+exports[`felaShallow component created with createComponent should return a shallow snapshot without styles(essentially same as enzyme shallow and enzyme-to-json)  1`] = `
+Object {
+  "component": <FelaComponent
+    _felaTheme={
+        Object {
+            "color": Object {
+              "black": "#000",
+              "grass": "#9BCA3E",
+            },
+            "fontSize": "15px",
+            "fontSizes": Array [
+              10,
+              12,
+              14,
+              16,
+              20,
+              24,
+              32,
+              48,
+              64,
+              80,
+            ],
+          }
+    }
+/>,
+}
+`;
+
+exports[`felaShallow components created with applyTheme should snapshot fela component with extra theme 1`] = `
+Object {
+  "component": <div
+    className="a b c d e"
+>
+     
+    innerText
+     
+</div>,
+  "styles": "
+.a {
+  width: 10px
+}
+
+.b {
+  height: 10px
+}
+
+.c {
+  color: #9BCA3E
+}
+
+.d {
+  background-color: #000
+}
+
+.e {
+  font-size: 15px
+}
+",
+}
+`;
+
+exports[`felaShallow components created with applyTheme should snapshot fela component without extra theme 1`] = `
+Object {
+  "component": <div
+    className="a b c d e"
+>
+     
+    innerText
+     
+</div>,
+  "styles": "
+.a {
+  width: 10px
+}
+
+.b {
+  height: 10px
+}
+
+.c {
+  color: #9BCA3E
+}
+
+.d {
+  background-color: #000
+}
+
+.e {
+  font-size: 10
+}
+",
+}
+`;
+
+exports[`felaShallow components withTheme should capture snapshot 1`] = `
+Object {
+  "component": <FelaComponent>
+    #9BCA3E
+</FelaComponent>,
+  "styles": "
+
+",
+}
+`;
+
+exports[`felaShallow felaDive should allow access to component wrapped by Fela Hoc components 1`] = `
+Object {
+  "component": <div
+    className="a"
+>
+    <FelaComponent />
+</div>,
+}
+`;
+
+exports[`felaShallow nested fela components should snapshot children boxes 1`] = `
+Array [
+  Object {
+    "component": <div
+      className="a b c"
+>
+      text
+</div>,
+    "styles": "
+.a {
+  width: 15px
+}
+
+.b {
+  height: 15px
+}
+
+.c {
+  color: #9BCA3E
+}
+",
+  },
+  Object {
+    "component": <div
+      className="a b c"
+>
+      text
+</div>,
+    "styles": "
+.a {
+  width: 10px
+}
+
+.b {
+  height: 10px
+}
+
+.c {
+  color: #9BCA3E
+}
+",
+  },
+]
+`;
+
+exports[`felaShallow nested fela components should snapshot root level box 1`] = `
+Object {
+  "component": <div
+    className="a b c"
+>
+    <boxRules
+        size="15"
+    >
+        text
+    </boxRules>
+    <boxRules>
+        text
+    </boxRules>
+</div>,
+  "styles": "
+.a {
+  width: 10px
+}
+
+.b {
+  height: 10px
+}
+
+.c {
+  color: #9BCA3E
+}
+",
+}
+`;
+
+exports[`no child 1`] = `Array []`;

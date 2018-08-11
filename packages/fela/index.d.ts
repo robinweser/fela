@@ -1,6 +1,6 @@
 declare module "fela" {
 
-  import { CSSProperties } from 'react';
+  import * as CSS from 'csstype';
 
   export type TRuleProps = {};
   export type TRule<T = TRuleProps> = (props: T) => IStyle
@@ -47,7 +47,7 @@ declare module "fela" {
     selectorPrefix?: string;
   }
 
-  export interface IStyle extends CSSProperties {
+  export interface IStyle extends CSS.Properties<string | number> {
     //TODO: add properties, missing in React.CSSProperties
   }
 
