@@ -10,10 +10,9 @@ type Config = {
   unit?: Array<any>,
 }
 
-export const createWebPreset = ({
-  extend: extendConfig = [],
-  unit: unitConfig = [],
-}: Config = {}) => [
+export const createWebPreset = (
+  { extend: extendConfig = [], unit: unitConfig = [] }: Config = {}
+) => [
   extend(...extendConfig),
   embedded(),
   prefixer(),
