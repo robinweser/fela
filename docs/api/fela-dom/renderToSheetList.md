@@ -21,7 +21,8 @@ type Sheet = {
   type: string,
   css: string,
   media?: string,
-  support?: boolean
+  support?: boolean,
+  rehydration: number
 }
 ```
 
@@ -35,7 +36,7 @@ const renderer = createRenderer()
 const rule = ({ fontSize }) => ({
   fontSize: fontSize,
   color: 'blue',
-  '@supports (display: flex): {
+  '@supports (display: flex)': {
     color: 'green'
   },
   '@media (min-width: 300px)': {
@@ -43,7 +44,7 @@ const rule = ({ fontSize }) => ({
   }
 })
 
-renderer.renderStatic('html,body{box-sizing:border-box;margin:0}').
+renderer.renderStatic('html,body{box-sizing:border-box;margin:0}')
 renderer.renderRule(rule, { fontSize: '12px' })
 
 const sheetList = renderToSheetList(renderer)
@@ -52,9 +53,9 @@ const sheetList = renderToSheetList(renderer)
 The following list would be returned:
 ```javascript
 [
-  { type: 'STATIC', css: 'html,body{box-sizing:border-box;margin:0}' },
-  { type: 'RULE', css: '.a{font-size:12px}.b{color:blue}' },
-  { type: 'RULE', css: '.c{color:green}', support: true },
-  { type: 'RULE', css: '.d{color:red}', media: '(min-width: 300px)' },
+  { type: 'STATIC', css: 'html,body{box-sizing:border-box;margin:0}', rehydration: 4 },
+  { type: 'RULE', css: '.a{font-size:12px}.b{color:blue}', rehydration: 4 },
+  { type: 'RULE', css: '.c{color:green}', support: true, rehydration: 4 },
+  { type: 'RULE', css: '.d{color:red}', media: '(min-width: 300px)', rehydration: 4 },
 ]
 ```

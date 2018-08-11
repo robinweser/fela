@@ -1,14 +1,19 @@
 /* @flow */
-import createDOMSubscription from './createDOMSubscription'
-import connectDOMNodes from './connectDOMNodes'
+import objectEach from 'fast-loops/lib/objectEach'
 
-import type DOMRenderer from '../../../../flowtypes/DOMRenderer'
+import createSubscription from './connection/createSubscription'
+
+import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 export default function render(renderer: DOMRenderer): void {
   if (!renderer.updateSubscription) {
-    connectDOMNodes(renderer)
+    renderer.nodes = {}
 
-    renderer.updateSubscription = createDOMSubscription(renderer.nodes)
+    renderer.updateSubscription = createSubscription(renderer)
     renderer.subscribe(renderer.updateSubscription)
+
+    // simulate rendering to ensure all styles rendered prior to
+    // calling FelaDOM.render are correctly injected as well
+    objectEach(renderer.cache, renderer._emitChange)
   }
 }

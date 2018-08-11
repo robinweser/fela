@@ -1,6 +1,6 @@
 /* @flow */
 import render from './dom/render'
-import rehydrate from './dom/rehydration/rehydrate'
+import rehydrate from './dom/rehydrate'
 
 import renderToMarkup from './server/renderToMarkup'
 import renderToSheetList from './server/renderToSheetList'

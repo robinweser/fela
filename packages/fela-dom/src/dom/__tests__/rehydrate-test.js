@@ -1,16 +1,10 @@
-import { createRenderer } from 'fela'
-import webPreset from 'fela-preset-web'
-
 import rehydrate from '../rehydrate'
-import renderToMarkup from '../../../server/renderToMarkup'
 
-const sortObject = obj =>
-  Object.keys(obj)
-    .sort()
-    .reduce((newObj, key) => {
-      newObj[key] = obj[key]
-      return newObj
-    }, {})
+import renderToMarkup from '../../server/renderToMarkup'
+import createRenderer from '../../../../fela/src/createRenderer'
+import webPreset from '../../../../fela-preset-web/src/index'
+
+import sortObject from '../__helpers__/sortObject'
 
 beforeEach(() => {
   const head = document.head

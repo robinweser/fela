@@ -17,7 +17,8 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
   const cacheCluster = clusterCache(
     renderer.cache,
     renderer.mediaQueryOrder,
-    renderer.supportQueryOrder
+    renderer.supportQueryOrder,
+    renderer.ruleOrder
   )
 
   const rehydrationIndex = getRehydrationIndex(renderer)

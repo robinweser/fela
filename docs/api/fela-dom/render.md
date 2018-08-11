@@ -1,5 +1,7 @@
 # render
 
+> This method is used for client-side only rendering. For universal rendering, we recommend using [rehydrate](rehydrate.md).
+
 Renders all cached styles into the DOM.<br>
 It also adds a change listener to automatically add newly rendered styles.
 
