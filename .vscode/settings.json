@@ -72,9 +72,9 @@
     "examples/example-angular2/app/dist": true,
     "examples/example-angular2-typescript/app/*.js": true,
     "examples/example-angular2-typescript/app/*.map": true,
-    "examples/example-angular2-typescript/node_modules/express/node_modules/qs/node_modules": true,
     "examples/example-angular2-typescript/node_modules/express/node_modules/mkdirp/node_modules/": true,
-    "examples/example-angular2-typescript/node_modules/express/node_modules/mkdirp/npm-debug.log": true
+    "examples/example-angular2-typescript/node_modules/express/node_modules/mkdirp/npm-debug.log": true,
+    "examples/example-angular2-typescript/node_modules/express/node_modules/qs/node_modules": true
   },
   "files.exclude": {
     "# OS or Editor files": true,
@@ -149,8 +149,8 @@
     "examples/example-angular2/app/dist": true,
     "examples/example-angular2-typescript/app/*.js": true,
     "examples/example-angular2-typescript/app/*.map": true,
-    "examples/example-angular2-typescript/node_modules/express/node_modules/qs/node_modules": true,
     "examples/example-angular2-typescript/node_modules/express/node_modules/mkdirp/node_modules/": true,
-    "examples/example-angular2-typescript/node_modules/express/node_modules/mkdirp/npm-debug.log": true
+    "examples/example-angular2-typescript/node_modules/express/node_modules/mkdirp/npm-debug.log": true,
+    "examples/example-angular2-typescript/node_modules/express/node_modules/qs/node_modules": true
   }
 }

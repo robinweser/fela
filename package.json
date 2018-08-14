@@ -21,6 +21,11 @@
             "/__fixtures__/",
             "/__helpers__/",
             "/lib/"
+        ],
+        "coveragePathIgnorePatterns": [
+            "/__fixtures__/",
+            "/__helpers__/",
+            "/lib/"
         ]
     },
     "devDependencies": {
