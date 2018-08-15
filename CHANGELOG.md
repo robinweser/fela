@@ -5,6 +5,15 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 15/08/18
+| Package | Version | Changes |
+| --- | --- | --- |
+| fela-enzyme | 1.0.0 | Initial version |
+| fela<br>fela-dom<br>fela-utils<br>fela-bindings<br>react-fela<br>inferno-fela<br>preact-fela<br>fela-tools |  6.2.0<br>8.0.0<br>8.1.0<br>3.0.0<br>8.0.0<br>9.0.0<br>8.0.0<br>5.2.0 | [(#573)](https://github.com/rofrischmann/fela/pull/573) implemented consistent rule sorting |
+| fela-plugin-extend | 6.0.8 | [(#584)](https://github.com/rofrischmann/fela/pull/584) removed the deprecation warning for the  `fela-plugin-remove-undefined` package |
+| fela-plugin-lvha | 5.0.16 | deprecated package as consistent rule sorting already handles LVHA order correctly |
+
+
 ## 05/07/18
 | Package | Version | Changes |
 | ---- | --- | --- |
