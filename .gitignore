@@ -29,6 +29,5 @@ npm-debug.log
 **/es/
 **/coverage/
 **/_book
-examples/react/bundle.js
 
 \.history/
