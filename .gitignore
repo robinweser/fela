@@ -21,6 +21,7 @@ Thumbs.db
 *.vi
 .vscode
 
+**/yarn-error.log
 *.js.map
 **/node_modules/
 npm-debug.log
