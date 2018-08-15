@@ -19,6 +19,7 @@ Thumbs.db
 *.sass-cache
 *.sw?
 *.vi
+.vscode
 
 *.js.map
 **/node_modules/
