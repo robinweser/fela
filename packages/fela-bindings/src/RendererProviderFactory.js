@@ -21,7 +21,7 @@ export default function RendererProviderFactory(
   renderChildren: Function,
   statics?: Object
 ): any {
-  class Provider extends BaseComponent {
+  class RendererProvider extends BaseComponent {
     constructor(props: Object, context: Object) {
       super(props, context)
 
@@ -47,9 +47,9 @@ export default function RendererProviderFactory(
 
   if (statics) {
     objectEach(statics, (value, key) => {
-      Provider[key] = value
+      RendererProvider[key] = value
     })
   }
 
-  return Provider
+  return RendererProvider
 }

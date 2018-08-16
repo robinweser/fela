@@ -9,7 +9,7 @@ Array [
 .b:hover {
     color: blue
 }",
-  <Provider
+  <RendererProvider
     renderer={
         Object {
             "_emitChange": [Function],
@@ -93,7 +93,7 @@ Array [
             </FelaTheme>
         </FelaComponent>
     </Comp>
-</Provider>,
+</RendererProvider>,
 ]
 `;
 
@@ -106,7 +106,7 @@ Array [
 .b:hover {
     color: blue
 }",
-  <Provider
+  <RendererProvider
     renderer={
         Object {
             "_emitChange": [Function],
@@ -189,6 +189,6 @@ Array [
             </FelaTheme>
         </FelaComponent>
     </Comp>
-</Provider>,
+</RendererProvider>,
 ]
 `;

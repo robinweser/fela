@@ -10,7 +10,7 @@ import { renderToString } from 'fela-tools'
 
 import FelaThemeFactory from '../FelaThemeFactory'
 import FelaComponentFactory from '../FelaComponentFactory'
-import ProviderFactory from '../ProviderFactory'
+import RendererProviderFactory from '../RendererProviderFactory'
 import { THEME_CHANNEL } from '../themeChannel'
 
 import feFactory from '../feFactory'
@@ -24,9 +24,13 @@ const FelaComponent = FelaComponentFactory(createElement, FelaTheme, {
   renderer: PropTypes.object,
 })
 
-const Provider = ProviderFactory(Component, children => children, {
-  childContextTypes: { renderer: PropTypes.object },
-})
+const RendererProvider = RendererProviderFactory(
+  Component,
+  children => children,
+  {
+    childContextTypes: { renderer: PropTypes.object },
+  }
+)
 
 const fe = feFactory(createElement, FelaComponent)
 
@@ -49,9 +53,9 @@ describe('Using fe', () => {
       )
 
     const wrapper = mount(
-      <Provider renderer={renderer}>
+      <RendererProvider renderer={renderer}>
         <Comp />
-      </Provider>
+      </RendererProvider>
     )
 
     expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()
@@ -76,9 +80,9 @@ describe('Using fe', () => {
       )
 
     const wrapper = mount(
-      <Provider renderer={renderer}>
+      <RendererProvider renderer={renderer}>
         <Comp />
-      </Provider>
+      </RendererProvider>
     )
 
     expect([css(renderToString(renderer)), toJson(wrapper)]).toMatchSnapshot()

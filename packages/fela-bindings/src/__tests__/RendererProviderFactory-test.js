@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { createRenderer } from 'fela'
 import { mount } from 'enzyme'
-import ProviderFactory from '../ProviderFactory'
+import RendererProviderFactory from '../RendererProviderFactory'
 
 const mockCallback = jest.fn()
 
@@ -15,7 +15,7 @@ afterAll(() => {
   jest.unmock('fela-dom')
 })
 
-describe('ProviderFactory', () => {
+describe('RendererProviderFactory', () => {
   beforeEach(() => {
     mockCallback.mockClear()
   })
@@ -24,9 +24,13 @@ describe('ProviderFactory', () => {
     const didMount = () => mockCallback('didMount')
     const renderChildren = children => children
     const renderer = createRenderer()
-    const Provider = ProviderFactory(Component, renderChildren, {
-      childContextTypes: { renderer: PropTypes.object },
-    })
+    const RendererProvider = RendererProviderFactory(
+      Component,
+      renderChildren,
+      {
+        childContextTypes: { renderer: PropTypes.object },
+      }
+    )
 
     class Child extends Component {
       componentDidMount() {
@@ -38,9 +42,9 @@ describe('ProviderFactory', () => {
     }
 
     mount(
-      <Provider rehydrate renderToDOM renderer={renderer}>
+      <RendererProvider rehydrate renderer={renderer}>
         <Child />
-      </Provider>
+      </RendererProvider>
     )
     expect(mockCallback.mock.calls.length).toBe(2)
     expect(mockCallback.mock.calls[0][0]).toBe('render')
