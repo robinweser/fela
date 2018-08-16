@@ -1,5 +1,7 @@
 # createComponentWithProxy
 
+> **Deprecated**: The createComponentWithProxy-API is deprecated and will be remove with the next major update.<br>In order to provide a minimal, robust and performant API, we are moving everything over to render-props APIs. See [FelaComponent](FelaComponent.md) and [FelaTheme](FelaTheme.md).
+
 Sometimes you need/want to pass all the props the to child element but doesn't know them all except the one you use in your rules. `createComponentWithProxy`allow you to pass all the props to the child by default except the props used in the rules.
 
 ## Usage
