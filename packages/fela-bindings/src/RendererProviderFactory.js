@@ -16,7 +16,7 @@ function hasServerRenderedStyle() {
   return window.document.querySelectorAll('[data-fela-type]').length > 0
 }
 
-export default function ProviderFactory(
+export default function RendererProviderFactory(
   BaseComponent: any,
   renderChildren: Function,
   statics?: Object
