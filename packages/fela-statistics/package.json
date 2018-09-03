@@ -24,6 +24,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
+    "fela-tools": "^5.2.0",
     "fela-utils": "^8.1.0",
     "gzip-size": "^3.0.0"
   }
