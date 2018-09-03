@@ -1,3 +1,3 @@
 for package in packages/*; do
-  cd "$package" && npm publish && cd ../../
+  cd "$package" && (npm publish || true) && cd ../../
 done

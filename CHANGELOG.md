@@ -5,7 +5,7 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
-## 03/09/19
+## 03/09/18
 | Package | Version | Changes |
 | --- | --- | --- |
 | fela-utils | 8.1.1 | [(#605)](https://github.com/rofrischmann/fela/pull/605) fixed a bug that resolved in wrong rule order on server-side Node environments due to different sorting implementations |
