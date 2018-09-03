@@ -2,6 +2,7 @@
 /* eslint-disable prefer-rest-params */
 import gzipSize from 'gzip-size'
 import { RULE_TYPE } from 'fela-utils'
+import { renderToString } from 'fela-tools'
 
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
@@ -100,7 +101,7 @@ function addStatistics(
       number: reuse,
     }
 
-    const currentCSS = renderer.renderToString()
+    const currentCSS = renderToString(renderer)
     const bytes = lengthInUtf8Bytes(currentCSS)
 
     currentStats.size = {
