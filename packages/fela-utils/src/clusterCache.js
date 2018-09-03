@@ -4,7 +4,7 @@ import objectReduce from 'fast-loops/lib/objectReduce'
 
 import applyKeysInOrder from './applyKeysInOrder'
 import generateCSSRule from './generateCSSRule'
-import sortCache from './sortCache'
+import objectSortByScore from './objectSortByScore'
 import getRuleScore from './getRuleScore'
 
 import { RULE_TYPE, KEYFRAME_TYPE, FONT_TYPE, STATIC_TYPE } from './styleTypes'
@@ -64,20 +64,9 @@ export default function clusterCache(
   supportQueryOrder: Array<string> = [],
   ruleOrder: Array<any> = []
 ) {
-  const sortedCache = sortCache(cache, (left, right) => {
-    const leftScore = getRuleScore(ruleOrder, left.pseudo)
-    const rightScore = getRuleScore(ruleOrder, right.pseudo)
-
-    if (leftScore > rightScore) {
-      return 1
-    }
-
-    if (rightScore > leftScore) {
-      return -1
-    }
-
-    return 0
-  })
+  const sortedCache = objectSortByScore(cache, value =>
+    getRuleScore(ruleOrder, value.pseudo)
+  )
 
   const mediaRules = applyKeysInOrder(mediaQueryOrder)
   const supportRules = applyKeysInOrder(supportQueryOrder)
