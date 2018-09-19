@@ -37,17 +37,16 @@ export function createRenderer(
     },
 
     renderRule(rule: Function, props: Object = {}): Object {
-      const style = rule(props, renderer)
-      const reference = JSON.stringify(style)
+      const processedStyle = processStyleWithPlugins(
+        renderer,
+        rule(props, renderer),
+        RULE_TYPE,
+        props
+      )
+
+      const reference = JSON.stringify(processedStyle)
 
       if (!renderer.cache.hasOwnProperty(reference)) {
-        const processedStyle = processStyleWithPlugins(
-          renderer,
-          rule(props, renderer),
-          RULE_TYPE,
-          props
-        )
-
         renderer.cache[reference] = StyleSheet.create({
           style: processedStyle,
         })

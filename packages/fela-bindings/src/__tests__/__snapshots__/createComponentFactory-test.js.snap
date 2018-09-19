@@ -889,6 +889,48 @@ Array [
 ]
 `;
 
+exports[`Creating Components with a Proxy for props from Fela rules should replace rare unallowed symbols in className with underscore 1`] = `
+Array [
+  "<style>
+    .rule_1_______________abrv9k {
+        font-size: 16
+    }
+</style>",
+  <rule>
+    <rule
+        _felaTheme={Object {}}
+    >
+        <1!@#$%^&*{}/=\\
+            className="rule_1_______________abrv9k"
+        >
+            <div />
+        </1!@#$%^&*{}/=\\>
+    </rule>
+</rule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should replace unallowed symbols in className with underscore 1`] = `
+Array [
+  "<style>
+    .rule_connect_Component___abrv9k {
+        font-size: 16
+    }
+</style>",
+  <rule>
+    <rule
+        _felaTheme={Object {}}
+    >
+        <connect(Component)
+            className="rule_connect_Component___abrv9k"
+        >
+            <div />
+        </connect(Component)>
+    </rule>
+</rule>,
+]
+`;
+
 exports[`Creating Components with a Proxy for props from Fela rules should use a dev-friendly className and the selectorPrefix 1`] = `
 Array [
   "<style>

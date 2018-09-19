@@ -319,7 +319,7 @@ declare module "react-fela" {
 
   interface ProviderProps {
     renderer: object;
-    mountNode?: any;
+    rehydrate: boolean;
   }
 
   interface FelaWithThemeProps<Theme> {

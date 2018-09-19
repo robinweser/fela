@@ -24,6 +24,10 @@ export default function extractUsedProps(
   })
 
   const proxy = new Proxy({ theme }, handler(usedProps))
-  rule(proxy)
-  return usedProps
+  try {
+    rule(proxy)
+    return usedProps
+  } catch (err) {
+    return []
+  }
 }

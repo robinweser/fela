@@ -1,6 +1,6 @@
 {
   "name": "fela-utils",
-  "version": "8.1.0",
+  "version": "8.1.1",
   "description": "Internal utilities for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,6 +25,6 @@
     "string-hash": "^1.1.3"
   },
   "devDependencies": {
-    "fela": "^6.2.0"
+    "fela": "^6.2.1"
   }
 }

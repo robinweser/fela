@@ -5,6 +5,16 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 03/09/18
+| Package | Version | Changes |
+| --- | --- | --- |
+| fela-utils | 8.1.1 | [(#605)](https://github.com/rofrischmann/fela/pull/605) fixed a bug that resolved in wrong rule order on server-side Node environments due to different sorting implementations |
+| fela-bindings | 3.0.1 | [(#601)](https://github.com/rofrischmann/fela/pull/601) added exception handling when extracting rule props in order to catch errors<br>[(#599)](https://github.com/rofrischmann/fela/pull/599) escaping class names with `prettySelectors` enabled in order to avoid invalid class names |
+| fela-statistics | 5.0.24 | [(#604)](https://github.com/rofrischmann/fela/pull/604) now using fela-tools' `renderToString` instead of the renderer's deprecated method |
+| fela-plugin-native-media-query | 6.0.11 | [(#591)](https://github.com/rofrischmann/fela/issues/591) added missing renderer reference  |
+| fela-native | 5.0.24 | [(#593)](https://github.com/rofrischmann/fela/issues/593) now processing rules before caching them in order to have predictable style output |
+
+
 ## 15/08/18
 | Package | Version | Changes |
 | --- | --- | --- |
