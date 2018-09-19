@@ -1,5 +1,6 @@
-import { RULE_TYPE, KEYFRAME_TYPE } from 'fela-utils'
 import validator from '../index'
+
+import { RULE_TYPE, KEYFRAME_TYPE } from '../../../fela-utils/src/styleTypes'
 
 describe('Validator plugin', () => {
   const consoleSpy = jest

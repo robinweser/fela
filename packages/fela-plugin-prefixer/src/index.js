@@ -43,4 +43,6 @@ function addVendorPrefixes(style: Object): Object {
   )
 }
 
-export default () => addVendorPrefixes
+export default function prefixer() {
+  return addVendorPrefixes
+}

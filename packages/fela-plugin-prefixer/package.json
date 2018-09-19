@@ -26,7 +26,7 @@
     "css-in-js-utils": "^2.0.0",
     "fast-loops": "^1.0.0",
     "fela-plugin-fallback-value": "^5.0.18",
-    "inline-style-prefixer": "^4.0.0",
+    "inline-style-prefixer": "^5.0.1",
     "isobject": "^3.0.1"
   }
 }

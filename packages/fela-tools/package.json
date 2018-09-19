@@ -25,7 +25,6 @@
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
     "fast-loops": "^1.0.0",
-    "fela": "^6.2.1",
     "fela-utils": "^8.1.1"
   }
 }

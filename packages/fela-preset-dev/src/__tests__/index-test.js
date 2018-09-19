@@ -1,6 +1,6 @@
-import { createRenderer } from 'fela'
-
 import devPreset, { createDevPreset } from '../index'
+
+import createRenderer from '../../../fela/src/createRenderer'
 
 describe('fela-preset-dev', () => {
   it('should work without config', () => {

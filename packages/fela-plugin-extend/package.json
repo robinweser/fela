@@ -19,9 +19,6 @@
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
-  "peerDependencies": {
-    "fela": "^6.1.7"
-  },
   "dependencies": {
     "fast-loops": "^1.0.0",
     "fela-utils": "^8.1.1",

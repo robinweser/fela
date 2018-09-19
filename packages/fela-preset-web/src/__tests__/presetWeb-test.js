@@ -1,12 +1,13 @@
-import { createRenderer } from 'fela'
-import combineArrays from 'fela-combine-arrays'
-
 import webPreset, { createWebPreset } from '../index'
+
+import createRenderer from '../../../fela/src/createRenderer'
+import combineArrays from '../../../fela-combine-arrays/src'
+import renderToString from '../../../fela-tools/src/renderToString'
 
 describe('preset-web-plugin', () => {
   it('should work without config', () => {
     const renderer = createRenderer({
-      plugins: [...webPreset],
+      plugins: webPreset,
       enhancers: [combineArrays()],
     })
 
@@ -22,13 +23,13 @@ describe('preset-web-plugin', () => {
 
     renderer.renderRule(rule)
     // Tests that fela-plugin-extend is added to the plugins
-    expect(renderer.rules).toEqual('.a{color:red}.b{border:none}')
+    expect(renderToString(renderer)).toEqual('.a{color:red}.b{border:none}')
   })
 
-  describe('configuration', () => {
-    const renderer = createRenderer({
-      plugins: [
-        ...createWebPreset({
+  describe('Configuring fela-preset-web', () => {
+    it('should allow per plugin configuration', () => {
+      const renderer = createRenderer({
+        plugins: createWebPreset({
           unit: [
             'em',
             {
@@ -36,19 +37,29 @@ describe('preset-web-plugin', () => {
             },
           ],
         }),
-      ],
-      enhancers: [combineArrays()],
-    })
 
-    it('should allow per plugin configuration', () => {
+        enhancers: [combineArrays()],
+      })
+
       renderer.renderRule(() => ({ width: 1 }))
-      expect(renderer.rules).toBe('.a{width:1em}')
+      expect(renderToString(renderer)).toBe('.a{width:1em}')
     })
 
     it('should pass all parameters to the plugins', () => {
-      renderer.clear()
+      const renderer = createRenderer({
+        plugins: createWebPreset({
+          unit: [
+            'em',
+            {
+              margin: '%',
+            },
+          ],
+        }),
+        enhancers: [combineArrays()],
+      })
+
       renderer.renderRule(() => ({ margin: 1 }))
-      expect(renderer.rules).toBe('.a{margin:1%}')
+      expect(renderToString(renderer)).toBe('.a{margin:1%}')
     })
   })
 })

@@ -1,7 +1,7 @@
 import { createTheme, THEME_CHANNEL } from 'fela-bindings'
 import PropTypes from 'prop-types'
 
-const mergeOptions = (options, renderer, theme) => {
+export default function mergeOptions(options, renderer, theme) {
   const { childContextTypes, contextTypes, context, ...otherOptions } = options
 
   return {
@@ -23,5 +23,3 @@ const mergeOptions = (options, renderer, theme) => {
     ...otherOptions,
   }
 }
-
-export default mergeOptions

@@ -18,12 +18,12 @@ const isFelaComponent = reactElement =>
 const isNonDOMComponent = reactElement =>
   reactElement && reactElement.type && typeof reactElement.type !== 'string'
 
-const shallow = (
+export default function felaShallow(
   node,
   options = {},
   rootTheme = {},
   createRenderer = felaCreateRenderer
-) => {
+) {
   const rootRenderer = createRenderer()
 
   const wrapper = enzymeShallow(
@@ -113,5 +113,3 @@ const shallow = (
     felaDive,
   }
 }
-
-export default shallow
