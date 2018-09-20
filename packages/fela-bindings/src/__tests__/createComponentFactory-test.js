@@ -4,14 +4,14 @@ import { mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import { html as beautify } from 'js-beautify'
 
-import { renderToString } from 'fela-tools'
-import { createRenderer } from 'fela'
-import monolithic from 'fela-monolithic'
-
 import createComponentFactory from '../createComponentFactory'
 import withThemeFactory from '../withThemeFactory'
 import createTheme from '../createTheme'
 import { THEME_CHANNEL } from '../themeChannel'
+
+import renderToString from '../../../fela-tools/src/renderToString'
+import createRenderer from '../../../fela/src/createRenderer'
+import monolithic from '../../../fela-monolithic/src'
 
 const withTheme = withThemeFactory(BaseComponent, createElement, {
   [THEME_CHANNEL]: PropTypes.object,

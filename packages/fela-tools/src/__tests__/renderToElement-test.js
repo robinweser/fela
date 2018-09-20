@@ -1,6 +1,7 @@
 import { html as beautify } from 'js-beautify'
-import { createRenderer } from 'fela'
 import renderToElement from '../renderToElement'
+
+import createRenderer from '../../../fela/src/createRenderer'
 
 describe('renderToElement', () => {
   it('should do initial and subscription render into node', () => {
