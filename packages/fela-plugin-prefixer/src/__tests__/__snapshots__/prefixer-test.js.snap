@@ -3,7 +3,7 @@
 exports[`Prefixer plugin should prefix nested objects 1`] = `
 Object {
   ":hover": Object {
-    "WebkitJustifyContent": "center;justify-content:center;-webkit-box-pack:center",
+    "justifyContent": "center;-webkit-box-pack:center",
   },
   "display": Array [
     "-webkit-box",
@@ -17,7 +17,6 @@ Object {
 
 exports[`Prefixer plugin should prefix styles 1`] = `
 Object {
-  "WebkitJustifyContent": "center;justify-content:center;-webkit-box-pack:center",
   "display": Array [
     "-webkit-box",
     "-moz-box",
@@ -25,5 +24,6 @@ Object {
     "-webkit-flex",
     "flex",
   ],
+  "justifyContent": "center;-webkit-box-pack:center",
 }
 `;

@@ -21,7 +21,6 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^2.0.0",
-    "fast-loops": "^1.0.0",
-    "string-hash": "^1.1.3"
+    "fast-loops": "^1.0.0"
   }
 }

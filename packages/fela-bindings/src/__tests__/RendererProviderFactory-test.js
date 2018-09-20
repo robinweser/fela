@@ -1,14 +1,27 @@
+import 'raf/polyfill'
 import React, { Component } from 'react'
+import { render } from 'react-dom'
 import PropTypes from 'prop-types'
-import { createRenderer } from 'fela'
-import { mount } from 'enzyme'
+
 import RendererProviderFactory from '../RendererProviderFactory'
+
+import createRenderer from '../../../fela/src/createRenderer'
+
+import createSnapshot from '../__helpers__/createSnapshot'
+
+const RendererProvider = RendererProviderFactory(
+  Component,
+  children => children,
+  {
+    childContextTypes: { renderer: PropTypes.object },
+  }
+)
 
 const mockCallback = jest.fn()
 
 jest.mock('fela-dom', () => ({
-  render: () => mockCallback('render'),
   rehydrate: () => mockCallback('rehydrate'),
+  render: () => mockCallback('render'),
 }))
 
 afterAll(() => {
@@ -21,31 +34,22 @@ describe('RendererProviderFactory', () => {
   })
 
   it('should do the initial render before childrens componentDidMount hook', () => {
-    const didMount = () => mockCallback('didMount')
-    const renderChildren = children => children
-    const renderer = createRenderer()
-    const RendererProvider = RendererProviderFactory(
-      Component,
-      renderChildren,
-      {
-        childContextTypes: { renderer: PropTypes.object },
-      }
-    )
-
     class Child extends Component {
       componentDidMount() {
-        didMount()
+        mockCallback('didMount')
       }
       render() {
-        return <div />
+        return <div>Hello World</div>
       }
     }
 
-    mount(
-      <RendererProvider rehydrate renderer={renderer}>
+    render(
+      <RendererProvider rehydrate renderer={createRenderer()}>
         <Child />
-      </RendererProvider>
+      </RendererProvider>,
+      document.createElement('div')
     )
+
     expect(mockCallback.mock.calls.length).toBe(2)
     expect(mockCallback.mock.calls[0][0]).toBe('render')
     expect(mockCallback.mock.calls[1][0]).toBe('didMount')

@@ -1,5 +1,5 @@
 /* @flow */
-import prefix from 'inline-style-prefixer/static'
+import { prefix } from 'inline-style-prefixer'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 import objectReduce from 'fast-loops/lib/objectReduce'
 

@@ -1,7 +1,13 @@
+import 'raf/polyfill'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { createComponent, ThemeProvider, withTheme } from 'react-fela'
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
 import felaShallow from '../felaShallow'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 const mergeThemes = (baseTheme, ...themes) => {
   if (themes) {

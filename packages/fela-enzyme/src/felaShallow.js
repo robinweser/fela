@@ -2,9 +2,10 @@ import { shallow as enzymeShallow } from 'enzyme'
 import { renderToString } from 'fela-tools'
 import cssbeautify from 'cssbeautify'
 import toJson from 'enzyme-to-json'
-import mergeOptions from './mergeOptions'
 import { ThemeProvider } from 'react-fela' // eslint-disable-line behance/no-deprecated
 import { createRenderer as felaCreateRenderer } from 'fela'
+
+import mergeOptions from './mergeOptions'
 
 const isWithTheme = reactElement =>
   reactElement && reactElement.type && reactElement.type.name === 'WithTheme'

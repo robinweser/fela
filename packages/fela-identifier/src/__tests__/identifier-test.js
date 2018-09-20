@@ -1,11 +1,14 @@
 import React from 'react'
-import { connect } from 'react-fela'
-import { mount } from 'enzyme'
-import toJson from 'enzyme-to-json'
-import { createRenderer, combineRules } from 'fela'
-import { renderToString } from 'fela-tools'
-import monolithic from 'fela-monolithic'
+
 import createIdentifier from '../index'
+
+import combineRules from '../../../fela/src/combineRules'
+import createRenderer from '../../../fela/src/createRenderer'
+import monolithic from '../../../fela-monolithic/src'
+import renderToString from '../../../fela-tools/src/renderToString'
+import connect from '../../../react-fela/src/connect'
+
+import createSnapshot from '../__helpers__/createSnapshot'
 
 describe('Fela identifier enhancer', () => {
   it('should produce rule with custom property', () => {
@@ -156,11 +159,6 @@ describe('Fela identifier enhancer', () => {
   })
 
   it('identifier enhancer should not remove meta information in rule', () => {
-    const identifier = createIdentifier()
-    const renderer = createRenderer({
-      enhancers: [monolithic({ prettySelectors: true }), identifier],
-    })
-
     const rules = {
       rule1: () => ({
         padding: 1,
@@ -170,20 +168,26 @@ describe('Fela identifier enhancer', () => {
       }),
     }
 
-    const MyComponent = ({ styles }) => (
+    const Component = ({ styles }) => (
       <div>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
       </div>
     )
 
-    const MyConnectedComponent = connect(rules)(MyComponent)
+    const ConnectedComponent = connect(rules)(Component)
 
-    const wrapper = mount(<MyConnectedComponent />, {
-      context: {
-        renderer,
-      },
-    })
-    expect(toJson(wrapper)).toMatchSnapshot()
+    expect(
+      createSnapshot(
+        <ConnectedComponent />,
+        {},
+        createRenderer({
+          enhancers: [
+            monolithic({ prettySelectors: true }),
+            createIdentifier(),
+          ],
+        })
+      )
+    ).toMatchSnapshot()
   })
 })
