@@ -32,7 +32,7 @@ export default function FelaThemeFactory(
     }
 
     render() {
-      return this.props.render(this.state.theme)
+      return this.props.children(this.state.theme)
     }
   }
 

@@ -9,19 +9,23 @@ export default function feFactory(
     const { css, className, ...otherProps } = props
 
     if (css) {
-      return createElement(FelaComponent, {
-        style: css,
-        customClass: className,
-        render: renderProps =>
+      return createElement(
+        FelaComponent,
+        {
+          style: css,
+        },
+        renderProps =>
           createElement(
             type,
             {
               ...otherProps,
-              className: renderProps.className,
+              className: className
+                ? className + ' ' + renderProps.className
+                : renderProps.className,
             },
             ...children
-          ),
-      })
+          )
+      )
     }
 
     return createElement(type, props, ...children)
