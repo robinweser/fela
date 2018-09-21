@@ -26,6 +26,7 @@ export default function createComponentFactory(
         children,
         _felaTheme,
         _felaRule,
+        _felaProps = {},
         extend,
         innerRef,
         id,
@@ -74,16 +75,22 @@ export default function createComponentFactory(
       const resolvedPassThrough = [
         ...alwaysPassThroughProps,
         ...resolvePassThrough(passThroughProps, otherProps),
-        ...resolvePassThrough(passThrough, otherProps),
+        ...(withProxy ? [] : resolvePassThrough(passThrough, otherProps)),
         ...(withProxy ? resolveUsedProps(usedProps, otherProps) : []),
       ]
 
       const ruleProps = {
+        ..._felaProps,
         ...otherProps,
         theme: _felaTheme,
         as,
         id,
       }
+
+      const componentProps = extractPassThroughProps(
+        resolvedPassThrough,
+        otherProps
+      )
 
       // if the component renders into another Fela component
       // we pass down the combinedRule as well as both
@@ -92,22 +99,18 @@ export default function createComponentFactory(
           type,
           {
             _felaRule: combinedRule,
+            _felaProps: ruleProps,
             passThrough: resolvedPassThrough,
             innerRef,
             style,
             className,
             as,
             id,
-            ...otherProps,
+            ...componentProps,
           },
           children
         )
       }
-
-      const componentProps = extractPassThroughProps(
-        resolvedPassThrough,
-        otherProps
-      )
 
       // fela-native support
       if (renderer.isNativeRenderer) {
