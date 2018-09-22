@@ -13,6 +13,40 @@ Object {
 }
 `;
 
+exports[`Using the FelaComponent component should compose extension rules 1`] = `
+Object {
+  "css": ".a {
+    font-size: 12px
+}
+
+.b {
+    color: red
+}
+
+.c {
+    background-color: blue
+}",
+  "html": "<button class=\\"a b c\\">Hello World</button>",
+}
+`;
+
+exports[`Using the FelaComponent component should compose extension rules 2`] = `
+Object {
+  "css": ".a {
+    font-size: 12px
+}
+
+.b {
+    color: black
+}
+
+.c {
+    background-color: blue
+}",
+  "html": "<button class=\\"a b c\\">Hello World</button>",
+}
+`;
+
 exports[`Using the FelaComponent component should correctly pass the theme and other props to functional style 1`] = `
 Object {
   "css": ".a {

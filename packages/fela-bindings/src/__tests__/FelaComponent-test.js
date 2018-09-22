@@ -109,4 +109,39 @@ describe('Using the FelaComponent component', () => {
       )
     ).toMatchSnapshot()
   })
+
+  it('should compose extension rules', () => {
+    const Button = props => (
+      <FelaComponent style={{ fontSize: '12px', color: 'red' }} {...props} />
+    )
+
+    expect(
+      createSnapshot(
+        <Button extend={{ backgroundColor: 'blue' }} as="button">
+          Hello World
+        </Button>
+      )
+    ).toMatchSnapshot()
+  })
+
+  it('should compose extension rules', () => {
+    const rule = ({ color }) => ({
+      fontSize: '12px',
+      color,
+    })
+
+    const Button = ({ children, ...props }) => (
+      <FelaComponent style={rule} {...props}>
+        {({ className }) => <button className={className}>{children}</button>}
+      </FelaComponent>
+    )
+
+    expect(
+      createSnapshot(
+        <Button extend={{ backgroundColor: 'blue' }} color="black" as="span">
+          Hello World
+        </Button>
+      )
+    ).toMatchSnapshot()
+  })
 })
