@@ -23,7 +23,7 @@
     "fela": "^6.1.7"
   },
   "dependencies": {
-    "css-in-js-utils": "^2.1.0",
+    "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.0",
     "fela-utils": "^8.1.1",
     "isobject": "^3.0.1"

@@ -27,7 +27,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "css-in-js-utils": "^2.1.0",
+    "css-in-js-utils": "^3.0.0",
     "css-mediaquery": "^0.1.2",
     "fela-utils": "^8.1.1",
     "isobject": "^3.0.1"
