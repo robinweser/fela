@@ -1,9 +1,5 @@
 import combineRules from '../combineRules'
 
-const rendererMock = {
-  _mergeStyle: Object.assign,
-}
-
 describe('Combining rules', () => {
   it('should create a combined rule', () => {
     const rule = props => ({

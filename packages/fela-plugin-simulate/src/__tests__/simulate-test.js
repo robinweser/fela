@@ -1,9 +1,5 @@
 import simulate from '../index'
 
-const rendererMock = {
-  _mergeStyle: Object.assign,
-}
-
 describe('Simulating nested styles', () => {
   it('should simulate pseudo classes', () => {
     const style = {

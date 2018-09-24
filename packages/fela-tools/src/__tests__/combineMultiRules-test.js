@@ -1,9 +1,5 @@
 import combineMultiRules from '../combineMultiRules'
 
-const rendererMock = {
-  _mergeStyle: Object.assign,
-}
-
 describe('Combining multi rules', () => {
   it('should create a combined multi rule', () => {
     const multiRule = {
