@@ -5,17 +5,20 @@ import createSnapshotFactory from '../createSnapshotFactory'
 
 import FelaComponent from '../../../react-fela/src/FelaComponent'
 import Provider from '../../../react-fela/src/Provider'
+import ThemeProvider from '../../../react-fela/src/ThemeProvider'
 import createRenderer from '../../../fela/src/createRenderer'
-import webPreset from '../../../fela-preset-web/src/index'
+import plugins from '../../../fela-preset-web/src/index'
 
-const createSnapshot = createSnapshotFactory(createElement, render, Provider)
+const createSnapshot = createSnapshotFactory(
+  createElement,
+  render,
+  createRenderer(),
+  Provider,
+  ThemeProvider
+)
 
 describe('Creating Snapshots with Fela', () => {
   it('should return formatted html and css', () => {
-    const renderer = createRenderer({
-      plugins: webPreset,
-    })
-
     const style = {
       display: 'flex',
       flex: '1 0 auto',
@@ -30,25 +33,42 @@ describe('Creating Snapshots with Fela', () => {
       },
     }
 
-    expect(
-      createSnapshot(<FelaComponent style={style} />, renderer)
-    ).toMatchSnapshot()
+    expect(createSnapshot(<FelaComponent style={style} />)).toMatchSnapshot()
   })
 
   it('should always use a clean setup', () => {
-    const renderer = createRenderer({
-      plugins: webPreset,
-    })
-
     expect(
       createSnapshot(
-        <FelaComponent style={{ color: 'red', backgroundColor: 'blue' }} />,
-        renderer
+        <FelaComponent style={{ color: 'red', backgroundColor: 'blue' }} />
       )
     ).toMatchSnapshot()
     expect(
       createSnapshot(
-        <FelaComponent style={{ color: 'red', backgroundColor: 'green' }} />,
+        <FelaComponent style={{ color: 'red', backgroundColor: 'green' }} />
+      )
+    ).toMatchSnapshot()
+  })
+
+  it('should inject the theme', () => {
+    const rule = ({ theme }) => ({
+      backgroundColor: theme.bgColor,
+      color: 'red',
+    })
+
+    expect(
+      createSnapshot(<FelaComponent rule={rule} />, { bgColor: 'blue' })
+    ).toMatchSnapshot()
+  })
+
+  it('should use a custom renderer', () => {
+    const renderer = createRenderer({
+      plugins,
+    })
+
+    expect(
+      createSnapshot(
+        <FelaComponent style={{ appearance: 'none', fontSize: 12 }} />,
+        {},
         renderer
       )
     ).toMatchSnapshot()

@@ -26,31 +26,54 @@ exports[`Creating Snapshots with Fela should always use a clean setup 2`] = `
 "
 `;
 
+exports[`Creating Snapshots with Fela should inject the theme 1`] = `
+".a {
+  background-color: blue;
+}
+.b {
+  color: red;
+}
+
+
+<div data-reactroot className=a b />;
+"
+`;
+
 exports[`Creating Snapshots with Fela should return formatted html and css 1`] = `
 ".a {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
 }
 .b {
-  -webkit-flex: 1 0 auto;
   flex: 1 0 auto;
 }
-.e:hover {
+.c:hover {
   color: blue;
 }
 @media (min-width: 300px) {
-  .c {
+  .d {
     background-color: black;
   }
-  .d:hover {
+  .e:hover {
     color: green;
   }
 }
 
 
 <div data-reactroot className=a b c d e />;
+"
+`;
+
+exports[`Creating Snapshots with Fela should use a custom renderer 1`] = `
+".a {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.b {
+  font-size: 12px;
+}
+
+
+<div data-reactroot className=a b />;
 "
 `;
