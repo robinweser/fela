@@ -1,6 +1,9 @@
 [ignore]
-
 # Disable module with broken flow types.
+.*/lib/
+.*/es/
+./benchmarks/
+./examples/
 
 [version]
 ^0.81.0
