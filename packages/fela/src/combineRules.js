@@ -6,7 +6,11 @@ export default function combineRules(...rules: Array<Function>): Function {
   return (props, renderer) =>
     arrayReduce(
       rules,
-      (style, rule) => assignStyle(style, rule(props, renderer)),
+      (style, rule) =>
+        assignStyle(
+          style,
+          typeof rule === 'function' ? rule(props, renderer) : rule
+        ),
       {}
     )
 }
