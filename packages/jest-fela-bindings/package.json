@@ -1,0 +1,30 @@
+{
+  "name": "jest-fela-bindings",
+  "version": "1.0.0",
+  "description": "Abstract Fela bindings for Jest",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "testing",
+    "react",
+    "jest",
+    "jest-utils",
+    "jest-fela"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "fela-tools": "^5.2.2",
+    "htmltojsx": "^0.3.0",
+    "prettier": "^1.13.7"
+  }
+}

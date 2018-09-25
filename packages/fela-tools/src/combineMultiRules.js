@@ -1,6 +1,7 @@
 /* @flow */
 import objectReduce from 'fast-loops/lib/objectReduce'
 import arrayReduce from 'fast-loops/lib/arrayReduce'
+
 import { combineRules } from 'fela'
 
 function safeRule(ruleOrObject: Function | Object): Function {

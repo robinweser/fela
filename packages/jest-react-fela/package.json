@@ -1,0 +1,34 @@
+{
+  "name": "jest-react-fela",
+  "version": "1.0.0",
+  "description": "Jest helpers for react-fela",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "react-fela",
+    "testing",
+    "react",
+    "jest",
+    "jest-utils"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-fela": "*"
+  },
+  "dependencies": {
+    "jest-fela-bindings": "^1.0.0"
+  }
+}

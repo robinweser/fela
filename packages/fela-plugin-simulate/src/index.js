@@ -1,5 +1,6 @@
 /* @flow */
 import isPlainObject from 'isobject'
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
@@ -18,7 +19,7 @@ function resolveSimulation(
       if (isPlainObject(value) && props.simulate[property]) {
         const resolvedValue = resolveSimulation(value, type, renderer, props)
 
-        renderer._mergeStyle(style, resolvedValue)
+        assignStyle(style, resolvedValue)
         delete style[property]
       }
     }

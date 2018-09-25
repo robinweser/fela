@@ -1,18 +1,9 @@
 [ignore]
-
 # Disable module with broken flow types.
-.*/node_modules/babylon/*.*
-.*/node_modules/config-chain/*.*
-.*/node_modules/npm/*.*
-.*/node_modules/npmi/*.*
-.*/node_modules/react-native/*.*
-.*/node_modules/fbjs/lib/partitionObjectByKey.js
-.*/node_modules/conventional-changelog-core/test/fixtures/_malformation.json
-.*/node_modules/polished/*.*
-.*/node_modules/findup/*.*
-.*/node_modules/jss/*.*
+.*/lib/
+.*/es/
+./benchmarks/
+./examples/
 
-module.name_mapper='(react-native)' -> 'empty/object'
-module.name_mapper='(preact)' -> 'empty/object'
 [version]
-^0.57.3
+^0.81.0

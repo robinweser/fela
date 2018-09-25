@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creating Snapshots with Fela should always use a clean setup 1`] = `
+".a {
+  color: red;
+}
+.b {
+  background-color: blue;
+}
+
+
+<div data-reactroot className=a b />;
+"
+`;
+
+exports[`Creating Snapshots with Fela should always use a clean setup 2`] = `
+".a {
+  color: red;
+}
+.b {
+  background-color: green;
+}
+
+
+<div data-reactroot className=a b />;
+"
+`;
+
+exports[`Creating Snapshots with Fela should inject the theme 1`] = `
+".a {
+  background-color: blue;
+}
+.b {
+  color: red;
+}
+
+
+<div data-reactroot className=a b />;
+"
+`;
+
+exports[`Creating Snapshots with Fela should return formatted html and css 1`] = `
+".a {
+  display: flex;
+}
+.b {
+  flex: 1 0 auto;
+}
+.c:hover {
+  color: blue;
+}
+@media (min-width: 300px) {
+  .d {
+    background-color: black;
+  }
+  .e:hover {
+    color: green;
+  }
+}
+
+
+<div data-reactroot className=a b c d e />;
+"
+`;
+
+exports[`Creating Snapshots with Fela should use a custom renderer 1`] = `
+".a {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.b {
+  font-size: 12px;
+}
+
+
+<div data-reactroot className=a b />;
+"
+`;

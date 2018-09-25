@@ -48,4 +48,9 @@ This includes React, Preact and Inferno.
 * [`<FelaTheme theme render>`](api/bindings/FelaTheme.md)
 * [`<Provider renderer>`](api/bindings/Provider.md)
 * [`<ThemeProvider theme [overwrite]>`](api/bindings/ThemeProvider.md)
-* [`withTheme(component)`](docs/withTheme.md)
+* [`withTheme(component)`](api/bindings/withTheme.md)
+
+---
+
+### Jest Bindings
+* [`createSnapshot(component, [theme], [renderer], [Provider], [ThemeProvider])`](api/jest-bindings/createSnapshot.md)

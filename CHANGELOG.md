@@ -5,6 +5,15 @@ If you're searching for older version-based release notes please check out the o
 
 > Dates follow the `dd/mm/yy` notation.
 
+## 25/09/18
+| Package | Version | Changes |
+| --- | --- | --- |
+| fela-combine-arrays | 1.0.9 | [(#613)](https://github.com/rofrischmann/fela/pull/613) deprecated package |
+| fela<br>fela-native<br>fela-plugin-extend<br>fela-plugin-custom-property<br>fela-plugin-simulate<br>fela-plugin-native-media-query | 6.2.2<br>5.0.25<br>6.0.10<br>7.0.4<br>6.0.6<br>6.0.12 | [(#613)](https://github.com/rofrischmann/fela/pull/613) updated [css-in-js-utils](https://github.com/rofrischmann/css-in-js-utils) to 3.0.0 to get rid of fela-combine-arrays |
+| fela-dom | 8.0.2 | [(#609)](https://github.com/rofrischmann/fela/pull/609) fixed a bug where rehydration failed for iOS 12 Safari |
+| jest-fela-bindings<br>jest-react-fela<br>jest-preact-fela<br>jest-inferno-fela | 1.0.0<br>1.0.0<br>1.0.0<br>1.0.0 | [(#582)](https://github.com/rofrischmann/fela/pull/582) initial release |
+
+
 ## 03/09/18
 | Package | Version | Changes |
 | --- | --- | --- |

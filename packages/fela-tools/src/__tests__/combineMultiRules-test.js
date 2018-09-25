@@ -1,9 +1,5 @@
 import combineMultiRules from '../combineMultiRules'
 
-const rendererMock = {
-  _mergeStyle: Object.assign,
-}
-
 describe('Combining multi rules', () => {
   it('should create a combined multi rule', () => {
     const multiRule = {
@@ -33,7 +29,6 @@ describe('Combining multi rules', () => {
         fontSize: 12,
         lineHeight: 10,
       },
-      rendererMock,
     ]
 
     expect.assertions(2)

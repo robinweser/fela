@@ -1,6 +1,6 @@
 {
   "name": "fela-beautifier",
-  "version": "5.0.16",
+  "version": "5.0.17",
   "description": "Fela enhancer to beautify CSS output",
   "main": "lib/index.js",
   "module": "es/index.js",
