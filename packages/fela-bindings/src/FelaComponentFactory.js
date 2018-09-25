@@ -1,22 +1,5 @@
 /* @flow */
-//import assignStyle from 'css-in-js-utils/lib/assignStyle'
-import arrayReduce from 'fast-loops/lib/arrayReduce'
-
-function assignStyle(a, b) {
-  return Object.assign({}, a, b)
-}
-function combineRules(...rules: Array<Function>): Function {
-  return (props, renderer) =>
-    arrayReduce(
-      rules,
-      (style, rule) =>
-        assignStyle(
-          style,
-          typeof rule === 'function' ? rule(props, renderer) : rule
-        ),
-      {}
-    )
-}
+import { combineRules } from 'fela'
 
 function resolveRule(style, extend) {
   if (extend) {
@@ -39,6 +22,8 @@ export default function FelaComponentFactory(
     { children, as = 'div', style, extend, ...otherProps },
     { renderer }
   ) {
+    // TODO: add warning when no style is not provided
+    // TODO: add tests for multiple nested components
     return createElement(FelaTheme, undefined, theme => {
       const rule = resolveRule(style, extend)
 

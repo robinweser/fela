@@ -7,8 +7,6 @@ import RendererProviderFactory from '../RendererProviderFactory'
 
 import createRenderer from '../../../fela/src/createRenderer'
 
-import createSnapshot from '../__helpers__/createSnapshot'
-
 const RendererProvider = RendererProviderFactory(
   Component,
   children => children,

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 import connectFactory from '../connectFactory'
 import withThemeFactory from '../withThemeFactory'
-import createTheme from '../createTheme'
 import { THEME_CHANNEL } from '../themeChannel'
 
 import createRenderer from '../../../fela/src/createRenderer'

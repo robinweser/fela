@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 import createComponentFactory from '../createComponentFactory'
 import withThemeFactory from '../withThemeFactory'
-import createTheme from '../createTheme'
 import { THEME_CHANNEL } from '../themeChannel'
 
 import createRenderer from '../../../fela/src/createRenderer'
@@ -203,9 +202,6 @@ describe('Creating Components from Fela rules', () => {
     })
 
     const Comp = createComponent(rule)
-    const renderer = createRenderer()
-
-    const bgColor = 'red'
 
     expect(
       createSnapshot(
@@ -221,7 +217,6 @@ describe('Creating Components from Fela rules', () => {
     })
 
     const Comp = createComponent(rule)
-    const renderer = createRenderer()
 
     const extendRule = props => ({
       fontSize: '14px',

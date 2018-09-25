@@ -1,7 +1,7 @@
-import { createRenderer } from 'fela'
 import monolithic from '../index'
 
 import renderToString from '../../../fela-tools/src/renderToString'
+import createRenderer from '../../../fela/src/createRenderer'
 
 const options = {
   enhancers: [monolithic()],

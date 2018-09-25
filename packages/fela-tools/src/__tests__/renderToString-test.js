@@ -1,7 +1,8 @@
 import { css as beautify } from 'js-beautify'
-import { createRenderer } from 'fela'
 
 import renderToString from '../renderToString'
+
+import createRenderer from '../../../fela/src/createRenderer'
 
 describe('Rendering to string', () => {
   it('should return a single CSS string', () => {

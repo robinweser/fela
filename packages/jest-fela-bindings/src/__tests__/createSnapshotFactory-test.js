@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 import createSnapshotFactory from '../createSnapshotFactory'
 
 import FelaComponent from '../../../react-fela/src/FelaComponent'
-import Provider from '../../../react-fela/src/Provider'
+import RendererProvider from '../../../react-fela/src/RendererProvider'
 import ThemeProvider from '../../../react-fela/src/ThemeProvider'
 import createRenderer from '../../../fela/src/createRenderer'
 import plugins from '../../../fela-preset-web/src/index'
@@ -13,7 +13,7 @@ const createSnapshot = createSnapshotFactory(
   createElement,
   render,
   createRenderer(),
-  Provider,
+  RendererProvider,
   ThemeProvider
 )
 
@@ -56,7 +56,7 @@ describe('Creating Snapshots with Fela', () => {
     })
 
     expect(
-      createSnapshot(<FelaComponent rule={rule} />, { bgColor: 'blue' })
+      createSnapshot(<FelaComponent style={rule} />, { bgColor: 'blue' })
     ).toMatchSnapshot()
   })
 
