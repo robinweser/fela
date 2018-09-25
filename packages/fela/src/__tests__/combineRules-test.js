@@ -18,13 +18,10 @@ describe('Combining rules', () => {
     const combinedRule = combineRules(rule, anotherRule)
 
     expect(
-      combinedRule(
-        {
-          fontSize: 12,
-          lineHeight: 10,
-        },
-        rendererMock
-      )
+      combinedRule({
+        fontSize: 12,
+        lineHeight: 10,
+      })
     ).toEqual({
       color: 'red',
       backgroundColor: 'blue',
@@ -59,14 +56,11 @@ describe('Combining rules', () => {
     const combinedRule = combineRules(rule1, rule2, rule3, rule4)
 
     expect(
-      combinedRule(
-        {
-          fontSize: 12,
-          lineHeight: 10,
-          color: 'green',
-        },
-        rendererMock
-      )
+      combinedRule({
+        fontSize: 12,
+        lineHeight: 10,
+        color: 'green',
+      })
     ).toEqual({
       color: 'green',
       display: 'flex',

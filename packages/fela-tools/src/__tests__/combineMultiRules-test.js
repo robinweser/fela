@@ -29,7 +29,6 @@ describe('Combining multi rules', () => {
         fontSize: 12,
         lineHeight: 10,
       },
-      rendererMock,
     ]
 
     expect.assertions(2)

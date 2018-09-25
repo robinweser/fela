@@ -13,7 +13,7 @@ describe('Simulating nested styles', () => {
     }
 
     expect(
-      simulate()(style, undefined, rendererMock, {
+      simulate()(style, undefined, undefined, {
         simulate: {
           ':hover': true,
         },
@@ -39,7 +39,7 @@ describe('Simulating nested styles', () => {
     }
 
     expect(
-      simulate()(style, undefined, rendererMock, {
+      simulate()(style, undefined, undefined, {
         simulate: {
           '@media (min-height: 300px)': true,
           ':hover': false,
@@ -67,7 +67,7 @@ describe('Simulating nested styles', () => {
     }
 
     expect(
-      simulate()(style, undefined, rendererMock, {
+      simulate()(style, undefined, undefined, {
         simulate: {
           '@media (min-height: 300px)': true,
           ':hover': true,
