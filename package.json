@@ -11,8 +11,8 @@
         "lint": "eslint packages/*/src/**/*.js",
         "release": "git pull --rebase && yarn run check && yarn build && lerna publish && yarn docs",
         "test": "cross-env BABEL_ENV=commonjs jest",
-        "coverage": "yarn test -- --coverage",
-        "watch": "yarn test -- --watch",
+        "coverage": "yarn test --coverage",
+        "watch": "yarn test --watch",
         "setup": "yarn clear && yarn bootstrap && yarn build"
     },
     "jest": {
@@ -59,7 +59,7 @@
         "fela-dom": "^5.0.8",
         "fela-monolithic": "^5.0.7",
         "fela-tools": "^5.0.7",
-        "flow-bin": "^0.57.3",
+        "flow-bin": "^0.81.0",
         "gh-pages": "^0.11.0",
         "gitbook-cli": "^2.3.0",
         "gitbook-plugin-advanced-emoji": "^0.2.2",
