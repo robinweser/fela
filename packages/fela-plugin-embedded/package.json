@@ -23,12 +23,5 @@
   "dependencies": {
     "fast-loops": "^1.0.0",
     "isobject": "^3.0.1"
-<<<<<<< HEAD
-=======
-  },
-  "devDependencies": {
-    "fela": "^6.2.2",
-    "fela-tools": "^5.2.2"
->>>>>>> master
   }
 }
