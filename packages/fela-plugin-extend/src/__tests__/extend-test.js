@@ -1,9 +1,5 @@
 import extend from '../index'
 
-const rendererMock = {
-  _mergeStyle: Object.assign,
-}
-
 describe('Extend plugin', () => {
   it('should extend style objects', () => {
     const extension = {
@@ -14,7 +10,7 @@ describe('Extend plugin', () => {
       extend: extension,
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
     })
@@ -32,7 +28,7 @@ describe('Extend plugin', () => {
       },
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       ':hover': {
         color: 'red',
@@ -53,7 +49,7 @@ describe('Extend plugin', () => {
       },
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
     })
@@ -71,7 +67,7 @@ describe('Extend plugin', () => {
       },
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
     })
   })
@@ -89,7 +85,7 @@ describe('Extend plugin', () => {
       extend: [extension, otherExtension],
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
       fontSize: '12px',
@@ -115,7 +111,7 @@ describe('Extend plugin', () => {
       ],
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
       fontSize: '12px',
@@ -141,7 +137,7 @@ describe('Extend plugin', () => {
       ],
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
     })
@@ -155,7 +151,7 @@ describe('Extend plugin', () => {
       },
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
     })
   })
@@ -170,7 +166,7 @@ describe('Extend plugin', () => {
       },
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'red',
     })

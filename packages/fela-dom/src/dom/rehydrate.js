@@ -49,16 +49,21 @@ export default function rehydrate(renderer: DOMRenderer): void {
           rehydrateRules(css, media, '', renderer.cache)
         }
 
-        arrayEach(node.sheet.cssRules, rule => {
-          const selectorText = rule.conditionText
-            ? rule.cssRules[0].selectorText
-            : rule.selectorText
+        // On Safari, style sheets with IE-specific media queries
+        // can yield null for node.sheet
+        // https://github.com/rofrischmann/fela/issues/431#issuecomment-423239591
+        if (node.sheet && node.sheet.cssRules) {
+          arrayEach(node.sheet.cssRules, rule => {
+            const selectorText = rule.conditionText
+              ? rule.cssRules[0].selectorText
+              : rule.selectorText
 
-          rule.score = getRuleScore(
-            renderer.ruleOrder,
-            selectorText.split(CLASSNAME_REGEX)[1]
-          )
-        })
+            rule.score = getRuleScore(
+              renderer.ruleOrder,
+              selectorText.split(CLASSNAME_REGEX)[1]
+            )
+          })
+        }
       }
     }
   })

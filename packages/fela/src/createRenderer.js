@@ -1,6 +1,5 @@
 /* @flow */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
 import arrayEach from 'fast-loops/lib/arrayEach'
 import isPlainObject from 'isobject'
 
@@ -184,8 +183,6 @@ export default function createRenderer(
         type: CLEAR_TYPE,
       })
     },
-
-    _mergeStyle: assignStyle,
 
     _renderStyle(style: Object = {}, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(

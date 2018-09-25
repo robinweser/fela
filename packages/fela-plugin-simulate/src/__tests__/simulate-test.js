@@ -1,9 +1,5 @@
 import simulate from '../index'
 
-const rendererMock = {
-  _mergeStyle: Object.assign,
-}
-
 describe('Simulating nested styles', () => {
   it('should simulate pseudo classes', () => {
     const style = {
@@ -17,7 +13,7 @@ describe('Simulating nested styles', () => {
     }
 
     expect(
-      simulate()(style, undefined, rendererMock, {
+      simulate()(style, undefined, undefined, {
         simulate: {
           ':hover': true,
         },
@@ -43,7 +39,7 @@ describe('Simulating nested styles', () => {
     }
 
     expect(
-      simulate()(style, undefined, rendererMock, {
+      simulate()(style, undefined, undefined, {
         simulate: {
           '@media (min-height: 300px)': true,
           ':hover': false,
@@ -71,7 +67,7 @@ describe('Simulating nested styles', () => {
     }
 
     expect(
-      simulate()(style, undefined, rendererMock, {
+      simulate()(style, undefined, undefined, {
         simulate: {
           '@media (min-height: 300px)': true,
           ':hover': true,

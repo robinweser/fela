@@ -13,7 +13,6 @@ Array [
     renderer={
         Object {
             "_emitChange": [Function],
-            "_mergeStyle": [Function],
             "_renderStyle": [Function],
             "_renderStyleToClassNames": [Function],
             "cache": Object {
@@ -110,7 +109,6 @@ Array [
     renderer={
         Object {
             "_emitChange": [Function],
-            "_mergeStyle": [Function],
             "_renderStyle": [Function],
             "_renderStyleToClassNames": [Function],
             "cache": Object {
