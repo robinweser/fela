@@ -1,9 +1,5 @@
 import customProperty from '../index'
 
-const rendererMock = {
-  _mergeStyle: Object.assign,
-}
-
 describe('Custom property plugin', () => {
   it('should resolve custom properties', () => {
     const position = positions => ({
@@ -18,9 +14,7 @@ describe('Custom property plugin', () => {
       position: [0, 20, 50, 20],
     }
 
-    expect(
-      customProperty({ position })(style, 'RULE_TYPE', rendererMock)
-    ).toEqual({
+    expect(customProperty({ position })(style)).toEqual({
       width: 20,
       top: 0,
       right: 20,
@@ -44,9 +38,7 @@ describe('Custom property plugin', () => {
       },
     }
 
-    expect(
-      customProperty({ position })(style, 'RULE_TYPE', rendererMock)
-    ).toEqual({
+    expect(customProperty({ position })(style)).toEqual({
       width: 20,
       onHover: {
         top: 0,
@@ -64,9 +56,7 @@ describe('Custom property plugin', () => {
       padding: '1em',
     }
 
-    expect(
-      customProperty({ padding })(style, 'RULE_TYPE', rendererMock)
-    ).toEqual({
+    expect(customProperty({ padding })(style)).toEqual({
       padding: '1em',
     })
   })
@@ -84,7 +74,7 @@ describe('Custom property plugin', () => {
 
           return obj
         },
-      })({ padding: { l: '1px' } }, 'RULE_TYPE', rendererMock)
+      })({ padding: { l: '1px' } })
     ).toEqual({ paddingLeft: '1px' })
   })
 })

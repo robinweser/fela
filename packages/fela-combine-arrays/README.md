@@ -1,5 +1,7 @@
 # fela-combine-arrays
 
+> Deprecated!<br>The combine arrays enhancer is deprecated, please remove it from your Fela configuration.<br>It is obsolete as [css-in-js-utils](https://github.com/rofrischmann/css-in-js-utils)' [assignStyle](https://github.com/rofrischmann/css-in-js-utils#assignstylebase-extend) now combines arrays by default.
+
 <img alt="npm version" src="https://badge.fury.io/js/fela-combine-arrays.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-combine-arrays.svg">
 
 Enables merging array values when combining rules.<br>

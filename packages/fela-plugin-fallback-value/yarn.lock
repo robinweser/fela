@@ -2,12 +2,11 @@
 # yarn lockfile v1
 
 
-css-in-js-utils@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-2.0.1.tgz#3b472b398787291b47cfe3e44fecfdd9e914ba99"
+css-in-js-utils@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-3.0.0.tgz#4379185f5cc79f9eba39b4e795c317f253ffaa40"
   dependencies:
     hyphenate-style-name "^1.0.2"
-    isobject "^3.0.1"
 
 hyphenate-style-name@^1.0.2:
   version "1.0.2"

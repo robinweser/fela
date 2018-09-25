@@ -20,7 +20,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "^2.0.0",
+    "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.0",
     "string-hash": "^1.1.3"
   },
