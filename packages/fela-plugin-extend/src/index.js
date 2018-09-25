@@ -6,16 +6,17 @@ import isPlainObject from 'isobject'
 
 import { isUndefinedValue } from 'fela-utils'
 
-function removeUndefined(style: Object) {
-  objectEach(style, (value, key) => {
+function removeUndefined(style: Object): Object {
+  objectEach(style, (value, property) => {
     if (isPlainObject(value)) {
-      style[key] = removeUndefined(value)
+      style[property] = removeUndefined(value)
     } else if (Array.isArray(value)) {
-      style[key] = value.filter(val => !isUndefinedValue(val))
+      style[property] = value.filter(val => !isUndefinedValue(val))
     } else if (isUndefinedValue(value)) {
-      delete style[key]
+      delete style[property]
     }
   })
+
   return style
 }
 

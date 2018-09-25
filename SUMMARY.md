@@ -58,6 +58,8 @@
     * [6.4.7. Provider](docs/api/bindings/Provider.md)
     * [6.4.8. ThemeProvider](docs/api/bindings/ThemeProvider.md)
     * [6.4.9. withTheme](docs/api/bindings/withTheme.md)
+  * 6.5. jest + react/preact/inferno
+    * [6.5.1. createSnapshot](docs/api/jest-bindings/createSnapshot.md)
 * [7. Migration Guide](MIGRATION.md)
 * [8. Changelog](CHANGELOG.md)
 * [9. FAQ](docs/FAQ.md)
