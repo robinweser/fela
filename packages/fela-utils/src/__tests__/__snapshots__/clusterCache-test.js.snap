@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Clustering the cache should correctly sort rules 1`] = `
+Object {
+  "fontFaces": "",
+  "keyframes": "",
+  "mediaRules": Object {},
+  "rules": ".a:hover{color:red}.c:hover{color:#000}.d:focus{color:red}.b:active{color:#fff}",
+  "statics": "",
+  "supportMediaRules": Object {},
+  "supportRules": Object {},
+}
+`;

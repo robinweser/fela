@@ -803,6 +803,64 @@ describe('Creating Components with a Proxy for props from Fela rules', () => {
     ]).toMatchSnapshot()
   })
 
+  it('should replace unallowed symbols in className with underscore', () => {
+    const rule = () => ({
+      fontSize: 16,
+    })
+
+    const Parent = () => React.createElement('div')
+    Parent.displayName = 'connect(Component)'
+    const Component = createComponent(rule, Parent)
+
+    const renderer = createRenderer({
+      enhancers: [
+        monolithic({
+          prettySelectors: true,
+        }),
+      ],
+    })
+
+    const wrapper = mount(<Component />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
+  it('should replace rare unallowed symbols in className with underscore', () => {
+    const rule = () => ({
+      fontSize: 16,
+    })
+
+    const Parent = () => React.createElement('div')
+    Parent.displayName = '1!@#$%^&*{}/=\\'
+    const Component = createComponent(rule, Parent)
+
+    const renderer = createRenderer({
+      enhancers: [
+        monolithic({
+          prettySelectors: true,
+        }),
+      ],
+    })
+
+    const wrapper = mount(<Component />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
   it('should pass props except innerRef', () => {
     const rule = props => ({
       color: props.color,

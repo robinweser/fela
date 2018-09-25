@@ -10,9 +10,7 @@ import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 
 function removeUndefined(style: Object): Object {
-  for (const property in style) {
-    const value = style[property]
-
+  objectEach(style, (value, property) => {
     if (isPlainObject(value)) {
       style[property] = removeUndefined(value)
     } else if (Array.isArray(value)) {
@@ -20,7 +18,7 @@ function removeUndefined(style: Object): Object {
     } else if (isUndefinedValue(value)) {
       delete style[property]
     }
-  }
+  })
 
   return style
 }

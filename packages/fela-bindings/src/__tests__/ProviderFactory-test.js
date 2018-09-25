@@ -42,10 +42,8 @@ describe('ProviderFactory', () => {
         <Child />
       </Provider>
     )
-
-    expect(mockCallback.mock.calls.length).toBe(3)
-    expect(mockCallback.mock.calls[0][0]).toBe('rehydrate')
-    expect(mockCallback.mock.calls[1][0]).toBe('render')
-    expect(mockCallback.mock.calls[2][0]).toBe('didMount')
+    expect(mockCallback.mock.calls.length).toBe(2)
+    expect(mockCallback.mock.calls[0][0]).toBe('render')
+    expect(mockCallback.mock.calls[1][0]).toBe('didMount')
   })
 })

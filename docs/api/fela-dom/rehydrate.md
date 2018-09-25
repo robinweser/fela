@@ -1,6 +1,10 @@
 # rehydrate
 
+> This method is used for universal rendering where styles are prerender on the server. For client-side only rendering, we recommend using [render](render.md) directly.
+
 Rehydrates the renderer's cache from existing `<style>` elements.<br>It is primarily used to rehydrate the cache from server-rendered CSS.
+
+It automatically connects the renderer with the DOM by calling [render](render.md) once finished rehydrating.
 
 ## Arguments
 | Argument | Type | Description |

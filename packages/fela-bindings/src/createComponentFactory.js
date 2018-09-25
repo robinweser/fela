@@ -58,8 +58,15 @@ export default function createComponentFactory(
 
       // improve developer experience with monolithic renderer
       if (process.env.NODE_ENV !== 'production' && renderer.prettySelectors) {
+        const replaceUnallowedSymbolsWithUnderscore = cn =>
+          cn.replace(/[^_a-z0-9-]/gi, '_')
+
         const componentName =
-          typeof type === 'string' ? type : type.displayName || type.name || ''
+          typeof type === 'string'
+            ? type
+            : replaceUnallowedSymbolsWithUnderscore(
+                type.displayName || type.name || ''
+              )
 
         combinedRule.selectorPrefix = `${displayName}_${componentName}_`
       }

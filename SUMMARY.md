@@ -61,6 +61,7 @@
   * 6.5. jest + react/preact/inferno
     * [6.5.1. createSnapshot](docs/api/jest-bindings/createSnapshot.md)
 * [7. Migration Guide](MIGRATION.md)
-* [8. FAQ](docs/FAQ.md)
-* [9. Feedback](docs/Feedback.md)
-* [10. Thanks](docs/Thanks.md)
+* [8. Changelog](CHANGELOG.md)
+* [9. FAQ](docs/FAQ.md)
+* [10. Feedback](docs/Feedback.md)
+* [11. Thanks](docs/Thanks.md)

@@ -23,7 +23,8 @@ export default function renderToString(renderer: Object): string {
   } = clusterCache(
     renderer.cache,
     renderer.mediaQueryOrder,
-    renderer.supportQueryOrder
+    renderer.supportQueryOrder,
+    renderer.ruleOrder
   )
 
   const basicCSS =

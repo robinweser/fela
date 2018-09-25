@@ -19,7 +19,9 @@ Thumbs.db
 *.sass-cache
 *.sw?
 *.vi
+.vscode
 
+**/yarn-error.log
 *.js.map
 **/node_modules/
 npm-debug.log
@@ -27,6 +29,5 @@ npm-debug.log
 **/es/
 **/coverage/
 **/_book
-examples/react/bundle.js
 
 \.history/

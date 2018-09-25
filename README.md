@@ -98,6 +98,7 @@ If you ever used [styled-components](https://www.styled-components.com), this wi
 > **Read**: [Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html) for a full guide.
 
 ```javascript
+import { Fragment } from 'react';
 import { createComponent, Provider } from 'react-fela'
 import { render } from 'react-dom'
 
@@ -117,8 +118,10 @@ const Button = createComponent(rule, 'button')
 
 render(
   <Provider renderer={renderer}>
-    <Button primary>Primary</Button>
-    <Button>Default</Button>
+    <Fragment>
+      <Button primary>Primary</Button>
+      <Button>Default</Button>
+    </Fragment>
   </Provider>,
   document.body
 )
@@ -209,6 +212,7 @@ We'd love to help out. We also highly appreciate any feedback.
 - [Bookmyshow](https://in.bookmyshow.com/events)
 - [BdP LV RPS](http://www.bdp-rps.de)
 - [Cloudflare](https://www.cloudflare.com)
+- [Espressive](https://www.espressive.com)
 - [dm-drogerie markt](https://www.dm.de/arbeiten-und-lernen/arbeiten-bei-uns/filiadata-c534052.html)
 - [HelloFresh](https://www.hellofresh.de)
 - [Indoqa](https://www.indoqa.com)
