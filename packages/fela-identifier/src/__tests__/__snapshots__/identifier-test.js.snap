@@ -1,16 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Fela identifier enhancer identifier enhancer should not remove meta information in rule 1`] = `
-Object {
-  "css": ".rule1_Component_rule1__zuf8d5 {
-    padding: 1
+".rule1_Component_rule1__zuf8d5 {
+  padding: 1;
+}
+.rule2_Component_rule2__137u7ef {
+  color: red;
 }
 
-.rule2_Component_rule2__137u7ef {
-    color: red
-}",
-  "html": "<div><span class=\\"rule1_Component_rule1__zuf8d5\\"></span><span class=\\"rule2_Component_rule2__137u7ef\\"></span></div>",
-}
+
+<div>
+  <span className=rule1_Component_rule1__zuf8d5 />
+  <span className=rule2_Component_rule2__137u7ef />
+</div>;
+"
 `;
 
 exports[`Fela identifier enhancer identifier rule should be combined with usual style rules 1`] = `

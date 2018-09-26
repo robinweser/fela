@@ -1,282 +1,285 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Creating Components from Fela rules should allow nested theme objects 1`] = `
-Object {
-  "css": ".a {
-    color: black
+".a {
+  color: black;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div class=\\"a b\\"></div>",
-}
+
+<div className=a b />;
+"
 `;
 
 exports[`Creating Components from Fela rules should compose passThrough props 1`] = `
-Object {
-  "css": "",
-  "html": "<div data-foo=\\"bar\\" color=\\"red\\" class=\\"\\"></div>",
-}
+"
+
+<div data-foo=bar color=red className />;
+"
 `;
 
 exports[`Creating Components from Fela rules should compose styles 1`] = `
-Object {
-  "css": ".a {
-    color: red
+".a {
+  color: red;
 }
-
 .b {
-    font-size: 16px
+  font-size: 16px;
+}
+.c {
+  line-height: 1.2;
 }
 
-.c {
-    line-height: 1.2
-}",
-  "html": "<div class=\\"a b c\\"></div>",
-}
+
+<div className=a b c />;
+"
 `;
 
 exports[`Creating Components from Fela rules should extend the rule properties with a function 1`] = `
-Object {
-  "css": ".a {
-    color: blue
+".a {
+  color: blue;
 }
-
 .b {
-    font-size: 14px
+  font-size: 14px;
+}
+.c {
+  background-color: red;
 }
 
-.c {
-    background-color: red
-}",
-  "html": "<div class=\\"a b c\\"></div>",
-}
+
+<div className=a b c />;
+"
 `;
 
 exports[`Creating Components from Fela rules should extend the rule properties with an object 1`] = `
-Object {
-  "css": ".a {
-    color: blue
+".a {
+  color: blue;
 }
-
 .b {
-    font-size: 14px
+  font-size: 14px;
+}
+.c {
+  background-color: red;
 }
 
-.c {
-    background-color: red
-}",
-  "html": "<div class=\\"a b c\\"></div>",
-}
+
+<div className=a b c />;
+"
 `;
 
 exports[`Creating Components from Fela rules should include defaultProps if provided 1`] = `
-Object {
-  "css": ".a {
-    color: red
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div class=\\"a b\\">red</div>",
-}
+
+<div className=a b>red</div>;
+"
 `;
 
 exports[`Creating Components from Fela rules should not pass props to the element 1`] = `
-Object {
-  "css": ".a {
-    font-size: 16px
-}",
-  "html": "<div class=\\"a\\"></div>",
+".a {
+  font-size: 16px;
 }
+
+
+<div className=a />;
+"
 `;
 
 exports[`Creating Components from Fela rules should only use the rule name as displayName 1`] = `
-Object {
-  "css": ".a {
-    color: red
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div class=\\"a b\\"></div>",
-}
+
+<div className=a b />;
+"
 `;
 
 exports[`Creating Components from Fela rules should pass all props to the element 1`] = `
-Object {
-  "css": ".a {
-    font-size: 16px
-}",
-  "html": "<div data-foo=\\"bar\\" data-bar=\\"baz\\" class=\\"a\\"></div>",
+".a {
+  font-size: 16px;
 }
+
+
+<div data-foo=bar data-bar=baz className=a />;
+"
 `;
 
 exports[`Creating Components from Fela rules should pass extended special props to the component 1`] = `
-Object {
-  "css": ".a {
-    color: red
+".a {
+  color: red;
+}
+.b {
+  font-size: 16;
 }
 
-.b {
-    font-size: 16
-}",
-  "html": "<div>testProp exists</div>",
-}
+
+<div>testProp exists</div>;
+"
 `;
 
 exports[`Creating Components from Fela rules should pass extended special props to the component 2`] = `
-Object {
-  "css": ".a {
-    color: red
+".a {
+  color: red;
+}
+.b {
+  font-size: 16;
 }
 
-.b {
-    font-size: 16
-}",
-  "html": "<div>testProp does not exist</div>",
-}
+
+<div>testProp does not exist</div>;
+"
 `;
 
 exports[`Creating Components from Fela rules should pass special props to the component 1`] = `
-Object {
-  "css": ".a {
-    color: red
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div class=\\"a b\\"></div>",
-}
+
+<div className=a b />;
+"
 `;
 
 exports[`Creating Components from Fela rules should pass special props to the component 2`] = `
-Object {
-  "css": ".a {
-    font-size: 16px
-}",
-  "html": "<i class=\\"a\\"></i>",
+".a {
+  font-size: 16px;
 }
+
+
+<i className=a />;
+"
 `;
 
 exports[`Creating Components from Fela rules should pass style, as, id, className and innerRef to composed components 1`] = `
-Object {
-  "css": ".a {
-    color: green
+".a {
+  color: green;
 }
-
 .b {
-    font-size: 16px
+  font-size: 16px;
+}
+.c {
+  line-height: 1.2;
 }
 
-.c {
-    line-height: 1.2
-}",
-  "html": "<i class=\\"a b c\\"></i>",
-}
+
+<i className=a b c />;
+"
 `;
 
 exports[`Creating Components from Fela rules should render fela rules depending on the passed props 1`] = `
-Object {
-  "css": ".a {
-    color: black
+".a {
+  color: black;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div class=\\"a b\\"></div>",
-}
+
+<div className=a b />;
+"
 `;
 
 exports[`Creating Components from Fela rules should replace rare unallowed symbols in className with underscore 1`] = `
-Object {
-  "css": ".rule_1_______________3vb6hs {
-    font-size: 16px
-}",
-  "html": "<div>Hello World</div>",
+".rule_1_______________3vb6hs {
+  font-size: 16px;
 }
+
+
+<div>Hello World</div>;
+"
 `;
 
 exports[`Creating Components from Fela rules should replace unallowed symbols in className with underscore 1`] = `
-Object {
-  "css": ".rule_connect_Component___3vb6hs {
-    font-size: 16px
-}",
-  "html": "<div>Hello World</div>",
+".rule_connect_Component___3vb6hs {
+  font-size: 16px;
 }
+
+
+<div>Hello World</div>;
+"
 `;
 
 exports[`Creating Components from Fela rules should use a dev-friendly className and the selectorPrefix 1`] = `
-Object {
-  "css": ".fela-Button_div__3vb6hs {
-    font-size: 16px
-}",
-  "html": "<div class=\\"fela-Button_div__3vb6hs\\"></div>",
+".fela-Button_div__3vb6hs {
+  font-size: 16px;
 }
+
+
+<div className=fela-Button_div__3vb6hs />;
+"
 `;
 
 exports[`Creating Components from Fela rules should use a dev-friendly className with monolithic renderer 1`] = `
-Object {
-  "css": ".Button_div__3vb6hs {
-    font-size: 16px
-}",
-  "html": "<div class=\\"Button_div__3vb6hs\\"></div>",
+".Button_div__3vb6hs {
+  font-size: 16px;
 }
+
+
+<div className=Button_div__3vb6hs />;
+"
 `;
 
 exports[`Creating Components from Fela rules should use the theme for static rendering by default 1`] = `
-Object {
-  "css": ".a {
-    color: red
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div class=\\"a b\\"></div>",
-}
+
+<div className=a b />;
+"
 `;
 
 exports[`Creating Components with a Proxy for props from Fela rules should not pass props used in rules to the element 1`] = `
-Object {
-  "css": ".a {
-    color: true
+".a {
+  color: true;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div data-foo=\\"bar\\" class=\\"a b\\"></div>",
-}
+
+<div data-foo=bar className=a b />;
+"
 `;
 
 exports[`Creating Components with a Proxy for props from Fela rules should pass props except innerRef 1`] = `
-Object {
-  "css": ".a {
-    color: black
+".a {
+  color: black;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div class=\\"a b\\"></div>",
-}
+
+<div className=a b />;
+"
 `;
 
 exports[`Creating Components with a Proxy for props from Fela rules should pass props used in rules specified in passThroughProps to the element 1`] = `
-Object {
-  "css": ".a {
-    color: blue
+".a {
+  color: blue;
+}
+.b {
+  font-size: 16px;
 }
 
-.b {
-    font-size: 16px
-}",
-  "html": "<div data-color=\\"blue\\" data-foo=\\"bar\\" class=\\"a b\\"></div>",
-}
+
+<div data-color=blue data-foo=bar className=a b />;
+"
 `;

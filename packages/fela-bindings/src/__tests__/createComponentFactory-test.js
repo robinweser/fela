@@ -9,7 +9,7 @@ import { THEME_CHANNEL } from '../themeChannel'
 import createRenderer from '../../../fela/src/createRenderer'
 import monolithic from '../../../fela-monolithic/src'
 
-import createSnapshot from '../__helpers__/createSnapshot'
+import createSnapshot from '../../../jest-react-fela/src/createSnapshot'
 
 const withTheme = withThemeFactory(BaseComponent, createElement, {
   [THEME_CHANNEL]: PropTypes.object,

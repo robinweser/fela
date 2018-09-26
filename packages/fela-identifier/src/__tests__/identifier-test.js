@@ -8,7 +8,7 @@ import monolithic from '../../../fela-monolithic/src'
 import renderToString from '../../../fela-tools/src/renderToString'
 import connect from '../../../react-fela/src/connect'
 
-import createSnapshot from '../__helpers__/createSnapshot'
+import createSnapshot from '../../../jest-react-fela/src/createSnapshot'
 
 describe('Fela identifier enhancer', () => {
   it('should produce rule with custom property', () => {

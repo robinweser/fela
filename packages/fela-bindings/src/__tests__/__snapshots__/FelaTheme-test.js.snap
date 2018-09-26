@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Using the FelaTheme component correctly pass the theme down 1`] = `
-Object {
-  "css": "",
-  "html": "<div>The color is red.</div>",
-}
+"
+
+<div>The color is red.</div>;
+"
 `;
