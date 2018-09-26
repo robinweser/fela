@@ -13,6 +13,40 @@ Object {
 }
 `;
 
+exports[`Using the FelaComponent component should accept an array as style 1`] = `
+Object {
+  "css": ".a {
+    font-size: 12px
+}
+
+.b {
+    color: red
+}
+
+.c {
+    background-color: black
+}",
+  "html": "<div class=\\"a b c\\">I am red on black and written in 12px.</div>",
+}
+`;
+
+exports[`Using the FelaComponent component should accept an array as style 2`] = `
+Object {
+  "css": ".a {
+    font-size: 12px
+}
+
+.b {
+    color: red
+}
+
+.c {
+    background-color: blue
+}",
+  "html": "<div class=\\"a b c\\">I am red on blue and written in 12px.</div>",
+}
+`;
+
 exports[`Using the FelaComponent component should compose extension rules 1`] = `
 Object {
   "css": ".a {
@@ -44,6 +78,31 @@ Object {
     background-color: blue
 }",
   "html": "<button class=\\"a b c\\">Hello World</button>",
+}
+`;
+
+exports[`Using the FelaComponent component should compose nested extensions 1`] = `
+Object {
+  "css": ".a {
+    font-size: 12px
+}
+
+.b {
+    color: black
+}
+
+.c {
+    border: 1px solid grey
+}
+
+.d {
+    padding: 10px
+}
+
+.e {
+    background-color: blue
+}",
+  "html": "<button class=\\"a b c d e\\">Hello World</button>",
 }
 `;
 

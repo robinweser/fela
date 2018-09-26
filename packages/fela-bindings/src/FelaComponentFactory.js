@@ -3,7 +3,12 @@ import { combineRules } from 'fela'
 
 function resolveRule(style, extend) {
   if (extend) {
-    return combineRules(style, extend)
+    const mergedRules = [].concat(style, extend)
+    return combineRules(...mergedRules)
+  }
+
+  if (Array.isArray(style)) {
+    return combineRules(...style)
   }
 
   if (typeof style === 'object') {
@@ -23,16 +28,17 @@ export default function FelaComponentFactory(
     { renderer }
   ) {
     // TODO: add warning when no style is not provided
-    // TODO: add tests for multiple nested components
     return createElement(FelaTheme, undefined, theme => {
-      const rule = resolveRule(style, extend)
-
-      const className = renderer.renderRule(rule, { theme, ...otherProps })
+      const className = renderer.renderRule(resolveRule(style, extend), {
+        ...otherProps,
+        theme,
+      })
 
       if (children instanceof Function) {
         return children({
           className,
           theme,
+          as,
         })
       }
 
