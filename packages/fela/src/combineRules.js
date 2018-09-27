@@ -21,7 +21,9 @@ function resolveRule(
   return rule
 }
 
-export default function combineRules(...rules: Array<Function>): Function {
+export default function combineRules(
+  ...rules: Array<Function | Object>
+): Function {
   return (props, renderer) =>
     arrayReduce(
       rules,
