@@ -6,7 +6,7 @@ FelaTheme is an alternative component to the [withTheme](withTheme.md)-HoC lever
 
 | Property | Type | Description |
 | --- | --- | --- | --- |
-| render | *Function* | A render function that receives the theme object as its first parameter. |
+| children | *Function* | A render function that receives the theme object as its first parameter. |
 
 
 ## Imports
@@ -18,9 +18,9 @@ import { FelaTheme } from 'inferno-fela'
 
 ## Example
 ```javascript
-<FelaTheme
-  render={theme => (
+<FelaTheme>
+  {theme => (
     <div>Primary color is ${theme.primary}.</div>
   )}
-/>
+</FelaTheme>
 ```
