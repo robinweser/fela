@@ -158,13 +158,16 @@ describe('Using the FelaComponent component', () => {
   })
 
   it('should compose extension rules', () => {
-    const Button = props => (
-      <FelaComponent style={{ fontSize: '12px', color: 'red' }} {...props} />
+    const Button = ({ style, ...props }) => (
+      <FelaComponent
+        style={[{ fontSize: '12px', color: 'red' }, style]}
+        {...props}
+      />
     )
 
     expect(
       createSnapshot(
-        <Button extend={{ backgroundColor: 'blue' }} as="button">
+        <Button style={{ backgroundColor: 'blue' }} as="button">
           Hello World
         </Button>
       )
@@ -177,15 +180,15 @@ describe('Using the FelaComponent component', () => {
       color,
     })
 
-    const Button = ({ children, ...props }) => (
-      <FelaComponent style={rule} {...props}>
+    const Button = ({ children, style, ...props }) => (
+      <FelaComponent style={[rule, style]} {...props}>
         {({ className }) => <button className={className}>{children}</button>}
       </FelaComponent>
     )
 
     expect(
       createSnapshot(
-        <Button extend={{ backgroundColor: 'blue' }} color="black">
+        <Button style={{ backgroundColor: 'blue' }} color="black">
           Hello World
         </Button>
       )
@@ -198,16 +201,14 @@ describe('Using the FelaComponent component', () => {
       color,
     })
 
-    const Button = ({ children, ...props }) => (
-      <FelaComponent style={rule} {...props}>
+    const Button = ({ children, style, ...props }) => (
+      <FelaComponent style={[rule, style]} {...props}>
         {({ className }) => <button className={className}>{children}</button>}
       </FelaComponent>
     )
 
-    const ExtendedButton = ({ children, extend = {}, padding, ...props }) => (
-      <Button
-        {...props}
-        extend={[{ border: '1px solid grey', padding }, extend]}>
+    const ExtendedButton = ({ children, style = {}, padding, ...props }) => (
+      <Button {...props} style={[{ border: '1px solid grey', padding }, style]}>
         {children}
       </Button>
     )
@@ -215,7 +216,7 @@ describe('Using the FelaComponent component', () => {
     expect(
       createSnapshot(
         <ExtendedButton
-          extend={{ backgroundColor: 'blue' }}
+          style={{ backgroundColor: 'blue' }}
           color="black"
           padding="10px">
           Hello World

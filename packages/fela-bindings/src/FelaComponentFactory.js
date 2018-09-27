@@ -1,35 +1,19 @@
 /* @flow */
 import { combineRules } from 'fela'
 
-function resolveRule(style, extend) {
-  if (extend) {
-    const mergedRules = [].concat(style, extend)
-    return combineRules(...mergedRules)
-  }
-
-  if (Array.isArray(style)) {
-    return combineRules(...style)
-  }
-
-  if (typeof style === 'object') {
-    return () => style
-  }
-
-  return style
-}
-
 export default function FelaComponentFactory(
   createElement: Function,
   FelaTheme: Function,
   contextTypes?: Object
 ): Function {
   function FelaComponent(
-    { children, as = 'div', style, extend, ...otherProps },
+    { children, as = 'div', style, ...otherProps },
     { renderer }
   ) {
     // TODO: add warning when no style is not provided
     return createElement(FelaTheme, undefined, theme => {
-      const className = renderer.renderRule(resolveRule(style, extend), {
+      // TODO: could optimise perf by not calling combineRules if not neccessary
+      const className = renderer.renderRule(combineRules(style), {
         ...otherProps,
         theme,
       })
