@@ -32,7 +32,10 @@ export default function hoistStatics(target: any, source: any): any {
       try {
         // Avoid failures from read-only properties
         const descriptor = Object.getOwnPropertyDescriptor(source, property)
-        Object.defineProperty(target, property, descriptor)
+
+        if (descriptor) {
+          Object.defineProperty(target, property, descriptor)
+        }
       } catch (e) {}
     }
   })
