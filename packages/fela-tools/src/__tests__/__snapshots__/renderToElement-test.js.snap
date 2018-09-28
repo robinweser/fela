@@ -29,6 +29,7 @@ exports[`renderToElement should do initial and subscription render into node 2`]
       0% {
         color: yellow
       }
+
       100% {
         color: orange
       }
@@ -38,6 +39,7 @@ exports[`renderToElement should do initial and subscription render into node 2`]
       0% {
         color: yellow
       }
+
       100% {
         color: orange
       }
@@ -47,6 +49,7 @@ exports[`renderToElement should do initial and subscription render into node 2`]
       0% {
         color: yellow
       }
+
       100% {
         color: orange
       }
