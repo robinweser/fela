@@ -57,37 +57,26 @@ The following plugins and enhancers will also work with React Native:
 ## Differences
 Below there are some key differences comparing Fela for React and Fela for React Native.
 
-* [createComponent](../api/bindings/createComponent.md) always requires the second parameter, and the second parameter should be the type and not the string (see example below)
-* [FelaComponent](../api/bindings/FelaComponent.md) always requires a render function that renders to native components(see example below)
+* [FelaComponent](../api/bindings/FelaComponent.md) always requires `children` to always be a function that renders to native components(see example below)
 * Length values do **not** have units
 * Only supported style properties are possible *(Remember: It's not CSS)*
 * Styles are applied using `style` not `className`
 
-### Using createComponent
-
-Create the Component using the Type
-
-```
-const container = ({ padding }) => ({
-  alignItems: 'center',
-  padding
-})
-
-const Container = createComponent(container, View)
-```
-
 ### Using FelaComponent
 
-```
-<FelaComponent 
-  style={{
-    alignItems: 'center',
-    padding: 20
-  }} 
-  render={({ style, theme }) => (
-    <View style={style}><Text>Welcome!</text></View>
+```javascript
+const style = {
+  alignItems: 'center',
+  padding: 20
+}
+
+<FelaComponent style={style}>
+  {({ style, theme }) => (
+    <View style={style}>
+      <Text>Welcome!</Text>
+    </View>
   )}
-/>
+</FelaComponent>
 ```
 
 
@@ -98,15 +87,10 @@ const Container = createComponent(container, View)
 
 ### Related
 * [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela)
-* [API Reference - `Provider`](../api/bindings/Provider.md)
-* [API Reference - `connect`](../api/bindings/connect.md)
-* [API Reference - `createComponent`](../api/bindings/createComponent.md)
-* [API Reference - `createComponentWithProxy`](../api/bindings/createComponentWithProxy.md)
 * [API Reference - `FelaComponent`](../api/bindings/FelaComponent.md)
-* [API Reference - `ThemeProvider`](../api/bindings/ThemeProvider.md)
 * [API Reference - `FelaTheme`](../api/bindings/FelaTheme.md)
-* [API Reference - `withTheme`](../api/bindings/withTheme.md)
-
+* [API Reference - `Provider`](../api/bindings/Provider.md)
+* [API Reference - `ThemeProvider`](../api/bindings/ThemeProvider.md)
 #### Renderer
 **[fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native)**<br>
 Renderer for React Native
