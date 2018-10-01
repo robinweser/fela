@@ -22,6 +22,10 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle
 * [vue-fela](https://github.com/wagerfield/vue-fela) - Vue
 
+### Integrations
+* [Gatsby](https://github.com/mmintel/gatsby-plugin-fela)
+* [Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
+
 ### Plugins
 * [fela-plugin-bidi](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-bidi) - Enable direction-independent style authoring
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
@@ -32,7 +36,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-important](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-important) - Adds `!important` to every value
 * [fela-plugin-isolation](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-isolation) - Adds style isolation to every rule
 * [fela-plugin-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-logger) - Logs processed style objects
-* [fela-plugin-lvha](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-lvha) - Sorts pseudo classes according to LVH(F)A
 * [fela-plugin-named-keys](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-named-keys) - Replaces named keys with valid syntax
 * [fela-plugin-placeholder-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-placeholder-prefixer) - Adds all `::placeholder` prefixes
 * [fela-plugin-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-prefixer) - Adds all vendor prefixes to the styles
@@ -46,7 +49,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 
 ### Enhancers
 * [fela-beautifier*](https://github.com/rofrischmann/fela/tree/master/packages/fela-beautifier) - Beautifies the rendered CSS markup
-* [fela-combine-arrays](https://github.com/rofrischmann/fela/tree/master/packages/fela-combine-arrays) - Enable merging arrays when combining rules
 * [fela-layout-debugger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-layout-debugger) - Adds colored outlines or backgroundColors to debug layouts
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-monolithic](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic) - Render component-based (monolithic) CSS classes (rather than atomic)
@@ -69,7 +71,6 @@ Many plugins and enhancers are already included in the [main repository](https:/
 ### Starter Kits
 * [catstack](https://github.com/root-systems/catstack) - A modular mad science framework for teams working on production web apps
 * [dogstack](https://github.com/root-systems/dogstack) - A popular-choice grab-bag framework for teams working on production web apps
-* [este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
 * [olymp](https://github.com/olymp/olymp) - Create and build a next gen app using node, react, cssInJS and other cool stuff
 * [fullstack-pro](https://github.com/cdmbase/fullstack-pro) - Full Stack to create independent packages and to run on servers
 * [react-frontend-server-stack](https://github.com/cdmbase/react-frontend-server-stack/tree/master/packages/react-fela) - Most common react stack and pluggable packages to quickly start a universal react application
