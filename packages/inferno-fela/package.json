@@ -2,6 +2,7 @@
   "name": "inferno-fela",
   "version": "9.0.2",
   "description": "Inferno bindings for Fela",
+  "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
