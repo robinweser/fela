@@ -1,6 +1,6 @@
 # Preact Fela
 
-<img alt="npm version" src="https://badge.fury.io/js/preact-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/preact-fela.svg">
+<img alt="npm version" src="https://badge.fury.io/js/preact-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/preact-fela.svg"> <a href="https://bundlephobia.com/result?p=preact-fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/preact-fela.svg"></a>
 
 Official [Preact](https://github.com/Preactjs/Preact) bindings for Fela.
 

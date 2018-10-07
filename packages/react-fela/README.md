@@ -1,6 +1,6 @@
 # React Fela
 
-<img alt="npm version" src="https://badge.fury.io/js/react-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg">
+<img alt="npm version" src="https://badge.fury.io/js/react-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-fela.svg"> <a href="https://bundlephobia.com/result?p=react-fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/react-fela.svg"></a>
 
 Official [React](https://github.com/facebook/react) bindings for Fela.
 

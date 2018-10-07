@@ -1,6 +1,6 @@
 # Inferno Fela
 
-<img alt="npm version" src="https://badge.fury.io/js/inferno-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/inferno-fela.svg">
+<img alt="npm version" src="https://badge.fury.io/js/inferno-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/inferno-fela.svg"> <a href="https://bundlephobia.com/result?p=inferno-fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/inferno-fela.svg"></a>
 
 Official [Inferno](https://github.com/infernojs/inferno) bindings for Fela.
 

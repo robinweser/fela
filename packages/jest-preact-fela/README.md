@@ -1,6 +1,6 @@
 # Jest Preact Fela
 
-<img alt="npm version" src="https://badge.fury.io/js/jest-preact-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/jest-preact-fela.svg">
+<img alt="npm version" src="https://badge.fury.io/js/jest-preact-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/jest-preact-fela.svg"> <a href="https://bundlephobia.com/result?p=jest-preact-fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/jest-preact-fela.svg"></a>
 
 Testing Tools for [Jest]() in combination with [preact-fela](../preact-fela).
 
