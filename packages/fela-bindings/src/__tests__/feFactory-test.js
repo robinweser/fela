@@ -15,6 +15,15 @@ import { THEME_CHANNEL } from '../themeChannel'
 
 import feFactory from '../feFactory'
 
+jest.mock('fela-dom', () => ({
+  render: () => undefined,
+  rehydrate: () => undefined,
+}))
+
+afterAll(() => {
+  jest.unmock('fela-dom')
+})
+
 const FelaTheme = FelaThemeFactory(Component, {
   [THEME_CHANNEL]: PropTypes.object,
 })
