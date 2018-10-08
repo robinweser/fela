@@ -47,6 +47,10 @@ export default function insertRule(
 
     cssRules[index].score = score
   } catch (e) {
-    // TODO: warning?
+    console.warn(
+      `An error occurred while inserting the rules into DOM.\n`,
+      declaration.replace(/;/g, ';\n'),
+      e
+    )
   }
 }

@@ -25,8 +25,8 @@ export default function ProviderFactory(
     constructor(props: Object, context: Object) {
       super(props, context)
 
-      if (props.rehydrate && hasDOM(props.renderer)) {
-        if (hasServerRenderedStyle()) {
+      if (hasDOM(props.renderer)) {
+        if (props.rehydrate && hasServerRenderedStyle()) {
           rehydrate(props.renderer)
         } else {
           render(props.renderer)
