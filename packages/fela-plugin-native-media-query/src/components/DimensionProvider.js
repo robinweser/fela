@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native'
 import { Component, Children } from 'react'
 
 export default class DimensionProvider extends Component {
-  componentWillMount() {
+  componentDidMount() {
     Dimensions.addEventListener('change', this.forceUpdate)
   }
 
