@@ -1,6 +1,6 @@
 # fela-plugin-validator
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-validator.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-validator.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-validator.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-validator@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-plugin-validator.svg"></a>
 
 Enforces object validation for keyframes and rules.<br>
 Logs invalid properties to the `console`. <br>

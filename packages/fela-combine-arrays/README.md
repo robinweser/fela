@@ -3,6 +3,7 @@
 > Deprecated!<br>The combine arrays enhancer is deprecated, please remove it from your Fela configuration.<br>It is obsolete as [css-in-js-utils](https://github.com/rofrischmann/css-in-js-utils)' [assignStyle](https://github.com/rofrischmann/css-in-js-utils#assignstylebase-extend) now combines arrays by default.
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-combine-arrays.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-combine-arrays.svg">
+<a href="https://bundlephobia.com/result?p=fela-combine-arrays@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-combine-arrays.svg"></a>
 
 Enables merging array values when combining rules.<br>
 This is especially useful if you want to deeply merge extend arrays using [fela-plugin-extend](../fela-plugin-extend).

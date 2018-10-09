@@ -1,5 +1,7 @@
 # fela-enzyme
 
+<a href="https://bundlephobia.com/result?p=fela-enzyme@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-enzyme.svg"></a>
+
 NPM package shipping utilities for working with [Fela](fela.js.org) in the context of enzyme.
 
 Check out the [Fela repository](https://github.com/rofrischmann/fela) for further information.

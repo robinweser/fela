@@ -1,6 +1,6 @@
 # fela-identifier
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-identifier.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-identifier.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-identifier.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-identifier.svg"> <a href="https://bundlephobia.com/result?p=fela-identifier@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-identifier.svg"></a>
 
 This enhancer allows you to create rules for which the renderer will generate unique class names.
 
@@ -15,7 +15,7 @@ Sometimes it is necessary to additionally stylize (for example, highlight) some 
 In classical CSS this would look something like this:
 ```css
 .parent-element:hover .child-element {
-  background-color: red; 
+  background-color: red;
 }
 ```
 But with Fela, this is not so easy, because you do not assign classes yourself.
@@ -62,7 +62,7 @@ The module exports a function that creates an `identifier`. The `identifier` is 
 1. `name` (*String*): This is a string that can be used to produce an identifier. Sometimes this is convenient for debugging or visibility.
 
 ##### Returns
-(*Function*): A Fela rule that can be rendered. It also has a field `className` and an overridden method `toString` that returns the same value as the field `className`. You can use it like this: 
+(*Function*): A Fela rule that can be rendered. It also has a field `className` and an overridden method `toString` that returns the same value as the field `className`. You can use it like this:
 ```js
 import createIdentifier from 'fela-identifier'
 
