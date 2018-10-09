@@ -29,5 +29,6 @@ npm-debug.log
 **/es/
 **/coverage/
 **/_book
+**/.next
 
 \.history/
