@@ -1,6 +1,6 @@
 # fela-plugin-bidi
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-bidi.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-bidi.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-bidi@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/fela-plugin-bidi.svg"></a>
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-bidi.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-bidi.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-bidi@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-plugin-bidi.svg"></a>
 
 Uses [bidi-css-js](https://github.com/TxHawks/bidi-css-js) to enable direction-independent style authoring based on the CSSWG's [CSS Logical Properties and Values](https://www.w3.org/TR/css-logical-1/) proposal.
 

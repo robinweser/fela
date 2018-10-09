@@ -1,6 +1,6 @@
 # fela-preset-web
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-preset-web.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-preset-web.svg"> <a href="https://bundlephobia.com/result?p=fela-preset-web@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/fela-preset-web.svg"></a>
+<img alt="npm version" src="https://badge.fury.io/js/fela-preset-web.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-preset-web.svg"> <a href="https://bundlephobia.com/result?p=fela-preset-web@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-preset-web.svg"></a>
 
 A Fela plugin preset for web applications.<br>
 It contains everything you need to start building cross-browser compatible apps.
