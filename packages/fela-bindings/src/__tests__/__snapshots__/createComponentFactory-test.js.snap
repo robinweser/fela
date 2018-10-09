@@ -42,8 +42,16 @@ Array [
         onClick={[Function]}
     >
         <FelaComponent
+            _felaProps={
+                Object {
+                    "as": undefined,
+                    "color": "red",
+                    "id": undefined,
+                    "onClick": [Function],
+                    "theme": Object {},
+                  }
+            }
             _felaRule={[Function]}
-            color="red"
             onClick={[Function]}
             passThrough={
                 Array [
@@ -52,9 +60,17 @@ Array [
             }
         >
             <FelaComponent
+                _felaProps={
+                    Object {
+                        "as": undefined,
+                        "color": "red",
+                        "id": undefined,
+                        "onClick": [Function],
+                        "theme": Object {},
+                      }
+                }
                 _felaRule={[Function]}
                 _felaTheme={Object {}}
-                color="red"
                 onClick={[Function]}
                 passThrough={
                     Array [
@@ -64,7 +80,6 @@ Array [
             >
                 <div
                     className=""
-                    color="red"
                     onClick={[Function]}
                 />
             </FelaComponent>
@@ -94,10 +109,24 @@ Array [
         _felaTheme={Object {}}
     >
         <rule
+            _felaProps={
+                Object {
+                    "as": undefined,
+                    "id": undefined,
+                    "theme": Object {},
+                  }
+            }
             _felaRule={[Function]}
             passThrough={Array []}
         >
             <rule
+                _felaProps={
+                    Object {
+                        "as": undefined,
+                        "id": undefined,
+                        "theme": Object {},
+                      }
+                }
                 _felaRule={[Function]}
                 _felaTheme={Object {}}
                 passThrough={Array []}
@@ -459,16 +488,30 @@ Array [
         color="green"
     >
         <rule
+            _felaProps={
+                Object {
+                    "as": "i",
+                    "color": "green",
+                    "id": undefined,
+                    "theme": Object {},
+                  }
+            }
             _felaRule={[Function]}
             as="i"
-            color="green"
             passThrough={Array []}
         >
             <rule
+                _felaProps={
+                    Object {
+                        "as": "i",
+                        "color": "green",
+                        "id": undefined,
+                        "theme": Object {},
+                      }
+                }
                 _felaRule={[Function]}
                 _felaTheme={Object {}}
                 as="i"
-                color="green"
                 passThrough={Array []}
             >
                 <i
@@ -614,6 +657,15 @@ Array [
         onClick={[Function]}
     >
         <FelaComponent
+            _felaProps={
+                Object {
+                    "as": undefined,
+                    "color": "red",
+                    "id": undefined,
+                    "onClick": [Function],
+                    "theme": Object {},
+                  }
+            }
             _felaRule={[Function]}
             color="red"
             onClick={[Function]}
@@ -626,6 +678,15 @@ Array [
             }
         >
             <FelaComponent
+                _felaProps={
+                    Object {
+                        "as": undefined,
+                        "color": "red",
+                        "id": undefined,
+                        "onClick": [Function],
+                        "theme": Object {},
+                      }
+                }
                 _felaRule={[Function]}
                 _felaTheme={Object {}}
                 color="red"
@@ -670,10 +731,24 @@ Array [
         _felaTheme={Object {}}
     >
         <rule
+            _felaProps={
+                Object {
+                    "as": undefined,
+                    "id": undefined,
+                    "theme": Object {},
+                  }
+            }
             _felaRule={[Function]}
             passThrough={Array []}
         >
             <rule
+                _felaProps={
+                    Object {
+                        "as": undefined,
+                        "id": undefined,
+                        "theme": Object {},
+                      }
+                }
                 _felaRule={[Function]}
                 _felaTheme={Object {}}
                 passThrough={Array []}
@@ -685,6 +760,116 @@ Array [
         </rule>
     </anotherRule>
 </anotherRule>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should not leak passed through props 1`] = `
+Array [
+  "<style>
+    .a {
+        border: none
+    }
+
+    .b {
+        background-color: red
+    }
+
+    .c {
+        color: red
+    }
+</style>",
+  <FelaComponent
+    color="red"
+>
+    <FelaComponent
+        _felaTheme={Object {}}
+        color="red"
+    >
+        <FelaComponent
+            _felaProps={
+                Object {
+                    "as": undefined,
+                    "color": "red",
+                    "id": undefined,
+                    "theme": Object {},
+                  }
+            }
+            _felaRule={[Function]}
+            passThrough={Array []}
+        >
+            <FelaComponent
+                _felaProps={
+                    Object {
+                        "as": undefined,
+                        "color": "red",
+                        "id": undefined,
+                        "theme": Object {},
+                      }
+                }
+                _felaRule={[Function]}
+                _felaTheme={Object {}}
+                passThrough={Array []}
+            >
+                <button
+                    className="a b c"
+                />
+            </FelaComponent>
+        </FelaComponent>
+    </FelaComponent>
+</FelaComponent>,
+]
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should not leak unused through props 1`] = `
+Array [
+  "<style>
+    .a {
+        border: none
+    }
+
+    .b {
+        color: red
+    }
+</style>",
+  <FelaComponent
+    color="red"
+>
+    <FelaComponent
+        _felaTheme={Object {}}
+        color="red"
+    >
+        <FelaComponent
+            _felaProps={
+                Object {
+                    "as": undefined,
+                    "color": "red",
+                    "id": undefined,
+                    "theme": Object {},
+                  }
+            }
+            _felaRule={[Function]}
+            passThrough={Array []}
+        >
+            <FelaComponent
+                _felaProps={
+                    Object {
+                        "as": undefined,
+                        "color": "red",
+                        "id": undefined,
+                        "theme": Object {},
+                      }
+                }
+                _felaRule={[Function]}
+                _felaTheme={Object {}}
+                passThrough={Array []}
+            >
+                <button
+                    className="a b"
+                />
+            </FelaComponent>
+        </FelaComponent>
+    </FelaComponent>
+</FelaComponent>,
 ]
 `;
 

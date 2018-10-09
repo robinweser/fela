@@ -504,6 +504,65 @@ describe('Creating Components from Fela rules', () => {
 })
 
 describe('Creating Components with a Proxy for props from Fela rules', () => {
+  it('should not leak passed through props', () => {
+    const BorderlessButton = createComponentWithProxy(
+      ({ color }) => ({
+        border: 'none',
+        backgroundColor: color,
+      }),
+      'button'
+    )
+
+    const ColoredButton = createComponent(
+      ({ color }) => ({
+        color,
+      }),
+      BorderlessButton
+    )
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(<ColoredButton color="red" />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
+  it('should not leak unused through props', () => {
+    const BorderlessButton = createComponentWithProxy(
+      () => ({
+        border: 'none',
+      }),
+      'button'
+    )
+
+    const ColoredButton = createComponent(
+      ({ color }) => ({
+        color,
+      }),
+      BorderlessButton
+    )
+
+    const renderer = createRenderer()
+
+    const wrapper = mount(<ColoredButton color="red" />, {
+      context: {
+        renderer,
+      },
+    })
+
+    expect([
+      beautify(`<style>${renderToString(renderer)}</style>`),
+      toJson(wrapper),
+    ]).toMatchSnapshot()
+  })
+
   it('should return a Component', () => {
     const rule = props => ({
       color: props.color,
