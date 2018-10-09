@@ -1,6 +1,6 @@
 # jest-fela-bindings
 
-<a href="https://bundlephobia.com/result?p=jest-fela-bindings@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/jest-fela-bindings.svg"></a>
+<a href="https://bundlephobia.com/result?p=jest-fela-bindings@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/jest-fela-bindings.svg"></a>
 
 jest-fela-bindings is a private package and is only intended for advanced use. While it follows semantic versioning, it's API is undocumented and may change without prior notice.
 
