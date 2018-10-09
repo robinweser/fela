@@ -1,6 +1,6 @@
 # fela-dom
 
-<a href="https://bundlephobia.com/result?p=fela-dom@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/fela-dom.svg"></a>
+<a href="https://bundlephobia.com/result?p=fela-dom@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-dom.svg"></a>
 
 NPM package shipping DOM bindings for [Fela](fela.js.org).
 

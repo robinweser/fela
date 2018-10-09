@@ -1,6 +1,6 @@
 # fela-plugin-isolation
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-isolation.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-isolation.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-isolation@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/fela-plugin-isolation.svg"></a>
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-isolation.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-isolation.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-isolation@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-plugin-isolation.svg"></a>
 
 Adds style isolation to every rule by attaching `all: initial` to every class.
 

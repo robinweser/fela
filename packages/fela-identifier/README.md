@@ -1,6 +1,6 @@
 # fela-identifier
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-identifier.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-identifier.svg"> <a href="https://bundlephobia.com/result?p=fela-identifier@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/fela-identifier.svg"></a>
+<img alt="npm version" src="https://badge.fury.io/js/fela-identifier.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-identifier.svg"> <a href="https://bundlephobia.com/result?p=fela-identifier@latest"><img alt="Bundlephobia" src="https://img.shields.io/bunldlephobia/minzip/fela-identifier.svg"></a>
 
 This enhancer allows you to create rules for which the renderer will generate unique class names.
 
