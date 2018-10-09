@@ -2,7 +2,7 @@
 
 > **Note**: This plugin was named `fela-plugin-named-media-query` before. It was renamed to semantically also match `@supports` rules.
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-named-keys.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-named-keys.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-named-keys.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-named-keys.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-named-keys@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/fela-plugin-named-keys.svg"></a>
 
 This plugin is basically a convenient plugin for more readable code and better maintenance.<br>
 It allows to define custom key names that are later replaced for valid keys.

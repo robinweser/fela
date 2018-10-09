@@ -1,6 +1,6 @@
 # Jest React Fela
 
-<img alt="npm version" src="https://badge.fury.io/js/jest-react-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/jest-react-fela.svg">
+<img alt="npm version" src="https://badge.fury.io/js/jest-react-fela.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/jest-react-fela.svg"> <a href="https://bundlephobia.com/result?p=jest-react-fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/min/jest-react-fela.svg"></a>
 
 Testing Tools for [Jest]() in combination with [react-fela](../react-fela).
 
