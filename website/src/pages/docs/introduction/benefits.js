@@ -1,7 +1,7 @@
 import NavigationView from '../../../components/navigation/NavigationView'
 import EmbeddedView from '../../../components/navigation/EmbeddedView'
 
-import { P, H3,  A } from '../../../components/styleguide'
+import { P, H3, A } from '../../../components/styleguide'
 
 export default () => (
   <EmbeddedView>
@@ -62,7 +62,7 @@ export default () => (
         Check the{' '}
         <A href="https://github.com/hellofresh/css-in-js-perf-tests#results">
           css-in-js-perf-tests
-        </A>
+        </A>{' '}
         repository for benchmark results. Also check out{' '}
         <A href="https://tuchk4.github.io/css-in-js-app/#/react-fela">
           css-in-js-app
