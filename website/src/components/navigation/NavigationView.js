@@ -27,7 +27,7 @@ export default withRouter(({ title, children, router }) => {
           width: 220,
           zIndex: 1,
           alignSelf: 'stretch',
-          overflow: 'scroll',
+          overflow: 'auto',
           borderRight: '1px solid rgb(200, 200, 200)',
           backgroundColor: 'rgb(245, 245, 245)',
         }}>
@@ -59,7 +59,7 @@ export default withRouter(({ title, children, router }) => {
             </a>
           </Link>
         ) : null}
-        <div style={{ overflow: 'scroll', flex: 1, padding: '50px 90px' }}>
+        <div style={{ overflow: 'auto', flex: 1, padding: '50px 90px' }}>
           <div
             style={{
               alignSelf: 'center',
