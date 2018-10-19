@@ -20,9 +20,9 @@ export default function ThemeProviderFactory(
       this.theme = createTheme(props.theme, previousTheme)
     }
 
-    componentWillReceiveProps(nextProps: Object): void {
-      if (!shallowEqual(this.props.theme, nextProps.theme)) {
-        this.theme.update(nextProps.theme)
+    componentDidUpdate(prevProps: Object): void {
+      if (!shallowEqual(this.props.theme, prevProps.theme)) {
+        this.theme.update(this.props.theme)
       }
     }
 

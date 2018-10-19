@@ -26,7 +26,7 @@ export default function withThemeFactory(
         }
       }
 
-      componentWillMount() {
+      componentDidMount() {
         if (this.context[THEME_CHANNEL]) {
           this.unsubscribe = this.context[THEME_CHANNEL].subscribe(properties =>
             this.setState({
