@@ -4,6 +4,7 @@ import { combineRules } from 'fela'
 import hoistStatics from './hoistStatics'
 import extractPassThroughProps from './extractPassThroughProps'
 import extractUsedProps from './extractUsedProps'
+import generateSelectorPrefix from './generateSelectorPrefix'
 import resolvePassThrough from './resolvePassThrough'
 import resolveUsedProps from './resolveUsedProps'
 
@@ -58,17 +59,12 @@ export default function createComponentFactory(
 
       // improve developer experience with monolithic renderer
       if (process.env.NODE_ENV !== 'production' && renderer.prettySelectors) {
-        const replaceUnallowedSymbolsWithUnderscore = cn =>
-          cn.replace(/[^_a-z0-9-]/gi, '_')
-
         const componentName =
           typeof type === 'string'
-            ? type
-            : replaceUnallowedSymbolsWithUnderscore(
-                type.displayName || type.name || ''
-              )
+            ? displayName
+            : type.displayName || type.name || ''
 
-        combinedRule.selectorPrefix = `${displayName}_${componentName}_`
+        combinedRule.selectorPrefix = generateSelectorPrefix(componentName)
       }
       // compose passThrough props from arrays or functions
       const resolvedPassThrough = [

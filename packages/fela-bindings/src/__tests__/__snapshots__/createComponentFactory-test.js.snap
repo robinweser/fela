@@ -510,7 +510,7 @@ Array [
 exports[`Creating Components from Fela rules should use a dev-friendly className and the selectorPrefix 1`] = `
 Array [
   "<style>
-    .Fela-Button_div__abrv9k {
+    .Fela-Button_abrv9k {
         font-size: 16
     }
 </style>",
@@ -519,7 +519,7 @@ Array [
         _felaTheme={Object {}}
     >
         <div
-            className="Fela-Button_div__abrv9k"
+            className="Fela-Button_abrv9k"
         />
     </Button>
 </Button>,
@@ -529,7 +529,7 @@ Array [
 exports[`Creating Components from Fela rules should use a dev-friendly className with monolithic renderer 1`] = `
 Array [
   "<style>
-    .Button_div__abrv9k {
+    .Button_abrv9k {
         font-size: 16
     }
 </style>",
@@ -538,7 +538,7 @@ Array [
         _felaTheme={Object {}}
     >
         <div
-            className="Button_div__abrv9k"
+            className="Button_abrv9k"
         />
     </Button>
 </Button>,
@@ -892,7 +892,7 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should replace rare unallowed symbols in className with underscore 1`] = `
 Array [
   "<style>
-    .rule_1_______________abrv9k {
+    .1_abrv9k {
         font-size: 16
     }
 </style>",
@@ -901,7 +901,7 @@ Array [
         _felaTheme={Object {}}
     >
         <1!@#$%^&*{}/=\\
-            className="rule_1_______________abrv9k"
+            className="1_abrv9k"
         >
             <div />
         </1!@#$%^&*{}/=\\>
@@ -913,7 +913,7 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should replace unallowed symbols in className with underscore 1`] = `
 Array [
   "<style>
-    .rule_connect_Component___abrv9k {
+    .connect_Component_abrv9k {
         font-size: 16
     }
 </style>",
@@ -922,7 +922,7 @@ Array [
         _felaTheme={Object {}}
     >
         <connect(Component)
-            className="rule_connect_Component___abrv9k"
+            className="connect_Component_abrv9k"
         >
             <div />
         </connect(Component)>
@@ -934,7 +934,7 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should use a dev-friendly className and the selectorPrefix 1`] = `
 Array [
   "<style>
-    .Fela-Button_div__abrv9k {
+    .Fela-Button_abrv9k {
         font-size: 16
     }
 </style>",
@@ -943,7 +943,7 @@ Array [
         _felaTheme={Object {}}
     >
         <div
-            className="Fela-Button_div__abrv9k"
+            className="Fela-Button_abrv9k"
         />
     </Button>
 </Button>,
@@ -953,7 +953,7 @@ Array [
 exports[`Creating Components with a Proxy for props from Fela rules should use a dev-friendly className with monolithic renderer 1`] = `
 Array [
   "<style>
-    .Button_div__abrv9k {
+    .Button_abrv9k {
         font-size: 16
     }
 </style>",
@@ -962,7 +962,7 @@ Array [
         _felaTheme={Object {}}
     >
         <div
-            className="Button_div__abrv9k"
+            className="Button_abrv9k"
         />
     </Button>
 </Button>,

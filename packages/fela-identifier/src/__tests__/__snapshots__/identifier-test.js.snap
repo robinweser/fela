@@ -14,17 +14,17 @@ exports[`Fela identifier enhancer identifier enhancer should not remove meta inf
       }
       styles={
         Object {
-          "rule1": "rule1_MyComponent_rule1__zuf8d5",
-          "rule2": "rule2_MyComponent_rule2__137u7ef",
+          "rule1": "MyComponent_rule1_zuf8d5",
+          "rule2": "MyComponent_rule2_137u7ef",
         }
       }
     >
       <div>
         <span
-          className="rule1_MyComponent_rule1__zuf8d5"
+          className="MyComponent_rule1_zuf8d5"
         />
         <span
-          className="rule2_MyComponent_rule2__137u7ef"
+          className="MyComponent_rule2_137u7ef"
         />
       </div>
     </MyComponent>
