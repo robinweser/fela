@@ -1,5 +1,4 @@
 import { createRenderer } from 'fela'
-import combineArrays from 'fela-combine-arrays'
 
 import webPreset, { createWebPreset } from '../index'
 
@@ -7,7 +6,6 @@ describe('preset-web-plugin', () => {
   it('should work without config', () => {
     const renderer = createRenderer({
       plugins: [...webPreset],
-      enhancers: [combineArrays()],
     })
 
     const rule = () => ({
@@ -37,7 +35,6 @@ describe('preset-web-plugin', () => {
           ],
         }),
       ],
-      enhancers: [combineArrays()],
     })
 
     it('should allow per plugin configuration', () => {

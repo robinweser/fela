@@ -7,7 +7,7 @@ It generates atomic CSS and supports all common CSS features such as media queri
 
 Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) or with any other view library. It even supports [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html).
 
-<img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a> <a href="https://bundlephobia.com/result?p=fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-~3kb-brightgreen.svg"> <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a> <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/fela/backers/badge.svg"></a> <a href="#sponsors"><img alt="Sponsors on Open Collective" src="https://opencollective.com/fela/sponsors/badge.svg"></a>
+<img alt="TravisCI" src="https://travis-ci.org/rofrischmann/fela.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a> <a href="https://bundlephobia.com/result?p=fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <a href="https://gitter.im/rofrischmann/fela"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/fela.svg"></a>
 
 ## Support Us
 Support Robin Frischmann's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com/rofrischmann).
@@ -168,7 +168,6 @@ Apart from all the packages managed within this repository, there are many commu
 * [counter-component-with-react-mobx-fela](https://github.com/Mercateo/counter-component-with-react-mobx-fela) - Counter Component using Fela
 * [cycle-fela](https://github.com/wcastand/cycle-fela) - Cycle bindings for Fela
 * [dogstack](https://github.com/root-systems/dogstack) - A popular-choice grab-bag framework for teams working on production web apps
-* [este](https://github.com/este/este) - Starter kit for universal full–fledged React apps build with Fela
 * [fela-components](https://github.com/arturmuller/fela-components) - Styling library for React and Fela
 * [fela-react-helpers](https://github.com/vlad-zhukov/fela-react-helpers) - A set of useful helpers for Fela
 * [fela-react-prop](https://github.com/codepunkt/fela-react-prop) - Generate class names for fela style rule and apply them as property on a wrapped component
@@ -191,7 +190,8 @@ Apart from all the packages managed within this repository, there are many commu
 
 ## Support
 Got a question? Come and join us on [Gitter](https://gitter.im/rofrischmann/fela)! <br>
-We'd love to help out. We also highly appreciate any feedback.
+We'd love to help out. We also highly appreciate any feedback.<br>
+Don't want to miss any update? Follow us on [Twitter](https://twitter.com/felajs).
 
 ## Who's using Fela?
 

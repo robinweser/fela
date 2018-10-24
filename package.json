@@ -13,7 +13,8 @@
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test --coverage",
     "watch": "yarn test --watch",
-    "setup": "yarn clear && yarn bootstrap && yarn build"
+    "setup": "yarn clear && yarn bootstrap && yarn build",
+    "postinstall": "yarn setup"
   },
   "jest": {
     "rootDir": "packages",
