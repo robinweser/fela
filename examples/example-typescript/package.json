@@ -25,6 +25,7 @@
     "@types/react": "^16.0.18",
     "@types/react-dom": "^16.0.2",
     "fela": "^6.2.2",
+    "fela-monolithic": "^5.0.26",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-fela": "^8.0.2"

@@ -72,7 +72,9 @@ function useMonolithicRenderer(
               combinedSupport
             )
           } else {
-            // TODO: warning
+            console.warn(`The object key "${property}" is not a valid nested key in Fela. 
+Maybe you forgot to add a plugin to resolve it? 
+Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information.`)
           }
         } else if (!isUndefinedValue(value)) {
           ruleset[property] = value
@@ -93,6 +95,8 @@ function useMonolithicRenderer(
         selector,
         declaration: css,
         media,
+        pseudo,
+        support,
       }
 
       const declarationReference = selector + media + support

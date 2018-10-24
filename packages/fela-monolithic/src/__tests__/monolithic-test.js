@@ -87,7 +87,7 @@ describe('Monolithic enhancer', () => {
     const className = renderer.renderRule(rule)
 
     expect(renderToString(renderer)).toEqual(
-      `.${className}:hover{color:blue}.${className}{color:red}`
+      `.${className}{color:red}.${className}:hover{color:blue}`
     )
   })
 
