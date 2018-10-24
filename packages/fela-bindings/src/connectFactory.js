@@ -5,6 +5,7 @@ import { combineMultiRules } from 'fela-tools'
 import shallowCompare from 'react-addons-shallow-compare'
 
 import generateDisplayName from './generateDisplayName'
+import generateSelectorPrefix from './generateSelectorPrefix'
 import hoistStatics from './hoistStatics'
 
 export type ConnectConfig = {
@@ -68,14 +69,10 @@ export default function connectFactory(
             process.env.NODE_ENV !== 'production' &&
             renderer.prettySelectors
           ) {
-            const componentName =
-              typeof component === 'string'
-                ? component
-                : component.displayName || component.name || ''
+            const componentName = component.displayName || component.name || ''
 
             objectEach(preparedRules, (rule, name) => {
-              const displayName = rule.name ? rule.name : 'FelaComponent'
-              rule.selectorPrefix = `${displayName}_${componentName}_${name}_`
+              rule.selectorPrefix = generateSelectorPrefix(componentName, name)
             })
           }
 

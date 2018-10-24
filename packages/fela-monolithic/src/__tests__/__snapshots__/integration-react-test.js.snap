@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Monolithic enhancer React integration should generate pretty selectors for connect 1`] = `".FelaComponent_BaseComponent_header__137u7ef{color:red}.FelaComponent_BaseComponent_body__1jzdmtb{color:green}.FelaComponent_BaseComponent_footer__1tsdo2i{color:blue}"`;
+exports[`Monolithic enhancer React integration should generate pretty selectors for connect 1`] = `".BaseComponent_header_137u7ef{color:red}.BaseComponent_body_1jzdmtb{color:green}.BaseComponent_footer_1tsdo2i{color:blue}"`;
 
-exports[`Monolithic enhancer React integration should generate pretty selectors for createComponent 1`] = `".FelaComponent_BaseComponent__137u7ef{color:red}"`;
+exports[`Monolithic enhancer React integration should generate pretty selectors for createComponent 1`] = `".BaseComponent_137u7ef{color:red}"`;
 
 exports[`Monolithic enhancer React integration should render a single class 1`] = `"._137u7ef{color:red}"`;
