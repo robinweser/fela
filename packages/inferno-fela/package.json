@@ -9,6 +9,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "index.d.ts",
     "lib/**",
     "es/**"
   ],
