@@ -9,7 +9,7 @@ If you're searching for older version-based release notes please check out the o
 | Package | Version | Changes |
 | --- | --- | --- |
 | fela-enzyme | 1.0.3 | [(#617)](https://github.com/rofrischmann/fela/pull/617) added a missing export |
-| react-fela<br>preact-fela<br>inferno-fela | 8.0.3<br>8.0.3<br>9.0.3 | [(#616)](https://github.com/rofrischmann/fela/pull/616) fixed and improved TypeScript typings for all binding packages |
+| react-fela<br>inferno-fela | 8.0.4<br>9.0.4 | [(#616)](https://github.com/rofrischmann/fela/pull/616) fixed and improved TypeScript typings for all binding packages |
 | fela-bindings<br>fela-plugin-native-media-query | 3.0.3<br>6.0.13 | [(#623)](https://github.com/rofrischmann/fela/pull/623) React 16 compatibility for some lifecycle methods (backwards compatible) |
 | fela-bindings | 3.0.3 | [(#626)](https://github.com/rofrischmann/fela/pull/626) improved pretty selectors generation |
 | fela-bindings<br>fela-monolithic<br>fela-dom | 3.0.3<br>5.0.27<br>8.0.2 | [(#620)](https://github.com/rofrischmann/fela/pull/620) fixed monolithic rendering with rehydration |
