@@ -1,6 +1,6 @@
 {
   "name": "inferno-fela",
-  "version": "9.0.3",
+  "version": "9.0.4",
   "description": "Inferno bindings for Fela",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -29,7 +29,7 @@
     "inferno-create-element": "^4.0.0"
   },
   "dependencies": {
-    "fela-bindings": "^3.0.3",
-    "fela-dom": "^8.0.3"
+    "fela-bindings": "^3.0.4",
+    "fela-dom": "^8.0.4"
   }
 }

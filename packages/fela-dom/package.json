@@ -1,6 +1,6 @@
 {
   "name": "fela-dom",
-  "version": "8.0.3",
+  "version": "8.0.4",
   "description": "Fela package for working with the DOM",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "fela": "^6.2.3",
-    "fela-preset-web": "^8.0.12",
+    "fela-preset-web": "^8.0.13",
     "fela-tools": "^5.2.3"
   }
 }
