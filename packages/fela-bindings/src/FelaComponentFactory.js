@@ -24,6 +24,7 @@ export default function FelaComponentFactory(
         if (render instanceof Function) {
           return render({
             className,
+            children,
             theme,
           })
         }
