@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-native-media-query",
-  "version": "6.0.12",
+  "version": "6.0.13",
   "description": "Fela plugin to resolve media queries in React Native",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -29,7 +29,7 @@
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
     "css-mediaquery": "^0.1.2",
-    "fela-utils": "^8.1.2",
+    "fela-utils": "^8.1.3",
     "isobject": "^3.0.1"
   }
 }

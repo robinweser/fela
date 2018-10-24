@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-named-keys",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fela plugin to replace named keys",
   "main": "lib/index.js",
   "module": "es/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "react-fela",
-  "version": "8.0.2",
+  "version": "8.0.3",
   "description": "React bindings for Fela",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -27,8 +27,8 @@
     "react": "*"
   },
   "dependencies": {
-    "fela-bindings": "^3.0.2",
-    "fela-dom": "^8.0.2",
+    "fela-bindings": "^3.0.3",
+    "fela-dom": "^8.0.3",
     "prop-types": "^15.5.8"
   }
 }
