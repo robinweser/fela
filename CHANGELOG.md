@@ -14,7 +14,6 @@ If you're searching for older version-based release notes please check out the o
 | fela-bindings | 3.0.3 | [(#626)](https://github.com/rofrischmann/fela/pull/626) improved pretty selectors generation |
 | fela-bindings<br>fela-monolithic<br>fela-dom | 3.0.3<br>5.0.27<br>8.0.2 | [(#620)](https://github.com/rofrischmann/fela/pull/620) fixed monolithic rendering with rehydration |
 
-| Package |
 ## 25/09/18
 | Package | Version | Changes |
 | --- | --- | --- |
