@@ -16,6 +16,7 @@ FelaComponent is an alternative component to the [createComponent](createCompone
 | --- | --- | --- | --- |
 | className | *string* | | The class names for the rendered *style* object |
 | theme | *Object* | `{}` | The theme object which is passed down via context |
+| children | *Element* | `{}` | The component children |
 
 ## Imports
 ```javascript
