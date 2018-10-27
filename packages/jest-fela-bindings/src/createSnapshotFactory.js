@@ -46,12 +46,8 @@ export default function createSnapshotFactory(
       div
     )
 
-    return (
-      `${
-        formatCSS(renderToString(renderer))
-      }\n\n${
-        formatHTML(div.innerHTML)
-      }`
-    )
+    return `${formatCSS(renderToString(renderer))}\n\n${formatHTML(
+      div.innerHTML
+    )}`
   }
 }
