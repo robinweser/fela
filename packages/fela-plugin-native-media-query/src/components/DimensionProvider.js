@@ -1,9 +1,15 @@
 /* @flow */
+// $FlowFixMe
 import { Dimensions } from 'react-native'
 
 import { Component, Children } from 'react'
+import type { Node } from 'react'
 
-export default class DimensionProvider extends Component {
+type Props = {
+  children: Node,
+}
+
+export default class DimensionProvider extends Component<Props> {
   componentDidMount() {
     Dimensions.addEventListener('change', this.forceUpdate)
   }

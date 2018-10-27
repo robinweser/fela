@@ -35,6 +35,6 @@ export default function calculateNodeScore(
       return getRuleScore(support ? 4 : 3, media, mediaQueryOrder)
     default:
       // TODO: warning
-      return undefined
+      return 9999
   }
 }
