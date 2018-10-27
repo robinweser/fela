@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "fela": "^6.2.3",
-    "fela-tools": "^5.2.3",
-    "react-fela": "^8.0.4"
+    "fela-tools": "^5.2.3"
   }
 }

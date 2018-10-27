@@ -1,7 +1,7 @@
 {
+  "name": "fela",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "build": "./scripts/build.sh",
     "clear": "lerna clean --yes && rimraf coverage && rimraf _book && rimraf packages/*/es && rimraf packages/*/lib",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
@@ -13,9 +13,12 @@
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test --coverage",
     "watch": "yarn test --watch",
-    "setup": "yarn clear && yarn bootstrap && yarn build",
-    "postinstall": "yarn setup"
+    "postinstall": "yarn build"
   },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
   "jest": {
     "rootDir": "packages",
     "testPathIgnorePatterns": [
@@ -56,10 +59,6 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
-    "fela": "^5.2.0",
-    "fela-dom": "^5.0.8",
-    "fela-monolithic": "^5.0.7",
-    "fela-tools": "^5.0.7",
     "flow-bin": "^0.81.0",
     "gh-pages": "^0.11.0",
     "gitbook-cli": "^2.3.0",
@@ -72,7 +71,7 @@
     "inferno": "^4.0.0",
     "inferno-create-element": "^4.0.0",
     "jest": "^19.0.2",
-    "lerna": "^2.8.0",
+    "lerna": "^3.4.3",
     "preact": "^8.2.6",
     "prettier": "^1.7.4",
     "react": "^15.5.4",

@@ -3,7 +3,7 @@ import React from 'react'
 import ReactTestRenderer from 'react-test-renderer'
 import { renderToString } from 'fela-tools'
 import { createComponent, connect, Provider } from 'react-fela'
-import monolithic from '../index'
+import monolithic from 'fela-monolithic'
 
 describe('Monolithic enhancer React integration', () => {
   it('should render a single class', () => {

@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "fela-integration",
+  "version": "1.0.0",
+  "description": "Fela private intergration testing package",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "dependencies": {
+    "fela": "^6.2.3",
+    "fela-monolithic": "^5.0.28",
+    "fela-tools": "^5.2.3",
+    "react": "^16.6.0",
+    "react-fela": "^8.0.4",
+    "react-test-renderer": "^16.6.0"
+  }
+}

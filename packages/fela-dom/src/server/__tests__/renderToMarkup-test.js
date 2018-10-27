@@ -1,8 +1,7 @@
+import { createRenderer } from 'fela'
 import { html as beautify } from 'js-beautify'
 
 import renderToMarkup from '../renderToMarkup'
-
-import createRenderer from '../../../../fela/src/createRenderer'
 
 describe('Rendering to HTML markup', () => {
   it('should return a single HTML markup string', () => {

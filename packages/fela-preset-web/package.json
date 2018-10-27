@@ -27,6 +27,7 @@
     "fela-plugin-unit": "^5.1.2"
   },
   "devDependencies": {
-    "fela-combine-arrays": "^1.0.9"
+    "fela-combine-arrays": "^1.0.9",
+    "fela-tools": "^5.2.3"
   }
 }

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`preset-web-plugin configuration should allow per plugin configuration 1`] = `".a{width:1em}"`;
+
+exports[`preset-web-plugin configuration should pass all parameters to the plugins 1`] = `".a{margin:1%}"`;
+
+exports[`preset-web-plugin should work without config 1`] = `".a{color:red}.b{border:none}"`;
