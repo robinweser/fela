@@ -18,7 +18,12 @@ describe('Using the FelaTheme component', () => {
     })
 
     const wrapper = mount(
-      <FelaTheme render={theme => <div>The color is {theme.color}.</div>} />,
+      <FelaTheme
+        render={theme => {
+          const text = `The color is ${theme.color}.`
+          return <div>{text}</div>
+        }}
+      />,
       {
         context: {
           [THEME_CHANNEL]: themeContext,

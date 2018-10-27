@@ -17,6 +17,6 @@ describe('Validating a selectorPrefix', () => {
     validateSelectorPrefix('fela ')
     validateSelectorPrefix('-foo')
 
-    expect(spy).not.toHaveBeenCalledTimes(3)
+    expect(spy).toHaveBeenCalledTimes(3)
   })
 })

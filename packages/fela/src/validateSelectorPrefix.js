@@ -6,7 +6,7 @@ export default function validateSelectorPrefix(
 ): string {
   if (
     selectorPrefix.length > 0 &&
-    selectorPrefix.match(selectorPrefix) === null
+    selectorPrefix.match(PREFIX_SYNTAX) === null
   ) {
     console.error(
       `An invalid selectorPrefix (${selectorPrefix}) has been used to create a new Fela renderer.

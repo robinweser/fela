@@ -17,10 +17,10 @@ export default function updateNodeInDevMode(
   const support = node.getAttribute('data-fela-support') || undefined
 
   const sheet = sheetList.find(
-    sheet =>
-      sheet.type === RULE_TYPE &&
-      sheet.media === media &&
-      sheet.support === support
+    currentSheet =>
+      currentSheet.type === RULE_TYPE &&
+      currentSheet.media === media &&
+      currentSheet.support === support
   )
 
   if (sheet) {

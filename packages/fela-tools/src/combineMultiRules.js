@@ -11,8 +11,8 @@ function safeRule(ruleOrObject: Function | Object): Function {
 export default function combineMultiRules(
   ...multiRules: Array<Function | Object>
 ): Function {
-  return (props, renderer) => {
-    return arrayReduce(
+  return (props, renderer) =>
+    arrayReduce(
       multiRules,
       (resultStyleMap, multiRule) => ({
         ...resultStyleMap,
@@ -29,5 +29,4 @@ export default function combineMultiRules(
       }),
       {}
     )
-  }
 }

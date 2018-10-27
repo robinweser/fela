@@ -24,6 +24,7 @@ function extendStyle(style: Object, extension: Object): void {
   // extend conditional style objects
   if (extension.hasOwnProperty('condition')) {
     if (extension.condition) {
+      // eslint-disable-next-line no-use-before-define
       assignStyle(style, extend(extension.style))
     }
   } else {

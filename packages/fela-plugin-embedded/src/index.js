@@ -11,6 +11,7 @@ function renderFontFace({ fontFamily, src, ...otherProps }, renderer) {
   }
 
   // TODO: warning - invalid font data
+  return undefined
 }
 
 function embedded(

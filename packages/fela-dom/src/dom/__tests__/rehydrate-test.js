@@ -7,7 +7,7 @@ import webPreset from '../../../../fela-preset-web/src/index'
 import sortObject from '../__helpers__/sortObject'
 
 beforeEach(() => {
-  const head = document.head
+  const { head } = document
   while (head.firstChild) {
     head.removeChild(head.firstChild)
   }

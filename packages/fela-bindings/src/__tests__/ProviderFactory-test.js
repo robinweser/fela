@@ -32,6 +32,7 @@ describe('ProviderFactory', () => {
       componentDidMount() {
         didMount()
       }
+
       render() {
         return <div />
       }

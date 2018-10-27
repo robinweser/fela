@@ -19,11 +19,14 @@ const mergeThemes = (baseTheme, ...themes) => {
 
 // eslint-disable-line behance/no-deprecated
 const applyTheme = (ComponentToWrap, ...themes) => {
-  const ThemedComponent = props => (
-    <ThemeProvider theme={mergeThemes(props.theme || {}, ...themes)}>
-      <ComponentToWrap {...props} />
-    </ThemeProvider>
-  )
+  const ThemedComponent = props => {
+    const { theme } = props
+    return (
+      <ThemeProvider theme={mergeThemes(theme || {}, ...themes)}>
+        <ComponentToWrap {...props} />
+      </ThemeProvider>
+    )
+  }
 
   ThemedComponent._isFelaComponent = true
   ThemedComponent.defaultProps = {
@@ -91,9 +94,6 @@ describe('felaShallow', () => {
 
   describe('components withTheme', () => {
     const DivWithTheme = ({ theme }) => <Div>{theme.color.grass}</Div>
-    DivWithTheme.propTypes = {
-      theme: PropTypes.object,
-    }
 
     const WithThemeDiv = withTheme(DivWithTheme)
     it('should capture snapshot', () => {
@@ -120,7 +120,7 @@ describe('felaShallow', () => {
     })
 
     const Box = ({ className, children }) => (
-      <div className={className}> {children} </div>
+      <div className={className}>{children}</div>
     )
 
     Box.defaultProps = {
@@ -170,7 +170,7 @@ describe('felaShallow', () => {
     beforeEach(() => {
       component = (
         <Box>
-          <InnerBox size={'15'}>text</InnerBox>
+          <InnerBox size="15">text</InnerBox>
           <InnerBox>text</InnerBox>
         </Box>
       )

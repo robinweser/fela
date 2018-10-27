@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow */
 import { generateCSSSelector } from 'fela-utils'
 
 import type { StyleType } from '../../../../../flowtypes/StyleType'
@@ -16,7 +16,7 @@ export default function generateCacheEntry(
     type,
     className,
     selector: generateCSSSelector(className, pseudo),
-    declaration: property + ':' + value,
+    declaration: `${property}:${value}`,
     pseudo,
     media,
     support,

@@ -50,6 +50,7 @@ describe('Hoisting statics', () => {
   it('should not overwrite properties', () => {
     class Foo {
       static foo = 1
+
       static bla = 3
     }
 

@@ -7,7 +7,6 @@ import {
   FONT_TYPE,
   STATIC_TYPE,
   CLEAR_TYPE,
-  getRuleScore,
   generateCSSRule,
 } from 'fela-utils'
 
@@ -43,6 +42,9 @@ export default function createSubscription(renderer: DOMRenderer): Function {
         break
       case RULE_TYPE:
         insertRule(change, renderer, node)
+        break
+      default:
+        // TODO: warning
         break
     }
   }

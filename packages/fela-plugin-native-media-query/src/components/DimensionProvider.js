@@ -1,7 +1,6 @@
-/* eslint-disable import/no-unresolved, import/extensions */
+/* @flow */
 import { Dimensions } from 'react-native'
 
-/* @flow */
 import { Component, Children } from 'react'
 
 export default class DimensionProvider extends Component {
@@ -14,6 +13,7 @@ export default class DimensionProvider extends Component {
   }
 
   render() {
-    return Children.only(this.props.children)
+    const { children } = this.props
+    return Children.only(children)
   }
 }

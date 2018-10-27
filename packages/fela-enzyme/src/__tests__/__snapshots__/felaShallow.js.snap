@@ -68,9 +68,7 @@ Object {
   "component": <div
     className="a b c d e"
 >
-     
     innerText
-     
 </div>,
   "styles": "
 .a {
@@ -101,9 +99,7 @@ Object {
   "component": <div
     className="a b c d e"
 >
-     
     innerText
-     
 </div>,
   "styles": "
 .a {

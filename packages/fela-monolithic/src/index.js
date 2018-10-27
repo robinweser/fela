@@ -1,5 +1,4 @@
 /* @flow */
-/* eslint-disable no-continue */
 import objectReduce from 'fast-loops/lib/objectReduce'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
 import isPlainObject from 'isobject'
@@ -12,7 +11,6 @@ import {
   processStyleWithPlugins,
   generateCombinedMediaQuery,
   generateCSSSelector,
-  generateCSSRule,
   RULE_TYPE,
 } from 'fela-utils'
 
@@ -131,9 +129,8 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
     return className
   }
 
-  renderer.renderRule = (rule: Function, props: Object = {}): string => {
-    return renderer._renderStyle(rule(props, renderer), props, rule)
-  }
+  renderer.renderRule = (rule: Function, props: Object = {}): string =>
+    renderer._renderStyle(rule(props, renderer), props, rule)
 
   renderer._renderStyle = (
     style: Object = {},
