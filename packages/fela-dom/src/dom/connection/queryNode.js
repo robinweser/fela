@@ -9,7 +9,7 @@ export default function queryNode({
   const mediaQuery = media ? `[media="${media}"]` : ':not([media])'
   const supportQuery = support
     ? '[data-fela-support="true"]'
-    : ':not([support])'
+    : ':not([data-fela-support="true"])'
 
   return document.querySelector(
     `[data-fela-type="${type}"]${supportQuery}${mediaQuery}`

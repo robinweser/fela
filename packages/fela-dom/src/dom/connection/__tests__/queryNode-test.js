@@ -2,11 +2,11 @@ import { RULE_TYPE } from 'fela-utils'
 
 import queryNode from '../queryNode'
 
-it('should not query nodes with media or support attributes if media or support are not defined', () => {
-  const nodeValid =
-    '<style data-fela-type="RULE" type="text/css">.a{color: red}</style>'
+it('should not query nodes with media attributes if media is not defined', () => {
   const nodeInvalid =
     '<style data-fela-type="RULE" type="text/css" media="screen and (min-width: 1280px)">.b{color: blue}</style>'
+  const nodeValid =
+    '<style data-fela-type="RULE" type="text/css">.a{color: red}</style>'
 
   document.head.innerHTML = nodeInvalid + nodeValid
 
@@ -17,18 +17,17 @@ it('should not query nodes with media or support attributes if media or support 
   ).toBe(nodeValid)
 })
 
-it('should query nodes with media or support attributes if media or support are defined', () => {
+it('should not query nodes with support attributes if support is not defined', () => {
   const nodeInvalid =
-    '<style data-fela-type="RULE" type="text/css">.a{color: red}</style>'
+    '<style data-fela-type="RULE" type="text/css" data-fela-support="true">.b{color: blue}</style>'
   const nodeValid =
-    '<style data-fela-type="RULE" type="text/css" media="screen and (min-width: 1280px)">.b{color: blue}</style>'
+    '<style data-fela-type="RULE" type="text/css">.a{color: red}</style>'
 
   document.head.innerHTML = nodeInvalid + nodeValid
 
   expect(
     queryNode({
       type: RULE_TYPE,
-      media: 'screen and (min-width: 1280px)',
     }).outerHTML
   ).toBe(nodeValid)
 })
