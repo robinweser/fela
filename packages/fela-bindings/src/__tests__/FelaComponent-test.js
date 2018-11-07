@@ -81,10 +81,11 @@ describe('Using the FelaComponent component', () => {
           fontSize: theme.fontSize,
           color: 'red',
         })}
-        render={({ className, theme }) => {
-          const text = `I am red and written in ${theme.fontSize}.`
-          return <div className={className}>{text}</div>
-        }}
+        render={({ className, theme }) => (
+          <div className={className}>
+            I am red and written in {theme.fontSize}.
+          </div>
+        )}
       />,
       {
         context: {

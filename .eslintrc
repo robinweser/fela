@@ -17,6 +17,7 @@
       "extensions": [".js", ".jsx"]
     }],
     "react/jsx-closing-bracket-location": [ "off" ],
+    "react/jsx-one-expression-per-line": [ "off" ],
     "import/no-extraneous-dependencies": [ "off" ],
     "import/prefer-default-export": [ "off" ],
     "react/prop-types": [ "off" ],
@@ -33,6 +34,7 @@
     "no-mixed-operators": [ "off" ],
     "no-lonely-if": [ "warn" ],
     "no-bitwise": [ "off" ],
-    "arrow-parens": [ "off" ]
+    "arrow-parens": [ "off" ],
+    "prefer-template": [ "off" ]
   }
 }

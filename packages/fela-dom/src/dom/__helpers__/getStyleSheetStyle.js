@@ -10,7 +10,7 @@ function getRules(cssRules, rules = {}) {
       continue
     }
 
-    const key = `${cssRules.indexOf(rule)}_${selectorText}`
+    const key = cssRules.indexOf(rule) + '_' + selectorText
     rules[key] = {}
 
     for (let j = 0; j < style.length; ++j) {
