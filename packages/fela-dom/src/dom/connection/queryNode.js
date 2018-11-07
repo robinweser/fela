@@ -6,8 +6,10 @@ export default function queryNode({
   media,
   support,
 }: NodeAttributes): ?Object {
-  const mediaQuery = media ? `[media="${media}"]` : ''
-  const supportQuery = support ? '[data-fela-support="true"]' : ''
+  const mediaQuery = media ? `[media="${media}"]` : ':not([media])'
+  const supportQuery = support
+    ? '[data-fela-support="true"]'
+    : ':not([data-fela-support="true"])'
 
   return document.querySelector(
     `[data-fela-type="${type}"]${supportQuery}${mediaQuery}`
