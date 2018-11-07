@@ -73,7 +73,9 @@ Array [
         <div
             className="a b"
         >
-            I am red and written in 15px.
+            I am red and written in 
+            15px
+            .
         </div>
     </FelaTheme>
 </FelaComponent>,
