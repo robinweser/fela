@@ -34,6 +34,7 @@ export default function connectFactory(
     return (component: any): any => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
+
         static _isFelaComponent = true
 
         shouldComponentUpdate(nextProps, nextState) {

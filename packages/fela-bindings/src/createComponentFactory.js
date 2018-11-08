@@ -51,9 +51,11 @@ export default function createComponentFactory(
         rules.push(_felaRule)
       }
       if (extend) {
-        typeof extend === 'function'
-          ? rules.push(extend)
-          : rules.push(() => extend)
+        if (typeof extend === 'function') {
+          rules.push(extend)
+        } else {
+          rules.push(() => extend)
+        }
       }
       const combinedRule = combineRules(...rules)
 

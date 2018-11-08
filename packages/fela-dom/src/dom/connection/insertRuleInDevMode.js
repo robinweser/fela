@@ -16,14 +16,14 @@ export default function updateNodeInDevMode(
   const media = node.getAttribute('media') || undefined
   const support = node.getAttribute('data-fela-support') || undefined
 
-  const sheet = sheetList.find(
+  const currentSheet = sheetList.find(
     sheet =>
       sheet.type === RULE_TYPE &&
       sheet.media === media &&
       sheet.support === support
   )
 
-  if (sheet) {
-    node.textContent = sheet.css
+  if (currentSheet) {
+    node.textContent = currentSheet.css
   }
 }

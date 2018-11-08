@@ -5,7 +5,6 @@ import isPlainObject from 'isobject'
 
 import {
   generateCombinedMediaQuery,
-  generateCSSRule,
   generateCSSSelector,
   isMediaQuery,
   isNestedSelector,
@@ -27,9 +26,7 @@ import generateAnimationName from './generateAnimationName'
 import generateClassName from './generateClassName'
 import generateFontSource from './generateFontSource'
 import generateStaticReference from './generateStaticReference'
-import getFontFormat from './getFontFormat'
 import getFontLocals from './getFontLocals'
-import getFontUrl from './getFontUrl'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
 import validateSelectorPrefix from './validateSelectorPrefix'

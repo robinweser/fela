@@ -36,7 +36,9 @@ export default function hoistStatics(target: any, source: any): any {
         if (descriptor) {
           Object.defineProperty(target, property, descriptor)
         }
-      } catch (e) {}
+      } catch (e) {
+        // TODO: warning
+      }
     }
   })
 

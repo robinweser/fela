@@ -17,12 +17,13 @@ export default function insertRule(
   // only use insertRule in production as browser devtools might have
   // weird behavior if used together with insertRule at runtime
   if (renderer.devMode) {
-    return insertRuleInDevMode(renderer, node)
+    insertRuleInDevMode(renderer, node)
+    return
   }
 
   try {
     const score = getRuleScore(renderer.ruleOrder, pseudo)
-    const cssRules = node.sheet.cssRules
+    const { cssRules } = node.sheet
 
     let index = cssRules.length
 
@@ -49,7 +50,6 @@ export default function insertRule(
   } catch (e) {
     // We're disabled these warnings due to false-positive errors with browser prefixes
     // See https://github.com/rofrischmann/fela/issues/634
-    
     // console.warn(
     //   `An error occurred while inserting the rules into DOM.\n`,
     //   declaration.replace(/;/g, ';\n'),

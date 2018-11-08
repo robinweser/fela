@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow */
 import objectReduce from 'fast-loops/lib/objectReduce'
 
 import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
@@ -26,8 +26,9 @@ export default function createNode(
   // to correctly inject the node just before it
   const moreSpecificReference = objectReduce(
     nodes,
-    (closest, node, reference) =>
-      node.score > score && (!closest || nodes[closest].score > node.score)
+    (closest, currentNode, reference) =>
+      currentNode.score > score &&
+      (!closest || nodes[closest].score > currentNode.score)
         ? reference
         : closest,
     undefined

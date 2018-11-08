@@ -13,10 +13,13 @@ const mount = (
 ) => {
   const renderer = createRenderer()
 
-  const wrapper = enzymeMount(node, mergeOptions(options, renderer, theme))
+  const enzymeWrapper = enzymeMount(
+    node,
+    mergeOptions(options, renderer, theme)
+  )
 
   const snapshot = (wrapper, includeStyles = true) => {
-    const options = {
+    const beautifyOptions = {
       indent: '  ',
       openbrace: 'end-of-line',
       autosemicolon: false,
@@ -27,14 +30,17 @@ const mount = (
     }
 
     if (includeStyles) {
-      result.styles = `\n${cssbeautify(renderToString(renderer), options)}\n`
+      result.styles = `\n${cssbeautify(
+        renderToString(renderer),
+        beautifyOptions
+      )}\n`
     }
 
     return result
   }
 
   return {
-    wrapper,
+    wrapper: enzymeWrapper,
     snapshot,
   }
 }

@@ -1,4 +1,5 @@
 import { createRenderer } from 'fela'
+import { renderToString } from 'fela-tools'
 
 import webPreset, { createWebPreset } from '../index'
 
@@ -20,7 +21,7 @@ describe('preset-web-plugin', () => {
 
     renderer.renderRule(rule)
     // Tests that fela-plugin-extend is added to the plugins
-    expect(renderer.rules).toEqual('.a{color:red}.b{border:none}')
+    expect(renderToString(renderer)).toMatchSnapshot()
   })
 
   describe('configuration', () => {
@@ -39,13 +40,13 @@ describe('preset-web-plugin', () => {
 
     it('should allow per plugin configuration', () => {
       renderer.renderRule(() => ({ width: 1 }))
-      expect(renderer.rules).toBe('.a{width:1em}')
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
 
     it('should pass all parameters to the plugins', () => {
       renderer.clear()
       renderer.renderRule(() => ({ margin: 1 }))
-      expect(renderer.rules).toBe('.a{margin:1%}')
+      expect(renderToString(renderer)).toMatchSnapshot()
     })
   })
 })

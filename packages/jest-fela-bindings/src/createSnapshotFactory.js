@@ -1,4 +1,3 @@
-import os from 'os'
 import { format } from 'prettier'
 import HTMLtoJSX from 'htmltojsx'
 
@@ -47,11 +46,8 @@ export default function createSnapshotFactory(
       div
     )
 
-    return (
-      formatCSS(renderToString(renderer)) +
-      os.EOL +
-      os.EOL +
-      formatHTML(div.innerHTML)
-    )
+    return `${formatCSS(renderToString(renderer))}\n\n${formatHTML(
+      div.innerHTML
+    )}`
   }
 }

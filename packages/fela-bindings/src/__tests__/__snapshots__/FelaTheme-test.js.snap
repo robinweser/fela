@@ -5,9 +5,7 @@ exports[`Using the FelaTheme component correctly pass the theme down 1`] = `
   render={[Function]}
 >
   <div>
-    The color is 
-    red
-    .
+    The color is red.
   </div>
 </FelaTheme>
 `;

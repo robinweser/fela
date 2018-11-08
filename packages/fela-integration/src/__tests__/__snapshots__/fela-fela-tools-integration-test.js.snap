@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fela with Fela Tools integration Rendering keyframes should render dynamic keyframe variations 1`] = `"k1"`;
+
+exports[`Fela with Fela Tools integration Rendering keyframes should render dynamic keyframe variations 2`] = `"@-webkit-keyframes k1{from{color:red}to{color:blue}}@-moz-keyframes k1{from{color:red}to{color:blue}}@keyframes k1{from{color:red}to{color:blue}}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should prefix classNames 1`] = `".fela_a{color:red}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should prefix classNames 2`] = `"fela_a"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should remove undefined values 1`] = `"a"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should remove undefined values 2`] = `".a{font-size:15px}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should render any nested selector with the &-prefix 1`] = `".a{color:red}.b~#foo{color:blue}.c .bar{color:green}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should render attribute selectors 1`] = `".a{color:red}.b[bool=true]{color:blue}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should render child selectors 1`] = `".a{color:red}.b>div{color:blue}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should render media queries 1`] = `".a{color:red}@media (min-height:300px){.b{color:blue}}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should render pseudo class selectors 1`] = `".a{color:red}.b:hover{color:blue}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should render pseudo classes 1`] = `".a{color:red}.b:hover{color:blue}"`;
+
+exports[`Fela with Fela Tools integration Rendering static styles should allow multiple static styles for a single selector 1`] = `"html,body{margin:0;font-size:12px}html,body{color:red}"`;
+
+exports[`Fela with Fela Tools integration Rendering static styles should render a flat object of static selectors 1`] = `"html,body{margin:0;font-size:12px}"`;

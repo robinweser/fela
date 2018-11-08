@@ -7,6 +7,7 @@ export default function FelaThemeFactory(
 ): any {
   class FelaTheme extends BaseComponent {
     unsubscribe: ?Function
+
     constructor(props, context) {
       super(props, context)
 

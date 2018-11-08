@@ -8,7 +8,7 @@ function addLayoutDebugger(
   renderer: DOMRenderer,
   options: Object
 ): DOMRenderer {
-  const layoutDebugger = createStyleDebugger(options)
+  const styleDebugger = createStyleDebugger(options)
   const existingRenderRule = renderer.renderRule.bind(renderer)
 
   renderer.renderRule = (rule: Function, props: Object): string => {
@@ -16,7 +16,7 @@ function addLayoutDebugger(
 
     const combinedRule = combineRules(
       rule,
-      () => layoutDebugger(displayName),
+      () => styleDebugger(displayName),
       () => ({
         ':after': {
           lineHeight: 1.5,

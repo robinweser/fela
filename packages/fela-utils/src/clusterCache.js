@@ -31,16 +31,14 @@ const handlers = {
 
         cluster.supportRules[support] += cssRule
       }
-    } else {
-      if (media) {
-        if (!cluster.mediaRules[media]) {
-          cluster.mediaRules[media] = ''
-        }
-
-        cluster.mediaRules[media] += cssRule
-      } else {
-        cluster.rules += cssRule
+    } else if (media) {
+      if (!cluster.mediaRules[media]) {
+        cluster.mediaRules[media] = ''
       }
+
+      cluster.mediaRules[media] += cssRule
+    } else {
+      cluster.rules += cssRule
     }
   },
   [FONT_TYPE]: (cluster, { fontFace }) => {
@@ -73,16 +71,16 @@ export default function clusterCache(
 
   const supportMediaRules = arrayReduce(
     mediaQueryOrder,
-    (supportRules, media) => {
-      supportRules[media] = applyKeysInOrder(supportQueryOrder)
-      return supportRules
+    (resultSupportRules, media) => {
+      resultSupportRules[media] = applyKeysInOrder(supportQueryOrder)
+      return resultSupportRules
     },
     applyKeysInOrder(mediaQueryOrder, {})
   )
 
   return objectReduce(
     sortedCache,
-    (cluster, entry, key) => {
+    (cluster, entry) => {
       const handler = handlers[entry.type]
 
       if (handler) {

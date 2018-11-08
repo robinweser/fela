@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow */
 import { generateCSSSelector } from 'fela-utils'
 
 import type { StyleType } from '../../../../../flowtypes/StyleType'
