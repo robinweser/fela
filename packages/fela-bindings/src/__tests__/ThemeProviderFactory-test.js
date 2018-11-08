@@ -73,8 +73,7 @@ describe('Using the ThemeProvider', () => {
       }
 
       render() {
-        const { children } = this.props
-        return children
+        return this.props.children
       }
     }
 

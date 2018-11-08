@@ -20,6 +20,7 @@
     "react/jsx-one-expression-per-line": [ "off" ],
     "import/no-extraneous-dependencies": [ "off" ],
     "import/prefer-default-export": [ "off" ],
+    "react/destructuring-assignment": [ "off" ],
     "react/prop-types": [ "off" ],
     "no-confusing-arrow": [ "off" ],
     "no-underscore-dangle": [ "off" ],
