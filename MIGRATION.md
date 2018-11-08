@@ -6,6 +6,7 @@ It is sorted by packages.
 ## Table of Contents
 - [babel-plugin-fela](#babel-plugin-fela)
 - [fela-dom](#fela-dom)
+- [fela-combine-arrays](#fela-combine-arrays)
 - [fela-plugin-dynamic-prefixer](#fela-plugin-dynamic-prefixer)
 - [fela-plugin-remove-undefined](#fela-plugin-remove-undefined)
 - [inferno-fela](#inferno-fela)
@@ -15,6 +16,13 @@ It is sorted by packages.
 ### 1.0.15
 This package has been deprecated and removed as it does not add the desired benefits.<br>
 One should remove it from their Babel config as it is no longer guaranteed to work as expected.
+
+## fela-combine-arrays
+
+### 1.0.9
+This package has been deprecated as it is obsolete.<br>
+css-in-js-utils' assignStyle now combines arrays by default.<br>
+Please remove it from your Fela configuration.
 
 ## fela-dom
 
