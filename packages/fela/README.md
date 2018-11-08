@@ -150,6 +150,9 @@ If you are coming from CSS and want to learn JavaScript Styling with Fela, there
 * [**What is Fela?**](https://davidsinclair.io/thoughts/what-is-fela)<br> - *by [David Sinclair](https://davidsinclair.io)*
 * [**Choosing a CSS in JS library**](https://gist.github.com/troch/c27c6a8cc47b76755d848c6d1204fdaf#file-choosing-a-css-in-js-library-md)<br> - *by [Thomas Roch](https://twitter.com/tcroch)*
 * [**Introducing Fela 6.0**](https://medium.com/felajs/the-future-of-fela-d4dad2efad00)<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
+* [**A journey into CSS and then into CSS-in-JS**](https://www.zeolearn.com/magazine/a-journey-into-css-and-then-into-css-in-js)<br> - *by [Prithvi Raju](https://twitter.com/aga5tya)*
+* [**CSS In JS — Future of styling components**](https://we-are.bookmyshow.com/css-in-js-future-of-styling-components-ad315eb5448b)<br> - *by [Manjula Dube](https://twitter.com/manjula_dube)*
+* [**Styling Components with React Fela**](https://alligator.io/react/styling-with-react-fela/)<br> - *by [Josh Sherman](https://twitter.com/joshtronic)*
 * [**The Future of Fela**](https://medium.com/@rofrischmann/introducing-fela-6-0-289c84b52dd5)<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
 
 ## Ecosystem
