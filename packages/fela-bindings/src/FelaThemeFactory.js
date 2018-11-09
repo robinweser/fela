@@ -1,6 +1,8 @@
 /* @flow */
 import { THEME_CHANNEL } from './themeChannel'
 
+import deprecate from './_deprecate'
+
 export default function FelaThemeFactory(
   BaseComponent: any,
   contextTypes?: Object

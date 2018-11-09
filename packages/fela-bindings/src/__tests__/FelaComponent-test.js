@@ -182,7 +182,11 @@ describe('Using the FelaComponent component', () => {
 
     const Button = ({ children, style, ...props }) => (
       <FelaComponent style={[rule, style]} {...props}>
-        {({ className }) => <button className={className}>{children}</button>}
+        {({ className }) => (
+          <button type="button" className={className}>
+            {children}
+          </button>
+        )}
       </FelaComponent>
     )
 
@@ -203,7 +207,11 @@ describe('Using the FelaComponent component', () => {
 
     const Button = ({ children, style, ...props }) => (
       <FelaComponent style={[rule, style]} {...props}>
-        {({ className }) => <button className={className}>{children}</button>}
+        {({ className }) => (
+          <button type="button" className={className}>
+            {children}
+          </button>
+        )}
       </FelaComponent>
     )
 

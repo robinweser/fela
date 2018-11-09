@@ -27,7 +27,7 @@ const InnerBox = createComponent(boxRules)
 
 const component = (
   <Box>
-    <InnerBox size={'15'}>text</InnerBox>
+    <InnerBox size={15}>text</InnerBox>
     <InnerBox>text</InnerBox>
   </Box>
 )

@@ -98,7 +98,7 @@ describe('felaShallow', () => {
   describe('components withTheme', () => {
     const DivWithTheme = ({ theme }) => <Div>{theme.color.grass}</Div>
     DivWithTheme.propTypes = {
-      theme: PropTypes.object,
+      theme: PropTypes.object.isRequired,
     }
 
     const WithThemeDiv = withTheme(DivWithTheme)
@@ -176,7 +176,7 @@ describe('felaShallow', () => {
     beforeEach(() => {
       component = (
         <Box>
-          <InnerBox size={'15'}>text</InnerBox>
+          <InnerBox size={15}>text</InnerBox>
           <InnerBox>text</InnerBox>
         </Box>
       )

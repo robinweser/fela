@@ -1,11 +1,11 @@
 import React, { createElement } from 'react'
 import { render } from 'react-dom'
 
-import createSnapshotFactory from '../createSnapshotFactory'
-
 import { FelaComponent, RendererProvider, ThemeProvider } from 'react-fela'
 import { createRenderer } from 'fela'
 import plugins from 'fela-preset-web'
+
+import createSnapshotFactory from '../createSnapshotFactory'
 
 const createSnapshot = createSnapshotFactory(
   createElement,

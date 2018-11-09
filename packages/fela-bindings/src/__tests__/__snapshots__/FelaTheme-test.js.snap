@@ -1,11 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Using the FelaTheme component correctly pass the theme down 1`] = `
-<FelaTheme
-  render={[Function]}
->
-  <div>
-    The color is red.
-  </div>
-</FelaTheme>
+"
+
+<div data-reactroot>
+  {/* react-text: 2 */}
+  The color is {/* /react-text */}
+  {/* react-text: 3 */}
+  red
+  {/* /react-text */}
+  {/* react-text: 4 */}.{/* /react-text */}
+</div>;
+"
 `;

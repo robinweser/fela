@@ -11,7 +11,7 @@ FelaComponent is an alternative component to the [createComponent](createCompone
 | as | *string* | `div` | If children is passed a primitive child, the component will render an `as`-type DOM element with the className attached and the primitive child as content.
 
 #### Deprecated Props 
-> The following props are deprecated and will be removed in the next major version (11.0).
+> The following props are deprecated and will be removed in the next major version (11.0.0).
 
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |

@@ -36,6 +36,7 @@ describe('RendererProviderFactory', () => {
       componentDidMount() {
         mockCallback('didMount')
       }
+
       render() {
         return <div>Hello World</div>
       }

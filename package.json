@@ -2,7 +2,7 @@
   "name": "fela",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --reject-cycles",
+    "bootstrap": "lerna bootstrap",
     "build": "./scripts/build.sh",
     "clear": "lerna clean --yes && rimraf coverage && rimraf _book && rimraf packages/*/es && rimraf packages/*/lib",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
