@@ -64,7 +64,7 @@ export default function identifier(config?: IdentifierConfig = {}) {
 
     if (!enhanced) {
       throw new Error(
-        'You are trying to create a new identifier before how you used the identifier as an enhancer. ' +
+        'You are trying to create a new identifier before you used the identifier as an enhancer. ' +
           'Please add the identifier as an enhancer in the configuration of the renderer.'
       )
     }

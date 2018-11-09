@@ -1,10 +1,19 @@
 /* @flow */
 import arrayReduce from 'fast-loops/lib/arrayReduce'
-import { clusterCache, cssifySupportRules } from 'fela-utils'
+import {
+  clusterCache,
+  cssifySupportRules,
+  RULE_TYPE,
+  KEYFRAME_TYPE,
+  STATIC_TYPE,
+  FONT_TYPE,
+} from 'fela-utils'
 
 import cssifyMediaQueryRules from './cssifyMediaQueryRules'
 
-export default function renderToString(renderer: Object): string {
+import type DOMRenderer from '../../../flowtypes/DOMRenderer'
+
+export default function renderToString(renderer: DOMRenderer): string {
   const {
     fontFaces,
     statics,

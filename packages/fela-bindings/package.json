@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "fela": "^6.2.3",
-    "fela-monolithic": "^5.0.28"
+    "fela-monolithic": "^5.0.28",
+    "jest-react-fela": "^1.0.1"
   }
 }

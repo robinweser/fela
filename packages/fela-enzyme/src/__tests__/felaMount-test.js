@@ -1,6 +1,12 @@
+import 'raf/polyfill'
 import React from 'react'
 import { createComponent } from 'react-fela'
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
 import felaMount from '../felaMount'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 const rootTheme = {
   fontSizes: [10, 12, 14, 16, 20, 24, 32, 48, 64, 80],
@@ -21,7 +27,7 @@ const InnerBox = createComponent(boxRules)
 
 const component = (
   <Box>
-    <InnerBox size="15">text</InnerBox>
+    <InnerBox size={'15'}>text</InnerBox>
     <InnerBox>text</InnerBox>
   </Box>
 )

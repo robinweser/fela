@@ -16,12 +16,12 @@ function hasServerRenderedStyle() {
   return window.document.querySelectorAll('[data-fela-type]').length > 0
 }
 
-export default function ProviderFactory(
+export default function RendererProviderFactory(
   BaseComponent: any,
   renderChildren: Function,
   statics?: Object
 ): any {
-  class Provider extends BaseComponent {
+  class RendererProvider extends BaseComponent {
     constructor(props: Object, context: Object) {
       super(props, context)
 
@@ -47,9 +47,9 @@ export default function ProviderFactory(
 
   if (statics) {
     objectEach(statics, (value, key) => {
-      Provider[key] = value
+      RendererProvider[key] = value
     })
   }
 
-  return Provider
+  return RendererProvider
 }

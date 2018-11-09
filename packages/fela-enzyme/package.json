@@ -27,6 +27,11 @@
     "enzyme-to-json": "*",
     "react": "*"
   },
+  "devDependencies": {
+    "enzyme": "^3.6.0",
+    "enzyme-to-json": "^3.3.4",
+    "enzyme-adapter-react-16": "^1.5.0"
+  },
   "dependencies": {
     "cssbeautify": "^0.3.1",
     "fela": "^6.2.3",

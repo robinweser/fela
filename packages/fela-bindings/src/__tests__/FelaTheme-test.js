@@ -1,10 +1,10 @@
+import 'raf/polyfill'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { mount } from 'enzyme'
-import toJson from 'enzyme-to-json'
+
+import { createSnapshot } from 'jest-react-fela'
 
 import FelaThemeFactory from '../FelaThemeFactory'
-import createTheme from '../createTheme'
 import { THEME_CHANNEL } from '../themeChannel'
 
 const FelaTheme = FelaThemeFactory(Component, {
@@ -13,24 +13,13 @@ const FelaTheme = FelaThemeFactory(Component, {
 
 describe('Using the FelaTheme component', () => {
   it('correctly pass the theme down', () => {
-    const themeContext = createTheme({
-      color: 'red',
-    })
-
-    const wrapper = mount(
-      <FelaTheme
-        render={theme => {
-          const text = `The color is ${theme.color}.`
-          return <div>{text}</div>
-        }}
-      />,
-      {
-        context: {
-          [THEME_CHANNEL]: themeContext,
-        },
-      }
-    )
-
-    expect(toJson(wrapper)).toMatchSnapshot()
+    expect(
+      createSnapshot(
+        <FelaTheme>
+          {theme => <div>The color is {theme.color}.</div>}
+        </FelaTheme>,
+        { color: 'red' }
+      )
+    ).toMatchSnapshot()
   })
 })

@@ -26,5 +26,10 @@
     "fela-tools": "^5.2.3",
     "htmltojsx": "^0.3.0",
     "prettier": "^1.13.7"
+  },
+  "devDependencies": {
+    "fela": "^6.2.3",
+    "react-fela": "^8.0.4",
+    "fela-preset-web": "^8.0.13"
   }
 }

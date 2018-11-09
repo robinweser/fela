@@ -22,14 +22,14 @@ export default function createSnapshotFactory(
   createElement: Function,
   render: Function,
   defaultRenderer: Function,
-  defaultProvider: Function,
+  defaultRendererProvider: Function,
   defaultThemeProvider: Function
 ): Function {
   return function createSnapshot(
     component: any,
     theme: Object = {},
     renderer: DOMRenderer = defaultRenderer,
-    Provider: Function = defaultProvider,
+    RendererProvider: Function = defaultRendererProvider,
     ThemeProvider: Function = defaultThemeProvider
   ) {
     const div = document.createElement('div')
@@ -39,7 +39,7 @@ export default function createSnapshotFactory(
 
     render(
       createElement(
-        Provider,
+        RendererProvider,
         { renderer },
         createElement(ThemeProvider, { theme }, component)
       ),

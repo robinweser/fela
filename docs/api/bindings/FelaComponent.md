@@ -6,17 +6,25 @@ FelaComponent is an alternative component to the [createComponent](createCompone
 
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
-| customClass | string | class(es) to prepend before the generated classes |
-| style | [*StyleObject*](../../basics/Rules.md#styleobject)<br>*Function*| | Either a valid style object or a function of `theme` |
-| rule | *Function*| | A function of `theme` and props|
-| render | *string?*<br>*Function* | `div` | Either a render function or a string primitive to render into.<br>If passing a render function is receives the specified render interface. |
+| style | [*Rule*](../../basics/Rules.md)<br>[*StyleObject*](../../basics/Rules.md#styleobject)<br>*Array\<[*Rule*](../../basics/Rules.md)\|[*StyleObject*](../../basics/Rules.md#styleobject)\>*| | Either a valid style object, and [rule](../../basics/Rules.md) or an array of both |
+| children | *any* |  | Either a render function or a primitive child.<br>If passing a render function is receives the specified render interface. |
+| as | *string* | `div` | If children is passed a primitive child, the component will render an `as`-type DOM element with the className attached and the primitive child as content.
 
-#### Render Interface
+#### Deprecated Props 
+> The following props are deprecated and will be removed in the next major version (11.0).
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| customClass |	string	| | class(es) to prepend before the generated classes	|
+|rule	| *Function*	| |	A function of theme and props |
+
+### Render Interface
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
 | className | *string* | | The class names for the rendered *style* object |
+| children |	*Element* |	| The component children | 
 | theme | *Object* | `{}` | The theme object which is passed down via context |
-| children | *Element* | | The component children |
+| as | *string* | `div` | The `as` property that is passed to the component |
 
 ## Imports
 ```javascript
@@ -31,11 +39,11 @@ import { FelaComponent } from 'inferno-fela'
   style={{
     backgroundColor: 'blue',
     color: 'red'
-  }}
-  render={({ className, theme }) => (
+  }}>
+  {({ className, theme }) => (
     <div className={className}>I am red on blue.</div>
   )}
-/>
+</FelaComponent>
 ```
 
 #### Generic Components
@@ -47,11 +55,11 @@ const Button = ({ color, big = false, text }) => (
     style={{
       backgroundColor: color,
       fontSize: big ? 18 : 15
-    }}
-    render={({ className }) => (
+    }}>
+    {({ className }) => (
       <button className={className}>{text}</button>
     )}
-  />
+  </FelaComponent>
 )
 ```
 
@@ -59,12 +67,13 @@ const Button = ({ color, big = false, text }) => (
 To access theme properties, we can simply pass a function of theme.
 
 ```javascript
-<FelaComponent
-  style={theme => ({
-    backgroundColor: theme.bgPrimary,
-    color: 'red'
-  })}
-  render={({ className, theme }) => (
+const style = ({ theme }) => ({
+  backgroundColor: theme.bgPrimary,
+  color: 'red'
+})
+
+<FelaComponent style={rule}>
+  {({ className, theme }) => (
     <div className={className}>I am red on {theme.bgPrimary}.</div>
   )}
 />
@@ -72,8 +81,8 @@ To access theme properties, we can simply pass a function of theme.
 
 #### Style Rule as a Function of Props and Theme
 Sometimes it is desirable to style a component as a function of both theme and
-props. The `rule` prop takes a callback, and passes it an object with `theme`
-and all props passed to FelaComponent except "style", "render" and "rule".
+props. The `style` prop takes a callback, and passes it an object with `theme`
+and all props passed to FelaComponent except *style* and *children*.
 
 This provides an API that is both compatible with createComponent, and allows
 using an externally defined function in such use cases. Hopefully, this can
@@ -82,15 +91,13 @@ every render.
 
 
 ```javascript
-const ruleFunction = ({ theme, bgc }) => ({
+const rule = ({ theme, bgc }) => ({
   backgroundColor: bgc || 'red',
   color: theme.bgPrimary,
 })
 
-<FelaComponent
-  bgc='blue',
-  rule={ruleFunction}
-  render={({ className, theme }) => (
+<FelaComponent bgc='blue' style={rule}>
+  {({ className, theme }) => (
     <div className={className}>I am {theme.bgPrimary} on {bgc || 'red'}.</div>
   )}
 />
@@ -106,25 +113,31 @@ Children will automatically be passed down. If not specified at all, it will ren
     backgroundColor: 'blue',
     color: 'red'
   }}
-  render='span'
+  as='span'
 >
   I am red on blue
 </FelaComponent>
 ```
 
-#### Add Custom Classes
-The common use case of needing to add a custom class to the generated ones, e.g.
-for integration with 3rd party libraries, can be handled using the `customClass`
-prop.
+#### Composition
+In order to compose multiple FelaComponents we can't just concatenate classNames as they might overwrite each other due to the atomic CSS design and specificity.<br>
+We have to use a built-in API to correctly combine those rules and styles: [combineRules](../fela/combineRules.md).
+
+With FelaComponent we can leverage that API automatically by passing an array to the *style* prop.
 
 ```javascript
-<FelaComponent
-  customClass="my-custom-class"
-  style={{ color: 'red' }}
->
-  I am red and have a custom class
-</FelaComponent>
-// <div class="my-custom-class a">
-//  I am red and have a custom class
-// </div>
+const baseStyle = {
+  backgroundColor: 'red',
+  fontSize: 15
+}
+
+const Button = ({ style, ...props }) => (
+  <FelaComponent style={[baseStyle, style]} {...props} as="button" />
+)
+
+const ExtendedButton = ({ style, children }) => (
+  <Button style={{ color: 'blue' }}>Click</Button>
+)
 ```
+
+The array accepts both style objects, rule functions and even nested arrays again.

@@ -33,7 +33,18 @@ export default function FelaThemeFactory(
     }
 
     render() {
-      return this.props.render(this.state.theme)
+      const { children, render } = this.props
+
+      // TODO: remove with 11.0.0
+      deprecate(
+        render !== undefined,
+        'The `render` prop in FelaTheme is deprecated. It will be removed in react-fela@11.0.0.\nPlease always use `children` instead. See http://fela.js.org/docs/api/bindings/fela-theme'
+      )
+
+      const renderFn = children || render
+      return renderFn(this.state.theme)
+
+      // return this.props.children(this.state.theme)
     }
   }
 

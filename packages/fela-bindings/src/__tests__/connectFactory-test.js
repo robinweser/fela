@@ -1,15 +1,12 @@
+import 'raf/polyfill'
 import React, { createElement, Component } from 'react'
 import PropTypes from 'prop-types'
-import { mount } from 'enzyme'
-import toJson from 'enzyme-to-json'
-import { html as beautify } from 'js-beautify'
 
-import { renderToString } from 'fela-tools'
 import { createRenderer } from 'fela'
+import { createSnapshot } from 'jest-react-fela'
 
 import connectFactory from '../connectFactory'
 import withThemeFactory from '../withThemeFactory'
-import createTheme from '../createTheme'
 import { THEME_CHANNEL } from '../themeChannel'
 
 const withTheme = withThemeFactory(Component, createElement, {
@@ -31,28 +28,18 @@ describe('Connect Factory for bindings', () => {
       }),
     }
 
-    const MyComponent = connect(rules)(({ styles }) => (
+    const Comp = connect(rules)(({ styles }) => (
       <div>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
       </div>
     ))
 
-    MyComponent.defaultProps = {
+    Comp.defaultProps = {
       color: 'red',
     }
 
-    const renderer = createRenderer()
-    const wrapper = mount(<MyComponent />, {
-      context: {
-        renderer,
-      },
-    })
-
-    expect([
-      beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper),
-    ]).toMatchSnapshot()
+    expect(createSnapshot(<Comp />)).toMatchSnapshot()
   })
 
   it('should not pass through "theme" prop when used without "ThemeProvider"', () => {
@@ -65,11 +52,7 @@ describe('Connect Factory for bindings', () => {
       }),
     }
 
-    const MyComponentDefaultProps = {
-      color: 'red',
-    }
-
-    const MyComponent = connect(rules)(
+    const Comp = connect(rules)(
       ({ styles, rules: injectedRules, ...props }) => (
         <div {...props}>
           <span className={styles.rule1} />
@@ -78,19 +61,11 @@ describe('Connect Factory for bindings', () => {
       )
     )
 
-    MyComponent.defaultProps = MyComponentDefaultProps
+    Comp.defaultProps = {
+      color: 'red',
+    }
 
-    const renderer = createRenderer()
-    const wrapper = mount(<MyComponent />, {
-      context: {
-        renderer,
-      },
-    })
-
-    expect([
-      beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper),
-    ]).toMatchSnapshot()
+    expect(createSnapshot(<Comp />)).toMatchSnapshot()
   })
 
   it('should process rules and create classNames with rules as function', () => {
@@ -103,24 +78,20 @@ describe('Connect Factory for bindings', () => {
       },
     }))
 
-    const MyComponent = connect(rules)(({ styles }) => (
+    const Comp = connect(rules)(({ styles }) => (
       <div>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
       </div>
     ))
 
-    MyComponent.defaultProps = {
+    Comp.defaultProps = {
       color: 'red',
     }
 
     const renderer = createRenderer()
-    const wrapper = mount(<MyComponent />, {
-      context: {
-        renderer,
-      },
-    })
 
+    expect(createSnapshot(<Comp />, {}, renderer)).toMatchSnapshot()
     expect(rules).toHaveBeenCalledWith(
       {
         color: 'red',
@@ -129,10 +100,6 @@ describe('Connect Factory for bindings', () => {
       renderer
     )
     expect(rules).toHaveBeenCalledTimes(1)
-    expect([
-      beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper),
-    ]).toMatchSnapshot()
   })
 
   it('should extend the rule properties', () => {
@@ -145,18 +112,17 @@ describe('Connect Factory for bindings', () => {
       },
     })
 
-    const MyComponent = connect(rules)(({ styles }) => (
+    const Comp = connect(rules)(({ styles }) => (
       <div>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
       </div>
     ))
 
-    MyComponent.defaultProps = {
+    Comp.defaultProps = {
       color: 'red',
     }
 
-    const renderer = createRenderer()
     const extend = {
       rule1: {
         padding: 2,
@@ -166,16 +132,7 @@ describe('Connect Factory for bindings', () => {
       },
     }
 
-    const wrapper = mount(<MyComponent extend={extend} />, {
-      context: {
-        renderer,
-      },
-    })
-
-    expect([
-      beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper),
-    ]).toMatchSnapshot()
+    expect(createSnapshot(<Comp extend={extend} />)).toMatchSnapshot()
   })
 
   it('should compose styles', () => {
@@ -197,7 +154,7 @@ describe('Connect Factory for bindings', () => {
       }),
     }
 
-    const MyComponent = connect(anotherRules)(
+    const Comp = connect(anotherRules)(
       connect(rules)(({ styles }) => (
         <div>
           <span className={styles.rule1} />
@@ -206,21 +163,11 @@ describe('Connect Factory for bindings', () => {
       ))
     )
 
-    MyComponent.defaultProps = {
+    Comp.defaultProps = {
       color: 'red',
     }
 
-    const renderer = createRenderer()
-    const wrapper = mount(<MyComponent />, {
-      context: {
-        renderer,
-      },
-    })
-
-    expect([
-      beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper),
-    ]).toMatchSnapshot()
+    expect(createSnapshot(<Comp />)).toMatchSnapshot()
   })
 
   it('should component receive rules prop with all combined rules', () => {
@@ -242,7 +189,7 @@ describe('Connect Factory for bindings', () => {
       }),
     }
 
-    const MyComponent = connect(rules)(({ styles }) => (
+    const Comp = connect(rules)(({ styles }) => (
       <div>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
@@ -251,28 +198,14 @@ describe('Connect Factory for bindings', () => {
 
     const ProxyWrapper = connect(anotherRules)(({ rules: injectedRules }) => (
       <div>
-        <MyComponent color="red" extend={injectedRules} />
+        <Comp color="red" extend={injectedRules} />
       </div>
     ))
 
-    const renderer = createRenderer()
-    const wrapper = mount(<ProxyWrapper />, {
-      context: {
-        renderer,
-      },
-    })
-
-    expect([
-      beautify(`<style>${renderToString(renderer)}</style>`),
-      toJson(wrapper),
-    ]).toMatchSnapshot()
+    expect(createSnapshot(<ProxyWrapper />)).toMatchSnapshot()
   })
 
   it('should provide rules prop for connected component which is an object with rules in the values of fields', () => {
-    const myTheme = {
-      padding: 1,
-    }
-
     const rules = props => ({
       rule1: ({ theme }) => ({
         padding: theme.padding,
@@ -282,8 +215,9 @@ describe('Connect Factory for bindings', () => {
       },
     })
 
-    expect.assertions(5)
-    const MyComponent = connect(rules)(({ rules: injectedRules }) => {
+    expect.assertions(6)
+
+    const Comp = connect(rules)(({ rules: injectedRules }) => {
       expect(injectedRules.rule1).toBeInstanceOf(Function)
       expect(injectedRules.rule2).toBeInstanceOf(Function)
 
@@ -297,49 +231,8 @@ describe('Connect Factory for bindings', () => {
       return null
     })
 
-    const renderer = createRenderer()
-    mount(<MyComponent color="red" />, {
-      context: {
-        renderer,
-        [THEME_CHANNEL]: createTheme(myTheme),
-      },
-    })
-  })
-
-  it('should implement pure component wrapper', () => {
-    const renderMock = jest.fn(() => null)
-
-    const MyComponent = connect({})(renderMock)
-
-    const wrapper = mount(<MyComponent />, {
-      context: {
-        renderer: createRenderer(),
-      },
-    })
-
-    wrapper.update()
-    wrapper.update()
-
-    expect(renderMock).toHaveBeenCalledTimes(1)
-  })
-
-  it('should accept the parameter disabling pure component behavior', () => {
-    const renderMock = jest.fn(() => null)
-
-    const MyComponent = connect(
-      {},
-      { pure: false }
-    )(renderMock)
-
-    const wrapper = mount(<MyComponent />, {
-      context: {
-        renderer: createRenderer(),
-      },
-    })
-
-    wrapper.update()
-    wrapper.update()
-
-    expect(renderMock).toHaveBeenCalledTimes(3)
+    expect(
+      createSnapshot(<Comp color="red" />, { padding: 1 })
+    ).toMatchSnapshot()
   })
 })

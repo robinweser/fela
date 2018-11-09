@@ -1,10 +1,9 @@
 # fe
 
-Fe is a convenient replacement for `createElement`.<br>
+Fe is a convenient replacement for React's [createElement](https://reactjs.org/docs/react-api.html#createelement).<br>
 It is heavily inspired by [glam](https://github.com/threepointone/glam) and basically works the same.
 
-Fe directly renders inline style objects, which are passed to the `css` prop of JSX components.<br>
-It uses [FelaComponent](FelaComponent.md) internally.
+Fe directly renders style objects, which are passed to the `css` prop of JSX components by using [FelaComponent](FelaComponent.md) internally.
 
 ## Usage
 Fe is especially made to replace `createElement` when using JSX.<br>
