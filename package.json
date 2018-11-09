@@ -6,7 +6,7 @@
     "build": "./scripts/build.sh",
     "clear": "lerna clean --yes && rimraf coverage && rimraf _book && rimraf packages/*/es && rimraf packages/*/lib",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
-    "check": "yarn bootstrap && yarn format && yarn lint && yarn coverage && yarn flow",
+    "check": "yarn format && yarn lint && yarn coverage && yarn flow",
     "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
@@ -14,7 +14,7 @@
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test --coverage",
     "watch": "yarn test --watch",
-    "postinstall": "yarn build"
+    "postinstall": "yarn bootstrap && yarn build"
   },
   "workspaces": [
     "packages/*",
