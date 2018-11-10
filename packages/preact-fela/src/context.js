@@ -2,6 +2,8 @@
 // $FlowFixMe
 import { createContext } from 'preact-context'
 
-export const RendererContext = createContext<any>()
+// $FlowFixMe
+export const RendererContext = createContext()
 
-export const ThemeContext = createContext<any>()
+// $FlowFixMe
+export const ThemeContext = createContext()

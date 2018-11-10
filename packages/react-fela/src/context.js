@@ -1,6 +1,8 @@
 /* @flow */
 import { createContext } from 'react'
 
-export const RendererContext = createContext<any>()
+// $FlowFixMe
+export const RendererContext = createContext()
 
-export const ThemeContext = createContext<any>()
+// $FlowFixMe
+export const ThemeContext = createContext()

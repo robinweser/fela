@@ -2,13 +2,13 @@
 // $FlowFixMe
 import { Dimensions } from 'react-native'
 
-import React, { Component, Children } from 'react'
+import * as React from 'react'
 
 type Props = {
   children: React.Node,
 }
 
-export default class DimensionProvider extends Component<Props> {
+export default class DimensionProvider extends React.Component<Props> {
   componentDidMount() {
     Dimensions.addEventListener('change', this.forceUpdate)
   }
@@ -19,6 +19,6 @@ export default class DimensionProvider extends Component<Props> {
 
   render() {
     const { children } = this.props
-    return Children.only(children)
+    return React.Children.only(children)
   }
 }
