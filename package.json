@@ -2,7 +2,7 @@
   "name": "fela",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --reject-cycles",
     "build": "./scripts/build.sh",
     "clear": "lerna clean --yes && rimraf coverage && rimraf _book && rimraf packages/*/es && rimraf packages/*/lib",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
@@ -14,7 +14,7 @@
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test --coverage",
     "watch": "yarn test --watch",
-    "postinstall": "yarn bootstrap && yarn build"
+    "postinstall": "yarn build"
   },
   "workspaces": [
     "packages/*",

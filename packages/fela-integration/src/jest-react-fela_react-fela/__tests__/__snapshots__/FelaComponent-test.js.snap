@@ -120,9 +120,7 @@ exports[`Using the FelaComponent component should correctly pass the theme and o
 
 <div data-reactroot className=a b>
   {/* react-text: 2 */}I am red and written in {/* /react-text */}
-  {/* react-text: 3 */}
-  15px
-  {/* /react-text */}
+  {/* react-text: 3 */}15px{/* /react-text */}
   {/* react-text: 4 */}.{/* /react-text */}
 </div>;
 "

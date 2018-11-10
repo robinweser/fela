@@ -1,15 +1,8 @@
 import 'raf/polyfill'
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import { createSnapshot } from 'jest-react-fela'
-
-import FelaThemeFactory from '../FelaThemeFactory'
-import { THEME_CHANNEL } from '../themeChannel'
-
-const FelaTheme = FelaThemeFactory(Component, {
-  [THEME_CHANNEL]: PropTypes.object,
-})
+import { FelaTheme } from 'react-fela'
 
 describe('Using the FelaTheme component', () => {
   it('correctly pass the theme down', () => {

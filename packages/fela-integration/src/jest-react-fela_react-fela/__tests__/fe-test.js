@@ -1,25 +1,8 @@
 import 'raf/polyfill'
-import React, { createElement, Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import { createSnapshot } from 'jest-react-fela'
-
-import FelaThemeFactory from '../FelaThemeFactory'
-import FelaComponentFactory from '../FelaComponentFactory'
-import { THEME_CHANNEL } from '../themeChannel'
-
-import feFactory from '../feFactory'
-
-const FelaTheme = FelaThemeFactory(Component, {
-  [THEME_CHANNEL]: PropTypes.object,
-})
-
-const FelaComponent = FelaComponentFactory(createElement, FelaTheme, {
-  [THEME_CHANNEL]: PropTypes.object,
-  renderer: PropTypes.object,
-})
-
-const fe = feFactory(createElement, FelaComponent)
+import { fe } from 'react-fela'
 
 describe('Using fe', () => {
   it('should render inline style as CSS', () => {

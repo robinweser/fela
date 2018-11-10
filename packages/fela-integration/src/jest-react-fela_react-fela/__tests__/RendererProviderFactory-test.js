@@ -1,19 +1,9 @@
 import 'raf/polyfill'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import PropTypes from 'prop-types'
 
 import { createRenderer } from 'fela'
-
-import RendererProviderFactory from '../RendererProviderFactory'
-
-const RendererProvider = RendererProviderFactory(
-  Component,
-  children => children,
-  {
-    childContextTypes: { renderer: PropTypes.object },
-  }
-)
+import { RendererProvider } from 'react-fela'
 
 const mockCallback = jest.fn()
 

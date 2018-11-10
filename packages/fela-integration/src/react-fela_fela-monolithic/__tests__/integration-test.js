@@ -1,6 +1,7 @@
 import { createRenderer } from 'fela'
 import React from 'react'
 import ReactTestRenderer from 'react-test-renderer'
+
 import { renderToString } from 'fela-tools'
 import { createComponent, connect, Provider } from 'react-fela'
 import monolithic from 'fela-monolithic'
@@ -15,13 +16,13 @@ describe('Monolithic enhancer React integration', () => {
     }))
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer} renderToDOM={false}>
+      <Provider renderer={renderer}>
         <Component />
       </Provider>
     )
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer} renderToDOM={false}>
+      <Provider renderer={renderer}>
         <Component />
       </Provider>
     )
@@ -46,7 +47,7 @@ describe('Monolithic enhancer React integration', () => {
     )
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer} renderToDOM={false}>
+      <Provider renderer={renderer}>
         <Component />
       </Provider>
     )
@@ -76,7 +77,7 @@ describe('Monolithic enhancer React integration', () => {
     }))(BaseComponent)
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer} renderToDOM={false}>
+      <Provider renderer={renderer}>
         <Component />
       </Provider>
     )

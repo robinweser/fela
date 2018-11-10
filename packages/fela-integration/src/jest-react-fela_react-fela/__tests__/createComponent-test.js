@@ -1,39 +1,9 @@
 import 'raf/polyfill'
-import React, { createElement, Component as BaseComponent } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import { createRenderer } from 'fela'
 import { createSnapshot } from 'jest-react-fela'
-import monolithic from 'fela-monolithic'
-
-import createComponentFactory from '../createComponentFactory'
-import withThemeFactory from '../withThemeFactory'
-import { THEME_CHANNEL } from '../themeChannel'
-
-const withTheme = withThemeFactory(BaseComponent, createElement, {
-  [THEME_CHANNEL]: PropTypes.object,
-})
-
-const createComponent = createComponentFactory(createElement, withTheme, {
-  renderer: PropTypes.object,
-})
-
-const createComponentWithExtraPassThrough = createComponentFactory(
-  createElement,
-  withTheme,
-  { renderer: PropTypes.object },
-  false,
-  ['testProp']
-)
-
-const createComponentWithProxy = createComponentFactory(
-  createElement,
-  withTheme,
-  {
-    renderer: PropTypes.object,
-  },
-  true
-)
+import { createComponent } from 'react-fela'
 
 describe('Creating Components from Fela rules', () => {
   it('should return a Component', () => {
@@ -139,23 +109,6 @@ describe('Creating Components from Fela rules', () => {
     expect(createSnapshot(<Component as="i" />)).toMatchSnapshot()
   })
 
-  it('should pass extended special props to the component', () => {
-    const rule = props => ({
-      color: props.as === 'i' ? props.color : 'red',
-      fontSize: 16,
-    })
-
-    const UnderlyingComp = ({ testProp }) => (
-      <div>{testProp ? 'testProp exists' : 'testProp does not exist'}</div>
-    )
-    const Component = createComponentWithExtraPassThrough(rule, UnderlyingComp)
-
-    expect(
-      createSnapshot(<Component color="blue" testProp={{ tabIndex: -1 }} />)
-    ).toMatchSnapshot()
-    expect(createSnapshot(<Component color="blue" />)).toMatchSnapshot()
-  })
-
   it('should compose styles', () => {
     const rule = () => ({
       color: 'blue',
@@ -247,144 +200,5 @@ describe('Creating Components from Fela rules', () => {
     const component = createComponent(Button)
 
     expect(component.displayName).toEqual('Button')
-  })
-
-  it('should use a dev-friendly className with monolithic renderer', () => {
-    const Button = () => ({
-      fontSize: '16px',
-    })
-
-    const Component = createComponent(Button)
-
-    expect(
-      createSnapshot(
-        <Component />,
-        {},
-        createRenderer({
-          enhancers: [
-            monolithic({
-              prettySelectors: true,
-            }),
-          ],
-        })
-      )
-    ).toMatchSnapshot()
-  })
-
-  it('should use a dev-friendly className and the selectorPrefix', () => {
-    const Button = () => ({
-      fontSize: '16px',
-    })
-
-    const Component = createComponent(Button)
-
-    expect(
-      createSnapshot(
-        <Component />,
-        {},
-        createRenderer({
-          selectorPrefix: 'fela-',
-          enhancers: [
-            monolithic({
-              prettySelectors: true,
-            }),
-          ],
-        })
-      )
-    ).toMatchSnapshot()
-  })
-
-  it('should only use the rule name as displayName', () => {
-    const Button = () => ({
-      color: 'red',
-      fontSize: '16px',
-    })
-    const Component = createComponent(Button)
-
-    expect(createSnapshot(<Component />)).toMatchSnapshot()
-  })
-
-  it('should replace unallowed symbols in className with underscore', () => {
-    const rule = () => ({
-      fontSize: '16px',
-    })
-
-    const Parent = () => <div>Hello World</div>
-    Parent.displayName = 'connect(Component)'
-    const Component = createComponent(rule, Parent)
-
-    expect(
-      createSnapshot(
-        <Component />,
-        {},
-        createRenderer({
-          enhancers: [
-            monolithic({
-              prettySelectors: true,
-            }),
-          ],
-        })
-      )
-    ).toMatchSnapshot()
-  })
-
-  it('should replace rare unallowed symbols in className with underscore', () => {
-    const rule = () => ({
-      fontSize: '16px',
-    })
-
-    const Parent = () => <div>Hello World</div>
-    Parent.displayName = '1!@#$%^&*{}/=\\'
-    const Component = createComponent(rule, Parent)
-
-    expect(
-      createSnapshot(
-        <Component />,
-        {},
-        createRenderer({
-          enhancers: [
-            monolithic({
-              prettySelectors: true,
-            }),
-          ],
-        })
-      )
-    ).toMatchSnapshot()
-  })
-})
-
-describe('Creating Components with a Proxy for props from Fela rules', () => {
-  it('should not pass props used in rules to the element', () => {
-    const rule = props => ({
-      color: props.color,
-      fontSize: '16px',
-    })
-    const Component = createComponentWithProxy(rule, 'div')
-
-    expect(createSnapshot(<Component data-foo="bar" color />)).toMatchSnapshot()
-  })
-
-  it('should pass props used in rules specified in passThroughProps to the element', () => {
-    const rule = props => ({
-      color: props['data-color'],
-      fontSize: '16px',
-    })
-    const Component = createComponentWithProxy(rule, 'div', ['data-color'])
-
-    expect(
-      createSnapshot(<Component data-foo="bar" data-color="blue" />)
-    ).toMatchSnapshot()
-  })
-
-  it('should pass props except innerRef', () => {
-    const rule = props => ({
-      color: props.color,
-      fontSize: '16px',
-    })
-    const Component = createComponentWithProxy(rule, 'div')
-
-    expect(
-      createSnapshot(<Component color="black" innerRef={() => 'test'} />)
-    ).toMatchSnapshot()
   })
 })

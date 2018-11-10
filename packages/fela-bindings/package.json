@@ -29,8 +29,6 @@
     "shallow-equal": "^1.0.0"
   },
   "devDependencies": {
-    "fela": "^6.2.3",
-    "fela-monolithic": "^5.0.28",
-    "jest-react-fela": "^1.0.1"
+    "react": "^16.6.1"
   }
 }

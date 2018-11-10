@@ -93,19 +93,6 @@ exports[`Creating Components from Fela rules should not pass props to the elemen
 "
 `;
 
-exports[`Creating Components from Fela rules should only use the rule name as displayName 1`] = `
-".a {
-  color: red;
-}
-.b {
-  font-size: 16px;
-}
-
-
-<div data-reactroot className=a b />;
-"
-`;
-
 exports[`Creating Components from Fela rules should pass all props to the element 1`] = `
 ".a {
   font-size: 16px;
@@ -113,32 +100,6 @@ exports[`Creating Components from Fela rules should pass all props to the elemen
 
 
 <div data-reactroot data-foo=bar data-bar=baz className=a />;
-"
-`;
-
-exports[`Creating Components from Fela rules should pass extended special props to the component 1`] = `
-".a {
-  color: red;
-}
-.b {
-  font-size: 16;
-}
-
-
-<div data-reactroot>testProp exists</div>;
-"
-`;
-
-exports[`Creating Components from Fela rules should pass extended special props to the component 2`] = `
-".a {
-  color: red;
-}
-.b {
-  font-size: 16;
-}
-
-
-<div data-reactroot>testProp does not exist</div>;
 "
 `;
 
@@ -194,46 +155,6 @@ exports[`Creating Components from Fela rules should render fela rules depending 
 "
 `;
 
-exports[`Creating Components from Fela rules should replace rare unallowed symbols in className with underscore 1`] = `
-".1_3vb6hs {
-  font-size: 16px;
-}
-
-
-<div data-reactroot>Hello World</div>;
-"
-`;
-
-exports[`Creating Components from Fela rules should replace unallowed symbols in className with underscore 1`] = `
-".connect_Component_3vb6hs {
-  font-size: 16px;
-}
-
-
-<div data-reactroot>Hello World</div>;
-"
-`;
-
-exports[`Creating Components from Fela rules should use a dev-friendly className and the selectorPrefix 1`] = `
-".fela-Button_3vb6hs {
-  font-size: 16px;
-}
-
-
-<div data-reactroot className=fela-Button_3vb6hs />;
-"
-`;
-
-exports[`Creating Components from Fela rules should use a dev-friendly className with monolithic renderer 1`] = `
-".Button_3vb6hs {
-  font-size: 16px;
-}
-
-
-<div data-reactroot className=Button_3vb6hs />;
-"
-`;
-
 exports[`Creating Components from Fela rules should use the theme for static rendering by default 1`] = `
 ".a {
   color: red;
@@ -244,44 +165,5 @@ exports[`Creating Components from Fela rules should use the theme for static ren
 
 
 <div data-reactroot className=a b />;
-"
-`;
-
-exports[`Creating Components with a Proxy for props from Fela rules should not pass props used in rules to the element 1`] = `
-".a {
-  color: true;
-}
-.b {
-  font-size: 16px;
-}
-
-
-<div data-reactroot data-foo=bar className=a b />;
-"
-`;
-
-exports[`Creating Components with a Proxy for props from Fela rules should pass props except innerRef 1`] = `
-".a {
-  color: black;
-}
-.b {
-  font-size: 16px;
-}
-
-
-<div data-reactroot className=a b />;
-"
-`;
-
-exports[`Creating Components with a Proxy for props from Fela rules should pass props used in rules specified in passThroughProps to the element 1`] = `
-".a {
-  color: blue;
-}
-.b {
-  font-size: 16px;
-}
-
-
-<div data-reactroot data-color=blue data-foo=bar className=a b />;
 "
 `;

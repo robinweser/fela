@@ -4,9 +4,7 @@ exports[`Using the ThemeProvider should pass the theme to rule props 1`] = `
 "
 
 <div data-reactroot>
-  {{}
-  color:red
-  {}}
+  {{}color:red{}}
 </div>;
 "
 `;

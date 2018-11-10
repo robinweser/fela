@@ -1,21 +1,9 @@
 import 'raf/polyfill'
-import React, { createElement, Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import { createRenderer } from 'fela'
 import { createSnapshot } from 'jest-react-fela'
-
-import connectFactory from '../connectFactory'
-import withThemeFactory from '../withThemeFactory'
-import { THEME_CHANNEL } from '../themeChannel'
-
-const withTheme = withThemeFactory(Component, createElement, {
-  [THEME_CHANNEL]: PropTypes.object,
-})
-
-const connect = connectFactory(Component, createElement, withTheme, {
-  renderer: PropTypes.object,
-})
+import { connect } from 'react-fela'
 
 describe('Connect Factory for bindings', () => {
   it('should process rules and create classNames', () => {
