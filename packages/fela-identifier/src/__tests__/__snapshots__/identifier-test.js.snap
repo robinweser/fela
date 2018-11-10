@@ -9,7 +9,7 @@ exports[`Fela identifier enhancer identifier enhancer should not remove meta inf
 }
 
 
-<div data-reactroot>
+<div>
   <span className=Component_rule1_zuf8d5 />
   <span className=Component_rule2_137u7ef />
 </div>;

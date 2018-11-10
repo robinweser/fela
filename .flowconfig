@@ -13,6 +13,7 @@
 .*/node_modules/polished/*.*
 .*/node_modules/findup/*.*
 .*/node_modules/jss/*.*
+.*/node_modules/preact/*.*
 
 
 [options]
@@ -23,4 +24,4 @@ module.name_mapper='(preact)' -> 'empty/object'
 module.file_ext=.js
 
 [version]
-^0.81.0
+^0.86.0

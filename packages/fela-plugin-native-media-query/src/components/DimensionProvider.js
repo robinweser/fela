@@ -2,11 +2,10 @@
 // $FlowFixMe
 import { Dimensions } from 'react-native'
 
-import { Component, Children } from 'react'
-import type { Node } from 'react'
+import React, { Component, Children } from 'react'
 
 type Props = {
-  children: Node,
+  children: React.Node,
 }
 
 export default class DimensionProvider extends Component<Props> {

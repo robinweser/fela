@@ -1,4 +1,5 @@
 /* @flow */
+// $FlowFixMe
 import { h } from 'preact'
 import { feFactory } from 'fela-bindings'
 

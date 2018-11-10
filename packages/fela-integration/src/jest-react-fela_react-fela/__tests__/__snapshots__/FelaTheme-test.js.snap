@@ -3,10 +3,6 @@
 exports[`Using the FelaTheme component correctly pass the theme down 1`] = `
 "
 
-<div data-reactroot>
-  {/* react-text: 2 */}The color is {/* /react-text */}
-  {/* react-text: 3 */}red{/* /react-text */}
-  {/* react-text: 4 */}.{/* /react-text */}
-</div>;
+<div>The color is red.</div>;
 "
 `;

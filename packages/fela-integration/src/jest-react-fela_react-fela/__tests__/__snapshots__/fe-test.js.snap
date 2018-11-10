@@ -9,9 +9,7 @@ exports[`Using fe should merge class names 1`] = `
 }
 
 
-<div data-reactroot className=Component-button Component a b>
-  Hello
-</div>;
+<div className=Component-button Component a b>Hello</div>;
 "
 `;
 
@@ -24,8 +22,6 @@ exports[`Using fe should render inline style as CSS 1`] = `
 }
 
 
-<div data-reactroot className=a b>
-  Hello
-</div>;
+<div className=a b>Hello</div>;
 "
 `;

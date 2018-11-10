@@ -9,7 +9,7 @@ exports[`Creating Components with a Proxy for props from Fela rules should not p
 }
 
 
-<div data-reactroot data-foo=bar className=a b />;
+<div data-foo=bar className=a b />;
 "
 `;
 
@@ -22,7 +22,7 @@ exports[`Creating Components with a Proxy for props from Fela rules should pass 
 }
 
 
-<div data-reactroot className=a b />;
+<div className=a b />;
 "
 `;
 
@@ -35,6 +35,6 @@ exports[`Creating Components with a Proxy for props from Fela rules should pass 
 }
 
 
-<div data-reactroot data-color=blue data-foo=bar className=a b />;
+<div data-color=blue data-foo=bar className=a b />;
 "
 `;
