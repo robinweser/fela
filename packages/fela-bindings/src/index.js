@@ -5,9 +5,7 @@ import FelaThemeFactory from './FelaThemeFactory'
 import RendererProviderFactory from './RendererProviderFactory'
 import ThemeProviderFactory from './ThemeProviderFactory'
 import withThemeFactory from './withThemeFactory'
-import createTheme from './createTheme'
 import feFactory from './feFactory'
-import { THEME_CHANNEL } from './themeChannel'
 
 export {
   connectFactory,
@@ -17,7 +15,5 @@ export {
   RendererProviderFactory,
   ThemeProviderFactory,
   withThemeFactory,
-  createTheme,
   feFactory,
-  THEME_CHANNEL,
 }

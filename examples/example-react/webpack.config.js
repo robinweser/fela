@@ -2,6 +2,7 @@ const path = require('path')
 
 module.exports = {
   cache: true,
+  devtool: 'source-map',
   entry: {
     app: './client.js'
   },

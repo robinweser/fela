@@ -1,11 +1,8 @@
 /* @flow */
 import { createElement } from 'react'
-import PropTypes from 'prop-types'
-import { createComponentFactory, THEME_CHANNEL } from 'fela-bindings'
+import { createComponentFactory } from 'fela-bindings'
 
-import withTheme from './withTheme'
+import { RendererContext } from './context'
+import FelaTheme from './FelaTheme'
 
-export default createComponentFactory(createElement, withTheme, {
-  renderer: PropTypes.object,
-  [THEME_CHANNEL]: PropTypes.object,
-})
+export default createComponentFactory(createElement, RendererContext, FelaTheme)

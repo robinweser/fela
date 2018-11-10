@@ -1,5 +1,7 @@
 /* @flow */
-import { Component } from 'inferno'
+import { createElement } from 'inferno-create-element'
 import { FelaThemeFactory } from 'fela-bindings'
 
-export default FelaThemeFactory(Component)
+import { ThemeContext } from './context'
+
+export default FelaThemeFactory(createElement, ThemeContext)

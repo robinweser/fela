@@ -1,7 +1,13 @@
 /* @flow */
-import { h } from 'preact'
+import { h as createElement } from 'preact'
 import { createComponentFactory } from 'fela-bindings'
 
-import withTheme from './withTheme'
+import { RendererContext } from './context'
+import FelaTheme from './FelaTheme'
 
-export default createComponentFactory(h, withTheme, undefined, true)
+export default createComponentFactory(
+  createElement,
+  RendererContext,
+  FelaTheme,
+  true
+)
