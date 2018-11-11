@@ -31,11 +31,8 @@ export default function transformer(file, api, options) {
       }
     })
 
-    console.log('NAME is', requiresRenaming)
 
     if (requiresRenaming) {
-      console.log(ast)
-
       ast.find(j.JSXElement).forEach(path => {
         if (path.node.openingElement.name.name === requiresRenaming) {
           path.node.openingElement.name.name = 'RendererProvider'
