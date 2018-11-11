@@ -8,7 +8,7 @@ export default function transformer(file, api, options) {
 
   const importName = getImportName(j, file.source, pkg, component)
 
-  // only transform if FelaTheme is imported from react-fela
+  // only transform if FelaComponent is imported from react-fela
   if (importName) {
     return j(file.source)
       .find(j.JSXElement)
