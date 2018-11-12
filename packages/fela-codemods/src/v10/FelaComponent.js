@@ -1,4 +1,4 @@
-import getImportName from './utils/getImportName'
+import getImportName from '../utils/getImportName'
 
 const pkg = 'react-fela'
 const component = 'FelaComponent'
@@ -55,4 +55,6 @@ export default function transformer(file, api, options) {
       })
       .toSource()
   }
+
+  return file.source
 }

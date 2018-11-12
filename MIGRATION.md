@@ -10,6 +10,8 @@ It is sorted by packages.
 - [fela-plugin-dynamic-prefixer](#fela-plugin-dynamic-prefixer)
 - [fela-plugin-remove-undefined](#fela-plugin-remove-undefined)
 - [inferno-fela](#inferno-fela)
+- [preact-fela](#preact-fela)
+- [react-fela](#react-fela)
 
 ## babel-plugin-fela
 
@@ -56,6 +58,18 @@ One should remove it form their Fela config as it no longer required.
 
 ## inferno-fela
 
+### 10.0.0
+> Check [react-fela](#react-fela) for detailed changes and migration guide.
+
 ### 8.0.0
 In order to use inferno-fela > 8.0.0, Inferno > 4.0.0 is required.<br>
 If you can't upgrade to Inferno 4.0.0 yet, consider using inferno-fela 7.0.1.
+
+## preact-fela
+### 10.0.0
+> Check [react-fela](#react-fela) for detailed changes and migration guide.
+
+## react-fela
+### 10.0.0
+
+tbd.

@@ -1,4 +1,4 @@
-import getImportName from './utils/getImportName'
+import getImportName from '../utils/getImportName'
 
 const pkg = 'react-fela'
 const component = 'Provider'
@@ -31,7 +31,6 @@ export default function transformer(file, api, options) {
       }
     })
 
-
     if (requiresRenaming) {
       ast.find(j.JSXElement).forEach(path => {
         if (path.node.openingElement.name.name === requiresRenaming) {
@@ -46,4 +45,6 @@ export default function transformer(file, api, options) {
 
     return ast.toSource()
   }
+
+  return file.source
 }

@@ -1,7 +1,7 @@
 {
-  "name": "fela-dom",
-  "version": "8.0.4",
-  "description": "Fela package for working with the DOM",
+  "name": "fela-codemods",
+  "version": "1.0.0",
+  "description": "Automatic codemods to upgrade Fela code to newer versions",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
