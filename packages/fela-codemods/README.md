@@ -41,7 +41,7 @@ In order to use all codemods for a specific version at once, we use `index` as o
 ### FelaComponent
 
 | Packages | Codemod | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | react-fela<br>inferno-fela<br>preact-fela | `v10/FelaComponent.js` | Renames the `rule` prop to `style` and transforms all `style` as a function of `theme` to a function of `props`. |
 
 <details>
@@ -78,7 +78,7 @@ const Usage = (
 
 ### FelaTheme
 | Packages | Codemod | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | react-fela<br>inferno-fela<br>preact-fela | `v10/FelaTheme.js` | Refactors using the `render` prop to use the `children` special prop instead. |
 
 <details>
@@ -106,7 +106,7 @@ const Usage = (
 ### RendererProvider 
 
 | Packages | Codemod | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | react-fela<br>inferno-fela<br>preact-fela | `v10/RendererProvider.js` | Renames all usages of `Provider` to `RendererProvider`. Also works for named imports. |
 
 <details>
