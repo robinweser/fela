@@ -40,9 +40,11 @@ In order to use all codemods for a specific version at once, we use `index` as o
 ## v10
 ### FelaComponent
 
-| Packages | Codemod | Description |
-| --- | --- | --- |
-| react-fela<br>inferno-fela<br>preact-fela | `v10/FelaComponent.js` | Renames the `rule` prop to `style` and transforms all `style` as a function of `theme` to a function of `props`. |
+| Packages | Codemod | 
+| --- | --- | 
+| react-fela<br>inferno-fela<br>preact-fela | `v10/FelaComponent.js` |
+
+Renames the `rule` prop to `style` and transforms all `style` as a function of `theme` to a function of `props`.
 
 <details>
 <summary>Before</summary>
@@ -77,9 +79,11 @@ const Usage = (
 --- 
 
 ### FelaTheme
-| Packages | Codemod | Description |
-| --- | --- | --- |
-| react-fela<br>inferno-fela<br>preact-fela | `v10/FelaTheme.js` | Refactors using the `render` prop to use the `children` special prop instead. |
+| Packages | Codemod |
+| --- | --- |
+| react-fela<br>inferno-fela<br>preact-fela | `v10/FelaTheme.js` | 
+
+Refactors using the `render` prop to use the `children` special prop instead.
 
 <details>
 <summary>Before</summary>
@@ -105,9 +109,11 @@ const Usage = (
 
 ### RendererProvider 
 
-| Packages | Codemod | Description |
-| --- | --- | --- |
-| react-fela<br>inferno-fela<br>preact-fela | `v10/RendererProvider.js` | Renames all usages of `Provider` to `RendererProvider`. Also works for named imports. |
+| Packages | Codemod |
+| --- | --- |
+| react-fela<br>inferno-fela<br>preact-fela | `v10/RendererProvider.js` | 
+
+Renames all usages of `Provider` to `RendererProvider`. Also works for named imports.
 
 <details>
 <summary>Before</summary>
