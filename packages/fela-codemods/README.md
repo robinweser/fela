@@ -23,7 +23,7 @@ You may alternatively use `npm i -g jscodeshift`.
 Now transforming our codebase is as simple as using the [jscodeshift CLI](https://github.com/facebook/jscodeshift#usage-cli).<br>
 
 ```sh
-jscodeshift -t node_modules/fela-codemods/src/v{version}/{codemod}.js [path]
+jscodeshift -t node_modules/fela-codemods/src/{codemod} [path]
 ```
 where `codemod` is the actual codemod file that should be used and `path` is either a single file or a directory.
 
@@ -31,19 +31,18 @@ where `codemod` is the actual codemod file that should be used and `path` is eit
 The following list shows all available codemods for different version migrations.<br>
 In order to use all codemods for a specific version at once, we use `index` as our `codemod` value.
 
-#### Table of Contents
-- [10.0.0](#10-0-0)
+### Table of Contents
+- [v10](#10)
   - [FelaComponent](#fela-component)
   - [FelaTheme](#fela-theme)
   - [RendererProvider](#renderer-provider)
 
-### 10.0.0
+## v10
+### FelaComponent
 
-#### FelaComponent
-**Package**: react-fela<br>
-**Path**: `node_modules/fela-codemods/src/v10/FelaComponent.js`
-
-Renames the `rule` prop to `style` and transforms all `style` as a function of `theme` to a function of `props`.
+| Packages | Codemod | Description |
+| --- | --- | --- | --- |
+| react-fela<br>inferno-fela<br>preact-fela | `v10/FelaComponent.js` | Renames the `rule` prop to `style` and transforms all `style` as a function of `theme` to a function of `props`. |
 
 <details>
 <summary>Before</summary>
@@ -53,7 +52,6 @@ const Usage = (
   <FelaComponent rule={({ color }) => ({ fontSize: 15, color })} />
 )
 ```
-
 ```javascript
 const Usage = (
   <FelaComponent style={theme => ({ color: theme.primary })} />
@@ -78,11 +76,10 @@ const Usage = (
 
 --- 
 
-#### FelaTheme
-**Package**: react-fela<br>
-**Path**: `node_modules/fela-codemods/src/v10/FelaTheme.js`
-
-Refactors using the `render` prop to use the `children` special prop instead.
+### FelaTheme
+| Packages | Codemod | Description |
+| --- | --- | --- | --- |
+| react-fela<br>inferno-fela<br>preact-fela | `v10/FelaTheme.js` | Refactors using the `render` prop to use the `children` special prop instead. |
 
 <details>
 <summary>Before</summary>
@@ -106,11 +103,11 @@ const Usage = (
 
 ---
 
-#### RendererProvider 
-**Package**: react-fela<br>
-**Path**: `node_modules/fela-codemods/src/v10/RendererProvider.js`
+### RendererProvider 
 
-Renames all usages of `Provider` to `RendererProvider`. Also works for named imports.
+| Packages | Codemod | Description |
+| --- | --- | --- | --- |
+| react-fela<br>inferno-fela<br>preact-fela | `v10/RendererProvider.js` | Renames all usages of `Provider` to `RendererProvider`. Also works for named imports. |
 
 <details>
 <summary>Before</summary>
