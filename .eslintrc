@@ -1,41 +1,110 @@
 {
-  "extends": [ "airbnb", "prettier" ],
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
   "parser": "babel-eslint",
-   "env": {
+  "env": {
     "browser": true,
     "node": true,
     "jest": true
   },
-  "plugins": [ "flowtype", "prettier" ],
+  "plugins": [
+    "flowtype",
+    "prettier"
+  ],
   "rules": {
-    "prettier/prettier": [ "error" ],
-    "semi": [ "error", "never" ],
-    "object-curly-newline": [ "off" ],
-    "object-property-newline": [ "off" ],
-    "comma-dangle": [ "off" ],
-    "react/jsx-filename-extension": ["error", {
-      "extensions": [".js", ".jsx"]
-    }],
-    "react/jsx-closing-bracket-location": [ "off" ],
-    "react/jsx-one-expression-per-line": [ "off" ],
-    "import/no-extraneous-dependencies": [ "off" ],
-    "import/prefer-default-export": [ "off" ],
-    "react/destructuring-assignment": [ "off" ],
-    "react/prop-types": [ "off" ],
-    "no-confusing-arrow": [ "off" ],
-    "no-underscore-dangle": [ "off" ],
-    "no-param-reassign": [ "off" ],
-    "react/forbid-prop-types": [ "off" ],
-    "no-plusplus": [ "off" ],
-    "guard-for-in": [ "off" ],
-    "no-restricted-syntax": [ "off" ],
-    "no-continue": [ "warn" ],
-    "no-prototype-builtins": [ "off" ],
-    "max-len": [ "off", 80 ],
-    "no-mixed-operators": [ "off" ],
-    "no-lonely-if": [ "warn" ],
-    "no-bitwise": [ "off" ],
-    "arrow-parens": [ "off" ],
-    "prefer-template": [ "off" ]
+    "prettier/prettier": [
+      "error"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "object-curly-newline": [
+      "off"
+    ],
+    "object-property-newline": [
+      "off"
+    ],
+    "comma-dangle": [
+      "off"
+    ],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/jsx-closing-bracket-location": [
+      "off"
+    ],
+    "react/jsx-one-expression-per-line": [
+      "off"
+    ],
+    "import/no-extraneous-dependencies": [
+      "off"
+    ],
+    "import/prefer-default-export": [
+      "off"
+    ],
+    "react/destructuring-assignment": [
+      "off"
+    ],
+    "react/prop-types": [
+      "off"
+    ],
+    "no-confusing-arrow": [
+      "off"
+    ],
+    "no-underscore-dangle": [
+      "off"
+    ],
+    "no-param-reassign": [
+      "off"
+    ],
+    "react/forbid-prop-types": [
+      "off"
+    ],
+    "no-plusplus": [
+      "off"
+    ],
+    "guard-for-in": [
+      "off"
+    ],
+    "no-restricted-syntax": [
+      "off"
+    ],
+    "no-continue": [
+      "warn"
+    ],
+    "no-prototype-builtins": [
+      "off"
+    ],
+    "max-len": [
+      "off",
+      80
+    ],
+    "no-mixed-operators": [
+      "off"
+    ],
+    "no-lonely-if": [
+      "warn"
+    ],
+    "no-bitwise": [
+      "off"
+    ],
+    "arrow-parens": [
+      "off"
+    ],
+    "prefer-template": [
+      "off"
+    ],
+    "prefer-destructuring": [
+      "off"
+    ]
   }
 }

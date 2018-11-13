@@ -3,7 +3,7 @@ import getImportName from '../utils/getImportName'
 const pkg = 'react-fela'
 const component = 'FelaComponent'
 
-export default function transformer(file, api, options) {
+export default function transformer(file, api) {
   const j = api.jscodeshift
 
   const importName = getImportName(j, file.source, pkg, component)
@@ -56,23 +56,23 @@ export default function transformer(file, api, options) {
           if (styleProp) {
             j(styleProp)
               .find(j.ArrowFunctionExpression)
-              .forEach(path => {
-                const param = path.node.params[0]
+              .forEach(stylePath => {
+                const param = stylePath.node.params[0]
 
                 if (param.type === 'Identifier') {
-                  j(path).replaceWith(
+                  j(stylePath).replaceWith(
                     j.arrowFunctionExpression(
                       [
                         j.objectPattern([
                           j.objectProperty(param, param, false, true),
                         ]),
                       ],
-                      path.node.body
+                      stylePath.node.body
                     )
                   )
 
                   // make property truly shorthand
-                  path.node.params[0].properties[0].shorthand = true
+                  stylePath.node.params[0].properties[0].shorthand = true
                 }
               })
           }

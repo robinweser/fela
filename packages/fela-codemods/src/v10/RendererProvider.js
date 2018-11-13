@@ -3,7 +3,7 @@ import getImportName from '../utils/getImportName'
 const pkg = 'react-fela'
 const component = 'Provider'
 
-export default function transformer(file, api, options) {
+export default function transformer(file, api) {
   const j = api.jscodeshift
 
   const importName = getImportName(j, file.source, pkg, component)
