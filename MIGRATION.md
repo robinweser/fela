@@ -1,75 +1,39 @@
 # Migration
 
-This guide should help with migration from lower major versions.<br>
-It is sorted by packages.
+> With the new synced version release process, we no longer have package-based migration guides, but version-based. Therefore, we removed all old migration guides. Check [the old migration guide](https://github.com/rofrischmann/fela/blob/a08ea4fff080d8df1edf76909dea58ac49e9e536/MIGRATION.md) for older guidelines.
 
-## Table of Contents
-- [babel-plugin-fela](#babel-plugin-fela)
-- [fela-dom](#fela-dom)
-- [fela-combine-arrays](#fela-combine-arrays)
-- [fela-plugin-dynamic-prefixer](#fela-plugin-dynamic-prefixer)
-- [fela-plugin-remove-undefined](#fela-plugin-remove-undefined)
-- [inferno-fela](#inferno-fela)
-- [preact-fela](#preact-fela)
-- [react-fela](#react-fela)
+This guide should help migrating your Fela codebase to newer versions.
 
-## babel-plugin-fela
+## 10.0.0
 
-### 1.0.15
-This package has been deprecated and removed as it does not add the desired benefits.<br>
-One should remove it from their Babel config as it is no longer guaranteed to work as expected.
+With Version 10, we did some major changes to all the React-like bindings.<br>
+All older APIs should still work, but will now render a deprecation warning with instructions on how to migrate. We will do a code cleanup with Version 11.
 
-## fela-combine-arrays
+> **Codemods**: We also have Codemods to automate the migration process. They should catch at least 80% of all usages.
 
-### 1.0.9
-This package has been deprecated as it is obsolete.<br>
-css-in-js-utils' assignStyle now combines arrays by default.<br>
-Please remove it from your Fela configuration.
+#### Relevant Packages
+* react-fela
+* preact-fela
+* inferno-fela
 
-## fela-dom
+--- 
 
-### 7.0.0
-If you're using `renderToSheetList` on the server-side, you probably have to update the rendered `style` elements to also contain the `data-fela-support` attribute.
+### FelaTheme
 
-```javascript 
-const sheetList = renderToSheetList(renderer)
+[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#felatheme) | [API Reference](http://fela.js.org/docs/api/bindings/fela-theme)
 
-const elements = sheetList.map(({ type, css, media, support }) =>
-  <style
-    dangerouslySetInnerHTML={{ __html: css }}
-    data-fela-type={type}
-    data-fela-support={support}
-    key={`${type}-${media}`}
-    media={media}
-  />
-)
-```
+The FelaTheme component now no longer uses the special `render` prop to pass a render function, but uses `children` instead.<br>
 
-## fela-plugin-dynamic-prefixer
-### 5.0.10
-This package has been deprecated and removed as the dynamic version of [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) will no longer be maintained.<br>
-Use [fela-plugin-prefixer](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-prefixer) instead. 
+### FelaComponent
 
-## fela-plugin-remove-undefined
+[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#felacomponent) | [API Reference](http://fela.js.org/docs/api/bindings/fela-component)
 
-### 5.0.21
-This package has been deprecated and removed as Fela automatically removes `undefined` values.<br>
-One should remove it form their Fela config as it no longer required.
+The same goes for FelaComponent. We now use `children` directly rather than `render`. In order to pass a primitive render type, one may now use the `as` prop.
 
-## inferno-fela
+Instead of accepting both `style` and `rule` it now only accepts `style` but allows style objects, rule functions and even an array of both.
 
-### 10.0.0
-> Check [react-fela](#react-fela) for detailed changes and migration guide.
+### RendererProvider
 
-### 8.0.0
-In order to use inferno-fela > 8.0.0, Inferno > 4.0.0 is required.<br>
-If you can't upgrade to Inferno 4.0.0 yet, consider using inferno-fela 7.0.1.
+[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#rendererprovider) | [API Reference](http://fela.js.org/docs/api/bindings/renderer-provider)
 
-## preact-fela
-### 10.0.0
-> Check [react-fela](#react-fela) for detailed changes and migration guide.
-
-## react-fela
-### 10.0.0
-
-tbd.
+The old `Provider` component has been renamed to `RendererProvider` for more clarity and specificity. 
