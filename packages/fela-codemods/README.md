@@ -44,7 +44,8 @@ In order to use all codemods for a specific version at once, we use `index` as o
 | --- | --- | 
 | react-fela<br>inferno-fela<br>preact-fela | `v10/FelaComponent.js` |
 
-Renames the `rule` prop to `style` and transforms all `style` as a function of `theme` to a function of `props`.
+Renames the `rule` prop to `style` and transforms all `style` as a function of `theme` to a function of `props`.<br>
+Also transforms the `render` prop to either `as` or `children` respectively.
 
 <details>
 <summary>Before</summary>
@@ -59,6 +60,17 @@ const Usage = (
   <FelaComponent style={theme => ({ color: theme.primary })} />
 )
 ```
+```javascript
+const Usage = (
+  <FelaComponent render="div">Hello</FelaComponent>
+)
+```
+```javascript
+const Usage = (
+  <FelaComponent render={({ className }) => <div className={className}>Hello</div>} />
+)
+```
+
 
 </details>
 <details>
@@ -74,6 +86,17 @@ const Usage = (
   <FelaComponent style={({ theme }) => ({ color: theme.primary })} />
 )
 ```
+```javascript
+const Usage = (
+  <FelaComponent as="div">Hello</FelaComponent>
+)
+```
+```javascript
+const Usage = (
+  <FelaComponent>{({ className }) => <div className={className}>Hello</div>}</FelaComponent>
+)
+```
+
 </details>
 
 --- 
@@ -107,7 +130,7 @@ const Usage = (
 
 ---
 
-### RendererProvider 
+### RendererProvider
 
 | Packages | Codemod |
 | --- | --- |

@@ -9,7 +9,7 @@ export default function FelaComponentFactory(
   contextTypes?: Object
 ): Function {
   function FelaComponent(
-    { children, as = 'div', style, customClass, rule, ...otherProps },
+    { children, as = 'div', style, customClass, rule, render, ...otherProps },
     { renderer }
   ) {
     // TODO: remove in 11.0.0
@@ -23,6 +23,10 @@ export default function FelaComponentFactory(
       () => {
         style = rule
       }
+    )
+    deprecate(
+      render !== undefined,
+      'The `render` prop in FelaComponent is deprecated. It will be removed in react-fela@11.0.0.\nPlease always use `children` instead. See http://fela.js.org/docs/api/bindings/fela-component'
     )
 
     if (!style) {
@@ -40,6 +44,19 @@ export default function FelaComponentFactory(
 
       // TODO: remove in 11.0.0
       const cls = customClass ? customClass + ' ' + className : className
+
+      if (render instanceof Function) {
+        return render({
+          className: cls,
+          children,
+          theme,
+          as,
+        })
+      }
+
+      if (typeof render === 'string') {
+        return createElement(render, { className: cls }, children)
+      }
 
       if (children instanceof Function) {
         return children({

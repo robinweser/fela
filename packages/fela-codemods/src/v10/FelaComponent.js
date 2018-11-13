@@ -22,6 +22,36 @@ export default function transformer(file, api, options) {
             prop => prop.name.name === 'rule'
           )
 
+          const renderProp = path.node.openingElement.attributes.find(
+            prop => prop.name.name === 'render'
+          )
+
+          // handle render/as transformation to children/as
+          if (renderProp) {
+            if (
+              renderProp.value.type === 'Literal' ||
+              (renderProp.value.type === 'JSXExpressionContainer' &&
+                renderProp.value.expression.type === 'Literal')
+            ) {
+              renderProp.name.name = 'as'
+            } else {
+              j(path).replaceWith(
+                j.jsxElement(
+                  j.jsxOpeningElement(
+                    j.jsxIdentifier(importName),
+                    path.node.openingElement.attributes.filter(
+                      prop => prop !== renderProp
+                    ),
+                    false
+                  ),
+                  j.jsxClosingElement(j.jsxIdentifier(importName)),
+                  [renderProp.value],
+                  false
+                )
+              )
+            }
+          }
+
           // replace inline style expression from theme
           if (styleProp) {
             j(styleProp)
