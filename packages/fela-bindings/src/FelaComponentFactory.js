@@ -52,19 +52,19 @@ export default function FelaComponentFactory(
         const cls = customClass ? customClass + ' ' + className : className
 
         if (render instanceof Function) {
-        return render({
-          className: cls,
-          children,
-          theme,
-          as,
-        })
-      }
+          return render({
+            className: cls,
+            children,
+            theme,
+            as,
+          })
+        }
 
-      if (typeof render === 'string') {
-        return createElement(render, { className: cls }, children)
-      }
+        if (typeof render === 'string') {
+          return createElement(render, { className: cls }, children)
+        }
 
-      if (children instanceof Function) {
+        if (children instanceof Function) {
           return children({
             className: cls,
             theme,

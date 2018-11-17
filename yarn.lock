@@ -5822,10 +5822,6 @@ enzyme-to-json@1.5.1:
 enzyme-to-json@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-3.3.0.tgz#553e23a09ffb4b0cf09287e2edf9c6539fddaa84"
-<<<<<<< HEAD
-  integrity sha512-d8IfzVpwunct+bw6uWujjHKtskyLwWGKkAguouAdTMNTaTmoC0Y0N0mWpeOq+bFDM4YljRXmBRIsO6QNWrlZzA==
-=======
->>>>>>> upstream/simple-fela-component
   dependencies:
     lodash "^4.17.4"
 
@@ -5847,10 +5843,6 @@ enzyme@2.8.2:
 enzyme@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.3.0.tgz#0971abd167f2d4bf3f5bd508229e1c4b6dc50479"
-<<<<<<< HEAD
-  integrity sha512-l8csyPyLmtxskTz6pX9W8eDOyH1ckEtDttXk/vlFWCjv00SkjTjtoUrogqp4yEvMyneU9dUJoOLnqFoiHb8IHA==
-=======
->>>>>>> upstream/simple-fela-component
   dependencies:
     cheerio "^1.0.0-rc.2"
     function.prototype.name "^1.0.3"
