@@ -7,7 +7,7 @@ export default function feFactory(
 ) {
   return function fe(type: any, props: Object = {}, ...children: any) {
     if (props) {
-      const { css, className, ...otherProps } = nonNullProps
+      const { css, className, ...otherProps } = props
 
       if (css) {
         return createElement(
