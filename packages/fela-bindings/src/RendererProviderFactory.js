@@ -18,6 +18,8 @@ function hasServerRenderedStyle() {
 
 export default function RendererProviderFactory(
   BaseComponent: any,
+  RendererContext: any,
+  createElement: Function,
   renderChildren: Function,
   statics?: Object
 ): any {
@@ -34,14 +36,14 @@ export default function RendererProviderFactory(
       }
     }
 
-    getChildContext(): Object {
-      return {
-        renderer: this.props.renderer,
-      }
-    }
-
     render(): Object {
-      return renderChildren(this.props.children)
+      return createElement(
+        RendererContext.Provider,
+        {
+          value: this.props.renderer,
+        },
+        renderChildren(this.props.children)
+      )
     }
   }
 

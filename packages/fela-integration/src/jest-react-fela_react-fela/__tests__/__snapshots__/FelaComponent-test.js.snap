@@ -9,7 +9,7 @@ exports[`Using the FelaComponent component should accept a string primitive type
 }
 
 
-<span data-reactroot className=a b />;
+<span className=a b />;
 "
 `;
 
@@ -25,9 +25,7 @@ exports[`Using the FelaComponent component should accept an array as style 1`] =
 }
 
 
-<div data-reactroot className=a b c>
-  I am red on black and written in 12px.
-</div>;
+<div className=a b c>I am red on black and written in 12px.</div>;
 "
 `;
 
@@ -43,9 +41,7 @@ exports[`Using the FelaComponent component should accept an array as style 2`] =
 }
 
 
-<div data-reactroot className=a b c>
-  I am red on blue and written in 12px.
-</div>;
+<div className=a b c>I am red on blue and written in 12px.</div>;
 "
 `;
 
@@ -61,9 +57,7 @@ exports[`Using the FelaComponent component should compose extension rules 1`] = 
 }
 
 
-<button data-reactroot className=a b c>
-  Hello World
-</button>;
+<button className=a b c>Hello World</button>;
 "
 `;
 
@@ -79,7 +73,7 @@ exports[`Using the FelaComponent component should compose extension rules 2`] = 
 }
 
 
-<button data-reactroot type=button className=a b c>
+<button type=button className=a b c>
   Hello World
 </button>;
 "
@@ -103,7 +97,7 @@ exports[`Using the FelaComponent component should compose nested extensions 1`] 
 }
 
 
-<button data-reactroot type=button className=a b c d e>
+<button type=button className=a b c d e>
   Hello World
 </button>;
 "
@@ -118,11 +112,7 @@ exports[`Using the FelaComponent component should correctly pass the theme and o
 }
 
 
-<div data-reactroot className=a b>
-  {/* react-text: 2 */}I am red and written in {/* /react-text */}
-  {/* react-text: 3 */}15px{/* /react-text */}
-  {/* react-text: 4 */}.{/* /react-text */}
-</div>;
+<div className=a b>I am red and written in 15px.</div>;
 "
 `;
 
@@ -135,9 +125,7 @@ exports[`Using the FelaComponent component should correctly render a fela rule 1
 }
 
 
-<div data-reactroot className=a b>
-  I am red and written in 12px.
-</div>;
+<div className=a b>I am red and written in 12px.</div>;
 "
 `;
 
@@ -150,7 +138,7 @@ exports[`Using the FelaComponent component should default to a div 1`] = `
 }
 
 
-<div data-reactroot className=a b />;
+<div className=a b />;
 "
 `;
 
@@ -163,7 +151,7 @@ exports[`Using the FelaComponent component should render children in default mod
 }
 
 
-<div data-reactroot className=a b>
+<div className=a b>
   <span>Hello World</span>
 </div>;
 "
@@ -178,8 +166,6 @@ exports[`Using the FelaComponent component should render children using the corr
 }
 
 
-<h1 data-reactroot className=a b>
-  Hello World
-</h1>;
+<h1 className=a b>Hello World</h1>;
 "
 `;

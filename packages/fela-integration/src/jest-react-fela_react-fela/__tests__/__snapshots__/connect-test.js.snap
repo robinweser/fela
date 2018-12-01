@@ -12,7 +12,7 @@ exports[`Connect Factory for bindings should component receive rules prop with a
 }
 
 
-<div data-reactroot>
+<div>
   <div>
     <span className=a />
     <span className=c b />
@@ -33,7 +33,7 @@ exports[`Connect Factory for bindings should compose styles 1`] = `
 }
 
 
-<div data-reactroot>
+<div>
   <span className=a />
   <span className=b c />
 </div>;
@@ -52,7 +52,7 @@ exports[`Connect Factory for bindings should extend the rule properties 1`] = `
 }
 
 
-<div data-reactroot>
+<div>
   <span className=a />
   <span className=b c />
 </div>;
@@ -68,7 +68,7 @@ exports[`Connect Factory for bindings should not pass through "theme" prop when 
 }
 
 
-<div data-reactroot color=red>
+<div color=red>
   <span className=a />
   <span className=b />
 </div>;
@@ -84,7 +84,7 @@ exports[`Connect Factory for bindings should process rules and create classNames
 }
 
 
-<div data-reactroot>
+<div>
   <span className=a />
   <span className=b />
 </div>;
@@ -100,7 +100,7 @@ exports[`Connect Factory for bindings should process rules and create classNames
 }
 
 
-<div data-reactroot>
+<div>
   <span className=a />
   <span className=b />
 </div>;
@@ -116,8 +116,5 @@ exports[`Connect Factory for bindings should provide rules prop for connected co
 }
 
 
-{
-  /* react-empty: 1 */
-}
 "
 `;

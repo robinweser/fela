@@ -47,6 +47,7 @@ declare module "react-fela" {
    * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/react/ThemeProvider.js}
    */
   export class Provider extends React.Component<ProviderProps, {}> { }
+  export class RendererProvider extends React.Component<ProviderProps, {}> { }
 
   type Style<Props> = TRule<Props> | IStyle;
 

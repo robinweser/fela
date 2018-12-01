@@ -23,7 +23,8 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "preact": "*"
+    "preact": "^8.2.7",
+    "preact-context": "^1.1.2"
   },
   "dependencies": {
     "fela-bindings": "^3.0.4",

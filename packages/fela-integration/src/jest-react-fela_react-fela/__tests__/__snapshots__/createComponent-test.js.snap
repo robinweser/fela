@@ -9,14 +9,14 @@ exports[`Creating Components from Fela rules should allow nested theme objects 1
 }
 
 
-<div data-reactroot className=a b />;
+<div className=a b />;
 "
 `;
 
 exports[`Creating Components from Fela rules should compose passThrough props 1`] = `
 "
 
-<div data-reactroot data-foo=bar color=red className />;
+<div data-foo=bar color=red className />;
 "
 `;
 
@@ -32,7 +32,7 @@ exports[`Creating Components from Fela rules should compose styles 1`] = `
 }
 
 
-<div data-reactroot className=a b c />;
+<div className=a b c />;
 "
 `;
 
@@ -48,7 +48,7 @@ exports[`Creating Components from Fela rules should extend the rule properties w
 }
 
 
-<div data-reactroot className=a b c />;
+<div className=a b c />;
 "
 `;
 
@@ -64,7 +64,7 @@ exports[`Creating Components from Fela rules should extend the rule properties w
 }
 
 
-<div data-reactroot className=a b c />;
+<div className=a b c />;
 "
 `;
 
@@ -77,9 +77,7 @@ exports[`Creating Components from Fela rules should include defaultProps if prov
 }
 
 
-<div data-reactroot className=a b>
-  red
-</div>;
+<div className=a b>red</div>;
 "
 `;
 
@@ -89,7 +87,7 @@ exports[`Creating Components from Fela rules should not pass props to the elemen
 }
 
 
-<div data-reactroot className=a />;
+<div className=a />;
 "
 `;
 
@@ -99,7 +97,7 @@ exports[`Creating Components from Fela rules should pass all props to the elemen
 }
 
 
-<div data-reactroot data-foo=bar data-bar=baz className=a />;
+<div data-foo=bar data-bar=baz className=a />;
 "
 `;
 
@@ -112,7 +110,7 @@ exports[`Creating Components from Fela rules should pass special props to the co
 }
 
 
-<div data-reactroot className=a b />;
+<div className=a b />;
 "
 `;
 
@@ -122,7 +120,7 @@ exports[`Creating Components from Fela rules should pass special props to the co
 }
 
 
-<i data-reactroot className=a />;
+<i className=a />;
 "
 `;
 
@@ -138,7 +136,7 @@ exports[`Creating Components from Fela rules should pass style, as, id, classNam
 }
 
 
-<i data-reactroot className=a b c />;
+<i className=a b c />;
 "
 `;
 
@@ -151,7 +149,7 @@ exports[`Creating Components from Fela rules should render fela rules depending 
 }
 
 
-<div data-reactroot className=a b />;
+<div className=a b />;
 "
 `;
 
@@ -164,6 +162,6 @@ exports[`Creating Components from Fela rules should use the theme for static ren
 }
 
 
-<div data-reactroot className=a b />;
+<div className=a b />;
 "
 `;

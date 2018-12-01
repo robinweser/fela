@@ -2,6 +2,7 @@
 import { createElement } from 'inferno-create-element'
 import { createComponentFactory } from 'fela-bindings'
 
-import withTheme from './withTheme'
+import { RendererContext } from './context'
+import FelaTheme from './FelaTheme'
 
-export default createComponentFactory(createElement, withTheme)
+export default createComponentFactory(createElement, RendererContext, FelaTheme)

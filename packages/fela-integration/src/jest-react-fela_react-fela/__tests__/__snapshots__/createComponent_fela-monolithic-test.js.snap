@@ -9,7 +9,7 @@ exports[`Creating Components from Fela rules using fela-monolithic should only u
 }
 
 
-<div data-reactroot className=a b />;
+<div className=a b />;
 "
 `;
 
@@ -19,7 +19,7 @@ exports[`Creating Components from Fela rules using fela-monolithic should replac
 }
 
 
-<div data-reactroot>Hello World</div>;
+<div>Hello World</div>;
 "
 `;
 
@@ -29,7 +29,7 @@ exports[`Creating Components from Fela rules using fela-monolithic should replac
 }
 
 
-<div data-reactroot>Hello World</div>;
+<div>Hello World</div>;
 "
 `;
 
@@ -39,7 +39,7 @@ exports[`Creating Components from Fela rules using fela-monolithic should use a 
 }
 
 
-<div data-reactroot className=Button_3vb6hs />;
+<div className=Button_3vb6hs />;
 "
 `;
 
@@ -49,6 +49,6 @@ exports[`Creating Components from Fela rules using fela-monolithic should use a 
 }
 
 
-<div data-reactroot className=fela-Button_3vb6hs />;
+<div className=fela-Button_3vb6hs />;
 "
 `;
