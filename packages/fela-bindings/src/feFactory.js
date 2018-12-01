@@ -6,26 +6,28 @@ export default function feFactory(
   FelaComponent: Function
 ) {
   return function fe(type: any, props: Object = {}, ...children: any) {
-    const { css, className, ...otherProps } = props
+    if (props) {
+      const { css, className, ...otherProps } = nonNullProps
 
-    if (css) {
-      return createElement(
-        FelaComponent,
-        {
-          style: css,
-        },
-        renderProps =>
-          createElement(
-            type,
-            {
-              ...otherProps,
-              className: className
-                ? className + ' ' + renderProps.className
-                : renderProps.className,
-            },
-            ...children
-          )
-      )
+      if (css) {
+        return createElement(
+          FelaComponent,
+          {
+            style: css,
+          },
+          renderProps =>
+            createElement(
+              type,
+              {
+                ...otherProps,
+                className: className
+                  ? className + ' ' + renderProps.className
+                  : renderProps.className,
+              },
+              ...children
+            )
+        )
+      }
     }
 
     return createElement(type, props, ...children)
