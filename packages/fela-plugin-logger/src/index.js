@@ -1,9 +1,8 @@
 /* @flow */
 /* eslint-disable no-console */
+import type { StyleType } from '../../../flowtypes/StyleType'
 
-type Type = 1 | 2 | 3 | 4 | 5
-
-function addLogger(style: Object, type: Type): Object {
+function addLogger(style: Object, type: StyleType): Object {
   if (process.env.NODE_ENV !== 'production') {
     console.log(type, { ...style })
   }

@@ -2,38 +2,26 @@
 import shallowEqual from 'shallow-equal/objects'
 import objectEach from 'fast-loops/lib/objectEach'
 
-import createTheme from './createTheme'
-import { THEME_CHANNEL } from './themeChannel'
-
 export default function ThemeProviderFactory(
   BaseComponent: any,
+  ThemeContext: any,
+  createElement: Function,
   renderChildren: Function,
   statics?: Object
 ): any {
   class ThemeProvider extends BaseComponent {
-    theme: Object
-
-    constructor(props: Object, context: Object) {
-      super(props, context)
-
-      const previousTheme = !props.overwrite && this.context[THEME_CHANNEL]
-      this.theme = createTheme(props.theme, previousTheme)
-    }
-
-    componentDidUpdate(prevProps: Object): void {
-      if (!shallowEqual(this.props.theme, prevProps.theme)) {
-        this.theme.update(this.props.theme)
-      }
-    }
-
-    getChildContext(): Object {
-      return {
-        [THEME_CHANNEL]: this.theme,
-      }
+    shouldComponentUpdate(nextProps) {
+      return !shallowEqual(this.props.theme, nextProps.theme)
     }
 
     render(): Object {
-      return renderChildren(this.props.children)
+      return createElement(
+        ThemeContext.Provider,
+        {
+          value: this.props.theme,
+        },
+        renderChildren(this.props.children)
+      )
     }
   }
 

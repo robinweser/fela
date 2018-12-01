@@ -30,5 +30,10 @@
   },
   "dependencies": {
     "jest-fela-bindings": "^1.0.1"
+  },
+  "devDependencies": {
+    "react-fela": "^8.0.4",
+    "fela": "^6.2.3",
+    "fela-preset-web": "^8.0.13"
   }
 }

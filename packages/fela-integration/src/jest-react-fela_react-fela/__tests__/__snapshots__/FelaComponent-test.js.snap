@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using the FelaComponent component should accept a string primitive type via as-prop 1`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: red;
+}
+
+
+<span className=a b />;
+"
+`;
+
+exports[`Using the FelaComponent component should accept an array as style 1`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: red;
+}
+.c {
+  background-color: black;
+}
+
+
+<div className=a b c>I am red on black and written in 12px.</div>;
+"
+`;
+
+exports[`Using the FelaComponent component should accept an array as style 2`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: red;
+}
+.c {
+  background-color: blue;
+}
+
+
+<div className=a b c>I am red on blue and written in 12px.</div>;
+"
+`;
+
+exports[`Using the FelaComponent component should compose extension rules 1`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: red;
+}
+.c {
+  background-color: blue;
+}
+
+
+<button className=a b c>Hello World</button>;
+"
+`;
+
+exports[`Using the FelaComponent component should compose extension rules 2`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: black;
+}
+.c {
+  background-color: blue;
+}
+
+
+<button type=button className=a b c>
+  Hello World
+</button>;
+"
+`;
+
+exports[`Using the FelaComponent component should compose nested extensions 1`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: black;
+}
+.c {
+  border: 1px solid grey;
+}
+.d {
+  padding: 10px;
+}
+.e {
+  background-color: blue;
+}
+
+
+<button type=button className=a b c d e>
+  Hello World
+</button>;
+"
+`;
+
+exports[`Using the FelaComponent component should correctly pass the theme and other props to functional style 1`] = `
+".a {
+  font-size: 15px;
+}
+.b {
+  background-color: blue;
+}
+
+
+<div className=a b>I am red and written in 15px.</div>;
+"
+`;
+
+exports[`Using the FelaComponent component should correctly render a fela rule 1`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: red;
+}
+
+
+<div className=a b>I am red and written in 12px.</div>;
+"
+`;
+
+exports[`Using the FelaComponent component should default to a div 1`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: red;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Using the FelaComponent component should render children in default mode 1`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: red;
+}
+
+
+<div className=a b>
+  <span>Hello World</span>
+</div>;
+"
+`;
+
+exports[`Using the FelaComponent component should render children using the correct as-prop 1`] = `
+".a {
+  font-size: 12px;
+}
+.b {
+  color: red;
+}
+
+
+<h1 className=a b>Hello World</h1>;
+"
+`;

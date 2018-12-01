@@ -19,8 +19,8 @@ const defaultConfig: ConnectConfig = {
 export default function connectFactory(
   BaseComponent: any,
   createElement: Function,
-  withTheme: Function,
-  contextTypes?: Object
+  RendererContext: any,
+  FelaTheme: Function
 ): Function {
   return function connect(
     rules: Object | Function,
@@ -45,8 +45,7 @@ export default function connectFactory(
         }
 
         render() {
-          const { renderer } = this.context
-          const { extend, _felaTheme, _felaRules, ...otherProps } = this.props
+          const { extend, _felaRules, ...otherProps } = this.props
 
           const allRules = [rules]
           if (_felaRules) {
@@ -56,78 +55,81 @@ export default function connectFactory(
             allRules.push(extend)
           }
 
-          const combinedRules = combineMultiRules(...allRules)
-          const preparedRules = combinedRules(
-            {
-              ...otherProps,
-              theme: _felaTheme,
-            },
-            renderer
-          )
+          return createElement(RendererContext.Consumer, undefined, renderer =>
+            createElement(FelaTheme, undefined, _felaTheme => {
+              const combinedRules = combineMultiRules(...allRules)
+              const preparedRules = combinedRules(
+                {
+                  ...otherProps,
+                  theme: _felaTheme,
+                },
+                renderer
+              )
 
-          // improve developer experience with monolithic renderer
-          if (
-            process.env.NODE_ENV !== 'production' &&
-            renderer.prettySelectors
-          ) {
-            const componentName = component.displayName || component.name || ''
+              // improve developer experience with monolithic renderer
+              if (
+                process.env.NODE_ENV !== 'production' &&
+                renderer.prettySelectors
+              ) {
+                const componentName =
+                  component.displayName || component.name || ''
 
-            objectEach(preparedRules, (rule, name) => {
-              rule.selectorPrefix = generateSelectorPrefix(componentName, name)
-            })
-          }
+                objectEach(preparedRules, (rule, name) => {
+                  rule.selectorPrefix = generateSelectorPrefix(
+                    componentName,
+                    name
+                  )
+                })
+              }
 
-          if (component._isFelaComponent) {
-            return createElement(component, {
-              _felaRules: combinedRules,
-              ...otherProps,
-            })
-          }
+              if (component._isFelaComponent) {
+                return createElement(component, {
+                  _felaRules: combinedRules,
+                  ...otherProps,
+                })
+              }
 
-          const styles = objectReduce(
-            preparedRules,
-            (styleMap, rule, name) => {
-              styleMap[name] = renderer.renderRule(rule, {
-                ...otherProps,
-                theme: _felaTheme,
-              })
-
-              return styleMap
-            },
-            {}
-          )
-
-          const boundRules = objectReduce(
-            preparedRules,
-            (ruleMap, rule, name) => {
-              ruleMap[name] = props =>
-                rule(
-                  {
+              const styles = objectReduce(
+                preparedRules,
+                (styleMap, rule, name) => {
+                  styleMap[name] = renderer.renderRule(rule, {
+                    ...otherProps,
                     theme: _felaTheme,
-                    ...props,
-                  },
-                  renderer
-                )
+                  })
 
-              return ruleMap
-            },
-            {}
+                  return styleMap
+                },
+                {}
+              )
+
+              const boundRules = objectReduce(
+                preparedRules,
+                (ruleMap, rule, name) => {
+                  ruleMap[name] = props =>
+                    rule(
+                      {
+                        theme: _felaTheme,
+                        ...props,
+                      },
+                      renderer
+                    )
+
+                  return ruleMap
+                },
+                {}
+              )
+
+              return createElement(component, {
+                ...otherProps,
+                styles,
+                rules: boundRules,
+              })
+            })
           )
-
-          return createElement(component, {
-            ...otherProps,
-            styles,
-            rules: boundRules,
-          })
         }
       }
 
-      if (contextTypes) {
-        EnhancedComponent.contextTypes = contextTypes
-      }
-
-      const themedComponent = withTheme(EnhancedComponent, '_felaTheme')
-      return hoistStatics(themedComponent, component)
+      return hoistStatics(EnhancedComponent, component)
     }
   }
 }

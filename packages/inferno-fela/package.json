@@ -25,8 +25,9 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "inferno": "^4.0.0",
-    "inferno-create-element": "^4.0.0"
+    "inferno": "^5.0.1",
+    "create-inferno-context": "^0.2.4",
+    "inferno-create-element": "^5.0.1"
   },
   "dependencies": {
     "fela-bindings": "^3.0.4",

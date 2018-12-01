@@ -1,10 +1,12 @@
 import React from 'react'
-import { connect } from 'react-fela'
-import { mount } from 'enzyme'
-import toJson from 'enzyme-to-json'
-import { createRenderer, combineRules } from 'fela'
+
+import { combineRules, createRenderer } from 'fela'
 import { renderToString } from 'fela-tools'
+import { connect } from 'react-fela'
 import monolithic from 'fela-monolithic'
+
+import { createSnapshot } from 'jest-react-fela'
+
 import createIdentifier from '../index'
 
 describe('Fela identifier enhancer', () => {
@@ -156,11 +158,6 @@ describe('Fela identifier enhancer', () => {
   })
 
   it('identifier enhancer should not remove meta information in rule', () => {
-    const identifier = createIdentifier()
-    const renderer = createRenderer({
-      enhancers: [monolithic({ prettySelectors: true }), identifier],
-    })
-
     const rules = {
       rule1: () => ({
         padding: 1,
@@ -170,20 +167,26 @@ describe('Fela identifier enhancer', () => {
       }),
     }
 
-    const MyComponent = ({ styles }) => (
+    const Component = ({ styles }) => (
       <div>
         <span className={styles.rule1} />
         <span className={styles.rule2} />
       </div>
     )
 
-    const MyConnectedComponent = connect(rules)(MyComponent)
+    const ConnectedComponent = connect(rules)(Component)
 
-    const wrapper = mount(<MyConnectedComponent />, {
-      context: {
-        renderer,
-      },
-    })
-    expect(toJson(wrapper)).toMatchSnapshot()
+    expect(
+      createSnapshot(
+        <ConnectedComponent />,
+        {},
+        createRenderer({
+          enhancers: [
+            monolithic({ prettySelectors: true }),
+            createIdentifier(),
+          ],
+        })
+      )
+    ).toMatchSnapshot()
   })
 })

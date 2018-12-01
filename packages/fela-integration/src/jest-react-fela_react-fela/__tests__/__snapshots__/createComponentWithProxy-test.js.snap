@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creating Components with a Proxy for props from Fela rules should not pass props used in rules to the element 1`] = `
+".a {
+  color: true;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div data-foo=bar className=a b />;
+"
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should pass props except innerRef 1`] = `
+".a {
+  color: black;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Creating Components with a Proxy for props from Fela rules should pass props used in rules specified in passThroughProps to the element 1`] = `
+".a {
+  color: blue;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div data-color=blue data-foo=bar className=a b />;
+"
+`;

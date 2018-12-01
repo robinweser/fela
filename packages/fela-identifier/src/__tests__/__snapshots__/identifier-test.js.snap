@@ -1,35 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Fela identifier enhancer identifier enhancer should not remove meta information in rule 1`] = `
-<FelaMyComponent>
-  <FelaMyComponent
-    _felaTheme={Object {}}
-  >
-    <MyComponent
-      rules={
-        Object {
-          "rule1": [Function],
-          "rule2": [Function],
-        }
-      }
-      styles={
-        Object {
-          "rule1": "MyComponent_rule1_zuf8d5",
-          "rule2": "MyComponent_rule2_137u7ef",
-        }
-      }
-    >
-      <div>
-        <span
-          className="MyComponent_rule1_zuf8d5"
-        />
-        <span
-          className="MyComponent_rule2_137u7ef"
-        />
-      </div>
-    </MyComponent>
-  </FelaMyComponent>
-</FelaMyComponent>
+".Component_rule1_zuf8d5 {
+  padding: 1;
+}
+.Component_rule2_137u7ef {
+  color: red;
+}
+
+
+<div>
+  <span className=Component_rule1_zuf8d5 />
+  <span className=Component_rule2_137u7ef />
+</div>;
+"
 `;
 
 exports[`Fela identifier enhancer identifier rule should be combined with usual style rules 1`] = `
@@ -44,7 +28,7 @@ exports[`Fela identifier enhancer identifier rule should not be contained in the
 
 exports[`Fela identifier enhancer rule can have references to several identifiers 1`] = `"fela-identifier-0 fela-identifier-1 a b"`;
 
-exports[`Fela identifier enhancer should be thrown error if the identifier was not used as an enhancer 1`] = `"You are trying to create a new identifier before how you used the identifier as an enhancer. Please add the identifier as an enhancer in the configuration of the renderer."`;
+exports[`Fela identifier enhancer should be thrown error if the identifier was not used as an enhancer 1`] = `"You are trying to create a new identifier before you used the identifier as an enhancer. Please add the identifier as an enhancer in the configuration of the renderer."`;
 
 exports[`Fela identifier enhancer should produce rule with custom property 1`] = `
 Array [

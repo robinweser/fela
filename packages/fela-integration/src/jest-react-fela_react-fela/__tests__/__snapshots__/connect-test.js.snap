@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connect Factory for bindings should component receive rules prop with all combined rules 1`] = `
+".a {
+  padding: 2;
+}
+.b {
+  font-size: 16;
+}
+.c {
+  color: red;
+}
+
+
+<div>
+  <div>
+    <span className=a />
+    <span className=c b />
+  </div>
+</div>;
+"
+`;
+
+exports[`Connect Factory for bindings should compose styles 1`] = `
+".a {
+  padding: 2;
+}
+.b {
+  color: red;
+}
+.c {
+  font-size: 16;
+}
+
+
+<div>
+  <span className=a />
+  <span className=b c />
+</div>;
+"
+`;
+
+exports[`Connect Factory for bindings should extend the rule properties 1`] = `
+".a {
+  padding: 2;
+}
+.b {
+  color: red;
+}
+.c {
+  font-size: 16;
+}
+
+
+<div>
+  <span className=a />
+  <span className=b c />
+</div>;
+"
+`;
+
+exports[`Connect Factory for bindings should not pass through "theme" prop when used without "ThemeProvider" 1`] = `
+".a {
+  padding: 1;
+}
+.b {
+  color: red;
+}
+
+
+<div color=red>
+  <span className=a />
+  <span className=b />
+</div>;
+"
+`;
+
+exports[`Connect Factory for bindings should process rules and create classNames 1`] = `
+".a {
+  padding: 1;
+}
+.b {
+  color: red;
+}
+
+
+<div>
+  <span className=a />
+  <span className=b />
+</div>;
+"
+`;
+
+exports[`Connect Factory for bindings should process rules and create classNames with rules as function 1`] = `
+".a {
+  padding: 1;
+}
+.b {
+  color: red;
+}
+
+
+<div>
+  <span className=a />
+  <span className=b />
+</div>;
+"
+`;
+
+exports[`Connect Factory for bindings should provide rules prop for connected component which is an object with rules in the values of fields 1`] = `
+".a {
+  padding: 1;
+}
+.b {
+  color: red;
+}
+
+
+"
+`;

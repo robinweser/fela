@@ -1,21 +1,19 @@
 /* @flow */
-import { Component, Children } from 'react'
-import { ThemeProviderFactory, THEME_CHANNEL } from 'fela-bindings'
+import { Component, createElement, Children } from 'react'
+import { ThemeProviderFactory } from 'fela-bindings'
 import PropTypes from 'prop-types'
+
+import { ThemeContext } from './context'
 
 export default ThemeProviderFactory(
   Component,
+  ThemeContext,
+  createElement,
   children => Children.only(children),
   {
     propTypes: {
       theme: PropTypes.object.isRequired,
       overwrite: PropTypes.bool,
-    },
-    childContextTypes: {
-      [THEME_CHANNEL]: PropTypes.object,
-    },
-    contextTypes: {
-      [THEME_CHANNEL]: PropTypes.object,
     },
     defaultProps: {
       overwrite: false,

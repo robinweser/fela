@@ -27,6 +27,7 @@
     "fela": "^6.2.3",
     "fela-monolithic": "^5.0.28",
     "fela-tools": "^5.2.3",
-    "react-fela": "^8.0.4"
+    "react-fela": "^8.0.4",
+    "jest-react-fela": "^1.0.1"
   }
 }

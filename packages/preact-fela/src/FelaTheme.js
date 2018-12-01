@@ -1,5 +1,8 @@
 /* @flow */
-import { Component } from 'preact'
+// $FlowFixMe
+import { h as createElement } from 'preact'
 import { FelaThemeFactory } from 'fela-bindings'
 
-export default FelaThemeFactory(Component)
+import { ThemeContext } from './context'
+
+export default FelaThemeFactory(createElement, ThemeContext)

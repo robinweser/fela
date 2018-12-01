@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creating Components from Fela rules should allow nested theme objects 1`] = `
+".a {
+  color: black;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Creating Components from Fela rules should compose passThrough props 1`] = `
+"
+
+<div data-foo=bar color=red className />;
+"
+`;
+
+exports[`Creating Components from Fela rules should compose styles 1`] = `
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
+}
+.c {
+  line-height: 1.2;
+}
+
+
+<div className=a b c />;
+"
+`;
+
+exports[`Creating Components from Fela rules should extend the rule properties with a function 1`] = `
+".a {
+  color: blue;
+}
+.b {
+  font-size: 14px;
+}
+.c {
+  background-color: red;
+}
+
+
+<div className=a b c />;
+"
+`;
+
+exports[`Creating Components from Fela rules should extend the rule properties with an object 1`] = `
+".a {
+  color: blue;
+}
+.b {
+  font-size: 14px;
+}
+.c {
+  background-color: red;
+}
+
+
+<div className=a b c />;
+"
+`;
+
+exports[`Creating Components from Fela rules should include defaultProps if provided 1`] = `
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div className=a b>red</div>;
+"
+`;
+
+exports[`Creating Components from Fela rules should not pass props to the element 1`] = `
+".a {
+  font-size: 16px;
+}
+
+
+<div className=a />;
+"
+`;
+
+exports[`Creating Components from Fela rules should pass all props to the element 1`] = `
+".a {
+  font-size: 16px;
+}
+
+
+<div data-foo=bar data-bar=baz className=a />;
+"
+`;
+
+exports[`Creating Components from Fela rules should pass special props to the component 1`] = `
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Creating Components from Fela rules should pass special props to the component 2`] = `
+".a {
+  font-size: 16px;
+}
+
+
+<i className=a />;
+"
+`;
+
+exports[`Creating Components from Fela rules should pass style, as, id, className and innerRef to composed components 1`] = `
+".a {
+  color: green;
+}
+.b {
+  font-size: 16px;
+}
+.c {
+  line-height: 1.2;
+}
+
+
+<i className=a b c />;
+"
+`;
+
+exports[`Creating Components from Fela rules should render fela rules depending on the passed props 1`] = `
+".a {
+  color: black;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Creating Components from Fela rules should use the theme for static rendering by default 1`] = `
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div className=a b />;
+"
+`;

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creating Components from Fela rules using fela-monolithic should only use the rule name as displayName 1`] = `
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Creating Components from Fela rules using fela-monolithic should replace rare unallowed symbols in className with underscore 1`] = `
+".1_3vb6hs {
+  font-size: 16px;
+}
+
+
+<div>Hello World</div>;
+"
+`;
+
+exports[`Creating Components from Fela rules using fela-monolithic should replace unallowed symbols in className with underscore 1`] = `
+".connect_Component_3vb6hs {
+  font-size: 16px;
+}
+
+
+<div>Hello World</div>;
+"
+`;
+
+exports[`Creating Components from Fela rules using fela-monolithic should use a dev-friendly className 1`] = `
+".Button_3vb6hs {
+  font-size: 16px;
+}
+
+
+<div className=Button_3vb6hs />;
+"
+`;
+
+exports[`Creating Components from Fela rules using fela-monolithic should use a dev-friendly className and the selectorPrefix 1`] = `
+".fela-Button_3vb6hs {
+  font-size: 16px;
+}
+
+
+<div className=fela-Button_3vb6hs />;
+"
+`;

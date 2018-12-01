@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using the ThemeProvider should pass the theme to rule props 1`] = `
+"
+
+<div>
+  {{}color:red{}}
+</div>;
+"
+`;

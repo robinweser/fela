@@ -1,7 +1,14 @@
 /* @flow */
-import { h, Component } from 'preact'
+// $FlowFixMe
+import { h as createElement, Component } from 'preact'
 import { connectFactory } from 'fela-bindings'
 
-import withTheme from './withTheme'
+import { RendererContext } from './context'
+import FelaTheme from './FelaTheme'
 
-export default connectFactory(Component, h, withTheme)
+export default connectFactory(
+  Component,
+  createElement,
+  RendererContext,
+  FelaTheme
+)

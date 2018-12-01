@@ -1,41 +1,81 @@
 /* @flow */
-import resolveRule from './resolveRule'
+import { combineRules } from 'fela'
+
+import deprecate from './_deprecate'
 
 export default function FelaComponentFactory(
   createElement: Function,
-  FelaTheme: Function,
-  contextTypes?: Object
+  RendererContext: any,
+  FelaTheme: Function
 ): Function {
-  function FelaComponent(
-    { children, customClass, render = 'div', rule, style, ...restProps },
-    { renderer }
-  ) {
-    return createElement(FelaTheme, {
-      render: theme => {
-        const props = rule ? { theme, ...restProps } : theme
+  function FelaComponent({
+    children,
+    as = 'div',
+    style,
+    customClass,
+    rule,
+    render,
+    ...otherProps
+  }) {
+    // TODO: remove in 11.0.0
+    deprecate(
+      customClass !== undefined,
+      'The `customClass` prop in FelaComponent is deprecated. It will be removed in react-fela@11.0.0.\nPlease resolve class names manually in your render function. See http://fela.js.org/docs/api/bindings/fela-component'
+    )
+    deprecate(
+      rule !== undefined,
+      'The `rule` prop in FelaComponent is deprecated. It will be removed in react-fela@11.0.0.\nPlease always use `style` instead. See http://fela.js.org/docs/api/bindings/fela-component',
+      () => {
+        style = rule
+      }
+    )
+    deprecate(
+      render !== undefined,
+      'The `render` prop in FelaComponent is deprecated. It will be removed in react-fela@11.0.0.\nPlease always use `children` instead. See http://fela.js.org/docs/api/bindings/fela-component'
+    )
 
-        const className = `${
-          customClass ? `${customClass} ` : ''
-        }${renderer._renderStyle(
-          resolveRule(rule || style, props, renderer),
-          props
-        )}`
+    if (!style) {
+      throw new Error(
+        'A valid `style` prop must be passed to FelaComponent in order to render.\nSee http://fela.js.org/docs/api/bindings/fela-component'
+      )
+    }
+
+    const renderFn = renderer =>
+      createElement(FelaTheme, undefined, theme => {
+        // TODO: could optimise perf by not calling combineRules if not neccessary
+        const className = renderer.renderRule(combineRules(style), {
+          ...otherProps,
+          theme,
+        })
+
+        // TODO: remove in 11.0.0
+        const cls = customClass ? customClass + ' ' + className : className
 
         if (render instanceof Function) {
           return render({
-            className,
+            className: cls,
             children,
             theme,
+            as,
           })
         }
 
-        return createElement(render, { className }, children)
-      },
-    })
-  }
+        if (typeof render === 'string') {
+          return createElement(render, { className: cls }, children)
+        }
 
-  if (contextTypes) {
-    FelaComponent.contextTypes = contextTypes
+        if (children instanceof Function) {
+          return children({
+            className: cls,
+            theme,
+            as,
+          })
+        }
+
+        return createElement(as, { className: cls }, children)
+      })
+
+    return createElement(RendererContext.Consumer, undefined, renderFn)
   }
 
   return FelaComponent

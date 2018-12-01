@@ -1,5 +1,5 @@
 /* @flow  */
-import { generateUniqueHash } from 'fela-utils'
+import generateUniqueHash from './generateUniqueHash'
 
 export default function generateMonolithicClassName(
   style: Object,
