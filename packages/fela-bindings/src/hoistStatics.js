@@ -16,6 +16,7 @@ const blockedStatics = {
   childContextTypes: true,
   propTypes: true,
   getDerivedStateFromProps: true,
+  contextType: true,
 }
 
 export default function hoistStatics(target: any, source: any): any {
