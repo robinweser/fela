@@ -123,57 +123,7 @@ declare module "fela-tools" {
 declare module "fela-beautifier" {
   import { TEnhancer } from "fela";
 
-  export default function(): TEnhancer;
-}
-
-declare module "fela-font-renderer" {
-  import { TEnhancer } from "fela";
-
-  export default function(mountNode?: HTMLElement): TEnhancer;
-}
-
-declare module "fela-layout-debugger" {
-  import { TEnhancer } from "fela";
-
-  interface DebuggerOptions {
-    mode?: "outline" | "backgroundColor";
-    thickness?: number;
-  }
-
-  export default function(options: DebuggerOptions): TEnhancer;
-}
-
-declare module "fela-logger" {
-  import { TEnhancer } from "fela";
-
-  interface LoggerOptions {
-    logCSS?: boolean;
-    formatCSS?: boolean;
-  }
-
-  export default function(options: LoggerOptions): TEnhancer;
-}
-
-declare module "fela-monolithic" {
-  import { TEnhancer } from "fela";
-
-  interface MonolithicOptions {
-    prettySelectors?: boolean;
-  }
-
-  export default function(options: MonolithicOptions): TEnhancer;
-}
-
-declare module "fela-perf" {
-  import { TEnhancer } from "fela";
-
-  export default function(): TEnhancer;
-}
-
-declare module "fela-statistics" {
-  import { TEnhancer } from "fela";
-
-  export default function(): TEnhancer;
+  export default function(options?: object): TEnhancer;
 }
 
 declare module "fela-identifier" {
@@ -192,6 +142,50 @@ declare module "fela-identifier" {
   export default function(configs?: Configs): TEnhancer & Identifier;
 }
 
+declare module "fela-layout-debugger" {
+  import { TEnhancer } from "fela";
+
+  interface DebuggerOptions {
+    mode?: "outline" | "backgroundColor";
+    thickness?: number;
+  }
+
+  export default function(options?: DebuggerOptions): TEnhancer;
+}
+
+declare module "fela-logger" {
+  import { TEnhancer } from "fela";
+
+  interface LoggerOptions {
+    logCSS?: boolean;
+    formatCSS?: boolean;
+  }
+
+  export default function(options?: LoggerOptions): TEnhancer;
+}
+
+declare module "fela-monolithic" {
+  import { TEnhancer } from "fela";
+
+  interface MonolithicOptions {
+    prettySelectors?: boolean;
+  }
+
+  export default function(options?: MonolithicOptions): TEnhancer;
+}
+
+declare module "fela-perf" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
+
+declare module "fela-statistics" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
+
 /**
  * PLUGINS
  */
@@ -204,7 +198,11 @@ declare module "fela-plugin-bidi" {
 declare module "fela-plugin-custom-property" {
   import { TPlugin } from "fela";
 
-  export default function(properties: object): TPlugin;
+  interface CustomProperties {
+    [property: string]: (value: any) => any,
+  }
+
+  export default function(properties: CustomProperties): TPlugin;
 }
 
 declare module "fela-plugin-embedded" {
@@ -240,7 +238,11 @@ declare module "fela-plugin-important" {
 declare module "fela-plugin-isolation" {
   import { TPlugin } from "fela";
 
-  export default function(options?: object): TPlugin;
+  interface IsolationOptions {
+    exclude?: string[];
+  }
+
+  export default function(options?: IsolationOptions): TPlugin;
 }
 
 declare module "fela-plugin-logger" {
