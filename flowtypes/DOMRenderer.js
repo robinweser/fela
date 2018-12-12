@@ -29,4 +29,5 @@ export type DOMRendererConfig = {
   mediaQueryOrder?: Array<string>,
   selectorPrefix?: string,
   filterClassName?: Function,
+  devMode?: boolean,
 }

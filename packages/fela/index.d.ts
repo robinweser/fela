@@ -1,5 +1,4 @@
 declare module "fela" {
-
   import * as CSS from 'csstype';
 
   export type TRuleProps = {};
@@ -18,6 +17,7 @@ declare module "fela" {
     staticString = 'STATIC',
     clear = 'CLEAR'
   }
+
   interface ISubscribeMessage {
     type: TSubscribeMessageType;
   }
@@ -29,8 +29,8 @@ declare module "fela" {
 
   interface IRenderer {
     renderRule<T = TRuleProps>(rule: TRule<T>, props: T): string
-    renderKeyframe(keyFrame: TKeyFrame, props: TRuleProps): string;
-    renderFont(family: string, files: Array<string>, props: TRuleProps): void;
+    renderKeyframe<T = TRuleProps>(keyFrame: TKeyFrame, props: T): string;
+    renderFont<T = TRuleProps>(family: string, files: Array<string>, props: T): void;
     renderStatic(style: string, selector?: string): void;
     renderStatic(style: IStyle, selector: string): void;
     renderToString(): string;
@@ -45,6 +45,8 @@ declare module "fela" {
     enhancers?: Array<TEnhancer>;
     mediaQueryOrder?: Array<string>;
     selectorPrefix?: string;
+    filterClassName?: (className: string) => boolean;
+    devMode?: boolean;
   }
 
   export interface IStyle extends CSS.Properties<string | number> {
@@ -66,14 +68,20 @@ declare module "fela" {
 
 declare module "fela-dom" {
   import { IRenderer } from 'fela';
+
   function render(renderer: IRenderer): void;
   function rehydrate(renderer: IRenderer): void;
-  function renderToMarkup(renderer: IRenderer): any;
-  function renderToSheetList(renderer: IRenderer): any;
+  function renderToMarkup(renderer: IRenderer): string;
+  function renderToSheetList(renderer: IRenderer): {
+    css: string,
+    type: 'RULE' | 'KEYFRAME' | 'FONT' | 'STATIC',
+    media?: string,
+    support?: boolean,
+  }[];
 }
 
 declare module "fela-tools" {
-  import {TRule, TRuleProps, IStyle} from "fela";
+  import { TRule, TRuleProps, IStyle, IRenderer } from "fela";
 
   export type TMultiRuleObject<Props = TRuleProps, Styles = {}> = {[key in keyof Styles]: TRule<Props> | IStyle}
   type TMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TMultiRuleObject<Props, Styles>
@@ -93,6 +101,20 @@ declare module "fela-tools" {
     c: TMultiRule<C, SC>,
   ): TNormalizedMultiRule<A & B & C, SA & SB & SC>
   function combineMultiRules(...rules: Array<TMultiRule>): TNormalizedMultiRule
+
+  function mapValueToMediaQuery(
+    queryValueMap: { [key: string]: string } = {},
+    mapper: ((value: string) => object) | string
+  ): object;
+
+  function renderToElement(
+    renderer: IRenderer,
+    mountNode: { textContent: string },
+  ): (() => void);
+
+  function renderToString(
+    renderer: IRenderer,
+  ): string;
 }
 
 /**
@@ -101,57 +123,7 @@ declare module "fela-tools" {
 declare module "fela-beautifier" {
   import { TEnhancer } from "fela";
 
-  export default function(): TEnhancer;
-}
-
-declare module "fela-font-renderer" {
-  import { TEnhancer } from "fela";
-
-  export default function(mountNode?: HTMLElement): TEnhancer;
-}
-
-declare module "fela-layout-debugger" {
-  import { TEnhancer } from "fela";
-
-  interface DebuggerOptions {
-    mode?: "outline" | "backgroundColor";
-    thickness?: number;
-  }
-
-  export default function(options: DebuggerOptions): TEnhancer;
-}
-
-declare module "fela-logger" {
-  import { TEnhancer } from "fela";
-
-  interface LoggerOptions {
-    logCSS?: boolean;
-    formatCSS?: boolean;
-  }
-
-  export default function(options: LoggerOptions): TEnhancer;
-}
-
-declare module "fela-monolithic" {
-  import { TEnhancer } from "fela";
-
-  interface MonolithicOptions {
-    prettySelectors?: boolean;
-  }
-
-  export default function(options: MonolithicOptions): TEnhancer;
-}
-
-declare module "fela-perf" {
-  import { TEnhancer } from "fela";
-
-  export default function(): TEnhancer;
-}
-
-declare module "fela-statistics" {
-  import { TEnhancer } from "fela";
-
-  export default function(): TEnhancer;
+  export default function(options?: object): TEnhancer;
 }
 
 declare module "fela-identifier" {
@@ -170,10 +142,70 @@ declare module "fela-identifier" {
   export default function(configs?: Configs): TEnhancer & Identifier;
 }
 
+declare module "fela-layout-debugger" {
+  import { TEnhancer } from "fela";
+
+  interface DebuggerOptions {
+    mode?: "outline" | "backgroundColor";
+    thickness?: number;
+  }
+
+  export default function(options?: DebuggerOptions): TEnhancer;
+}
+
+declare module "fela-logger" {
+  import { TEnhancer } from "fela";
+
+  interface LoggerOptions {
+    logCSS?: boolean;
+    formatCSS?: boolean;
+  }
+
+  export default function(options?: LoggerOptions): TEnhancer;
+}
+
+declare module "fela-monolithic" {
+  import { TEnhancer } from "fela";
+
+  interface MonolithicOptions {
+    prettySelectors?: boolean;
+  }
+
+  export default function(options?: MonolithicOptions): TEnhancer;
+}
+
+declare module "fela-perf" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
+
+declare module "fela-statistics" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
+
 /**
  * PLUGINS
  */
+declare module "fela-plugin-bidi" {
+  import { TPlugin } from "fela";
+
+  export default function(flowDirection: 'ltr' | 'rtl'): TPlugin;
+}
+
 declare module "fela-plugin-custom-property" {
+  import { TPlugin } from "fela";
+
+  interface CustomProperties {
+    [property: string]: (value: any) => any,
+  }
+
+  export default function(properties: CustomProperties): TPlugin;
+}
+
+declare module "fela-plugin-embedded" {
   import { TPlugin } from "fela";
 
   export default function(): TPlugin;
@@ -197,10 +229,20 @@ declare module "fela-plugin-friendly-pseudo-class" {
   export default function(): TPlugin;
 }
 
-declare module "fela-plugin-isolation" {
+declare module "fela-plugin-important" {
   import { TPlugin } from "fela";
 
   export default function(): TPlugin;
+}
+
+declare module "fela-plugin-isolation" {
+  import { TPlugin } from "fela";
+
+  interface IsolationOptions {
+    exclude?: string[];
+  }
+
+  export default function(options?: IsolationOptions): TPlugin;
 }
 
 declare module "fela-plugin-logger" {
@@ -209,20 +251,20 @@ declare module "fela-plugin-logger" {
   export default function(): TPlugin;
 }
 
-declare module "fela-plugin-lvha" {
+declare module "fela-plugin-named-keys" {
   import { TPlugin } from "fela";
 
-  export default function(): TPlugin;
-}
-
-declare module "fela-plugin-named-media-query" {
-  import { TPlugin } from "fela";
-
-  interface Parameters {
+  interface MediaQueryMap {
     [key: string]: string;
   }
 
-  export default function(param: Parameters): TPlugin;
+  export default function(mediaQueryMap: MediaQueryMap): TPlugin;
+}
+
+declare module "fela-plugin-native-media-query" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
 }
 
 declare module "fela-plugin-placeholder-prefixer" {
@@ -237,18 +279,13 @@ declare module "fela-plugin-prefixer" {
   export default function(): TPlugin;
 }
 
-declare module "fela-plugin-dynamic-prefixer" {
+declare module "fela-plugin-rtl" {
   import { TPlugin } from "fela";
 
-  interface Configs {
-    userAgent?: any;
-    keepUnprefixed?: boolean;
-  }
-
-  export default function(configs: Configs): TPlugin;
+  export default function(): TPlugin;
 }
 
-declare module "fela-plugin-remove-undefined" {
+declare module "fela-plugin-simulate" {
   import { TPlugin } from "fela";
 
   export default function(): TPlugin;
@@ -258,11 +295,16 @@ declare module "fela-plugin-unit" {
   import { TPlugin } from "fela";
 
   type Unit = "ch" | "em" | "ex" | "rem" | "vh" | "vw" | "vmin" | "vmax" | "px" | "cm" | "mm" | "in" | "pc" | "pt" | "mozmm";
+
   interface UnitPerProperty {
     [key: string]: string;
   }
 
-  export default function(unit?: Unit, unitPerProperty?: UnitPerProperty): TPlugin;
+  export default function(
+    unit?: Unit,
+    unitPerProperty?: UnitPerProperty,
+    isUnitlessProperty?: (property: string) => boolean,
+  ): TPlugin;
 }
 
 declare module "fela-plugin-validator" {
