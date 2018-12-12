@@ -1,6 +1,6 @@
 <!------------------------------------------
   Thanks for contributing!
-  Please read the guide-lines at the bottom.
+  Please read the guidelines at the bottom.
 ------------------------------------------->
 
 ## Description
@@ -12,18 +12,6 @@ If required, add a code example or a link to a working example (repository).
 ```javascript
 // your code 
 ```
-
-## Versioning
-<!------------------------------------------
-  Please add all updated packages and propose new versions following the semantic versioning guidelines
-------------------------------------------->
-
-
-#### Major
-
-#### Minor
-
-#### Patch
 
 ## Checklist
 
