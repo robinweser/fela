@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-simulate",
-  "version": "6.0.8",
+  "version": "10.0.0",
   "description": "Fela plugin to simulate pseudo classes and media queries",
   "main": "lib/index.js",
   "module": "es/index.js",
