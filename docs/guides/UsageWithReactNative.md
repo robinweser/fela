@@ -91,10 +91,10 @@ const style = {
 * [API Reference - `FelaTheme`](../api/bindings/FelaTheme.md)
 * [API Reference - `Provider`](../api/bindings/Provider.md)
 * [API Reference - `ThemeProvider`](../api/bindings/ThemeProvider.md)
- * [API Reference - `connect`](../api/bindings/connect.md)
- * [API Reference - `createComponent`](../api/bindings/createComponent.md)
- * [API Reference - `createComponentWithProxy`](../api/bindings/createComponentWithProxy.md)
-  * [API Reference - `withTheme`](../api/bindings/withTheme.md)
+* [API Reference - `connect`](../api/bindings/connect.md)
+* [API Reference - `createComponent`](../api/bindings/createComponent.md)
+* [API Reference - `createComponentWithProxy`](../api/bindings/createComponentWithProxy.md)
+* [API Reference - `withTheme`](../api/bindings/withTheme.md)
 
 #### Renderer
 **[fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native)**<br>
