@@ -6,7 +6,7 @@ FelaComponent is an alternative component to the [createComponent](createCompone
 
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
-| style | [*Rule*](../../basics/Rules.md)<br>[*StyleObject*](../../basics/Rules.md#styleobject)<br>*Array\<[*Rule*](../../basics/Rules.md)\|[*StyleObject*](../../basics/Rules.md#styleobject)\>*| | Either a valid style object, and [rule](../../basics/Rules.md) or an array of both |
+| style | [*Rule*](../../basics/Rules.md)<br>[*StyleObject*](../../basics/Rules.md#styleobject)<br>*Array*[[*Rule*](../../basics/Rules.md)\|[*StyleObject*](../../basics/Rules.md#styleobject)]| | Either a valid style object, and [rule](../../basics/Rules.md) or an array of both |
 | children | *any* |  | Either a render function or a primitive child.<br>If passing a render function is receives the specified render interface. |
 | as | *string* | `div` | If children is passed a primitive child, the component will render an `as`-type DOM element with the className attached and the primitive child as content.
 
