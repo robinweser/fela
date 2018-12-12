@@ -103,7 +103,7 @@ declare module "fela-tools" {
   function combineMultiRules(...rules: Array<TMultiRule>): TNormalizedMultiRule
 
   function mapValueToMediaQuery(
-    queryValueMap: { [key: string]: string } = {},
+    queryValueMap: { [key: string]: string },
     mapper: ((value: string) => object) | string
   ): object;
 
