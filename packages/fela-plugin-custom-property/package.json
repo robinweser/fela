@@ -26,6 +26,6 @@
     "isobject": "^3.0.1"
   },
   "peerDependencies": {
-    "fela": "^6.1.7"
+    "fela": "^10.0.0"
   }
 }
