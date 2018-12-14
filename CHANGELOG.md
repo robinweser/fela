@@ -5,6 +5,12 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.0.1
+| Package | Changes |
+| --- | --- |
+| fela-plugin-custom-property<br>fela-plugin-embedded<br>fela-plugin-extend<br>fela-plugin-native-media-query<br>fela-plugin-simulate<br>fela-tools | ([#644](https://github.com/rofrischmann/fela/pull/637)) Fixed some old peerDependecies. |
+| fela | ([#644](https://github.com/rofrischmann/fela/pull/637)) Improved TypeScript typings. |
+
 ### 10.0.0
 | Package | Changes |
 | --- | --- |
