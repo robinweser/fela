@@ -1,6 +1,6 @@
 {
   "name": "fela-codemods",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "Automatic codemods to upgrade Fela code to newer versions",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -28,8 +28,8 @@
     "fela-utils": "^10.0.0"
   },
   "devDependencies": {
-    "fela": "^10.0.0",
-    "fela-preset-web": "^10.0.0",
-    "fela-tools": "^10.0.0"
+    "fela": "^10.0.1",
+    "fela-preset-web": "^10.0.1",
+    "fela-tools": "^10.0.1"
   }
 }
