@@ -9,6 +9,8 @@ import ThemeProvider from './ThemeProvider'
 import withTheme from './withTheme'
 import fe from './fe'
 
+import { RendererContext, ThemeContext } from './context'
+
 import { interceptDeprecation } from './_deprecate'
 
 const Provider = interceptDeprecation(
@@ -16,14 +18,19 @@ const Provider = interceptDeprecation(
   'Importing `Provider` from preact-fela is deprecated. Import `RendererProvider` instead.\nSee http://fela.js.org/docs/api/bindings/renderer-provider'
 )
 
+const FelaRenderer = RendererContext.Consumer
+
 export {
   connect,
   createComponent,
   createComponentWithProxy,
   FelaComponent,
+  FelaRenderer,
   FelaTheme,
   Provider,
+  RendererContext,
   RendererProvider,
+  ThemeContext,
   ThemeProvider,
   withTheme,
   fe,
