@@ -30,8 +30,5 @@
     "fela-tools": "^10.0.1",
     "react-addons-shallow-compare": "^15.6.2",
     "shallow-equal": "^1.0.0"
-  },
-  "devDependencies": {
-    "react": "^16.6.1"
   }
 }

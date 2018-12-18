@@ -6661,6 +6661,17 @@ fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.12, fbjs@^0.8.16, fbjs@^0.8.4, fbjs@^0.8.5, 
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
+fela-bindings@^3.0.1:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/fela-bindings/-/fela-bindings-3.0.4.tgz#bdf896d8abb03de75d57377d4e2bb9389708b08e"
+  integrity sha512-2y83x2xH2wc44hdf/B9wstrJYKcfiQBMTezrLpyiI86wlg41lkdXcLHuZ3u+OOIftO1UmvCzBDgoN//wx7gkTQ==
+  dependencies:
+    fast-loops "^1.0.0"
+    fela-dom "^8.0.4"
+    fela-tools "^5.2.3"
+    react-addons-shallow-compare "^15.6.2"
+    shallow-equal "^1.0.0"
+
 fela-combine-arrays@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/fela-combine-arrays/-/fela-combine-arrays-1.0.9.tgz#a8c057108e00fff508846d25f4062dd164907922"
@@ -6671,6 +6682,15 @@ fela-combine-arrays@^1.0.9:
 fela-dom@4.2.6:
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-4.2.6.tgz#fb8b618a3cb9e87a4ae15c438389a2a7057ebb31"
+
+fela-dom@^8.0.1, fela-dom@^8.0.4:
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-8.0.4.tgz#74d009b18a4946db1c59da6dabf01a882e090176"
+  integrity sha512-hYJWsZd/imxA2QyajyDfRMwtauRC2GTPqsUytLhn0ZV/9J33W2sXTTdINWt8oqvmFGDBPYp5FeL8Isrc8RlLww==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.1"
+    fela-utils "^8.1.3"
 
 fela-plugin-extend@^5.0.11:
   version "5.0.12"
@@ -6691,11 +6711,30 @@ fela-plugin-named-media-query@^5.0.13:
   dependencies:
     fela-utils "^7.0.5"
 
+fela-tools@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.2.3.tgz#a4d7c5352f184504d593b0ce45bdc14393a462b3"
+  integrity sha512-vROxcway/H8/gnKMwwV0TEDzh9DCNZMzJ5ZlRRyrjWUC6mwA5wxEpr1l7cVWyvyBUy/MuZ/E3ieFEn3fJogKzQ==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.0"
+    fela "^6.2.3"
+    fela-utils "^8.1.3"
+
 fela-utils@^7.0.4, fela-utils@^7.0.5:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-7.0.5.tgz#62397db8abf8294bb160ba7575b31d68495283b2"
   dependencies:
     css-in-js-utils "2.0.0"
+
+fela-utils@^8.1.1, fela-utils@^8.1.3:
+  version "8.1.3"
+  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-8.1.3.tgz#b2b19b410bf646d928362195aff57b34101576e6"
+  integrity sha512-brY7GwWXj+k7SdikEAiUie2oDEBQYRqxxCPyNBdS+/D2jUOvxvLcGCyTytRfOsrQWejzpFDon1VQZqp+qYZgzg==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.0"
+    string-hash "^1.1.3"
 
 fela@4.2.6:
   version "4.2.6"
@@ -6711,6 +6750,17 @@ fela@6.2.1:
     csstype "^2.5.5"
     fast-loops "^1.0.0"
     fela-utils "^8.1.1"
+    isobject "^3.0.1"
+
+fela@^6.2.3:
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/fela/-/fela-6.2.3.tgz#ad25e82c256ba3277ee244a6cddf30734945b565"
+  integrity sha512-xhk0vA+ksG4rmSWOBKzZ7KkztmhgPYEbBjXPdbjS/bF3joJFRfbLwvpbpz/uWK8+FEKqjrVPRoSa8nzs2ujeZQ==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    csstype "^2.5.5"
+    fast-loops "^1.0.0"
+    fela-utils "^8.1.3"
     isobject "^3.0.1"
 
 figgy-pudding@^3.1.0, figgy-pudding@^3.4.1, figgy-pudding@^3.5.1:
@@ -12704,7 +12754,7 @@ prettier@1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.7.4.tgz#5e8624ae9363c80f95ec644584ecdf55d74f93fa"
 
-prettier@^1.12.1, prettier@^1.13.7, prettier@^1.5.3, prettier@^1.7.4:
+prettier@^1.12.1, prettier@^1.5.3, prettier@^1.7.4:
   version "1.15.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.1.tgz#06c67106afb1b40e74b002353b2079cc7e0e67bf"
 
@@ -13151,14 +13201,15 @@ react-docgen@^3.0.0-beta9:
     node-dir "^0.1.10"
     recast "^0.16.0"
 
-react-dom@16.6.1, react-dom@^16.0.0, react-dom@^16.6.1:
-  version "16.6.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.6.1.tgz#5476e08694ae504ae385a28b62ecc4fe3a29add9"
+react-dom@^16.7.0-alpha:
+  version "16.7.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.7.0-alpha.2.tgz#16632880ed43676315991d8b412cce6975a30282"
+  integrity sha512-o0mMw8jBlwHjGZEy/vvKd/6giAX0+skREMOTs3/QHmgi+yAhUClp4My4Z9lsKy3SXV+03uPdm1l/QM7NTcGuMw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.11.0"
+    scheduler "^0.12.0-alpha.2"
 
 react-dom@~15.4.1:
   version "15.4.2"
@@ -13406,14 +13457,15 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@16.6.1, react@^16.0.0, react@^16.0.0-alpha.6, react@^16.6.0, react@^16.6.1:
-  version "16.6.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.6.1.tgz#ee2aef4f0a09e494594882029821049772f915fe"
+react@^16.7.0-alpha:
+  version "16.7.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.7.0-alpha.2.tgz#924f2ae843a46ea82d104a8def7a599fbf2c78ce"
+  integrity sha512-Xh1CC8KkqIojhC+LFXd21jxlVtzoVYdGnQAi/I2+dxbmos9ghbx5TQf9/nDxc4WxaFfUQJkya0w1k6rMeyIaxQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.11.0"
+    scheduler "^0.12.0-alpha.2"
 
 react@~15.4.1:
   version "15.4.2"
@@ -14317,6 +14369,14 @@ scheduler@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.11.0.tgz#def1f1bfa6550cc57981a87106e65e8aea41a6b5"
   integrity sha512-MAYbBfmiEHxF0W+c4CxMpEqMYK+rYF584VP/qMKSiHM6lTkBKKYOJaDiSILpJHla6hBOsVd6GucPL46o2Uq3sg==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.12.0-alpha.2:
+  version "0.12.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.12.0-alpha.3.tgz#59afcaba1cb79e3e8bee91de94eb8f42c9152c2b"
+  integrity sha512-KADuBlOWSrT/DCt/oA+NgsNamRCsfz7wj+leaeGjGHipNClsqhjOPogKkJgem6WLAv/QzxW8bE7zlGc9OxiYSQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
