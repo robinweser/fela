@@ -7,8 +7,3 @@ export function deprecate(message) {
     cache[message] = true
   }
 }
-
-export function interceptDeprecation(component, message) {
-  deprecate(message)
-  return component
-}
