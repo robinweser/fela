@@ -1,5 +1,4 @@
 /* @flow */
-import shallowEqual from 'shallow-equal/objects'
 import objectEach from 'fast-loops/lib/objectEach'
 
 export default function ThemeProviderFactory(
@@ -10,10 +9,6 @@ export default function ThemeProviderFactory(
   statics?: Object
 ): any {
   class ThemeProvider extends BaseComponent {
-    shouldComponentUpdate(nextProps) {
-      return !shallowEqual(this.props.theme, nextProps.theme)
-    }
-
     render(): Object {
       return createElement(
         ThemeContext.Provider,
