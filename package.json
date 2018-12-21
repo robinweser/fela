@@ -10,7 +10,7 @@
     "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
-    "release": "git pull --rebase && yarn run check && yarn build && lerna publish && yarn docs",
+    "release": "git pull --rebase && yarn run check && yarn build && lerna publish --force-publish && yarn docs",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test --coverage",
     "watch": "yarn test --watch",
