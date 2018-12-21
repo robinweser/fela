@@ -153,6 +153,19 @@ exports[`Creating Components from Fela rules should render fela rules depending 
 "
 `;
 
+exports[`Creating Components from Fela rules should render fela rules with plain objects 1`] = `
+".a {
+  color: red;
+}
+.b {
+  font-size: 16px;
+}
+
+
+<div className=a b />;
+"
+`;
+
 exports[`Creating Components from Fela rules should use the theme for static rendering by default 1`] = `
 ".a {
   color: red;
