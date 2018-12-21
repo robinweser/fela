@@ -31,7 +31,7 @@ describe('Creating Components from Fela rules', () => {
   it('should render fela rules with plain objects', () => {
     const style = {
       color: 'red',
-      fontSize: '16px'
+      fontSize: '16px',
     }
 
     const Component = createComponent(style)
