@@ -16,17 +16,17 @@ All older APIs should still work, but will now render a deprecation warning with
 * preact-fela
 * inferno-fela
 
---- 
+---
 
 ### FelaTheme
 
-[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#felatheme) | [API Reference](http://fela.js.org/docs/api/bindings/fela-theme)
+[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#felatheme) | [API Reference](http://fela.js.org/docs/api/bindings/FelaTheme.html)
 
 The FelaTheme component now no longer uses the special `render` prop to pass a render function, but uses `children` instead.<br>
 
 ### FelaComponent
 
-[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#felacomponent) | [API Reference](http://fela.js.org/docs/api/bindings/fela-component)
+[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#felacomponent) | [API Reference](http://fela.js.org/docs/api/bindings/FelaComponent.html)
 
 The same goes for FelaComponent. We now use `children` directly rather than `render`. In order to pass a primitive render type, one may now use the `as` prop.
 
@@ -34,6 +34,6 @@ Instead of accepting both `style` and `rule` it now only accepts `style` but all
 
 ### RendererProvider
 
-[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#rendererprovider) | [API Reference](http://fela.js.org/docs/api/bindings/renderer-provider)
+[Codemod](https://github.com/rofrischmann/fela/tree/master/packages/fela-codemods#rendererprovider) | [API Reference](http://fela.js.org/docs/api/bindings/RendererProvider.html)
 
-The old `Provider` component has been renamed to `RendererProvider` for more clarity and specificity. 
+The old `Provider` component has been renamed to `RendererProvider` for more clarity and specificity.
