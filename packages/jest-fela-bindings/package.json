@@ -23,8 +23,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-tools": "^10.0.2",
-    "htmltojsx": "^0.3.0",
-    "prettier": "^1.13.7"
+    "fela-tools": "^10.0.1",
+    "htmltojsx": "^0.3.0"
   }
 }

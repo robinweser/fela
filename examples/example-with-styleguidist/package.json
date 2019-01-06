@@ -43,9 +43,9 @@
     "lodash": "^4.17.4",
     "polished": "1.9.0",
     "prop-types": "^15.5.10",
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
-    "react-fela": "^10.0.2",
+    "react": "^16.7.0-alpha",
+    "react-dom": "^16.7.0-alpha",
+    "react-fela": "^10.0.1",
     "react-modal": "^2.2.2",
     "react-styleguidist": "6.1.0",
     "webpack": "3.4.1"
