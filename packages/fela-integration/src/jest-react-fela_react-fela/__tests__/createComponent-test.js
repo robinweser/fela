@@ -28,6 +28,16 @@ describe('Creating Components from Fela rules', () => {
     expect(createSnapshot(<Component color="black" />)).toMatchSnapshot()
   })
 
+  it('should render fela rules with plain objects', () => {
+    const style = {
+      color: 'red',
+      fontSize: '16px',
+    }
+
+    const Component = createComponent(style)
+
+    expect(createSnapshot(<Component />)).toMatchSnapshot()
+  })
   it('should include defaultProps if provided', () => {
     const rule = props => ({
       color: props.color,

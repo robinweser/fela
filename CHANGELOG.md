@@ -5,11 +5,16 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.0.2
+| Package | Changes |
+| --- | --- |
+| fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela | ([#645](https://github.com/rofrischmann/fela/pull/645)) Removed unnecessary shouldComponentUpdate in ThemeProvider due to the new Context API.<br>([#646](https://github.com/rofrischmann/fela/pull/646)) Fixed false-positive Provider deprecation warnings.<br>([#647](https://github.com/rofrischmann/fela/pull/647)) Now exposing both RendererContext and ThemeContext to be used with useContext. |
+
 ### 10.0.1
 | Package | Changes |
 | --- | --- |
-| fela-plugin-custom-property<br>fela-plugin-embedded<br>fela-plugin-extend<br>fela-plugin-native-media-query<br>fela-plugin-simulate<br>fela-tools | ([#644](https://github.com/rofrischmann/fela/pull/637)) Fixed some old peerDependecies. |
-| fela | ([#644](https://github.com/rofrischmann/fela/pull/637)) Improved TypeScript typings. |
+| fela-plugin-custom-property<br>fela-plugin-embedded<br>fela-plugin-extend<br>fela-plugin-native-media-query<br>fela-plugin-simulate<br>fela-tools | ([#644](https://github.com/rofrischmann/fela/pull/644)) Fixed some old peerDependecies. |
+| fela | ([#644](https://github.com/rofrischmann/fela/pull/644)) Improved TypeScript typings. |
 
 ### 10.0.0
 | Package | Changes |

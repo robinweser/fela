@@ -7,7 +7,7 @@ It automatically composes rules and passed props for nested Fela components.
 ## Arguments
 | Argument | Type | Default | Description |
 | --- | --- | --- | --- |
-| rule | *Function* |  | A function which satisfies the [rule](../basics/Rules.md) behavior. It **must** return a valid [style object](../basics/Rules.md#styleobject) |
+| rule | *Function*<br>*Object* |  | Either a [style object](../basics/Rules.md#styleobject) or rule function which satisfies the [rule](../basics/Rules.md) behavior and returns a valid [style object](../basics/Rules.md#styleobject). |
 | type | *string?*<br>*[Component](https://facebook.github.io/react/docs/top-level-api.html#react.component)?* | `div` | Component or HTML element which is used as the render base element.<br>**Note**: If a Component is passed, then it receives a className property. |
 | passThroughProps | *Array?*<br>*Function?* | | A list of props that get passed to the underlying element.<br>Alternatively a function of `props` that returns an array of prop names. |
 
@@ -65,7 +65,7 @@ const title = () => ({
 
 const Title = createComponent(title)
 
-<Title onClick={...} passThrough={[ 'onClick' ]}>Hello World</Title>,
+<Title onClick={...} passThrough={[ 'onClick' ]}>Hello World</Title>
 // => <div className="a" onclick="...">Hello World</div>
 ```
 
@@ -87,7 +87,7 @@ const extendTitle = props => ({
   color: props.color
 })
 
-<Title extend={extendTitle} color="green">Hello World</Title>,
+<Title extend={extendTitle} color="green">Hello World</Title>
 // => <div className="a">Hello World</div>
 // => .a { color: green }
 ```
@@ -101,8 +101,23 @@ const title = props => ({
 
 const Title = createComponent(title)
 
-<Title as="h1">Hello World</Title>,
+<Title as="h1">Hello World</Title>
 // => <h1 className="a">Hello World</h1>
+```
+
+## Static Style Object
+Instead of rendering a props-depending rule, we can also use plain objects to render static style objects.
+
+```javascript
+const style = {
+  fontSize: '15px',
+  color: 'red'
+}
+
+const Title = createComponent(style, 'h1')
+
+<Title>Hello World</Title>
+// => <h1 className="a b">Hello World</h1>
 ```
 
 ## Related

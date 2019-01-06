@@ -1,6 +1,6 @@
 {
   "name": "fela-bindings",
-  "version": "10.0.1",
+  "version": "10.0.2",
   "description": "Abstract binding factories for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",

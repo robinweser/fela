@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "benchmarks",
-  "version": "10.0.0",
+  "version": "10.0.2",
   "scripts": {
     "build": "mkdir -p dist && cp -f index.html dist/index.html && ./node_modules/.bin/webpack-cli --config ./webpack.config.js"
   },

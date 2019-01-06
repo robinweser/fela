@@ -44,10 +44,13 @@ This includes React, Preact and Inferno.
 * [`createComponent(rule, [type], [passThroughProps])`](api/bindings/createComponent.md)
 * [`createComponentWithProxy(rule, [type], [passThroughProps])`](api/bindings/createComponentWithProxy.md)
 * [`fe(type, [props], [children])`](api/bindings/fe.md)
-* [`<FelaComponent style render [customClass]>`](api/bindings/FelaComponent.md)
-* [`<FelaTheme theme render>`](api/bindings/FelaTheme.md)
+* [`<FelaComponent style>`](api/bindings/FelaComponent.md)
+* [`<FelaRenderer>`](api/bindings/FelaComponent.md)
+* [`<FelaTheme>`](api/bindings/FelaTheme.md)
 * [`<Provider renderer>`](api/bindings/Provider.md)
+* [`RendererContext`](api/bindings/RendererContext.md)
 * [`<ThemeProvider theme [overwrite]>`](api/bindings/ThemeProvider.md)
+* [`ThemeContext`](api/bindings/ThemeContext.md)
 * [`withTheme(component)`](api/bindings/withTheme.md)
 
 ---
