@@ -1,6 +1,6 @@
 {
   "name": "fela-utils",
-  "version": "10.0.2",
+  "version": "10.1.0",
   "description": "Internal utilities for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
