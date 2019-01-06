@@ -51,6 +51,7 @@ This includes React, Preact and Inferno.
 * [`RendererContext`](api/bindings/RendererContext.md)
 * [`<ThemeProvider theme [overwrite]>`](api/bindings/ThemeProvider.md)
 * [`ThemeContext`](api/bindings/ThemeContext.md)
+* [`useFela(props)`](api/bindings/useFela.md)
 * [`withTheme(component)`](api/bindings/withTheme.md)
 
 ---

@@ -60,7 +60,8 @@
     * [6.4.9. ThemeProvider](docs/api/bindings/ThemeProvider.md)
     * [6.4.10. RendererContext](docs/api/bindings/RendererContext.md)
     * [6.4.11. ThemeContext](docs/api/bindings/ThemeContext.md)
-    * [6.4.12. withTheme](docs/api/bindings/withTheme.md)
+    * [6.4.12. useFela](docs/api/bindings/useFela.md)
+    * [6.4.13. withTheme](docs/api/bindings/withTheme.md)
   * 6.5. jest + react/preact/inferno
     * [6.5.1. createSnapshot](docs/api/jest-bindings/createSnapshot.md)
 * [7. Migration Guide](MIGRATION.md)

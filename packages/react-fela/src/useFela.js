@@ -1,4 +1,5 @@
 /* @flow */
+// $FlowFixMe
 import { useContext } from 'react'
 import { combineRules } from 'fela'
 
@@ -7,6 +8,7 @@ import { RendererContext, ThemeContext } from './context'
 type HookInterface = {
   css: Function,
   theme: Object,
+  renderer: Object,
 }
 
 export default function useFela(props: Object = {}): HookInterface {
@@ -18,6 +20,7 @@ export default function useFela(props: Object = {}): HookInterface {
   }
 
   return {
+    renderer,
     theme,
     css,
   }
