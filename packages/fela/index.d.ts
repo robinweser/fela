@@ -261,6 +261,16 @@ declare module "fela-plugin-named-keys" {
   export default function(mediaQueryMap: MediaQueryMap): TPlugin;
 }
 
+declare module 'fela-plugin-named-media-query' {
+  import {TPlugin} from 'fela'
+
+  interface MediaQueryMap {
+    [key: string]: string;
+  }
+
+  export default function(namedMediaQueries: MediaQueryMap): TPlugin
+}
+
 declare module "fela-plugin-native-media-query" {
   import { TPlugin } from "fela";
 
