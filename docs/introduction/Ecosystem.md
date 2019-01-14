@@ -23,7 +23,8 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [vue-fela](https://github.com/wagerfield/vue-fela) - Vue
 
 ### Integrations
-* [Gatsby](https://github.com/mmintel/gatsby-plugin-fela)
+* [Gatsby V1](https://github.com/mmintel/gatsby-plugin-fela)
+* [Gatsby V2](https://github.com/devrchancay/gatsby-plugin-felajs)
 * [Next](https://github.com/zeit/next.js/tree/master/examples/with-fela)
 
 ### Plugins
