@@ -23,6 +23,7 @@ export default function createSubscription(renderer: DOMRenderer): Function {
       )
 
       renderer.nodes = {}
+      renderer.scoreIndex = {}
       return
     }
 

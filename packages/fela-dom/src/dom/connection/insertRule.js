@@ -10,10 +10,11 @@ import insertRuleInDevMode from './insertRuleInDevMode'
 import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 
 export default function insertRule(
-  { selector, declaration, support, pseudo }: Object,
+  { selector, declaration, support, media, pseudo }: Object,
   renderer: DOMRenderer,
   node: Object
 ) {
+  const nodeReference = media + support
   // only use insertRule in production as browser devtools might have
   // weird behavior if used together with insertRule at runtime
   if (renderer.devMode) {
@@ -27,13 +28,24 @@ export default function insertRule(
 
     let index = cssRules.length
 
-    // TODO: (PERF) instead of checking the score every time
-    // we could save the latest score=0 index to quickly inject
-    // basic styles and only check for score!=0 (e.g. pseudo classes)
-    for (let i = 0, len = cssRules.length; i < len; ++i) {
-      if (cssRules[i].score > score) {
-        index = i
-        break
+    if (score === 0) {
+      if (renderer.scoreIndex[nodeReference] === undefined) {
+        renderer.scoreIndex[nodeReference] = 0
+        index = 0
+      } else {
+        ++renderer.scoreIndex[nodeReference]
+        index = renderer.scoreIndex[nodeReference]
+      }
+    } else {
+      // we start iterating from the last score=0 entry
+      // to corretly inject pseudo classes etc.
+      const startIndex = renderer.scoreIndex[nodeReference] || 0
+
+      for (let i = startIndex, len = cssRules.length; i < len; ++i) {
+        if (cssRules[i].score > score) {
+          index = i
+          break
+        }
       }
     }
 

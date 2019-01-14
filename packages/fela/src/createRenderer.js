@@ -63,6 +63,7 @@ export default function createRenderer(
     uniqueKeyframeIdentifier: 0,
 
     nodes: {},
+    scoreIndex: {},
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},

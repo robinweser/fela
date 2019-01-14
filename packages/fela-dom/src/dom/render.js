@@ -7,6 +7,7 @@ import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 export default function render(renderer: DOMRenderer): void {
   if (!renderer.updateSubscription) {
+    renderer.scoreIndex = {}
     renderer.nodes = {}
 
     renderer.updateSubscription = createSubscription(renderer)
