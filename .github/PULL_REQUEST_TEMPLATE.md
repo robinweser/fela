@@ -13,6 +13,17 @@ If required, add a code example or a link to a working example (repository).
 // your code 
 ```
 
+## Packages
+List all packages that have been changed.
+
+- 
+
+## Versioning
+
+- [ ] Major
+- [ ] Minor
+- [ ] Patch
+
 ## Checklist
 
 #### Quality Assurance
