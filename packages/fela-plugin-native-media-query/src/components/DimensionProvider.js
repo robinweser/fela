@@ -1,6 +1,8 @@
 /* @flow */
+/* eslint-disable */
 // $FlowFixMe
 import { Dimensions } from 'react-native'
+/* eslint-enable */
 
 import * as React from 'react'
 
