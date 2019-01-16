@@ -521,4 +521,32 @@ declare module "react-fela" {
     export function createComponentWithProxy<Props, Theme = any>(style: Style<Props>, base: "tspan", passThroughProps?: PassThroughProps<Props>): FelaSvgComponent<Props, SVGElement, Theme>;
     export function createComponentWithProxy<Props, Theme = any>(style: Style<Props>, base: "use", passThroughProps?: PassThroughProps<Props>): FelaSvgComponent<Props, SVGElement, Theme>;
     export function createComponentWithProxy<Props, Theme = any>(style: Style<Props>, base: "view", passThroughProps?: PassThroughProps<Props>): FelaSvgComponent<Props, SVGElement, Theme>;
+
+    interface RenderProps<T> {
+      className: string,
+      theme: T,
+      as: keyof React.ReactHTML,
+    }
+  
+    export type StyleProps<T, P = {}> = { theme: T } & {
+      [K in keyof P]?: P[K]
+    }
+  
+    export type StyleFunction<T, P = {}> = (styleProps: StyleProps<T, P>) => IStyle
+  
+    export type FelaStyle<T, P = {}> = IStyle | StyleFunction<T, P> | Array<StyleFunction<T, P> | IStyle>
+  
+    export interface WithStyle<T, P> {
+      style: FelaStyle<T, P>
+    }
+  
+    interface FelaComponentProps<T, P = {}> {
+      children?: ((renderProps: RenderProps<T>) => React.ReactNode) | React.ReactNode,
+      customClass?: string,
+      style: FelaStyle<T, P>,
+      as?: keyof React.ReactHTML,
+    }
+  
+    export class FelaComponent<T, P = {}> extends React.Component<FelaComponentProps<T, P> & P> {
+    }
 }
