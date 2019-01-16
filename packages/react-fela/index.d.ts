@@ -522,6 +522,8 @@ declare module "react-fela" {
     export function createComponentWithProxy<Props, Theme = any>(style: Style<Props>, base: "use", passThroughProps?: PassThroughProps<Props>): FelaSvgComponent<Props, SVGElement, Theme>;
     export function createComponentWithProxy<Props, Theme = any>(style: Style<Props>, base: "view", passThroughProps?: PassThroughProps<Props>): FelaSvgComponent<Props, SVGElement, Theme>;
 
+    export const RendererContext: React.Context<IRenderer>
+
     interface RenderProps<T> {
       className: string,
       theme: T,
