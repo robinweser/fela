@@ -1,6 +1,6 @@
 {
   "name": "fela-perf",
-  "version": "10.1.0",
+  "version": "10.1.1",
   "description": "Fela enhancer to log performance information",
   "main": "lib/index.js",
   "module": "es/index.js",
