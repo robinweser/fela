@@ -5,10 +5,16 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.1.1
+| Package | Changes |
+| --- | --- |
+| fela<br>fela-dom | ([#656](https://github.com/rofrischmann/fela/pull/656)) Improve DOM Rendering performance by caching the default sorting score.
+| react-fela | ([#652](https://github.com/rofrischmann/fela/pull/652)) Adds TypeScript typings for FelaComponent.<br>([#655](https://github.com/rofrischmann/fela/pull/655)) Adds TypeScript typings for RendererContext. |
+
 ### 10.1.0
 | Package | Changes |
 | --- | --- |
-| react-fela | ([#648](https://github.com/rofrischmann/fela/pull/648)) Adds the new useFela hook API. 
+| react-fela | ([#648](https://github.com/rofrischmann/fela/pull/648)) Adds the new useFela hook API. |
 
 ### 10.0.2
 | Package | Changes |
