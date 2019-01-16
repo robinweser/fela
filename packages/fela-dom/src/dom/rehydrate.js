@@ -53,15 +53,23 @@ export default function rehydrate(renderer: DOMRenderer): void {
         // can yield null for node.sheet
         // https://github.com/rofrischmann/fela/issues/431#issuecomment-423239591
         if (node.sheet && node.sheet.cssRules) {
-          arrayEach(node.sheet.cssRules, rule => {
+          const nodeReference = media + support
+
+          arrayEach(node.sheet.cssRules, (rule, index) => {
             const selectorText = rule.conditionText
               ? rule.cssRules[0].selectorText
               : rule.selectorText
 
-            rule.score = getRuleScore(
+            const score = getRuleScore(
               renderer.ruleOrder,
               selectorText.split(CLASSNAME_REGEX)[1]
             )
+
+            if (score === 0) {
+              renderer.scoreIndex[nodeReference] = index
+            }
+
+            rule.score = score
           })
         }
       }
