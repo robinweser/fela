@@ -30,11 +30,9 @@ export default function insertRule(
 
     if (score === 0) {
       if (renderer.scoreIndex[nodeReference] === undefined) {
-        renderer.scoreIndex[nodeReference] = 0
         index = 0
       } else {
-        ++renderer.scoreIndex[nodeReference]
-        index = renderer.scoreIndex[nodeReference]
+        index = renderer.scoreIndex[nodeReference] + 1
       }
     } else {
       // we start iterating from the last score=0 entry
@@ -56,6 +54,10 @@ export default function insertRule(
       node.sheet.insertRule(cssSupportRule, index)
     } else {
       node.sheet.insertRule(cssRule, index)
+    }
+
+    if (score === 0) {
+      renderer.scoreIndex[nodeReference] = index
     }
 
     cssRules[index].score = score
