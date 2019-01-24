@@ -32,7 +32,7 @@ export default function insertRule(
       if (renderer.scoreIndex[nodeReference] === undefined) {
         index = 0
       } else {
-        index = renderer.scoreIndex[nodeReference] + 1;
+        index = renderer.scoreIndex[nodeReference] + 1
       }
     } else {
       // we start iterating from the last score=0 entry
@@ -57,7 +57,7 @@ export default function insertRule(
     }
 
     if (score === 0) {
-      renderer.scoreIndex[nodeReference] = index;
+      renderer.scoreIndex[nodeReference] = index
     }
 
     cssRules[index].score = score
