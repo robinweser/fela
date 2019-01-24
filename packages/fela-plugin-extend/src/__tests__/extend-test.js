@@ -156,6 +156,18 @@ describe('Extend plugin', () => {
     })
   })
 
+  it('should filter out null items in extend array', () => {
+    const base = {
+      color: 'blue',
+      extend: [{ backgroundColor: '#ccc' }, null],
+    }
+
+    expect(extend()(base)).toEqual({
+      color: 'blue',
+      backgroundColor: '#ccc',
+    })
+  })
+
   it('should not overwrite values with null or undefined', () => {
     const base = {
       color: 'blue',
