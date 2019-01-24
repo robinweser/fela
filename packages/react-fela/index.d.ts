@@ -21,6 +21,15 @@ declare module "react-fela" {
    */
   export class ThemeProvider extends React.Component<ThemeProviderProps, {}> { }
 
+  interface FelaThemeProps {
+    children: (theme: object) => React.ReactNode;
+  }
+
+  /**
+   * Fela Theme
+   */
+  export class FelaTheme extends React.Component<FelaThemeProps, {}> {}
+
   interface ProviderProps {
     renderer: object;
     mountNode?: any;
@@ -529,26 +538,26 @@ declare module "react-fela" {
       theme: T,
       as: keyof React.ReactHTML,
     }
-  
+
     export type StyleProps<T, P = {}> = { theme: T } & {
       [K in keyof P]?: P[K]
     }
-  
+
     export type StyleFunction<T, P = {}> = (styleProps: StyleProps<T, P>) => IStyle
-  
+
     export type FelaStyle<T, P = {}> = IStyle | StyleFunction<T, P> | Array<StyleFunction<T, P> | IStyle>
-  
+
     export interface WithStyle<T, P> {
       style: FelaStyle<T, P>
     }
-  
+
     interface FelaComponentProps<T, P = {}> {
       children?: ((renderProps: RenderProps<T>) => React.ReactNode) | React.ReactNode,
       customClass?: string,
       style: FelaStyle<T, P>,
       as?: keyof React.ReactHTML,
     }
-  
+
     export class FelaComponent<T, P = {}> extends React.Component<FelaComponentProps<T, P> & P> {
     }
 }
