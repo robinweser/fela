@@ -5,11 +5,16 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.1.3
+| Package | Changes |
+| --- | --- |
+| react-fela | ([#662](https://github.com/rofrischmann/fela/pull/662)) Updates TypeScript typings for FelaTheme. |
+
 ### 10.1.2
 | Package | Changes |
 | --- | --- |
 | fela-plugin-extend<br>fela-dom | ([#658](https://github.com/rofrischmann/fela/pull/658)) Fix handling of `undefined` items in `extend` arrays.
-| react-dom | ([#600](https://github.com/rofrischmann/fela/pull/660)) Fixes `scoreIndex` mismatches with vendor-specific pseudo elements and selectors.|
+| fela-dom | ([#600](https://github.com/rofrischmann/fela/pull/660)) Fixes `scoreIndex` mismatches with vendor-specific pseudo elements and selectors.|
 
 ### 10.1.1
 | Package | Changes |
