@@ -49,7 +49,8 @@ declare module "fela" {
     devMode?: boolean;
   }
 
-  export interface IStyle extends CSS.Properties<string | number> {
+  type Psudos = { [P in CSS.SimplePseudos]?: CSS.Properties<string | number> }
+  export interface IStyle extends Psudos, CSS.Properties<string | number> {
     //TODO: add properties, missing in React.CSSProperties
   }
 
