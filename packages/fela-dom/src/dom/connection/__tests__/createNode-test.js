@@ -14,27 +14,25 @@ beforeEach(cleanHead)
 
 describe('Creating a style node', () => {
   it('should have the correct attributes', () => {
-    const getHTML = (media, support) => ({
+    const getHTML = (media, support, rendererId = '') => ({
       _media: media,
       _support: support,
-      html: createNode({}, 0, {
-        type: RULE_TYPE,
-        media,
-        support,
-      }).outerHTML,
+      html: createNode({}, rendererId, 0, { type: RULE_TYPE, media, support })
+        .outerHTML,
     })
 
     expect(getHTML()).toMatchSnapshot()
     expect(getHTML('(min-width:300px)')).toMatchSnapshot()
     expect(getHTML(undefined, '(display:flex)')).toMatchSnapshot()
     expect(getHTML('(min-width:300px)', '(display:flex)')).toMatchSnapshot()
+    expect(getHTML(undefined, undefined, 'ID')).toMatchSnapshot()
   })
 
   it('should respect the correct order', () => {
     const nodes = {}
 
     function createAndAdd(score, attributes) {
-      const node = createNode(nodes, score, attributes)
+      const node = createNode(nodes, '', score, attributes)
       nodes[JSON.stringify(attributes) + score] = { node, score }
     }
 
