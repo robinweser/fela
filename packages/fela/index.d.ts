@@ -45,6 +45,7 @@ declare module "fela" {
     enhancers?: Array<TEnhancer>;
     mediaQueryOrder?: Array<string>;
     selectorPrefix?: string;
+    styleTypePrefix?: string;
     filterClassName?: (className: string) => boolean;
     devMode?: boolean;
   }

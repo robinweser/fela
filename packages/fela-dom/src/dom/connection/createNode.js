@@ -6,12 +6,13 @@ import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
 export default function createNode(
   nodes: Object,
   score: number,
-  { type, media, support }: NodeAttributes
+  { type, media, support }: NodeAttributes,
+  styleTypePrefix?: string = ''
 ): Object {
   const head = document.head || {}
 
   const node = document.createElement('style')
-  node.setAttribute('data-fela-type', type)
+  node.setAttribute('data-fela-type', styleTypePrefix + type)
   node.type = 'text/css'
 
   if (support) {

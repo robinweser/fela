@@ -56,6 +56,7 @@ export default function createRenderer(
     ],
 
     selectorPrefix: validateSelectorPrefix(config.selectorPrefix),
+    styleTypePrefix: validateSelectorPrefix(config.styleTypePrefix),
     filterClassName: config.filterClassName || isSafeClassName,
     devMode: config.devMode || false,
 

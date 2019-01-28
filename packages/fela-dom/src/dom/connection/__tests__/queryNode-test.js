@@ -31,3 +31,11 @@ it('should not query nodes with support attributes if support is not defined', (
     }).outerHTML
   ).toBe(nodeValid)
 })
+
+it('should add "styleTypePrefix" to "data-fela-type"', () => {
+  const nodeValid =
+    '<style data-fela-type="PREFIX-RULE" type="text/css">.a{color: red}</style>'
+  document.head.innerHTML = nodeValid
+
+  expect(queryNode({ type: RULE_TYPE }, 'PREFIX-').outerHTML).toBe(nodeValid)
+})
