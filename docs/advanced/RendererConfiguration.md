@@ -33,7 +33,7 @@ import { renderToString } from 'fela-dom'
 const config = {
   plugins: [ unit('em'), prefixer(), fallbackValue() ],
   keyframePrefixes: ['-webkit-'],
-  enhancers: [ beautifer() ],
+  enhancers: [ beautifier() ],
   mediaQueryOrder: [
     '(min-height: 300px)',
     '(min-height: 500px)'
