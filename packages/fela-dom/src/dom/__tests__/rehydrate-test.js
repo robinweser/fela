@@ -1,3 +1,4 @@
+import { html as beautify } from 'js-beautify'
 import rehydrate from '../rehydrate'
 
 import renderToMarkup from '../../server/renderToMarkup'
@@ -102,5 +103,43 @@ describe('Rehydrating from DOM nodes', () => {
     }))
 
     expect(clientRenderer.uniqueRuleIdentifier).toBe(4)
+  })
+
+  it('should rehydrate with correct "rendererId"', () => {
+    const firstServerRenderer = createRenderer({
+      plugins: [...webPreset],
+    })
+    const secondServerRenderer = createRenderer({
+      plugins: [...webPreset],
+      rendererId: 'SECOND',
+    })
+
+    const rule = () => ({
+      color: 'yellow',
+      backgroundColor: 'red',
+    })
+
+    firstServerRenderer.renderRule(rule)
+    secondServerRenderer.renderRule(rule)
+
+    document.head.innerHTML =
+      renderToMarkup(firstServerRenderer) + renderToMarkup(secondServerRenderer)
+
+    const firstClientRenderer = createRenderer({
+      plugins: [...webPreset],
+    })
+    const secondClientRenderer = createRenderer({
+      plugins: [...webPreset],
+      rendererId: 'SECOND',
+    })
+
+    rehydrate(firstClientRenderer)
+    rehydrate(secondClientRenderer)
+
+    expect(
+      beautify(document.documentElement.outerHTML, {
+        indent_size: 2,
+      })
+    ).toMatchSnapshot()
   })
 })
