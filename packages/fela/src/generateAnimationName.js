@@ -1,7 +1,7 @@
 /* @flow */
 export default function generateAnimationName(
-  rendererId: string,
-  id: number
+  id: number,
+  rendererId?: string = ''
 ): string {
   return `${rendererId}k${id}`
 }

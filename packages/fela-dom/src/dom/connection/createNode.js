@@ -5,9 +5,9 @@ import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
 
 export default function createNode(
   nodes: Object,
-  id: string,
   score: number,
-  { type, media, support }: NodeAttributes
+  { type, media, support }: NodeAttributes,
+  id?: string = ''
 ): Object {
   const head = document.head || {}
 

@@ -3,7 +3,7 @@ import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
 
 export default function queryNode(
   { type, media, support }: NodeAttributes,
-  id: string
+  id?: string = ''
 ): ?Object {
   const idQuery = id.length > 0 ? `[data-fela-id="${id}"]` : ''
   const mediaQuery = media ? `[media="${media}"]` : ':not([media])'
