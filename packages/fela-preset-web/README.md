@@ -10,7 +10,6 @@ It contains everything you need to start building cross-browser compatible apps.
 * [fela-plugin-embedded](../fela-plugin-embedded/)
 * [fela-plugin-prefixer](../fela-plugin-prefixer/)
 * [fela-plugin-fallback-value](../fela-plugin-fallback-value/)
-* [fela-plugin-lvha](../fela-plugin-lvha/)
 * [fela-plugin-unit](../fela-plugin-unit/)
 
 
