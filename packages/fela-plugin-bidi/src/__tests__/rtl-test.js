@@ -24,4 +24,15 @@ describe('Bidi plugin', () => {
       },
     })
   })
+
+  it('should use the theme.direction property', () => {
+    expect(
+      bidi('ltr')(style, undefined, undefined, { theme: { direction: 'rtl' } })
+    ).toEqual({
+      paddingRight: 20,
+      ':hover': {
+        backgroundImage: 'url(foo/rtl.png)',
+      },
+    })
+  })
 })
