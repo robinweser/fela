@@ -19,10 +19,7 @@ List all packages that have been changed.
 - 
 
 ## Versioning
-
-- [ ] Major
-- [ ] Minor
-- [ ] Patch
+None / Patch / Minor / Major
 
 ## Checklist
 
