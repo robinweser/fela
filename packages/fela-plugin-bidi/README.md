@@ -75,6 +75,23 @@ const renderer = createRenderer({
 }
 ```
 
+## Theme-Based Mode
+Apart from enforcing either rtl or ltr all the time, one can also leverage a special `props.theme.direction` property to dynamically set the transformation mode. This is especially useful together with React to switch transformation for subtrees.
+
+```javascript
+const rule = () => ({
+  backgroundImage: 'logical url(/foo/bar/ste.png)',
+  cursor: 'start-resize',
+  float: 'end',
+  margin: 'logical 1px 2px 3px 4px',
+  paddingStart: 20,
+})
+
+// default
+renderer.renderRule(rule, { theme: { direction: 'ltr' }})
+renderer.renderRule(rule, { theme: { direction: 'rtl' }})
+```
+
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>

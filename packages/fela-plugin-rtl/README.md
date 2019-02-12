@@ -44,6 +44,24 @@ const renderer = createRenderer({
 }
 ```
 
+## Theme-Based Mode
+Apart from enforcing rtl all the time, one can also leverage a special `props.theme.direction` property to enable/disable rtl transformation. This is especially useful together with React to disable transformation for subtrees.
+
+```javascript
+const rule = () => ({
+  paddingLeft: 20,
+  marginRight: '25px',
+  cursor: 'w-resize',
+  textShadow: 'red 2px 0'
+})
+
+// will be transformed
+renderer.renderRule(rule)
+
+// wont be transformed
+renderer.renderRule(rule, { theme: { direction: 'ltr' }})
+```
+
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
