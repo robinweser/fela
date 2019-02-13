@@ -4,12 +4,13 @@ import type { StyleType } from '../../../../flowtypes/StyleType'
 export default function createStyleTagMarkup(
   css: string,
   type: StyleType,
-  id: string,
+  rendererId: string = '',
   media: string = '',
   rehydrationIndex: number = -1,
   support: boolean = false
 ): string {
-  const idAttribute = id.length > 0 ? ` data-fela-id="${id}"` : ''
+  const idAttribute =
+    rendererId.length > 0 ? ` data-fela-id="${rendererId}"` : ''
   const mediaAttribute = media.length > 0 ? ` media="${media}"` : ''
   const supportAttribute = support ? ' data-fela-support="true"' : ''
 
