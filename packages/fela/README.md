@@ -192,7 +192,7 @@ Apart from all the packages managed within this repository, there are many commu
 * [black-box](https://github.com/rocketstation/black-box) - combines behavior, presentation, structure in one place & creates all-in-one components using only JS syntax
 
 ## Support
-Got a question? Come and join us on [Gitter](https://gitter.im/rofrischmann/fela)! <br>
+Got a question? Come and join us on [Spectrum](https://spectrum.chat/fela)! <br>
 We'd love to help out. We also highly appreciate any feedback.<br>
 Don't want to miss any update? Follow us on [Twitter](https://twitter.com/felajs).
 
