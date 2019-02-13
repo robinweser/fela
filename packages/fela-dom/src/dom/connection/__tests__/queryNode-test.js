@@ -10,11 +10,7 @@ it('should not query nodes with media attributes if media is not defined', () =>
 
   document.head.innerHTML = nodeInvalid + nodeValid
 
-  expect(
-    queryNode({
-      type: RULE_TYPE,
-    }).outerHTML
-  ).toBe(nodeValid)
+  expect(queryNode({ type: RULE_TYPE }).outerHTML).toBe(nodeValid)
 })
 
 it('should not query nodes with support attributes if support is not defined', () => {
@@ -25,9 +21,13 @@ it('should not query nodes with support attributes if support is not defined', (
 
   document.head.innerHTML = nodeInvalid + nodeValid
 
-  expect(
-    queryNode({
-      type: RULE_TYPE,
-    }).outerHTML
-  ).toBe(nodeValid)
+  expect(queryNode({ type: RULE_TYPE }).outerHTML).toBe(nodeValid)
+})
+
+it('should query by "data-fela-id"', () => {
+  const nodeValid =
+    '<style data-fela-id="ID" data-fela-type="RULE" type="text/css">.a{color: red}</style>'
+  document.head.innerHTML = nodeValid
+
+  expect(queryNode({ type: RULE_TYPE }, 'ID').outerHTML).toBe(nodeValid)
 })

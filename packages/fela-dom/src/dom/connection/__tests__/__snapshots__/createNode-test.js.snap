@@ -32,6 +32,14 @@ Object {
 }
 `;
 
+exports[`Creating a style node should have the correct attributes 5`] = `
+Object {
+  "_media": undefined,
+  "_support": undefined,
+  "html": "<style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-id=\\"ID\\"></style>",
+}
+`;
+
 exports[`Creating a style node should respect the correct order 1`] = `
 "<head>
   <style data-fela-type=\\"STATIC\\" type=\\"text/css\\"></style>

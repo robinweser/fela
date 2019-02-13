@@ -14,20 +14,18 @@ beforeEach(cleanHead)
 
 describe('Creating a style node', () => {
   it('should have the correct attributes', () => {
-    const getHTML = (media, support) => ({
+    const getHTML = (media, support, rendererId = '') => ({
       _media: media,
       _support: support,
-      html: createNode({}, 0, {
-        type: RULE_TYPE,
-        media,
-        support,
-      }).outerHTML,
+      html: createNode({}, 0, { type: RULE_TYPE, media, support }, rendererId)
+        .outerHTML,
     })
 
     expect(getHTML()).toMatchSnapshot()
     expect(getHTML('(min-width:300px)')).toMatchSnapshot()
     expect(getHTML(undefined, '(display:flex)')).toMatchSnapshot()
     expect(getHTML('(min-width:300px)', '(display:flex)')).toMatchSnapshot()
+    expect(getHTML(undefined, undefined, 'ID')).toMatchSnapshot()
   })
 
   it('should respect the correct order', () => {

@@ -20,6 +20,7 @@ type Sheet = {
   type: RULE_TYPE | KEYFRAME_TYPE | FONT_TYPE | STATIC_TYPE,
   media?: string,
   support?: boolean,
+  rehydration: number,
 }
 
 export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {

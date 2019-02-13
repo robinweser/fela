@@ -54,3 +54,34 @@ The following markup would be returned:
 <style type="text/css" data-fela-type="RULE" data-fela-rehydration="4" data-fela-support>.c{color:green}</style>
 <style type="text/css" data-fela-type="RULE" data-fela-rehydration="4" media="(min-width: 300px)">.d{color:red}</style>
 ```
+
+### Using `renderer.rendererId`
+
+If you decided to use the [`renderer.rendererId` option](../fela/Renderer.md) you should ensure that your server and
+client renderers have the same ids.
+
+#### Server code
+
+```javascript
+import { createRenderer } from 'fela'
+import { renderToMarkup } from 'fela-dom'
+
+const serverRenderer = createRenderer({
+  rendererId: 'OTHER'
+})
+    
+const markup = renderToMarkup(serverRenderer)
+```
+
+#### Client code
+
+```javascript
+import { createRenderer } from 'fela'
+import { rehydrate } from 'fela-dom'
+
+const clientRenderer = createRenderer({
+  rendererId: 'OTHER'
+})
+    
+rehydrate(clientRenderer)
+```

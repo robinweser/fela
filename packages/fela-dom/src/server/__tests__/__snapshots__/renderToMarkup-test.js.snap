@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Rendering to HTML markup handles \`rendererId\` 1`] = `
+"<style type=\\"text/css\\" data-fela-rehydration=\\"2\\" data-fela-type=\\"RULE\\" data-fela-id=\\"ID\\">
+    .a:hover {
+        color: red
+    }
+
+    .b:active {
+        color: #fff
+    }
+</style>"
+`;
+
 exports[`Rendering to HTML markup should correctly sort rules 1`] = `
 "<style type=\\"text/css\\" data-fela-rehydration=\\"3\\" data-fela-type=\\"RULE\\">
     .a:hover {
