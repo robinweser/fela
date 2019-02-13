@@ -5,6 +5,15 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.2.0
+| Package | Changes |
+| --- | --- |
+| fela | ([#671](https://github.com/rofrischmann/fela/pull/671)) Updated Typings to use union types instead of enums. |
+| fela<br>fela-dom | ([#667](https://github.com/rofrischmann/fela/pull/667)) Added the `rendererId` option to the renderer configuration which allows using multiple renderers with each maintaining their own set of style nodes. |
+| fela-plugin-rtl<br>fela-plugin-bidi | ([#670](https://github.com/rofrischmann/fela/pull/670)) Added the ability to switch the transformation direction dynamically using a special theme property.  |
+| react-fela | ([#669](https://github.com/rofrischmann/fela/pull/669)) Now correctly pass the theme to `useFela`'s props as well.<br>Now correctly pass `key` and `ref` to the `FelaComponent` directly instead of piping them to its rendered children. |
+| fela-plugin-named-keys | Added the ability to dynamically set named keys using the given `props` of each rule. |
+
 ### 10.1.3
 | Package | Changes |
 | --- | --- |
