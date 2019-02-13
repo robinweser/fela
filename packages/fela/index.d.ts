@@ -1,5 +1,6 @@
 declare module "fela" {
   import * as CSS from 'csstype';
+  import { TRuleType, TKeyframeType, TFontType, TStaticType, TClearType } from 'fela-utils';
 
   export type TRuleProps = {};
   export type TRule<T = TRuleProps> = (props: T) => IStyle
@@ -9,14 +10,7 @@ declare module "fela" {
   type TPlugin = (style: IStyle) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
   type TEnhancer = (renderer: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
 
-  const enum TSubscribeMessageType {
-    rule = 'RULE',
-    staticObject = 'RULE',
-    keyframes = 'KEYFRAME',
-    fontFace = 'FONT',
-    staticString = 'STATIC',
-    clear = 'CLEAR'
-  }
+  type TSubscribeMessageType = TRuleType | TKeyframeType | TFontType | TStaticType | TClearType
 
   interface ISubscribeMessage {
     type: TSubscribeMessageType;
@@ -44,6 +38,7 @@ declare module "fela" {
     keyframePrefixes?: Array<string>;
     enhancers?: Array<TEnhancer>;
     mediaQueryOrder?: Array<string>;
+    rendererId?: string;
     selectorPrefix?: string;
     filterClassName?: (className: string) => boolean;
     devMode?: boolean;
@@ -184,6 +179,20 @@ declare module "fela-statistics" {
   import { TEnhancer } from "fela";
 
   export default function(): TEnhancer;
+}
+
+declare module "fela-utils" {
+  export type TRuleType = "RULE"
+  export type TKeyframeType = "KEYFRAME"
+  export type TFontType = "FONT"
+  export type TStaticType = "STATIC"
+  export type TClearType = "CLEAR"
+
+  export const RULE_TYPE: TRuleType
+  export const KEYFRAME_TYPE: TKeyframeType
+  export const FONT_TYPE: TFontType
+  export const STATIC_TYPE: TStaticType
+  export const CLEAR_TYPE: TClearType
 }
 
 /**

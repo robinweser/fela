@@ -88,3 +88,32 @@ Array [
   },
 ]
 `;
+
+exports[`Rehydrating from DOM nodes should rehydrate with correct "rendererId" 1`] = `
+"<html>
+
+<head>
+  <style type=\\"text/css\\" data-fela-rehydration=\\"2\\" data-fela-type=\\"RULE\\">
+    .a {
+      color: yellow
+    }
+
+    .b {
+      background-color: red
+    }
+  </style>
+  <style type=\\"text/css\\" data-fela-rehydration=\\"2\\" data-fela-type=\\"RULE\\" data-fela-id=\\"SECOND\\">
+    .a {
+      color: yellow
+    }
+
+    .b {
+      background-color: red
+    }
+  </style>
+</head>
+
+<body></body>
+
+</html>"
+`;

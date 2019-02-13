@@ -23,7 +23,8 @@ export default function getNodeFromCache(
   if (!renderer.nodes[reference]) {
     const score = calculateNodeScore(attributes, renderer.mediaQueryOrder)
     const node =
-      queryNode(attributes) || createNode(renderer.nodes, score, attributes)
+      queryNode(attributes, renderer.rendererId) ||
+      createNode(renderer.nodes, score, attributes, renderer.rendererId)
 
     renderer.nodes[reference] = {
       node,

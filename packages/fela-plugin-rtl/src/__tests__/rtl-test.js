@@ -16,4 +16,17 @@ describe('RTL plugin', () => {
       },
     })
   })
+
+  it('should check the theme.direction property', () => {
+    const style = {
+      paddingLeft: 20,
+      ':hover': {
+        marginRight: '25px',
+      },
+    }
+
+    expect(
+      rtl()(style, undefined, undefined, { theme: { direction: 'ltr' } })
+    ).toEqual(style)
+  })
 })
