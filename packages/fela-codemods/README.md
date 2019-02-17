@@ -23,9 +23,14 @@ You may alternatively use `npm i -g jscodeshift`.
 Now transforming our codebase is as simple as using the [jscodeshift CLI](https://github.com/facebook/jscodeshift#usage-cli).<br>
 
 ```sh
-jscodeshift -t node_modules/fela-codemods/src/{codemod} [path]
+jscodeshift -t node_modules/fela-codemods/lib/{codemod} [path]
 ```
 where `codemod` is the actual codemod file that should be used and `path` is either a single file or a directory.
+**Note:** If using Typescript of Flow, you may need to specify the `parser` argument, e.g.,
+
+```sh
+jscodeshift --parser=flow -t node_modules/fela-codemods/lib/{codemod} [path]
+```
 
 ## Available Codemods
 The following list shows all available codemods for different version migrations.<br>
@@ -46,6 +51,18 @@ In order to use all codemods for a specific version at once, we use `index` as o
 
 Renames the `rule` prop to `style` and transforms all `style` as a function of `theme` to a function of `props`.<br>
 Also transforms the `render` prop to either `as` or `children` respectively.
+
+**Warning:** This codemod transforms inline functions passed to the `style` prop (`theme => ...` -> `({ theme }) => ...`), but cannot handle non inlined functions. The following case would need to be handled manually:
+
+```jsx
+<FelaComponent style={myStyle}>...</FelaComponent>
+
+// The signature of this function is not transformed by the codemode,
+// and should be manually edited to:
+//   function myStyle({ theme, }) { ... }
+function myStyle(theme) { return { color: theme.color, } }
+```
+
 
 <details>
 <summary>Before</summary>
@@ -187,10 +204,10 @@ const Usage = (
 ## Example
 ```sh
 # applies all version 10 codemods to all .js files in src
-jscodeshift -t node_modules/fela-codemods/src/v10/index.js src
+jscodeshift -t node_modules/fela-codemods/lib/v10/index.js src
 
 # applies the version 10 FelaComponent codemod to all .js files in src
-jscodeshift -t node_modules/fela-codemods/src/v10/FelaComponent.js src
+jscodeshift -t node_modules/fela-codemods/lib/v10/FelaComponent.js src
 ```
 
 ## License
