@@ -15,6 +15,12 @@ export default function useFela(props: Object = {}): HookInterface {
   const renderer = useContext(RendererContext)
   const theme = useContext(ThemeContext) || {}
 
+  if (!renderer) {
+    throw new Error(
+      'The "useFela" hook can only be used  inside a "RendererProvider"'
+    )
+  }
+
   const propsWithTheme = { theme }
   if (props) Object.assign(propsWithTheme, props)
 
