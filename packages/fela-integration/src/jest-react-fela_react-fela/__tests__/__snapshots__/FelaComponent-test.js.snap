@@ -169,3 +169,10 @@ exports[`Using the FelaComponent component should render children using the corr
 <h1 className=a b>Hello World</h1>;
 "
 `;
+
+exports[`Using the FelaComponent component should render without style 1`] = `
+"
+
+<div className>I am an unstyled div</div>;
+"
+`;
