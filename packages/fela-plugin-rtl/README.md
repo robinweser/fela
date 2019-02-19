@@ -23,6 +23,14 @@ const renderer = createRenderer({
 })
 ```
 
+
+### Configuration
+##### Parameters
+| Parameter | Value | Default | Description |
+| --- | --- | --- | --- |
+| defaultDirection | *("rtl" \| "ltr")* | `rtl` | The default direction which can be useful if one is using the `theme.direction` option to dynamically toggle rtl transformation |
+
+
 ## Example
 
 #### Input
