@@ -15,10 +15,8 @@ export default function useFela(props: Object = {}): HookInterface {
   const renderer = useContext(RendererContext)
   const theme = useContext(ThemeContext) || {}
 
-  const propsWithTheme = {
-    ...props,
-    theme,
-  }
+  const propsWithTheme = { theme }
+  if (props) Object.assign(propsWithTheme, props)
 
   function css(...rules: Array<Object | Function>) {
     return renderer.renderRule(combineRules(...rules), propsWithTheme)
