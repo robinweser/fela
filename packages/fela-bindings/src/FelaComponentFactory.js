@@ -34,9 +34,16 @@ export default function FelaComponentFactory(
       'The `render` prop in FelaComponent is deprecated. It will be removed in react-fela@11.0.0.\nPlease always use `children` instead. See http://fela.js.org/docs/api/bindings/fela-component'
     )
 
-    const renderFn = renderer =>
-      createElement(FelaTheme, undefined, theme => {
-        // TODO: could optimise perf by not calling combineRules if not neccessary
+    const renderFn = renderer => {
+      if (renderer.devMode && style == null) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          '"FelaComponent" is being rendered without a style prop\nIf all you need is access to theme, try using "FelaTheme" or the "useFela" hook instead'
+        )
+      }
+
+      return createElement(FelaTheme, undefined, theme => {
+        // TODO: could optimize perf by not calling combineRules if not necessary
         const className = renderer.renderRule(combineRules(style), {
           ...otherProps,
           theme,
@@ -68,6 +75,7 @@ export default function FelaComponentFactory(
 
         return createElement(as, { className: cls }, children)
       })
+    }
 
     return createElement(RendererContext.Consumer, undefined, renderFn)
   }
