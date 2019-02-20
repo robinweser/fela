@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-fallback-value",
-  "version": "10.2.0",
+  "version": "10.2.1",
   "description": "Fela plugin to resolve fallback values",
   "main": "lib/index.js",
   "module": "es/index.js",
