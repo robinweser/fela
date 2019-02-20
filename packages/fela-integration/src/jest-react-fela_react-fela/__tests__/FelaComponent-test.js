@@ -219,4 +219,16 @@ describe('Using the FelaComponent component', () => {
       )
     ).toMatchSnapshot()
   })
+
+  it('should render without style', () => {
+    expect(
+      createSnapshot(
+        <FelaComponent>
+          {({ className }) => (
+            <div className={className}>I am an unstyled div</div>
+          )}
+        </FelaComponent>
+      )
+    ).toMatchSnapshot()
+  })
 })
