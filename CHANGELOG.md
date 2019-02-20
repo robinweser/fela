@@ -5,6 +5,12 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.2.1
+| Package | Changes |
+| --- | --- |
+| fela-plugin-rtl | ([#673](https://github.com/rofrischmann/fela/pull/673)) Added the ability to pass a default direction in order to support full theme-based rtl transformation. |
+| react-fela | ([#674](https://github.com/rofrischmann/fela/pull/674)) Performance optimisations for `useFela`. |
+| fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela | ([#675](https://github.com/rofrischmann/fela/pull/675)) Allowing `undefined` and `null` as valid values for style on `FelaRenderer` that used to throw. |
 ### 10.2.0
 | Package | Changes |
 | --- | --- |
