@@ -41,6 +41,12 @@ const renderer = createRenderer({
 })
 ```
 
+### Configuration
+##### Parameters
+| Parameter | Value | Default | Description |
+| --- | --- | --- | --- |
+| flowDirection | *("rtl" \| "ltr")* | `ltr` | The default flow direction |
+
 ## Example
 
 #### Input
