@@ -18,7 +18,7 @@ export default function rehydrate(renderer: DOMRenderer): void {
   render(renderer)
 
   const idQuery =
-    renderer.rendererId.length > 0
+    typeof renderer.rendererId !== 'undefined' && renderer.rendererId.length > 0
       ? `[data-fela-id="${renderer.rendererId}"]`
       : ''
 
