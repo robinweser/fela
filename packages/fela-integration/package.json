@@ -3,6 +3,7 @@
   "name": "fela-integration",
   "version": "10.2.1",
   "description": "Fela private intergration testing package",
+  "sideEffects": false,
   "dependencies": {
     "fela": "^10.2.1",
     "fela-monolithic": "^10.2.1",
