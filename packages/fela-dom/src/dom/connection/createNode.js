@@ -12,12 +12,9 @@ export default function createNode(
   const head = document.head || {}
 
   const node = document.createElement('style')
+  node.setAttribute('data-fela-id', id)
   node.setAttribute('data-fela-type', type)
   node.type = 'text/css'
-
-  if (id.length > 0) {
-    node.setAttribute('data-fela-id', id)
-  }
 
   if (support) {
     node.setAttribute('data-fela-support', 'true')
