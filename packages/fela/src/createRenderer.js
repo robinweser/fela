@@ -33,6 +33,7 @@ import getFontUrl from './getFontUrl'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
 import validateSelectorPrefix from './validateSelectorPrefix'
+import sortObjectKeys from './sortObjectKeys'
 
 import type {
   DOMRenderer,
@@ -201,9 +202,10 @@ export default function createRenderer(
       support: string = ''
     ): string {
       let classNames = _className ? ` ${_className}` : ''
+      const sortedStyle = sortObjectKeys(style)
 
-      for (const property in style) {
-        const value = style[property]
+      for (const property in sortedStyle) {
+        const value = sortedStyle[property]
 
         if (isPlainObject(value)) {
           if (isNestedSelector(property)) {
