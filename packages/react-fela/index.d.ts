@@ -560,4 +560,12 @@ declare module "react-fela" {
 
     export class FelaComponent<T, P = {}> extends React.Component<FelaComponentProps<T, P> & P> {
     }
+
+    export interface FelaHookProps<Theme> {
+      css: (style: IStyle) => string,
+      theme: Theme,
+      renderer: IRenderer,
+    }
+
+    export function useFela<Theme = {}>(): FelaHookProps<Theme>
 }
