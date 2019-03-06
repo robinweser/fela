@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Using the ThemeProvider should merge theme objects 1`] = `
+"
+
+<div>
+  {{}color:red,backgroundColor:blue{}}
+</div>;
+"
+`;
+
+exports[`Using the ThemeProvider should overwrite theme objects 1`] = `
+"
+
+<div>
+  {{}backgroundColor:blue{}}
+</div>;
+"
+`;
+
 exports[`Using the ThemeProvider should pass the theme to rule props 1`] = `
 "
 

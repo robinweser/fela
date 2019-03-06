@@ -5,26 +5,20 @@ export default function ThemeProviderFactory(
   BaseComponent: any,
   ThemeContext: any,
   createElement: Function,
-  renderChildren: Function,
-  statics?: Object
+  renderChildren: Function
 ): any {
-  class ThemeProvider extends BaseComponent {
-    render(): Object {
-      return createElement(
+  return function ThemeProvider({ theme = {}, overwrite = false, children }) {
+    return createElement(ThemeContext.Consumer, null, previousTheme =>
+      createElement(
         ThemeContext.Provider,
         {
-          value: this.props.theme,
+          value:
+            !overwrite && previousTheme
+              ? { ...previousTheme, ...theme }
+              : theme,
         },
-        renderChildren(this.props.children)
+        renderChildren(children)
       )
-    }
+    )
   }
-
-  if (statics) {
-    objectEach(statics, (value, key) => {
-      ThemeProvider[key] = value
-    })
-  }
-
-  return ThemeProvider
 }
