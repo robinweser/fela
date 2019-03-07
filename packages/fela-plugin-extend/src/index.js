@@ -32,7 +32,7 @@ function extendStyle(style: Object, extension: Object): void {
     }
   } else {
     // extend basic style objects
-    assignStyle(style, removeUndefined(extension))
+    assignStyle(style, removeUndefined(extend(extension)))
   }
 }
 
