@@ -2,7 +2,7 @@
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-prefixer.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-prefixer.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-prefixer@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-prefixer.svg"></a>
 
-Uses [inline-style-prefixer/static](https://github.com/rofrischmann/inline-style-prefix-all) to add vendor prefixes to both property and value.
+Uses [inline-style-prefixer/static](https://github.com/rofrischmann/inline-style-prefixer) to add vendor prefixes to both property and value.
 
 **Requires to use [fela-plugin-fallback-value](../fela-plugin-fallback-value/) afterwards** in order to resolve alternative prefix values which get returned as an array by default.
 
