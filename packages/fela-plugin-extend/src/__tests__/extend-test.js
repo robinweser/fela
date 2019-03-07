@@ -143,6 +143,94 @@ describe('Extend plugin', () => {
     })
   })
 
+  it('should merge multiple nested extensions', () => {
+    const base = {
+      color: 'blue',
+      backgroundColor: 'red',
+      extend: {
+        color: 'green',
+        fontSize: 15,
+        extend: {
+          lineHeight: 1.0,
+        },
+      },
+    }
+
+    expect(extend()(base)).toEqual({
+      color: 'blue',
+      backgroundColor: 'red',
+      color: 'green',
+      fontSize: 15,
+      lineHeight: 1.0,
+    })
+  })
+
+  it('should merge multiple nested conditional extensions', () => {
+    const base = {
+      color: 'blue',
+      backgroundColor: 'red',
+      extend: {
+        condition: true,
+        style: {
+          color: 'green',
+          fontSize: 15,
+          extend: {
+            condition: true,
+            style: {
+              lineHeight: 1.0,
+            },
+          },
+        },
+      },
+    }
+
+    expect(extend()(base)).toEqual({
+      color: 'blue',
+      backgroundColor: 'red',
+      color: 'green',
+      fontSize: 15,
+      lineHeight: 1.0,
+    })
+  })
+
+  it('should merge multiple nested conditional extensions', () => {
+    const base = {
+      color: 'blue',
+      backgroundColor: 'red',
+      extend: [
+        {
+          condition: true,
+          style: {
+            color: 'green',
+            fontSize: 15,
+            extend: {
+              condition: true,
+              style: {
+                lineHeight: 1.0,
+              },
+            },
+          },
+        },
+        {
+          paddingLeft: 10,
+          extend: {
+            paddingRight: 10,
+          },
+        },
+      ],
+    }
+
+    expect(extend()(base)).toEqual({
+      color: 'blue',
+      backgroundColor: 'red',
+      color: 'green',
+      fontSize: 15,
+      lineHeight: 1.0,
+      paddingLeft: 10,
+      paddingRight: 10,
+    })
+  })
+
   it('should not convert null values to empty objects', () => {
     const base = {
       color: 'blue',

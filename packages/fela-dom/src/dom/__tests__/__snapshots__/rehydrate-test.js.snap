@@ -93,7 +93,7 @@ exports[`Rehydrating from DOM nodes should rehydrate with correct "rendererId" 1
 "<html>
 
 <head>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"2\\" data-fela-type=\\"RULE\\">
+  <style type=\\"text/css\\" data-fela-rehydration=\\"2\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\">
     .a {
       color: yellow
     }

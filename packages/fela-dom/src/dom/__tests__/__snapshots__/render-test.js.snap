@@ -4,7 +4,7 @@ exports[`render (development) should correctly sort rules 1`] = `
 "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
+  <style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\">
     .a {
       color: blue
     }
@@ -40,14 +40,14 @@ exports[`render (development) should create style nodes and render CSS rules 1`]
 "<html>
 
 <head>
-  <style data-fela-type=\\"FONT\\" type=\\"text/css\\">
+  <style data-fela-id=\\"\\" data-fela-type=\\"FONT\\" type=\\"text/css\\">
     @font-face {
       font-weight: 300;
       src: url('../Lato.ttf') format('truetype');
       font-family: \\"Lato\\"
     }
   </style>
-  <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
+  <style data-fela-id=\\"\\" data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
     @-webkit-keyframes k1 {
       0% {
         color: yellow
@@ -78,7 +78,7 @@ exports[`render (development) should create style nodes and render CSS rules 1`]
       }
     }
   </style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
+  <style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\">
     .a {
       background-color: red
     }
@@ -98,7 +98,7 @@ exports[`render (development) should not overwrite rehydrated styles 1`] = `
 "<html>
 
 <head>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\">
+  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\">
     .b {
       color: yellow
     }
@@ -115,14 +115,14 @@ exports[`render (development) should not overwrite rehydrated styles 1`] = `
       color: red
     }
   </style>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\">
+  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\" data-fela-support=\\"true\\">
     @supports (display:flex) {
       .e {
         color: green
       }
     }
   </style>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" media=\\"(max-width: 800px)\\">
+  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\" media=\\"(max-width: 800px)\\">
     .d {
       color: blue
     }
@@ -138,7 +138,7 @@ exports[`render (development) should not render multiple times 1`] = `
 "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
+  <style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\">
     .a {
       background-color: red
     }
