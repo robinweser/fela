@@ -9,8 +9,7 @@ export default function createStyleTagMarkup(
   rehydrationIndex: number = -1,
   support: boolean = false
 ): string {
-  const idAttribute =
-    rendererId.length > 0 ? ` data-fela-id="${rendererId}"` : ''
+  const idAttribute = ` data-fela-id="${rendererId}"`
   const mediaAttribute = media.length > 0 ? ` media="${media}"` : ''
   const supportAttribute = support ? ' data-fela-support="true"' : ''
 
