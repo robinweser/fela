@@ -15,4 +15,28 @@ describe('Using the ThemeProvider', () => {
 
     expect(snapshot).toMatchSnapshot()
   })
+
+  it('should merge theme objects', () => {
+    const snapshot = createSnapshot(
+      <ThemeProvider theme={{ color: 'red' }}>
+        <ThemeProvider theme={{ backgroundColor: 'blue' }}>
+          <FelaTheme>{theme => <div>{JSON.stringify(theme)}</div>}</FelaTheme>
+        </ThemeProvider>
+      </ThemeProvider>
+    )
+
+    expect(snapshot).toMatchSnapshot()
+  })
+
+  it('should overwrite theme objects', () => {
+    const snapshot = createSnapshot(
+      <ThemeProvider theme={{ color: 'red' }}>
+        <ThemeProvider overwrite theme={{ backgroundColor: 'blue' }}>
+          <FelaTheme>{theme => <div>{JSON.stringify(theme)}</div>}</FelaTheme>
+        </ThemeProvider>
+      </ThemeProvider>
+    )
+
+    expect(snapshot).toMatchSnapshot()
+  })
 })
