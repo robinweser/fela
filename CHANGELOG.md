@@ -5,12 +5,22 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.2.2
+| Package | Changes |
+| --- | --- |
+| fela-plugin-extend | ([#685](https://github.com/rofrischmann/fela/pull/685)) Added style extension for edge cases that weren't respected before. |
+| fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela | ([#686](https://github.com/rofrischmann/fela/pull/686)) Refactored the `ThemeProvider` component to match the old behaviour with auto-merging themes. |
+| react-fela | ([#683](https://github.com/rofrischmann/fela/pull/683)) Added TypeScript typings for the new `useFela` hook API.<br>
+([#677](https://github.com/rofrischmann/fela/pull/677)) Added TypeScript typings for the `FelaRenderer` component.<br>([#678](https://github.com/rofrischmann/fela/pull/678)) Added a warning when `FelaComponent` is used without passing the `style` prop. |
+| all | ([#680](https://github.com/rofrischmann/fela/pull/680)) Added sideEffects property to all packages in order to support Tree-Shaking in Webpack. |
+
 ### 10.2.1
 | Package | Changes |
 | --- | --- |
 | fela-plugin-rtl | ([#673](https://github.com/rofrischmann/fela/pull/673)) Added the ability to pass a default direction in order to support full theme-based rtl transformation. |
 | react-fela | ([#674](https://github.com/rofrischmann/fela/pull/674)) Performance optimisations for `useFela`. |
 | fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela | ([#675](https://github.com/rofrischmann/fela/pull/675)) Allowing `undefined` and `null` as valid values for style on `FelaRenderer` that used to throw. |
+
 ### 10.2.0
 | Package | Changes |
 | --- | --- |
