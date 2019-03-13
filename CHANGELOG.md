@@ -10,8 +10,7 @@ If you're searching for older logs, please check the [old changelog](https://git
 | --- | --- |
 | fela-plugin-extend | ([#685](https://github.com/rofrischmann/fela/pull/685)) Added style extension for edge cases that weren't respected before. |
 | fela-bindings<br>react-fela<br>preact-fela<br>inferno-fela | ([#686](https://github.com/rofrischmann/fela/pull/686)) Refactored the `ThemeProvider` component to match the old behaviour with auto-merging themes. |
-| react-fela | ([#683](https://github.com/rofrischmann/fela/pull/683)) Added TypeScript typings for the new `useFela` hook API.<br>
-([#677](https://github.com/rofrischmann/fela/pull/677)) Added TypeScript typings for the `FelaRenderer` component.<br>([#678](https://github.com/rofrischmann/fela/pull/678)) Added a warning when `FelaComponent` is used without passing the `style` prop. |
+| react-fela | ([#683](https://github.com/rofrischmann/fela/pull/683)) Added TypeScript typings for the new `useFela` hook API.<br>([#677](https://github.com/rofrischmann/fela/pull/677)) Added TypeScript typings for the `FelaRenderer` component.<br>([#678](https://github.com/rofrischmann/fela/pull/678)) Added a warning when `FelaComponent` is used without passing the `style` prop. |
 | all | ([#680](https://github.com/rofrischmann/fela/pull/680)) Added sideEffects property to all packages in order to support Tree-Shaking in Webpack. |
 
 ### 10.2.1
