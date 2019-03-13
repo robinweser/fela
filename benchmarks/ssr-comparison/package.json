@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "css-in-js-perf-tests",
-  "version": "10.2.1",
+  "version": "10.2.2",
   "description": "Performance tests for CSS-in-JS libraries",
   "scripts": {
     "compile": "rimraf lib/ && babel src/ --out-dir lib",
@@ -36,8 +36,8 @@
     "cssobj-plugin-localize": "3.0.1",
     "cxs": "2.1.0",
     "easy-table": "1.0.0",
-    "fela": "^10.2.1",
-    "fela-tools": "^10.2.1",
+    "fela": "^10.2.2",
+    "fela-tools": "^10.2.2",
     "free-style": "2.0.0",
     "glamor": "2.18.2",
     "gzip-size": "3.0.0",

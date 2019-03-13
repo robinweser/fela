@@ -1,6 +1,6 @@
 {
   "name": "jest-react-fela",
-  "version": "10.2.1",
+  "version": "10.2.2",
   "description": "Jest helpers for react-fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -30,11 +30,11 @@
     "react-fela": "*"
   },
   "dependencies": {
-    "jest-fela-bindings": "^10.2.1"
+    "jest-fela-bindings": "^10.2.2"
   },
   "devDependencies": {
-    "fela": "^10.2.1",
-    "fela-preset-web": "^10.2.1",
-    "react-fela": "^10.2.1"
+    "fela": "^10.2.2",
+    "fela-preset-web": "^10.2.2",
+    "react-fela": "^10.2.2"
   }
 }
