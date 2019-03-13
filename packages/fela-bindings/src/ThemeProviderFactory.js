@@ -1,8 +1,5 @@
 /* @flow */
-import objectEach from 'fast-loops/lib/objectEach'
-
 export default function ThemeProviderFactory(
-  BaseComponent: any,
   ThemeContext: any,
   createElement: Function,
   renderChildren: Function

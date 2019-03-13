@@ -157,7 +157,6 @@ describe('Extend plugin', () => {
     }
 
     expect(extend()(base)).toEqual({
-      color: 'blue',
       backgroundColor: 'red',
       color: 'green',
       fontSize: 15,
@@ -185,7 +184,6 @@ describe('Extend plugin', () => {
     }
 
     expect(extend()(base)).toEqual({
-      color: 'blue',
       backgroundColor: 'red',
       color: 'green',
       fontSize: 15,
@@ -221,7 +219,6 @@ describe('Extend plugin', () => {
     }
 
     expect(extend()(base)).toEqual({
-      color: 'blue',
       backgroundColor: 'red',
       color: 'green',
       fontSize: 15,
