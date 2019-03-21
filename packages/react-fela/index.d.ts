@@ -565,7 +565,7 @@ declare module "react-fela" {
     /**
      * Fela Renderer
      */
-    export class FelaRenderer extends React.ComponentType<React.ConsumerProps<IRenderer>> {}
+    export class FelaRenderer extends React.Component<React.ConsumerProps<IRenderer>> {}
 
     export interface FelaHookProps<Theme> {
       css: (style: IStyle) => string,
