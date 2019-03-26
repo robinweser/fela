@@ -42,7 +42,7 @@ const ComplexComponent: React.FunctionComponent<Props> = props => {
   );
 };
 
-const complexComponentStyle: Rules<OwnProps, Styles> = ({fontScale, theme}) => ({
+const complexComponentStyle: Rules<OwnProps, Styles, Theme> = ({fontScale, theme}) => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -63,3 +63,7 @@ const complexComponentStyle: Rules<OwnProps, Styles> = ({fontScale, theme}) => (
 })
 
 export default connect(complexComponentStyle)(ComplexComponent)
+
+// reconnect example
+export const ConnectedComplexComponent = connect(complexComponentStyle)(ComplexComponent)
+export const ReconnectedComplexComponent = connect({container: {}})(ConnectedComplexComponent)

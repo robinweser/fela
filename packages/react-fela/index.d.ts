@@ -1,15 +1,15 @@
-declare module "react-fela" {
-  import * as React from "react";
-  import {
-    IRenderer,
-    TRule,
-    IStyle
-  } from "fela";
-  import {
-    TMultiRule,
-    TPartialMultiRule,
-  } from "fela-tools";
+import * as React from "react";
+import {
+  IRenderer,
+  TRule,
+  IStyle
+} from "fela";
+import {
+  TMultiRule,
+  TPartialMultiRule,
+} from "fela-tools";
 
+declare module "react-fela" {
   interface ThemeProviderProps {
     theme: object;
     overwrite?: boolean;
@@ -35,12 +35,6 @@ declare module "react-fela" {
   }
 
   interface FelaWithThemeProps<Theme> {
-    /**
-     * ref to underlying component
-     *
-     * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/createComponentFactory.js#L68}
-     */
-    innerRef?: (instance: any) => void,
     theme: Theme,
   }
   /**
@@ -75,13 +69,23 @@ declare module "react-fela" {
     extend?: TPartialMultiRule<Props & FelaWithThemeProps<Theme>, Styles>
   }
 
-  /**
-   *
-   * @param {React.ComponentType} Component  - component to inject styles theme into.
-   */
-  interface WithRules<Props, Styles, Theme = any>{
-    (Component: React.ComponentType<Props & FelaWithStylesProps<Props, Styles, Theme>>)
-      : React.ComponentType<Props & FelaWithStylesInjectedProps<Props, Styles, Theme>>
+  interface WithRules<Props, Styles, Theme>{
+    <C extends React.ComponentType<any>>(Component: C):
+      // extract component props
+      C extends React.ComponentType<infer InferProps>
+        // if component props contains styles and rules
+        ? InferProps extends FelaWithStylesProps<Props, Styles, Theme>
+          // inject styles and rules and return new component with extend prop
+          ? React.ComponentType<Props & FelaWithStylesInjectedProps<Props, Styles, Theme>>
+          // else if component props already contains extend prop
+          : InferProps extends FelaWithStylesInjectedProps<InferProps, infer InferStyles, Theme>
+            // and if all style keys contains in inferred style keys
+            ? Exclude<keyof Styles, keyof InferStyles> extends never
+              // it was reconnect, return component as is
+              ? C
+              : never
+            : never
+          : never
   }
 
   export type ConnectConfig = {
