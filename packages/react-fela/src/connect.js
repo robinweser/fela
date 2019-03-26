@@ -2,12 +2,11 @@
 import { Component, createElement } from 'react'
 import { connectFactory } from 'fela-bindings'
 
-import { RendererContext } from './context'
-import FelaTheme from './FelaTheme'
+import { RendererContext, ThemeContext } from './context'
 
 export default connectFactory(
   Component,
   createElement,
   RendererContext,
-  FelaTheme
+  ThemeContext
 )

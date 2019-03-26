@@ -10,8 +10,8 @@
     "fela-tools": "^10.2.2",
     "jest-react-fela": "^10.2.2",
     "raf": "^3.4.1",
-    "react": "^16.7.0-alpha",
-    "react-dom": "^16.7.0-alpha",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
     "react-fela": "^10.2.2",
     "react-test-renderer": "^16.6.0"
   }

@@ -1,6 +1,6 @@
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
-import * as path from "path";
-import * as webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import path from "path";
+import webpack from "webpack";
 
 const index = path.resolve(__dirname, "src/index.tsx");
 const dist = path.resolve(__dirname, "dist");
@@ -25,7 +25,7 @@ export default {
     plugins: [new HtmlWebpackPlugin({
         appMountId: "root",
         inject: false,
-        template: "node_modules/html-webpack-template/index.ejs",
+        template: require('html-webpack-template'),
         title: "Fela with Typescript",
     })],
     resolve: {

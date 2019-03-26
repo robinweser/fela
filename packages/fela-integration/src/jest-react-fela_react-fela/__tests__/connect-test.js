@@ -30,7 +30,7 @@ describe('Connect Factory for bindings', () => {
     expect(createSnapshot(<Comp />)).toMatchSnapshot()
   })
 
-  it('should not pass through "theme" prop when used without "ThemeProvider"', () => {
+  it('should pass through "theme" prop into Component', () => {
     const rules = {
       rule1: () => ({
         padding: 1,
@@ -40,20 +40,26 @@ describe('Connect Factory for bindings', () => {
       }),
     }
 
-    const Comp = connect(rules)(
-      ({ styles, rules: injectedRules, ...props }) => (
-        <div {...props}>
-          <span className={styles.rule1} />
-          <span className={styles.rule2} />
-        </div>
-      )
-    )
+    const InnerComp = jest.fn(() => null)
 
-    Comp.defaultProps = {
-      color: 'red',
+    const Comp = connect(rules)(InnerComp)
+
+    const theme = {
+      primary: 'red',
+      secondary: 'blue',
     }
 
-    expect(createSnapshot(<Comp />)).toMatchSnapshot()
+    createSnapshot(<Comp />, theme)
+
+    expect(InnerComp).toHaveBeenCalledWith(
+      {
+        styles: expect.anything(),
+        rules: expect.anything(),
+        theme,
+      },
+      expect.anything()
+    )
+    expect(InnerComp).toHaveBeenCalledTimes(1)
   })
 
   it('should process rules and create classNames with rules as function', () => {
