@@ -6,7 +6,7 @@ A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| rules | *Object*<br>*Function* | An object containing named rules or a function that produces such an object based on the props of a component. |
+| rules | *Object* or *Function* | An object containing named rules or a function that produces such an object based on the props of a component. |
 | config | *Object?* | An object containing settings to configure Wrapper Component. |
 
 ## Configuration parameters
@@ -17,7 +17,14 @@ A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-
 
 
 ## Returns
-(*Function*): Component connector that passes the `styles` object to a component.
+(*Function*): Component connector that passes the `styles`, `riles` and `theme` props to a component.
+
+## Provided properties
+| Argument | Type | Description |
+| --- | --- | --- |
+| styles | *Object* | An object containing class names by keys. |
+| rules | *Object* | An object containing style rules by keys (used for extend inner components). |
+| theme | *Object* | An object containing the style theme, if provided. |
 
 ## Imports
 ```javascript
