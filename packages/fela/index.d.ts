@@ -3,7 +3,7 @@ declare module "fela" {
   import { TRuleType, TKeyframeType, TFontType, TStaticType, TClearType } from 'fela-utils';
 
   export type TRuleProps = {};
-  export type TRule<T = TRuleProps> = (props: T) => IStyle
+  export type TRule<T = TRuleProps> = (props: T, renderer: IRenderer) => IStyle
 
   type TKeyFrame = TRule;
   type TRendererCreator = (config?: IConfig) => IRenderer;
@@ -79,12 +79,14 @@ declare module "fela-tools" {
   import { TRule, TRuleProps, IStyle, IRenderer } from "fela";
 
   export type TMultiRuleObject<Props = TRuleProps, Styles = {}> = {[key in keyof Styles]: TRule<Props> | IStyle}
-  type TMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TMultiRuleObject<Props, Styles>
+  export type TMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props, renderer: IRenderer) => TMultiRuleObject<Props, Styles>
   export type TMultiRule<Props = TRuleProps, Styles = {}> = TMultiRuleObject<Props, Styles> | TMultiRuleFunction<Props, Styles>
-  type TPartialMultiRuleObject<Props = TRuleProps, Styles = {}> = Partial<TMultiRuleObject<Props, Styles>>
-  type TPartialMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props) => TPartialMultiRuleObject<Props, Styles>
+
+  export type TPartialMultiRuleObject<Props = TRuleProps, Styles = {}> = Partial<TMultiRuleObject<Props, Styles>>
+  export type TPartialMultiRuleFunction<Props = TRuleProps, Styles = {}> = (props: Props, renderer: IRenderer) => TPartialMultiRuleObject<Props, Styles>
   export type TPartialMultiRule<Props = TRuleProps, Styles = {}> = TPartialMultiRuleObject<Props, Styles> | TPartialMultiRuleFunction<Props, Styles>
-  export type TNormalizedMultiRule<Props = TRuleProps, Styles = {}> = (props: Props) => {[key in keyof Styles]: TRule<Props>}
+
+  export type TNormalizedMultiRule<Props = TRuleProps, Styles = {}> = (props: Props, renderer: IRenderer) => {[key in keyof Styles]: TRule<Props>}
 
   function combineMultiRules<A, SA, B, SB>(
     a: TMultiRule<A, SA>,
