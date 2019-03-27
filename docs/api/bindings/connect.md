@@ -20,7 +20,7 @@ A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-
 (*Function*): Component connector that passes the `styles`, `riles` and `theme` props to a component.
 
 ## Provided properties
-| Argument | Type | Description |
+| Property | Type | Description |
 | --- | --- | --- |
 | styles | *Object* | An object containing class names by keys. |
 | rules | *Object* | An object containing style rules by keys (used for extend inner components). |
