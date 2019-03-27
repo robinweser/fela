@@ -30,7 +30,7 @@ const ComplexComponent: React.FunctionComponent<Props> = props => {
         {Object.entries(rules)
           .map(([key, rule]) => (
             <div key={key}>
-              {`${key}: ${JSON.stringify(rule(props, undefined as any))}`}
+              {`${key}: ${JSON.stringify(rule(props))}`}
             </div>
           ))}
       </div>

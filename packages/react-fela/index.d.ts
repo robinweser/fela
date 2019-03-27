@@ -61,7 +61,7 @@ declare module "react-fela" {
 
   export interface FelaWithStylesProps<Props, Styles, Theme = any> {
     styles: {[key in keyof Styles]: string},
-    rules: {[key in keyof Styles]: TRule<Props & Partial<FelaWithThemeProps<Theme>>>},
+    rules: {[key in keyof Styles]: (props: Props & Partial<FelaWithThemeProps<Theme>>) => IStyle},
     theme: Theme,
   }
 
