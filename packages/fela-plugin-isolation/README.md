@@ -4,6 +4,8 @@
 
 Adds style isolation to every rule by attaching `all: initial` to every class.
 
+*If you just have classname collisions, please take a look at [the advanced Renderer configuration](https://fela.js.org/docs/advanced/RendererConfiguration.html) first.*
+
 ## Installation
 ```sh
 yarn add fela-plugin-isolation
