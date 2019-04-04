@@ -5,6 +5,12 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.2.3
+| Package | Changes |
+| --- | --- |
+| fela-codemods | ([#691](https://github.com/rofrischmann/fela/pull/691)) Fix `render` -> `as` conversion edge cases. Don't convert args of callbacks _inside_ an inline `style` function, only the args to the `style` callback itself. |
+
+
 ### 10.2.2
 | Package | Changes |
 | --- | --- |
