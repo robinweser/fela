@@ -29,8 +29,8 @@
         "fela-plugin-prefixer": "^10.2.2",
         "fela-plugin-unit": "^10.2.2",
         "fela-plugin-validator": "^10.2.2",
-        "react": "^16.7.0-alpha",
-        "react-dom": "^16.7.0-alpha",
+        "react": "^16.8.5",
+        "react-dom": "^16.8.5",
         "react-fela": "^10.2.2",
         "webpack": "^2.6.1",
         "webpack-dev-server": "^3.1.11"

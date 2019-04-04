@@ -20,7 +20,7 @@ export default function connectFactory(
   BaseComponent: any,
   createElement: Function,
   RendererContext: any,
-  FelaTheme: Function
+  ThemeContext: any
 ): Function {
   return function connect(
     rules: Object | Function,
@@ -55,13 +55,14 @@ export default function connectFactory(
             allRules.push(extend)
           }
 
+          const combinedRules = combineMultiRules(...allRules)
+
           return createElement(RendererContext.Consumer, undefined, renderer =>
-            createElement(FelaTheme, undefined, _felaTheme => {
-              const combinedRules = combineMultiRules(...allRules)
+            createElement(ThemeContext.Consumer, undefined, theme => {
               const preparedRules = combinedRules(
                 {
                   ...otherProps,
-                  theme: _felaTheme,
+                  theme,
                 },
                 renderer
               )
@@ -94,7 +95,7 @@ export default function connectFactory(
                 (styleMap, rule, name) => {
                   styleMap[name] = renderer.renderRule(rule, {
                     ...otherProps,
-                    theme: _felaTheme,
+                    theme,
                   })
 
                   return styleMap
@@ -108,7 +109,7 @@ export default function connectFactory(
                   ruleMap[name] = props =>
                     rule(
                       {
-                        theme: _felaTheme,
+                        theme,
                         ...props,
                       },
                       renderer
@@ -122,6 +123,7 @@ export default function connectFactory(
               return createElement(component, {
                 ...otherProps,
                 styles,
+                theme,
                 rules: boundRules,
               })
             })

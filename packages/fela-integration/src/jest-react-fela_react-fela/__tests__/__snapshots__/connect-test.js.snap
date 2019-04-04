@@ -59,22 +59,6 @@ exports[`Connect Factory for bindings should extend the rule properties 1`] = `
 "
 `;
 
-exports[`Connect Factory for bindings should not pass through "theme" prop when used without "ThemeProvider" 1`] = `
-".a {
-  padding: 1;
-}
-.b {
-  color: red;
-}
-
-
-<div color=red>
-  <span className=a />
-  <span className=b />
-</div>;
-"
-`;
-
 exports[`Connect Factory for bindings should process rules and create classNames 1`] = `
 ".a {
   padding: 1;
