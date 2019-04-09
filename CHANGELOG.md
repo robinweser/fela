@@ -8,6 +8,8 @@ If you're searching for older logs, please check the [old changelog](https://git
 ### 10.2.3
 | Package | Changes |
 | --- | --- |
+| react-fela | ([#697](https://github.com/rofrischmann/fela/pull/697)) Improved TypeScript typins for the `useFela` hook API.<br>([#692](https://github.com/rofrischmann/fela/pull/692)) Improved TypeScript typings for the `FelaRenderer` component. |
+| react-fela<br>preact-fela<br>inferno-fela<br>fela-bindings | ([#695](https://github.com/rofrischmann/fela/pull/695)) Improved TypeScript typins for the `connect` API. |
 | fela-codemods | ([#691](https://github.com/rofrischmann/fela/pull/691)) Fix `render` -> `as` conversion edge cases. Don't convert args of callbacks _inside_ an inline `style` function, only the args to the `style` callback itself. |
 
 
