@@ -2,6 +2,7 @@ import { type Component } from 'react'
 import packageJson from '../package.json'
 
 const context = require.context('./implementations/', true, /index\.js$/)
+
 const { dependencies } = packageJson
 
 type ComponentsType = {
@@ -18,12 +19,15 @@ type ImplementationType = {
 }
 
 const toImplementations = (context: Object): Array<ImplementationType> =>
-  context.keys().map(path => {
-    const components = context(path).default
-    const name = path.split('/')[1]
-    const version = dependencies[name] || ''
-    return { components, name, version }
-  })
+  context
+    .keys()
+    // .filter(pkg => pkg.indexOf('fela') === -1)
+    .map(path => {
+      const components = context(path).default
+      const name = path.split('/')[1]
+      const version = dependencies[name] || ''
+      return { components, name, version }
+    })
 
 const toObject = (impls: Array<ImplementationType>): Object =>
   impls.reduce((acc, impl) => {

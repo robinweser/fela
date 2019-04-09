@@ -26,7 +26,7 @@ export default class App extends Component {
     const currentBenchmarkName = Object.keys(props.tests)[0]
     this.state = {
       currentBenchmarkName,
-      currentLibraryName: 'react-fela',
+      currentLibraryName: 'react-fela-useFela',
       status: 'idle',
       results: [],
     }
