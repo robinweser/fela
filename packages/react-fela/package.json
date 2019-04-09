@@ -32,5 +32,6 @@
     "fela-bindings": "^10.2.3",
     "fela-dom": "^10.2.3",
     "prop-types": "^15.5.8"
-  }
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

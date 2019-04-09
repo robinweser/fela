@@ -27,5 +27,6 @@
     "csslint": "^1.0.5",
     "fela-utils": "^10.2.3",
     "isobject": "^3.0.1"
-  }
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

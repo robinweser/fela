@@ -33,5 +33,6 @@
   "dependencies": {
     "fela-bindings": "^10.2.3",
     "fela-dom": "^10.2.3"
-  }
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }
