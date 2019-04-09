@@ -535,6 +535,11 @@ declare module "react-fela" {
     export function createComponentWithProxy<Props, Theme = any>(style: Style<Props>, base: "use", passThroughProps?: PassThroughProps<Props>): FelaSvgComponent<Props, SVGElement, Theme>;
     export function createComponentWithProxy<Props, Theme = any>(style: Style<Props>, base: "view", passThroughProps?: PassThroughProps<Props>): FelaSvgComponent<Props, SVGElement, Theme>;
 
+    /**
+     * Fela Renderer
+     */
+    export class FelaRenderer extends React.Component<React.ConsumerProps<IRenderer>> {}
+
     export const RendererContext: React.Context<IRenderer>
 
     interface RenderProps<T> {
@@ -565,17 +570,15 @@ declare module "react-fela" {
     export class FelaComponent<T, P = {}> extends React.Component<FelaComponentProps<T, P> & P> {
     }
 
+    export type CssFelaStyle<T, P> = IStyle | StyleFunction<T, P>
 
-    /**
-     * Fela Renderer
-     */
-    export class FelaRenderer extends React.Component<React.ConsumerProps<IRenderer>> {}
+    export type CssFunction<T, P> = (...style: CssFelaStyle<T, P>[]) => string
 
-    export interface FelaHookProps<Theme> {
-      css: (style: IStyle) => string,
-      theme: Theme,
+    export interface FelaHookProps<T, P> {
+      css: CssFunction<T, P>,
+      theme: T,
       renderer: IRenderer,
     }
 
-    export function useFela<Theme = {}>(): FelaHookProps<Theme>
+    export function useFela<T = {}, P = {}>(props?: P): FelaHookProps<T, P>
 }
