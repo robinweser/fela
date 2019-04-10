@@ -42,6 +42,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-rtl](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-rtl) - Converts styles to their right-to-left counterpart
 * [fela-plugin-unit](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-unit) - Automatically adds units to values if needed
 * [fela-plugin-validator*](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-validator) - Validates, logs & optionally deletes invalid properties for keyframes and rules
+* [fela-plugin-typescript](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-typescript) - Allows to write type-safe style rules and provides some autocomplete
 
 #### Plugin-Presets
 * [fela-preset-web](https://github.com/rofrischmann/fela/tree/master/packages/fela-preset-web) - Preset for cross-browser web applications
@@ -52,6 +53,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-layout-debugger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-layout-debugger) - Adds colored outlines or backgroundColors to debug layouts
 * [fela-logger*](https://github.com/rofrischmann/fela/tree/master/packages/fela-logger) - Logs every rendered change output
 * [fela-monolithic](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic) - Render component-based (monolithic) CSS classes (rather than atomic)
+* [fela-identifier](https://github.com/rofrischmann/fela/tree/master/packages/fela-identifier) - Allows to create rules for which the renderer will generate unique class names (useful for nested selectors)
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
 * [fela-statistics*](https://github.com/rofrischmann/fela/tree/master/packages/fela-statistics) - Collects different metrics to analyze your styles
 
