@@ -2,6 +2,7 @@
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import arrayEach from 'fast-loops/lib/arrayEach'
 import isPlainObject from 'isobject'
+import sortObjectKeys from './sortObjectKeys'
 
 import {
   generateCombinedMediaQuery,
@@ -201,9 +202,10 @@ export default function createRenderer(
       support: string = ''
     ): string {
       let classNames = _className ? ` ${_className}` : ''
+      let sortedStyles = sortObjectKeys(style)
 
-      for (const property in style) {
-        const value = style[property]
+      for (const property in sortedStyles) {
+        const value = sortedStyles[property]
 
         if (isPlainObject(value)) {
           if (isNestedSelector(property)) {
