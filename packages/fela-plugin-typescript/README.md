@@ -4,7 +4,7 @@
 
 This plugins allows you to write type-safe style rules and provides some autocomplete for you:
 
-![Autocomplete](/docs/autocomplete.gif)
+![Autocomplete](./docs/autocomplete.gif)
 
 ## Installation
 ```sh
