@@ -45,7 +45,7 @@ declare module "fela" {
   }
 
   export interface IStyle extends CSS.Properties<string | number> {
-    //TODO: add properties, missing in React.CSSProperties
+    // for selectors and pseudo classes use fela-plugin-typescript
   }
 
   function createRenderer(config?: IConfig): IRenderer;
