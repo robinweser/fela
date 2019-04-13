@@ -1,4 +1,4 @@
-# fela-plugin-embedded
+# fela-plugin-typescript
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-typescript.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-typescript.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-typescript@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-typescript.svg"></a>
 
