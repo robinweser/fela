@@ -57,7 +57,6 @@ export default function createRenderer(
 
     rendererId: validateSelectorPrefix(config.rendererId),
     selectorPrefix: validateSelectorPrefix(config.selectorPrefix),
-    targetDocument: config.targetDocument || document,
     filterClassName: config.filterClassName || isSafeClassName,
     devMode: config.devMode || false,
 
