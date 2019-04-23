@@ -29,5 +29,7 @@ it('should query by "data-fela-id"', () => {
     '<style data-fela-id="ID" data-fela-type="RULE" type="text/css">.a{color: red}</style>'
   document.head.innerHTML = nodeValid
 
-  expect(queryNode({ type: RULE_TYPE }, document, 'ID').outerHTML).toBe(nodeValid)
+  expect(queryNode({ type: RULE_TYPE }, document, 'ID').outerHTML).toBe(
+    nodeValid
+  )
 })

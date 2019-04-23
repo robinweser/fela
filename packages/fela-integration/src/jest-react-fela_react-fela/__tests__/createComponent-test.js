@@ -1,7 +1,6 @@
 import 'raf/polyfill'
 import React from 'react'
 
-import { createRenderer } from 'fela'
 import { createSnapshot } from 'jest-react-fela'
 import { createComponent } from 'react-fela'
 

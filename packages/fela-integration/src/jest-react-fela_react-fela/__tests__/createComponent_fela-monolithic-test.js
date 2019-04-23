@@ -4,7 +4,7 @@ import React from 'react'
 import { createRenderer } from 'fela'
 import { createSnapshot } from 'jest-react-fela'
 import monolithic from 'fela-monolithic'
-import { createComponent, createComponentWithProxy } from 'react-fela'
+import { createComponent } from 'react-fela'
 
 describe('Creating Components from Fela rules using fela-monolithic', () => {
   it('should use a dev-friendly className', () => {

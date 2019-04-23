@@ -17,8 +17,13 @@ describe('Creating a style node', () => {
     const getHTML = (media, support, rendererId = '') => ({
       _media: media,
       _support: support,
-      html: createNode({}, 0, { type: RULE_TYPE, media, support }, document, rendererId)
-        .outerHTML,
+      html: createNode(
+        {},
+        0,
+        { type: RULE_TYPE, media, support },
+        document,
+        rendererId
+      ).outerHTML,
     })
 
     expect(getHTML()).toMatchSnapshot()

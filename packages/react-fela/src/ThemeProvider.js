@@ -1,7 +1,6 @@
 /* @flow */
 import { createElement, Children } from 'react'
 import { ThemeProviderFactory } from 'fela-bindings'
-import PropTypes from 'prop-types'
 
 import { ThemeContext } from './context'
 
