@@ -18,8 +18,9 @@ export default function rehydrate(renderer: DOMRenderer): void {
   render(renderer)
 
   const idQuery = `[data-fela-id="${renderer.rendererId}"]`
+  const nodes = renderer.targetDocument.querySelectorAll(`[data-fela-type]${idQuery}`)
 
-  arrayEach(document.querySelectorAll(`[data-fela-type]${idQuery}`), node => {
+  arrayEach(nodes, node => {
     const rehydrationAttribute =
       node.getAttribute('data-fela-rehydration') || -1
     const rehydrationIndex =

@@ -6,6 +6,7 @@ export type DOMRenderer = {
   mediaQueryOrder: Array<string>,
   rendererId: string,
   selectorPrefix: string,
+  targetDocument: Document,
   filterClassName: Function,
   listeners: Array<Function>,
   uniqueRuleIdentifier: number,
@@ -29,6 +30,7 @@ export type DOMRendererConfig = {
   mediaQueryOrder?: Array<string>,
   rendererId?: string,
   selectorPrefix?: string,
+  targetDocument?: Document,
   filterClassName?: Function,
   devMode?: boolean,
 }

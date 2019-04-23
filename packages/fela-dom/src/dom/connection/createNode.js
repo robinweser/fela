@@ -7,11 +7,12 @@ export default function createNode(
   nodes: Object,
   score: number,
   { type, media, support }: NodeAttributes,
+  targetDocument: Document,
   id?: string = ''
 ): Object {
-  const head = document.head || {}
+  const head = targetDocument.head || {}
 
-  const node = document.createElement('style')
+  const node = targetDocument.createElement('style')
   node.setAttribute('data-fela-id', id)
   node.setAttribute('data-fela-type', type)
   node.type = 'text/css'

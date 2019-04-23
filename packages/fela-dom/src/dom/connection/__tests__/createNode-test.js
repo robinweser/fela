@@ -17,7 +17,7 @@ describe('Creating a style node', () => {
     const getHTML = (media, support, rendererId = '') => ({
       _media: media,
       _support: support,
-      html: createNode({}, 0, { type: RULE_TYPE, media, support }, rendererId)
+      html: createNode({}, 0, { type: RULE_TYPE, media, support }, document, rendererId)
         .outerHTML,
     })
 
@@ -32,7 +32,7 @@ describe('Creating a style node', () => {
     const nodes = {}
 
     function createAndAdd(score, attributes) {
-      const node = createNode(nodes, score, attributes)
+      const node = createNode(nodes, score, attributes, document)
       nodes[JSON.stringify(attributes) + score] = { node, score }
     }
 

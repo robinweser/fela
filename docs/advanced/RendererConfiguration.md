@@ -13,6 +13,7 @@ We might introduce more configuration options with future releases, so be sure t
 | enhancers  | *(Array?)* |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
 | mediaQueryOrder | *(Array?)* |  | An explicit order in which `@media` queries are rendered |
 | rendererId | *(string?)* |  | An optional unique identifier that will prefix your animation names and will be added as the value of a `data-fela-id` attribute on `<style>` nodes. An example use case: the recommended way is to have only one renderer, but there are some specific cases when you will need to have multiple renderers. This option allows you avoid conflicts in generated CSS rules via prefixing animation names and separated `<style>` tags. |
+| targetDocument | *(Document?)* | document | Allows to pass you a custom document to insert style rules, useful when you're are rendering to child windows. 
 | supportQueryOrder | *(Array?)* |  | An explicit order in which `@supports` queries are rendered |
 | selectorPrefix | *(string?)* |  | Prepend a static prefix to every generated class and keyframe. It must only consist of `a-zA-Z0-9-_` and start with `a-zA-Z_`. |
 | filterClassName | *(Function?)* | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names |
