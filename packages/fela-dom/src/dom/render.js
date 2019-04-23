@@ -1,12 +1,11 @@
 /* @flow */
 import objectEach from 'fast-loops/lib/objectEach'
-import generateClassName from 'fela/lib/generateClassName'
 
 import createSubscription from './connection/createSubscription'
 
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
-let id = 100
+let id = 0
 const getId = () => {
   id += 1
 
@@ -21,7 +20,7 @@ export default function render(
     renderer.scoreIndex = {}
     renderer.nodes = {}
 
-    target.felaSubscribeId = generateClassName(getId)
+    target.felaSubscribeId = getId()
 
     renderer.updateSubscription = createSubscription(renderer, target)
     renderer.subscribe(renderer.updateSubscription)
@@ -32,7 +31,7 @@ export default function render(
   }
 
   if (!target.felaSubscribeId) {
-    target.felaSubscribeId = generateClassName(getId)
+    target.felaSubscribeId = getId()
 
     const updateSubscription = createSubscription(renderer, target)
     renderer.subscribe(updateSubscription)
