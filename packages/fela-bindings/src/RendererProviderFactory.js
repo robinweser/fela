@@ -29,9 +29,9 @@ export default function RendererProviderFactory(
 
       if (hasDOM(props.renderer)) {
         if (props.rehydrate && hasServerRenderedStyle()) {
-          rehydrate(props.renderer)
+          rehydrate(props.renderer, props.target)
         } else {
-          render(props.renderer)
+          render(props.renderer, props.target)
         }
       }
     }

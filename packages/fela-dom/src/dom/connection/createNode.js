@@ -30,6 +30,7 @@ export default function createNode(
   const moreSpecificReference = objectReduce(
     nodes,
     (closest, currentNode, reference) =>
+      currentNode.documentId === targetDocument.felaSubscribeId &&
       currentNode.score > score &&
       (!closest || nodes[closest].score > currentNode.score)
         ? reference

@@ -14,13 +14,14 @@ const CLASSNAME_REGEX = /[.][a-z0-9_-]*/gi
 
 // rehydration (WIP)
 // TODO: static, keyframe, font
-export default function rehydrate(renderer: DOMRenderer): void {
-  render(renderer)
+export default function rehydrate(
+  renderer: DOMRenderer,
+  target: Document = document
+): void {
+  render(renderer, target)
 
   const idQuery = `[data-fela-id="${renderer.rendererId}"]`
-  const nodes = renderer.targetDocument.querySelectorAll(
-    `[data-fela-type]${idQuery}`
-  )
+  const nodes = target.querySelectorAll(`[data-fela-type]${idQuery}`)
 
   arrayEach(nodes, node => {
     const rehydrationAttribute =

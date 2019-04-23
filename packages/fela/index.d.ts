@@ -64,8 +64,8 @@ declare module "fela" {
 declare module "fela-dom" {
   import { IRenderer } from 'fela';
 
-  function render(renderer: IRenderer): void;
-  function rehydrate(renderer: IRenderer): void;
+  function render(renderer: IRenderer, target?: Document): void;
+  function rehydrate(renderer: IRenderer, target?: Document): void;
   function renderToMarkup(renderer: IRenderer): string;
   function renderToSheetList(renderer: IRenderer): {
     css: string,
