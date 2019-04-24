@@ -7,12 +7,12 @@ export default function createNode(
   nodes: Object,
   score: number,
   { type, media, support }: NodeAttributes,
-  targetDocument: Document,
+  target: Document,
   id?: string = ''
 ): Object {
-  const head = targetDocument.head || {}
+  const head = target.head || {}
 
-  const node = targetDocument.createElement('style')
+  const node = target.createElement('style')
   node.setAttribute('data-fela-id', id)
   node.setAttribute('data-fela-type', type)
   node.type = 'text/css'
@@ -30,7 +30,7 @@ export default function createNode(
   const moreSpecificReference = objectReduce(
     nodes,
     (closest, currentNode, reference) =>
-      currentNode.documentId === targetDocument.felaSubscribeId &&
+      currentNode.documentId === target.felaSubscribeId &&
       currentNode.score > score &&
       (!closest || nodes[closest].score > currentNode.score)
         ? reference
