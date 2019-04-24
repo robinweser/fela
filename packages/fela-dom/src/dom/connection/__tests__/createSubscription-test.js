@@ -16,7 +16,7 @@ describe('Subscribing to the DOM', () => {
   it('should render rules to a DOM node', () => {
     const renderer = createRenderer({ devMode: true })
 
-    const updateSubscription = createSubscription(renderer)
+    const updateSubscription = createSubscription(renderer, document)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -37,7 +37,7 @@ describe('Subscribing to the DOM', () => {
   it('should render static styles to a DOM node', () => {
     const renderer = createRenderer()
 
-    const updateSubscription = createSubscription(renderer)
+    const updateSubscription = createSubscription(renderer, document)
     renderer.subscribe(updateSubscription)
 
     renderer.renderStatic(
@@ -58,7 +58,7 @@ describe('Subscribing to the DOM', () => {
   it('should render keyframes to a DOM node', () => {
     const renderer = createRenderer()
 
-    const updateSubscription = createSubscription(renderer)
+    const updateSubscription = createSubscription(renderer, document)
     renderer.subscribe(updateSubscription)
 
     renderer.renderKeyframe(() => ({
@@ -76,7 +76,7 @@ describe('Subscribing to the DOM', () => {
   it('should render media rules and support rules to single DOM nodes (devMode)', () => {
     const renderer = createRenderer({ devMode: true })
 
-    const updateSubscription = createSubscription(renderer)
+    const updateSubscription = createSubscription(renderer, document)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -105,7 +105,7 @@ describe('Subscribing to the DOM', () => {
   it('should clear all DOM nodes', () => {
     const renderer = createRenderer({ devMode: true })
 
-    const updateSubscription = createSubscription(renderer)
+    const updateSubscription = createSubscription(renderer, document)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -135,7 +135,7 @@ describe('Subscribing to the DOM', () => {
   it('should correctly recreate nodes after clean', () => {
     const renderer = createRenderer({ devMode: true })
 
-    const updateSubscription = createSubscription(renderer)
+    const updateSubscription = createSubscription(renderer, document)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({
@@ -183,7 +183,7 @@ describe('Subscribing to the DOM', () => {
   it('should use insertRule in production', () => {
     const renderer = createRenderer()
 
-    const updateSubscription = createSubscription(renderer)
+    const updateSubscription = createSubscription(renderer, document)
     renderer.subscribe(updateSubscription)
 
     renderer.renderRule(() => ({

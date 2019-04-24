@@ -34,10 +34,10 @@ export default function render(
     target.felaSubscribeId = getId()
 
     const updateSubscription = createSubscription(renderer, target)
-    renderer.subscribe(updateSubscription)
 
     // simulate rendering to ensure all styles rendered prior to
-    // calling FelaDOM.render are correctly injected as well
-    objectEach(renderer.cache, renderer._emitChange)
+    // calling FelaDOM.render are correctly injected as well to current target
+    renderer.subscribe(updateSubscription)
+    objectEach(renderer.cache, updateSubscription)
   }
 }
