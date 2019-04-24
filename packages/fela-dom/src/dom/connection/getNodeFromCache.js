@@ -6,12 +6,11 @@ import createNode from './createNode'
 import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
 
-function getReference({
-  type,
-  media = '',
-  support = '',
-}: NodeAttributes, subscribeId: string): string {
-  return type + media + support + subscribeId
+function getReference(
+  { type, media = '', support = '' }: NodeAttributes,
+  documentId: string
+): string {
+  return type + media + support + documentId
 }
 
 export default function getNodeFromCache(
