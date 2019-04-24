@@ -14,6 +14,7 @@ export default RendererProviderFactory(
     propTypes: {
       renderer: PropTypes.object.isRequired,
       rehydrate: PropTypes.bool.isRequired,
+      target: PropTypes.object,
     },
     defaultProps: {
       rehydrate: true,
