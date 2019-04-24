@@ -18,7 +18,9 @@ export default function getNodeFromCache(
   renderer: DOMRenderer,
   target: Document
 ): Object {
-  const reference = getReference(attributes, target.felaSubscribeId)
+  const head = target.head || {}
+  const documentId = head.getAttribute('fela-document-id') || ''
+  const reference = getReference(attributes, documentId)
 
   if (!renderer.nodes[reference]) {
     const score = calculateNodeScore(attributes, renderer.mediaQueryOrder)
@@ -29,7 +31,7 @@ export default function getNodeFromCache(
     renderer.nodes[reference] = {
       node,
       score,
-      documentId: target.felaSubscribeId,
+      documentId,
     }
   }
 

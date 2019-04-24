@@ -8,19 +8,20 @@ import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 let id = 0
 const getId = () => {
   id += 1
-
-  return id
+  return `${id}`
 }
 
 export default function render(
   renderer: DOMRenderer,
   target: Document = document
 ): void {
+  const head = target.head || {}
+
   if (!renderer.updateSubscription) {
     renderer.scoreIndex = {}
     renderer.nodes = {}
 
-    target.felaSubscribeId = getId()
+    head.setAttribute('fela-document-id', getId())
 
     renderer.updateSubscription = createSubscription(renderer, target)
     renderer.subscribe(renderer.updateSubscription)
@@ -30,8 +31,8 @@ export default function render(
     objectEach(renderer.cache, renderer._emitChange)
   }
 
-  if (!target.felaSubscribeId) {
-    target.felaSubscribeId = getId()
+  if (!head.hasAttribute('fela-document-id')) {
+    head.setAttribute('fela-document-id', getId())
 
     const updateSubscription = createSubscription(renderer, target)
 

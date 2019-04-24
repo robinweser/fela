@@ -39,14 +39,17 @@ export default function rehydrate(
 
       renderer.uniqueRuleIdentifier = rehydrationIndex
 
-      const reference = type + media + support + target.felaSubscribeId
+      const head = target.head || {}
+      const documentId = head.getAttribute('fela-document-id') || ''
+      const reference = type + media + support + documentId
+
       renderer.nodes[reference] = {
         score: calculateNodeScore(
           { type, media, support },
           renderer.mediaQueryOrder
         ),
         node,
-        documentId: target.felaSubscribeId,
+        documentId,
       }
 
       if (type === RULE_TYPE) {
