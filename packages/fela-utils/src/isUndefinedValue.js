@@ -2,6 +2,7 @@
 export default function isUndefinedValue(value: any): boolean {
   return (
     value === undefined ||
-    (typeof value === 'string' && value.indexOf('undefined') !== -1)
+    value === null ||
+    (typeof value === 'string' && value.match(/(undefined|null)/) !== null)
   )
 }

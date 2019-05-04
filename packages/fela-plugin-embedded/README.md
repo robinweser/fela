@@ -1,6 +1,6 @@
 # fela-plugin-embedded
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-embedded.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-embedded.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-embedded.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-embedded.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-embedded@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-embedded.svg"></a>
 
 This plugins allows the use of inline keyframes and font-faces. It directly resolves them while rendering and only returns the correct reference.
 
@@ -78,7 +78,7 @@ const renderer = createRenderer({
       fontFamily: 'Arial',
       fontWeight: 700,
       src: [
-        'arial-bold.svg', 
+        'arial-bold.svg',
         'arial-bold.ttf'
       ]
     }]

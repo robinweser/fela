@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using the useFela hook should combine rules 1`] = `
+".a {
+  color: red;
+}
+.b {
+  background-color: blue;
+}
+
+
+<div className=a b>red</div>;
+"
+`;
+
+exports[`Using the useFela hook should correctly render styles 1`] = `
+".a {
+  color: red;
+}
+
+
+<div className=a>red</div>;
+"
+`;
+
+exports[`Using the useFela hook should use pass props 1`] = `
+".a {
+  color: red;
+}
+.b {
+  font-size: 15px;
+}
+
+
+<div className=a b />;
+"
+`;
+
+exports[`Using the useFela hook should use the theme 1`] = `
+".a {
+  color: red;
+}
+
+
+<div className=a>red</div>;
+"
+`;

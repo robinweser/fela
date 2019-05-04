@@ -29,11 +29,13 @@ div {
   .d {
     color: blue
   }
+
   @supports (display:flex) {
     .e {
       color: green
     }
   }
+
   @supports (display:grid) {
     .f {
       color: black
@@ -44,7 +46,7 @@ div {
 @media (max-height: 300px) {
   @supports (display: flex) {
     .g {
-      color:purple
+      color: purple
     }
   }
 }

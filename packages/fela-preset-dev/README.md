@@ -1,6 +1,6 @@
 # fela-preset-dev
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-preset-dev.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-preset-dev.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-preset-dev.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-preset-dev.svg"> <a href="https://bundlephobia.com/result?p=fela-preset-dev@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-preset-dev.svg"></a>
 
 A Fela plugin preset for development.
 

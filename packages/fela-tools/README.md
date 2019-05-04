@@ -2,7 +2,7 @@
 
 A set of useful tools to work with Fela.
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-tools.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-tools.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-tools.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-tools.svg"> <a href="https://bundlephobia.com/result?p=fela-tools@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-tools.svg"></a>
 
 ## Installation
 ```sh

@@ -1,6 +1,6 @@
 # fela-plugin-placeholder-prefixer
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-placeholder-prefixer.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-placeholder-prefixer.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-placeholder-prefixer.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-placeholder-prefixer.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-placeholder-prefixer@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-placeholder-prefixer.svg"></a>
 
 Adds prefixes to `::placeholder` pseudo elements.
 

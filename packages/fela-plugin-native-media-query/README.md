@@ -1,6 +1,6 @@
 # fela-plugin-native-media-query
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-native-media-query.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-native-media-query.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-native-media-query.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-native-media-query.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-native-media-query@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-native-media-query.svg"></a>
 
 This plugin is basically a convenient plugin for more readable code and better maintenance.<br>
 It enables the use of named media query keys.

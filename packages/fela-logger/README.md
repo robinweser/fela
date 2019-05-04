@@ -1,6 +1,6 @@
 # fela-logger
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-logger.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-logger.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-logger.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-logger.svg"> <a href="https://bundlephobia.com/result?p=fela-logger@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-logger.svg"></a>
 
 Logging tool for Fela. Logs changes to the console, grouped by selector, animation name or font family.
 

@@ -12,7 +12,8 @@ Once rendered to the DOM, a change listener will subscribe to changes. The DOM n
 
 **In production** it uses an optimized rendering mechanism based on [`CSSStyleSheet.insertRule`](https://developer.mozilla.org/en-US/docs/Web/api/CSSStyleSheet/insertRule) to update as performant as possible.
 
-**In development** it uses `node.textContent` to update styles. This also implies that Fela is even faster in production, so be sure to use the production environment for production builds.
+**In development** it uses `node.textContent` to update styles. This also implies that Fela is even faster in production, so be sure to use the production environment for production builds.<br>
+In order to enable the development mode, add a `devMode: true` flag to your [renderer configuration](RendererConfiguration.md).
 
 ## Example
 
@@ -28,7 +29,7 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => a b c
+renderer.renderRule(rule, { size: '12px' }) // => a b c
 
 render(renderer)
 
@@ -41,5 +42,5 @@ renderer.renderRule(rule, { size: '15px '}) // => a d c
 ---
 
 ### Related
-* [API reference - `render`](../api/fela-dom/render.md)
-* [API reference - `rehydrate`](../api/fela-dom/rehydrate)
+* [API Reference - `render`](../api/fela-dom/render.md)
+* [API Reference - `rehydrate`](../api/fela-dom/rehydrate.md)

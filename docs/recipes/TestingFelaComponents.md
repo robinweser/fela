@@ -1,5 +1,7 @@
 # Testing Fela Components
 
+> **Caution**: This documentation is kinda out-dated and more complex than it needs to be. It will be updated soon. For now, please refer to [createSnapshot](../api/jest-bindings/createSnapshot.md) for testing with Jest.
+
 There is no required library for testing Fela components. Since Fela is [framework-agnostic](../introduction/Benefits.md), you may use any javascript testing library to test your components. Fela's source is already [fully tested](https://codeclimate.com/github/rofrischmann/fela/coverage), so your tests should only confirm that Fela's styles are interacting correctly with the components.
 
 ## Approach
@@ -53,7 +55,7 @@ describe('Box', () => {
 })
 ```
 
-Our `expect` case creates a JSON snapshot of the component with `react-test-renderer` and compares it to any previous snapshots for changes (Jest feature).
+Our `expect` case creates a JSON snapshot of the component with [react-test-renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) and compares it to any previous snapshots for changes (Jest feature).
 ```
 exports[`Box should render component 1`] = `
 <div
@@ -66,13 +68,13 @@ exports[`Box should render component 1`] = `
 `;
 ```
 
-This is not great. There is a lot of boilerplate to simply test if the component renders. Also, since Fela needs the `renderer` context to create the styles, we must wrap every component in Fela's `<Provider />`. Even after this setup, we're really not testing much about the style of the component. It would be great to get rid of the boilerplate and track changes to the styles themselves (not just the classNames).
+This is not great. There is a lot of boilerplate to simply test if the component renders. Also, since Fela needs the `renderer` context to create the styles, we must wrap every component in Fela's [Provider](../api/bindings/Provider.md). Even after this setup, we're really not testing much about the style of the component. It would be great to get rid of the boilerplate and track changes to the styles themselves (not just the classNames).
 
 ### Improving Our Test
 From examining a basic test for Fela components, we want to focus on reducing boilerplate and improving our test coverage. To achieve this, let's create some helper functions that can be imported into any of our tests.
 
-#### Simplifying the `<Provider />`
-Fela components need a `renderer` and an optional `theme` available their React `context` in order to render. Since fela supplies a `<Provider />` and optional `<ThemeProvider />` to supplies these values, we must wrap all of our tested components with them. To keep our code DRY, let us create a simple helper function that does this for us.
+#### Simplifying The Provider
+Fela components need a `renderer` and an optional `theme` available within their React's [context](https://facebook.github.io/react/docs/context.html) in order to render. Since fela supplies a [Provider](../api/bindings/Provider.md) and optional [ThemeProvider](../api/bindings/ThemeProvider.md) to supplies these values, we must wrap all of our tested components with them. To keep our code DRY, let us create a simple helper function that does this for us.
 
 ```javascript
 // test-helpers/felaSnapshot.js
@@ -117,7 +119,7 @@ describe('Box', () => {
 Much cleaner!
 
 #### Better Test Coverage
-We've got a test helper to help create component snapshots for our tests, so let us focus on test coverage now. In our `<Box />` component from the basic example, passing a `size` property would change the size of the box. That seems like an important thing to test, so let us create a test for that now.
+We've got a test helper to help create component snapshots for our tests, so let us focus on test coverage now. In our `Box` component from the basic example, passing a `size` property would change the size of the box. That seems like an important thing to test, so let us create a test for that now.
 
 ```javascript
 ...
@@ -133,8 +135,6 @@ Now look at the snapshot output.
 exports[`Box should change box size when size prop is passed 1`] = `
 <div
   className="a b c"
-  id={undefined}
-  style={undefined}
 >
   hello
 </div>
@@ -179,8 +179,6 @@ exports[`Box should change box size when size prop is passed 1`] = `
 Object {
   "component": <div
     className="a b c"
-    id={undefined}
-    style={undefined}
 >
     hello
 </div>,
@@ -195,8 +193,6 @@ exports[`Box should render component 1`] = `
 Object {
   "component": <div
     className="a b c"
-    id={undefined}
-    style={undefined}
 >
     hello
 </div>,
@@ -258,7 +254,7 @@ describe('Box', () => {
 })
 ```
 
-You may also consider [Enzyme](http://airbnb.io/enzyme/) as your React renderer (instead of `react-test-renderer`). They have a powerful API, and using [enzyme-to-json](https://github.com/adriantoine/enzyme-to-json), you can still utilize Jest's powerful snapshot testing. Their `shallow` and `mount` rendering also provides an API to explicitly pass your own context, so there is no more need for Fela's `<Provider />`. Here are some wrappers around these Enzyme functions to support Fela.
+You may also consider [Enzyme](http://airbnb.io/enzyme/) as your React renderer (instead of [react-test-renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer)). They have a powerful API, and using [enzyme-to-json](https://github.com/adriantoine/enzyme-to-json), you can still utilize Jest's powerful snapshot testing. Their `shallow` and `mount` rendering also provides an API to explicitly pass your own context, so there is no more need for Fela's [Provider](../api/bindings/Provider.md). Here are some wrappers around these Enzyme functions to support Fela.
 
 ```javascript
 // test-helpers/felaShallow.js
@@ -318,11 +314,11 @@ const mount = (node, options = {}) => {
   const component = enzymeMount(node, {
     childContextTypes: {
       renderer: PropTypes.object,
-      theme: PropTypes.object
+      _FELA_THEME_: PropTypes.object
     },
     context: {
       renderer,
-      theme: createTheme(myTheme)
+      _FELA_THEME_: createTheme(myTheme)
     },
     ...options
   })

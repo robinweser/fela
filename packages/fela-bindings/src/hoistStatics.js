@@ -12,7 +12,12 @@ const basicStatics = {
 }
 
 const mergableStatics = ['contextTypes', 'defaultProps']
-const blockedStatics = { childContextTypes: true, propTypes: true }
+const blockedStatics = {
+  childContextTypes: true,
+  propTypes: true,
+  getDerivedStateFromProps: true,
+  contextType: true,
+}
 
 export default function hoistStatics(target: any, source: any): any {
   if (typeof source === 'string') {
@@ -28,8 +33,13 @@ export default function hoistStatics(target: any, source: any): any {
       try {
         // Avoid failures from read-only properties
         const descriptor = Object.getOwnPropertyDescriptor(source, property)
-        Object.defineProperty(target, property, descriptor)
-      } catch (e) {}
+
+        if (descriptor) {
+          Object.defineProperty(target, property, descriptor)
+        }
+      } catch (e) {
+        // TODO: warning
+      }
     }
   })
 

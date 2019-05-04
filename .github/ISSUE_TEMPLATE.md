@@ -1,6 +1,6 @@
 <!------------------------------------------
   Thanks for contributing!
-  Please read the guide-lines at the bottom.
+  Please read the guidelines at the bottom.
 ------------------------------------------->
 
 **Type**: Bug / Feature / Infrastructure / Docs / Question

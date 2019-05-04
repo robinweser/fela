@@ -1,10 +1,11 @@
 {
   "name": "fela-plugin-simulate",
-  "version": "6.0.2",
+  "version": "10.2.4",
   "description": "Fela plugin to simulate pseudo classes and media queries",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
+  "sideEffects": false,
   "files": [
     "LICENSE",
     "README.md",
@@ -22,9 +23,11 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "^6.0.0"
+    "fela": "^10.0.0"
   },
   "dependencies": {
-    "css-in-js-utils": "^2.0.0"
-  }
+    "css-in-js-utils": "^3.0.0",
+    "isobject": "^3.0.1"
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

@@ -11,7 +11,9 @@ import {
 
 import cssifyMediaQueryRules from './cssifyMediaQueryRules'
 
-export default function renderToString(renderer: Object): string {
+import type DOMRenderer from '../../../flowtypes/DOMRenderer'
+
+export default function renderToString(renderer: DOMRenderer): string {
   const {
     fontFaces,
     statics,
@@ -23,7 +25,8 @@ export default function renderToString(renderer: Object): string {
   } = clusterCache(
     renderer.cache,
     renderer.mediaQueryOrder,
-    renderer.supportQueryOrder
+    renderer.supportQueryOrder,
+    renderer.ruleOrder
   )
 
   const basicCSS =

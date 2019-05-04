@@ -1,7 +1,7 @@
 /* @flow */
-/* eslint-disable no-continue */
 import objectReduce from 'fast-loops/lib/objectReduce'
 import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
+import isPlainObject from 'isobject'
 import {
   isSupport,
   isMediaQuery,
@@ -11,7 +11,6 @@ import {
   processStyleWithPlugins,
   generateCombinedMediaQuery,
   generateCSSSelector,
-  generateCSSRule,
   RULE_TYPE,
 } from 'fela-utils'
 
@@ -20,18 +19,11 @@ import generateMonolithicClassName from './generateMonolithicClassName'
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 import type MonolithicRenderer from '../../../flowtypes/MonolithicRenderer'
 
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
-
 function useMonolithicRenderer(
   renderer: DOMRenderer,
   prettySelectors: boolean = false
 ): MonolithicRenderer {
   renderer.prettySelectors = prettySelectors
-
-  // monolithic output can not be rehydrated
-  renderer.enableRehydration = false
 
   renderer._renderStyleToCache = (
     className: string,
@@ -78,7 +70,9 @@ function useMonolithicRenderer(
               combinedSupport
             )
           } else {
-            // TODO: warning
+            console.warn(`The object key "${property}" is not a valid nested key in Fela. 
+Maybe you forgot to add a plugin to resolve it? 
+Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information.`)
           }
         } else if (!isUndefinedValue(value)) {
           ruleset[property] = value
@@ -99,6 +93,8 @@ function useMonolithicRenderer(
         selector,
         declaration: css,
         media,
+        pseudo,
+        support,
       }
 
       const declarationReference = selector + media + support
@@ -133,15 +129,38 @@ function useMonolithicRenderer(
     return className
   }
 
-  renderer.renderRule = (rule: Function, props: Object = {}): string => {
+  renderer.renderRule = (rule: Function, props: Object = {}): string =>
+    renderer._renderStyle(rule(props, renderer), props, rule)
+
+  renderer._renderStyle = (
+    style: Object = {},
+    props: Object = {},
+    rule?: Function
+  ): string => {
     const processedStyle = processStyleWithPlugins(
       renderer,
-      rule(props, renderer),
+      style,
       RULE_TYPE,
       props
     )
-    return renderer._renderStyleToClassNames(processedStyle, rule)
+
+    return renderer._renderStyleToClassNames(processedStyle, rule || {})
   }
+
+  renderer.subscribe(event => {
+    if (event.type === 'REHYDRATATION_FINISHED') {
+      // Repair cache for monolithic usage
+      renderer.cache = Object.keys(renderer.cache).reduce((acc, key) => {
+        const item = renderer.cache[key]
+        if (item.type === 'RULE') {
+          return Object.assign(acc, {
+            [item.className + item.media + item.support]: item,
+          })
+        }
+        return Object.assign(acc, { [key]: item })
+      }, {})
+    }
+  })
 
   return renderer
 }

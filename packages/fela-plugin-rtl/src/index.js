@@ -1,11 +1,23 @@
 /* @flow */
 import transformStyle from 'rtl-css-js'
 
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
-import type NativeRenderer from '../../../flowtypes/NativeRenderer'
+import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
+import type { StyleType } from '../../../flowtypes/StyleType'
 
-type Type = 1 | 2 | 3 | 4 | 5
+export default function rtl(defaultDirection: 'rtl' | 'ltr' = 'rtl') {
+  return (
+    style: Object,
+    type: StyleType,
+    renderer: DOMRenderer,
+    props: Object
+  ) => {
+    const direction =
+      (props && props.theme && props.theme.direction) || defaultDirection
 
-export default function rtl() {
-  return (style: Object) => transformStyle(style)
+    if (direction === 'rtl') {
+      return transformStyle(style)
+    }
+
+    return style
+  }
 }

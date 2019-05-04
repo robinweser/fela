@@ -1,9 +1,14 @@
-# `render(renderer)`
+# render
 
-Renders all cached styles into the DOM. It also adds a change listener to automatically add newly rendered styles.<br>
+> This method is used for client-side only rendering. For universal rendering, we recommend using [rehydrate](rehydrate.md).
+
+Renders all cached styles into the DOM.<br>
+It also adds a change listener to automatically add newly rendered styles.
 
 ## Arguments
-1. `renderer` ([*Renderer*](../fela/Renderer.md)): The renderer providing the styles which are rendered to the DOM.
+| Argument | Type | Description |
+| --- | --- | --- |
+| renderer | [*Renderer*](../fela/Renderer.md) | The renderer providing the styles which are rendered to the DOM. |
 
 
 ## Example
@@ -20,7 +25,7 @@ const rule = props => ({
 
 const renderer = createRenderer()
 
-renderer.render(rule, { size: '12px' }) // => a b c
+renderer.renderRule(rule, { size: '12px' }) // => a b c
 
 render(renderer)
 

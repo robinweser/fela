@@ -1,6 +1,6 @@
 # fela-statistics
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-statistics.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-statistics.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-statistics.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-statistics.svg"> <a href="https://bundlephobia.com/result?p=fela-statistics@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-statistics.svg"></a>
 
 Statistic generation tool for Fela. It collects several information and metrics to better analyze your application CSS.<br>
 Right now, it provides the following information:

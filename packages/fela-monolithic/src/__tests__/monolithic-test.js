@@ -1,7 +1,6 @@
 import { createRenderer } from 'fela'
+import { renderToString } from 'fela-tools'
 import monolithic from '../index'
-
-import renderToString from '../../../fela-tools/src/renderToString'
 
 const options = {
   enhancers: [monolithic()],
@@ -87,7 +86,7 @@ describe('Monolithic enhancer', () => {
     const className = renderer.renderRule(rule)
 
     expect(renderToString(renderer)).toEqual(
-      `.${className}:hover{color:blue}.${className}{color:red}`
+      `.${className}{color:red}.${className}:hover{color:blue}`
     )
   })
 
@@ -198,7 +197,7 @@ describe('Monolithic enhancer', () => {
     })
     renderer.renderRule(colorRed)
 
-    expect(renderToString(renderer)).toEqual('.colorRed_137u7ef{color:red}')
+    expect(renderToString(renderer)).toEqual('.colorRed__137u7ef{color:red}')
   })
 
   it('should generate pretty selectors using ruleName if defined', () => {

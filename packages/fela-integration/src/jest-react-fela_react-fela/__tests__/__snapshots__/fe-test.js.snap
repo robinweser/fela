@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Using fe should merge class names 1`] = `
+".a {
+  color: red;
+}
+.b:hover {
+  color: blue;
+}
+
+
+<div className=Component-button Component a b>Hello</div>;
+"
+`;
+
+exports[`Using fe should render inline style as CSS 1`] = `
+".a {
+  color: red;
+}
+.b:hover {
+  color: blue;
+}
+
+
+<div className=a b>Hello</div>;
+"
+`;

@@ -1,6 +1,3 @@
-import { RULE_TYPE } from 'fela-utils'
-import { renderToString } from 'fela-tools'
-
 import createRenderer from '../createRenderer'
 
 describe('Renderer', () => {
@@ -72,8 +69,8 @@ describe('Renderer', () => {
       })
 
       expect(className1).toEqual(className2)
-      expect(className1).toEqual('a b')
-      expect(className3).toEqual('c b')
+      expect(className1).toMatchSnapshot()
+      expect(className3).toMatchSnapshot()
     })
 
     it('should return an empty string if the style is empty', () => {
@@ -83,19 +80,6 @@ describe('Renderer', () => {
       const className = renderer.renderRule(rule)
 
       expect(className).toEqual('')
-    })
-
-    it('should remove undefined values', () => {
-      const rule = props => ({
-        color: props.color,
-        fontSize: '15px',
-      })
-      const renderer = createRenderer()
-
-      const className = renderer.renderRule(rule)
-
-      expect(className).toEqual('a')
-      expect(renderToString(renderer)).toEqual('.a{font-size:15px}')
     })
 
     it('should allow nested props', () => {
@@ -111,120 +95,7 @@ describe('Renderer', () => {
         },
       })
 
-      expect(className).toEqual('a b')
-    })
-
-    it('should render pseudo classes', () => {
-      const rule = () => ({
-        color: 'red',
-        ':hover': {
-          color: 'blue',
-        },
-      })
-
-      const renderer = createRenderer()
-      renderer.renderRule(rule)
-
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b:hover{color:blue}'
-      )
-    })
-
-    it('should prefix classNames', () => {
-      const rule = () => ({
-        color: 'red',
-      })
-
-      const renderer = createRenderer({
-        selectorPrefix: 'fela_',
-      })
-      const className = renderer.renderRule(rule)
-
-      expect(renderToString(renderer)).toEqual('.fela_a{color:red}')
-      expect(className).toEqual('fela_a')
-    })
-
-    it('should render attribute selectors', () => {
-      const rule = () => ({
-        color: 'red',
-        '[bool=true]': {
-          color: 'blue',
-        },
-      })
-      const renderer = createRenderer()
-
-      renderer.renderRule(rule)
-
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b[bool=true]{color:blue}'
-      )
-    })
-
-    it('should render child selectors', () => {
-      const rule = () => ({
-        color: 'red',
-        '>div': {
-          color: 'blue',
-        },
-      })
-      const renderer = createRenderer()
-
-      renderer.renderRule(rule)
-
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b>div{color:blue}'
-      )
-    })
-
-    it('should render pseudo class selectors', () => {
-      const rule = () => ({
-        color: 'red',
-        ':hover': {
-          color: 'blue',
-        },
-      })
-      const renderer = createRenderer()
-
-      renderer.renderRule(rule)
-
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b:hover{color:blue}'
-      )
-    })
-
-    it('should render any nested selector with the &-prefix', () => {
-      const rule = () => ({
-        color: 'red',
-        '&~#foo': {
-          color: 'blue',
-        },
-        '& .bar': {
-          color: 'green',
-        },
-      })
-      const renderer = createRenderer()
-
-      renderer.renderRule(rule)
-
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}.b~#foo{color:blue}.c .bar{color:green}'
-      )
-    })
-
-    it('should render media queries', () => {
-      const rule = () => ({
-        color: 'red',
-        '@media (min-height:300px)': {
-          color: 'blue',
-        },
-      })
-
-      const renderer = createRenderer()
-      renderer.renderRule(rule)
-
-      expect(renderToString(renderer)).toEqual(
-        '.a{color:red}@media (min-height:300px){.b{color:blue}}'
-      )
+      expect(className).toMatchSnapshot()
     })
   })
 
@@ -261,85 +132,7 @@ describe('Renderer', () => {
       const renderer = createRenderer()
       const animationName = renderer.renderKeyframe(keyframe)
 
-      expect(animationName).toEqual('k1')
-    })
-
-    it('should render dynamic keyframe variations', () => {
-      const keyframe = props => ({
-        from: {
-          color: props.color,
-        },
-        to: {
-          color: 'blue',
-        },
-      })
-      const renderer = createRenderer()
-
-      const animationName = renderer.renderKeyframe(keyframe, {
-        color: 'red',
-      })
-
-      expect(animationName).toEqual('k1')
-      expect(renderToString(renderer)).toEqual(
-        '@-webkit-keyframes k1{from{color:red}to{color:blue}}@-moz-keyframes k1{from{color:red}to{color:blue}}@keyframes k1{from{color:red}to{color:blue}}'
-      )
-    })
-  })
-
-  describe('Rendering static styles', () => {
-    it('should cache the style and return the rendered markup', () => {
-      const renderer = createRenderer()
-
-      const staticStyle = '*{color:red;margin:0}'
-      renderer.renderStatic(staticStyle)
-
-      expect(renderer.cache.hasOwnProperty(staticStyle)).toEqual(true)
-      expect(renderToString(renderer)).toEqual(staticStyle)
-    })
-
-    it('should render a flat object of static selectors', () => {
-      const renderer = createRenderer()
-
-      const staticStyle = {
-        margin: 0,
-        fontSize: '12px',
-      }
-
-      renderer.renderStatic(staticStyle, 'html,body')
-      expect(
-        renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')
-      ).toEqual(true)
-      expect(renderToString(renderer)).toEqual(
-        'html,body{margin:0;font-size:12px}'
-      )
-    })
-
-    it('should allow multiple static styles for a single selector', () => {
-      const renderer = createRenderer()
-
-      renderer.renderStatic(
-        {
-          margin: 0,
-          fontSize: '12px',
-        },
-        'html,body'
-      )
-      renderer.renderStatic(
-        {
-          color: 'red',
-        },
-        'html,body'
-      )
-
-      expect(
-        renderer.cache.hasOwnProperty('html,body{"margin":0,"fontSize":"12px"}')
-      ).toEqual(true)
-      expect(renderer.cache.hasOwnProperty('html,body{"color":"red"}')).toEqual(
-        true
-      )
-      expect(renderToString(renderer)).toEqual(
-        'html,body{margin:0;font-size:12px}html,body{color:red}'
-      )
+      expect(animationName).toMatchSnapshot()
     })
   })
 
@@ -402,6 +195,23 @@ describe('Renderer', () => {
 
       expect(family).toEqual('"Arial"')
     })
+    it('should create a valid src list', () => {
+      const renderer = createRenderer()
+      const family = 'Arial'
+      const properties = {}
+
+      renderer.renderFont(
+        family,
+        ['../fonts/Arial.ttf', '../fonts/Arial.woff'],
+        properties
+      )
+
+      const key = family + JSON.stringify(properties)
+      const src = renderer.cache[key].fontFace.match(/.*(src:.*);.*$/)[1]
+      expect(src).toEqual(
+        "src:url('../fonts/Arial.ttf') format('truetype'),url('../fonts/Arial.woff') format('woff')"
+      )
+    })
   })
 
   describe('Subscribing to the Renderer', () => {
@@ -437,24 +247,7 @@ describe('Renderer', () => {
       renderer.subscribe(subscriber)
       renderer.renderRule(rule)
 
-      expect(changes).toEqual([
-        {
-          type: RULE_TYPE,
-          className: 'a',
-          selector: '.a',
-          declaration: 'color:red',
-          media: '',
-          support: '',
-        },
-        {
-          type: RULE_TYPE,
-          className: 'b',
-          selector: '.b',
-          declaration: 'color:blue',
-          media: '(min-height: 300px)',
-          support: '',
-        },
-      ])
+      expect(changes).toMatchSnapshot()
     })
 
     it('should return a unsubscribe method', () => {

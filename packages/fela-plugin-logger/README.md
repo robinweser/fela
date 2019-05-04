@@ -1,6 +1,6 @@
 # fela-plugin-logger
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-logger.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-logger.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-logger.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-logger.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-logger@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-logger.svg"></a>
 
 Logs processed styles to the `console` at a given point of processing.<br>
 **Not to be confused with [fela-logger](../fela-logger)** which is used to render the real rendered output.

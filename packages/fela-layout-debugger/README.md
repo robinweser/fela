@@ -1,6 +1,6 @@
 # fela-layout-debugger
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-layout-debugger.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-layout-debugger.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-layout-debugger.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-layout-debugger.svg"> <a href="https://bundlephobia.com/result?p=fela-layout-debugger@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-layout-debugger.svg"></a>
 
 Uses [styles-debugger](https://github.com/kitze/styles-debugger) to add outlines and labels to every rule component.
 This helps to debug the application layout.<br>

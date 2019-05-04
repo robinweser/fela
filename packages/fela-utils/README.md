@@ -1,5 +1,7 @@
 # fela-utils
 
+<a href="https://bundlephobia.com/result?p=fela-utils@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-utils.svg"></a>
+
 fela-utils is a private utility package for Fela and should only be used interally.
 
 

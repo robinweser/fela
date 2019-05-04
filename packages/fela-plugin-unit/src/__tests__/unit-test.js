@@ -76,4 +76,47 @@ describe('Unit plugin', () => {
       fontSize: '15pt',
     })
   })
+
+  it('should not add unit to 0', () => {
+    const style = {
+      width: 0,
+      height: '0',
+    }
+
+    expect(unit('px')(style)).toEqual({
+      width: 0,
+      height: '0',
+    })
+  })
+
+  it('should support custom isUnitlessProperty', () => {
+    const style = {
+      fontSize: 15,
+      height: 50,
+      lineHeight: 15,
+      margin: 10,
+      width: 46,
+      zIndex: 1,
+    }
+
+    const isUnitlessProperty = prop => prop === 'zIndex'
+
+    expect(
+      unit(
+        'px',
+        {
+          fontSize: 'pt',
+          margin: '%',
+        },
+        isUnitlessProperty
+      )(style)
+    ).toEqual({
+      fontSize: '15pt',
+      height: '50px',
+      lineHeight: '15px',
+      margin: '10%',
+      width: '46px',
+      zIndex: 1,
+    })
+  })
 })

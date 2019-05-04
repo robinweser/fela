@@ -1,6 +1,6 @@
 # fela-plugin-custom-property
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-custom-property.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-custom-property.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-custom-property.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-custom-property.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-custom-property@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-custom-property.svg"></a>
 
 Sometimes it's handy to define some custom properties mostly used as shortcuts.
 

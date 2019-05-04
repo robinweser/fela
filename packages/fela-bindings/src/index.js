@@ -1,17 +1,19 @@
 import connectFactory from './connectFactory'
 import createComponentFactory from './createComponentFactory'
-import ProviderFactory from './ProviderFactory'
+import FelaComponentFactory from './FelaComponentFactory'
+import FelaThemeFactory from './FelaThemeFactory'
+import RendererProviderFactory from './RendererProviderFactory'
 import ThemeProviderFactory from './ThemeProviderFactory'
 import withThemeFactory from './withThemeFactory'
-import createTheme from './createTheme'
-import { THEME_CHANNEL } from './themeChannel'
+import feFactory from './feFactory'
 
 export {
   connectFactory,
   createComponentFactory,
-  ProviderFactory,
+  FelaComponentFactory,
+  FelaThemeFactory,
+  RendererProviderFactory,
   ThemeProviderFactory,
   withThemeFactory,
-  createTheme,
-  THEME_CHANNEL,
+  feFactory,
 }

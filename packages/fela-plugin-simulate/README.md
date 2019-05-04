@@ -1,6 +1,6 @@
 # fela-plugin-simulate
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-simulate.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-simulate.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-simulate.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-simulate.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-simulate@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-simulate.svg"></a>
 
 This plugin can be used to quickly simulate nested style objects such as pseudo classes, media queries or attribute selectors.
 

@@ -1,10 +1,11 @@
 {
   "name": "fela-preset-dev",
-  "version": "6.0.0",
+  "version": "10.2.4",
   "description": "Fela plugin preset for web applications",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
+  "sideEffects": false,
   "files": [
     "LICENSE",
     "README.md",
@@ -20,7 +21,8 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-plugin-logger": "^5.0.4",
-    "fela-plugin-validator": "^5.0.14"
-  }
+    "fela-plugin-logger": "^10.2.4",
+    "fela-plugin-validator": "^10.2.4"
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

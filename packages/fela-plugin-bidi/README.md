@@ -1,6 +1,6 @@
 # fela-plugin-bidi
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-bidi.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-bidi.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-bidi.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-bidi.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-bidi@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-bidi.svg"></a>
 
 Uses [bidi-css-js](https://github.com/TxHawks/bidi-css-js) to enable direction-independent style authoring based on the CSSWG's [CSS Logical Properties and Values](https://www.w3.org/TR/css-logical-1/) proposal.
 
@@ -41,6 +41,12 @@ const renderer = createRenderer({
 })
 ```
 
+### Configuration
+##### Parameters
+| Parameter | Value | Default | Description |
+| --- | --- | --- | --- |
+| flowDirection | *("rtl" \| "ltr")* | `ltr` | The default flow direction |
+
 ## Example
 
 #### Input
@@ -73,6 +79,23 @@ const renderer = createRenderer({
   margin: '1px 2px 3px 4px',
   paddingLeft: 20,
 }
+```
+
+## Theme-Based Mode
+Apart from enforcing either rtl or ltr all the time, one can also leverage a special `props.theme.direction` property to dynamically set the transformation mode. This is especially useful together with React to switch transformation for subtrees.
+
+```javascript
+const rule = () => ({
+  backgroundImage: 'logical url(/foo/bar/ste.png)',
+  cursor: 'start-resize',
+  float: 'end',
+  margin: 'logical 1px 2px 3px 4px',
+  paddingStart: 20,
+})
+
+// default
+renderer.renderRule(rule, { theme: { direction: 'ltr' }})
+renderer.renderRule(rule, { theme: { direction: 'rtl' }})
 ```
 
 ## License

@@ -1,9 +1,12 @@
 /* @flow */
-import { Component } from 'preact'
+// $FlowFixMe
+import { h as createElement } from 'preact'
 import { ThemeProviderFactory } from 'fela-bindings'
 
-export default ThemeProviderFactory(Component, children => children[0], {
-  defaultProps: {
-    overwrite: false,
-  },
-})
+import { ThemeContext } from './context'
+
+export default ThemeProviderFactory(
+  ThemeContext,
+  createElement,
+  ([children]) => children
+)

@@ -8,13 +8,15 @@ We might introduce more configuration options with future releases, so be sure t
 
 | Option | Value | Default | Description |
 | ------ | ------ | ---------|---|
-|`plugins` | `function[]` |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
-|`keyframePrefixes` |`string[]` |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
-|`enhancers` | `function[]` |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
-|`mediaQueryOrder`| `string[]` | `[]`| An explicit order in which `@media` queries are rendered |
-|`supportQueryOrder`| `string[]` | `[]`| An explicit order in which `@supports` queries are rendered |
-|`selectorPrefix`| `string` | `''`| Prepend a static prefix to every generated class and keyframe |
-|`filterClassName`| `function` | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names |
+| plugins | *(Array?)* |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
+| keyframePrefixes | *(Array?)* |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
+| enhancers  | *(Array?)* |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
+| mediaQueryOrder | *(Array?)* |  | An explicit order in which `@media` queries are rendered |
+| rendererId | *(string?)* |  | An optional unique identifier that will prefix your animation names and will be added as the value of a `data-fela-id` attribute on `<style>` nodes. An example use case: the recommended way is to have only one renderer, but there are some specific cases when you will need to have multiple renderers. This option allows you avoid conflicts in generated CSS rules via prefixing animation names and separated `<style>` tags. |
+| supportQueryOrder | *(Array?)* |  | An explicit order in which `@supports` queries are rendered |
+| selectorPrefix | *(string?)* |  | Prepend a static prefix to every generated class and keyframe. It must only consist of `a-zA-Z0-9-_` and start with `a-zA-Z_`. |
+| filterClassName | *(Function?)* | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names |
+| devMode | *(Boolean?)* | `false` | Enabling development mode for better developer experience. **Make sure to disable devMode in production.** |
 
 ## Example
 ```javascript
@@ -31,12 +33,13 @@ import { renderToString } from 'fela-dom'
 const config = {
   plugins: [ unit('em'), prefixer(), fallbackValue() ],
   keyframePrefixes: ['-webkit-'],
-  enhancers: [ beautifer() ],
+  enhancers: [ beautifier() ],
   mediaQueryOrder: [
     '(min-height: 300px)',
     '(min-height: 500px)'
   ],
-  selectorPrefix: 'fela_'
+  selectorPrefix: 'fela_',
+  devMode: process.env.NODE_ENV !== 'production'
 }
 
 const renderer = createRenderer(config)
@@ -111,4 +114,4 @@ console.log(renderToString(renderer))
 ### Related
 * [Plugins](Plugins.md)
 * [Enhancers](Enhancers.md)
-* [API reference - `createRenderer`](../api/fela/createRenderer.md)
+* [API Reference - `createRenderer`](../api/fela/createRenderer.md)

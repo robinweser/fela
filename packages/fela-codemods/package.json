@@ -1,0 +1,37 @@
+{
+  "name": "fela-codemods",
+  "version": "10.2.4",
+  "description": "Automatic codemods to upgrade Fela code to newer versions",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "sideEffects": false,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "dynamic styling",
+    "stylesheet",
+    "css",
+    "styling",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "css-in-js-utils": "^3.0.0",
+    "fast-loops": "^1.0.1",
+    "fela-utils": "^10.2.4"
+  },
+  "devDependencies": {
+    "fela": "^10.2.4",
+    "fela-preset-web": "^10.2.4",
+    "fela-tools": "^10.2.4"
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
+}

@@ -1,9 +1,6 @@
 /* @flow */
 import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
+import isPlainObject from 'isobject'
 
 function resolveFallbackValues(style: Object): Object {
   for (const property in style) {

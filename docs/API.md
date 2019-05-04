@@ -13,7 +13,6 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 * [`.renderKeyframe(keyframe, [props])`](api/fela/Renderer.md#renderkeyframe--props)
 * [`.renderFont(family, files, [properties])`](api/fela/Renderer.md#renderfontfamily-files--properties)
 * [`.renderStatic(style, [selector])`](api/fela/Renderer.md#renderstaticstyle--selector)
-* [`.renderToString()`](api/fela/Renderer.md#rendertostring) *(Deprecated)*
 * [`.subscribe(listener)`](api/fela/Renderer.md#subscribelistener)
 * [`.clear()`](api/fela/Renderer.md#clear)
 
@@ -34,3 +33,28 @@ Last but not least this chapter ships the API reference in detail. Despite expla
 * [`.renderRule(rule, [props])`](api/fela-native/Renderer.md#renderrulerule--props)
 * [`.subscribe(listener)`](api/fela-native/Renderer.md#subscribelistener)
 * [`.clear()`](api/fela-native/Renderer.md#clear)
+
+---
+
+### Bindings
+The bindings documentation covers all React-like APIs that are officially shipped with Fela.
+This includes React, Preact and Inferno.
+
+* [`connect(rules)`](api/bindings/connect.md)
+* [`createComponent(rule, [type], [passThroughProps])`](api/bindings/createComponent.md)
+* [`createComponentWithProxy(rule, [type], [passThroughProps])`](api/bindings/createComponentWithProxy.md)
+* [`fe(type, [props], [children])`](api/bindings/fe.md)
+* [`<FelaComponent style>`](api/bindings/FelaComponent.md)
+* [`<FelaRenderer>`](api/bindings/FelaComponent.md)
+* [`<FelaTheme>`](api/bindings/FelaTheme.md)
+* [`<Provider renderer>`](api/bindings/Provider.md)
+* [`RendererContext`](api/bindings/RendererContext.md)
+* [`<ThemeProvider theme [overwrite]>`](api/bindings/ThemeProvider.md)
+* [`ThemeContext`](api/bindings/ThemeContext.md)
+* [`useFela(props)`](api/bindings/useFela.md)
+* [`withTheme(component)`](api/bindings/withTheme.md)
+
+---
+
+### Jest Bindings
+* [`createSnapshot(component, [theme], [renderer], [Provider], [ThemeProvider])`](api/jest-bindings/createSnapshot.md)

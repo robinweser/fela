@@ -38,4 +38,37 @@ describe('Rendering to HTML markup', () => {
 
     expect(beautify(renderToMarkup(renderer))).toMatchSnapshot()
   })
+
+  it('should correctly sort rules', () => {
+    const rule1 = () => ({
+      ':hover': { color: 'red' },
+      ':active': { color: '#fff' },
+    })
+
+    const rule2 = () => ({
+      ':hover': { color: '#000' },
+      ':active': { color: '#fff' },
+    })
+
+    const renderer = createRenderer()
+
+    renderer.renderRule(rule1)
+    renderer.renderRule(rule2)
+
+    expect(beautify(renderToMarkup(renderer))).toMatchSnapshot()
+  })
+
+  it('handles `rendererId`', () => {
+    const rule = () => ({
+      ':hover': { color: 'red' },
+      ':active': { color: '#fff' },
+    })
+    const renderer = createRenderer({
+      rendererId: 'ID',
+    })
+
+    renderer.renderRule(rule)
+
+    expect(beautify(renderToMarkup(renderer))).toMatchSnapshot()
+  })
 })

@@ -1,6 +1,6 @@
 # fela-plugin-fallback-value
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-fallback-value.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-fallback-value.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-fallback-value.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-fallback-value.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-fallback-value@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-fallback-value.svg"></a>
 
 Sometimes you want to provide alternative values also know as *fallback values*. <br>
 For example in Internet Explorer 8 there is no `rgba` compatibility for colors which means just passing *e.g. `color: rgba(0, 0, 0, 0.5)`* would not be applied correctly.

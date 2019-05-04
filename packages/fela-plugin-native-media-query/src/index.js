@@ -2,16 +2,14 @@
 import { Dimensions } from 'react-native'
 
 /* @flow */
+import isPlainObject from 'isobject'
 import { match } from 'css-mediaquery'
 import { isMediaQuery } from 'fela-utils'
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import DimensionProvider from './components/DimensionProvider'
 
 type Orientation = 'landscape' | 'portrait'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 function getOrientation(width: number, height: number): Orientation {
   return width > height ? 'landscape' : 'portrait'
@@ -19,6 +17,7 @@ function getOrientation(width: number, height: number): Orientation {
 
 function resolveMediaQuery(style: Object): Object {
   const { width, height } = Dimensions.get('window')
+
   for (const property in style) {
     const value = style[property]
 
@@ -31,7 +30,7 @@ function resolveMediaQuery(style: Object): Object {
           height,
         })
       ) {
-        renderer._mergeStyle(style, value)
+        assignStyle(style, value)
       }
 
       delete style[property]

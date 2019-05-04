@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renderer Rendering keyframes should return a valid animation name 1`] = `"k1"`;
+
+exports[`Renderer Rendering rules should allow nested props 1`] = `"a b"`;
+
+exports[`Renderer Rendering rules should reuse cached classNames 1`] = `"a b"`;
+
+exports[`Renderer Rendering rules should reuse cached classNames 2`] = `"c b"`;
+
+exports[`Renderer Subscribing to the Renderer should call the callback with a change object 1`] = `
+Array [
+  Object {
+    "className": "a",
+    "declaration": "color:red",
+    "media": "",
+    "pseudo": "",
+    "selector": ".a",
+    "support": "",
+    "type": "RULE",
+  },
+  Object {
+    "className": "b",
+    "declaration": "color:blue",
+    "media": "(min-height: 300px)",
+    "pseudo": "",
+    "selector": ".b",
+    "support": "",
+    "type": "RULE",
+  },
+]
+`;

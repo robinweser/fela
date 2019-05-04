@@ -50,6 +50,7 @@ describe('Hoisting statics', () => {
   it('should not overwrite properties', () => {
     class Foo {
       static foo = 1
+
       static bla = 3
     }
 
@@ -105,11 +106,14 @@ describe('Hoisting statics', () => {
       foo: 'bar',
     }
 
+    Foo.contextType = 'React.createContext'
+
     class Bar {}
 
     const hoisted = hoistStatics(Bar, Foo)
 
     expect(hoisted.getChildContext).toEqual(undefined)
     expect(hoisted.childContextTypes).toEqual(undefined)
+    expect(hoisted.contextType).toEqual(undefined)
   })
 })

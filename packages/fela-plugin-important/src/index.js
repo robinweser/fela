@@ -1,7 +1,5 @@
 /* @flow */
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
+import isPlainObject from 'isobject'
 
 function addImportantToValue(value: any): any {
   if (
@@ -36,8 +34,9 @@ function addImportant(style: Object): Object {
   if (!isAnimation(style)) {
     for (const property in style) {
       const value = style[property]
-
-      if (isPlainObject(value)) {
+      if (property === 'className') {
+        // this is a fixed classname, not a style rule - leave as is
+      } else if (isPlainObject(value)) {
         style[property] = addImportant(value)
       } else if (Array.isArray(value)) {
         style[property] = value.map(addImportantToValue)

@@ -1,10 +1,11 @@
 {
   "name": "fela-logger",
-  "version": "5.0.14",
+  "version": "10.2.4",
   "description": "Logging tool for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
+  "sideEffects": false,
   "files": [
     "LICENSE",
     "README.md",
@@ -25,6 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "cssbeautify": "^0.3.1",
-    "fela-utils": "^8.0.0"
-  }
+    "fela-utils": "^10.2.4"
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

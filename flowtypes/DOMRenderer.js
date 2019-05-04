@@ -4,12 +4,12 @@ export type DOMRenderer = {
   keyframePrefixes: Array<string>,
   plugins: Array<Function>,
   mediaQueryOrder: Array<string>,
+  rendererId: string,
   selectorPrefix: string,
   filterClassName: Function,
   listeners: Array<Function>,
   uniqueRuleIdentifier: number,
   uniqueKeyframeIdentifier: number,
-  isConnectedToDOM: boolean,
   cache: Cache,
   nodes: Object,
   renderRule: Function,
@@ -19,7 +19,7 @@ export type DOMRenderer = {
   subscribe: Function,
   clear: Function,
   _renderStyleToClassNames: Function,
-  _emitChange: Function
+  _emitChange: Function,
 }
 
 export type DOMRendererConfig = {
@@ -27,6 +27,8 @@ export type DOMRendererConfig = {
   plugins?: Array<Function>,
   enhancers?: Array<Function>,
   mediaQueryOrder?: Array<string>,
+  rendererId?: string,
   selectorPrefix?: string,
-  filterClassName?: Function
+  filterClassName?: Function,
+  devMode?: boolean,
 }

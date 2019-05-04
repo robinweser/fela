@@ -1,11 +1,10 @@
 /* @flow */
+import isPlainObject from 'isobject'
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
+
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 import type { StyleType } from '../../../flowtypes/StyleType'
-
-function isPlainObject(obj: any): boolean {
-  return typeof obj === 'object' && !Array.isArray(obj)
-}
 
 function resolveSimulation(
   style: Object,
@@ -20,7 +19,7 @@ function resolveSimulation(
       if (isPlainObject(value) && props.simulate[property]) {
         const resolvedValue = resolveSimulation(value, type, renderer, props)
 
-        renderer._mergeStyle(style, resolvedValue)
+        assignStyle(style, resolvedValue)
         delete style[property]
       }
     }

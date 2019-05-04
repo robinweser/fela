@@ -1,9 +1,9 @@
 # fela-plugin-unit
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-unit.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-unit.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-plugin-unit.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-unit.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-unit@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-unit.svg"></a>
 
 Always writing length values as string with a value applied seems not like the JavaScript way to do it. You can also use mathematics to process number values. <br>
-It is aware of unitless properties such as `lineHeight` and also adds units to multiple values inside an array.
+It is aware of unitless properties such as `lineHeight`, zero-values and also adds units to multiple values inside an array.
 
 ## Installation
 ```sh
@@ -31,6 +31,7 @@ const renderer = createRenderer({
 | --- | --- | --- | --- |
 | unit | `ch`, `em`, `ex`, `rem`, `vh`, `vw`, `vmin`, `vmax`, `px`, `cm`, `mm`, `in`, `pc`, `pt`, `mozmm` | `px` | unit which gets applied |
 | unitPerProperty | *(Object)* | `{}` | Default units per property |
+| isUnitlessProperty | *(Function)* | [`util function`](https://github.com/rofrischmann/css-in-js-utils/blob/master/modules/isUnitlessProperty.js) | check whether property should remain unitless |
 
 ##### Example
 ```javascript
@@ -54,6 +55,7 @@ Using the above example code:
 #### Input
 ```javascript
 {
+  marginTop: 0,
   width: 25,
   lineHeight: 1.4,
   height: '53',
@@ -64,6 +66,7 @@ Using the above example code:
 #### Output
 ```javascript
 {
+  marginTop: 0,
   width: '25em',
   lineHeight: 1.4,
   height: '53em',

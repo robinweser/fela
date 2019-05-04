@@ -4,7 +4,7 @@ First we are going to focus on the motivation, principles and goals behind Fela,
 
 * [Motivation](introduction/Motivation.md)
 * [Principles](introduction/Principles.md)
-* [Beneftis](introduction/Benefits.md)
+* [Benefits](introduction/Benefits.md)
 * [Caveats](introduction/Caveats.md)
 * [Ecosystem](introduction/Ecosystem.md)
 * [Examples](introduction/Examples.md)

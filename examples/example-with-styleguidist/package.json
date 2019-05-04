@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "name": "example-with-styleguidist",
+  "version": "10.2.4",
+  "description": "An Example to use fela with styleguidist",
+  "homepage": "https://github.com/rofrischmann/fela",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rofrischmann/fela.git"
+  },
+  "author": "Aga5tya <aga5tya@yahoo.com>",
+  "keywords": [
+    "fela",
+    "dynamic styling",
+    "react",
+    "css",
+    "styling",
+    "cssinjs",
+    "react styleguidist",
+    "styleguide"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "dog-names": "^1.0.2",
+    "fela": "^10.2.4",
+    "fela-beautifier": "^10.2.4",
+    "fela-combine-arrays": "^1.0.9",
+    "fela-plugin-embedded": "^10.2.4",
+    "fela-plugin-friendly-pseudo-class": "^10.2.4",
+    "fela-plugin-named-media-query": "^5.0.13",
+    "fela-plugin-placeholder-prefixer": "^10.2.4",
+    "fela-plugin-unit": "^10.2.4",
+    "fela-plugin-validator": "^10.2.4",
+    "fela-preset-web": "^10.2.4",
+    "fela-statistics": "^10.2.4",
+    "lodash": "^4.17.4",
+    "polished": "1.9.0",
+    "prop-types": "^15.5.10",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-fela": "^10.2.4",
+    "react-modal": "^2.2.2",
+    "react-styleguidist": "9.0.4",
+    "webpack": "4.29.6"
+  },
+  "scripts": {
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  }
+}

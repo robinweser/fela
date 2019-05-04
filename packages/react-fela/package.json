@@ -1,13 +1,16 @@
 {
   "name": "react-fela",
-  "version": "6.1.1",
+  "version": "10.2.4",
   "description": "React bindings for Fela",
+  "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
+  "sideEffects": false,
   "files": [
     "LICENSE",
     "README.md",
+    "index.d.ts",
     "lib/**",
     "es/**"
   ],
@@ -23,11 +26,12 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "react": "*"
+    "react": "^16.3.0"
   },
   "dependencies": {
-    "fela-bindings": "^1.2.0",
-    "fela-dom": "^7.0.0",
+    "fela-bindings": "^10.2.4",
+    "fela-dom": "^10.2.4",
     "prop-types": "^15.5.8"
-  }
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

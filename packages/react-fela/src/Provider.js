@@ -1,17 +1,14 @@
 /* @flow */
-import { Component, Children } from 'react'
-import { ProviderFactory } from 'fela-bindings'
-import PropTypes from 'prop-types'
+import { createElement } from 'react'
 
-export default ProviderFactory(Component, children => Children.only(children), {
-  propTypes: {
-    renderer: PropTypes.object.isRequired,
-    rehydrate: PropTypes.bool.isRequired,
-  },
-  childContextTypes: {
-    renderer: PropTypes.object,
-  },
-  defaultProps: {
-    rehydrate: true,
-  },
-})
+import RendererProvider from './RendererProvider'
+
+import deprecate from './_deprecate'
+
+export default function Provider(props: Object): Object {
+  deprecate(
+    'Importing `Provider` from react-fela is deprecated. Import `RendererProvider` instead.\nSee http://fela.js.org/docs/api/bindings/renderer-provider'
+  )
+
+  return createElement(RendererProvider, props)
+}

@@ -1,6 +1,6 @@
 # fela-monolithic
 
-<img alt="npm version" src="https://badge.fury.io/js/fela-monolithic.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-monolithic.svg">
+<img alt="npm version" src="https://badge.fury.io/js/fela-monolithic.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-monolithic.svg"> <a href="https://bundlephobia.com/result?p=fela-monolithic@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-monolithic.svg"></a>
 
 The monolithic enhancer will use unique class names instead of atomic ones.
 These generated class names are not re-usable like the atomic design but allows you to debug and modify styles with ease.
@@ -78,7 +78,7 @@ renderer.renderRule(redText) // => redText_137u7ef
 }
 ```
 
-If you use it together with `createComponent` from `react-fela`, `preact-fela` or `inferno-fela`, it will also add the component type or displayName to the rule. e.g.
+If you use it together with `createComponent` or `connect` from `react-fela`, `preact-fela` or `inferno-fela`, it will also add the component type or displayName to the rule. e.g.
 
 ```javascript
 import { createComponent } from 'react-fela'

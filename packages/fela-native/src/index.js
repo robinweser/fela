@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native'
 /* @flow */
 import arrayEach from 'fast-loops/lib/arrayEach'
 import { processStyleWithPlugins, RULE_TYPE, CLEAR_TYPE } from 'fela-utils'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import type {
   NativeRenderer,
@@ -37,17 +36,16 @@ export function createRenderer(
     },
 
     renderRule(rule: Function, props: Object = {}): Object {
-      const style = rule(props, renderer)
-      const reference = JSON.stringify(style)
+      const processedStyle = processStyleWithPlugins(
+        renderer,
+        rule(props, renderer),
+        RULE_TYPE,
+        props
+      )
+
+      const reference = JSON.stringify(processedStyle)
 
       if (!renderer.cache.hasOwnProperty(reference)) {
-        const processedStyle = processStyleWithPlugins(
-          renderer,
-          rule(props, renderer),
-          RULE_TYPE,
-          props
-        )
-
         renderer.cache[reference] = StyleSheet.create({
           style: processedStyle,
         })
@@ -60,8 +58,6 @@ export function createRenderer(
 
       return renderer.cache[reference].style
     },
-
-    _mergeStyle: assignStyle,
 
     _emitChange(change: Object): void {
       arrayEach(renderer.listeners, listener => listener(change))

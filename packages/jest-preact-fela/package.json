@@ -1,0 +1,35 @@
+{
+  "name": "jest-preact-fela",
+  "version": "10.2.4",
+  "description": "Jest helpers for preact-fela",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "sideEffects": false,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "preact-fela",
+    "testing",
+    "preact",
+    "jest",
+    "jest-utils"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "peerDependencies": {
+    "fela": "*",
+    "preact": "*",
+    "preact-fela": "*"
+  },
+  "dependencies": {
+    "jest-fela-bindings": "^10.2.4"
+  },
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
+}

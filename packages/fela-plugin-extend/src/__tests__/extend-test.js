@@ -1,9 +1,5 @@
 import extend from '../index'
 
-const rendererMock = {
-  _mergeStyle: Object.assign,
-}
-
 describe('Extend plugin', () => {
   it('should extend style objects', () => {
     const extension = {
@@ -14,7 +10,7 @@ describe('Extend plugin', () => {
       extend: extension,
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
     })
@@ -32,7 +28,7 @@ describe('Extend plugin', () => {
       },
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       ':hover': {
         color: 'red',
@@ -53,7 +49,7 @@ describe('Extend plugin', () => {
       },
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
     })
@@ -71,7 +67,7 @@ describe('Extend plugin', () => {
       },
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
     })
   })
@@ -89,7 +85,7 @@ describe('Extend plugin', () => {
       extend: [extension, otherExtension],
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
       fontSize: '12px',
@@ -115,7 +111,7 @@ describe('Extend plugin', () => {
       ],
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
       fontSize: '12px',
@@ -141,9 +137,135 @@ describe('Extend plugin', () => {
       ],
     }
 
-    expect(extend()(base, 'RULE_TYPE', rendererMock)).toEqual({
+    expect(extend()(base)).toEqual({
       color: 'blue',
       backgroundColor: 'blue',
+    })
+  })
+
+  it('should merge multiple nested extensions', () => {
+    const base = {
+      color: 'blue',
+      backgroundColor: 'red',
+      extend: {
+        color: 'green',
+        fontSize: 15,
+        extend: {
+          lineHeight: 1.0,
+        },
+      },
+    }
+
+    expect(extend()(base)).toEqual({
+      backgroundColor: 'red',
+      color: 'green',
+      fontSize: 15,
+      lineHeight: 1.0,
+    })
+  })
+
+  it('should merge multiple nested conditional extensions', () => {
+    const base = {
+      color: 'blue',
+      backgroundColor: 'red',
+      extend: {
+        condition: true,
+        style: {
+          color: 'green',
+          fontSize: 15,
+          extend: {
+            condition: true,
+            style: {
+              lineHeight: 1.0,
+            },
+          },
+        },
+      },
+    }
+
+    expect(extend()(base)).toEqual({
+      backgroundColor: 'red',
+      color: 'green',
+      fontSize: 15,
+      lineHeight: 1.0,
+    })
+  })
+
+  it('should merge multiple nested conditional extensions', () => {
+    const base = {
+      color: 'blue',
+      backgroundColor: 'red',
+      extend: [
+        {
+          condition: true,
+          style: {
+            color: 'green',
+            fontSize: 15,
+            extend: {
+              condition: true,
+              style: {
+                lineHeight: 1.0,
+              },
+            },
+          },
+        },
+        {
+          paddingLeft: 10,
+          extend: {
+            paddingRight: 10,
+          },
+        },
+      ],
+    }
+
+    expect(extend()(base)).toEqual({
+      backgroundColor: 'red',
+      color: 'green',
+      fontSize: 15,
+      lineHeight: 1.0,
+      paddingLeft: 10,
+      paddingRight: 10,
+    })
+  })
+
+  it('should not convert null values to empty objects', () => {
+    const base = {
+      color: 'blue',
+      extend: {
+        backgroundColor: null,
+      },
+    }
+
+    expect(extend()(base)).toEqual({
+      color: 'blue',
+    })
+  })
+
+  it('should filter out null items in extend array', () => {
+    const base = {
+      color: 'blue',
+      extend: [{ backgroundColor: '#ccc' }, null],
+    }
+
+    expect(extend()(base)).toEqual({
+      color: 'blue',
+      backgroundColor: '#ccc',
+    })
+  })
+
+  it('should not overwrite values with null or undefined', () => {
+    const base = {
+      color: 'blue',
+      backgroundColor: 'red',
+      extend: {
+        color: null,
+        backgroundColor: undefined,
+      },
+    }
+
+    expect(extend()(base)).toEqual({
+      color: 'blue',
+      backgroundColor: 'red',
     })
   })
 })

@@ -3,56 +3,86 @@
 Fela was always designed with React in mind, but is **not** bound to React by default. If you want to use it with React, you should also install the official [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
 
 ```sh
+# yarn
+yarn add react-fela
+
+# npm
 npm i --save react-fela
 ```
 
-## Presentational Components
-While not required, we highly recommend to split your components into [presentational and container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.67qfcbme5).
-Where container components manage the application logic, presentational components should only describe how your application is displayed (markup & styling). They get data passed as `props` and return a representation of your view for those props.
-**If we strictly separate our components, we actually only use Fela for presentational components.**
+## Styling Components
+In order to create styled presentational components, react-fela provides the [FelaComponent](../api/bindings/FelaComponent.md) component that uses the render-props pattern.
 
-### Presentational Components from Rules
-From the very beginning, react-fela ships the [`createComponent`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md) API. It basically creates primitive React components using the passed rule to style it. This works as easy as e.g. [styled-components](https://github.com/styled-components/styled-components).
+It accepts a single property *style* that accepts a style object, style function or array of both.
 
 ```javascript
-import { createComponent } from 'react-fela'
+import { FelaComponent } from 'react-fela'
 
-const container = ({ padding }) => ({
-  padding: padding + 'px',
+const style = {
+  padding: '25px',
   backgroundColor: 'rgb(124, 114, 231)',
   fontSize: '20px'
-})
-
-const Container = createComponent(container)
+}
 
 // <div class="a b c">Padding everywhere</div>
-<Container padding={20}>Padding everywhere</Container>
+<FelaComponent style={style}>
+  Padding everywhere
+</FelaComponent>
 ```
 
 <img src='../res/react-1.png'>
 
-
-#### Custom element/component
-`createComponent` renders into a `div` by default, but is also able to render into any other HTML element or React component.<br>
-Simply pass either a string (HTML element) or function/class (React component) as a second argument.
+### Custom Element
+FelaComponent renders a *div* by default, but we can pass an **as** prop to configure the rendered element.<br>
+It only accepts primitive string elements representing HTML elements. For custom rendering check [render function](#render-function) below.
 
 ```javascript
-import { createComponent } from 'react-fela'
+// <span class="a b c">Padding everywhere</span>
+<FelaComponent style={style} as="span">
+  Padding everywhere
+</FelaComponent>
+```
 
-const title = ({ fontSize, color }) => ({
-  fontSize: fontSize + 'px',
-  color: color
+### Render Function
+Rather than passing a string primitive child, we most likely want to render custom children. We can do that by passing a function that receives an object interface containing **className**, **theme** and **as**.<br>
+This is useful if we want to pass additional props to the rendered element.
+
+```javascript
+// <p class="a b c" id="some_id">Padding everywhere</p>
+<FelaComponent style={style}>
+  {({ className }) => (
+    <p className={className} id="some_id">
+      Padding everywhere
+    </p>
+  )}
+</FelaComponent>
+```
+
+### Style as a Function of State
+Passing a style object is fine for most cases, because we already know the context in which the component is rendered, thus we probably know most dynamic values.<br>
+But what if we want to access the theme or compose styles based on the passed props?<br>
+We can do that by passing a function. By spreading all props to the FelaComponent, we make sure that all props are passed to the style function respectively.
+
+```javascript
+const style = ({ fontSize = 30 }) => ({
+  padding: 20,
+  fontWeight: 700,
+  fontSize,
 })
 
-const Title = createComponent(title, 'h1')
+const Header = props => (
+  <FelaComponent style={style} as="h1" {...props} />
+)
 
-// <h1 class="a b">I am red</h1>
-<Title fontSize={20} color="red">I am red</Title>
+// <h1 class="a b c">Default Header</h1>
+<Header>Default Header</Header>
+
+// <h1 class="a b d">Bigger Header</h1>
+<Header fontSize={40}>Bigger Header</Header>
 ```
-<img src='../res/react-2.png'>
 
 #### Composition
-It also supports automatic style composition for multiple composed Fela components.
+By leveraging the array-format for style, we can even achieve composition pretty straight-forward.
 
 ```javascript
 import { createComponent } from 'react-fela'
@@ -66,53 +96,54 @@ const bordered = ({ borderWidth }) => ({
   border: `${borderWidth}px solid green`
 })
 
-const Title = createComponent(title, 'h1')
-const BorderedTitle = createComponent(bordered, Title)
+const Title = ({ style, ...props }) => <FelaComponent style={[title, style]} {...props} as="h1" />
+const BorderedTitle = props => <Title style={bordered} {...props} />
 
 // <h1 class="a b c">I am red and bordered</h1>
 <BorderedTitle color='red' borderWidth={2}>I am red and bordered</BorderedTitle>
 ```
 <img src='../res/react-3.png'>
 
-For advanced API documentation, please check out the [`createComponent`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md) API docs.<br>
-Amongst other things, you can learn how to pass props to the underlying element.
-
 
 ## Component Theming
-For flexible and yet simple component theming, react-fela ships the  [`<ThemeProvider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md) component.
-It leverages React's context to pass the theme to all child elements.
+For flexible and yet simple component theming, react-fela ships the  [ThemeProvider](../api/bindings/ThemeProvider.md) component.
+It leverages React's [context](https://facebook.github.io/react/docs/context.html) to pass the theme to all child elements.
 <br>
 
-The theme can then be accessed via `props.theme` within `createComponent`.
+As shown in the example above, the theme can be accessed via `props.theme` within your style function.
 
 ```javascript
-import { createComponent, ThemeProvider } from 'react-fela'
-
+import { FelaComponent, ThemeProvider } from 'react-fela'
 
 const theme = {
-  fontColor: 'green',
-  fontSize: '30px'
+  spacing: {
+    small: 10,
+    medium: 20,
+    big: 30
+  },
+  color: {
+    primary: 'red',
+    secondary: 'blue'
+  }
 }
 
-const title = props => ({
-  fontSize: props.theme.fontSize,
-  color: props.theme.fontColor
+const style = ({ theme }) => ({
+  padding: theme.spacing.medium,
+  color: theme.color.primary,
+  fontWeight: 700
 })
 
-const Title = createComponent(title, 'h1')
-
-// <h1 class="a b"></h1>
+// <h1 class="a b c"></h1>
 <ThemeProvider theme={theme}>
-  <Title>I am green and big</Title>
+  <FelaComponent style={style} as="h1">Red Header</FelaComponent>
 </ThemeProvider>
 ```
-<img src='../res/react-4.png'>
 
-You may also nest multiple `<ThemeProvider>`. The `theme` object will then automatically get merged to extend the previous theme. To force overwrite the `theme` (without merging) you may pass a `overwrite` prop.
-
+You may also nest multiple ThemeProvider instances. The **theme** object will then automatically get merged to extend the previous theme. To force overwrite the **theme** (without merging) you may pass a **overwrite** prop.
 
 ## Passing the Renderer
-We like to avoid using a global Fela renderer which is why the React bindings ship with a  [`<Provider>`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/api/fela/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.
+In order to avoid using a global Fela renderer, we ship the [Provider](../api/bindings/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.
+
 ```javascript
 import { createRenderer } from 'fela'
 import { Provider } from 'react-fela'
@@ -129,12 +160,23 @@ render(
 )
 ```
 
+## Tips & Tricks
+#### Presentational Components
+While not required, we highly recommend to split your components into [presentational and container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.67qfcbme5).
+Where container components manage the application logic, presentational components should only describe how your application is displayed (markup & styling). They get data passed as `props` and return a representation of your view for those props.
+**If we strictly separate our components, we actually only use Fela for presentational components.**
+
+
+
 ---
 
 ### Related
 * [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela)
-* [API reference - `Provider` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/Provider.md)
-* [API reference - `connect` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/connect.md)
-* [API reference - `createComponent` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponent.md)
-* [API reference - `createComponentWithProxy` ](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/createComponentWithProxy.md)
-* [API reference - `ThemeProvider`](https://github.com/rofrischmann/fela/tree/master/packages/react-fela/docs/ThemeProvider.md)
+* [API Reference - `FelaComponent`](../api/bindings/FelaComponent.md)
+* [API Reference - `FelaTheme`](../api/bindings/FelaTheme.md)
+* [API Reference - `Provider`](../api/bindings/Provider.md)
+* [API Reference - `ThemeProvider`](../api/bindings/ThemeProvider.md)
+* [API Reference - `connect`](../api/bindings/connect.md)
+* [API Reference - `createComponent`](../api/bindings/createComponent.md)
+* [API Reference - `createComponentWithProxy`](../api/bindings/createComponentWithProxy.md)
+* [API Reference - `withTheme`](../api/bindings/withTheme.md)

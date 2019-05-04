@@ -59,4 +59,4 @@ Fela already ships with a set of useful enhancers. Check out [Introduction - Eco
 ### Related
 * [Renderer Configuration](RendererConfiguration.md)
 * [List of enhancers](../introduction/Ecosystem.md#enhancers)
-* [API reference - `enhance`](../api/fela/enhance.md)
+* [API Reference - `enhance`](../api/fela/enhance.md)

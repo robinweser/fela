@@ -1,0 +1,44 @@
+{
+    "private": true,
+    "name": "example-react",
+    "version": "10.2.4",
+    "description": "Fela example with React",
+    "scripts": {
+        "client": "NODE_ENV=development webpack-dev-server",
+        "start": "concurrently --kill-others \"npm run client\" \"babel-node server.js\""
+    },
+    "author": "Robin Frischmann <robin@rofrischmann.de>",
+    "license": "MIT",
+    "devDependencies": {
+        "babel-cli": "^6.24.1",
+        "babel-loader": "^7.0.0",
+        "babel-preset-es2015": "^6.24.0",
+        "babel-preset-react": "^6.24.0",
+        "concurrently": "^3.4.0",
+        "express": "^4.14.0",
+        "express-http-proxy": "^1.0.3",
+        "fela": "^10.2.4",
+        "fela-beautifier": "^10.2.4",
+        "fela-dom": "^10.2.4",
+        "fela-layout-debugger": "^10.2.4",
+        "fela-perf": "^10.2.4",
+        "fela-plugin-embedded": "^10.2.4",
+        "fela-plugin-fallback-value": "^10.2.4",
+        "fela-plugin-logger": "^10.2.4",
+        "fela-plugin-lvha": "^5.0.16",
+        "fela-plugin-prefixer": "^10.2.4",
+        "fela-plugin-unit": "^10.2.4",
+        "fela-plugin-validator": "^10.2.4",
+        "react": "^16.8.5",
+        "react-dom": "^16.8.5",
+        "react-fela": "^10.2.4",
+        "webpack": "^2.6.1",
+        "webpack-dev-server": "^3.1.11"
+    },
+    "babel": {
+        "presets": [
+            "es2015",
+            "react"
+        ]
+    }
+}
