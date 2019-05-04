@@ -4,6 +4,7 @@ import arrayEach from 'fast-loops/lib/arrayEach'
 import isPlainObject from 'isobject'
 
 import {
+  generateDeclarationReference,
   generateCombinedMediaQuery,
   generateCSSSelector,
   isMediaQuery,
@@ -241,8 +242,13 @@ Maybe you forgot to add a plugin to resolve it?
 Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information.`)
           }
         } else {
-          const declarationReference =
-            support + media + pseudo + property + value
+          const declarationReference = generateDeclarationReference(
+              property,
+              value,
+              pseudo,
+              media,
+              support
+            )
 
           if (!renderer.cache.hasOwnProperty(declarationReference)) {
             // we remove undefined values to enable

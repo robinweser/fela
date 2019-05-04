@@ -1,8 +1,7 @@
 /* @flow */
-import { RULE_TYPE } from 'fela-utils'
+import { RULE_TYPE, generateDeclarationReference } from 'fela-utils'
 
 import generateCacheEntry from './generateCacheEntry'
-import generateDeclarationReference from './generateDeclarationReference'
 
 const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}/gi
 
