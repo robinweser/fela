@@ -12,9 +12,10 @@ import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 export default function insertRule(
   { selector, declaration, support, media, pseudo }: Object,
   renderer: DOMRenderer,
-  node: Object
+  node: Object,
+  documentId: string
 ) {
-  const nodeReference = media + support
+  const nodeReference = media + support + documentId
   // only use insertRule in production as browser devtools might have
   // weird behavior if used together with insertRule at runtime
   if (renderer.devMode) {

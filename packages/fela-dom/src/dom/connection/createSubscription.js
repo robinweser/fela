@@ -30,6 +30,8 @@ export default function createSubscription(
       return
     }
 
+    const head = target.head || {}
+    const documentId = head.getAttribute('fela-document-id') || ''
     const node = getNodeFromCache(change, renderer, target)
 
     switch (change.type) {
@@ -45,7 +47,7 @@ export default function createSubscription(
           : change.css
         break
       case RULE_TYPE:
-        insertRule(change, renderer, node)
+        insertRule(change, renderer, node, documentId)
         break
       default:
         // TODO: warning
