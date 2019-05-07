@@ -13,6 +13,7 @@ import isUndefinedValue from './isUndefinedValue'
 import isValidHTMLElement from './isValidHTMLElement'
 import normalizeNestedProperty from './normalizeNestedProperty'
 import processStyleWithPlugins from './processStyleWithPlugins'
+import generateDeclarationReference from './generateDeclarationReference'
 import sheetMap from './sheetMap'
 import {
   RULE_TYPE,
@@ -26,6 +27,7 @@ export {
   applyKeysInOrder,
   clusterCache,
   cssifySupportRules,
+  generateDeclarationReference,
   generateCombinedMediaQuery,
   generateCSSRule,
   generateCSSSelector,
