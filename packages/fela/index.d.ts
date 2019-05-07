@@ -4,8 +4,13 @@ declare module "fela" {
 
   export type TRuleProps = {};
   export type TRule<T = TRuleProps> = (props: T, renderer: IRenderer) => IStyle
+  export type TKeyFrame<T = TRuleProps> = (props: T, renderer: IRenderer) => {
+    from?: IStyle,
+    to?: IStyle,
 
-  type TKeyFrame = TRule;
+    [persent: string]: IStyle | undefined;
+  };
+
   type TRendererCreator = (config?: IConfig) => IRenderer;
   type TPlugin = (style: IStyle) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
   type TEnhancer = (renderer: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
@@ -23,7 +28,7 @@ declare module "fela" {
 
   interface IRenderer {
     renderRule<T = TRuleProps>(rule: TRule<T>, props: T): string
-    renderKeyframe<T = TRuleProps>(keyFrame: TKeyFrame, props: T): string;
+    renderKeyframe<T = TRuleProps>(keyFrame: TKeyFrame<T>, props: T): string;
     renderFont<T = TRuleProps>(family: string, files: Array<string>, props: T): void;
     renderStatic(style: string, selector?: string): void;
     renderStatic(style: IStyle, selector: string): void;
@@ -45,7 +50,7 @@ declare module "fela" {
   }
 
   export interface IStyle extends CSS.Properties<string | number> {
-    //TODO: add properties, missing in React.CSSProperties
+    // for selectors and pseudo classes use fela-plugin-typescript
   }
 
   function createRenderer(config?: IConfig): IRenderer;

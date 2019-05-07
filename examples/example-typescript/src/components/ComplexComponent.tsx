@@ -50,15 +50,30 @@ const complexComponentStyle: Rules<OwnProps, Styles, Theme> = ({fontScale, theme
   },
   firstSection: ({theme}) => ({
     backgroundColor: theme.color.primary,
-    fontSize: `${5 * fontScale}px`
+    fontSize: `${5 * fontScale}px`,
+    nested: {
+      ":hover": {
+        opacity: 0.8,
+      }
+    }
   }),
   secondSection: {
     backgroundColor: theme.color.secondary,
-    fontSize: `${7 * fontScale}px`
+    fontSize: `${7 * fontScale}px`,
+    nested: {
+      ":hover": {
+        opacity: 0.8,
+      }
+    }
   },
   thirdSection: {
     backgroundColor: theme.color.additional,
-    fontSize: `${10 * fontScale}px`
+    fontSize: `${10 * fontScale}px`,
+    nested: {
+      ":hover": {
+        opacity: 0.8
+      }
+    }
   },
 })
 
