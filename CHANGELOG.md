@@ -5,6 +5,13 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.3.0
+| Package | Changes |
+| --- | --- |
+| fela<br>fela-utils<br>fela-dom | ([#707](https://github.com/rofrischmann/fela/pull/707)) Fixed a bug that caused rehydration mismatches when using dash-cased CSS property names. |
+| fela-plugin-typescript | ([#701](https://github.com/rofrischmann/fela/pull/701)) Introducing the new TypeScript plugin that adds type-safety for CSS properties and provides auto-completion.  |
+
+
 ### 10.2.3
 | Package | Changes |
 | --- | --- |
