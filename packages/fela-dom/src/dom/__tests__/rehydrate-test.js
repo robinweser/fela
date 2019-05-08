@@ -108,7 +108,7 @@ describe('Rehydrating from DOM nodes', () => {
       clientRenderer.cache,
     ]).toMatchSnapshot()
     console.log('Client:', JSON.stringify(clientRenderer.cache))
-    console.log('Client:',JSON.stringify(serverRenderer.cache))
+    console.log('Client:', JSON.stringify(serverRenderer.cache))
     expect(sortObject(clientRenderer.cache)).toEqual(
       sortObject(serverRenderer.cache)
     )

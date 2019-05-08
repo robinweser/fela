@@ -243,12 +243,12 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
           }
         } else {
           const declarationReference = generateDeclarationReference(
-              property,
-              value,
-              pseudo,
-              media,
-              support
-            )
+            property,
+            value,
+            pseudo,
+            media,
+            support
+          )
 
           if (!renderer.cache.hasOwnProperty(declarationReference)) {
             // we remove undefined values to enable
