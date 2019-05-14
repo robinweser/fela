@@ -1,0 +1,24 @@
+{
+  "name": "fela-sort-classnames",
+  "version": "10.3.0",
+  "description": "Fela enhancer to sort classnames in alphabetic order",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "sideEffects": false,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/rofrischmann/fela/",
+  "keywords": [
+    "fela",
+    "fela-enhancer",
+    "sorting"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
+}
