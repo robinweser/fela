@@ -5,10 +5,10 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
-### 10.3.1
+### 10.4.0
 | Package | Changes |
 | --- | --- |
-| fela-beautifier | Make sure beautify is only used in devMode since it otherwise breaks DOM rendering in specific use cases. |
+| fela-beautifier | Make sure beautify is only used in devMode since it otherwise breaks DOM rendering in specific cases. |
 | fela-sort-classnames | Introducing a new enhancer that sorts class names alphabetically. This is helpful for SSR consistency due to browser differences in object key iteration. |
 
 ### 10.3.0
