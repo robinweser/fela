@@ -17,7 +17,10 @@ function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
     setTimeout(beautify, 200)
   }
 
-  beautify()
+  // Warning: We can only run that on devMode
+  if (renderer.devMode) {
+    beautify()
+  }
 
   return renderer
 }
