@@ -1,6 +1,6 @@
 {
   "name": "fela",
-  "version": "10.3.0",
+  "version": "10.4.0",
   "description": "State-Driven Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -35,7 +35,7 @@
     "css-in-js-utils": "^3.0.0",
     "csstype": "^2.5.5",
     "fast-loops": "^1.0.0",
-    "fela-utils": "^10.3.0",
+    "fela-utils": "^10.4.0",
     "isobject": "^3.0.1"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"

@@ -1,6 +1,6 @@
 {
   "name": "jest-fela-bindings",
-  "version": "10.3.0",
+  "version": "10.4.0",
   "description": "Abstract Fela bindings for Jest",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -24,7 +24,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-tools": "^10.3.0",
+    "fela-tools": "^10.4.0",
     "htmltojsx": "^0.3.0"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"

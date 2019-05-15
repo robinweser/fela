@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-friendly-pseudo-class",
-  "version": "10.3.0",
+  "version": "10.4.0",
   "description": "Fela plugin to support javascript-friendly pseudo class syntax",
   "main": "lib/index.js",
   "module": "es/index.js",
