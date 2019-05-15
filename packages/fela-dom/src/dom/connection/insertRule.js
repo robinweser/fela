@@ -34,11 +34,11 @@ export default function insertRule(
       if (renderer.scoreIndex[nodeReference] === undefined) {
         index = 0
       } else {
-        index = renderer.scoreIndex[nodeReference]
+        index = renderer.scoreIndex[nodeReference] + 1
       }
     } else {
       // we start iterating from the last score=0 entry
-      // to corretly inject pseudo classes etc.
+      // to correctly inject pseudo classes etc.
       const startIndex = renderer.scoreIndex[nodeReference] || 0
 
       for (let i = startIndex, len = cssRules.length; i < len; ++i) {
