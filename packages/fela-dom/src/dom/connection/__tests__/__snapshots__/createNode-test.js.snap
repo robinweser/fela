@@ -4,7 +4,7 @@ exports[`Creating a style node should have the correct attributes 1`] = `
 Object {
   "_media": undefined,
   "_support": undefined,
-  "html": "<style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>",
+  "html": "<style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>",
 }
 `;
 
@@ -12,7 +12,7 @@ exports[`Creating a style node should have the correct attributes 2`] = `
 Object {
   "_media": "(min-width:300px)",
   "_support": undefined,
-  "html": "<style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width:300px)\\"></style>",
+  "html": "<style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width:300px)\\"></style>",
 }
 `;
 
@@ -20,7 +20,7 @@ exports[`Creating a style node should have the correct attributes 3`] = `
 Object {
   "_media": undefined,
   "_support": "(display:flex)",
-  "html": "<style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\"></style>",
+  "html": "<style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\"></style>",
 }
 `;
 
@@ -28,24 +28,16 @@ exports[`Creating a style node should have the correct attributes 4`] = `
 Object {
   "_media": "(min-width:300px)",
   "_support": "(display:flex)",
-  "html": "<style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width:300px)\\"></style>",
-}
-`;
-
-exports[`Creating a style node should have the correct attributes 5`] = `
-Object {
-  "_media": undefined,
-  "_support": undefined,
-  "html": "<style data-fela-id=\\"ID\\" data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>",
+  "html": "<style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width:300px)\\"></style>",
 }
 `;
 
 exports[`Creating a style node should respect the correct order 1`] = `
 "<head>
-  <style data-fela-id=\\"\\" data-fela-type=\\"STATIC\\" type=\\"text/css\\"></style>
-  <style data-fela-id=\\"\\" data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\"></style>
-  <style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
-  <style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width:300px)\\"></style>
-  <style data-fela-id=\\"\\" data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width:300px)\\"></style>
+  <style data-fela-type=\\"STATIC\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width:300px)\\"></style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width:300px)\\"></style>
 </head>"
 `;

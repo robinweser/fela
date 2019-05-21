@@ -1,19 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Rendering to HTML markup handles \`rendererId\` 1`] = `
-"<style type=\\"text/css\\" data-fela-rehydration=\\"2\\" data-fela-type=\\"RULE\\" data-fela-id=\\"ID\\">
-    .a:hover {
-        color: red
-    }
-
-    .b:active {
-        color: #fff
-    }
-</style>"
-`;
-
 exports[`Rendering to HTML markup should correctly sort rules 1`] = `
-"<style type=\\"text/css\\" data-fela-rehydration=\\"3\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\">
+"<style type=\\"text/css\\" data-fela-rehydration=\\"3\\" data-fela-type=\\"RULE\\">
     .a:hover {
         color: red
     }
@@ -29,7 +17,7 @@ exports[`Rendering to HTML markup should correctly sort rules 1`] = `
 `;
 
 exports[`Rendering to HTML markup should return a single HTML markup string 1`] = `
-"<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"STATIC\\" data-fela-id=\\"\\">
+"<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"STATIC\\">
     * {
         box-sizing: border-box
     }
@@ -38,12 +26,12 @@ exports[`Rendering to HTML markup should return a single HTML markup string 1`] 
         display: flex
     }
 </style>
-<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\">
+<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\">
     .a {
         color: red
     }
 </style>
-<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\" data-fela-support=\\"true\\">
+<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\">
     @supports (display:flex) {
         .b {
             color: yellow
@@ -56,12 +44,12 @@ exports[`Rendering to HTML markup should return a single HTML markup string 1`] 
         }
     }
 </style>
-<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\" media=\\"(min-height: 300px)\\">
+<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" media=\\"(min-height: 300px)\\">
     .d {
         color: blue
     }
 </style>
-<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" data-fela-id=\\"\\" data-fela-support=\\"true\\" media=\\"(min-height: 300px)\\">
+<style type=\\"text/css\\" data-fela-rehydration=\\"6\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\" media=\\"(min-height: 300px)\\">
     @supports (display:flex) {
         .e {
             color: green

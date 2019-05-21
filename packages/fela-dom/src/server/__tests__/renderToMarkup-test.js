@@ -57,18 +57,4 @@ describe('Rendering to HTML markup', () => {
 
     expect(beautify(renderToMarkup(renderer))).toMatchSnapshot()
   })
-
-  it('handles `rendererId`', () => {
-    const rule = () => ({
-      ':hover': { color: 'red' },
-      ':active': { color: '#fff' },
-    })
-    const renderer = createRenderer({
-      rendererId: 'ID',
-    })
-
-    renderer.renderRule(rule)
-
-    expect(beautify(renderToMarkup(renderer))).toMatchSnapshot()
-  })
 })

@@ -43,7 +43,6 @@ declare module "fela" {
     keyframePrefixes?: Array<string>;
     enhancers?: Array<TEnhancer>;
     mediaQueryOrder?: Array<string>;
-    rendererId?: string;
     selectorPrefix?: string;
     filterClassName?: (className: string) => boolean;
     devMode?: boolean;

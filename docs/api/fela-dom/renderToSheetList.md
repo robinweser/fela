@@ -59,24 +59,3 @@ The following list would be returned:
   { type: 'RULE', css: '.d{color:red}', media: '(min-width: 300px)', rehydration: 4 },
 ]
 ```
-
-### Using `renderer.rendererId`
-
-If you decided to use the [`renderer.rendererId` option](../fela/Renderer.md) with rehydration you should ensure that
-your `<style>` nodes have the matching `data-fela-id` attribute.
-
-```javascript
-import { createRenderer } from 'fela'
-import { renderToSheetList } from 'fela-dom'
-
-const serverRenderer = createRenderer({
-  rendererId: 'OTHER'
-})
-const sheetList = renderToSheetList(serverRenderer)
-```
-
-```html
-<style type="text/css" data-fela-id="OTHER"></style>
-```
-
-> Check the [renderToMarkup](renderToMarkup.md) output in order to correctly create custom `style` elements that can be rehydrated.

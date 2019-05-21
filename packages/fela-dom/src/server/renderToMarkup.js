@@ -30,7 +30,6 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
         markup += createStyleTagMarkup(
           cacheCluster[key],
           type,
-          renderer.rendererId,
           '',
           rehydrationIndex
         )
@@ -47,7 +46,6 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
     styleMarkup += createStyleTagMarkup(
       support,
       RULE_TYPE,
-      renderer.rendererId,
       '',
       rehydrationIndex,
       true
@@ -70,7 +68,6 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
         markup += createStyleTagMarkup(
           cacheCluster.mediaRules[media],
           RULE_TYPE,
-          renderer.rendererId,
           media,
           rehydrationIndex
         )
@@ -86,7 +83,6 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
           markup += createStyleTagMarkup(
             mediaSupport,
             RULE_TYPE,
-            renderer.rendererId,
             media,
             rehydrationIndex,
             true

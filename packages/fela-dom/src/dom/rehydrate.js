@@ -17,9 +17,7 @@ const CLASSNAME_REGEX = /[.][a-z0-9_-]*/gi
 export default function rehydrate(renderer: DOMRenderer): void {
   render(renderer)
 
-  const idQuery = `[data-fela-id="${renderer.rendererId}"]`
-
-  arrayEach(document.querySelectorAll(`[data-fela-type]${idQuery}`), node => {
+  arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
     const rehydrationAttribute =
       node.getAttribute('data-fela-rehydration') || -1
     const rehydrationIndex =
