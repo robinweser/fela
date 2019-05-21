@@ -17,7 +17,8 @@ function renderFontFace({ fontFamily, src, ...otherProps }, renderer) {
 function embedded(
   style: Object,
   type: StyleType,
-  renderer: DOMRenderer
+  renderer: DOMRenderer,
+  props: Object
 ): Object {
   for (const property in style) {
     const value = style[property]
@@ -44,13 +45,13 @@ function embedded(
     } else if (property === 'animationName' && typeof value === 'object') {
       if (Array.isArray(value)) {
         style[property] = value
-          .map(frame => renderer.renderKeyframe(() => frame))
+          .map(frame => renderer.renderKeyframe(() => frame), props)
           .join(',')
       } else {
-        style[property] = renderer.renderKeyframe(() => value)
+        style[property] = renderer.renderKeyframe(() => value, props)
       }
     } else if (isPlainObject(value)) {
-      embedded(value, type, renderer)
+      embedded(value, type, renderer, props)
     }
   }
 
