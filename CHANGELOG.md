@@ -5,6 +5,13 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.4.1
+| Package | Changes |
+| --- | --- |
+| fela-plugin-embedded | Rule props are now always passed to the keyframe in order to read values from theme. |
+| fela | Keyframes are now cached after being processed by plugins. |
+| fela-dom<br>fela | Reverted the `rendererId` option that was introduced in ([#667](https://github.com/rofrischmann/fela/pull/667)) as it caused a couple of issues and is no longer neccessary with above changes. |
+
 ### 10.4.0
 | Package | Changes |
 | --- | --- |
