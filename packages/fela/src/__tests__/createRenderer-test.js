@@ -209,7 +209,7 @@ describe('Renderer', () => {
       const key = family + JSON.stringify(properties)
       const src = renderer.cache[key].fontFace.match(/.*(src:.*);.*$/)[1]
       expect(src).toEqual(
-        "src:url('../fonts/Arial.ttf') format('truetype'),url('../fonts/Arial.woff') format('woff')"
+        "src:url('../fonts/Arial.ttf') format('truetype'), url('../fonts/Arial.woff') format('woff')"
       )
     })
   })
