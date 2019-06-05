@@ -1,6 +1,6 @@
 import generateFontSource from '../generateFontSource'
 
-describe('Generating sources source', () => {
+describe('Generating font sources', () => {
   it('should return valid font sources with empty aliases', () => {
     expect(generateFontSource(['font.woff', 'font.ttf'])).toMatchSnapshot()
   })
