@@ -11,7 +11,7 @@ export default function generateFontSource(
   const localSource = arrayReduce(
     fontLocals,
     (src, local, index) => {
-      const prefix = index > 0 ? ', ' : ''
+      const prefix = index > 0 ? ',' : ''
       const localUrl = getFontUrl(local)
 
       return `${src}${prefix}local(${localUrl})`
@@ -21,7 +21,7 @@ export default function generateFontSource(
   const urlSource = arrayReduce(
     files,
     (src, fileSource, index) => {
-      const prefix = index > 0 ? ', ' : ''
+      const prefix = index > 0 ? ',' : ''
       const fileFormat = getFontFormat(fileSource)
       const fileUrl = getFontUrl(fileSource)
 
@@ -29,7 +29,7 @@ export default function generateFontSource(
     },
     ''
   )
-  const delimiter = localSource.length > 0 && urlSource.length > 0 ? ', ' : ''
+  const delimiter = localSource.length > 0 && urlSource.length > 0 ? ',' : ''
 
   return `${localSource}${delimiter}${urlSource}`
 }
