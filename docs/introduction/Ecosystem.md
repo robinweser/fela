@@ -30,6 +30,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-bidi](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-bidi) - Enable direction-independent style authoring
 * [fela-plugin-custom-property](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-custom-property) - Resolves custom properties
 * [fela-plugin-embedded](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-embedded) - Automatically resolves embedded font faces and keyframes within rules
+* [fela-plugin-expand-shorthand](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-expand-shorthand) - Expand shorthand properties and optionally merge them
 * [fela-plugin-extend](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend) - Extend style objects based on conditions
 * [fela-plugin-fallback-value](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-fallback-value) - Resolves arrays of fallback values
 * [fela-plugin-friendly-pseudo-class](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-friendly-pseudo-class) - Transforms javascript-friendly pseudo class into valid syntax
@@ -55,6 +56,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-monolithic](https://github.com/rofrischmann/fela/tree/master/packages/fela-monolithic) - Render component-based (monolithic) CSS classes (rather than atomic)
 * [fela-identifier](https://github.com/rofrischmann/fela/tree/master/packages/fela-identifier) - Allows to create rules for which the renderer will generate unique class names (useful for nested selectors)
 * [fela-perf*](https://github.com/rofrischmann/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
+* [fela-sort-classnames](https://github.com/rofrischmann/fela/tree/master/packages/fela-sort-classnames) - Deterministically sort rendered class names to prevent browser incompatibilities
 * [fela-statistics*](https://github.com/rofrischmann/fela/tree/master/packages/fela-statistics) - Collects different metrics to analyze your styles
 
 ### Components
