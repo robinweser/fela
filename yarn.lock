@@ -8866,6 +8866,11 @@ init-package-json@~1.9.4:
     validate-npm-package-license "^3.0.1"
     validate-npm-package-name "^3.0.0"
 
+inline-style-expand-shorthand@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/inline-style-expand-shorthand/-/inline-style-expand-shorthand-1.1.1.tgz#0b0dbd34cfe6e62a2d21c077b2c8cdbe367224de"
+  integrity sha512-O8rMrfUxzQ2SGqkGvb+3JI611JXy8lgClq6RulN+K9R4qRPDiZ+ajeqYLBg3bmxtAoM4SX4o6zU9PLzBJpsiDQ==
+
 inline-style-prefixer@^2.0.0, inline-style-prefixer@^2.0.1, inline-style-prefixer@^2.0.4:
   version "2.0.5"
   resolved "http://registry.npmjs.org/inline-style-prefixer/-/inline-style-prefixer-2.0.5.tgz#c153c7e88fd84fef5c602e95a8168b2770671fe7"
