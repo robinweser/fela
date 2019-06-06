@@ -1,6 +1,6 @@
 {
   "name": "jest-inferno-fela",
-  "version": "10.4.1",
+  "version": "10.5.0",
   "description": "Jest helpers for inferno-fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -30,7 +30,7 @@
     "inferno-fela": "*"
   },
   "dependencies": {
-    "jest-fela-bindings": "^10.4.1"
+    "jest-fela-bindings": "^10.5.0"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

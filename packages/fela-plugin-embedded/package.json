@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-embedded",
-  "version": "10.4.1",
+  "version": "10.5.0",
   "description": "Fela plugin that resolves embedded keyframes and font faces",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -29,8 +29,8 @@
     "isobject": "^3.0.1"
   },
   "devDependencies": {
-    "fela": "^10.4.1",
-    "fela-tools": "^10.4.1"
+    "fela": "^10.5.0",
+    "fela-tools": "^10.5.0"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }
