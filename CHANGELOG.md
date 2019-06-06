@@ -5,6 +5,13 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.5.0
+| Package | Changes |
+| --- | --- |
+| fela-plugin-expand-shorthand | ([#711](https://github.com/rofrischmann/fela/pull/711)) Introducing a new plugin to expand (and optionally merge) shorthand properties. |
+| fela | ([#710](https://github.com/rofrischmann/fela/pull/710)) Fixed a bug where font rendering returned invalid font faces. |
+
+
 ### 10.4.1
 | Package | Changes |
 | --- | --- |
