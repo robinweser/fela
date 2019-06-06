@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generating font sources should return valid font sources with empty aliases 1`] = `"url('font.woff') format('woff'),url('font.ttf') format('truetype')"`;
+
+exports[`Generating font sources should return valid font sources with empty files 1`] = `"local('Times New Roman'),local('Calibri')"`;
+
+exports[`Generating font sources should return valid font sources with local aliases 1`] = `"local('Times New Roman'),local('Calibri'),url('font.woff') format('woff'),url('font.ttf') format('truetype')"`;
