@@ -90,7 +90,8 @@ export default function createRenderer(
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
         const animationName = generateAnimationName(
-          ++renderer.uniqueKeyframeIdentifier
+          ++renderer.uniqueKeyframeIdentifier,
+          validateSelectorPrefix(config.selectorPrefix)
         )
 
         const cssKeyframe = cssifyKeyframe(
