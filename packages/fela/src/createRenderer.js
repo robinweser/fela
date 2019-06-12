@@ -89,9 +89,9 @@ export default function createRenderer(
 
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
-        const animationName = generateAnimationName(
-          ++renderer.uniqueKeyframeIdentifier
-        )
+        const animationName =
+          renderer.selectorPrefix +
+          generateAnimationName(++renderer.uniqueKeyframeIdentifier)
 
         const cssKeyframe = cssifyKeyframe(
           processedKeyframe,
@@ -234,8 +234,8 @@ export default function createRenderer(
               combinedSupport
             )
           } else {
-            console.warn(`The object key "${property}" is not a valid nested key in Fela. 
-Maybe you forgot to add a plugin to resolve it? 
+            console.warn(`The object key "${property}" is not a valid nested key in Fela.
+Maybe you forgot to add a plugin to resolve it?
 Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information.`)
           }
         } else {
