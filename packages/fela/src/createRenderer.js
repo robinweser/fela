@@ -30,6 +30,7 @@ import generateStaticReference from './generateStaticReference'
 import getFontLocals from './getFontLocals'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
+import validateAnimationPrefix from './validateAnimationPrefix'
 import validateSelectorPrefix from './validateSelectorPrefix'
 
 import type {
@@ -56,6 +57,7 @@ export default function createRenderer(
       /^:active/,
     ],
     selectorPrefix: validateSelectorPrefix(config.selectorPrefix),
+    animationPrefix: validateAnimationPrefix(config.animationPrefix),
     filterClassName: config.filterClassName || isSafeClassName,
     devMode: config.devMode || false,
 
@@ -89,7 +91,7 @@ export default function createRenderer(
 
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
-        const animationName = generateAnimationName(
+        const animationName = renderer.animationPrefix + generateAnimationName(
           ++renderer.uniqueKeyframeIdentifier
         )
 
@@ -234,8 +236,8 @@ export default function createRenderer(
               combinedSupport
             )
           } else {
-            console.warn(`The object key "${property}" is not a valid nested key in Fela. 
-Maybe you forgot to add a plugin to resolve it? 
+            console.warn(`The object key "${property}" is not a valid nested key in Fela.
+Maybe you forgot to add a plugin to resolve it?
 Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information.`)
           }
         } else {
