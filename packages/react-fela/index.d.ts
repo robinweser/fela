@@ -31,7 +31,6 @@ declare module "react-fela" {
 
   interface ProviderProps {
     renderer: object;
-    mountNode?: any;
   }
 
   interface FelaWithThemeProps<Theme> {
