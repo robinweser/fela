@@ -1,6 +1,9 @@
 /* @flow */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import arrayEach from 'fast-loops/lib/arrayEach'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
+import objectEach from 'fast-loops/lib/objectEach'
+import objectFilter from 'fast-loops/lib/objectFilter'
 import isPlainObject from 'isobject'
 
 import {
@@ -27,6 +30,7 @@ import generateAnimationName from './generateAnimationName'
 import generateClassName from './generateClassName'
 import generateFontSource from './generateFontSource'
 import generateStaticReference from './generateStaticReference'
+import getDocumentRefIndex from './getDocumentRefIndex'
 import getFontLocals from './getFontLocals'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
@@ -37,6 +41,9 @@ import type {
   DOMRendererConfig,
 } from '../../../flowtypes/DOMRenderer'
 import type { FontProperties } from '../../../flowtypes/FontProperties'
+
+// use default value with document
+const defaultDocumentRef = { target: document, refCount: 1, refId: 0 }
 
 export default function createRenderer(
   config: DOMRendererConfig = {}
@@ -62,6 +69,7 @@ export default function createRenderer(
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
 
+    documentRefs: [defaultDocumentRef],
     nodes: {},
     scoreIndex: {},
     // use a flat cache object with pure string references
@@ -172,9 +180,46 @@ export default function createRenderer(
       }
     },
 
+    subscribeDocument(target: Document) {
+      const refIndex = getDocumentRefIndex(renderer.documentRefs, target)
+
+      if (refIndex === null) {
+        renderer.documentRefs.push({
+          target,
+          refCount: 1,
+          refId: renderer.getNextRuleIdentifier(),
+        })
+
+        // simulate rendering to ensure all styles rendered prior to
+        // calling FelaDOM.render are correctly injected as well
+        objectEach(renderer.cache, renderer._emitChange)
+      } else {
+        renderer.documentRefs[refIndex].refCount += 1
+      }
+
+      return {
+        unsubscribe: () => {
+          const index = getDocumentRefIndex(renderer.documentRefs, target)
+          const ref = renderer.documentRefs[index]
+
+          if (ref) {
+            if (ref.refCount === 1) {
+              renderer.nodes = objectFilter(renderer.nodes, node => {
+                return node.refId !== ref.refId
+              })
+              renderer.documentRefs.splice(index, 1)
+            } else {
+              ref.refCount -= 1
+            }
+          }
+        },
+      }
+    },
+
     clear() {
       renderer.uniqueRuleIdentifier = 0
       renderer.uniqueKeyframeIdentifier = 0
+      renderer.documentRefs = [defaultDocumentRef]
       renderer.cache = {}
 
       renderer._emitChange({

@@ -7,14 +7,18 @@ import {
 
 import insertRuleInDevMode from './insertRuleInDevMode'
 
-import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
+import type {
+  DOMRenderer,
+  DOMRendererDocumentRef,
+} from '../../../../../flowtypes/DOMRenderer'
 
 export default function insertRule(
   { selector, declaration, support, media, pseudo }: Object,
   renderer: DOMRenderer,
-  node: Object
+  node: Object,
+  documentRef: DOMRendererDocumentRef
 ) {
-  const nodeReference = media + support
+  const nodeReference = media + support + documentRef.refId
   // only use insertRule in production as browser devtools might have
   // weird behavior if used together with insertRule at runtime
   if (renderer.devMode) {

@@ -2,13 +2,15 @@
 import objectReduce from 'fast-loops/lib/objectReduce'
 
 import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
+import type { DOMRendererDocumentRef } from '../../../../../flowtypes/DOMRenderer'
 
 export default function createNode(
   nodes: Object,
   score: number,
-  { type, media, support }: NodeAttributes
+  { type, media, support }: NodeAttributes,
+  documentRef: DOMRendererDocumentRef
 ): Object {
-  const head = document.head || {}
+  const head = documentRef.target.head || {}
 
   const node = document.createElement('style')
   node.setAttribute('data-fela-type', type)
@@ -27,6 +29,7 @@ export default function createNode(
   const moreSpecificReference = objectReduce(
     nodes,
     (closest, currentNode, reference) =>
+      currentNode.refId === documentRef.refId &&
       currentNode.score > score &&
       (!closest || nodes[closest].score > currentNode.score)
         ? reference

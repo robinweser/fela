@@ -1,5 +1,6 @@
 /* @flow */
 /* eslint-disable consistent-return */
+import arrayEach from 'fast-loops/lib/arrayEach'
 import objectEach from 'fast-loops/lib/objectEach'
 import {
   RULE_TYPE,
@@ -27,26 +28,28 @@ export default function createSubscription(renderer: DOMRenderer): Function {
       return
     }
 
-    const node = getNodeFromCache(change, renderer)
+    arrayEach(renderer.documentRefs, documentRef => {
+      const node = getNodeFromCache(change, renderer, documentRef)
 
-    switch (change.type) {
-      case KEYFRAME_TYPE:
-        node.textContent += change.keyframe
-        break
-      case FONT_TYPE:
-        node.textContent += change.fontFace
-        break
-      case STATIC_TYPE:
-        node.textContent += change.selector
-          ? generateCSSRule(change.selector, change.css)
-          : change.css
-        break
-      case RULE_TYPE:
-        insertRule(change, renderer, node)
-        break
-      default:
-        // TODO: warning
-        break
-    }
+      switch (change.type) {
+        case KEYFRAME_TYPE:
+          node.textContent += change.keyframe
+          break
+        case FONT_TYPE:
+          node.textContent += change.fontFace
+          break
+        case STATIC_TYPE:
+          node.textContent += change.selector
+            ? generateCSSRule(change.selector, change.css)
+            : change.css
+          break
+        case RULE_TYPE:
+          insertRule(change, renderer, node, documentRef)
+          break
+        default:
+          // TODO: warning
+          break
+      }
+    })
   }
 }

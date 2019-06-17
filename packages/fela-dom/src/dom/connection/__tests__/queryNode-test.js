@@ -10,7 +10,9 @@ it('should not query nodes with media attributes if media is not defined', () =>
 
   document.head.innerHTML = nodeInvalid + nodeValid
 
-  expect(queryNode({ type: RULE_TYPE }).outerHTML).toBe(nodeValid)
+  expect(queryNode({ type: RULE_TYPE }, { target: document }).outerHTML).toBe(
+    nodeValid
+  )
 })
 
 it('should not query nodes with support attributes if support is not defined', () => {
@@ -21,5 +23,7 @@ it('should not query nodes with support attributes if support is not defined', (
 
   document.head.innerHTML = nodeInvalid + nodeValid
 
-  expect(queryNode({ type: RULE_TYPE }).outerHTML).toBe(nodeValid)
+  expect(queryNode({ type: RULE_TYPE }, { target: document }).outerHTML).toBe(
+    nodeValid
+  )
 })

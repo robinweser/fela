@@ -28,11 +28,21 @@ export default function RendererProviderFactory(
       super(props, context)
 
       if (hasDOM(props.renderer)) {
+        if (props.target) {
+          this.subscription = props.renderer.subscribeDocument(props.target)
+        }
+
         if (props.rehydrate && hasServerRenderedStyle()) {
           rehydrate(props.renderer)
         } else {
           render(props.renderer)
         }
+      }
+    }
+
+    componentWillUnmount() {
+      if (hasDOM(this.props.renderer) && this.subscription) {
+        this.subscription.unsubscribe()
       }
     }
 

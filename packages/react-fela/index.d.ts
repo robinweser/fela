@@ -31,6 +31,7 @@ declare module "react-fela" {
 
   interface ProviderProps {
     renderer: object;
+    target?: Document;
     mountNode?: any;
   }
 

@@ -17,62 +17,64 @@ const CLASSNAME_REGEX = /[.][a-z0-9_-]*/gi
 export default function rehydrate(renderer: DOMRenderer): void {
   render(renderer)
 
-  arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
-    const rehydrationAttribute =
-      node.getAttribute('data-fela-rehydration') || -1
-    const rehydrationIndex =
-      renderer.uniqueRuleIdentifier || parseInt(rehydrationAttribute, 10)
+  arrayEach(renderer.documentRefs, documentRef => {
+    arrayEach(document.querySelectorAll('[data-fela-type]'), node => {
+      const rehydrationAttribute =
+        node.getAttribute('data-fela-rehydration') || -1
+      const rehydrationIndex =
+        renderer.uniqueRuleIdentifier || parseInt(rehydrationAttribute, 10)
 
-    // skip rehydration if no rehydration index is set
-    // this index is set to -1 if something blocks rehydration
-    if (rehydrationIndex !== -1) {
-      const type = node.getAttribute('data-fela-type') || ''
-      const media = node.getAttribute('media') || ''
-      const support = node.getAttribute('data-fela-support') || ''
-      const css = node.textContent
+      // skip rehydration if no rehydration index is set
+      // this index is set to -1 if something blocks rehydration
+      if (rehydrationIndex !== -1) {
+        const type = node.getAttribute('data-fela-type') || ''
+        const media = node.getAttribute('media') || ''
+        const support = node.getAttribute('data-fela-support') || ''
+        const css = node.textContent
 
-      renderer.uniqueRuleIdentifier = rehydrationIndex
+        renderer.uniqueRuleIdentifier = rehydrationIndex
 
-      const reference = type + media + support
-      renderer.nodes[reference] = {
-        score: calculateNodeScore(
-          { type, media, support },
-          renderer.mediaQueryOrder
-        ),
-        node,
-      }
-
-      if (type === RULE_TYPE) {
-        if (support) {
-          rehydrateSupportRules(css, media, renderer.cache)
-        } else {
-          rehydrateRules(css, media, '', renderer.cache)
+        const reference = type + media + support + documentRef.refId
+        renderer.nodes[reference] = {
+          score: calculateNodeScore(
+            { type, media, support },
+            renderer.mediaQueryOrder
+          ),
+          node,
         }
 
-        // On Safari, style sheets with IE-specific media queries
-        // can yield null for node.sheet
-        // https://github.com/rofrischmann/fela/issues/431#issuecomment-423239591
-        if (node.sheet && node.sheet.cssRules) {
-          const nodeReference = media + support
+        if (type === RULE_TYPE) {
+          if (support) {
+            rehydrateSupportRules(css, media, renderer.cache)
+          } else {
+            rehydrateRules(css, media, '', renderer.cache)
+          }
 
-          arrayEach(node.sheet.cssRules, (rule, index) => {
-            const selectorText = rule.conditionText
-              ? rule.cssRules[0].selectorText
-              : rule.selectorText
+          // On Safari, style sheets with IE-specific media queries
+          // can yield null for node.sheet
+          // https://github.com/rofrischmann/fela/issues/431#issuecomment-423239591
+          if (node.sheet && node.sheet.cssRules) {
+            const nodeReference = media + support + documentRef.refId
 
-            const score = getRuleScore(
-              renderer.ruleOrder,
-              selectorText.split(CLASSNAME_REGEX)[1]
-            )
+            arrayEach(node.sheet.cssRules, (rule, index) => {
+              const selectorText = rule.conditionText
+                ? rule.cssRules[0].selectorText
+                : rule.selectorText
 
-            if (score === 0) {
-              renderer.scoreIndex[nodeReference] = index
-            }
+              const score = getRuleScore(
+                renderer.ruleOrder,
+                selectorText.split(CLASSNAME_REGEX)[1]
+              )
 
-            rule.score = score
-          })
+              if (score === 0) {
+                renderer.scoreIndex[nodeReference] = index
+              }
+
+              rule.score = score
+            })
+          }
         }
       }
-    }
+    })
   })
 }
