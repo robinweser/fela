@@ -26,7 +26,7 @@ Renders a `rule` using the `props` to resolve it.
 ```javascript
 import { createRenderer } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const rule = props => ({
   backgroundColor: 'red',
@@ -105,7 +105,7 @@ Adds a change `listener` to get notified when changes happen.
 ```javascript
 import { createRenderer } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const rule = props => ({
   fontSize: props.fontSize,

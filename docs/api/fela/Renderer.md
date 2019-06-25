@@ -29,7 +29,7 @@ Renders a `rule` using the `props` to resolve it.
 ```javascript
 import { createRenderer } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const rule = props => ({
   backgroundColor: 'red',
@@ -107,7 +107,7 @@ Renders a `keyframe` using the `props` to resolve it.
 ```javascript
 import { createRenderer } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const keyframe = props => ({
   '0%': { color: props.initialColor },
@@ -143,7 +143,7 @@ Renders a `@font-face` rule using the `family` as reference.
 ```javascript
 import { createRenderer } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const files = [
   '../fonts/Lato.ttf',
@@ -172,7 +172,7 @@ Renders static styles.
 ```javascript
 import { createRenderer } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 // string type style
 renderer.renderStatic('html,body{box-sizing:border-box;margin:0}').
@@ -194,7 +194,7 @@ You can even reuse existing formatted CSS using [ECMAScript 2015](http://www.ecm
 ```javascript
 import { createRenderer } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 renderer.renderStatic(`
 html, body {
@@ -228,7 +228,7 @@ Adds a change `listener` to get notified when changes happen.
 ```javascript
 import { createRenderer } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const rule = props => ({
   fontSize: props.fontSize,
