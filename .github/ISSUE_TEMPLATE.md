@@ -5,7 +5,7 @@
 
 **Type**: Bug / Feature / Infrastructure / Docs / Question
 <!------------------------------------------
-  Before choosing question, please consider asking on Gitter as we might close question issues
+  Before choosing question, please consider asking on Sectrum as we might close question issues
 ------------------------------------------->
 
 
