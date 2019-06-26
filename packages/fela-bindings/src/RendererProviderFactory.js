@@ -2,18 +2,18 @@
 import { render, rehydrate } from 'fela-dom'
 import objectEach from 'fast-loops/lib/objectEach'
 
-function hasDOM(renderer) {
+function hasDOM(renderer, targetDocument = document) {
   return (
     renderer &&
     !renderer.isNativeRenderer &&
     typeof window !== 'undefined' &&
-    window.document &&
-    window.document.createElement
+    targetDocument &&
+    targetDocument.createElement
   )
 }
 
-function hasServerRenderedStyle() {
-  return window.document.querySelectorAll('[data-fela-type]').length > 0
+function hasServerRenderedStyle(targetDocument = document) {
+  return targetDocument.querySelectorAll('[data-fela-type]').length > 0
 }
 
 export default function RendererProviderFactory(
@@ -27,11 +27,26 @@ export default function RendererProviderFactory(
     constructor(props: Object, context: Object) {
       super(props, context)
 
-      if (hasDOM(props.renderer)) {
-        if (props.rehydrate && hasServerRenderedStyle()) {
-          rehydrate(props.renderer)
+      this._renderStyle()
+    }
+
+    componentDidUpdate(prevProps) {
+      // TODO: we might add a shallow compare to avoid unnecessary rerenders
+      this._renderStyle()
+    }
+
+    _renderStyle() {
+      const {
+        renderer,
+        rehydrate: shouldRehydrate,
+        targetDocument,
+      } = this.props
+
+      if (hasDOM(renderer, targetDocument)) {
+        if (shouldRehydrate && hasServerRenderedStyle(targetDocument)) {
+          rehydrate(renderer, targetDocument)
         } else {
-          render(props.renderer)
+          render(renderer, targetDocument)
         }
       }
     }

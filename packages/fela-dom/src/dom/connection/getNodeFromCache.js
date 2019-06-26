@@ -16,14 +16,16 @@ function getReference({
 
 export default function getNodeFromCache(
   attributes: NodeAttributes,
-  renderer: DOMRenderer
+  renderer: DOMRenderer,
+  targetDocument: any = document
 ): Object {
   const reference = getReference(attributes)
 
   if (!renderer.nodes[reference]) {
     const score = calculateNodeScore(attributes, renderer.mediaQueryOrder)
     const node =
-      queryNode(attributes) || createNode(renderer.nodes, score, attributes)
+      queryNode(attributes, targetDocument) ||
+      createNode(renderer.nodes, score, attributes, targetDocument)
 
     renderer.nodes[reference] = {
       node,
