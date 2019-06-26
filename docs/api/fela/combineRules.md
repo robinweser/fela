@@ -15,7 +15,7 @@ Accepts a list of [Rules](../../advanced/Rules.md).
 ```javascript
 import { combineRules } from 'fela'
 
-const renderer = createRenderer(mountNode)
+const renderer = createRenderer()
 
 const rule = props => ({
   fontSize: props.fontSize
