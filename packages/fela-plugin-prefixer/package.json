@@ -27,7 +27,7 @@
     "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.0",
     "fela-plugin-fallback-value": "^10.5.0",
-    "inline-style-prefixer": "^5.0.1",
+    "inline-style-prefixer": "^5.1.0",
     "isobject": "^3.0.1"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
