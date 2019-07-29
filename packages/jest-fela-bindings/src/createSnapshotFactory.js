@@ -15,7 +15,7 @@ function formatHTML(html) {
   })
 
   const jsx = converter.convert(html)
-  return format(jsx, { parser: 'babylon' }).replace(/[\\"]/g, '')
+  return format(jsx, { parser: 'babel' }).replace(/[\\"]/g, '')
 }
 
 export default function createSnapshotFactory(
