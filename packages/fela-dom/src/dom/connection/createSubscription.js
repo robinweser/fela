@@ -15,7 +15,10 @@ import insertRule from './insertRule'
 
 import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 
-export default function createSubscription(renderer: DOMRenderer): Function {
+export default function createSubscription(
+  renderer: DOMRenderer,
+  targetDocument: any = document
+): Function {
   return change => {
     if (change.type === CLEAR_TYPE) {
       objectEach(renderer.nodes, ({ node }) =>
@@ -27,7 +30,7 @@ export default function createSubscription(renderer: DOMRenderer): Function {
       return
     }
 
-    const node = getNodeFromCache(change, renderer)
+    const node = getNodeFromCache(change, renderer, targetDocument)
 
     switch (change.type) {
       case KEYFRAME_TYPE:

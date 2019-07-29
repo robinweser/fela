@@ -7216,13 +7216,6 @@ fela-dom@4.2.6:
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-4.2.6.tgz#fb8b618a3cb9e87a4ae15c438389a2a7057ebb31"
 
-fela-plugin-extend@^5.0.11:
-  version "5.0.12"
-  resolved "https://registry.yarnpkg.com/fela-plugin-extend/-/fela-plugin-extend-5.0.12.tgz#f3065fd0dc25e586c4e23a67448657c35a573ec0"
-  dependencies:
-    css-in-js-utils "2.0.0"
-    fela-utils "^7.0.4"
-
 fela-plugin-lvha@^5.0.16:
   version "5.0.16"
   resolved "https://registry.yarnpkg.com/fela-plugin-lvha/-/fela-plugin-lvha-5.0.16.tgz#f20cb7d73755ea123fb87acf19a5aca38001d72b"
@@ -7235,7 +7228,7 @@ fela-plugin-named-media-query@^5.0.13:
   dependencies:
     fela-utils "^7.0.5"
 
-fela-utils@^7.0.4, fela-utils@^7.0.5:
+fela-utils@^7.0.5:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-7.0.5.tgz#62397db8abf8294bb160ba7575b31d68495283b2"
   dependencies:
@@ -8892,17 +8885,10 @@ inline-style-prefixer@^4.0.0:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
 
-inline-style-prefixer@^5.0.1:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.0.3.tgz#14e4f99b932eb57686f1fa912d63a979831bcdf5"
-  dependencies:
-    css-in-js-utils "^2.0.0"
-    gitbook-plugin-prism "^2.4.0"
-
-inline-style-prefixer@^5.0.3, inline-style-prefixer@^5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.0.4.tgz#828b7e6c6b906233262b593315a8defdf0b21662"
-  integrity sha512-I9wbfqETNhMfULOGf1v2AK3bLr5zlBOftDQ22gUUebkP2gMD0EjogKsaH03J6JXYD9i4uklUpPGjcU0ebvKnig==
+inline-style-prefixer@^5.0.3, inline-style-prefixer@^5.0.4, inline-style-prefixer@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.1.0.tgz#cb63195f9456dcda25cf59743e45c4d9815b0811"
+  integrity sha512-giteQHPMrApQOSjNSjteO5ZGSGMRf9gas14fRy2lg2buSc1nRnj6o6xuNds5cMTKrkncyrTu3gJn/yflFMVdmg==
   dependencies:
     css-in-js-utils "^2.0.0"
 
