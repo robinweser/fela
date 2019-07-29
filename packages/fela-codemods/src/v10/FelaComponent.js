@@ -58,9 +58,7 @@ export default function transformer(file, api) {
             const { value } = styleProp
             if (value && value.expression.type === 'Identifier') {
               console.warn(
-                `The style value in line ${
-                  value.expression.loc.start.line
-                } is a reference to an external variable. ` +
+                `The style value in line ${value.expression.loc.start.line} is a reference to an external variable. ` +
                   'We have no way to check and convert it to the new syntax. Please do so manually'
               )
             }
@@ -96,9 +94,7 @@ export default function transformer(file, api) {
             if (styleIsFn) {
               // TODO: Don't convert to arrow function and remove the warning
               console.warn(
-                `Converting a function expression style function into an arrow function in line ${
-                  value.expression.loc.start.line
-                }`
+                `Converting a function expression style function into an arrow function in line ${value.expression.loc.start.line}`
               )
               j(styleProp)
                 .find(j.FunctionExpression)
