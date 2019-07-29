@@ -11,8 +11,7 @@ We assume that you got [node](https://nodejs.org) and [yarn](https://yarnpkg.com
 ```
 git clone git@github.com:rofrischmann/fela.git
 cd fela
-yarn install
-yarn setup
+yarn
 ```
 
 **Fela is a collection of multiple packages**. We use the tool [lerna](https://lernajs.io/) to maintain it. All source code can be found in the folder [/packages](packages).
