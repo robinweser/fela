@@ -8892,17 +8892,10 @@ inline-style-prefixer@^4.0.0:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
 
-inline-style-prefixer@^5.0.1:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.0.3.tgz#14e4f99b932eb57686f1fa912d63a979831bcdf5"
-  dependencies:
-    css-in-js-utils "^2.0.0"
-    gitbook-plugin-prism "^2.4.0"
-
-inline-style-prefixer@^5.0.3, inline-style-prefixer@^5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.0.4.tgz#828b7e6c6b906233262b593315a8defdf0b21662"
-  integrity sha512-I9wbfqETNhMfULOGf1v2AK3bLr5zlBOftDQ22gUUebkP2gMD0EjogKsaH03J6JXYD9i4uklUpPGjcU0ebvKnig==
+inline-style-prefixer@^5.0.3, inline-style-prefixer@^5.0.4, inline-style-prefixer@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.1.0.tgz#cb63195f9456dcda25cf59743e45c4d9815b0811"
+  integrity sha512-giteQHPMrApQOSjNSjteO5ZGSGMRf9gas14fRy2lg2buSc1nRnj6o6xuNds5cMTKrkncyrTu3gJn/yflFMVdmg==
   dependencies:
     css-in-js-utils "^2.0.0"
 
