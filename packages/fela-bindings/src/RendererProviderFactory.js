@@ -2,11 +2,13 @@
 import { render, rehydrate } from 'fela-dom'
 import objectEach from 'fast-loops/lib/objectEach'
 
-function hasDOM(renderer, targetDocument = document) {
+function hasDOM(renderer, targetDocument) {
+  if (typeof window === 'undefined') return false
+  if (!targetDocument) targetDocument = document
+
   return (
     renderer &&
     !renderer.isNativeRenderer &&
-    typeof window !== 'undefined' &&
     targetDocument &&
     targetDocument.createElement
   )
