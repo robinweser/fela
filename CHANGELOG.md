@@ -5,6 +5,9 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.6.1
+| fela-bindings<br>react-fela<br>inferno-fela<br>preact-fela | ([#728](https://github.com/rofrischmann/fela/pull/728)) Hotfix that broke SSR with the new `targetDocument` option. |
+
 ### 10.6.0
 | fela-dom<br>fela-bindings<br>react-fela<br>inferno-fela<br>preact-fela | ([#722](https://github.com/rofrischmann/fela/pull/722)) Added the ability to pass a `targetDocument` for DOM rendering. Defaults to `window.document`. |
 
