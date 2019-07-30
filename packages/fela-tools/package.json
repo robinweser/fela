@@ -1,6 +1,6 @@
 {
   "name": "fela-tools",
-  "version": "10.6.0",
+  "version": "10.6.1",
   "description": "Useful tools for working with Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,8 +26,8 @@
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.0",
-    "fela": "^10.6.0",
-    "fela-utils": "^10.6.0"
+    "fela": "^10.6.1",
+    "fela-utils": "^10.6.1"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }
