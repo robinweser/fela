@@ -79,7 +79,7 @@ Using the [React bindings](packages/react-fela), you get powerful APIs to create
 
 ```javascript
 import React from 'react'
-import { FelaComponent, Provider } from 'react-fela'
+import { FelaProvider, useFela } from 'react-fela'
 import { createRenderer } from 'fela';
 import { render } from 'react-dom'
 
@@ -96,11 +96,13 @@ const rule = state => ({
   }
 })
 
-const Button = ({ fontSize = 14, children }) => (
-  <FelaComponent rule={rule} fontSize={fontSize}>
+const Button = ({ children, ...props }) => {
+  const { css } = useFela(props)
+  
+  <button className={css(rule)}>
     {children}
-  </FelaComponent>
-)
+  </button>
+}
 
 const renderer = createRenderer()
 
