@@ -78,7 +78,9 @@ Using the [React bindings](packages/react-fela), you get powerful APIs to create
 > **Read**: [Usage with React](http://fela.js.org/docs/guides/UsageWithReact.html) for a full guide.
 
 ```javascript
+import React from 'react'
 import { FelaComponent, Provider } from 'react-fela'
+import { createRenderer } from 'fela';
 import { render } from 'react-dom'
 
 const rule = state => ({
@@ -99,6 +101,8 @@ const Button = ({ fontSize = 14, children }) => (
     {children}
   </FelaComponent>
 )
+
+const renderer = createRenderer()
 
 render(
   <Provider renderer={renderer}>
