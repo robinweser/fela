@@ -132,6 +132,40 @@ describe('Subscribing to the DOM', () => {
     ).toMatchSnapshot()
   })
 
+  it('should clear when DOM nodes are already removed', () => {
+    const renderer = createRenderer({ devMode: true })
+
+    const updateSubscription = createSubscription(renderer)
+    renderer.subscribe(updateSubscription)
+
+    renderer.renderRule(() => ({
+      color: 'blue',
+      '@media (min-width: 300px)': {
+        color: 'red',
+        '@media (max-height: 500px)': {
+          color: 'yellow',
+        },
+      },
+    }))
+
+    renderer.renderKeyframe(() => ({
+      from: { color: 'red' },
+      to: { color: 'blue' },
+    }))
+
+    while (document.head.firstChild) {
+      document.head.removeChild(document.head.firstChild)
+    }
+
+    renderer.clear()
+
+    expect(
+      beautify(document.head.outerHTML, {
+        indent_size: 2,
+      })
+    ).toMatchSnapshot()
+  })
+
   it('should correctly recreate nodes after clean', () => {
     const renderer = createRenderer({ devMode: true })
 

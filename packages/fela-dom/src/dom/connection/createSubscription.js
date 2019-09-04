@@ -22,7 +22,7 @@ export default function createSubscription(
   return change => {
     if (change.type === CLEAR_TYPE) {
       objectEach(renderer.nodes, ({ node }) =>
-        node.parentNode.removeChild(node)
+        node.parentNode && node.parentNode.removeChild(node)
       )
 
       renderer.nodes = {}

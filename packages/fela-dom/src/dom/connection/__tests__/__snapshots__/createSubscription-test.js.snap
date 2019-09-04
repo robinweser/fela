@@ -2,6 +2,8 @@
 
 exports[`Subscribing to the DOM should clear all DOM nodes 1`] = `"<head></head>"`;
 
+exports[`Subscribing to the DOM should clear when DOM nodes are already removed 1`] = `"<head></head>"`;
+
 exports[`Subscribing to the DOM should correctly recreate nodes after clean 1`] = `
 "<head>
   <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
