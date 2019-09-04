@@ -153,10 +153,7 @@ describe('Subscribing to the DOM', () => {
       to: { color: 'blue' },
     }))
 
-    while (document.head.firstChild) {
-      document.head.removeChild(document.head.firstChild)
-    }
-
+    cleanHead()
     renderer.clear()
 
     expect(
