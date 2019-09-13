@@ -27,7 +27,18 @@ export default function combineRules(
   return (props, renderer) =>
     arrayReduce(
       rules,
-      (style, rule) => assignStyle(style, resolveRule(rule, props, renderer)),
+      (style, rule) => {
+        const resolvedRule = resolveRule(rule, props, renderer)
+
+        // special combination of our special _className key
+        if (style._className) {
+          resolvedRule._className =
+            style._className +
+            (resolvedRule._className ? ' ' + resolvedRule._className : '')
+        }
+
+        return assignStyle(style, resolvedRule)
+      },
       {}
     )
 }
