@@ -2,6 +2,8 @@
 
 Sometimes you need/want to pass all the props the to child element but doesn't know them all except the one you use in your rules. `createComponentWithProxy`allow you to pass all the props to the child by default except the props used in the rules.
 
+> Note, does not work in browsers that lack [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) (like IE 11)
+
 ## Usage
 
 This can be used in different cases:
