@@ -70,4 +70,31 @@ describe('Combining rules', () => {
       padding: 20,
     })
   })
+
+  it('should merge _className as a special key', () => {
+    const rule = () => ({
+      _className: 'foo bar',
+      color: 'red',
+      padding: 10,
+    })
+
+    const anotherRule = props => ({
+      _className: props.cls,
+      backgroundColor: 'blue',
+      padding: 20,
+    })
+
+    const combinedRule = combineRules(rule, anotherRule)
+
+    expect(
+      combinedRule({
+        cls: 'baz',
+      })
+    ).toEqual({
+      _className: 'foo bar baz',
+      color: 'red',
+      backgroundColor: 'blue',
+      padding: 20,
+    })
+  })
 })
