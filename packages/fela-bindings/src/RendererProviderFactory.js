@@ -3,8 +3,13 @@ import { render, rehydrate } from 'fela-dom'
 import objectEach from 'fast-loops/lib/objectEach'
 
 function hasDOM(renderer, targetDocument) {
-  if (typeof window === 'undefined') return false
-  if (!targetDocument) targetDocument = document
+  // ensure we're on a browser by using document since window is defined in e.g. React Native
+  // see https://github.com/robinweser/fela/issues/736
+  if (typeof document === 'undefined') {
+    return false
+  }
+
+  const doc = targetDocument || document
 
   return (
     renderer &&
