@@ -1,6 +1,6 @@
 {
   "name": "fela-native",
-  "version": "10.6.1",
+  "version": "10.7.0",
   "description": "Fela Renderer for React Native",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "fast-loops": "^1.0.0",
-    "fela-utils": "^10.6.1"
+    "fela-utils": "^10.7.0"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-custom-property",
-  "version": "10.6.1",
+  "version": "10.7.0",
   "description": "Fela plugin to use custom properties",
   "main": "lib/index.js",
   "module": "es/index.js",

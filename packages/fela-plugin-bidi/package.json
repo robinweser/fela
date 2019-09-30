@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-bidi",
-  "version": "10.6.1",
+  "version": "10.7.0",
   "description": "Fela plugin to enable direction-independent style authoring",
   "main": "lib/index.js",
   "module": "es/index.js",
