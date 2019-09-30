@@ -8859,10 +8859,10 @@ init-package-json@~1.9.4:
     validate-npm-package-license "^3.0.1"
     validate-npm-package-name "^3.0.0"
 
-inline-style-expand-shorthand@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/inline-style-expand-shorthand/-/inline-style-expand-shorthand-1.1.1.tgz#0b0dbd34cfe6e62a2d21c077b2c8cdbe367224de"
-  integrity sha512-O8rMrfUxzQ2SGqkGvb+3JI611JXy8lgClq6RulN+K9R4qRPDiZ+ajeqYLBg3bmxtAoM4SX4o6zU9PLzBJpsiDQ==
+inline-style-expand-shorthand@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/inline-style-expand-shorthand/-/inline-style-expand-shorthand-1.2.0.tgz#951ed9918ba9fe87af0e11c20fd2fb1f5075cae2"
+  integrity sha512-YdteDMlG1StHeEXF7opaVfPMCIVO8B4TPjE6kZLwdhZdgjH3Q7lxwSe+89sMhdPN77F3quOYhBbqBE0+KXuHpA==
 
 inline-style-prefixer@^2.0.0, inline-style-prefixer@^2.0.1, inline-style-prefixer@^2.0.4:
   version "2.0.5"
@@ -15360,6 +15360,11 @@ socks@~2.2.0:
   dependencies:
     ip "^1.1.5"
     smart-buffer "^4.0.1"
+
+sort-css-media-queries@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/sort-css-media-queries/-/sort-css-media-queries-1.4.3.tgz#3ee80e96e64ec6bcf91930d0d5ceb998c708e9b1"
+  integrity sha512-zsclZBrEPiwix+9jg6Q2tWl2SiC/0Le1MPSdGT9BwC/ykOxJKNpupKOB1OXKy47hYGZGGz1AFZ6eUg1vs+ekeg==
 
 sort-keys@^1.0.0:
   version "1.1.2"

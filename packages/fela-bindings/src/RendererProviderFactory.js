@@ -11,12 +11,7 @@ function hasDOM(renderer, targetDocument) {
 
   const doc = targetDocument || document
 
-  return (
-    renderer &&
-    !renderer.isNativeRenderer &&
-    targetDocument &&
-    targetDocument.createElement
-  )
+  return renderer && !renderer.isNativeRenderer && doc && doc.createElement
 }
 
 function hasServerRenderedStyle(targetDocument = document) {
