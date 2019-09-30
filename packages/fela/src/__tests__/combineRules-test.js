@@ -71,7 +71,7 @@ describe('Combining rules', () => {
     })
   })
 
-  it.only('should merge _className as a special key', () => {
+  it('should merge _className as a special key', () => {
     const rule = () => ({
       _className: 'foo bar',
       color: 'red',
