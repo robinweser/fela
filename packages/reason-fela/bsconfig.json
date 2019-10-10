@@ -1,0 +1,13 @@
+{
+  "name": "reason-fela",
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ],
+  "bs-dependencies": ["reason-react", "@astrada/bs-css-core"],
+  "warnings": {
+    "error": "+101"
+  },
+  "refmt": 3
+}
