@@ -20,7 +20,6 @@ First let's create our Fela renderer. We can pass all the [configs](http://fela.
 ```reason
 open Fela;
 
-
 /* you can also use all plugins and enhancers via Fela.Plugins and Fela.Enhancers
    e.g. Fela.Plugins.prefixer, Fela.Enhancers.web */
 let renderer = Renderer.make(
@@ -40,12 +39,7 @@ We can also optionally pass a theme down here, which is useful for dynamic themi
 > **Tip**: If we just want to define some static theme properties, one can also leverage a `Theme.re` module and access it directly due to all files/modules being globally available.
 
 ```reason
-open Fela;
 open ReactFela;
-
-let renderer = Renderer.make(
-  RendererConfig.make(~plugins=Presets.web, ())
-)
 
 let theme = {
   "colors": {
@@ -68,7 +62,6 @@ let make = (~children) =>
 Now that our app is aware of the renderer, we can use the provided hooks in any component. The hooks are similar to react-fela's [useFela](http://fela.js.org/docs/api/bindings/useFela.html), but split into 3 different hooks for convenience.
 
 ```reason
-open Fela;
 open ReactFela;
 
 /* we also open the Css module for convenience */
@@ -95,7 +88,6 @@ If we're running a universal app, we also want to make sure that styles are corr
 Therefore, reason-fela also provides bindings to fela-dom.
 
 ```reason
-open Fela;
 open Fela.Dom;
 
 let htmlString = renderToMarkup(renderer);
