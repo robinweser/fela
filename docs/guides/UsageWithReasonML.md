@@ -21,8 +21,8 @@ First let's create our Fela renderer. We can pass all the [configs](http://fela.
 open Fela;
 
 
-// you can also use all plugins and enhancers via Fela.Plugins and Fela.Enhancers
-// e.g. Fela.Plugins.prefixer, Fela.Enhancers.web
+/* you can also use all plugins and enhancers via Fela.Plugins and Fela.Enhancers
+   e.g. Fela.Plugins.prefixer, Fela.Enhancers.web */
 let renderer = Renderer.make(
   RendererConfig.make(
     ~plugins=Presets.web,
@@ -71,7 +71,7 @@ Now that our app is aware of the renderer, we can use the provided hooks in any 
 open Fela;
 open ReactFela;
 
-// we also open the Css module for convenience
+/* we also open the Css module for convenience */
 open Fela.Css;
 
 [@react.component]
@@ -80,7 +80,7 @@ let make = (~children) => {
   let theme = useTheme();
   let renderer = useRenderer();
 
-  // we can also do stuff we the renderer
+  /* we can also do stuff we the renderer */
   renderer##renderStatic(style([backgroundColor(black)]), "body")
 
   <div className={css(style([fontSize(pt(18)), color(theme##colors##primary)]))}>
@@ -102,6 +102,6 @@ let htmlString = renderToMarkup(renderer);
 let sheetList = renderToSheetList(renderer);
 
 sheetList -> Belt.Array.forEach(({type_, css, media, support, rehydration}) => {
-  // render your style nodes here
+  /* render your style nodes here */
 });
 ```
