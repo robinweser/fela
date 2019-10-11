@@ -5,6 +5,11 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 10.0
 
+### 10.8.0
+| Package | Changes |
+| --- | --- |
+| reason-fela | Introducing official bindings for ReasonML. |
+
 ### 10.7.0
 | Package | Changes |
 | --- | --- |
