@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-typescript",
-  "version": "10.7.0",
+  "version": "10.8.0",
   "description": "Fela plugin that helps write type-safe style rules",
   "typings": "index.d.ts",
   "main": "lib/index.js",

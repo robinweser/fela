@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-angular2",
-  "version": "10.7.0",
+  "version": "10.8.0",
   "license": "MIT",
   "scripts": {
     "start": "npm run bundle & http-server -a 0.0.0.0 -p 9000",
