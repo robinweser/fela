@@ -52,8 +52,8 @@ module Renderer = {
   external make: RendererConfig.t => Js.t('a) = "createRenderer";
 };
 
-[@bs.module "fela"]
-external combineRules: list(style) => style = "combineRules";
+[@bs.module "fela"] [@bs.splice]
+external combineRules: array(style) => style = "combineRules";
 
 module Dom = {
   type sheet = {
