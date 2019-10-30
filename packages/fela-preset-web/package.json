@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-web",
-  "version": "10.8.1",
+  "version": "10.8.2",
   "description": "Fela plugin preset for web applications",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,15 +21,15 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fela-plugin-embedded": "^10.8.1",
-    "fela-plugin-extend": "^10.8.1",
-    "fela-plugin-fallback-value": "^10.8.1",
-    "fela-plugin-prefixer": "^10.8.1",
-    "fela-plugin-unit": "^10.8.1"
+    "fela-plugin-embedded": "^10.8.2",
+    "fela-plugin-extend": "^10.8.2",
+    "fela-plugin-fallback-value": "^10.8.2",
+    "fela-plugin-prefixer": "^10.8.2",
+    "fela-plugin-unit": "^10.8.2"
   },
   "devDependencies": {
     "fela-combine-arrays": "^1.0.9",
-    "fela-tools": "^10.8.1"
+    "fela-tools": "^10.8.2"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }
