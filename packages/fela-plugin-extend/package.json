@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-extend",
-  "version": "10.8.0",
+  "version": "10.8.1",
   "description": "Fela plugin to extend style objects",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,7 +26,7 @@
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.0",
-    "fela-utils": "^10.8.0",
+    "fela-utils": "^10.8.1",
     "isobject": "^3.0.1"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"

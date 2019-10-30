@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-isolation",
-  "version": "10.8.0",
+  "version": "10.8.1",
   "description": "Fela plugin that adds style isolation",
   "main": "lib/index.js",
   "module": "es/index.js",
