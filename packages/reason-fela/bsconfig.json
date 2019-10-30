@@ -6,8 +6,8 @@
     }
   ],
   "bs-dependencies": ["reason-react"],
-  "warnings": {
-    "error": "+101"
+  "reason": {
+    "react-jsx": 3
   },
   "refmt": 3
 }
