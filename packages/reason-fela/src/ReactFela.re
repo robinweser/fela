@@ -2,7 +2,24 @@
 
 let useFela = () => {
   let fela = useFela_();
-  fela##css;
+
+  [@bs.variadic]
+  let css = style => fela##css(Array.of_list(style));
+  css;
+};
+
+let useFela1 = () => {
+  let fela = useFela_();
+
+  let css = style => fela##css(style);
+  css;
+};
+
+let useFela2 = () => {
+  let fela = useFela_();
+
+  let css = (style1, style2) => fela##css(style1, style2);
+  css;
 };
 
 let useTheme = () => {

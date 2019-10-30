@@ -46,11 +46,6 @@
   version "2.0.0-rc.4"
   resolved "http://registry.npmjs.org/@angular/upgrade/-/upgrade-2.0.0-rc.4.tgz#aa7d56b1c78fca9c0165acf6952b26d0cda81999"
 
-"@astrada/bs-css-core@^7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@astrada/bs-css-core/-/bs-css-core-7.1.0.tgz#f50b2d71277363bd3ec8fcf3e9b63c6fddee5629"
-  integrity sha512-L7Ow0DEldTmOeUnIkJlkN0hWFWxwT4UnTo159qj10NQ9jMcXb4vwh9VS3emiIWw0AclOoyoD90A+WZqEndgRuA==
-
 "@babel/code-frame@7.0.0", "@babel/code-frame@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"

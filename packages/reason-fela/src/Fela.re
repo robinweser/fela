@@ -1,15 +1,13 @@
-module BsCssCore = Css;
-
-module Css = {
-  include BsCssCore;
-};
-
 type plugin;
-
-type renderer = {. "renderStatic": (Css.style, string) => unit};
+type style;
+type renderer = {. "renderStatic": (style, string) => unit};
 type enhancer = renderer => renderer;
 
-open Css;
+external style: Js.t('a) => style = "%identity";
+external fromInlineStyle: ReactDOMRe.style => style = "%identity";
+
+let raw = (className: string) => style({"_className": className});
+
 module RendererConfig = {
   type t = {
     .
@@ -30,7 +28,7 @@ module RendererConfig = {
         ~keyframePrefixes=[|"-webkit-", "-moz-"|],
         ~mediaQueryOrder=[||],
         ~supportQueryOrder=[||],
-        ~filterClassName=cls => Js.String.includes("ad", cls),
+        ~filterClassName=cls => !Js.String.includes("ad", cls),
         ~plugins=[||],
         ~enhancers=[||],
         ~devMode=false,
@@ -52,8 +50,10 @@ module Renderer = {
   external make: RendererConfig.t => Js.t('a) = "createRenderer";
 };
 
-[@bs.module "fela"] [@bs.splice]
-external combineRules: array(style) => style = "combineRules";
+[@bs.module "fela"] [@bs.variadic]
+external combineRules_: array(style) => style = "combineRules";
+let combineRules = (rules: list(style)) =>
+  combineRules_(Array.of_list(rules));
 
 module Dom = {
   type sheet = {

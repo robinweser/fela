@@ -1,8 +1,7 @@
 
 # Usage with ReasonML
 
-The Reason bindings ship with some core Fela APIs, React hooks and all plugins, enhancers and presets.<br>
-It also provides an [Css](https://github.com/astrada/bs-css-core) module which was forked from [bs-css](https://github.com/SentiaAnalytics/bs-css) for a more convenient style editing experience.
+The Reason bindings ship with some core Fela APIs, React hooks and all plugins, enhancers and presets.
 
 > **Note**: If you want to use older APIs such as `createComponent` or `connect`, we recommend using [bs-react-fela](https://github.com/astrada/bs-react-fela) instead.
 
@@ -61,11 +60,8 @@ let make = (~children) =>
 
 Now that our app is aware of the renderer, we can use the provided hooks in any component. The hooks are similar to react-fela's [useFela](http://fela.js.org/docs/api/bindings/useFela.html), but split into 3 different hooks for convenience.
 
-```reason
+```reason 
 open ReactFela;
-
-/* we also open the Css module for convenience */
-open Fela.Css;
 
 [@react.component]
 let make = (~children) => {
@@ -74,12 +70,37 @@ let make = (~children) => {
   let renderer = useRenderer();
 
   /* we can also do stuff we the renderer */
-  renderer##renderStatic(style([backgroundColor(black)]), "body")
+  renderer##renderStatic(Fela.style({"backgroundColor": "red"}), "body");
 
-  <div className={css(style([fontSize(pt(18)), color(theme##colors##primary)]))}>
-    {"I'm red" |> React.string}
-  </div>
-}
+  <div
+    className={css([
+      Fela.style({"fontSize": "18pt", "color": theme##colors##primary}),
+    )]}>
+    "I'm red"->React.string
+  </div>;
+};
+```
+
+### Convenience Hooks
+ReactFela also includes two convenience hooks `useFela1` and `useFela2` that take just 1 or 2 parameters respectively instead of passing a list.
+
+```reason 
+open ReactFela;
+
+[@react.component]
+let make = (~children) => {
+  let css1 = useFela1();
+  let css2 = useFela2();
+
+  <div className={css1(Fela.style({"color": "red"}))}>
+    <div
+      className={css2(
+        Fela.style({"color": "red"}),
+        Fela.style({"color": "red"}),
+      )}
+    />
+  </div>;
+};
 ```
 
 ## Server-side Rendering
@@ -96,4 +117,49 @@ let sheetList = renderToSheetList(renderer);
 sheetList -> Belt.Array.forEach(({type_, css, media, support, rehydration}) => {
   /* render your style nodes here */
 });
+```
+
+## Using bs-css-core
+
+You can also opt-in [bs-css-core](https://github.com/astrada/bs-css-core) module which was forked from [bs-css](https://github.com/SentiaAnalytics/bs-css) for a more convenient, type-safe API.
+
+
+```sh
+yarn add @astrada/bs-css-core
+```
+In your `bsconfig.json`, include `"@astrada/bs-css-core"` in the `bs-dependencies`.
+
+Now the only thing we need is a type converter which can be done using the `"%identity"` helper. You probably want to create a new utility mode e.g. `FelaUtils` that looks sth. like this:
+
+```reason
+external fromBsCssCore: Css.style => Fela.style = "%identity";
+```
+
+Now we can use it in our components:
+
+```reason
+open ReactFela;
+open FelaUtils;
+open Css;
+
+[@react.component]
+let make = (~children) => {
+  let css = useFela();
+  let theme = useTheme();
+  let renderer = useRenderer();
+
+  /* we can also do stuff we the renderer */
+  renderer##renderStatic(
+    fromBsCssCore(style([backgroundColor(black)])),
+    "body",
+  );
+  <div
+    className={css([
+      fromBsCssCore(
+        style([fontSize(pt(18)), color(theme##colors##primary)]),
+      ),
+    ])}>
+    "I'm red"->React.string
+  </div>;
+};
 ```

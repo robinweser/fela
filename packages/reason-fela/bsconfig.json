@@ -5,7 +5,7 @@
       "dir": "src"
     }
   ],
-  "bs-dependencies": ["reason-react", "@astrada/bs-css-core"],
+  "bs-dependencies": ["reason-react"],
   "warnings": {
     "error": "+101"
   },
