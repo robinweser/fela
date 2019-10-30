@@ -1,0 +1,18 @@
+on: [push, pull_request]
+name: Test
+jobs:
+  test:
+    name: ${{ matrix.os }} + node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-18.04, macOS-latest]
+        node: [8, 10, 12]
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - run: yarn global add lerna
+    - run: yarn bootstrap
+    - run: yarn run check
