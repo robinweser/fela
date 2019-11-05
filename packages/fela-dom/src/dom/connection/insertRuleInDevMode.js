@@ -14,7 +14,7 @@ export default function updateNodeInDevMode(
   const sheetList = renderToSheetList(renderer)
 
   const media = node.getAttribute('media') || undefined
-  const support = node.getAttribute('data-fela-support') || undefined
+  const support = node.getAttribute('data-fela-support') ? true : undefined
 
   const currentSheet = sheetList.find(
     sheet =>
