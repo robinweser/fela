@@ -34,8 +34,8 @@ Object {
 
 exports[`Creating a style node should respect the correct order 1`] = `
 "<head>
-  <style data-fela-type=\\"STATIC\\" type=\\"text/css\\"></style>
   <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\\"STATIC\\" type=\\"text/css\\"></style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" media=\\"(min-width:300px)\\"></style>
   <style data-fela-type=\\"RULE\\" type=\\"text/css\\" data-fela-support=\\"true\\" media=\\"(min-width:300px)\\"></style>

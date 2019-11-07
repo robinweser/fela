@@ -3,7 +3,7 @@ import type Cache from './Cache'
 export type DOMRenderer = {
   keyframePrefixes: Array<string>,
   plugins: Array<Function>,
-  mediaQueryOrder: Array<string>,
+  sortMediaQuery: Function,
   selectorPrefix: string,
   filterClassName: Function,
   listeners: Array<Function>,
@@ -25,6 +25,7 @@ export type DOMRendererConfig = {
   keyframePrefixes?: Array<string>,
   plugins?: Array<Function>,
   enhancers?: Array<Function>,
+  sortMediaQuery?: Function,
   mediaQueryOrder?: Array<string>,
   selectorPrefix?: string,
   filterClassName?: Function,

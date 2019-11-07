@@ -42,19 +42,14 @@ describe('Clustering the cache', () => {
     }
 
     expect(
-      clusterCache(
-        cache,
-        [],
-        [],
-        [
-          /^:link/,
-          /^:visited/,
-          /^:hover/,
-          /^:focus-within/,
-          /^:focus/,
-          /^:active/,
-        ]
-      )
+      clusterCache(cache, [
+        /^:link/,
+        /^:visited/,
+        /^:hover/,
+        /^:focus-within/,
+        /^:focus/,
+        /^:active/,
+      ])
     ).toMatchSnapshot()
   })
 })

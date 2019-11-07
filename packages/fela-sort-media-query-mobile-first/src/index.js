@@ -5,7 +5,7 @@ import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
 export default function sortMediaQueryOrder() {
   return (renderer: DOMRenderer) => {
-    renderer.mediaQueryOrder = renderer.mediaQueryOrder.sort(sortFn)
+    renderer.sortMediaQuery = sortFn
     return renderer
   }
 }

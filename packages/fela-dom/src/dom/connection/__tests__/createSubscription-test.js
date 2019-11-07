@@ -208,7 +208,7 @@ describe('Subscribing to the DOM', () => {
     }))
 
     const styleSheets = Object.keys(renderer.nodes).map(key =>
-      getStyleSheetStyle(renderer.nodes[key].node)
+      getStyleSheetStyle(renderer.nodes[key])
     )
 
     expect(styleSheets).toMatchSnapshot()
