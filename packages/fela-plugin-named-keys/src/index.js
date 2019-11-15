@@ -1,5 +1,6 @@
 /* @flow */
 import isPlainObject from 'isobject'
+import assignStyle from 'css-in-js-utils/lib/assignStyle'
 
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { StyleType } from '../../../flowtypes/StyleType'
@@ -12,7 +13,14 @@ function resolveNamedKeys(style: Object, keys: Object) {
       const resolvedValue = resolveNamedKeys(value, keys)
 
       if (keys.hasOwnProperty(property)) {
-        style[keys[property]] = resolvedValue
+        const resolvedKey = keys[property]
+        if (style.hasOwnProperty(resolvedKey)) {
+          style[resolvedKey] = assignStyle(style[resolvedKey], resolvedValue)
+        } else {
+          style[resolvedKey] = resolvedValue
+        }
+
+        // We clean the old keys as they're not used anymore
         delete style[property]
       }
     }

@@ -21,6 +21,31 @@ describe('Named keys plugin', () => {
     })
   })
 
+  it('should merge existing values', () => {
+    const style = {
+      width: 20,
+      '@media (min-width: 300px)': {
+        color: 'blue',
+        fontSize: 12,
+      },
+      desktop: {
+        color: 'red',
+      },
+    }
+
+    expect(
+      namedKeys({
+        desktop: '@media (min-width: 300px)',
+      })(style)
+    ).toEqual({
+      width: 20,
+      '@media (min-width: 300px)': {
+        fontSize: 12,
+        color: 'red',
+      },
+    })
+  })
+
   it('should resolve nested named keys', () => {
     const style = {
       width: 20,
