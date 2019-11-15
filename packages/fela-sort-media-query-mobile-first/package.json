@@ -1,6 +1,6 @@
 {
   "name": "fela-sort-media-query-mobile-first",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "Fela enhancer that sorts media queries using a mobile-first approach",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,7 +25,7 @@
     "sort-css-media-queries": "^1.4.3"
   },
   "devDependencies": {
-    "fela": "^11.0.0"
+    "fela": "^11.0.1"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

@@ -1,6 +1,6 @@
 {
   "name": "fela-identifier",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "Fela enhancer to creation identifying rules",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,11 +25,11 @@
     "fast-loops": "^1.0.0"
   },
   "devDependencies": {
-    "fela": "^11.0.0",
-    "fela-monolithic": "^11.0.0",
-    "fela-tools": "^11.0.0",
-    "jest-react-fela": "^11.0.0",
-    "react-fela": "^11.0.0"
+    "fela": "^11.0.1",
+    "fela-monolithic": "^11.0.1",
+    "fela-tools": "^11.0.1",
+    "jest-react-fela": "^11.0.1",
+    "react-fela": "^11.0.1"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

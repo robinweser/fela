@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-validator",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "Fela plugin to validate style objects",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,7 +25,7 @@
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
     "csslint": "^1.0.5",
-    "fela-utils": "^11.0.0",
+    "fela-utils": "^11.0.1",
     "isobject": "^3.0.1"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"

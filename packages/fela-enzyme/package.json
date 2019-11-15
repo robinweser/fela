@@ -1,6 +1,6 @@
 {
   "name": "fela-enzyme",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "Tools for working with Fela in the context of enzyme",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -35,9 +35,9 @@
   },
   "dependencies": {
     "cssbeautify": "^0.3.1",
-    "fela": "^11.0.0",
-    "fela-tools": "^11.0.0",
-    "react-fela": "^11.0.0"
+    "fela": "^11.0.1",
+    "fela-tools": "^11.0.1",
+    "react-fela": "^11.0.1"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }
