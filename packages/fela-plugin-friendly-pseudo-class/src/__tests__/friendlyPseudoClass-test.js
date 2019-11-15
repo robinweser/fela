@@ -17,6 +17,38 @@ describe('Friendly pseudo class plugin', () => {
     })
   })
 
+  it('should replace friendly with valid pseudo elements', () => {
+    const style = {
+      width: 20,
+      onAfter: {
+        color: 'red',
+      },
+    }
+
+    expect(friendlyPseudoClass()(style)).toEqual({
+      width: 20,
+      '::after': {
+        color: 'red',
+      },
+    })
+  })
+
+  it('should replace friendly with valid hyphen-seperated pseudo classes', () => {
+    const style = {
+      width: 20,
+      onFirstOfType: {
+        color: 'red',
+      },
+    }
+
+    expect(friendlyPseudoClass()(style)).toEqual({
+      width: 20,
+      ':first-of-type': {
+        color: 'red',
+      },
+    })
+  })
+
   it('should resolve nested pseudo class objects', () => {
     const style = {
       width: 20,
