@@ -15,23 +15,21 @@ module RendererConfig = {
     "enhancers": array(enhancer),
     "keyframePrefixes": array(string),
     "mediaQueryOrder": array(string),
-    "supportQueryOrder": array(string),
+    "sortMediaQuery": (string, string) => int,
     "filterClassName": string => bool,
     "selectorPrefix": string,
     "devMode": bool,
   };
 
-  // TODO: improve, don't use default values
   let make =
       (
-        ~selectorPrefix="",
-        ~keyframePrefixes=[|"-webkit-", "-moz-"|],
-        ~mediaQueryOrder=[||],
-        ~supportQueryOrder=[||],
-        ~filterClassName=cls => !Js.String.includes("ad", cls),
-        ~plugins=[||],
-        ~enhancers=[||],
-        ~devMode=false,
+        ~selectorPrefix=?,
+        ~keyframePrefixes=?,
+        ~mediaQueryOrder=?,
+        ~filterClassName=?,
+        ~plugins=?,
+        ~enhancers=?,
+        ~devMode=?,
         (),
       ) => {
     "plugins": plugins,
@@ -39,7 +37,6 @@ module RendererConfig = {
     "selectorPrefix": selectorPrefix,
     "devMode": devMode,
     "keyframePrefixes": keyframePrefixes,
-    "supportQueryOrder": supportQueryOrder,
     "mediaQueryOrder": mediaQueryOrder,
     "filterClassName": filterClassName,
   };
@@ -97,6 +94,14 @@ module Plugins = {
   [@bs.module "fela-plugin-named-keys"]
   external namedKeys: Js.t('a) => plugin = "default";
 
+  [@bs.module "fela-plugin-named-keys"]
+  external namedKeysWithProps: (Js.t('a), Js.t('a)) => plugin = "default";
+
+  [@bs.module "fela-plugin-responsive-value"]
+  external responsiveValue:
+    ((array(string), Js.t('a)) => array(string), Js.t('a)) => plugin =
+    "default";
+
   [@bs.module "fela-plugin-placeholder-prefixer"]
   external placeholderPrefixer: unit => plugin = "default";
 
@@ -104,24 +109,24 @@ module Plugins = {
   external prefixer: unit => plugin = "default";
 
   // TODO: more type-safe input (rtl and ltr)
-  [@bs.module "fela-plugin-rtl"] external rtl: string => plugin = "default";
+  [@bs.module "fela-plugin-rtl"]
+  external rtl: option(string) => plugin = "default";
   // TODO: how to improve that?
-  // [@bs.module "fela-plugin-unit"]
-  // external unit_: (string, Js.t('a), option(string => bool)) => plugin =
-  //   "default";
-  // let unit =
-  //     (
-  //       ~unit="px",
-  //       ~unitPerProperty=Js.Obj.empty(),
-  //       ~isUnitlessProperty=None,
-  //     ) => {
-  //   unit_(unit, unitPerProperty, isUnitlessProperty);
-  // };
-  // [@bs.module "fela-plugin-validator"]
-  // external validator_: (bool, bool, bool) => plugin = "default";
-  // let validator =
-  //     (~logInvalid=true, ~deleteInvalid=false, ~useCSSLint=false) =>
-  //   validator_(logInvalid, deleteInvalid, useCSSLint);
+  [@bs.module "fela-plugin-unit"]
+  external unit:
+    (
+      ~unit: string=?,
+      ~unitPerProperty: Js.t('a)=?,
+      ~isUnitlessProperty: string => bool=?
+    ) =>
+    plugin =
+    "default";
+
+  [@bs.module "fela-plugin-validator"]
+  external validator:
+    (~logInvalid: bool=?, ~deleteInvalid: bool=?, ~useCSSLint: bool=?) =>
+    plugin =
+    "default";
 };
 
 module Enhancers = {
@@ -138,6 +143,9 @@ module Enhancers = {
 
   [@bs.module "fela-monolithic"]
   external monolithic: unit => enhancer = "default";
+
+  [@bs.module "fela-sort-media-query-mobile-first"]
+  external sortMediaQueryMobileFirst: unit => enhancer = "default";
 
   [@bs.module "fela-perf"] external perf: unit => enhancer = "default";
 

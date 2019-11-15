@@ -22,6 +22,21 @@ let useFela2 = () => {
   css;
 };
 
+let useFela3 = () => {
+  let fela = useFela_();
+
+  let css = (style1, style2, style3) => fela##css(style1, style2, style3);
+  css;
+};
+
+let useFela4 = () => {
+  let fela = useFela_();
+
+  let css = (style1, style2, style3, style4) =>
+    fela##css(style1, style2, style3, style4);
+  css;
+};
+
 let useTheme = () => {
   let fela = useFela_();
   fela##theme;
