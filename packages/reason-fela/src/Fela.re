@@ -26,6 +26,7 @@ module RendererConfig = {
         ~selectorPrefix=?,
         ~keyframePrefixes=?,
         ~mediaQueryOrder=?,
+        ~sortMediaQuery=?,
         ~filterClassName=?,
         ~plugins=?,
         ~enhancers=?,
@@ -38,6 +39,7 @@ module RendererConfig = {
     "devMode": devMode,
     "keyframePrefixes": keyframePrefixes,
     "mediaQueryOrder": mediaQueryOrder,
+    "sortMediaQuery": sortMediaQuery,
     "filterClassName": filterClassName,
   };
 };
@@ -95,7 +97,7 @@ module Plugins = {
   external namedKeys: Js.t('a) => plugin = "default";
 
   [@bs.module "fela-plugin-named-keys"]
-  external namedKeysWithProps: (Js.t('a), Js.t('a)) => plugin = "default";
+  external namedKeysWithProps: (Js.t('a) => Js.t('a)) => plugin = "default";
 
   [@bs.module "fela-plugin-responsive-value"]
   external responsiveValue:
