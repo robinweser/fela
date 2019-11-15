@@ -11,14 +11,14 @@ let raw = (className: string) => style({"_className": className});
 module RendererConfig = {
   type t = {
     .
-    "plugins": array(plugin),
-    "enhancers": array(enhancer),
-    "keyframePrefixes": array(string),
-    "mediaQueryOrder": array(string),
-    "sortMediaQuery": (string, string) => int,
-    "filterClassName": string => bool,
-    "selectorPrefix": string,
-    "devMode": bool,
+    "plugins": option(array(plugin)),
+    "enhancers": option(array(enhancer)),
+    "keyframePrefixes": option(array(string)),
+    "mediaQueryOrder": option(array(string)),
+    "sortMediaQuery": option((string, string) => int),
+    "filterClassName": option(string => bool),
+    "selectorPrefix": option(string),
+    "devMode": option(bool),
   };
 
   let make =
