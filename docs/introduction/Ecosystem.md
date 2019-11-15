@@ -16,6 +16,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [preact-fela](https://github.com/robinweser/fela/tree/master/packages/preact-fela) - Preact
 * [preact-fela-simple](https://github.com/pshev/preact-fela-simple) - Preact *(alternative)*
 * [inferno-fela](https://github.com/robinweser/fela/tree/master/packages/inferno-fela) - Inferno
+* [reason-fela](https://github.com/robinweser/fela/tree/master/packages/reason-fela) - ReasonML
 * [bs-react-fela](https://github.com/astrada/bs-react-fela) - BuckleScript / ReasonReact
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript
 * [vashet](https://github.com/derHowie/vashet) - ClojureScript
@@ -40,6 +41,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-named-keys](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-named-keys) - Replaces named keys with valid syntax
 * [fela-plugin-placeholder-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-placeholder-prefixer) - Adds all `::placeholder` prefixes
 * [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer) - Adds all vendor prefixes to the styles
+* [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value) - Resolves responsive array values to media query rules
 * [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl) - Converts styles to their right-to-left counterpart
 * [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit) - Automatically adds units to values if needed
 * [fela-plugin-validator*](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator) - Validates, logs & optionally deletes invalid properties for keyframes and rules
