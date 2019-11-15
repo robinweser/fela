@@ -37,6 +37,7 @@ Plugins are executed in the exact same order as provided. The output of the firs
 4. [fela-plugin-friendly-pseudo-class](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-friendly-pseudo-class)
 5. [fela-plugin-named-keys](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-named-keys)
 6. [fela-plugin-placeholder-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-placeholder-prefixer)
+5. [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value)
 7. [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer)
 8. [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
 9. [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)

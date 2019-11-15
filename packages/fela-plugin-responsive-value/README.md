@@ -4,6 +4,8 @@
 
 This plugin adds support for responsive values as pioneered by [styled-system](https://styled-system.com) where one passes an array of values that later resolved to respective media queries.
 
+> **Warning**: This package might clash with [fela-plugin-fallback-value](../fela-plugin-fallback-value/) and thus requires a list of whitelisted properties. We recommend using it **before** the fallback value.
+
 ## Installation
 ```sh
 yarn add fela-plugin-responsive-value

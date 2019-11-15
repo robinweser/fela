@@ -59,6 +59,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-identifier](https://github.com/robinweser/fela/tree/master/packages/fela-identifier) - Allows to create rules for which the renderer will generate unique class names (useful for nested selectors)
 * [fela-perf*](https://github.com/robinweser/fela/tree/master/packages/fela-perf) - Logs performance information (time elapsed while rendering)
 * [fela-sort-classnames](https://github.com/robinweser/fela/tree/master/packages/fela-sort-classnames) - Deterministically sort rendered class names to prevent browser incompatibilities
+* [fela-sort-media-query-mobile-first](https://github.com/robinweser/fela/tree/master/packages/fela-sort-media-query-mobile-first) - Implements a mobile-first sortMediaQuery function
 * [fela-statistics*](https://github.com/robinweser/fela/tree/master/packages/fela-statistics) - Collects different metrics to analyze your styles
 
 ### Components
