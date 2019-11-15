@@ -3,8 +3,17 @@
 With version 10, we introduced synced package versions, which means the Changelog no longer needs to sorted by dates but rather versions again.<br>
 If you're searching for older logs, please check the [old changelog](https://github.com/robinweser/fela/blob/8b61fc1845dba982956df0ed4d28eaa39b3c5d1c/CHANGELOG.md).
 
-## 10.0
+## 11.0
 
+### 11.0.0
+| Package | Changes |
+| --- | --- |
+| fela<br>fela-dom | ([#750](https://github.com/robinweser/fela/pull/750)) Added the `sortMediaQuery` config option for more flexible and dynamic media query sorting. It is backwards compatible and respects `mediaQueryOrder`, but we decided to do a major release nevertheless. |
+| fela-plugin-responsive-value | ([#748](https://github.com/robinweser/fela/pull/748)) Introducing a plugin to resolve responsive media query values. |
+| fela-plugin-named-keys | ([#749](https://github.com/robinweser/fela/pull/749)) The plugin now merges resolve key values with existing key values. |
+| fela-dom | ([#741](https://github.com/robinweser/fela/issues/741)) Fixed a bug where in devMode `@supports` rules weren't rendered correctly.<br />Fixed a big where static styles, keyframes and fonts were rendered twice. |
+
+## 10.0
 ### 10.8.2
 | Package | Changes |
 | --- | --- |
