@@ -16,7 +16,7 @@ describe('Friendly pseudo class plugin', () => {
       },
     })
   })
-  
+
   it('should replace friendly with valid pseudo elements', () => {
     const style = {
       width: 20,
@@ -32,7 +32,7 @@ describe('Friendly pseudo class plugin', () => {
       },
     })
   })
-  
+
   it('should replace friendly with valid hyphen-seperated pseudo classes', () => {
     const style = {
       width: 20,
