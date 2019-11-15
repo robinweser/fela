@@ -1,7 +1,7 @@
 {
   "name": "reason-fela",
   "description": "Reason bindings for fela and react-fela",
-  "version": "10.8.2",
+  "version": "11.0.0",
   "publishConfig": {
     "access": "public"
   },
