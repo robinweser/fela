@@ -5,12 +5,12 @@ It is dynamic by design and renders your styles depending on your application st
 
 It generates atomic CSS and supports all common CSS features such as media queries, pseudo classes, keyframes and font-faces. Fela ships with a powerful plugin API adding e.g. [vendor prefixing](packages/fela-plugin-prefixer) or [fallback value](packages/fela-plugin-fallback-value) support.
 
-Fela can be used with [React](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) or with any other view library. It even supports [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html).
+Fela can be used with [React](https://github.com/robinweser/fela/tree/master/packages/react-fela) or with any other view library. It even supports [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html).
 
-<img alt="TravisCI" src="https://travis-ci.org/robinweser/fela.svg?branch=master"> <a href="https://codeclimate.com/github/robinweser/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/fela/badges/coverage.svg"></a> <a href="https://bundlephobia.com/result?p=fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <a href="https://spectrum.chat/fela?tab=posts"><img alt="Spectrum" src="https://img.shields.io/badge/support-spectrum-brightgreen.svg"></a>
+<img alt="TravisCI" src="https://travis-ci.org/robinweser/fela.svg?branch=master"> <a href="https://codeclimate.com/github/robinweser/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/robinweser/fela/badges/coverage.svg"></a> <a href="https://bundlephobia.com/result?p=fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <a href="https://spectrum.chat/fela?tab=posts"><img alt="Spectrum" src="https://img.shields.io/badge/support-spectrum-brightgreen.svg"></a>
 
 ## Support Us
-Support Robin Frischmann's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com/rofrischmann).
+Support Robin Frischmann's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com/robinweser).
 
 ## Installation
 ```sh
@@ -147,19 +147,19 @@ render(
 If you are coming from CSS and want to learn JavaScript Styling with Fela, there is a full-feature [fela-workshop](https://github.com/tajo/fela-workshop) which demonstrates typical Fela use cases. It teaches all important parts, step by step with simple examples. If you already know other CSS in JS solutions and are just switching to Fela, you might not need to do the whole workshop, but it still provides useful information to get started quickly.
 
 ## Talks
-* [**CSS in JS: The Good & Bad Parts**](https://www.youtube.com/watch?v=95M-2YzyTno) ([Slides](https://speakerdeck.com/rofrischmann/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
+* [**CSS in JS: The Good & Bad Parts**](https://www.youtube.com/watch?v=95M-2YzyTno) ([Slides](https://speakerdeck.com/robinweser/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Frischmann](https://twitter.com/robinweser)*
 * [**CSS in JS: Patterns**](https://www.webexpo.net/prague2018/talk?id=css-in-js-patterns)<br> - *by [Vojtech Miksu](https://twitter.com/vmiksu)*
 
 ## Posts
-* [**Style as a Function of State**](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
+* [**Style as a Function of State**](https://medium.com/@robinweser/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [Robin Frischmann](https://twitter.com/robinweser)*
 * [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [Daniel Steigerwald](https://twitter.com/steida)*
 * [**What is Fela?**](https://davidsinclair.io/thoughts/what-is-fela)<br> - *by [David Sinclair](https://davidsinclair.io)*
 * [**Choosing a CSS in JS library**](https://gist.github.com/troch/c27c6a8cc47b76755d848c6d1204fdaf#file-choosing-a-css-in-js-library-md)<br> - *by [Thomas Roch](https://twitter.com/tcroch)*
-* [**Introducing Fela 6.0**](https://medium.com/felajs/the-future-of-fela-d4dad2efad00)<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
+* [**Introducing Fela 6.0**](https://medium.com/felajs/the-future-of-fela-d4dad2efad00)<br> - *by [Robin Frischmann](https://twitter.com/robinweser)*
 * [**A journey into CSS and then into CSS-in-JS**](https://www.zeolearn.com/magazine/a-journey-into-css-and-then-into-css-in-js)<br> - *by [Prithvi Raju](https://twitter.com/aga5tya)*
 * [**CSS In JS — Future of styling components**](https://we-are.bookmyshow.com/css-in-js-future-of-styling-components-ad315eb5448b)<br> - *by [Manjula Dube](https://twitter.com/manjula_dube)*
 * [**Styling Components with React Fela**](https://alligator.io/react/styling-with-react-fela/)<br> - *by [Josh Sherman](https://twitter.com/joshtronic)*
-* [**The Future of Fela**](https://medium.com/@rofrischmann/introducing-fela-6-0-289c84b52dd5)<br> - *by [Robin Frischmann](https://twitter.com/rofrischmann)*
+* [**The Future of Fela**](https://medium.com/@robinweser/introducing-fela-6-0-289c84b52dd5)<br> - *by [Robin Frischmann](https://twitter.com/robinweser)*
 
 ## Ecosystem
 There are tons of useful packages maintained within this repository including plugins, enhancers, bindings and tools that can be used together with Fela. Check the [Ecosystem](http://fela.js.org/docs/introduction/Ecosystem.html) documentation for a quick overview.
@@ -185,7 +185,7 @@ Apart from all the packages managed within this repository, there are many commu
 * [gatsby-plugin-fela](https://github.com/mmintel/gatsby-plugin-fela) - Integrates fela with [Gatsby](http://gatsbyjs.org)
 * [hyper-fela](https://github.com/ahdinosaur/hyper-fela) - HyperScript bindings for Fela
 * [htz-frontend](https://github.com/Haaretz/htz-frontend) - Source for Haaretz frontend app(s)
-* [kilvin](https://github.com/rofrischmann/kilvin) - Primitive React Layout Components with Fela
+* [kilvin](https://github.com/robinweser/kilvin) - Primitive React Layout Components with Fela
 * [olymp](https://github.com/olymp/olymp) - Create and build a next gen app using node, react, cssInJS and other cool stuff
 * [preact-fela-simple](https://github.com/pshev/preact-fela-simple) - Super simple Preact bindings for Fela
 * [reason-react-starter](https://github.com/drejohnson/reason-react-starter) - A ReasonReact starter kit using Fela
@@ -204,7 +204,7 @@ Don't want to miss any update? Follow us on [Twitter](https://twitter.com/felajs
 
 ## Who's using Fela?
 
-> Your company is using Fela, but is not listed yet? [Add your company / organisation](https://github.com/rofrischmann/fela/edit/master/README.md#L121)
+> Your company is using Fela, but is not listed yet? [Add your company / organisation](https://github.com/robinweser/fela/edit/master/README.md#L121)
 
 - [abilis](https://www.abilis.de)
 - [Bookmyshow](https://in.bookmyshow.com/events)
@@ -241,4 +241,4 @@ Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
-Created with ♥ by [@rofrischmann](http://rofrischmann.de) and all the great contributors.
+Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

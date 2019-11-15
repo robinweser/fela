@@ -1,6 +1,6 @@
 # Usage with React
 
-Fela was always designed with React in mind, but is **not** bound to React by default. If you want to use it with React, you should also install the official [React bindings for Fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
+Fela was always designed with React in mind, but is **not** bound to React by default. If you want to use it with React, you should also install the official [React bindings for Fela](https://github.com/robinweser/fela/tree/master/packages/react-fela).
 
 ```sh
 # yarn
@@ -171,7 +171,7 @@ Where container components manage the application logic, presentational componen
 ---
 
 ### Related
-* [react-fela](https://github.com/rofrischmann/fela/tree/master/packages/react-fela)
+* [react-fela](https://github.com/robinweser/fela/tree/master/packages/react-fela)
 * [API Reference - `FelaComponent`](../api/bindings/FelaComponent.md)
 * [API Reference - `FelaTheme`](../api/bindings/FelaTheme.md)
 * [API Reference - `Provider`](../api/bindings/Provider.md)

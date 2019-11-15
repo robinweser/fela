@@ -2,7 +2,7 @@
 
 > **Caution**: This documentation is kinda out-dated and more complex than it needs to be. It will be updated soon. For now, please refer to [createSnapshot](../api/jest-bindings/createSnapshot.md) for testing with Jest.
 
-There is no required library for testing Fela components. Since Fela is [framework-agnostic](../introduction/Benefits.md), you may use any javascript testing library to test your components. Fela's source is already [fully tested](https://codeclimate.com/github/rofrischmann/fela/coverage), so your tests should only confirm that Fela's styles are interacting correctly with the components.
+There is no required library for testing Fela components. Since Fela is [framework-agnostic](../introduction/Benefits.md), you may use any javascript testing library to test your components. Fela's source is already [fully tested](https://codeclimate.com/github/robinweser/fela/coverage), so your tests should only confirm that Fela's styles are interacting correctly with the components.
 
 ## Approach
 

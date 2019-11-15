@@ -1,7 +1,7 @@
 # Principles
 ### 1. Styles are pure functions of your application state
 
-> Read [Style as a Function of State](https://medium.com/@rofrischmann/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch) for more information on this principle.
+> Read [Style as a Function of State](https://medium.com/@robinweser/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch) for more information on this principle.
 
 Modern UI libraries such as [React](https://facebook.github.io/react/) provide neat APIs to implement the very basic concept of component-based views. [Lee Byron](https://github.com/leebyron) used to describe components, during his [Render 2016](https://vimeo.com/166790294) presentation, as the following:
 

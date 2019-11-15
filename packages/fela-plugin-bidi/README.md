@@ -6,7 +6,7 @@ Uses [bidi-css-js](https://github.com/TxHawks/bidi-css-js) to enable direction-i
 
 It is important to note that, when used as a Fela renderer plugin, this package is not a true polyfill for the proposal, as all `start` and `end` properties (and so on) are converted to `left` or `right` values (etc.), and will not automatically flip when the writing direction (`dir`) changes in the document.
 
-When used in conjunction with [fela-plugin-fallback-value](https://github.com/rofrischmann/fela/blob/master/packages/fela-plugin-fallback-value), `fela-plugin-bidi` must be passed to the `plugins` array _**after**_ `fela-plugin-fallback-value`, as it cannot handle the array used to pass fallbacks on its own.
+When used in conjunction with [fela-plugin-fallback-value](https://github.com/robinweser/fela/blob/master/packages/fela-plugin-fallback-value), `fela-plugin-bidi` must be passed to the `plugins` array _**after**_ `fela-plugin-fallback-value`, as it cannot handle the array used to pass fallbacks on its own.
 
 ## Installation
 ```sh
@@ -101,4 +101,4 @@ renderer.renderRule(rule, { theme: { direction: 'rtl' }})
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
-Created with ♥ by [@rofrischmann](http://rofrischmann.de) and all the great contributors.
+Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

@@ -1,6 +1,6 @@
 # StyleSheet
 Organize multiple Fela Rules in StyleSheets.
-A simple helper to organize multiple rules within one single StyleSheet as used e.g. in [React Native](https://github.com/facebook/react-native) or [react-look](https://github.com/rofrischmann/react-look).
+A simple helper to organize multiple rules within one single StyleSheet as used e.g. in [React Native](https://github.com/facebook/react-native) or [react-look](https://github.com/robinweser/react-look).
 
 ## Methods
 * [`create(styles)`](#createstyles)

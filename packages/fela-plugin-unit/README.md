@@ -31,7 +31,7 @@ const renderer = createRenderer({
 | --- | --- | --- | --- |
 | unit | `ch`, `em`, `ex`, `rem`, `vh`, `vw`, `vmin`, `vmax`, `px`, `cm`, `mm`, `in`, `pc`, `pt`, `mozmm` | `px` | unit which gets applied |
 | unitPerProperty | *(Object)* | `{}` | Default units per property |
-| isUnitlessProperty | *(Function)* | [`util function`](https://github.com/rofrischmann/css-in-js-utils/blob/master/modules/isUnitlessProperty.js) | check whether property should remain unitless |
+| isUnitlessProperty | *(Function)* | [`util function`](https://github.com/robinweser/css-in-js-utils/blob/master/modules/isUnitlessProperty.js) | check whether property should remain unitless |
 
 ##### Example
 ```javascript
@@ -78,4 +78,4 @@ Using the above example code:
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
-Created with ♥ by [@rofrischmann](http://rofrischmann.de) and all the great contributors.
+Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

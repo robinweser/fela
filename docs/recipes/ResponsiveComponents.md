@@ -49,10 +49,10 @@ export default createComponent(Responsive)
 Now we can create multiple `Responsive` instances with different width values by using the `defaultWidth`, `mediumWidth` and `bigWidth` props. But as you may think, that's still pretty much hard-coded and does not scale well. Especially, because you can not modify the media query values through the props.
 
 ## mapValueToMediaQuery
-This helper was created to solve the exact same problem which is mentioned above. It is shipped with [fela-tools](https://github.com/rofrischmann/fela/tree/master/packages/fela-tools) (check the [API Reference](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/mapValueToMediaQuery.md)).
+This helper was created to solve the exact same problem which is mentioned above. It is shipped with [fela-tools](https://github.com/robinweser/fela/tree/master/packages/fela-tools) (check the [API Reference](https://github.com/robinweser/fela/blob/master/packages/fela-tools/docs/mapValueToMediaQuery.md)).
 It takes an object with mediaQuery-value pairs and maps them to media queries. Pretty simple, but quite powerful in a declarative component world.
 
-> It is recommended to use it together with [fela-plugin-extend](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-extend) to be able to merge multiple properties with the same media query. Otherwise they'll be overwritten.
+> It is recommended to use it together with [fela-plugin-extend](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-extend) to be able to merge multiple properties with the same media query. Otherwise they'll be overwritten.
 
 The above example could look something like this:
 
@@ -91,7 +91,7 @@ const widths = {
 
 ## Compact markup
 We now have a highly dynamic approach to responsive components, but it also really bloats the markup and, especially when inlined, significantly reduces the readability.<br><br>
-You may improve that using the [fela-plugin-named-keys](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-named-keys).
+You may improve that using the [fela-plugin-named-keys](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-named-keys).
 
 It let's us define some global alias for media query strings, which can then be used directly within Fela rules. With the following configuration:
 

@@ -65,7 +65,7 @@ export default function insertRule(
     cssRules[index].score = score
   } catch (e) {
     // We're disabled these warnings due to false-positive errors with browser prefixes
-    // See https://github.com/rofrischmann/fela/issues/634
+    // See https://github.com/robinweser/fela/issues/634
     // console.warn(
     //   `An error occurred while inserting the rules into DOM.\n`,
     //   declaration.replace(/;/g, ';\n'),

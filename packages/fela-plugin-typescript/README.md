@@ -65,4 +65,4 @@ So the "nested" property is a tricky way to provide type-safety of Fela rules.
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
-Created with ♥ by [@rofrischmann](http://rofrischmann.de) and all the great contributors.
+Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

@@ -54,7 +54,7 @@ export default function rehydrate(
 
         // On Safari, style sheets with IE-specific media queries
         // can yield null for node.sheet
-        // https://github.com/rofrischmann/fela/issues/431#issuecomment-423239591
+        // https://github.com/robinweser/fela/issues/431#issuecomment-423239591
         if (node.sheet && node.sheet.cssRules) {
           const nodeReference = media + support
 

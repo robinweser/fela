@@ -45,7 +45,7 @@ declare module "react-fela" {
   /**
    * Fela Provider
    *
-   * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/react/ThemeProvider.js}
+   * @see {@link https://github.com/robinweser/fela/blob/master/modules/bindings/react/ThemeProvider.js}
    */
   export class Provider extends React.Component<ProviderProps, {}> { }
   export class RendererProvider extends React.Component<ProviderProps, {}> { }
@@ -104,7 +104,7 @@ declare module "react-fela" {
   /**
    * Fela injects theme props.
    *
-   * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/createComponentFactory.js#L52}
+   * @see {@link https://github.com/robinweser/fela/blob/master/modules/bindings/createComponentFactory.js#L52}
    */
   interface FelaInjectedProps<Props, Theme = any> {
     theme?: Theme;
@@ -121,13 +121,13 @@ declare module "react-fela" {
     /**
      * ref to underlying component
      *
-     * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/createComponentFactory.js#L68}
+     * @see {@link https://github.com/robinweser/fela/blob/master/modules/bindings/createComponentFactory.js#L68}
      */
     innerRef?: (instance: any) => void;
     /**
      * Extend component styles.
      *
-     * @see {@link https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponent.md#extending-styles}
+     * @see {@link https://github.com/robinweser/fela/blob/master/packages/react-fela/docs/createComponent.md#extending-styles}
      */
     extend?: Style<Props>;
   }
@@ -135,7 +135,7 @@ declare module "react-fela" {
   /**
    * Returns a stateless HTML React component with Fela styles.
    *
-   * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/createComponentFactory.js#L15-L82}
+   * @see {@link https://github.com/robinweser/fela/blob/master/modules/bindings/createComponentFactory.js#L15-L82}
    */
   type FelaHtmlComponent<Props, Elem, Theme = any> = React.ComponentType<Props & FelaInjectedProps<Props, Theme> & React.HTMLProps<Elem>>;
 
@@ -147,7 +147,7 @@ declare module "react-fela" {
   /**
    * By default, Fela returns a `div` stateless React component.
    *
-   * @see {@link https://github.com/rofrischmann/fela/blob/master/modules/bindings/createComponentFactory.js#L12}
+   * @see {@link https://github.com/robinweser/fela/blob/master/modules/bindings/createComponentFactory.js#L12}
    */
   type DefaultFelaHtmlComponent<Props, Theme = any> = FelaHtmlComponent<Props, HTMLDivElement, Theme>;
 

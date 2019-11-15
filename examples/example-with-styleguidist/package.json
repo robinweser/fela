@@ -3,10 +3,10 @@
   "name": "example-with-styleguidist",
   "version": "10.8.2",
   "description": "An Example to use fela with styleguidist",
-  "homepage": "https://github.com/rofrischmann/fela",
+  "homepage": "https://github.com/robinweser/fela",
   "repository": {
     "type": "git",
-    "url": "git://github.com/rofrischmann/fela.git"
+    "url": "git://github.com/robinweser/fela.git"
   },
   "author": "Aga5tya <aga5tya@yahoo.com>",
   "keywords": [

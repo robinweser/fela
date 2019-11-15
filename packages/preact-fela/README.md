@@ -4,7 +4,7 @@
 
 Official [Preact](https://github.com/Preactjs/Preact) bindings for Fela.
 
-This package only includes Preact bindings for [Fela](http://github.com/rofrischmann/fela).<br>
+This package only includes Preact bindings for [Fela](http://github.com/robinweser/fela).<br>
 It assumes you already know about Fela and how to use it.
 
 ## Installation
@@ -21,4 +21,4 @@ Checkout the [API Reference - Bindings](http://fela.js.org/docs/API.html#binding
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
-Created with ♥ by [@rofrischmann](http://rofrischmann.de) and all the great contributors.
+Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

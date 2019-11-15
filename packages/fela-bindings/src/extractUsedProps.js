@@ -7,7 +7,7 @@ export default function extractUsedProps(
 
   // if the browser doesn't support proxies
   // we simply return an empty props object
-  // see https://github.com/rofrischmann/fela/issues/468
+  // see https://github.com/robinweser/fela/issues/468
   if (typeof Proxy === 'undefined') {
     return usedProps
   }

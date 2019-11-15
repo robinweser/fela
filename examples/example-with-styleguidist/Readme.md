@@ -3,7 +3,7 @@
 How to start locally:
 
 ```
-git clone https://github.com:rofrischmann/fela.git
+git clone https://github.com:robinweser/fela.git
 cd examples/example-with-styleguidist
 npm install
 npm run styleguide

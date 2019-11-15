@@ -142,5 +142,5 @@ Check out the [API Reference - Renderer](../api/fela/Renderer.md) to learn about
 * [API Reference - `createRenderer`](../api/fela/createRenderer.md)
 
 #### Tools
-**[fela-native](https://github.com/rofrischmann/fela/tree/master/packages/fela-native)**<br>
+**[fela-native](https://github.com/robinweser/fela/tree/master/packages/fela-native)**<br>
 Renderer for React Native

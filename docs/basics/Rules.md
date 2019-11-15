@@ -185,5 +185,5 @@ const rule = props => ({
 * [API Reference - `Renderer.renderRule`](../api/fela/Renderer.md#renderrulerule-props-defaultprops)
 
 #### Tools
-**[fela-tools/StyleSheet](https://github.com/rofrischmann/fela/blob/master/packages/fela-tools/docs/StyleSheet.md)**<br>
+**[fela-tools/StyleSheet](https://github.com/robinweser/fela/blob/master/packages/fela-tools/docs/StyleSheet.md)**<br>
 Organize your rules in grouped objects with named keys

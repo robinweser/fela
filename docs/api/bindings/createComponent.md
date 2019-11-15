@@ -53,7 +53,7 @@ const Title = createComponent(title, 'div', props => Object.keys(props))
 const Title = createComponent(title, 'div', Object.keys)
 ```
 
-> **Note**: The same can be achieved via [createComponentWithProxy](https://github.com/rofrischmann/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops).
+> **Note**: The same can be achieved via [createComponentWithProxy](https://github.com/robinweser/fela/blob/master/packages/react-fela/docs/createComponentWithProxy.md#createcomponentwithproxyrule-type-passthroughprops).
 
 #### Dynamically passing Props
 This use case is especially important for library owners. Instead of passing the `passThroughProps` to the `createComponent` call directly, one can also use the `passThrough` prop on the created component to achieve the same effect.

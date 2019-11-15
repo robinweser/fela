@@ -4,10 +4,10 @@ Often the best way to learn something, is to learn from examples.
 While we do not provide much examples yet, we highly appreciate any help to provide some useful examples.
 
 ## React
-A simple example application using the [React bindings](https://github.com/rofrischmann/fela/tree/master/packages/react-fela).
+A simple example application using the [React bindings](https://github.com/robinweser/fela/tree/master/packages/react-fela).
 
 ```sh
-git clone https://github.com/rofrischmann/fela.git
+git clone https://github.com/robinweser/fela.git
 
 cd fela/examples/example-react
 npm install
@@ -33,18 +33,18 @@ npm run client
 Another example that covers the usage with [react-styleguidist](https://github.com/styleguidist/react-styleguidist).
 
 ```sh
-git clone https://github.com/rofrischmann/fela.git
+git clone https://github.com/robinweser/fela.git
 cd fela/examples/example-with-styleguidist
 npm install
 npm run styleguide
 ```
 
 ## Preact
-A simple example application using the [Preact bindings](https://github.com/rofrischmann/fela/tree/master/packages/preact-fela).
+A simple example application using the [Preact bindings](https://github.com/robinweser/fela/tree/master/packages/preact-fela).
 The example is the same as the [React example](#react) above.
 
 ```sh
-git clone https://github.com/rofrischmann/fela.git
+git clone https://github.com/robinweser/fela.git
 
 cd fela/examples/example-preact
 npm install
@@ -56,11 +56,11 @@ npm run client
 ```
 
 ## Inferno
-A simple example application using the [Inferno bindings](https://github.com/rofrischmann/fela/tree/master/packages/inferno-fela).
+A simple example application using the [Inferno bindings](https://github.com/robinweser/fela/tree/master/packages/inferno-fela).
 The example is the same as the [React example](#react) above.
 
 ```sh
-git clone https://github.com/rofrischmann/fela.git
+git clone https://github.com/robinweser/fela.git
 
 cd fela/examples/example-inferno
 npm install
@@ -72,10 +72,10 @@ npm run client
 ```
 
 ## React Native
-A simple example application using the [React bindings](https://github.com/rofrischmann/fela/tree/master/packages/react-fela) and the [React Native renderer](http://fela.js.org/docs/guides/UsageWithReactNative.html#native-renderer).
+A simple example application using the [React bindings](https://github.com/robinweser/fela/tree/master/packages/react-fela) and the [React Native renderer](http://fela.js.org/docs/guides/UsageWithReactNative.html#native-renderer).
 
 ```sh
-git clone https://github.com/rofrischmann/fela.git
+git clone https://github.com/robinweser/fela.git
 
 cd fela/examples/example-react-native
 npm install
@@ -95,7 +95,7 @@ Afterwards open one of the platform specific native projects and run with a simu
 The code examples are based on the build-chain as used in [Angular 2 ESNext TodoMVC](https://github.com/blacksonic/angular2-esnext-todomvc).
 
 ```sh
-git clone https://github.com/rofrischmann/fela.git
+git clone https://github.com/robinweser/fela.git
 cd fela/examples/example-angular2
 npm install
 npm run start
@@ -109,7 +109,7 @@ npm run start
 ### TypeScript
 The same example is also available in TypeScript. It also covers Fela typings.
 ```sh
-git clone https://github.com/rofrischmann/fela.git
+git clone https://github.com/robinweser/fela.git
 cd fela/examples/example-angular2-typescript
 npm install
 npm run start

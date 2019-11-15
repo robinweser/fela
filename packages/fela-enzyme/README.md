@@ -4,7 +4,7 @@
 
 NPM package shipping utilities for working with [Fela](fela.js.org) in the context of enzyme.
 
-Check out the [Fela repository](https://github.com/rofrischmann/fela) for further information.
+Check out the [Fela repository](https://github.com/robinweser/fela) for further information.
 Â
 ## felaShallow
 

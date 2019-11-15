@@ -14,7 +14,7 @@
     "lib/**",
     "es/**"
   ],
-  "repository": "https://github.com/rofrischmann/fela/",
+  "repository": "https://github.com/robinweser/fela/",
   "keywords": [
     "fela",
     "fela-plugin",

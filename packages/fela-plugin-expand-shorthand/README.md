@@ -4,7 +4,7 @@
 
 Expands shorthand properties in style objects so that only longhand properties are used.
 
-It uses [inline-style-expand-shorthand](https://github.com/rofrischmann/inline-style-expand-shorthand) under the hood. Check the repo if you're interested in which properties are supported.
+It uses [inline-style-expand-shorthand](https://github.com/robinweser/inline-style-expand-shorthand) under the hood. Check the repo if you're interested in which properties are supported.
 
 It comes in two different modes: One that simply expands the shorthands and one that merges the resulting longhands with existing longhands in the style object depending on the specificity of that property.
 
@@ -59,4 +59,4 @@ const renderer = createRenderer({
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
-Created with ♥ by [@rofrischmann](http://rofrischmann.de) and all the great contributors.
+Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

@@ -23,5 +23,5 @@ In addition to the required parameters, each font face accepts five other proper
 ### Related
 * [Rendering Fonts](Renderer.md#renderfont)
 * [API Reference - `Renderer.renderFont` ](../api/fela/Renderer.md#renderfontfontfamily-files-properties)
-* [Plugin - fela-plugin-embedded](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-embedded)
+* [Plugin - fela-plugin-embedded](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-embedded)
 

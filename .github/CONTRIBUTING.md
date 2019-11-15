@@ -9,7 +9,7 @@ If you have a feature request please create an issue. Also if you're even improv
 We assume that you got [node](https://nodejs.org) and [yarn](https://yarnpkg.com) in your environment. To get started with the repo:
 
 ```
-git clone git@github.com:rofrischmann/fela.git
+git clone git@github.com:robinweser/fela.git
 cd fela
 yarn
 ```
