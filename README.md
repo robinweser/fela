@@ -21,10 +21,12 @@ You may alternatively use `npm i --save fela`.
 ## Benefits
 * Predictable Styling
 * Scoped Atomic CSS
+* Minimal Bundle Size
 * No Specificity Issues
 * No Naming Conflicts
 * Framework-Agnostic
 * Huge Ecosystem
+* i18n Support
 
 ## The Gist
 Fela's core principle is to consider [style as a function of state](http://fela.js.org/docs/introduction/Principles.html).<br>
@@ -210,8 +212,10 @@ Don't want to miss any update? Follow us on [Twitter](https://twitter.com/felajs
 - [Bookmyshow](https://in.bookmyshow.com/events)
 - [BdP LV RPS](http://www.bdp-rps.de)
 - [Cloudflare](https://www.cloudflare.com)
+- [dm-drogerie markt](https://www.dm.de)
+- [dmTECH](https://www.dmtech.de)
 - [Espressive](https://www.espressive.com)
-- [dm-drogerie markt](https://www.dm.de/arbeiten-und-lernen/arbeiten-bei-uns/filiadata-c534052.html)
+- [Gazzer](https://www.gazzer.io)
 - [HelloFresh](https://www.hellofresh.de)
 - [Indoqa](https://www.indoqa.com)
 - [Kilix](http://kilix.fr)
@@ -222,13 +226,13 @@ Don't want to miss any update? Follow us on [Twitter](https://twitter.com/felajs
 - [Net-A-Porter](https://www.net-a-porter.com/gb/en/porter)
 - [NinjaConcept](https://www.ninjaconcept.com)
 - [Optisure](https://www.optisure.de)
+- [Robin Weser](http://weser.io)
 - [Rocket Station](http://rstation.io)
 - [Root Systems](https://www.rootsystems.nz)
 - [Space Between](https://www.spacebetween.co.uk/)
 - [V2](https://www.v2.com)
 - [Volvo Cars](https://www.volvocars.com)
 - [Zendesk](https://www.zendesk.com)
-
 
 ## Contributing
 
