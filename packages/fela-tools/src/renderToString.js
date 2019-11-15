@@ -22,12 +22,7 @@ export default function renderToString(renderer: DOMRenderer): string {
     mediaRules,
     supportRules,
     supportMediaRules,
-  } = clusterCache(
-    renderer.cache,
-    renderer.mediaQueryOrder,
-    renderer.supportQueryOrder,
-    renderer.ruleOrder
-  )
+  } = clusterCache(renderer.cache, renderer.ruleOrder)
 
   const basicCSS =
     fontFaces + statics + keyframes + rules + cssifySupportRules(supportRules)
@@ -35,7 +30,7 @@ export default function renderToString(renderer: DOMRenderer): string {
   const mediaKeys = Object.keys({
     ...supportMediaRules,
     ...mediaRules,
-  })
+  }).sort(renderer.sortMediaQuery)
 
   return arrayReduce(
     mediaKeys,

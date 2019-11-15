@@ -1,7 +1,7 @@
 {
-  "name": "fela-dom",
+  "name": "fela-sort-media-query-mobile-first",
   "version": "10.8.2",
-  "description": "Fela package for working with the DOM",
+  "description": "Fela enhancer that sorts media queries using a mobile-first approach",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -12,27 +12,20 @@
     "lib/**",
     "es/**"
   ],
-  "repository": "https://github.com/robinweser/fela/",
+  "repository": "https://github.com/rofrischmann/fela/",
   "keywords": [
     "fela",
-    "dynamic styling",
-    "stylesheet",
-    "css",
-    "styling",
+    "fela-enhancer",
+    "mobile-first",
     "cssinjs"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "sort-css-media-queries": "^1.4.3",
-    "css-in-js-utils": "^3.0.0",
-    "fast-loops": "^1.0.1",
-    "fela-utils": "^10.8.2"
+    "sort-css-media-queries": "^1.4.3"
   },
   "devDependencies": {
-    "fela": "^10.8.2",
-    "fela-preset-web": "^10.8.2",
-    "fela-tools": "^10.8.2"
+    "fela": "^10.8.2"
   },
   "gitHead": "4edeeffc5be2e05473a52c24523dbebcd9e0ef0d"
 }

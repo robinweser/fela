@@ -17,7 +17,7 @@ describe('Creating a style node', () => {
     const getHTML = (media, support) => ({
       _media: media,
       _support: support,
-      html: createNode({}, 0, { type: RULE_TYPE, media, support }).outerHTML,
+      html: createNode({ type: RULE_TYPE, media, support }).outerHTML,
     })
 
     expect(getHTML()).toMatchSnapshot()
@@ -27,33 +27,26 @@ describe('Creating a style node', () => {
   })
 
   it('should respect the correct order', () => {
-    const nodes = {}
-
-    function createAndAdd(score, attributes) {
-      const node = createNode(nodes, score, attributes)
-      nodes[JSON.stringify(attributes) + score] = { node, score }
-    }
-
-    createAndAdd(5, {
+    createNode({
       type: RULE_TYPE,
       media: '(min-width:300px)',
     })
 
-    createAndAdd(6, {
+    createNode({
       type: RULE_TYPE,
       media: '(min-width:300px)',
       support: true,
     })
 
-    createAndAdd(1, {
+    createNode({
       type: STATIC_TYPE,
     })
 
-    createAndAdd(4, {
+    createNode({
       type: RULE_TYPE,
     })
 
-    createAndAdd(2, {
+    createNode({
       type: KEYFRAME_TYPE,
     })
 

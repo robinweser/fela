@@ -38,6 +38,22 @@ import type {
 } from '../../../flowtypes/DOMRenderer'
 import type { FontProperties } from '../../../flowtypes/FontProperties'
 
+const sortMediaQuery = (mediaQueryOrder = []) => {
+  return function(a, b) {
+    if (mediaQueryOrder.indexOf(b) === -1) {
+      if (mediaQueryOrder.indexOf(a) === -1) {
+        return 0
+      }
+      return -1
+    }
+    if (mediaQueryOrder.indexOf(a) === -1) {
+      return 1
+    }
+
+    return mediaQueryOrder.indexOf(a) - mediaQueryOrder.indexOf(b)
+  }
+}
+
 export default function createRenderer(
   config: DOMRendererConfig = {}
 ): DOMRenderer {
@@ -45,7 +61,8 @@ export default function createRenderer(
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
     plugins: config.plugins || [],
-    mediaQueryOrder: config.mediaQueryOrder || [],
+    sortMediaQuery:
+      config.sortMediaQuery || sortMediaQuery(config.mediaQueryOrder),
     supportQueryOrder: config.supportQueryOrder || [],
     ruleOrder: [
       /^:link/,

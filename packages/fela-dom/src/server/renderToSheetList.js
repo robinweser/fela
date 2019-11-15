@@ -24,12 +24,7 @@ type Sheet = {
 }
 
 export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
-  const cacheCluster = clusterCache(
-    renderer.cache,
-    renderer.mediaQueryOrder,
-    renderer.supportQueryOrder,
-    renderer.ruleOrder
-  )
+  const cacheCluster = clusterCache(renderer.cache, renderer.ruleOrder)
 
   const rehydrationIndex = getRehydrationIndex(renderer)
 
@@ -63,7 +58,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
   const mediaKeys = Object.keys({
     ...cacheCluster.supportMediaRules,
     ...cacheCluster.mediaRules,
-  })
+  }).sort(renderer.sortMediaQuery)
 
   return arrayReduce(
     mediaKeys,

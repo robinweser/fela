@@ -29,6 +29,7 @@
         "fela-plugin-prefixer": "^10.8.2",
         "fela-plugin-unit": "^10.8.2",
         "fela-plugin-validator": "^10.8.2",
+        "fela-sort-media-query-mobile-first": "^10.8.2",
         "react": "^16.8.5",
         "react-dom": "^16.8.5",
         "react-fela": "^10.8.2",
