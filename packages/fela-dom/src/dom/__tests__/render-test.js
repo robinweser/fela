@@ -32,7 +32,7 @@ describe('render (production)', () => {
     render(renderer)
 
     const styleSheets = Object.keys(renderer.nodes).map(key =>
-      getStyleSheetStyle(renderer.nodes[key].node)
+      getStyleSheetStyle(renderer.nodes[key])
     )
 
     expect(styleSheets).toMatchSnapshot()
@@ -50,7 +50,7 @@ describe('render (production)', () => {
     }))
 
     const styleSheets = Object.keys(renderer.nodes).map(key =>
-      getStyleSheetStyle(renderer.nodes[key].node)
+      getStyleSheetStyle(renderer.nodes[key])
     )
 
     expect(styleSheets).toMatchSnapshot()
@@ -97,7 +97,7 @@ describe('render (production)', () => {
     }))
 
     const styleSheets = Object.keys(clientRenderer.nodes).map(key =>
-      getStyleSheetStyle(clientRenderer.nodes[key].node)
+      getStyleSheetStyle(clientRenderer.nodes[key])
     )
 
     expect(styleSheets).toMatchSnapshot()
@@ -131,7 +131,7 @@ describe('render (production)', () => {
     }))
 
     const styleSheets = Object.keys(renderer.nodes).map(key =>
-      getStyleSheetStyle(renderer.nodes[key].node)
+      getStyleSheetStyle(renderer.nodes[key])
     )
 
     expect(styleSheets).toMatchSnapshot()

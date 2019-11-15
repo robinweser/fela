@@ -21,9 +21,7 @@ export default function createSubscription(
 ): Function {
   return change => {
     if (change.type === CLEAR_TYPE) {
-      objectEach(renderer.nodes, ({ node }) =>
-        node.parentNode.removeChild(node)
-      )
+      objectEach(renderer.nodes, node => node.parentNode.removeChild(node))
 
       renderer.nodes = {}
       renderer.scoreIndex = {}
@@ -34,15 +32,23 @@ export default function createSubscription(
 
     switch (change.type) {
       case KEYFRAME_TYPE:
-        node.textContent += change.keyframe
+        if (node.textContent.indexOf(change.keyframe) === -1) {
+          node.textContent += change.keyframe
+        }
         break
       case FONT_TYPE:
-        node.textContent += change.fontFace
+        if (node.textContent.indexOf(change.fontFace) === -1) {
+          node.textContent += change.fontFace
+        }
         break
       case STATIC_TYPE:
-        node.textContent += change.selector
+        let css = change.selector
           ? generateCSSRule(change.selector, change.css)
           : change.css
+
+        if (node.textContent.indexOf(css) === -1) {
+          node.textContent += css
+        }
         break
       case RULE_TYPE:
         insertRule(change, renderer, node)

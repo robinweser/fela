@@ -1,5 +1,4 @@
 /* @flow */
-import calculateNodeScore from './calculateNodeScore'
 import queryNode from './queryNode'
 import createNode from './createNode'
 
@@ -22,16 +21,12 @@ export default function getNodeFromCache(
   const reference = getReference(attributes)
 
   if (!renderer.nodes[reference]) {
-    const score = calculateNodeScore(attributes, renderer.mediaQueryOrder)
     const node =
       queryNode(attributes, targetDocument) ||
-      createNode(renderer.nodes, score, attributes, targetDocument)
+      createNode(attributes, targetDocument, renderer.sortMediaQuery)
 
-    renderer.nodes[reference] = {
-      node,
-      score,
-    }
+    renderer.nodes[reference] = node
   }
 
-  return renderer.nodes[reference].node
+  return renderer.nodes[reference]
 }

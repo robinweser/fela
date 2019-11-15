@@ -2,7 +2,6 @@
 import arrayReduce from 'fast-loops/lib/arrayReduce'
 import objectReduce from 'fast-loops/lib/objectReduce'
 
-import applyKeysInOrder from './applyKeysInOrder'
 import generateCSSRule from './generateCSSRule'
 import objectSortByScore from './objectSortByScore'
 import getRuleScore from './getRuleScore'
@@ -58,24 +57,10 @@ const handlers = {
 
 export default function clusterCache(
   cache: Object,
-  mediaQueryOrder: Array<string> = [],
-  supportQueryOrder: Array<string> = [],
   ruleOrder: Array<any> = []
 ) {
   const sortedCache = objectSortByScore(cache, value =>
     getRuleScore(ruleOrder, value.pseudo)
-  )
-
-  const mediaRules = applyKeysInOrder(mediaQueryOrder)
-  const supportRules = applyKeysInOrder(supportQueryOrder)
-
-  const supportMediaRules = arrayReduce(
-    mediaQueryOrder,
-    (resultSupportRules, media) => {
-      resultSupportRules[media] = applyKeysInOrder(supportQueryOrder)
-      return resultSupportRules
-    },
-    applyKeysInOrder(mediaQueryOrder, {})
   )
 
   return objectReduce(
@@ -90,9 +75,9 @@ export default function clusterCache(
       return cluster
     },
     {
-      mediaRules,
-      supportRules,
-      supportMediaRules,
+      mediaRules: {},
+      supportRules: {},
+      supportMediaRules: {},
       fontFaces: '',
       statics: '',
       keyframes: '',

@@ -3,25 +3,25 @@ import embedded from 'fela-plugin-embedded'
 import prefixer from 'fela-plugin-prefixer'
 import fallbackValue from 'fela-plugin-fallback-value'
 import unit from 'fela-plugin-unit'
-import lvha from 'fela-plugin-lvha'
 import validator from 'fela-plugin-validator'
 import logger from 'fela-plugin-logger'
 import perf from 'fela-perf'
 import beautifier from 'fela-beautifier'
 import layoutDebugger from 'fela-layout-debugger'
+import sortMediaQueryMobileFirst from 'fela-sort-media-query-mobile-first'
 
 export default () => {
   const renderer = createRenderer({
+    devMode: true,
     plugins: [
       embedded(),
       prefixer(),
       fallbackValue(),
       unit(),
-      lvha(),
       validator(),
       logger(),
     ],
-    enhancers: [perf(), beautifier()],
+    enhancers: [perf(), beautifier(), sortMediaQueryMobileFirst()],
   })
 
   renderer.renderStatic(

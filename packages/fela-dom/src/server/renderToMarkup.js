@@ -14,12 +14,7 @@ import getRehydrationIndex from './getRehydrationIndex'
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 
 export default function renderToMarkup(renderer: DOMRenderer): string {
-  const cacheCluster = clusterCache(
-    renderer.cache,
-    renderer.mediaQueryOrder,
-    renderer.supportQueryOrder,
-    renderer.ruleOrder
-  )
+  const cacheCluster = clusterCache(renderer.cache, renderer.ruleOrder)
 
   const rehydrationIndex = getRehydrationIndex(renderer)
 
@@ -55,7 +50,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
   const mediaKeys = Object.keys({
     ...cacheCluster.supportMediaRules,
     ...cacheCluster.mediaRules,
-  })
+  }).sort(renderer.sortMediaQuery)
 
   return arrayReduce(
     mediaKeys,

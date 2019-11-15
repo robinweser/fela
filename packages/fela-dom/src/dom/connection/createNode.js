@@ -1,15 +1,17 @@
 /* @flow */
 import objectReduce from 'fast-loops/lib/objectReduce'
 
+import getNodeSibling from './getNodeSibling'
+
 import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
 
 export default function createNode(
-  nodes: Object,
-  score: number,
-  { type, media, support }: NodeAttributes,
-  targetDocument: any = document
+  attributes: NodeAttributes,
+  targetDocument: any = document,
+  sortMediaQuery: Function
 ): Object {
   const head = targetDocument.head || {}
+  const { type, media, support } = attributes
 
   const node = targetDocument.createElement('style')
   node.setAttribute('data-fela-type', type)
@@ -23,20 +25,11 @@ export default function createNode(
     node.media = media
   }
 
-  // we calculate the most next bigger style node
-  // to correctly inject the node just before it
-  const moreSpecificReference = objectReduce(
-    nodes,
-    (closest, currentNode, reference) =>
-      currentNode.score > score &&
-      (!closest || nodes[closest].score > currentNode.score)
-        ? reference
-        : closest,
-    undefined
-  )
+  const nodes = head.querySelectorAll('[data-fela-type]')
+  const sibling = getNodeSibling([...nodes], attributes, sortMediaQuery)
 
-  if (moreSpecificReference) {
-    head.insertBefore(node, nodes[moreSpecificReference].node)
+  if (sibling) {
+    head.insertBefore(node, sibling)
   } else {
     head.appendChild(node)
   }
