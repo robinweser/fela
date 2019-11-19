@@ -18,8 +18,9 @@ Thumbs.db
 *.rej
 *.sass-cache
 *.sw?
-*.vi
 .vscode
+*.vi
+*.tgz
 
 yarn-error.log
 *.js.map

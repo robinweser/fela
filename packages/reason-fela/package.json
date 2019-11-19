@@ -28,5 +28,6 @@
   "dependencies": {
     "bs-platform": "^5.0.6",
     "reason-react": "^0.7.0"
-  }
+  },
+  "gitHead": "e1a48f5d72623a0f95084dc07998dd85aa175bd1"
 }
