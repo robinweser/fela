@@ -59,3 +59,7 @@ module ThemeProvider = {
   external make: (~theme: Js.t('a), ~children: React.element) => React.element =
     "ThemeProvider";
 };
+
+[@bs.module "react-fela"]
+external renderToNodeList: Fela.renderer => array(React.element) =
+  "renderToNodeList";
