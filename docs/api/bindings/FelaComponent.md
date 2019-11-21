@@ -10,19 +10,12 @@ FelaComponent is an alternative component to the [createComponent](createCompone
 | children | *any* |  | Either a render function or a primitive child.<br>If passing a render function is receives the specified render interface. |
 | as | *string* | `div` | If children is passed a primitive child, the component will render an `as`-type DOM element with the className attached and the primitive child as content.
 
-#### Deprecated Props 
-> The following props are deprecated and will be removed in the next major version (11.0.0).
-
-| Property | Type | Default | Description |
-| --- | --- | --- | --- |
-| customClass |	string	| | class(es) to prepend before the generated classes	|
-|rule	| *Function*	| |	A function of theme and props |
 
 ### Render Interface
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
 | className | *string* | | The class names for the rendered *style* object |
-| children |	*Element* |	| The component children | 
+| children |	*Element* |	| The component children |
 | theme | *Object* | `{}` | The theme object which is passed down via context |
 | as | *string* | `div` | The `as` property that is passed to the component |
 
