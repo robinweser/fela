@@ -3,7 +3,7 @@ import React from 'react'
 import ReactTestRenderer from 'react-test-renderer'
 
 import { renderToString } from 'fela-tools'
-import { createComponent, connect, Provider } from 'react-fela'
+import { createComponent, connect, RendererProvider } from 'react-fela'
 import monolithic from 'fela-monolithic'
 
 describe('Monolithic enhancer React integration', () => {
@@ -16,15 +16,15 @@ describe('Monolithic enhancer React integration', () => {
     }))
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer}>
+      <RendererProvider renderer={renderer}>
         <Component />
-      </Provider>
+      </RendererProvider>
     )
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer}>
+      <RendererProvider renderer={renderer}>
         <Component />
-      </Provider>
+      </RendererProvider>
     )
 
     expect(renderToString(renderer)).toMatchSnapshot()
@@ -47,9 +47,9 @@ describe('Monolithic enhancer React integration', () => {
     )
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer}>
+      <RendererProvider renderer={renderer}>
         <Component />
-      </Provider>
+      </RendererProvider>
     )
 
     expect(renderToString(renderer)).toMatchSnapshot()
@@ -77,9 +77,9 @@ describe('Monolithic enhancer React integration', () => {
     }))(BaseComponent)
 
     ReactTestRenderer.create(
-      <Provider renderer={renderer}>
+      <RendererProvider renderer={renderer}>
         <Component />
-      </Provider>
+      </RendererProvider>
     )
 
     expect(renderToString(renderer)).toMatchSnapshot()
