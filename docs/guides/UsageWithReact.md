@@ -141,24 +141,6 @@ const style = ({ theme }) => ({
 
 You may also nest multiple ThemeProvider instances. The **theme** object will then automatically get merged to extend the previous theme. To force overwrite the **theme** (without merging) you may pass a **overwrite** prop.
 
-## Passing the Renderer
-In order to avoid using a global Fela renderer, we ship the [Provider](../api/bindings/Provider.md) component. It takes our renderer and uses React's [context](https://facebook.github.io/react/docs/context.html) to pass it down the whole component tree.
-
-```javascript
-import { createRenderer } from 'fela'
-import { Provider } from 'react-fela'
-import { render } from 'react-dom'
-import React from 'react'
-
-const renderer = createRenderer()
-
-render(
-  <Provider renderer={renderer}>
-    <App />
-  </Provider>,
-  document.getElementById('app')
-)
-```
 
 ## Tips & Tricks
 #### Presentational Components
