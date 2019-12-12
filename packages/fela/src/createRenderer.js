@@ -89,6 +89,10 @@ export default function createRenderer(
       return ++renderer.uniqueRuleIdentifier
     },
 
+    getNextKeyframeIdentifier() {
+      return ++renderer.uniqueKeyframeIdentifier
+    },
+
     renderRule(rule: Function, props: Object = {}): string {
       return renderer._renderStyle(rule(props, renderer), props)
     },
@@ -107,8 +111,7 @@ export default function createRenderer(
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
         const animationName =
-          renderer.selectorPrefix +
-          generateAnimationName(++renderer.uniqueKeyframeIdentifier)
+          renderer.selectorPrefix + renderer.generateAnimationName(props)
 
         const cssKeyframe = cssifyKeyframe(
           processedKeyframe,
@@ -127,6 +130,9 @@ export default function createRenderer(
       }
 
       return renderer.cache[keyframeReference].name
+    },
+    generateAnimationName(_props: Object) {
+      return generateAnimationName(renderer.getNextKeyframeIdentifier())
     },
 
     renderFont(
@@ -278,9 +284,12 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
             const className =
               renderer.selectorPrefix +
-              generateClassName(
-                renderer.getNextRuleIdentifier,
-                renderer.filterClassName
+              renderer.generateClassName(
+                property,
+                value,
+                pseudo,
+                media,
+                support
               )
 
             const declaration = cssifyDeclaration(property, value)
@@ -310,6 +319,18 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       }
 
       return classNames
+    },
+    generateClassName(
+      _property: string,
+      _value: any,
+      _pseudo?: string,
+      _media?: string,
+      _support?: string
+    ): string {
+      return generateClassName(
+        renderer.getNextRuleIdentifier,
+        renderer.filterClassName
+      )
     },
 
     _emitChange(change: Object): void {
