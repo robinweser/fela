@@ -2,6 +2,7 @@
   "name": "preact-fela",
   "version": "11.0.2",
   "description": "Preact bindings for Fela",
+  "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -9,6 +10,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "index.d.ts",
     "lib/**",
     "es/**"
   ],
