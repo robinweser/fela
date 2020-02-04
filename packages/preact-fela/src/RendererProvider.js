@@ -9,7 +9,7 @@ export default RendererProviderFactory(
   Component,
   RendererContext,
   createElement,
-  ([children]) => children,
+  children => children,
   {
     defaultProps: {
       renderToDOM: true,
