@@ -17,20 +17,28 @@ export default function FelaComponentFactory(
 
       return createElement(FelaTheme, undefined, theme => {
         // TODO: could optimize perf by not calling combineRules if not necessary
-        const className = renderer.renderRule(combineRules(style), {
+        const renderedRule = renderer.renderRule(combineRules(style), {
           ...otherProps,
           theme,
         })
 
         if (children instanceof Function) {
           return children({
-            className,
+            className: !renderer.isNativeRenderer && renderedRule,
+            style: renderer.isNativeRenderer && renderedRule,
             theme,
             as,
           })
         }
 
-        return createElement(as, { className }, children)
+        return createElement(
+          as,
+          {
+            className: !renderer.isNativeRenderer && renderedRule,
+            style: renderer.isNativeRenderer && renderedRule,
+          },
+          children
+        )
       })
     }
 
