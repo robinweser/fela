@@ -7,6 +7,9 @@
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "sideEffects": false,
+  "scripts": {
+    "build:umd": "webpack --config webpack.config.js"
+  },
   "files": [
     "LICENSE",
     "README.md",
@@ -29,9 +32,16 @@
     "react": "^16.3.0"
   },
   "dependencies": {
+    "@babel/preset-flow": "^7.8.3",
     "fela-bindings": "^11.1.2",
     "fela-dom": "^11.1.2",
     "prop-types": "^15.5.8"
   },
-  "gitHead": "e1a48f5d72623a0f95084dc07998dd85aa175bd1"
+  "gitHead": "e1a48f5d72623a0f95084dc07998dd85aa175bd1",
+  "devDependencies": {
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
 }
