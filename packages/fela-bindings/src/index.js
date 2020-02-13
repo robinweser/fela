@@ -6,6 +6,7 @@ import RendererProviderFactory from './RendererProviderFactory'
 import ThemeProviderFactory from './ThemeProviderFactory'
 import withThemeFactory from './withThemeFactory'
 import feFactory from './feFactory'
+import renderToNodeListFactory from './renderToNodeListFactory'
 
 export {
   connectFactory,
@@ -16,4 +17,5 @@ export {
   ThemeProviderFactory,
   withThemeFactory,
   feFactory,
+  renderToNodeListFactory,
 }

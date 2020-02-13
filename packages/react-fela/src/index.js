@@ -8,6 +8,7 @@ import RendererProvider from './RendererProvider'
 import ThemeProvider from './ThemeProvider'
 import useFela from './useFela'
 import withTheme from './withTheme'
+import renderToNodeList from './renderToNodeList'
 import fe from './fe'
 
 import { RendererContext, ThemeContext } from './context'
@@ -25,6 +26,7 @@ export {
   RendererProvider,
   ThemeContext,
   ThemeProvider,
+  renderToNodeList,
   useFela,
   withTheme,
   fe,

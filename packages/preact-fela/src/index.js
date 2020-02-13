@@ -6,6 +6,7 @@ import FelaComponent from './FelaComponent'
 import FelaTheme from './FelaTheme'
 import RendererProvider from './RendererProvider'
 import ThemeProvider from './ThemeProvider'
+import renderToNodeList from './renderToNodeList'
 import withTheme from './withTheme'
 import fe from './fe'
 
@@ -22,6 +23,7 @@ export {
   FelaTheme,
   RendererContext,
   RendererProvider,
+  renderToNodeList,
   ThemeContext,
   ThemeProvider,
   withTheme,
