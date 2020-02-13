@@ -21,8 +21,10 @@ export default function useFela(props: Object = {}): HookInterface {
     )
   }
 
-  const propsWithTheme = { theme }
-  if (props) Object.assign(propsWithTheme, props)
+  const propsWithTheme = {
+    ...props,
+    theme,
+  }
 
   function css(...rules: Array<Object | Function>) {
     return renderer.renderRule(combineRules(...rules), propsWithTheme)
