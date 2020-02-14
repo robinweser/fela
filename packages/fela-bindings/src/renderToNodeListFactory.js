@@ -2,7 +2,7 @@
 import { renderToSheetList } from 'fela-dom'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 
-export function renderToNodeListFactory(createElement: Function) {
+export default function renderToNodeListFactory(createElement: Function) {
   return function renderToNodeList(renderer: DOMRenderer) {
     const sheetList = renderToSheetList(renderer)
 
