@@ -5,18 +5,16 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 11.0
 
+### 11.1.1 / 11.1.2
+| react-fela<br>preact-fela<br>infero-fela<br>reason-fela<br>fela-bindings | ([#765](https://github.com/robinweser/fela/pull/765)) Fixed some regressions with missing exports concerning `renderToNodeList` |
+
 ### 11.1.0
 | Package | Changes |
 | --- | --- |
 | preact-fela | ([#759](https://github.com/robinweser/fela/pull/759)) Upgraded Preact version to Preact X<br>([#760](https://github.com/robinweser/fela/pull/760)) Added Preact Typings |
 | react-fela<br>preact-fela<br>infero-fela<br>reason-fela<br>fela-bindings | ([#753](https://github.com/robinweser/fela/pull/753)) Removed some old 10.x.x deprecated bindings<br>([#752](https://github.com/robinweser/fela/pull/752)) Added a `renderToNodeList`-method that returns an array of `style` elements<br>([#764](https://github.com/robinweser/fela/pull/764)) Fixed a bug where `className` was passed instead of `style` when using `FelaComponent` with `fela-native` |
 
-### 11.0.2
-| Package | Changes |
-| --- | --- |
-| reason-fela | More improvements to the ReasonML typings. |
-
-### 11.0.1
+### 11.0.1 / 11.0.2
 | Package | Changes |
 | --- | --- |
 | reason-fela | More improvements to the ReasonML typings. |
