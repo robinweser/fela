@@ -1,18 +1,18 @@
 {
   "private": true,
   "name": "fela-integration",
-  "version": "11.1.1",
+  "version": "11.1.2",
   "description": "Fela private intergration testing package",
   "sideEffects": false,
   "dependencies": {
-    "fela": "^11.1.1",
-    "fela-monolithic": "^11.1.1",
-    "fela-tools": "^11.1.1",
-    "jest-react-fela": "^11.1.1",
+    "fela": "^11.1.2",
+    "fela-monolithic": "^11.1.2",
+    "fela-tools": "^11.1.2",
+    "jest-react-fela": "^11.1.2",
     "raf": "^3.4.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "react-fela": "^11.1.1",
+    "react-fela": "^11.1.2",
     "react-test-renderer": "^16.6.0"
   }
 }
