@@ -6,6 +6,8 @@ If you're searching for older logs, please check the [old changelog](https://git
 ## 11.0
 
 ### 11.1.1 / 11.1.2
+| Package | Changes |
+| --- | --- |
 | react-fela<br>preact-fela<br>infero-fela<br>reason-fela<br>fela-bindings | ([#765](https://github.com/robinweser/fela/pull/765)) Fixed some regressions with missing exports concerning `renderToNodeList` |
 
 ### 11.1.0
