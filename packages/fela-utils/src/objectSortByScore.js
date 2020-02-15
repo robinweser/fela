@@ -12,7 +12,10 @@ export default function objectSortByScore(
   const sortedKeys = objectReduce(
     obj,
     (resultSortedKeys, value, key) => {
-      const index = findIndex(resultSortedKeys, el => getScore(obj[el], el) > getScore(value, key))
+      const index = findIndex(
+        resultSortedKeys,
+        el => getScore(obj[el], el) > getScore(value, key)
+      )
 
       if (index !== -1) {
         return insertAtIndex(resultSortedKeys, key, index)
