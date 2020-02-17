@@ -1,7 +1,7 @@
 /* @flow */
 import arrayReduce from 'fast-loops/lib/arrayReduce'
 import objectReduce from 'fast-loops/lib/objectReduce'
-
+import findIndex from './findIndex'
 import insertAtIndex from './insertAtIndex'
 
 // TODO: we can further improve this one
@@ -12,7 +12,8 @@ export default function objectSortByScore(
   const sortedKeys = objectReduce(
     obj,
     (resultSortedKeys, value, key) => {
-      const index = resultSortedKeys.findIndex(
+      const index = findIndex(
+        resultSortedKeys,
         el => getScore(obj[el], el) > getScore(value, key)
       )
 
