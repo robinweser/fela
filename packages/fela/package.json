@@ -7,12 +7,16 @@
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "sideEffects": false,
+  "scripts": {
+    "build:umd": "webpack --config webpack.config.js"
+  },
   "files": [
     "LICENSE",
     "README.md",
     "index.d.ts",
     "lib/**",
-    "es/**"
+    "es/**",
+    "umd/**"
   ],
   "repository": "https://github.com/robinweser/fela/",
   "keywords": [

@@ -75,6 +75,11 @@
     "lerna": "^3.4.3",
     "prettier": "^1.18.2",
     "recompose": "^0.25.0",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0"
   }
 }

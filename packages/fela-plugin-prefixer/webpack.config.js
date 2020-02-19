@@ -6,11 +6,10 @@ module.exports = merge(common, {
   context: path.resolve(__dirname, './src'),
   output: {
     path: path.resolve(__dirname, './umd'),
-    library: 'ReactFela',
+    library: 'FelaPluginPrefixer',
   },
 
   externals: {
-    react: 'React',
     fela: 'Fela',
   },
 })
