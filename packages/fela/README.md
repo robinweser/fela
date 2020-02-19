@@ -7,10 +7,10 @@ It generates atomic CSS and supports all common CSS features such as media queri
 
 Fela can be used with [React](https://github.com/robinweser/fela/tree/master/packages/react-fela) or with any other view library. It even supports [React Native](http://fela.js.org/docs/guides/UsageWithReactNative.html).
 
-<img alt="TravisCI" src="https://travis-ci.org/robinweser/fela.svg?branch=master"> <a href="https://codeclimate.com/github/robinweser/fela/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/robinweser/fela/badges/coverage.svg"></a> <a href="https://bundlephobia.com/result?p=fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <a href="https://spectrum.chat/fela?tab=posts"><img alt="Spectrum" src="https://img.shields.io/badge/support-spectrum-brightgreen.svg"></a>
+<a href="https://bundlephobia.com/result?p=fela@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela.svg"> <a href="https://spectrum.chat/fela?tab=posts"><img alt="Spectrum" src="https://img.shields.io/badge/support-spectrum-brightgreen.svg"></a>
 
 ## Support Us
-Support Robin Frischmann's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com/robinweser).
+Support Robin Weser's work on Fela and its ecosystem directly via [**Patreon**](https://www.patreon.com/robinweser).
 
 ## Installation
 ```sh

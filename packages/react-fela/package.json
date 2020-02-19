@@ -33,7 +33,6 @@
     "react": "^16.3.0"
   },
   "dependencies": {
-    "@babel/preset-flow": "^7.8.3",
     "fela-bindings": "^11.1.2",
     "fela-dom": "^11.1.2",
     "prop-types": "^15.5.8"
