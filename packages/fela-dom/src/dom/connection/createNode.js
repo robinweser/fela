@@ -8,7 +8,8 @@ import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
 export default function createNode(
   attributes: NodeAttributes,
   targetDocument: any = document,
-  sortMediaQuery: Function
+  sortMediaQuery: Function,
+  styleTagAttributes: Object
 ): Object {
   const head = targetDocument.head || {}
   const { type, media, support } = attributes
@@ -23,6 +24,11 @@ export default function createNode(
 
   if (media) {
     node.media = media
+  }
+
+  // applying custom style tag attributes
+  for (let attribute in styleTagAttributes) {
+    node.setAttribute(attribute, styleTagAttributes[attribute])
   }
 
   const nodes = head.querySelectorAll('[data-fela-type]')

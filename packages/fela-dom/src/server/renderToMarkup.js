@@ -26,7 +26,9 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
           cacheCluster[key],
           type,
           '',
-          rehydrationIndex
+          rehydrationIndex,
+          false,
+          renderer.styleTagAttributes
         )
       }
 
@@ -43,7 +45,8 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
       RULE_TYPE,
       '',
       rehydrationIndex,
-      true
+      true,
+      renderer.styleTagAttributes
     )
   }
 
@@ -64,7 +67,9 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
           cacheCluster.mediaRules[media],
           RULE_TYPE,
           media,
-          rehydrationIndex
+          rehydrationIndex,
+          false,
+          renderer.styleTagAttributes
         )
       }
 
@@ -80,7 +85,8 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
             RULE_TYPE,
             media,
             rehydrationIndex,
-            true
+            true,
+            renderer.styleTagAttributes
           )
         }
       }
