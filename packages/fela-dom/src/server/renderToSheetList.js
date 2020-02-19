@@ -35,7 +35,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
         list.push({
           css: cacheCluster[key],
           rehydration: rehydrationIndex,
-          attributes: renderer.styleTagAttributes,
+          attributes: renderer.styleNodeAttributes,
           type,
         })
       }
@@ -52,7 +52,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
       css: support,
       type: RULE_TYPE,
       rehydration: rehydrationIndex,
-      attributes: renderer.styleTagAttributes,
+      attributes: renderer.styleNodeAttributes,
       support: true,
     })
   }
@@ -74,7 +74,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
           css: cacheCluster.mediaRules[media],
           type: RULE_TYPE,
           rehydration: rehydrationIndex,
-          attributes: renderer.styleTagAttributes,
+          attributes: renderer.styleNodeAttributes,
           media,
         })
       }
@@ -90,7 +90,7 @@ export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
             css: mediaSupport,
             type: RULE_TYPE,
             rehydration: rehydrationIndex,
-            attributes: renderer.styleTagAttributes,
+            attributes: renderer.styleNodeAttributes,
             support: true,
             media,
           })

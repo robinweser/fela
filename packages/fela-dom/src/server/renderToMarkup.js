@@ -28,7 +28,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
           '',
           rehydrationIndex,
           false,
-          renderer.styleTagAttributes
+          renderer.styleNodeAttributes
         )
       }
 
@@ -46,7 +46,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
       '',
       rehydrationIndex,
       true,
-      renderer.styleTagAttributes
+      renderer.styleNodeAttributes
     )
   }
 
@@ -69,7 +69,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
           media,
           rehydrationIndex,
           false,
-          renderer.styleTagAttributes
+          renderer.styleNodeAttributes
         )
       }
 
@@ -86,7 +86,7 @@ export default function renderToMarkup(renderer: DOMRenderer): string {
             media,
             rehydrationIndex,
             true,
-            renderer.styleTagAttributes
+            renderer.styleNodeAttributes
           )
         }
       }

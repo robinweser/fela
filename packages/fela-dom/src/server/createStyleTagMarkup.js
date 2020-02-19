@@ -9,12 +9,12 @@ export default function createStyleTagMarkup(
   media: string = '',
   rehydrationIndex: number = -1,
   support: boolean = false,
-  styleTagAttributes: Object = {}
+  styleNodeAttributes: Object = {}
 ): string {
   const mediaAttribute = media.length > 0 ? ` media="${media}"` : ''
   const supportAttribute = support ? ' data-fela-support="true"' : ''
   const userAttributes = objectReduce(
-    styleTagAttributes,
+    styleNodeAttributes,
     (attributes, value, attribute) =>
       attributes + ' ' + attribute + '="' + value + '"',
     ''

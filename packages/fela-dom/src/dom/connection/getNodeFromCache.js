@@ -27,7 +27,7 @@ export default function getNodeFromCache(
         attributes,
         targetDocument,
         renderer.sortMediaQuery,
-        renderer.styleTagAttributes
+        renderer.styleNodeAttributes
       )
 
     renderer.nodes[reference] = node

@@ -9,7 +9,7 @@ export default function createNode(
   attributes: NodeAttributes,
   targetDocument: any = document,
   sortMediaQuery: Function,
-  styleTagAttributes: Object
+  styleNodeAttributes: Object
 ): Object {
   const head = targetDocument.head || {}
   const { type, media, support } = attributes
@@ -27,8 +27,18 @@ export default function createNode(
   }
 
   // applying custom style tag attributes
-  for (let attribute in styleTagAttributes) {
-    node.setAttribute(attribute, styleTagAttributes[attribute])
+  for (let attribute in styleNodeAttributes) {
+    node.setAttribute(attribute, styleNodeAttributes[attribute])
+  }
+
+  // also apply attributes set globally with window.FelaConfig
+  if (typeof window !== undefined && window.FelaConfig) {
+    for (let attribute in window.FelaConfig.styleNodeAttributes) {
+      node.setAttribute(
+        attribute,
+        window.FelaConfig.styleNodeAttributes[attribute]
+      )
+    }
   }
 
   const nodes = head.querySelectorAll('[data-fela-type]')

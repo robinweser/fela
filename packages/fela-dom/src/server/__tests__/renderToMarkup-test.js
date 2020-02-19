@@ -6,7 +6,7 @@ import renderToMarkup from '../renderToMarkup'
 describe('Rendering to HTML markup', () => {
   it('should add custom style attributes', () => {
     const renderer = createRenderer({
-      styleTagAttributes: {
+      styleNodeAttributes: {
         none: 'abc',
       },
     })
