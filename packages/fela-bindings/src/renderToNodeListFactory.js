@@ -9,6 +9,7 @@ export default function renderToNodeListFactory(createElement: Function) {
     return sheetList.map(({ type, media, rehydration, support, css }) =>
       createElement('style', {
         key: type + media,
+        ...renderer.styleNodeAttributes,
         media,
         'data-fela-rehydration': rehydration,
         'data-fela-type': type,

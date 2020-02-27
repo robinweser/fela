@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Rendering to HTML markup should add custom style attributes 1`] = `
+"<style type=\\"text/css\\" data-fela-rehydration=\\"1\\" data-fela-type=\\"STATIC\\" none=\\"abc\\">
+    * {
+        box-sizing: border-box
+    }
+</style>
+<style type=\\"text/css\\" data-fela-rehydration=\\"1\\" data-fela-type=\\"RULE\\" none=\\"abc\\">
+    .a {
+        color: red
+    }
+</style>"
+`;
+
 exports[`Rendering to HTML markup should correctly sort rules 1`] = `
 "<style type=\\"text/css\\" data-fela-rehydration=\\"3\\" data-fela-type=\\"RULE\\">
     .a:hover {

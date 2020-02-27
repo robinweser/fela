@@ -7,13 +7,14 @@ In general, our renderer accepts a config object. The following table shows each
 We might introduce more configuration options with future releases, so be sure to frequently check for updates.
 
 | Option | Value | Default | Description |
-| ------ | ------ | ---------|---|
+| ------ | ------ | --------- | --- |
 | plugins | *(Array?)* |  | A list of [plugins](../advanced/Plugins.md) to process styles before rendering |
 | keyframePrefixes | *(Array?)* |`['-webkit-',`<br>`'-moz-']` | A list of which additional `@keyframes` prefixes are rendered |
 | enhancers  | *(Array?)* |  |  A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer
 | mediaQueryOrder | *(Array?)* |  | An explicit order in which `@media` queries are rendered |
 | sortMediaQuery | *Function* |  | A function with the same signature as sort functions in e.g. `Array.prototype.sort` for dynamically sorting media queries. Maps over an array of media query strings. Overwrites `mediaQueryOrder`. |
 | selectorPrefix | *(string?)* |  | Prepend a static prefix to every generated class and keyframe. It must only consist of `a-zA-Z0-9-_` and start with `a-zA-Z_`. |
+| styleNodeAttributes | *(Object?)* |  | A map of attributes that's passed to the generated style nodes. |
 | filterClassName | *(Function?)* | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names |
 | devMode | *(Boolean?)* | `false` | Enabling development mode for better developer experience. **Make sure to disable devMode in production.** |
 
@@ -30,6 +31,7 @@ import beautifier from 'fela-beautifier'
 import { renderToString } from 'fela-dom'
 
 const config = {
+  devMode: process.env.NODE_ENV !== 'production',
   plugins: [ unit('em'), prefixer(), fallbackValue() ],
   keyframePrefixes: ['-webkit-'],
   enhancers: [ beautifier() ],
@@ -38,7 +40,9 @@ const config = {
     '(min-height: 500px)'
   ],
   selectorPrefix: 'fela_',
-  devMode: process.env.NODE_ENV !== 'production'
+  styleNodeAttributes: {
+    nonce: "XXX"
+  },
 }
 
 const renderer = createRenderer(config)

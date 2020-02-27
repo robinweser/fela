@@ -23,7 +23,12 @@ export default function getNodeFromCache(
   if (!renderer.nodes[reference]) {
     const node =
       queryNode(attributes, targetDocument) ||
-      createNode(attributes, targetDocument, renderer.sortMediaQuery)
+      createNode(
+        attributes,
+        targetDocument,
+        renderer.sortMediaQuery,
+        renderer.styleNodeAttributes
+      )
 
     renderer.nodes[reference] = node
   }

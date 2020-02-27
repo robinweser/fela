@@ -64,6 +64,7 @@ export default function createRenderer(
     sortMediaQuery:
       config.sortMediaQuery || sortMediaQuery(config.mediaQueryOrder),
     supportQueryOrder: config.supportQueryOrder || [],
+    styleNodeAttributes: config.styleNodeAttributes || {},
     ruleOrder: [
       /^:link/,
       /^:visited/,

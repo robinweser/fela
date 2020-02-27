@@ -4,6 +4,17 @@ import { html as beautify } from 'js-beautify'
 import renderToMarkup from '../renderToMarkup'
 
 describe('Rendering to HTML markup', () => {
+  it('should add custom style attributes', () => {
+    const renderer = createRenderer({
+      styleNodeAttributes: {
+        none: 'abc',
+      },
+    })
+    renderer.renderRule(() => ({ color: 'red' }))
+    renderer.renderStatic('*{box-sizing:border-box}')
+
+    expect(beautify(renderToMarkup(renderer))).toMatchSnapshot()
+  })
   it('should return a single HTML markup string', () => {
     const rule = props => ({
       color: props.color,
