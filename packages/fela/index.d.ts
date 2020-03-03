@@ -201,6 +201,12 @@ declare module "fela-utils" {
   export const CLEAR_TYPE: TClearType
 }
 
+declare module "fela-sort-media-query-mobile-first" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
+
 /**
  * PLUGINS
  */
@@ -309,9 +315,9 @@ declare module "fela-plugin-simulate" {
 declare module "fela-plugin-unit" {
   import { TPlugin } from "fela";
 
-  type Unit = "ch" | "em" | "ex" | "rem" | "vh" | "vw" | "vmin" | "vmax" | "px" | "cm" | "mm" | "in" | "pc" | "pt" | "mozmm";
+  export type Unit = "ch" | "em" | "ex" | "rem" | "vh" | "vw" | "vmin" | "vmax" | "px" | "cm" | "mm" | "in" | "pc" | "pt" | "mozmm";
 
-  interface UnitPerProperty {
+  export interface UnitPerProperty {
     [key: string]: string;
   }
 
@@ -339,6 +345,15 @@ declare module "fela-plugin-validator" {
  */
 declare module "fela-preset-web" {
   import { TPlugin } from "fela";
+  import { Unit, UnitPerProperty } from "fela-plugin-unit";
+
+  type UnitConfig1 = [Unit]
+  type UnitConfig2 = [Unit, UnitPerProperty]
+  type UnitConfig3 = [Unit, UnitPerProperty, (property: string) => boolean]
+
+  type UnitConfig = UnitConfig1 | UnitConfig2 | UnitConfig3
+
+  export function createWebPreset({ unit }: { unit?: UnitConfig }): TPlugin[];
 
   const presets: TPlugin[];
   export default presets;
