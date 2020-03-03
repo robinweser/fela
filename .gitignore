@@ -28,6 +28,7 @@ node_modules/
 npm-debug.log
 lib/
 es/
+umd/
 coverage/
 _book
 

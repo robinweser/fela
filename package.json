@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --reject-cycles",
-    "build": "./scripts/build.sh",
+    "build": "./scripts/build.sh && lerna run build:umd",
     "clear": "lerna clean --yes && rimraf coverage && rimraf _book && rimraf packages/*/es && rimraf packages/*/lib",
     "docs": "gitbook install && gitbook build && gh-pages -d _book",
     "check": "yarn format && yarn lint && yarn coverage && yarn flow",
@@ -75,6 +75,12 @@
     "lerna": "^3.4.3",
     "prettier": "^1.18.2",
     "recompose": "^0.25.0",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2",
+    "babel-loader": "^8.0.6",
+    "@babel/preset-flow": "^7.8.3",
+    "clean-webpack-plugin": "^3.0.0"
   }
 }
