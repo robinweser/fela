@@ -5,6 +5,13 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 11.0
 
+### 11.2.0
+| Package | Changes |
+| --- | --- |
+| fela-utils | ([#766](https://github.com/robinweser/fela/pull/766)) Fixed IE 11 compatibility issues |
+| fela-sort-media-query-mobile-first<br>fela-preset-web | ([#769](https://github.com/robinweser/fela/pull/769)) Updated TypeScript definitions |
+| fela<br>fela-dom<br>react-fela<br>preact-fela<br>infero-fela<br>reason-fela<br>fela-bindings | ([#768](https://github.com/robinweser/fela/pull/768)) Added a new renderer option `styleNodeAttributes` for adding custom attributes to generated style nodes |
+
 ### 11.1.1 / 11.1.2
 | Package | Changes |
 | --- | --- |
