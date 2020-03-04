@@ -8,9 +8,12 @@ If you're searching for older logs, please check the [old changelog](https://git
 ### 11.2.0
 | Package | Changes |
 | --- | --- |
+| fela | ([#756](https://github.com/robinweser/fela/pull/756)) Added a `generateClassName` function to renderer which can now be overwritten |
+| fela<br>fela-dom<br>react-fela<br>preact-fela<br>infero-fela<br>reason-fela<br>fela-bindings | ([#768](https://github.com/robinweser/fela/pull/768)) Added a new renderer option `styleNodeAttributes` for adding custom attributes to generated style nodes |
 | fela-utils | ([#766](https://github.com/robinweser/fela/pull/766)) Fixed IE 11 compatibility issues |
 | fela-sort-media-query-mobile-first<br>fela-preset-web | ([#769](https://github.com/robinweser/fela/pull/769)) Updated TypeScript definitions |
-| fela<br>fela-dom<br>react-fela<br>preact-fela<br>infero-fela<br>reason-fela<br>fela-bindings | ([#768](https://github.com/robinweser/fela/pull/768)) Added a new renderer option `styleNodeAttributes` for adding custom attributes to generated style nodes |
+| fela<br>fela-plugin-prefixer<br>react-fela | ([#763](https://github.com/robinweser/fela/pull/763)) Added UMD builds for these specific packages - more to come |
+
 
 ### 11.1.1 / 11.1.2
 | Package | Changes |
