@@ -60,7 +60,7 @@ const Button = ({ color, big = false, text }) => (
 To access theme properties, we can simply pass a function of theme.
 
 ```javascript
-const style = ({ theme }) => ({
+const rule = ({ theme }) => ({
   backgroundColor: theme.bgPrimary,
   color: 'red'
 })
