@@ -23,7 +23,7 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "peerDependencies": {
-    "fela-native": "^10.0.0",
+    "fela-native": "^11.2.0",
     "react": "*",
     "react-native": "*"
   },
