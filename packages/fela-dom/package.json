@@ -6,6 +6,9 @@
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "sideEffects": false,
+  "scripts": {
+    "build:umd": "webpack --config webpack.config.js"
+  },
   "files": [
     "LICENSE",
     "README.md",
