@@ -29,6 +29,8 @@ declare module "react-fela" {
    */
   export class FelaTheme extends React.Component<FelaThemeProps, {}> {}
 
+  export const ThemeContext: React.Context<object>
+
   interface ProviderProps {
     renderer: object;
   }
