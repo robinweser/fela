@@ -75,7 +75,7 @@ let make = (~children) => {
   <div
     className={css([
       Fela.style({"fontSize": "18pt", "color": theme##colors##primary}),
-    )]}>
+    ])}>
     "I'm red"->React.string
   </div>;
 };
