@@ -22,6 +22,7 @@ import {
 
 import cssifyFontFace from './cssifyFontFace'
 import cssifyKeyframe from './cssifyKeyframe'
+import cssifyKeyframeRule from './cssifyKeyframeRule'
 import cssifyStaticStyle from './cssifyStaticStyle'
 import generateAnimationName from './generateAnimationName'
 import generateClassName from './generateClassName'
@@ -107,7 +108,7 @@ export default function createRenderer(
         props
       )
 
-      const keyframeReference = JSON.stringify(processedKeyframe)
+      const keyframeReference = cssifyKeyframeRule(processedKeyframe)
 
       if (!renderer.cache.hasOwnProperty(keyframeReference)) {
         // use another unique identifier to ensure minimal css markup
@@ -117,7 +118,8 @@ export default function createRenderer(
         const cssKeyframe = cssifyKeyframe(
           processedKeyframe,
           animationName,
-          renderer.keyframePrefixes
+          renderer.keyframePrefixes,
+          keyframeReference
         )
 
         const change = {
@@ -132,6 +134,7 @@ export default function createRenderer(
 
       return renderer.cache[keyframeReference].name
     },
+
     generateAnimationName(_props: Object) {
       return generateAnimationName(renderer.getNextKeyframeIdentifier())
     },

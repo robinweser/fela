@@ -1,18 +1,15 @@
 /* @flow */
 import arrayReduce from 'fast-loops/lib/arrayReduce'
-import objectReduce from 'fast-loops/lib/objectReduce'
-import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
+
+import cssifyKeyframeRule from './cssifyKeyframeRule'
 
 export default function cssifyKeyframe(
   frames: Object,
   animationName: string,
-  prefixes: Array<string> = ['']
+  prefixes: Array<string> = [''],
+  prerendered: ?string
 ): string {
-  const keyframe = objectReduce(
-    frames,
-    (css, frame, percentage) => `${css}${percentage}{${cssifyObject(frame)}}`,
-    ''
-  )
+  const keyframe = prerendered || cssifyKeyframeRule(frames)
 
   return arrayReduce(
     prefixes,
