@@ -1,6 +1,6 @@
 /* @flow */
 import arrayEach from 'fast-loops/lib/arrayEach'
-import { RULE_TYPE, getRuleScore } from 'fela-utils'
+import { RULE_TYPE, KEYFRAME_TYPE, getRuleScore } from 'fela-utils'
 
 import rehydrateSupportRules from './rehydration/rehydrateSupportRules'
 import rehydrateRules from './rehydration/rehydrateRules'
@@ -8,11 +8,11 @@ import rehydrateRules from './rehydration/rehydrateRules'
 import render from './render'
 
 import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
+import rehydrateKeyframes from './rehydration/rehydrateKeyframes'
 
 const CLASSNAME_REGEX = /[.][a-z0-9_-]*/gi
 
-// rehydration (WIP)
-// TODO: static, keyframe, font
+// TODO: static, font
 export default function rehydrate(
   renderer: DOMRenderer,
   targetDocument: any = document
@@ -68,6 +68,8 @@ export default function rehydrate(
             rule.score = score
           })
         }
+      } else if (type === KEYFRAME_TYPE) {
+        rehydrateKeyframes(css, renderer.cache)
       }
     }
   })
