@@ -1,4 +1,5 @@
 import createRenderer from '../createRenderer'
+import cssifyKeyframeRule from '../cssifyKeyframeRule'
 
 describe('Renderer', () => {
   describe('Instantiating a new renderer', () => {
@@ -114,9 +115,9 @@ describe('Renderer', () => {
 
       renderer.renderKeyframe(keyframe)
 
-      expect(renderer.cache.hasOwnProperty(JSON.stringify(keyframe()))).toEqual(
-        true
-      )
+      expect(
+        renderer.cache.hasOwnProperty(cssifyKeyframeRule(keyframe()))
+      ).toEqual(true)
     })
 
     it('should return a valid animation name', () => {
