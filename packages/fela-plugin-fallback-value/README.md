@@ -30,20 +30,20 @@ const renderer = createRenderer({
 #### Input
 ```javascript
 {
-  color: [ 'rgba(0, 0, 0, 0.5)', '#ccc']
+  color: [ '#ccc', 'rgba(0, 0, 0, 0.5)' ]
 }
 ```
 #### Output
 ```javascript
 {
-  color: 'rgba(0, 0, 0, 0.5);color:#ccc'
+  color: '#ccc;rgba(0, 0, 0, 0.5);'
 }
 ```
 which is similar to the following CSS code:
 ```CSS
 {
+	color: #ccc;
 	color: rgba(0, 0, 0, 0.5);
-	color: #ccc
 }
 ```
 
