@@ -36,7 +36,7 @@ const renderer = createRenderer({
 #### Output
 ```javascript
 {
-  color: 'color:#ccc;rgba(0, 0, 0, 0.5);'
+  color: '#ccc;rgba(0, 0, 0, 0.5);'
 }
 ```
 which is similar to the following CSS code:
