@@ -109,12 +109,12 @@ const Button = ({ children, ...props }) => {
 const renderer = createRenderer()
 
 render(
-  <Provider renderer={renderer}>
+  <FelaProvider renderer={renderer}>
     <>
       <Button>Basic Button</Button>
       <Button fontSize={18}>Big Button</Button>
     </>
-  </Provider>,
+  </FelaProvider>,
   document.body
 )
 ```
