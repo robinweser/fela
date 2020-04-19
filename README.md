@@ -101,9 +101,7 @@ const rule = state => ({
 const Button = ({ children, ...props }) => {
   const { css } = useFela(props)
   
-  <button className={css(rule)}>
-    {children}
-  </button>
+  return <button className={css(rule)}>{children}</button>;
 }
 
 const renderer = createRenderer()
