@@ -81,7 +81,7 @@ Using the [React bindings](packages/react-fela), you get powerful APIs to create
 
 ```javascript
 import React from 'react'
-import { FelaProvider, useFela } from 'react-fela'
+import { RendererProvider, useFela } from 'react-fela'
 import { createRenderer } from 'fela';
 import { render } from 'react-dom'
 
@@ -109,15 +109,17 @@ const Button = ({ children, ...props }) => {
 const renderer = createRenderer()
 
 render(
-  <FelaProvider renderer={renderer}>
+  <RendererProvider renderer={renderer}>
     <>
       <Button>Basic Button</Button>
       <Button fontSize={18}>Big Button</Button>
     </>
-  </FelaProvider>,
+  </RendererProvider>,
   document.body
 )
 ```
+
+> Check this example on [CodeSandbox](https://codesandbox.io/s/fela-demo-7tsj5)
 
 ## Examples
 * [Fela + React](http://fela.js.org/docs/introduction/Examples.html#react) ([source](examples/example-react))
