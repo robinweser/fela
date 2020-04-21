@@ -1,6 +1,6 @@
 {
   "name": "jest-preact-fela",
-  "version": "11.2.0",
+  "version": "11.3.0",
   "description": "Jest helpers for preact-fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -29,7 +29,7 @@
     "preact-fela": "*"
   },
   "dependencies": {
-    "jest-fela-bindings": "^11.2.0"
+    "jest-fela-bindings": "^11.3.0"
   },
   "gitHead": "e1a48f5d72623a0f95084dc07998dd85aa175bd1"
 }
