@@ -5,6 +5,17 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 11.0
 
+### 11.3.0
+> This is only available as a pre-release.
+
+| Package | Changes |
+| --- | --- |
+| fela<br>fela-dom | ([#780](https://github.com/robinweser/fela/pull/780)) Added keyframes rehydration and improved the initial keyframe rendering performance |
+| fela-utils | ([#782](https://github.com/robinweser/fela/pull/782)) We now support `null` and `undefined` strings within `url()` values due to Base64 |
+| fela | ([#779](https://github.com/robinweser/fela/pull/779)) Fixed an issue when using `combineRules` with empty rules |
+| react-fela | ([#776](https://github.com/robinweser/fela/pull/776)) Added `ThemeContext` to the TypeScript definitions |
+
+
 ### 11.2.0
 | Package | Changes |
 | --- | --- |
