@@ -6,7 +6,6 @@ If you're searching for older logs, please check the [old changelog](https://git
 ## 11.0
 
 ### 11.3.0
-> This is only available as a pre-release.
 
 | Package | Changes |
 | --- | --- |
