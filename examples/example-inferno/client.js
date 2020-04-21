@@ -1,13 +1,13 @@
 import Inferno, { render } from 'inferno'
-import { Provider } from 'inferno-fela'
+import { RendererProvider } from 'inferno-fela'
 import App from './app'
 import createRenderer from './renderer'
 
 const renderer = createRenderer()
 
 render(
-  <Provider renderer={renderer}>
+  <RendererProvider renderer={renderer}>
     <App />
-  </Provider>,
+  </RendererProvider>,
   document.getElementById('app')
 )

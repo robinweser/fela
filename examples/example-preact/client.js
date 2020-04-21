@@ -1,14 +1,14 @@
 import { render, h } from 'preact'
-import { Provider } from 'preact-fela'
+import { RendererProvider } from 'preact-fela'
 import App from './app'
 import createRenderer from './renderer'
 
 const renderer = createRenderer()
 
 render(
-  <Provider renderer={renderer}>
+  <RendererProvider renderer={renderer}>
     <App />
-  </Provider>,
+  </RendererProvider>,
   document.getElementById('app'),
   document.getElementById('app').lastElementChild
 )

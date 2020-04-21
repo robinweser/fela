@@ -1,9 +1,9 @@
 import React from 'react'
 import { AppRegistry } from 'react-native'
 import { createRenderer } from 'fela-native'
-import { Provider } from 'react-fela'
+import { RendererProvider } from 'react-fela'
 import nativeMediaQuery, {
-  DimensionProvider
+  DimensionProvider,
 } from 'fela-plugin-native-media-query'
 
 import App from './App'
@@ -11,11 +11,11 @@ import App from './App'
 const renderer = createRenderer({ plugins: [nativeMediaQuery()] })
 
 const wrappedApp = () => (
-  <Provider renderer={renderer}>
+  <RendererProvider renderer={renderer}>
     <DimensionProvider>
       <App />
     </DimensionProvider>
-  </Provider>
+  </RendererProvider>
 )
 
 AppRegistry.registerComponent('FelaNative', () => wrappedApp)

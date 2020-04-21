@@ -2,7 +2,7 @@ import express from 'express'
 import proxy from 'express-http-proxy'
 import Inferno from 'inferno'
 import { renderToString } from 'inferno-server'
-import { Provider } from 'inferno-fela'
+import { RendererProvider } from 'inferno-fela'
 import fs from 'fs'
 import { renderToMarkup } from 'fela-dom'
 import App from './app'
@@ -20,9 +20,9 @@ app.get('/', (req, res) => {
 
   const indexHTML = fs.readFileSync(`${__dirname}/index.html`).toString()
   const appHtml = renderToString(
-    <Provider renderer={renderer}>
+    <RendererProvider renderer={renderer}>
       <App />
-    </Provider>
+    </RendererProvider>
   )
   const appCSS = renderToMarkup(renderer)
 
