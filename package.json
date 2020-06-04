@@ -13,8 +13,7 @@
     "release": "git pull --rebase && yarn run check && yarn build && lerna publish --force-publish && yarn docs",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test --coverage",
-    "watch": "yarn test --watch",
-    "postinstall": "yarn build"
+    "watch": "yarn test --watch"
   },
   "workspaces": [
     "packages/*",
@@ -76,8 +75,8 @@
     "prettier": "^1.18.2",
     "recompose": "^0.25.0",
     "rimraf": "^2.6.1",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.10",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
     "webpack-merge": "^4.2.2",
     "babel-loader": "^8.0.6",
     "@babel/preset-flow": "^7.8.3",

@@ -18,9 +18,9 @@
     "react-dom": "^16.12.0",
     "react-fela": "^11.3.0",
     "react-jss": "^10.0.0",
-    "react-native-web": "^0.11.7",
+    "react-native-web": "^0.12.3",
     "reactxp": "1.3.2",
-    "styled-components": "beta",
+    "styled-components": "^5.1.1",
     "styled-jsx": "^3.2.4",
     "styletron-engine-atomic": "^1.4.4",
     "styletron-react": "^5.2.6"
@@ -37,8 +37,8 @@
     "css-loader": "0.28.11",
     "style-loader": "0.21.0",
     "url-loader": "^1.0.1",
-    "webpack": "4.8.1",
+    "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "2.11.1",
-    "webpack-cli": "2.1.3"
+    "webpack-cli": "^3.3.11"
   }
 }
