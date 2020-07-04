@@ -60,11 +60,19 @@ export default function getFontFormat(src: string): string {
       const c = src.charAt(i)
 
       if (c === '.') {
-        extension = c + extension
+        // fetches all the string from the gotten dot to the end
+        // of the string
+        const strippedSrc = src.slice(i, src.length)
+
+        // removes all query string that are usually attached to the
+        // font face strings e.g ./font-location/font.woff2?some-query
+        // Reference: https://github.com/robinweser/fela/issues/642
+        extension = strippedSrc.includes('?')
+          ? strippedSrc.split('?', 1)[0]
+          : strippedSrc
+
         break
       }
-
-      extension = c + extension
     }
 
     const fmt = formats[extension]
