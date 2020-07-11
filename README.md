@@ -221,6 +221,7 @@ Don't want to miss any update? Follow us on [Twitter](https://twitter.com/felajs
 - [Kilix](http://kilix.fr)
 - [Lusk](https://lusk.io)
 - [MediaFire](https://m.mediafire.com)
+- [Medium](https://medium.com)
 - [Microsoft](https://microsoft.com)
 - [N26](https://n26.com)
 - [Net-A-Porter](https://www.net-a-porter.com/gb/en/porter)
