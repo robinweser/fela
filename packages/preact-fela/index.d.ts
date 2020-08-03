@@ -64,6 +64,8 @@ declare module "preact-fela" {
 
   interface ProviderProps {
     renderer: object;
+    rehydrate?: boolean;
+    renderToDOM?: boolean;
   }
 
   interface FelaWithThemeProps<Theme> {

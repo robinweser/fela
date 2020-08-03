@@ -33,6 +33,8 @@ declare module "react-fela" {
 
   interface ProviderProps {
     renderer: object;
+    rehydrate?: boolean;
+    targetDocument?: any;
   }
 
   interface FelaWithThemeProps<Theme> {
