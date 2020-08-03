@@ -22,4 +22,15 @@ describe('Checking the font format', () => {
       getFontFormat('data:image/png;base64,blahblahblahblahblahblah')
     ).toEqual('')
   })
+
+  it('should return the correct format for fonts with queries', () => {
+    expect(getFontFormat('foo.woff2?somequery')).toEqual('woff2')
+    expect(getFontFormat('foo.woff2?someq?uery')).toEqual('woff2')
+    expect(getFontFormat('foo.woff?someq?uery')).toEqual('woff')
+    expect(getFontFormat('foo.ttf?somequery')).toEqual('truetype')
+    expect(getFontFormat('foo.eot?somequery')).toEqual('embedded-opentype')
+    expect(getFontFormat('foo.otf?somequery')).toEqual('opentype')
+    expect(getFontFormat('foo.svg?somequery')).toEqual('svg')
+    expect(getFontFormat('foo.svgz?somequery')).toEqual('svg')
+  })
 })
