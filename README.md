@@ -131,6 +131,7 @@ render(
     * [TypeScript](http://fela.js.org/docs/introduction/Examples.html#typescript) ([source](examples/example-angular2-typescript))
 * [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
 * [Fela + Cycle](https://github.com/wcastand/cycle-fela-example)
+* [Fela + Next.js](https://github.com/vercel/next.js/tree/master/examples/with-fela)
 
 ## Documentation
 * [Introduction](http://fela.js.org/docs/Introduction.html)
