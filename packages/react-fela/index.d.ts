@@ -584,4 +584,6 @@ declare module "react-fela" {
     }
 
     export function useFela<T = {}, P = {}>(props?: P): FelaHookProps<T, P>
+
+    export const fe: typeof React.createElement;
 }
