@@ -7860,15 +7860,6 @@ fela@4.2.6:
   dependencies:
     hyphenate-style-name "1.0.1"
 
-"fela@file:packages/fela":
-  version "11.3.0"
-  dependencies:
-    css-in-js-utils "^3.0.0"
-    csstype "^2.5.5"
-    fast-loops "^1.0.0"
-    fela-utils "^11.3.0"
-    isobject "^3.0.1"
-
 figgy-pudding@^3.1.0, figgy-pudding@^3.4.1, figgy-pudding@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
@@ -14782,13 +14773,6 @@ react-error-overlay@^5.1.0:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.4.tgz#88dfb88857c18ceb3b9f95076f850d7121776991"
   integrity sha512-fp+U98OMZcnduQ+NSEiQa4s/XMsbp+5KlydmkbESOw4P69iWZ68ZMFM5a2BuE0FgqPBKApJyRuYHR95jM8lAmg==
-
-"react-fela@file:packages/react-fela":
-  version "11.3.0"
-  dependencies:
-    fela-bindings "^11.3.0"
-    fela-dom "^11.3.0"
-    prop-types "^15.5.8"
 
 react-group@^3.0.0:
   version "3.0.0"
