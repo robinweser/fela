@@ -131,6 +131,7 @@ render(
     * [TypeScript](http://fela.js.org/docs/introduction/Examples.html#typescript) ([source](examples/example-angular2-typescript))
 * [Fela + HyperScript](https://github.com/ahdinosaur/hyper-fela#example)
 * [Fela + Cycle](https://github.com/wcastand/cycle-fela-example)
+* [Fela + Next.js](https://github.com/vercel/next.js/tree/master/examples/with-fela)
 
 ## Documentation
 * [Introduction](http://fela.js.org/docs/Introduction.html)
@@ -221,6 +222,7 @@ Don't want to miss any update? Follow us on [Twitter](https://twitter.com/felajs
 - [Kilix](http://kilix.fr)
 - [Lusk](https://lusk.io)
 - [MediaFire](https://m.mediafire.com)
+- [Medium](https://medium.com)
 - [Microsoft](https://microsoft.com)
 - [N26](https://n26.com)
 - [Net-A-Porter](https://www.net-a-porter.com/gb/en/porter)

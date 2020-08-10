@@ -2,6 +2,7 @@
   "name": "jest-react-fela",
   "version": "11.3.0",
   "description": "Jest helpers for react-fela",
+  "typings": "index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",

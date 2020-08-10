@@ -33,6 +33,8 @@ declare module "react-fela" {
 
   interface ProviderProps {
     renderer: object;
+    rehydrate?: boolean;
+    targetDocument?: any;
   }
 
   interface FelaWithThemeProps<Theme> {
@@ -582,4 +584,6 @@ declare module "react-fela" {
     }
 
     export function useFela<T = {}, P = {}>(props?: P): FelaHookProps<T, P>
+
+    export const fe: typeof React.createElement;
 }
