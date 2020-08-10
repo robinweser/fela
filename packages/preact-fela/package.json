@@ -1,6 +1,6 @@
 {
   "name": "preact-fela",
-  "version": "11.3.0",
+  "version": "11.3.1",
   "description": "Preact bindings for Fela",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -29,8 +29,8 @@
     "preact": "^10.2.1"
   },
   "dependencies": {
-    "fela-bindings": "^11.3.0",
-    "fela-dom": "^11.3.0"
+    "fela-bindings": "^11.3.1",
+    "fela-dom": "^11.3.1"
   },
   "gitHead": "e1a48f5d72623a0f95084dc07998dd85aa175bd1"
 }

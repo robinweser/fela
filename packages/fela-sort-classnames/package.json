@@ -1,6 +1,6 @@
 {
   "name": "fela-sort-classnames",
-  "version": "11.3.0",
+  "version": "11.3.1",
   "description": "Fela enhancer to sort classnames in alphabetic order",
   "main": "lib/index.js",
   "module": "es/index.js",

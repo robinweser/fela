@@ -1,6 +1,6 @@
 {
   "name": "fela-dom",
-  "version": "11.3.0",
+  "version": "11.3.1",
   "description": "Fela package for working with the DOM",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -29,13 +29,13 @@
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.1",
-    "fela-utils": "^11.3.0",
+    "fela-utils": "^11.3.1",
     "sort-css-media-queries": "^1.4.3"
   },
   "devDependencies": {
-    "fela": "^11.3.0",
-    "fela-preset-web": "^11.3.0",
-    "fela-tools": "^11.3.0"
+    "fela": "^11.3.1",
+    "fela-preset-web": "^11.3.1",
+    "fela-tools": "^11.3.1"
   },
   "gitHead": "e1a48f5d72623a0f95084dc07998dd85aa175bd1"
 }
