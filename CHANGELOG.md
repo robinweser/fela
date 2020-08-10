@@ -5,6 +5,13 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 11.0
 
+### 11.3.1
+
+| Package | Changes |
+| --- | --- |
+| fela | ([#795](https://github.com/robinweser/fela/pull/795)) Removes the warning when fonts are rendered with a query string attached |
+| react-fela<br>preact-fela<br>jest-react-fela | ([#792](https://github.com/robinweser/fela/pull/792)) Added typings for `fe` and `createSnapshot`<br>([#796](https://github.com/robinweser/fela/pull/796)) Added typings for `rehydrate` and `targetDocument` props on `<Provider>` |
+
 ### 11.3.0
 
 | Package | Changes |
