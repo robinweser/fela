@@ -18,6 +18,18 @@ describe('Monolithic enhancer', () => {
     expect(renderer.cache.hasOwnProperty(`.${className}`)).toEqual(true)
   })
 
+  it('should add extra _className', () => {
+    const rule = () => ({
+      _className: 'foo',
+      color: 'red',
+    })
+    const renderer = createRenderer(options)
+
+    const className = renderer.renderRule(rule)
+
+    expect(className).toContain('foo')
+  })
+
   it('should reuse classNames', () => {
     const rule = props => ({
       color: props.color,
