@@ -5,6 +5,13 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 11.0
 
+### 11.3.2
+
+| Package | Changes |
+| --- | --- |
+| fela-monolithic | Added the ability to pass a _className that's added to the monolithic className output |
+| fela-dom | ([#805](https://github.com/robinweser/fela/pull/805)) Added an UMD bundle |
+
 ### 11.3.1
 
 | Package | Changes |
