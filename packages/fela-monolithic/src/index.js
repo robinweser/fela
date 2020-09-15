@@ -126,7 +126,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       renderer.cache[className] = {}
     }
 
-    return (_className ? ' ' + _className : '') + className
+    return (_className ? _className + ' ' : '') + className
   }
 
   renderer.renderRule = (rule: Function, props: Object = {}): string =>
