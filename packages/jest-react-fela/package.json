@@ -22,7 +22,7 @@
     "jest",
     "jest-utils"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "peerDependencies": {
     "fela": "*",

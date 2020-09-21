@@ -19,7 +19,7 @@
     "fallback value",
     "cssinjs"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "isobject": "^3.0.1"

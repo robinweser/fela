@@ -20,7 +20,7 @@
     "css-shorthands",
     "longhands"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "inline-style-expand-shorthand": "^1.2.0"
