@@ -10,12 +10,13 @@ export default function generateCacheEntry(
   value: any,
   pseudo?: string = '',
   media?: string = '',
-  support?: string = ''
+  support?: string = '',
+  specifityPrefix?: string = ''
 ): Object {
   return {
     type,
     className,
-    selector: generateCSSSelector(className, pseudo),
+    selector: generateCSSSelector(className, pseudo, specifityPrefix),
     declaration: property + ':' + value,
     pseudo,
     media,
