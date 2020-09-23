@@ -140,12 +140,12 @@ describe('Monolithic enhancer', () => {
 
     const renderer = createRenderer({
       selectorPrefix: 'fela_',
-      specificityPrefix: '[class|="_fela"]',
+      specificityPrefix: '[class|="fela_"]',
     })
     const className = renderer.renderRule(rule)
 
     expect(renderToString(renderer)).toEqual(
-      `[class|="_fela"].${className}{color:red}`
+      `[class|="fela_"].${className}{color:red}`
     )
     expect(className).toContain('fela_')
   })
@@ -190,13 +190,13 @@ describe('Monolithic enhancer', () => {
     })
     const renderer = createRenderer({
       ...options,
-      specificityPrefix: '[class|="_fela"]',
+      specificityPrefix: '#app ',
     })
 
     const className = renderer.renderRule(rule)
 
     expect(renderToString(renderer)).toEqual(
-      `[class|="_fela"].${className}>div{color:blue}[class|="_fela"].${className}{color:red}`
+      `#app .${className}>div{color:blue}#app .${className}{color:red}`
     )
   })
 
