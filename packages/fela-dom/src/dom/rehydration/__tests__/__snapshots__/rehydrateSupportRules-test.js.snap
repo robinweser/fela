@@ -31,3 +31,35 @@ Object {
   },
 }
 `;
+
+exports[`Rehydrating @supports rules should rehydrate the renderer cache with specifityPrefix 1`] = `
+Object {
+  "(display:grid) and (display:flex)colorgreen": Object {
+    "className": "c",
+    "declaration": "color:green",
+    "media": "",
+    "pseudo": "",
+    "selector": ".parentClass .c",
+    "support": "(display:grid) and (display:flex)",
+    "type": "RULE",
+  },
+  "(display:grid)colorblue": Object {
+    "className": "b",
+    "declaration": "color:blue",
+    "media": "",
+    "pseudo": "",
+    "selector": ".parentClass .b",
+    "support": "(display:grid)",
+    "type": "RULE",
+  },
+  "(display:grid)colorred": Object {
+    "className": "a",
+    "declaration": "color:red",
+    "media": "",
+    "pseudo": "",
+    "selector": ".parentClass .a",
+    "support": "(display:grid)",
+    "type": "RULE",
+  },
+}
+`;

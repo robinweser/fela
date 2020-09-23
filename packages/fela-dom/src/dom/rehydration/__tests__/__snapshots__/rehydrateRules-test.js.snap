@@ -31,3 +31,35 @@ Object {
   },
 }
 `;
+
+exports[`Rehydrating rules should rehydrate the renderer cache with specifity prefix 1`] = `
+Object {
+  ":hover:activeborderColor2px solid rgb(255, 255, 0)": Object {
+    "className": "c",
+    "declaration": "border-color:2px solid rgb(255, 255, 0)",
+    "media": "",
+    "pseudo": ":hover:active",
+    "selector": ".parentClass .c:hover:active",
+    "support": "",
+    "type": "RULE",
+  },
+  "colorblue": Object {
+    "className": "b",
+    "declaration": "color:blue",
+    "media": "",
+    "pseudo": "",
+    "selector": ".parentClass .b",
+    "support": "",
+    "type": "RULE",
+  },
+  "colorred": Object {
+    "className": "a",
+    "declaration": "color:red",
+    "media": "",
+    "pseudo": "",
+    "selector": ".parentClass .a",
+    "support": "",
+    "type": "RULE",
+  },
+}
+`;
