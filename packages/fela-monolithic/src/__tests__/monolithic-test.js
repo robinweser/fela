@@ -101,6 +101,24 @@ describe('Monolithic enhancer', () => {
       `.${className}{color:red}.${className}:hover{color:blue}`
     )
   })
+  it('should render pseudo classes, with specificityPrefix', () => {
+    const rule = () => ({
+      color: 'red',
+      ':hover': {
+        color: 'blue',
+      },
+    })
+
+    const renderer = createRenderer({
+      ...options,
+      specificityPrefix: '.parent ',
+    })
+    const className = renderer.renderRule(rule)
+
+    expect(renderToString(renderer)).toEqual(
+      `.parent .${className}{color:red}.parent .${className}:hover{color:blue}`
+    )
+  })
 
   it('should prefix classNames', () => {
     const rule = () => ({
@@ -113,6 +131,22 @@ describe('Monolithic enhancer', () => {
     const className = renderer.renderRule(rule)
 
     expect(renderToString(renderer)).toEqual(`.${className}{color:red}`)
+    expect(className).toContain('fela_')
+  })
+  it('should prefix classNames, and prefix selectors with specificityPrefix', () => {
+    const rule = () => ({
+      color: 'red',
+    })
+
+    const renderer = createRenderer({
+      selectorPrefix: 'fela_',
+      specificityPrefix: '[class|="_fela"]',
+    })
+    const className = renderer.renderRule(rule)
+
+    expect(renderToString(renderer)).toEqual(
+      `[class|="_fela"].${className}{color:red}`
+    )
     expect(className).toContain('fela_')
   })
 
@@ -145,6 +179,24 @@ describe('Monolithic enhancer', () => {
 
     expect(renderToString(renderer)).toEqual(
       `.${className}>div{color:blue}.${className}{color:red}`
+    )
+  })
+  it('should render child selectors, and prefix specificityPrefix', () => {
+    const rule = () => ({
+      color: 'red',
+      '>div': {
+        color: 'blue',
+      },
+    })
+    const renderer = createRenderer({
+      ...options,
+      specificityPrefix: '[class|="_fela"]',
+    })
+
+    const className = renderer.renderRule(rule)
+
+    expect(renderToString(renderer)).toEqual(
+      `[class|="_fela"].${className}>div{color:blue}[class|="_fela"].${className}{color:red}`
     )
   })
 
