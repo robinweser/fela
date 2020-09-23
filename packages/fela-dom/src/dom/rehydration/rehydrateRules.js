@@ -13,11 +13,13 @@ export default function rehydrateRules(
   media: string = '',
   support?: string = '',
   cache?: Object = {},
-  specifityPrefix?: string = ''
+  specificityPrefix?: string = ''
 ): Object {
   let decl
   const DECL_REGEX = new RegExp(
-    `${escapeRegExp(specifityPrefix)}[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}`,
+    `${escapeRegExp(
+      specificityPrefix
+    )}[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}`,
     'gi'
   )
 
@@ -45,7 +47,7 @@ export default function rehydrateRules(
       pseudo,
       media,
       support,
-      specifityPrefix
+      specificityPrefix
     )
   }
 

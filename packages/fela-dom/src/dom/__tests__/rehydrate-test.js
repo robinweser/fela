@@ -157,7 +157,7 @@ describe('Rehydrating from DOM nodes', () => {
   it('should rehydrate the renderer cache', () => {
     const serverRenderer = createRenderer({
       filterClassName: cls => cls !== 'a',
-      specifityPrefix: '.parentClass ',
+      specificityPrefix: '.parentClass ',
       plugins: [...webPreset],
     })
 
@@ -189,7 +189,7 @@ describe('Rehydrating from DOM nodes', () => {
 
     const clientRenderer = createRenderer({
       filterClassName: cls => cls !== 'a',
-      specifityPrefix: '.parentClass ',
+      specificityPrefix: '.parentClass ',
       plugins: [...webPreset],
     })
 

@@ -44,7 +44,7 @@ export default function rehydrate(
             css,
             media,
             renderer.cache,
-            renderer.specifityPrefix
+            renderer.specificityPrefix
           )
         } else {
           rehydrateRules(
@@ -52,7 +52,7 @@ export default function rehydrate(
             media,
             '',
             renderer.cache,
-            renderer.specifityPrefix
+            renderer.specificityPrefix
           )
         }
 

@@ -2,7 +2,7 @@
 export default function generateCSSSelector(
   className: string,
   pseudo: string = '',
-  specifityPrefix?: string = ''
+  specificityPrefix?: string = ''
 ): string {
-  return `${specifityPrefix}.${className}${pseudo}`
+  return `${specificityPrefix}.${className}${pseudo}`
 }

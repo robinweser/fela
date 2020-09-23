@@ -88,7 +88,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       const selector = generateCSSSelector(
         className,
         pseudo,
-        renderer.specifityPrefix
+        renderer.specificityPrefix
       )
 
       const change = {

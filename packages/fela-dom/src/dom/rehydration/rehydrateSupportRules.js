@@ -8,7 +8,7 @@ export default function rehydrateSupportRules(
   css: string,
   media?: string = '',
   cache?: Object = {},
-  specifityPrefix?: string = ''
+  specificityPrefix?: string = ''
 ): Object {
   let decl
 
@@ -17,7 +17,7 @@ export default function rehydrateSupportRules(
     const [ruleSet, cssRules] = decl
 
     const supportQuery = extractSupportQuery(ruleSet)
-    rehydrateRules(cssRules, media, supportQuery, cache, specifityPrefix)
+    rehydrateRules(cssRules, media, supportQuery, cache, specificityPrefix)
   }
 
   return cache

@@ -5,7 +5,7 @@ export type DOMRenderer = {
   plugins: Array<Function>,
   sortMediaQuery: Function,
   selectorPrefix: string,
-  specifityPrefix: string,
+  specificityPrefix: string,
   filterClassName: Function,
   listeners: Array<Function>,
   uniqueRuleIdentifier: number,
@@ -31,7 +31,7 @@ export type DOMRendererConfig = {
   styleNodeAttributes: Object,
   mediaQueryOrder?: Array<string>,
   selectorPrefix?: string,
-  specifityPrefix?: string,
+  specificityPrefix?: string,
   filterClassName?: Function,
   devMode?: boolean,
 }
