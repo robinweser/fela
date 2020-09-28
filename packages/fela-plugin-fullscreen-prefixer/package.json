@@ -24,7 +24,6 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "fast-loops": "^1.0.0",
-    "fela-plugin-custom-property": "^11.3.3"
+    "fela-plugin-pseudo-prefixer": "^0.0.0"
   }
 }

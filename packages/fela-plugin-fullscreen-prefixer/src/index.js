@@ -1,6 +1,5 @@
 /* @flow */
-import customProperty from 'fela-plugin-custom-property'
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import pseudoPrefixer from 'fela-plugin-pseudo-prefixer'
 
 const fullscreenPrefixes = [
   ':-webkit-full-screen',
@@ -11,15 +10,5 @@ const fullscreenPrefixes = [
 ]
 
 export default function fullscreenPrefixer() {
-  return customProperty({
-    ':fullscreen': value =>
-      arrayReduce(
-        fullscreenPrefixes,
-        (style, prefix) => {
-          style[prefix] = value
-          return style
-        },
-        {}
-      ),
-  })
+  return pseudoPrefixer(':fullscreen', fullscreenPrefixes)
 }
