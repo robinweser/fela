@@ -19,7 +19,7 @@
     "mobile-first",
     "cssinjs"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "sort-css-media-queries": "^1.4.3"

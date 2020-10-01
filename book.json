@@ -1,7 +1,7 @@
 {
   "gitbook": "3.1.0",
   "title": "Fela",
-  "author": "Robin Frischmann <robin@weser.io>",
+  "author": "Robin Weser <robin@weser.io>",
   "description": "Official documentation for Fela",
   "language": "en",
   "plugins": ["edit-link", "prism", "-highlight", "github", "anker-enable", "advanced-emoji"],

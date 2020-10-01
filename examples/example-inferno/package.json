@@ -7,7 +7,7 @@
     "client": "NODE_ENV=development webpack-dev-server",
     "start": "concurrently --kill-others \"npm run client\" \"babel-node server.js\""
   },
-  "author": "Robin Frischmann <robin@weser.io>",
+  "author": "Robin Weser <robin@weser.io>",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",

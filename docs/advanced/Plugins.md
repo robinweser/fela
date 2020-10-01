@@ -42,11 +42,12 @@ Plugins are executed in the exact same order as provided. The output of the firs
 8. [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
 9. [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)
 10. [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl)
-11. [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
-12. [fela-plugin-important](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-important)
-13. [fela-plugin-isolation](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-isolation)
-14. [fela-plugin-validator](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator)
-15. [fela-plugin-logger](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-logger)
+11. [fela-plugin-theme-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-theme-value)
+12. [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
+13. [fela-plugin-important](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-important)
+14. [fela-plugin-isolation](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-isolation)
+15. [fela-plugin-validator](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator)
+16. [fela-plugin-logger](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-logger)
 
 
 ## Custom Plugins

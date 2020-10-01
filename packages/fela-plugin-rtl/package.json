@@ -19,7 +19,7 @@
     "rtl",
     "accessibility"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "rtl-css-js": "^1.1.3"

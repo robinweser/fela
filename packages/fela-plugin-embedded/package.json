@@ -19,7 +19,7 @@
     "embedded",
     "cssinjs"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "fast-loops": "^1.0.0",

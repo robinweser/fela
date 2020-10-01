@@ -46,6 +46,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit) - Automatically adds units to values if needed
 * [fela-plugin-validator*](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator) - Validates, logs & optionally deletes invalid properties for keyframes and rules
 * [fela-plugin-typescript](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-typescript) - Allows to write type-safe style rules and provides some autocomplete
+* [fela-plugin-theme-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-theme-value) - Resolves string-based theme values to actual style values
 
 #### Plugin-Presets
 * [fela-preset-web](https://github.com/robinweser/fela/tree/master/packages/fela-preset-web) - Preset for cross-browser web applications

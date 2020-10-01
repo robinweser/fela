@@ -21,7 +21,7 @@
     "devtools",
     "cssinjs"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^3.0.0",

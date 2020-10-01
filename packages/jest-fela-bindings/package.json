@@ -21,7 +21,7 @@
     "jest-utils",
     "jest-fela"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "fela-tools": "^11.3.3",

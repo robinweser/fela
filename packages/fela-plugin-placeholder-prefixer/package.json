@@ -21,7 +21,7 @@
     "autoprefixer",
     "cssinjs"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "fela-plugin-pseudo-prefixer": "^0.0.0"
