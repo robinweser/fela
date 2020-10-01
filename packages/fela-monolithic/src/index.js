@@ -85,7 +85,11 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
     if (Object.keys(ruleSet).length > 0) {
       const css = cssifyObject(ruleSet)
-      const selector = generateCSSSelector(className, pseudo)
+      const selector = generateCSSSelector(
+        className,
+        pseudo,
+        renderer.specificityPrefix
+      )
 
       const change = {
         type: RULE_TYPE,

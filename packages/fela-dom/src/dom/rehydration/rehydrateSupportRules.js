@@ -7,7 +7,8 @@ const SUPPORT_REGEX = /@supports[^{]+\{([\s\S]+?})\s*}/gi
 export default function rehydrateSupportRules(
   css: string,
   media?: string = '',
-  cache?: Object = {}
+  cache?: Object = {},
+  specificityPrefix?: string = ''
 ): Object {
   let decl
 
@@ -16,7 +17,7 @@ export default function rehydrateSupportRules(
     const [ruleSet, cssRules] = decl
 
     const supportQuery = extractSupportQuery(ruleSet)
-    rehydrateRules(cssRules, media, supportQuery, cache)
+    rehydrateRules(cssRules, media, supportQuery, cache, specificityPrefix)
   }
 
   return cache

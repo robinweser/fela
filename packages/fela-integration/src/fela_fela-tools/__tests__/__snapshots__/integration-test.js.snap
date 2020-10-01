@@ -4,6 +4,8 @@ exports[`Fela with Fela Tools integration Rendering keyframes should render dyna
 
 exports[`Fela with Fela Tools integration Rendering keyframes should render dynamic keyframe variations 2`] = `"@-webkit-keyframes k1{from{color:red}to{color:blue}}@-moz-keyframes k1{from{color:red}to{color:blue}}@keyframes k1{from{color:red}to{color:blue}}"`;
 
+exports[`Fela with Fela Tools integration Rendering rules should add specificity prefix 1`] = `".parent .a{color:red}"`;
+
 exports[`Fela with Fela Tools integration Rendering rules should prefix classNames 1`] = `".fela_a{color:red}"`;
 
 exports[`Fela with Fela Tools integration Rendering rules should prefix classNames 2`] = `"fela_a"`;
@@ -15,6 +17,8 @@ exports[`Fela with Fela Tools integration Rendering rules should remove undefine
 exports[`Fela with Fela Tools integration Rendering rules should render any nested selector with the &-prefix 1`] = `".a{color:red}.b~#foo{color:blue}.c .bar{color:green}"`;
 
 exports[`Fela with Fela Tools integration Rendering rules should render attribute selectors 1`] = `".a{color:red}.b[bool=true]{color:blue}"`;
+
+exports[`Fela with Fela Tools integration Rendering rules should render attribute selectors and add specificity prefix 1`] = `".parent .a{color:red}.parent .b[bool=true]{color:blue}"`;
 
 exports[`Fela with Fela Tools integration Rendering rules should render child selectors 1`] = `".a{color:red}.b>div{color:blue}"`;
 

@@ -3,15 +3,25 @@ import { RULE_TYPE, generateDeclarationReference } from 'fela-utils'
 
 import generateCacheEntry from './generateCacheEntry'
 
-const DECL_REGEX = /[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}/gi
+// Escaping for RegExp taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
+function escapeRegExp(string) {
+  return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&')
+}
 
 export default function rehydrateRules(
   css: string,
   media: string = '',
   support?: string = '',
-  cache?: Object = {}
+  cache?: Object = {},
+  specificityPrefix?: string = ''
 ): Object {
   let decl
+  const DECL_REGEX = new RegExp(
+    `${escapeRegExp(
+      specificityPrefix
+    )}[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}`,
+    'gi'
+  )
 
   // This excellent parsing implementation was originally taken from Styletron and modified to fit Fela
   // https://github.com/rtsao/styletron/blob/master/packages/styletron-client/src/index.js#L47
@@ -36,7 +46,8 @@ export default function rehydrateRules(
       value,
       pseudo,
       media,
-      support
+      support,
+      specificityPrefix
     )
   }
 

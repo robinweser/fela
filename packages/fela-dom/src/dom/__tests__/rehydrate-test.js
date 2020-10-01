@@ -153,4 +153,55 @@ describe('Rehydrating from DOM nodes', () => {
 
     expect(clientRenderer.uniqueRuleIdentifier).toBe(4)
   })
+
+  it('should rehydrate the renderer cache', () => {
+    const serverRenderer = createRenderer({
+      filterClassName: cls => cls !== 'a',
+      specificityPrefix: '.parentClass ',
+      plugins: [...webPreset],
+    })
+
+    serverRenderer.renderRule(() => ({
+      color: 'yellow',
+      backgroundColor: 'red',
+      flex: 1,
+      '& #id > .foo ~ bar': {
+        backgroundColor: 'red',
+      },
+      '[alt="Hello"]': {
+        fontSize: 12,
+      },
+      '@supports (display: grid)': {
+        color: 'blue',
+        '&.foo.bar': {
+          color: 'red',
+        },
+      },
+      ':hover': {
+        color: 'red',
+        '> h1': {
+          color: 'green',
+        },
+      },
+    }))
+
+    document.head.innerHTML = renderToMarkup(serverRenderer)
+
+    const clientRenderer = createRenderer({
+      filterClassName: cls => cls !== 'a',
+      specificityPrefix: '.parentClass ',
+      plugins: [...webPreset],
+    })
+
+    rehydrate(clientRenderer)
+
+    expect([
+      clientRenderer.uniqueRuleIdentifier,
+      clientRenderer.cache,
+    ]).toMatchSnapshot()
+
+    expect(sortObject(clientRenderer.cache)).toEqual(
+      sortObject(serverRenderer.cache)
+    )
+  })
 })

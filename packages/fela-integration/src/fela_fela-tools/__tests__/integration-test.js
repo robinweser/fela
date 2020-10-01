@@ -43,6 +43,18 @@ describe('Fela with Fela Tools integration', () => {
       expect(renderToString(renderer)).toMatchSnapshot()
       expect(className).toMatchSnapshot()
     })
+    it('should add specificity prefix', () => {
+      const rule = () => ({
+        color: 'red',
+      })
+
+      const renderer = createRenderer({
+        specificityPrefix: '.parent ',
+      })
+      const className = renderer.renderRule(rule)
+
+      expect(renderToString(renderer)).toMatchSnapshot()
+    })
 
     it('should render attribute selectors', () => {
       const rule = () => ({
@@ -52,6 +64,19 @@ describe('Fela with Fela Tools integration', () => {
         },
       })
       const renderer = createRenderer()
+
+      renderer.renderRule(rule)
+
+      expect(renderToString(renderer)).toMatchSnapshot()
+    })
+    it('should render attribute selectors and add specificity prefix', () => {
+      const rule = () => ({
+        color: 'red',
+        '[bool=true]': {
+          color: 'blue',
+        },
+      })
+      const renderer = createRenderer({ specificityPrefix: '.parent ' })
 
       renderer.renderRule(rule)
 

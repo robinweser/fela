@@ -1,7 +1,8 @@
 /* @flow */
 export default function generateCSSSelector(
   className: string,
-  pseudo: string = ''
+  pseudo: string = '',
+  specificityPrefix?: string = ''
 ): string {
-  return `.${className}${pseudo}`
+  return `${specificityPrefix}.${className}${pseudo}`
 }
