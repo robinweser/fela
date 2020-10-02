@@ -5,6 +5,14 @@ If you're searching for older logs, please check the [old changelog](https://git
 
 ## 11.0
 
+### 11.4.0
+| Package | Changes |
+| --- | --- |
+| fela-plugin-theme-value | ([#812](https://github.com/robinweser/fela/pull/812)) Introducing a new plugin to access theme values directly |
+| fela-plugin-pseudo-prefixer<br>fela-plugin-fullscreen-prefixer | ([#814](https://github.com/robinweser/fela/pull/814)) Introducing 2 new plugins: a general pseudo prefixer and a specific `::fullscreen` prefixer built on top of that |
+| fela<br>fela-dom | ([#813](https://github.com/robinweser/fela/pull/813)) Added a new renderer config option called `specificityPrefix` that allows to prefix generated selectors with a global prefix |
+| fela-dom | ([#811](https://github.com/robinweser/fela/pull/811)) Renamed UMD output to `FelaDOM` to match previous versions |
+
 ### 11.3.2
 
 | Package | Changes |
