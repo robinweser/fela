@@ -2,7 +2,10 @@
 import customProperty from 'fela-plugin-custom-property'
 import arrayReduce from 'fast-loops/lib/arrayReduce'
 
-export default function pseudoPrefixer(pseudoSelector, prefixes) {
+export default function pseudoPrefixer(
+  pseudoSelector: string,
+  prefixes: Array<string>
+) {
   return customProperty({
     [pseudoSelector]: value =>
       arrayReduce(
