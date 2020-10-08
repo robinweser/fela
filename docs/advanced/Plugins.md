@@ -63,7 +63,7 @@ const plugin = (style, type, renderer, props) => processedStyle
 
 ##### Parameter
 1. `style` (*Object*): The input style object
-2. `type` (*string*): A type enum `RULE`, `KEYFRAME` or `STATIC`
+2. `type` (*string*): A type enum `RULE`, `FONT`, `KEYFRAME` or `STATIC`
 3. `renderer` ([*Renderer*](../basics/Renderer.md)): The fela renderer
 4. `props` (*Object*): The props used to resolve the rule
 
