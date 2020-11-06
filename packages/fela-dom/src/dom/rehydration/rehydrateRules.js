@@ -1,5 +1,6 @@
 /* @flow */
 import { RULE_TYPE, generateDeclarationReference } from 'fela-utils'
+import { camelCaseProperty } from 'css-in-js-utils'
 
 import generateCacheEntry from './generateCacheEntry'
 
@@ -32,7 +33,7 @@ export default function rehydrateRules(
     /* eslint-enable */
 
     const declarationReference = generateDeclarationReference(
-      property,
+      camelCaseProperty(property),
       value,
       pseudo,
       media,

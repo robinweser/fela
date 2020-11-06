@@ -32,28 +32,13 @@ import getFontLocals from './getFontLocals'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
 import validateSelectorPrefix from './validateSelectorPrefix'
+import sortMediaQuery from './sortMediaQuery'
 
 import type {
   DOMRenderer,
   DOMRendererConfig,
 } from '../../../flowtypes/DOMRenderer'
 import type { FontProperties } from '../../../flowtypes/FontProperties'
-
-const sortMediaQuery = (mediaQueryOrder = []) => {
-  return function(a, b) {
-    if (mediaQueryOrder.indexOf(b) === -1) {
-      if (mediaQueryOrder.indexOf(a) === -1) {
-        return 0
-      }
-      return -1
-    }
-    if (mediaQueryOrder.indexOf(a) === -1) {
-      return 1
-    }
-
-    return mediaQueryOrder.indexOf(a) - mediaQueryOrder.indexOf(b)
-  }
-}
 
 export default function createRenderer(
   config: DOMRendererConfig = {}
@@ -330,12 +315,13 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
       return classNames
     },
+
     generateClassName(
-      _property: string,
-      _value: any,
-      _pseudo?: string,
-      _media?: string,
-      _support?: string
+      property: string,
+      value: any,
+      pseudo?: string,
+      media?: string,
+      support?: string
     ): string {
       return generateClassName(
         renderer.getNextRuleIdentifier,

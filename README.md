@@ -246,5 +246,5 @@ Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
-Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
+Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.
