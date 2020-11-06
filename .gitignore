@@ -31,5 +31,6 @@ es/
 umd/
 coverage/
 _book
+dist
 
 \.history/
