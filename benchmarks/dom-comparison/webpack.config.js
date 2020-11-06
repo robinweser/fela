@@ -1,17 +1,19 @@
-// @flow
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const path = require('path')
+const babelPreset = require('./babelPreset');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const path = require('path');
 
-const appDirectory = path.resolve(__dirname)
+const appDirectory = path.resolve(__dirname);
 
 module.exports = {
   mode: 'production',
-  devtool: 'source-map',
   context: __dirname,
   entry: './src/index',
   output: {
     path: path.resolve(appDirectory, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
+  },
+  optimization: {
+    minimize: process.env.NODE_ENV === 'production'
   },
   module: {
     rules: [
@@ -21,28 +23,37 @@ module.exports = {
           'style-loader',
           {
             loader: 'css-loader',
-            options: { module: true, localIdentName: '[hash:base64:8]' },
-          },
-        ],
+            options: {
+              modules: {
+                localIdentName: '[hash:base64:8]'
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.js$/,
-        include: [path.resolve(appDirectory, 'src'), path.resolve('..', 'src')],
+        include: [path.resolve(appDirectory, 'src')],
         use: {
           loader: 'babel-loader',
-        },
-      },
-    ],
+          options: {
+            cacheDirectory: false,
+            presets: [babelPreset],
+            plugins: ['styled-jsx/babel']
+          }
+        }
+      }
+    ]
   },
   plugins: [
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
-      openAnalyzer: false,
-    }),
+      openAnalyzer: false
+    })
   ],
   resolve: {
     alias: {
-      'react-native': 'react-native-web',
-    },
-  },
-}
+      'react-native': 'react-native-web'
+    }
+  }
+};

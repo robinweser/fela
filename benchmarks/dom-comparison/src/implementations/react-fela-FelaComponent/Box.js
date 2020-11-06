@@ -24,7 +24,7 @@ const rule = ({ color, fixed = false, layout = 'column', outer = false }) => ({
 
 const Box = ({ children, color, fixed, layout, outer }) => (
   <FelaComponent
-    rule={rule}
+    style={rule}
     color={color}
     fixed={fixed}
     layout={layout}

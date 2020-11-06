@@ -20,7 +20,7 @@ const rule = ({ size, x, y, color }) => ({
 })
 
 const Dot = ({ size, x, y, color, children }) => (
-  <FelaComponent rule={rule} size={size} x={x} y={y} color={color}>
+  <FelaComponent style={rule} size={size} x={x} y={y} color={color}>
     {children}
   </FelaComponent>
 )

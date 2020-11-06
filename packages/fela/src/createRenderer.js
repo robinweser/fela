@@ -220,6 +220,7 @@ export default function createRenderer(
 
       return renderer._renderStyleToClassNames(processedStyle).slice(1)
     },
+
     _renderStyleToClassNames(
       { _className, ...style }: Object,
       pseudo: string = '',

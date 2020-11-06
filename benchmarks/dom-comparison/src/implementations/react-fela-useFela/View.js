@@ -2,7 +2,7 @@
 import React from 'react'
 import { useFela } from 'react-fela'
 
-const style = {
+const style = () => ({
   alignItems: 'stretch',
   borderWidth: '0px',
   borderStyle: 'solid',
@@ -17,7 +17,7 @@ const style = {
   // fix flexbox bugs
   minHeight: '0px',
   minWidth: '0px',
-}
+})
 
 const View = ({ children }) => {
   const { css } = useFela()
