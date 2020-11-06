@@ -45,7 +45,7 @@ function embedded(
     } else if (property === 'animationName' && typeof value === 'object') {
       if (Array.isArray(value)) {
         style[property] = value
-          .map(frame => renderer.renderKeyframe(() => frame), props)
+          .map((frame) => renderer.renderKeyframe(() => frame), props)
           .join(',')
       } else {
         style[property] = renderer.renderKeyframe(() => value, props)

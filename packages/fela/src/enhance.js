@@ -2,7 +2,7 @@
 import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 export default function enhance(...enhancers: Array<Function>): Function {
-  return createRenderer => config =>
+  return (createRenderer) => (config) =>
     arrayReduce(
       enhancers,
       (enhancedRenderer, enhancer) => {

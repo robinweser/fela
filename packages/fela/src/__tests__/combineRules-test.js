@@ -2,14 +2,14 @@ import combineRules from '../combineRules'
 
 describe('Combining rules', () => {
   it('should create a combined rule', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: 'red',
       fontSize: props.fontSize,
       lineHeight: props.lineHeight,
       padding: 10,
     })
 
-    const anotherRule = props => ({
+    const anotherRule = (props) => ({
       backgroundColor: 'blue',
       lineHeight: props.lineHeight * 2,
       padding: 20,
@@ -32,20 +32,20 @@ describe('Combining rules', () => {
   })
 
   it('should combine any amount of rules', () => {
-    const rule1 = props => ({
+    const rule1 = (props) => ({
       color: 'red',
       fontSize: props.fontSize,
       lineHeight: props.lineHeight,
       padding: 10,
     })
 
-    const rule2 = props => ({
+    const rule2 = (props) => ({
       backgroundColor: 'blue',
       lineHeight: props.lineHeight * 2,
       padding: 20,
     })
 
-    const rule3 = props => ({
+    const rule3 = (props) => ({
       color: props.color,
     })
 
@@ -78,7 +78,7 @@ describe('Combining rules', () => {
       padding: 10,
     })
 
-    const anotherRule = props => ({
+    const anotherRule = (props) => ({
       _className: props.cls,
       backgroundColor: 'blue',
       padding: 20,

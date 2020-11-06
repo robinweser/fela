@@ -34,8 +34,8 @@ export default function createComponentFactory(
       passThrough = [],
       ...otherProps
     }) => {
-      const renderFn = renderer =>
-        createElement(FelaTheme, undefined, _felaTheme => {
+      const renderFn = (renderer) =>
+        createElement(FelaTheme, undefined, (_felaTheme) => {
           if (!renderer) {
             throw new Error(
               "createComponent() can't render styles without the renderer in the context. Missing react-fela's <Provider /> at the app root?"

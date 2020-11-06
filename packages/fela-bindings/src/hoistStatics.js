@@ -25,10 +25,10 @@ export default function hoistStatics(target: any, source: any): any {
   }
 
   const statics = Object.getOwnPropertyNames(source).filter(
-    property => !basicStatics[property]
+    (property) => !basicStatics[property]
   )
 
-  arrayEach(statics, property => {
+  arrayEach(statics, (property) => {
     if (!target.hasOwnProperty(property) && !blockedStatics[property]) {
       try {
         // Avoid failures from read-only properties
@@ -43,7 +43,7 @@ export default function hoistStatics(target: any, source: any): any {
     }
   })
 
-  arrayEach(mergableStatics, property => {
+  arrayEach(mergableStatics, (property) => {
     if (source[property]) {
       const targetStatics = target[property] || {}
 

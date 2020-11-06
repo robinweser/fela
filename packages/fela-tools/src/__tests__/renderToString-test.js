@@ -5,26 +5,26 @@ import renderToString from '../renderToString'
 
 describe('Rendering to string', () => {
   it('should return a single CSS string', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
-      '@supports (display:flex)': {
+      '@supports (display: flex)': {
         color: 'yellow',
       },
-      '@supports (display:grid)': {
+      '@supports (display: grid)': {
         color: 'brown',
       },
       '@media (min-height: 300px)': {
         color: 'blue',
-        '@supports (display:flex)': {
+        '@supports (display: flex)': {
           color: 'green',
         },
-        '@supports (display:grid)': {
+        '@supports (display: grid)': {
           color: 'black',
         },
       },
 
       '@media (max-height: 300px)': {
-        '@supports (display:flex)': {
+        '@supports (display: flex)': {
           color: 'purple',
         },
       },

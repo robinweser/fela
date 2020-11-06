@@ -12,7 +12,7 @@ describe('Renderer', () => {
     })
 
     it('should apply enhancers directly', () => {
-      const enhancer = renderer => {
+      const enhancer = (renderer) => {
         renderer.foo = 'bar'
         return renderer
       }
@@ -53,7 +53,7 @@ describe('Renderer', () => {
     })
 
     it('should reuse cached classNames', () => {
-      const rule = props => ({
+      const rule = (props) => ({
         color: props.color,
         fontSize: '23px',
       })
@@ -84,7 +84,7 @@ describe('Renderer', () => {
     })
 
     it('should allow nested props', () => {
-      const rule = props => ({
+      const rule = (props) => ({
         color: props.theme.color,
         fontSize: 15,
       })
@@ -243,7 +243,7 @@ describe('Renderer', () => {
       const renderer = createRenderer()
 
       const changes = []
-      const subscriber = change => changes.push(change)
+      const subscriber = (change) => changes.push(change)
 
       renderer.subscribe(subscriber)
       renderer.renderRule(rule)

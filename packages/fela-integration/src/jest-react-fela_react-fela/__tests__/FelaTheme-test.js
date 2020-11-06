@@ -9,7 +9,7 @@ describe('Using the FelaTheme component', () => {
     expect(
       createSnapshot(
         <FelaTheme>
-          {theme => <div>The color is {theme.color}.</div>}
+          {(theme) => <div>The color is {theme.color}.</div>}
         </FelaTheme>,
         { color: 'red' }
       )

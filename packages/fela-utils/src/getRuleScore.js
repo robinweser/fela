@@ -8,6 +8,7 @@ export default function getRuleScore(
   }
 
   return (
-    ruleOrder.indexOf(ruleOrder.find(regex => pseudo.match(regex) !== null)) + 1
+    ruleOrder.indexOf(ruleOrder.find((regex) => pseudo.match(regex) !== null)) +
+    1
   )
 }

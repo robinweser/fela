@@ -105,7 +105,8 @@ function isValidPercentage(percentage: string): boolean {
 
   return (
     percentage.indexOf('%') !== -1 &&
-    (percentageValue >= 0 && percentageValue <= 100)
+    percentageValue >= 0 &&
+    percentageValue <= 100
   )
 }
 

@@ -3,17 +3,17 @@ import combineMultiRules from '../combineMultiRules'
 describe('Combining multi rules', () => {
   it('should create a combined multi rule', () => {
     const multiRule = {
-      header: props => ({
+      header: (props) => ({
         color: 'red',
         fontSize: props.fontSize,
       }),
-      content: props => ({
+      content: (props) => ({
         lineHeight: props.lineHeight,
         padding: 10,
       }),
     }
 
-    const anotherMultiRule = props => ({
+    const anotherMultiRule = (props) => ({
       header: {
         backgroundColor: 'blue',
       },

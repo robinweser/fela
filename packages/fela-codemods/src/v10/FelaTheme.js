@@ -13,10 +13,10 @@ export default function transformer(file, api) {
     // use children instead of render props
     return j(file.source)
       .find(j.JSXElement)
-      .forEach(path => {
+      .forEach((path) => {
         if (path.node.openingElement.name.name === importName) {
           const renderProp = path.node.openingElement.attributes.find(
-            el => el.name.name === 'render'
+            (el) => el.name.name === 'render'
           )
 
           if (renderProp) {

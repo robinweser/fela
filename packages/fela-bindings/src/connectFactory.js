@@ -57,76 +57,79 @@ export default function connectFactory(
 
           const combinedRules = combineMultiRules(...allRules)
 
-          return createElement(RendererContext.Consumer, undefined, renderer =>
-            createElement(ThemeContext.Consumer, undefined, theme => {
-              const preparedRules = combinedRules(
-                {
-                  ...otherProps,
-                  theme,
-                },
-                renderer
-              )
-
-              // improve developer experience with monolithic renderer
-              if (
-                process.env.NODE_ENV !== 'production' &&
-                renderer.prettySelectors
-              ) {
-                const componentName =
-                  component.displayName || component.name || ''
-
-                objectEach(preparedRules, (rule, name) => {
-                  rule.selectorPrefix = generateSelectorPrefix(
-                    componentName,
-                    name
-                  )
-                })
-              }
-
-              if (component._isFelaComponent) {
-                return createElement(component, {
-                  _felaRules: combinedRules,
-                  ...otherProps,
-                })
-              }
-
-              const styles = objectReduce(
-                preparedRules,
-                (styleMap, rule, name) => {
-                  styleMap[name] = renderer.renderRule(rule, {
+          return createElement(
+            RendererContext.Consumer,
+            undefined,
+            (renderer) =>
+              createElement(ThemeContext.Consumer, undefined, (theme) => {
+                const preparedRules = combinedRules(
+                  {
                     ...otherProps,
                     theme,
-                  })
+                  },
+                  renderer
+                )
 
-                  return styleMap
-                },
-                {}
-              )
+                // improve developer experience with monolithic renderer
+                if (
+                  process.env.NODE_ENV !== 'production' &&
+                  renderer.prettySelectors
+                ) {
+                  const componentName =
+                    component.displayName || component.name || ''
 
-              const boundRules = objectReduce(
-                preparedRules,
-                (ruleMap, rule, name) => {
-                  ruleMap[name] = props =>
-                    rule(
-                      {
-                        theme,
-                        ...props,
-                      },
-                      renderer
+                  objectEach(preparedRules, (rule, name) => {
+                    rule.selectorPrefix = generateSelectorPrefix(
+                      componentName,
+                      name
                     )
+                  })
+                }
 
-                  return ruleMap
-                },
-                {}
-              )
+                if (component._isFelaComponent) {
+                  return createElement(component, {
+                    _felaRules: combinedRules,
+                    ...otherProps,
+                  })
+                }
 
-              return createElement(component, {
-                ...otherProps,
-                styles,
-                theme,
-                rules: boundRules,
+                const styles = objectReduce(
+                  preparedRules,
+                  (styleMap, rule, name) => {
+                    styleMap[name] = renderer.renderRule(rule, {
+                      ...otherProps,
+                      theme,
+                    })
+
+                    return styleMap
+                  },
+                  {}
+                )
+
+                const boundRules = objectReduce(
+                  preparedRules,
+                  (ruleMap, rule, name) => {
+                    ruleMap[name] = (props) =>
+                      rule(
+                        {
+                          theme,
+                          ...props,
+                        },
+                        renderer
+                      )
+
+                    return ruleMap
+                  },
+                  {}
+                )
+
+                return createElement(component, {
+                  ...otherProps,
+                  styles,
+                  theme,
+                  rules: boundRules,
+                })
               })
-            })
           )
         }
       }

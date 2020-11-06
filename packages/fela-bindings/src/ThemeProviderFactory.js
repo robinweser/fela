@@ -5,7 +5,7 @@ export default function ThemeProviderFactory(
   renderChildren: Function
 ): any {
   return function ThemeProvider({ theme = {}, overwrite = false, children }) {
-    return createElement(ThemeContext.Consumer, null, previousTheme =>
+    return createElement(ThemeContext.Consumer, null, (previousTheme) =>
       createElement(
         ThemeContext.Provider,
         {

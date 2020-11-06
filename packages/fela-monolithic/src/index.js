@@ -151,7 +151,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
     return renderer._renderStyleToClassNames(processedStyle, rule || {})
   }
 
-  renderer.subscribe(event => {
+  renderer.subscribe((event) => {
     if (event.type === 'REHYDRATATION_FINISHED') {
       // Repair cache for monolithic usage
       renderer.cache = Object.keys(renderer.cache).reduce((acc, key) => {

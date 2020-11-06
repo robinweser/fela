@@ -9,7 +9,7 @@ export default RendererProviderFactory(
   Component,
   RendererContext,
   createElement,
-  children => Children.only(children),
+  (children) => Children.only(children),
   {
     propTypes: {
       renderer: PropTypes.object.isRequired,

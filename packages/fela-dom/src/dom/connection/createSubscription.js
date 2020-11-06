@@ -19,9 +19,9 @@ export default function createSubscription(
   renderer: DOMRenderer,
   targetDocument: any = document
 ): Function {
-  return change => {
+  return (change) => {
     if (change.type === CLEAR_TYPE) {
-      objectEach(renderer.nodes, node => node.parentNode.removeChild(node))
+      objectEach(renderer.nodes, (node) => node.parentNode.removeChild(node))
 
       renderer.nodes = {}
       renderer.scoreIndex = {}

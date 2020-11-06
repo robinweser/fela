@@ -60,12 +60,12 @@ export function createRenderer(
     },
 
     _emitChange(change: Object): void {
-      arrayEach(renderer.listeners, listener => listener(change))
+      arrayEach(renderer.listeners, (listener) => listener(change))
     },
   }
 
   if (config.enhancers) {
-    arrayEach(config.enhancers, enhancer => {
+    arrayEach(config.enhancers, (enhancer) => {
       renderer = enhancer(renderer)
     })
   }

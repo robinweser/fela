@@ -99,7 +99,7 @@ describe('Unit plugin', () => {
       zIndex: 1,
     }
 
-    const isUnitlessProperty = prop => prop === 'zIndex'
+    const isUnitlessProperty = (prop) => prop === 'zIndex'
 
     expect(
       unit(

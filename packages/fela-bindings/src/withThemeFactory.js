@@ -9,8 +9,8 @@ export default function withThemeFactory(
     component: Object,
     propName?: string = 'theme'
   ): Object {
-    const WithTheme = props =>
-      createElement(FelaTheme, undefined, theme =>
+    const WithTheme = (props) =>
+      createElement(FelaTheme, undefined, (theme) =>
         createElement(component, {
           ...props,
           [propName]: theme,

@@ -31,7 +31,7 @@ describe('render (production)', () => {
     })
     render(renderer)
 
-    const styleSheets = Object.keys(renderer.nodes).map(key =>
+    const styleSheets = Object.keys(renderer.nodes).map((key) =>
       getStyleSheetStyle(renderer.nodes[key])
     )
 
@@ -49,7 +49,7 @@ describe('render (production)', () => {
       color: 'blue',
     }))
 
-    const styleSheets = Object.keys(renderer.nodes).map(key =>
+    const styleSheets = Object.keys(renderer.nodes).map((key) =>
       getStyleSheetStyle(renderer.nodes[key])
     )
 
@@ -58,7 +58,7 @@ describe('render (production)', () => {
 
   it('should not overwrite rehydrated styles', () => {
     const serverRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
+      filterClassName: (cls) => cls !== 'a',
     })
 
     serverRenderer.renderRule(() => ({
@@ -77,7 +77,7 @@ describe('render (production)', () => {
     document.head.innerHTML = renderToMarkup(serverRenderer)
 
     const clientRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
+      filterClassName: (cls) => cls !== 'a',
     })
 
     rehydrate(clientRenderer)
@@ -96,7 +96,7 @@ describe('render (production)', () => {
       },
     }))
 
-    const styleSheets = Object.keys(clientRenderer.nodes).map(key =>
+    const styleSheets = Object.keys(clientRenderer.nodes).map((key) =>
       getStyleSheetStyle(clientRenderer.nodes[key])
     )
 
@@ -130,7 +130,7 @@ describe('render (production)', () => {
       },
     }))
 
-    const styleSheets = Object.keys(renderer.nodes).map(key =>
+    const styleSheets = Object.keys(renderer.nodes).map((key) =>
       getStyleSheetStyle(renderer.nodes[key])
     )
 
@@ -185,7 +185,7 @@ describe('render (development)', () => {
 
   it('should not overwrite rehydrated styles', () => {
     const serverRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
+      filterClassName: (cls) => cls !== 'a',
       devMode: true,
     })
 
@@ -205,7 +205,7 @@ describe('render (development)', () => {
     document.head.innerHTML = renderToMarkup(serverRenderer)
 
     const clientRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
+      filterClassName: (cls) => cls !== 'a',
       devMode: true,
     })
 

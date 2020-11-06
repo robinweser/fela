@@ -2,7 +2,7 @@ import customProperty from '../index'
 
 describe('Custom property plugin', () => {
   it('should resolve custom properties', () => {
-    const position = positions => ({
+    const position = (positions) => ({
       top: positions[0],
       right: positions[1],
       bottom: positions[2],
@@ -24,7 +24,7 @@ describe('Custom property plugin', () => {
   })
 
   it('should resolve nested style objects', () => {
-    const position = positions => ({
+    const position = (positions) => ({
       top: positions[0],
       right: positions[1],
       bottom: positions[2],
@@ -50,7 +50,7 @@ describe('Custom property plugin', () => {
   })
 
   it('should not remove resolved properties', () => {
-    const padding = value => ({ padding: value })
+    const padding = (value) => ({ padding: value })
 
     const style = {
       padding: '1em',

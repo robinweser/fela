@@ -1,5 +1,5 @@
 /* @flow */
-const sanitizeComponentDisplayName = cn =>
+const sanitizeComponentDisplayName = (cn) =>
   cn
     .replace(/[^_a-z0-9-]/gi, '_')
     .replace(/_{2,}/g, '_')

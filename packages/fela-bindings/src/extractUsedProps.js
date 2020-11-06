@@ -12,7 +12,7 @@ export default function extractUsedProps(
     return usedProps
   }
 
-  const handler = props => ({
+  const handler = (props) => ({
     get(target, key) {
       if (typeof target[key] === 'object' && target[key] !== null) {
         props.push(key)

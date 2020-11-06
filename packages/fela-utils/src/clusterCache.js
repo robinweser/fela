@@ -59,7 +59,7 @@ export default function clusterCache(
   cache: Object,
   ruleOrder: Array<any> = []
 ) {
-  const sortedCache = objectSortByScore(cache, value =>
+  const sortedCache = objectSortByScore(cache, (value) =>
     getRuleScore(ruleOrder, value.pseudo)
   )
 

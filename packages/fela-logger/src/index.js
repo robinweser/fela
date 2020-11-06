@@ -7,7 +7,7 @@ import { CLEAR_TYPE } from 'fela-utils'
 import type DOMRenderer from '../../../flowtypes/DOMRenderer'
 
 function addLogger(renderer: DOMRenderer, options: Object): DOMRenderer {
-  renderer.subscribe(change => {
+  renderer.subscribe((change) => {
     if (change.type === CLEAR_TYPE) {
       console.log('Cleared renderer cache.')
       return true

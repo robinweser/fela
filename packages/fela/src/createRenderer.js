@@ -330,7 +330,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
     },
 
     _emitChange(change: Object): void {
-      arrayEach(renderer.listeners, listener => listener(change))
+      arrayEach(renderer.listeners, (listener) => listener(change))
     },
   }
 
@@ -338,7 +338,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
   renderer.keyframePrefixes.push('')
 
   if (config.enhancers) {
-    arrayEach(config.enhancers, enhancer => {
+    arrayEach(config.enhancers, (enhancer) => {
       renderer = enhancer(renderer)
     })
   }

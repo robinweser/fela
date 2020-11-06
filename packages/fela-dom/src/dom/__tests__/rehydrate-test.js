@@ -16,7 +16,7 @@ beforeEach(() => {
 describe('Rehydrating from DOM nodes', () => {
   it('should rehydrate the renderer cache', () => {
     const serverRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
+      filterClassName: (cls) => cls !== 'a',
       plugins: [...webPreset],
     })
 
@@ -47,7 +47,7 @@ describe('Rehydrating from DOM nodes', () => {
     document.head.innerHTML = renderToMarkup(serverRenderer)
 
     const clientRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
+      filterClassName: (cls) => cls !== 'a',
       plugins: [...webPreset],
     })
 
@@ -106,7 +106,7 @@ describe('Rehydrating from DOM nodes', () => {
 
   it('should rehydrate the renderer cache', () => {
     const serverRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
+      filterClassName: (cls) => cls !== 'a',
       specificityPrefix: '.parentClass ',
       plugins: [...webPreset],
     })
@@ -138,7 +138,7 @@ describe('Rehydrating from DOM nodes', () => {
     document.head.innerHTML = renderToMarkup(serverRenderer)
 
     const clientRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
+      filterClassName: (cls) => cls !== 'a',
       specificityPrefix: '.parentClass ',
       plugins: [...webPreset],
     })

@@ -7,7 +7,7 @@ export default function FelaComponentFactory(
   FelaTheme: Function
 ): Function {
   function FelaComponent({ children, as = 'div', style, ...otherProps }) {
-    const renderFn = renderer => {
+    const renderFn = (renderer) => {
       if (renderer.devMode && style == null) {
         // eslint-disable-next-line no-console
         console.warn(
@@ -15,7 +15,7 @@ export default function FelaComponentFactory(
         )
       }
 
-      return createElement(FelaTheme, undefined, theme => {
+      return createElement(FelaTheme, undefined, (theme) => {
         // TODO: could optimize perf by not calling combineRules if not necessary
         const renderedRule = renderer.renderRule(combineRules(style), {
           ...otherProps,

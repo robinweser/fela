@@ -1,6 +1,6 @@
 import generateClassName from '../generateClassName'
 
-const getId = id => () => ++id
+const getId = (id) => () => ++id
 
 describe('Generating a className', () => {
   it('should return a unique className', () => {
@@ -16,7 +16,7 @@ describe('Generating a className', () => {
   })
 
   it('should skip className if filtered out', () => {
-    const filter = c => c !== 'ad'
+    const filter = (c) => c !== 'ad'
     const renderer = {
       id: 28,
       getId() {

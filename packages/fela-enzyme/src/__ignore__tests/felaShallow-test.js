@@ -25,7 +25,7 @@ const mergeThemes = (baseTheme, ...themes) => {
 
 // eslint-disable-line behance/no-deprecated
 const applyTheme = (ComponentToWrap, ...themes) => {
-  const ThemedComponent = props => (
+  const ThemedComponent = (props) => (
     <ThemeProvider theme={mergeThemes(props.theme || {}, ...themes)}>
       <ComponentToWrap {...props} />
     </ThemeProvider>
@@ -117,11 +117,11 @@ describe('felaShallow', () => {
       fontSize: theme.fontSize,
     })
 
-    const themeBoxRules = theme => ({
+    const themeBoxRules = (theme) => ({
       foo: theme.color.black,
     })
 
-    const extraThemeBoxRules = theme => ({
+    const extraThemeBoxRules = (theme) => ({
       fontSize: theme.fontSizes[0],
     })
 

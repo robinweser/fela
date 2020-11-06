@@ -14,7 +14,7 @@ export default function objectSortByScore(
     (resultSortedKeys, value, key) => {
       const index = findIndex(
         resultSortedKeys,
-        el => getScore(obj[el], el) > getScore(value, key)
+        (el) => getScore(obj[el], el) > getScore(value, key)
       )
 
       if (index !== -1) {

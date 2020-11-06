@@ -12,18 +12,18 @@ export default function transformer(file, api) {
   if (importName) {
     return j(file.source)
       .find(j.JSXElement)
-      .forEach(path => {
+      .forEach((path) => {
         if (path.node.openingElement.name.name === importName) {
           const openingElement = path.node.openingElement
 
           const styleProp = openingElement.attributes.find(
-            prop => prop.name.name === 'style'
+            (prop) => prop.name.name === 'style'
           )
           const ruleProp = openingElement.attributes.find(
-            prop => prop.name.name === 'rule'
+            (prop) => prop.name.name === 'rule'
           )
           const renderProp = openingElement.attributes.find(
-            prop => prop.name.name === 'render'
+            (prop) => prop.name.name === 'render'
           )
 
           // handle render/as transformation to children/as
@@ -31,7 +31,7 @@ export default function transformer(file, api) {
             const hasChildren =
               path.node.children.length > 0 ||
               !!openingElement.attributes.find(
-                prop => prop.name.name === 'children'
+                (prop) => prop.name.name === 'children'
               )
 
             if (hasChildren) renderProp.name.name = 'as'
@@ -41,7 +41,7 @@ export default function transformer(file, api) {
                   j.jsxOpeningElement(
                     j.jsxIdentifier(importName),
                     path.node.openingElement.attributes.filter(
-                      prop => prop !== renderProp
+                      (prop) => prop !== renderProp
                     ),
                     false
                   ),
@@ -96,9 +96,7 @@ export default function transformer(file, api) {
               console.warn(
                 `Converting a function expression style function into an arrow function in line ${value.expression.loc.start.line}`
               )
-              j(styleProp)
-                .find(j.FunctionExpression)
-                .forEach(styleTransformer)
+              j(styleProp).find(j.FunctionExpression).forEach(styleTransformer)
             }
           }
 

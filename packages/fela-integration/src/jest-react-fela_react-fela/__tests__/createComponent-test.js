@@ -7,7 +7,7 @@ import { createComponent } from 'react-fela'
 
 describe('Creating Components from Fela rules', () => {
   it('should return a Component', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       fontSize: '16px',
     })
@@ -18,7 +18,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should render fela rules depending on the passed props', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       fontSize: '16px',
     })
@@ -39,7 +39,7 @@ describe('Creating Components from Fela rules', () => {
     expect(createSnapshot(<Component />)).toMatchSnapshot()
   })
   it('should include defaultProps if provided', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       fontSize: '16px',
     })
@@ -58,7 +58,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should use the theme for static rendering by default', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.theme.color,
       fontSize: '16px',
     })
@@ -69,7 +69,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should allow nested theme objects', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.theme.header.color,
       fontSize: '16px',
     })
@@ -82,7 +82,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should not pass props to the element', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       fontSize: '16px',
     })
@@ -95,7 +95,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should pass all props to the element', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       fontSize: '16px',
     })
@@ -108,7 +108,7 @@ describe('Creating Components from Fela rules', () => {
   })
 
   it('should pass special props to the component', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.as === 'i' ? props.color : 'red',
       fontSize: '16px',
     })
@@ -142,7 +142,7 @@ describe('Creating Components from Fela rules', () => {
       fontSize: '16px',
     })
 
-    const anotherRule = props => ({
+    const anotherRule = (props) => ({
       color: props.color,
       lineHeight: 1.2,
     })
@@ -180,7 +180,7 @@ describe('Creating Components from Fela rules', () => {
 
     const Comp = createComponent(rule)
 
-    const extendRule = props => ({
+    const extendRule = (props) => ({
       fontSize: '14px',
       backgroundColor: props.bgColor,
     })

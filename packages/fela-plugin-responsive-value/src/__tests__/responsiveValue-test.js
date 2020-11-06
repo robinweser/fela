@@ -9,7 +9,7 @@ describe('Responsive value plugin', () => {
 
     expect(
       responsiveValue(
-        values => {
+        (values) => {
           if (values.length === 2) {
             return ['@media (min-width: 1024px)']
           }

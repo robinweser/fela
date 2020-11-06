@@ -11,7 +11,7 @@ describe('Connect Factory for bindings', () => {
       rule1: () => ({
         padding: 1,
       }),
-      rule2: props => ({
+      rule2: (props) => ({
         color: props.color,
       }),
     }
@@ -35,7 +35,7 @@ describe('Connect Factory for bindings', () => {
       rule1: () => ({
         padding: 1,
       }),
-      rule2: props => ({
+      rule2: (props) => ({
         color: props.color,
       }),
     }
@@ -63,7 +63,7 @@ describe('Connect Factory for bindings', () => {
   })
 
   it('should process rules and create classNames with rules as function', () => {
-    const rules = jest.fn(props => ({
+    const rules = jest.fn((props) => ({
       rule1: {
         padding: 1,
       },
@@ -97,7 +97,7 @@ describe('Connect Factory for bindings', () => {
   })
 
   it('should extend the rule properties', () => {
-    const rules = props => ({
+    const rules = (props) => ({
       rule1: {
         padding: 1,
       },
@@ -130,7 +130,7 @@ describe('Connect Factory for bindings', () => {
   })
 
   it('should compose styles', () => {
-    const rules = props => ({
+    const rules = (props) => ({
       rule1: {
         padding: 1,
       },
@@ -165,7 +165,7 @@ describe('Connect Factory for bindings', () => {
   })
 
   it('should component receive rules prop with all combined rules', () => {
-    const rules = props => ({
+    const rules = (props) => ({
       rule1: {
         padding: 1,
       },
@@ -200,7 +200,7 @@ describe('Connect Factory for bindings', () => {
   })
 
   it('should provide rules prop for connected component which is an object with rules in the values of fields', () => {
-    const rules = props => ({
+    const rules = (props) => ({
       rule1: ({ theme }) => ({
         padding: theme.padding,
       }),

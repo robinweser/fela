@@ -3,7 +3,7 @@ import renderToSheetList from '../renderToSheetList'
 
 describe('Rendering to a sheet list', () => {
   it('should return a list of style sheets', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       '@supports (display:flex)': {
         color: 'yellow',

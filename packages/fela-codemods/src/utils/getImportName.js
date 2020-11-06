@@ -3,10 +3,10 @@ export default function getImportName(j, source, pkg, component) {
 
   j(source)
     .find(j.ImportDeclaration)
-    .forEach(path => {
+    .forEach((path) => {
       if (path.node.source.value === pkg) {
         const importDeclaration = path.node.specifiers.find(
-          node => node.imported.name === component
+          (node) => node.imported.name === component
         )
 
         if (importDeclaration) {

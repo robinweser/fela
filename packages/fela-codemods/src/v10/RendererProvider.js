@@ -14,10 +14,10 @@ export default function transformer(file, api) {
 
     const ast = j(file.source)
 
-    ast.find(j.ImportDeclaration).forEach(path => {
+    ast.find(j.ImportDeclaration).forEach((path) => {
       if (path.node.source.value === pkg) {
         const importDeclaration = path.node.specifiers.find(
-          node => node.imported.name === component
+          (node) => node.imported.name === component
         )
 
         if (importDeclaration) {
@@ -32,7 +32,7 @@ export default function transformer(file, api) {
     })
 
     if (requiresRenaming) {
-      ast.find(j.JSXElement).forEach(path => {
+      ast.find(j.JSXElement).forEach((path) => {
         if (path.node.openingElement.name.name === requiresRenaming) {
           path.node.openingElement.name.name = 'RendererProvider'
         }

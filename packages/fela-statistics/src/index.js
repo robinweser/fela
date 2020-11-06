@@ -34,7 +34,7 @@ function addStatistics(
   }
 
   function addClassNamesToUsage(classNames: string): void {
-    classNames.split(' ').forEach(className => {
+    classNames.split(' ').forEach((className) => {
       if (!statistics.usage[className]) {
         statistics.usage[className] = 0
       }

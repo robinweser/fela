@@ -85,7 +85,7 @@ describe('Named keys plugin', () => {
     }
 
     expect(
-      namedKeys(props => ({
+      namedKeys((props) => ({
         desktop: props.theme.breakpoints.desktop,
         tablet: props.theme.breakpoints.tablet,
       }))(style, undefined, undefined, {

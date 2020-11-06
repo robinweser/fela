@@ -5,6 +5,6 @@ import PropTypes from 'prop-types'
 
 import { ThemeContext } from './context'
 
-export default ThemeProviderFactory(ThemeContext, createElement, children =>
+export default ThemeProviderFactory(ThemeContext, createElement, (children) =>
   Children.only(children)
 )

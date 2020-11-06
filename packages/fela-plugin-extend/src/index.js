@@ -11,7 +11,7 @@ function removeUndefined(style: Object): Object {
     if (isPlainObject(value)) {
       style[property] = removeUndefined(value)
     } else if (Array.isArray(value)) {
-      style[property] = value.filter(val => !isUndefinedValue(val))
+      style[property] = value.filter((val) => !isUndefinedValue(val))
     } else if (isUndefinedValue(value)) {
       delete style[property]
     }
@@ -41,7 +41,7 @@ function extend(style: Object): Object {
     if (property === 'extend') {
       const extensions = [].concat(value)
 
-      arrayEach(extensions, extension => extendStyle(style, extension))
+      arrayEach(extensions, (extension) => extendStyle(style, extension))
       delete style[property]
     } else if (isPlainObject(value)) {
       // support nested extend as well

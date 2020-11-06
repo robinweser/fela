@@ -20,9 +20,9 @@ const theme = {
 describe('Theme value plugin', () => {
   it('should resolve theme values', () => {
     const themeMapping = {
-      color: t => t.colors,
-      backgroundColor: t => t.colors,
-      fontFamily: t => t.fonts,
+      color: (t) => t.colors,
+      backgroundColor: (t) => t.colors,
+      fontFamily: (t) => t.fonts,
     }
 
     const style = {
@@ -42,9 +42,9 @@ describe('Theme value plugin', () => {
 
   it('should fallback to strings if no value is found', () => {
     const themeMapping = {
-      color: t => t.colors,
-      backgroundColor: t => t.colors,
-      fontFamily: t => t.fonts,
+      color: (t) => t.colors,
+      backgroundColor: (t) => t.colors,
+      fontFamily: (t) => t.fonts,
     }
 
     const style = {

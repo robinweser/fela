@@ -8,16 +8,16 @@ import { createRenderer as felaCreateRenderer } from 'fela'
 
 import mergeOptions from './mergeOptions'
 
-const isWithTheme = reactElement =>
+const isWithTheme = (reactElement) =>
   reactElement && reactElement.type && reactElement.type.name === 'WithTheme'
 
-const isThemeProvider = reactElement =>
+const isThemeProvider = (reactElement) =>
   reactElement && reactElement.type && reactElement.type === ThemeProvider
 
-const isFelaComponent = reactElement =>
+const isFelaComponent = (reactElement) =>
   reactElement && reactElement.type && reactElement.type._isFelaComponent
 
-const isNonDOMComponent = reactElement =>
+const isNonDOMComponent = (reactElement) =>
   reactElement && reactElement.type && typeof reactElement.type !== 'string'
 
 export default function felaShallow(
@@ -104,7 +104,7 @@ export default function felaShallow(
     if (enzymeWrapper.length === 1) {
       return componentSnapshot(enzymeWrapper, includeStyles)
     }
-    return enzymeWrapper.map(wrapper =>
+    return enzymeWrapper.map((wrapper) =>
       componentSnapshot(wrapper, includeStyles)
     )
   }

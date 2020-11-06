@@ -207,7 +207,7 @@ describe('Subscribing to the DOM', () => {
       to: { color: 'blue' },
     }))
 
-    const styleSheets = Object.keys(renderer.nodes).map(key =>
+    const styleSheets = Object.keys(renderer.nodes).map((key) =>
       getStyleSheetStyle(renderer.nodes[key])
     )
 

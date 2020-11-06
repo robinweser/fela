@@ -39,7 +39,7 @@ function addUnit(
           isUnitlessProperty
         )
       } else if (Array.isArray(cssValue)) {
-        style[property] = cssValue.map(val =>
+        style[property] = cssValue.map((val) =>
           addUnitIfNeeded(property, val, propertyUnit)
         )
       } else {

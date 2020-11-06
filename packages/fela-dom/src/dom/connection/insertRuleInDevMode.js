@@ -17,7 +17,7 @@ export default function updateNodeInDevMode(
   const support = node.getAttribute('data-fela-support') ? true : undefined
 
   const currentSheet = sheetList.find(
-    sheet =>
+    (sheet) =>
       sheet.type === RULE_TYPE &&
       sheet.media === media &&
       sheet.support === support

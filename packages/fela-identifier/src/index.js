@@ -29,7 +29,7 @@ export default function identifier(config?: IdentifierConfig = {}) {
       const existingFilterClassName = renderer.filterClassName.bind(renderer)
       const existingRenderRule = renderer.renderRule.bind(renderer)
 
-      renderer.filterClassName = className =>
+      renderer.filterClassName = (className) =>
         existingFilterClassName(className) && !idRepository[className]
 
       renderer.renderRule = (rule, props) => {
@@ -74,7 +74,7 @@ export default function identifier(config?: IdentifierConfig = {}) {
       identifierName,
       generator(identifierName, index++),
     ]
-      .filter(chunk => chunk)
+      .filter((chunk) => chunk)
       .join('-')
 
     const identifierRule = (() => ({

@@ -31,7 +31,7 @@ describe('Monolithic enhancer', () => {
   })
 
   it('should reuse classNames', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       fontSize: '23px',
     })
@@ -57,7 +57,7 @@ describe('Monolithic enhancer', () => {
   })
 
   it('should remove undefined values', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       fontSize: '15px',
     })
@@ -69,7 +69,7 @@ describe('Monolithic enhancer', () => {
   })
 
   it('should allow nested props', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.theme.color,
       fontSize: 15,
     })

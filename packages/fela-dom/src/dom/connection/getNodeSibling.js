@@ -14,8 +14,8 @@ export default function getNodeSibling(
     case KEYFRAME_TYPE:
       return nodes[0]
     case RULE_TYPE:
-      const mediaNodes = nodes.map(node => node.media)
-      const filteredNodes = mediaNodes.filter(m => m.length !== 0)
+      const mediaNodes = nodes.map((node) => node.media)
+      const filteredNodes = mediaNodes.filter((m) => m.length !== 0)
 
       if (media) {
         const sorted = [...filteredNodes, media].sort(sortMediaQuery)
@@ -26,10 +26,10 @@ export default function getNodeSibling(
           if (insertMedia === media && support) {
             // support
             return nodes.find(
-              el => el.media === sorted[sorted.indexOf(media) + 2]
+              (el) => el.media === sorted[sorted.indexOf(media) + 2]
             )
           }
-          return nodes.find(el => el.media === insertMedia)
+          return nodes.find((el) => el.media === insertMedia)
         }
       } else {
         const sorted = filteredNodes.sort(sortMediaQuery)
@@ -39,7 +39,7 @@ export default function getNodeSibling(
           // if we insert the plain RULE node while there's already a support RULE node
           // make sure to insert before
           const supportNode = nodes.find(
-            el =>
+            (el) =>
               el.getAttribute('data-fela-support') !== undefined &&
               el.media === '' &&
               el.getAttribute('data-fela-type') === 'RULE'
@@ -51,7 +51,7 @@ export default function getNodeSibling(
         }
 
         if (insertMedia) {
-          return nodes.find(el => el.media === insertMedia)
+          return nodes.find((el) => el.media === insertMedia)
         }
       }
   }

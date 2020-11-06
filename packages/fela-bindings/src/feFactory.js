@@ -17,7 +17,7 @@ export default function feFactory(
             key,
             ref,
           },
-          renderProps =>
+          (renderProps) =>
             createElement(
               type,
               {

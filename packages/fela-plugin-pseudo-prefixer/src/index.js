@@ -7,7 +7,7 @@ export default function pseudoPrefixer(
   prefixes: Array<string>
 ) {
   return customProperty({
-    [pseudoSelector]: value =>
+    [pseudoSelector]: (value) =>
       arrayReduce(
         prefixes,
         (style, prefix) => {

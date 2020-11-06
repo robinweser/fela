@@ -3,7 +3,7 @@ import extractUsedProps from '../extractUsedProps'
 describe('Extracting used props', () => {
   it('should return used props', () => {
     expect(
-      extractUsedProps(props => ({
+      extractUsedProps((props) => ({
         foo: props.foo,
         bar: props.bar,
       }))

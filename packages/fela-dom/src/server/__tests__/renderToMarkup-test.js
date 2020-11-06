@@ -16,7 +16,7 @@ describe('Rendering to HTML markup', () => {
     expect(beautify(renderToMarkup(renderer))).toMatchSnapshot()
   })
   it('should return a single HTML markup string', () => {
-    const rule = props => ({
+    const rule = (props) => ({
       color: props.color,
       '@supports (display:flex)': {
         color: 'yellow',

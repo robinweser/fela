@@ -9,7 +9,7 @@ describe('Using the ThemeProvider', () => {
   it('should pass the theme to rule props', () => {
     const snapshot = createSnapshot(
       <ThemeProvider theme={{ color: 'red' }}>
-        <FelaTheme>{theme => <div>{JSON.stringify(theme)}</div>}</FelaTheme>
+        <FelaTheme>{(theme) => <div>{JSON.stringify(theme)}</div>}</FelaTheme>
       </ThemeProvider>
     )
 
@@ -20,7 +20,7 @@ describe('Using the ThemeProvider', () => {
     const snapshot = createSnapshot(
       <ThemeProvider theme={{ color: 'red' }}>
         <ThemeProvider theme={{ backgroundColor: 'blue' }}>
-          <FelaTheme>{theme => <div>{JSON.stringify(theme)}</div>}</FelaTheme>
+          <FelaTheme>{(theme) => <div>{JSON.stringify(theme)}</div>}</FelaTheme>
         </ThemeProvider>
       </ThemeProvider>
     )
@@ -32,7 +32,7 @@ describe('Using the ThemeProvider', () => {
     const snapshot = createSnapshot(
       <ThemeProvider theme={{ color: 'red' }}>
         <ThemeProvider overwrite theme={{ backgroundColor: 'blue' }}>
-          <FelaTheme>{theme => <div>{JSON.stringify(theme)}</div>}</FelaTheme>
+          <FelaTheme>{(theme) => <div>{JSON.stringify(theme)}</div>}</FelaTheme>
         </ThemeProvider>
       </ThemeProvider>
     )

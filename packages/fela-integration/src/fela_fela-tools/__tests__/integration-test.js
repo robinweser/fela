@@ -4,7 +4,7 @@ import { renderToString } from 'fela-tools'
 describe('Fela with Fela Tools integration', () => {
   describe('Rendering rules', () => {
     it('should remove undefined values', () => {
-      const rule = props => ({
+      const rule = (props) => ({
         color: props.color,
         fontSize: '15px',
       })
@@ -145,7 +145,7 @@ describe('Fela with Fela Tools integration', () => {
 
   describe('Rendering keyframes', () => {
     it('should render dynamic keyframe variations', () => {
-      const keyframe = props => ({
+      const keyframe = (props) => ({
         from: {
           color: props.color,
         },

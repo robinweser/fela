@@ -13,13 +13,13 @@ div {
   color: red
 }
 
-@supports (display:flex) {
+@supports (display: flex) {
   .b {
     color: yellow
   }
 }
 
-@supports (display:grid) {
+@supports (display: grid) {
   .c {
     color: brown
   }
@@ -30,13 +30,13 @@ div {
     color: blue
   }
 
-  @supports (display:flex) {
+  @supports (display: flex) {
     .e {
       color: green
     }
   }
 
-  @supports (display:grid) {
+  @supports (display: grid) {
     .f {
       color: black
     }

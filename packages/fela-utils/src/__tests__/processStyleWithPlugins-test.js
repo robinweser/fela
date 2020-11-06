@@ -9,7 +9,7 @@ function mockRenderer(plugin) {
 }
 describe('Processing style', () => {
   it('should process style using data provided via the plugin interface', () => {
-    const plugin = style => ({
+    const plugin = (style) => ({
       ...style,
       foo: 'bar',
     })
