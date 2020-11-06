@@ -20,7 +20,7 @@
     "media query",
     "cssinjs"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "peerDependencies": {
     "fela": "^11.2.0"

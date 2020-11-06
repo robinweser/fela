@@ -27,7 +27,7 @@
     "styling",
     "cssinjs"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "peerDependencies": {
     "react": "^16.3.0"

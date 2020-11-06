@@ -12,14 +12,14 @@
     "lib/**",
     "es/**"
   ],
-  "repository": "https://github.com/rofrischmann/fela/",
+  "repository": "https://github.com/roWeser/fela/",
   "keywords": [
     "fela",
     "fela-enhancer",
     "mobile-first",
     "cssinjs"
   ],
-  "author": "Robin Frischmann",
+  "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
     "sort-css-media-queries": "^1.4.3"

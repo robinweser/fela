@@ -150,19 +150,19 @@ render(
 If you are coming from CSS and want to learn JavaScript Styling with Fela, there is a full-feature [fela-workshop](https://github.com/tajo/fela-workshop) which demonstrates typical Fela use cases. It teaches all important parts, step by step with simple examples. If you already know other CSS in JS solutions and are just switching to Fela, you might not need to do the whole workshop, but it still provides useful information to get started quickly.
 
 ## Talks
-* [**CSS in JS: The Good & Bad Parts**](https://www.youtube.com/watch?v=95M-2YzyTno) ([Slides](https://speakerdeck.com/robinweser/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Frischmann](https://twitter.com/robinweser)*
+* [**CSS in JS: The Good & Bad Parts**](https://www.youtube.com/watch?v=95M-2YzyTno) ([Slides](https://speakerdeck.com/robinweser/css-in-js-the-good-and-bad-parts))<br> - *by [Robin Weser](https://twitter.com/robinweser)*
 * [**CSS in JS: Patterns**](https://www.webexpo.net/prague2018/talk?id=css-in-js-patterns)<br> - *by [Vojtech Miksu](https://twitter.com/vmiksu)*
 
 ## Posts
-* [**Style as a Function of State**](https://medium.com/@robinweser/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [Robin Frischmann](https://twitter.com/robinweser)*
+* [**Style as a Function of State**](https://medium.com/@robinweser/styles-as-functions-of-state-1885627a63f7#.6k6i4kdch)<br> - *by [Robin Weser](https://twitter.com/robinweser)*
 * [**CSS in JS: The Argument Refined**](https://medium.com/@steida/css-in-js-the-argument-refined-471c7eb83955#.3otvkubq4)<br> - *by [Daniel Steigerwald](https://twitter.com/steida)*
 * [**What is Fela?**](https://davidsinclair.io/thoughts/what-is-fela)<br> - *by [David Sinclair](https://davidsinclair.io)*
 * [**Choosing a CSS in JS library**](https://gist.github.com/troch/c27c6a8cc47b76755d848c6d1204fdaf#file-choosing-a-css-in-js-library-md)<br> - *by [Thomas Roch](https://twitter.com/tcroch)*
-* [**Introducing Fela 6.0**](https://medium.com/felajs/the-future-of-fela-d4dad2efad00)<br> - *by [Robin Frischmann](https://twitter.com/robinweser)*
+* [**Introducing Fela 6.0**](https://medium.com/felajs/the-future-of-fela-d4dad2efad00)<br> - *by [Robin Weser](https://twitter.com/robinweser)*
 * [**A journey into CSS and then into CSS-in-JS**](https://www.zeolearn.com/magazine/a-journey-into-css-and-then-into-css-in-js)<br> - *by [Prithvi Raju](https://twitter.com/aga5tya)*
 * [**CSS In JS — Future of styling components**](https://we-are.bookmyshow.com/css-in-js-future-of-styling-components-ad315eb5448b)<br> - *by [Manjula Dube](https://twitter.com/manjula_dube)*
 * [**Styling Components with React Fela**](https://alligator.io/react/styling-with-react-fela/)<br> - *by [Josh Sherman](https://twitter.com/joshtronic)*
-* [**The Future of Fela**](https://medium.com/@robinweser/introducing-fela-6-0-289c84b52dd5)<br> - *by [Robin Frischmann](https://twitter.com/robinweser)*
+* [**The Future of Fela**](https://medium.com/@robinweser/introducing-fela-6-0-289c84b52dd5)<br> - *by [Robin Weser](https://twitter.com/robinweser)*
 
 ## Ecosystem
 There are tons of useful packages maintained within this repository including plugins, enhancers, bindings and tools that can be used together with Fela. Check the [Ecosystem](http://fela.js.org/docs/introduction/Ecosystem.html) documentation for a quick overview.
@@ -246,5 +246,5 @@ Also, please read our [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 ## License
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
-Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
+Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

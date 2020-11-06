@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`kebab-case plugin should normalize properties 1`] = `
+Object {
+  "backgroundColor": "red",
+  "color": "blue",
+}
+`;
+
+exports[`kebab-case plugin should normalized nested objects 1`] = `
+Object {
+  ":hover": Object {
+    "backgroundColor": "red",
+  },
+  "color": "blue",
+}
+`;

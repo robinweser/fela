@@ -146,7 +146,7 @@ The main drawbacks (as of now) with CSS Logical Properties is [lacking browser s
 
 ## How RTL works in Fela
 
-In Fela you can use the "PostCSS replacement strategy". It's all automated via a the [fela-plugin-rtl](https://github.com/rofrischmann/fela/tree/master/packages/fela-plugin-rtl), so you shouldn't have to think about it too much.
+In Fela you can use the "PostCSS replacement strategy". It's all automated via a the [fela-plugin-rtl](https://github.com/roWeser/fela/tree/master/packages/fela-plugin-rtl), so you shouldn't have to think about it too much.
 
 To render your page in RTL you have to do two things.
 
