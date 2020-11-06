@@ -60,6 +60,7 @@ export default function createRenderer(
       /^:active/,
     ],
     selectorPrefix: validateSelectorPrefix(config.selectorPrefix),
+    specificityPrefix: config.specificityPrefix || '',
     filterClassName: config.filterClassName || isSafeClassName,
     devMode: config.devMode || false,
 
@@ -283,7 +284,11 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
               )
 
             const declaration = cssifyDeclaration(property, value)
-            const selector = generateCSSSelector(className, pseudo)
+            const selector = generateCSSSelector(
+              className,
+              pseudo,
+              config.specificityPrefix
+            )
 
             const change = {
               type: RULE_TYPE,

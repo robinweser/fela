@@ -1,6 +1,6 @@
 {
   "name": "fela-dom",
-  "version": "11.3.0",
+  "version": "11.4.0",
   "description": "Fela package for working with the DOM",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -13,7 +13,8 @@
     "LICENSE",
     "README.md",
     "lib/**",
-    "es/**"
+    "es/**",
+    "umd/**"
   ],
   "repository": "https://github.com/robinweser/fela/",
   "keywords": [
@@ -29,13 +30,13 @@
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.1",
-    "fela-utils": "^11.3.0",
+    "fela-utils": "^11.4.0",
     "sort-css-media-queries": "^1.4.3"
   },
   "devDependencies": {
-    "fela": "^11.3.0",
-    "fela-preset-web": "^11.3.0",
-    "fela-tools": "^11.3.0"
+    "fela": "^11.4.0",
+    "fela-preset-web": "^11.4.0",
+    "fela-tools": "^11.4.0"
   },
-  "gitHead": "e1a48f5d72623a0f95084dc07998dd85aa175bd1"
+  "gitHead": "4cc4686d9e16877251ac5c73e161076ec7c113a1"
 }

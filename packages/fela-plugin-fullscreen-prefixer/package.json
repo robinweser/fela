@@ -1,0 +1,29 @@
+{
+  "name": "fela-plugin-fullscreen-prefixer",
+  "version": "11.4.0",
+  "description": "Fela plugin to add :fullscreen prefixes",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "sideEffects": false,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**"
+  ],
+  "repository": "https://github.com/robinweser/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "vendor prefixing",
+    "prefixer",
+    "autoprefixer",
+    "cssinjs"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "fela-plugin-pseudo-prefixer": "^11.4.0"
+  }
+}

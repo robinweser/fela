@@ -1,4 +1,5 @@
-/* eslint-disable react/prop-types */
+/* @noflow */
+
 import Text from './Text';
 import { StyleSheet, View } from 'react-native';
 import React, { Fragment } from 'react';
@@ -35,14 +36,14 @@ class ReportCard extends React.PureComponent {
         </View>
         <View style={styles.right}>
           {mean ? (
-            <View testID={benchmarkName + ' results'}>
+            <Fragment>
               <Text style={[styles.bold, styles.monoFont]}>
                 {fmt(mean)} ±{fmt(stdDev)} ms
               </Text>
               <Text style={[styles.smallText, styles.monoFont]}>
                 (S/L) {fmt(meanScripting)}/{fmt(meanLayout)} ms
               </Text>
-            </View>
+            </Fragment>
           ) : (
             <Text style={styles.bold}>In progress…</Text>
           )}

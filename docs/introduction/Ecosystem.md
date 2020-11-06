@@ -39,6 +39,8 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-isolation](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-isolation) - Adds style isolation to every rule
 * [fela-plugin-logger*](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-logger) - Logs processed style objects
 * [fela-plugin-named-keys](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-named-keys) - Replaces named keys with valid syntax
+* [fela-plugin-pseudo-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-pseudo-prefixer) - Allows adding custom pseudo class prefixes
+* [fela-plugin-fullscreen-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fullscreen-prefixer) - Adds all `::fullscreen` prefixes
 * [fela-plugin-placeholder-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-placeholder-prefixer) - Adds all `::placeholder` prefixes
 * [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer) - Adds all vendor prefixes to the styles
 * [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value) - Resolves responsive array values to media query rules
@@ -46,6 +48,7 @@ Many plugins and enhancers are already included in the [main repository](https:/
 * [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit) - Automatically adds units to values if needed
 * [fela-plugin-validator*](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator) - Validates, logs & optionally deletes invalid properties for keyframes and rules
 * [fela-plugin-typescript](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-typescript) - Allows to write type-safe style rules and provides some autocomplete
+* [fela-plugin-theme-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-theme-value) - Resolves string-based theme values to actual style values
 
 #### Plugin-Presets
 * [fela-preset-web](https://github.com/robinweser/fela/tree/master/packages/fela-preset-web) - Preset for cross-browser web applications

@@ -36,17 +36,20 @@ Plugins are executed in the exact same order as provided. The output of the firs
 3. [fela-plugin-embedded](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-embedded)
 4. [fela-plugin-friendly-pseudo-class](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-friendly-pseudo-class)
 5. [fela-plugin-named-keys](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-named-keys)
-6. [fela-plugin-placeholder-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-placeholder-prefixer)
-5. [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value)
-7. [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer)
-8. [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
-9. [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)
-10. [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl)
-11. [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
-12. [fela-plugin-important](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-important)
-13. [fela-plugin-isolation](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-isolation)
-14. [fela-plugin-validator](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator)
-15. [fela-plugin-logger](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-logger)
+6. [fela-plugin-pseudo-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-pseudo-prefixer)
+7. [fela-plugin-fullscreen-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fullscreen-prefixer)
+8. [fela-plugin-placeholder-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-placeholder-prefixer)
+9. [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value)
+10. [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer)
+11. [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
+12. [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)
+13. [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl)
+14. [fela-plugin-theme-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-theme-value)
+15. [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
+16. [fela-plugin-important](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-important)
+17. [fela-plugin-isolation](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-isolation)
+18. [fela-plugin-validator](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator)
+19. [fela-plugin-logger](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-logger)
 
 
 ## Custom Plugins
@@ -60,7 +63,7 @@ const plugin = (style, type, renderer, props) => processedStyle
 
 ##### Parameter
 1. `style` (*Object*): The input style object
-2. `type` (*string*): A type enum `RULE`, `KEYFRAME` or `STATIC`
+2. `type` (*string*): A type enum `RULE`, `FONT`, `KEYFRAME` or `STATIC`
 3. `renderer` ([*Renderer*](../basics/Renderer.md)): The fela renderer
 4. `props` (*Object*): The props used to resolve the rule
 

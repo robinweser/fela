@@ -44,6 +44,7 @@ declare module "fela" {
     enhancers?: Array<TEnhancer>;
     mediaQueryOrder?: Array<string>;
     selectorPrefix?: string;
+    specificityPrefix?: string;
     filterClassName?: (className: string) => boolean;
     devMode?: boolean;
   }
@@ -289,6 +290,24 @@ declare module "fela-plugin-native-media-query" {
 }
 
 declare module "fela-plugin-placeholder-prefixer" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
+declare module "fela-plugin-fullscreen-prefixer" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
+declare module "fela-plugin-pseudo-prefixer" {
+  import { TPlugin } from "fela";
+
+  export default function(): TPlugin;
+}
+
+declare module "fela-plugin-theme-value" {
   import { TPlugin } from "fela";
 
   export default function(): TPlugin;

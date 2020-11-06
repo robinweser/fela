@@ -40,9 +40,20 @@ export default function rehydrate(
 
       if (type === RULE_TYPE) {
         if (support) {
-          rehydrateSupportRules(css, media, renderer.cache)
+          rehydrateSupportRules(
+            css,
+            media,
+            renderer.cache,
+            renderer.specificityPrefix
+          )
         } else {
-          rehydrateRules(css, media, '', renderer.cache)
+          rehydrateRules(
+            css,
+            media,
+            '',
+            renderer.cache,
+            renderer.specificityPrefix
+          )
         }
 
         // On Safari, style sheets with IE-specific media queries

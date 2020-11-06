@@ -85,7 +85,11 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
     if (Object.keys(ruleSet).length > 0) {
       const css = cssifyObject(ruleSet)
-      const selector = generateCSSSelector(className, pseudo)
+      const selector = generateCSSSelector(
+        className,
+        pseudo,
+        renderer.specificityPrefix
+      )
 
       const change = {
         type: RULE_TYPE,
@@ -104,7 +108,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
   }
 
   renderer._renderStyleToClassNames = (
-    style: Object,
+    { _className, ...style }: Object,
     rule: Function
   ): string => {
     if (Object.keys(style).length < 1) {
@@ -126,7 +130,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       renderer.cache[className] = {}
     }
 
-    return className
+    return (_className ? _className + ' ' : '') + className
   }
 
   renderer.renderRule = (rule: Function, props: Object = {}): string =>

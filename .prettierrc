@@ -1,11 +1,10 @@
 {
-  trailingComma: "es5",
-  singleQuote: true,
-  bracketSpacing: true,
-  jsxBracketSameLine: true,
-  parser: "babylon",
-  printWidth: 80,
-  tabWidth: 2,
-  useTabs: false,
-  semi: false
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false
 }

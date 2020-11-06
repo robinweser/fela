@@ -1,45 +1,45 @@
 {
-    "private": true,
-    "name": "example-react",
-    "version": "11.3.0",
-    "description": "Fela example with React",
-    "scripts": {
-        "client": "NODE_ENV=development webpack-dev-server",
-        "start": "concurrently --kill-others \"npm run client\" \"babel-node server.js\""
-    },
-    "author": "Robin Weser <robin@weser.io>",
-    "license": "MIT",
-    "devDependencies": {
-        "babel-cli": "^6.24.1",
-        "babel-loader": "^7.0.0",
-        "babel-preset-es2015": "^6.24.0",
-        "babel-preset-react": "^6.24.0",
-        "concurrently": "^3.4.0",
-        "express": "^4.14.0",
-        "express-http-proxy": "^1.0.3",
-        "fela": "^11.3.0",
-        "fela-beautifier": "^11.3.0",
-        "fela-dom": "^11.3.0",
-        "fela-layout-debugger": "^11.3.0",
-        "fela-perf": "^11.3.0",
-        "fela-plugin-embedded": "^11.3.0",
-        "fela-plugin-fallback-value": "^11.3.0",
-        "fela-plugin-logger": "^11.3.0",
-        "fela-plugin-lvha": "^5.0.16",
-        "fela-plugin-prefixer": "^11.3.0",
-        "fela-plugin-unit": "^11.3.0",
-        "fela-plugin-validator": "^11.3.0",
-        "fela-sort-media-query-mobile-first": "^11.3.0",
-        "react": "^16.8.5",
-        "react-dom": "^16.8.5",
-        "react-fela": "^11.3.0",
-        "webpack": "^4.42.1",
-        "webpack-dev-server": "^3.10.3"
-    },
-    "babel": {
-        "presets": [
-            "es2015",
-            "react"
-        ]
-    }
+  "private": true,
+  "name": "example-react",
+  "version": "11.4.0",
+  "description": "Fela example with React",
+  "scripts": {
+    "client": "NODE_ENV=development webpack-dev-server",
+    "start": "concurrently --kill-others \"npm run client\" \"babel-node server.js\""
+  },
+  "author": "Robin Weser <robin@weser.io>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.24.0",
+    "concurrently": "^3.4.0",
+    "express": "^4.14.0",
+    "express-http-proxy": "^1.0.3",
+    "fela": "^11.4.0",
+    "fela-beautifier": "^11.4.0",
+    "fela-dom": "^11.4.0",
+    "fela-layout-debugger": "^11.4.0",
+    "fela-perf": "^11.4.0",
+    "fela-plugin-embedded": "^11.4.0",
+    "fela-plugin-fallback-value": "^11.4.0",
+    "fela-plugin-logger": "^11.4.0",
+    "fela-plugin-lvha": "^5.0.16",
+    "fela-plugin-prefixer": "^11.4.0",
+    "fela-plugin-unit": "^11.4.0",
+    "fela-plugin-validator": "^11.4.0",
+    "fela-sort-media-query-mobile-first": "^11.4.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-fela": "^11.4.0",
+    "webpack": "^4.42.1",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  }
 }
