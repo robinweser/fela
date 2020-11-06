@@ -2,7 +2,7 @@
 
 exports[`Rehydrating rules should rehydrate the renderer cache 1`] = `
 Object {
-  ":hover:activeborder-color2px solid rgb(255, 255, 0)": Object {
+  ":hover:activeborderColor2px solid rgb(255, 255, 0)": Object {
     "className": "c",
     "declaration": "border-color:2px solid rgb(255, 255, 0)",
     "media": "",

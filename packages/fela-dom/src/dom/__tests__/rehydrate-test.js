@@ -63,56 +63,6 @@ describe('Rehydrating from DOM nodes', () => {
     )
   })
 
-  it('should rehydrate regular css properties (not camelcased)', () => {
-    const serverRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
-      plugins: [...webPreset],
-    })
-
-    serverRenderer.renderRule(() => ({
-      color: 'yellow',
-      'background-color': 'red', // regular css property
-      flex: 1,
-      '& #id > .foo ~ bar': {
-        backgroundColor: 'red',
-      },
-      '[alt="Hello"]': {
-        'font-size': 12, // regular css property
-      },
-      '@supports (display: grid)': {
-        color: 'blue',
-        '&.foo.bar': {
-          color: 'red',
-        },
-      },
-      ':hover': {
-        color: 'red',
-        '> h1': {
-          color: 'green',
-        },
-      },
-    }))
-
-    document.head.innerHTML = renderToMarkup(serverRenderer)
-
-    const clientRenderer = createRenderer({
-      filterClassName: cls => cls !== 'a',
-      plugins: [...webPreset],
-    })
-
-    rehydrate(clientRenderer)
-
-    expect([
-      clientRenderer.uniqueRuleIdentifier,
-      clientRenderer.cache,
-    ]).toMatchSnapshot()
-    console.log('Client:', JSON.stringify(clientRenderer.cache))
-    console.log('Client:', JSON.stringify(serverRenderer.cache))
-    expect(sortObject(clientRenderer.cache)).toEqual(
-      sortObject(serverRenderer.cache)
-    )
-  })
-
   it('should continue in rehydration with correct rehydration index', () => {
     const serverRenderer = createRenderer({
       plugins: [...webPreset],
