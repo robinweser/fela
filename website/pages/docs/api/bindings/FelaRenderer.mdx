@@ -1,0 +1,31 @@
+import DocLayout from '../../../../components/DocLayout.js'
+
+export default DocLayout
+
+# FelaRenderer
+
+FelaRenderer is a consumer component leveraging the render-props pattern. It can be used to access the renderer object that is passed down via [context](https://facebook.github.io/react/docs/context.html) by a [RendererProvider](RendererProvider.md).
+
+## Props
+
+| Property | Type       | Description                                                                 |
+| -------- | ---------- | --------------------------------------------------------------------------- |
+| children | _Function_ | A render function that receives the renderer object as its first parameter. |
+
+## Imports
+
+```javascript nocopy
+import { FelaRenderer } from 'react-fela'
+import { FelaRenderer } from 'preact-fela'
+import { FelaRenderer } from 'inferno-fela'
+```
+
+## Example
+
+```jsx
+<FelaRenderer>
+  {renderer => (
+    // do something with the renderer
+  )}
+</FelaRenderer>
+```

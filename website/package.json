@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "@fela/website",
+  "version": "11.4.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next export",
+    "start": "next start"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@mdx-js/react": "^1.6.19",
+    "copy-to-clipboard": "^3.3.1",
+    "fela": "^11.4.0",
+    "fela-dom": "^11.4.0",
+    "fela-plugin-named-keys": "^11.4.0",
+    "fela-plugin-responsive-value": "^11.4.0",
+    "fela-preset-web": "^11.4.0",
+    "fela-sort-media-query-mobile-first": "^11.4.0",
+    "kilvin": "^2.0.10",
+    "next": "^9.5.5",
+    "prism-react-renderer": "^1.1.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-fela": "^11.4.0"
+  },
+  "devDependencies": {
+    "@mdx-js/loader": "^1.6.19",
+    "@next/bundle-analyzer": "^9.5.5",
+    "@next/mdx": "^9.5.5"
+  }
+}

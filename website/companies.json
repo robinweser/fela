@@ -1,0 +1,78 @@
+{
+  "Microsoft": {
+    "logo": "microsoft.svg",
+    "url": "https://microsoft.com"
+  },
+  "Volvo Cars": {
+    "logo": "volvo.svg",
+    "url": "https://www.volvocars.com"
+  },
+  "Medium": {
+    "logo": "medium.svg",
+    "url": "https://medium.com"
+  },
+  "N26": {
+    "logo": "n26.svg",
+    "url": "https://n26.com"
+  },
+  "Cloudflare": {
+    "logo": "cloudflare.svg",
+    "url": "https://www.cloudflare.com"
+  },
+  "Zendesk": {
+    "logo": "zendesk.svg",
+    "url": "https://www.zendesk.com"
+  },
+  "HelloFresh": {
+    "logo": "hellofresh.png",
+    "url": "https://www.hellofresh.de"
+  },
+  "dm-drogerie markt": {
+    "logo": "dm.svg",
+    "url": "https://www.dm.de"
+  },
+  "dmTECH": {
+    "logo": "dmTech.png",
+    "url": "https://www.dmtech.de"
+  },
+  "Bookmyshow": {
+    "logo": "bookmyshow.png",
+    "url": "https://in.bookmyshow.com/events"
+  },
+  "abilis": {
+    "logo": "abilis.png",
+    "url": "https://www.abilis.de"
+  },
+  "BdP LV RPS": {
+    "logo": "bdp-rps.png",
+    "url": "http://www.bdp-rps.de"
+  },
+  "Espressive": {
+    "logo": "espressive.png",
+    "url": "https://www.espressive.com"
+  },
+  "Indoqa": {
+    "logo": "indoqa.png",
+    "url": "https://www.indoqa.com"
+  },
+  "Lusk": {
+    "logo": "lusk.svg",
+    "url": "https://lusk.io"
+  },
+  "MediaFire": {
+    "logo": "mediafire.png",
+    "url": "https://m.mediafire.com"
+  },
+  "Net-A-Porter": {
+    "logo": "netaporter.png",
+    "url": "https://www.net-a-porter.com/gb/en/porter"
+  },
+  "NinjaConcept": {
+    "logo": "ninjaconcept.svg",
+    "url": "https://www.ninjaconcept.com"
+  },
+  "Space Between": {
+    "logo": "spacebetween.png",
+    "url": "https://www.spacebetween.co.uk/"
+  }
+}

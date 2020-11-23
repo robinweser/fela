@@ -30,7 +30,7 @@ lib/
 es/
 umd/
 coverage/
-_book
 dist
+.next
 
 \.history/
