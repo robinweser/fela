@@ -31,6 +31,7 @@ export default () => {
           alignSelf="center"
           maxWidth={[300, , 500, , 550]}
           src="/logo.svg"
+          alt="Fela’s logo"
         />
         <Box
           alignSelf="center"
