@@ -53,9 +53,24 @@ export default () => {
         paddingBottom={[10, , 20]}>
         <Layout>
           <Box space={[10, , 15]}>
+            <Box
+              as="h2"
+              extend={{
+                border: 0,
+                clip: 'rect(1px, 1px, 1px, 1px)',
+                clipPath: 'inset(50%)',
+                height: '1px',
+                overflow: 'hidden',
+                padding: 0,
+                position: 'absolute',
+                width: '1px',
+                whiteSpace: 'nowrap',
+              }}>
+              Benefits
+            </Box>
             <Box direction={['column', , 'row']} space={[10, , 15]} wrap="wrap">
               <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
-                <Box extend={{ fontSize: 20, fontWeight: 500 }}>
+                <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Predictable Styling
                 </Box>
                 <Box as="p" extend={{ lineHeight: 1.5 }}>
@@ -69,7 +84,9 @@ export default () => {
                 </Box>
               </Box>
               <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
-                <Box extend={{ fontSize: 20, fontWeight: 500 }}>Atomic CSS</Box>
+                <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
+                  Atomic CSS
+                </Box>
                 <Box as="p" extend={{ lineHeight: 1.5 }}>
                   Fela generates atomic CSS classes.
                   <br />
@@ -83,7 +100,7 @@ export default () => {
             </Box>
             <Box direction={['column', , 'row']} space={[10, , 15]} wrap="wrap">
               <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
-                <Box extend={{ fontSize: 20, fontWeight: 500 }}>
+                <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Framework-agnostic
                 </Box>
                 <Box as="p" extend={{ lineHeight: 1.5 }}>
@@ -97,7 +114,7 @@ export default () => {
                 </Box>
               </Box>
               <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
-                <Box extend={{ fontSize: 20, fontWeight: 500 }}>
+                <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Huge Ecosystem
                 </Box>
                 <Box as="p" extend={{ lineHeight: 1.5 }}>
@@ -199,7 +216,7 @@ export default () => {
         padding={8}
         extend={{ backgroundColor: theme.colors.blue, color: 'white' }}>
         <Layout>
-          <Box display="inline" extend={{ lineHeight: 1.5 }}>
+          <Box as="p" display="inline" extend={{ lineHeight: 1.5 }}>
             Fela is licensed under the{' '}
             <Box
               as="a"

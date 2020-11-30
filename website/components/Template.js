@@ -21,6 +21,7 @@ export default function Template({ children }) {
   return (
     <Box grow={1}>
       <Box
+        as="header"
         direction="row"
         height={[50, , 44]}
         alignItems="center"
@@ -33,14 +34,14 @@ export default function Template({ children }) {
           zIndex: 2,
         }}>
         <Layout>
-          <Box direction="row">
+          <Box as="nav" direction="row">
             {Object.keys(nav).map((path) => (
               <NavItem path={path}>{nav[path]}</NavItem>
             ))}
           </Box>
         </Layout>
       </Box>
-      <Box grow={1} paddingTop={[12.5, , 11]}>
+      <Box as="main" grow={1} paddingTop={[12.5, , 11]}>
         {children}
       </Box>
     </Box>
