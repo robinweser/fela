@@ -48,61 +48,6 @@ export default function CodeBlock({
 
   return (
     <Box>
-      {!nocopy && (
-        <Box
-          alignSelf="flex-end"
-          alignItems="center"
-          space={2}
-          extend={{
-            position: 'absolute',
-            marginTop: name ? 0 : -20,
-            paddingRight: 10,
-          }}>
-          <Box
-            extend={{
-              position: 'absolute',
-              marginTop: name ? -16 : -12,
-              color: theme.colors.blueDark,
-              marginLeft: 0,
-              fontSize: 12,
-            }}>
-            {copied ? 'Copied!' : ''}
-          </Box>
-          <Box
-            as="button"
-            width={34}
-            height={34}
-            alignItems="center"
-            justifyContent="center"
-            padding={1.7}
-            onClick={() => {
-              setCopied(true)
-              copyToClipboard(children)
-            }}
-            extend={{
-              cursor: 'pointer',
-              borderRadius: 20,
-              outline: 0,
-              backgroundColor: theme.colors.blue,
-              borderWidth: 2,
-              borderStyle: 'solid',
-              borderColor: theme.colors.blueDark,
-              color: 'white',
-              fontSize: 15,
-
-              transition:
-                'background-color 200ms ease-out, color 200ms ease-in-out, border-color 200ms ease-in-out, transform 100ms ease-out',
-              ':hover': {
-                backgroundColor: theme.colors.blueDark,
-              },
-              ':active': {
-                transform: 'scale(0.95, 0.95)',
-              },
-            }}>
-            <i class="far fa-copy"></i>
-          </Box>
-        </Box>
-      )}
       {name && (
         <Box
           as="p"
@@ -179,6 +124,64 @@ export default function CodeBlock({
           </Box>
         )}
       </Highlight>
+
+      {!nocopy && (
+        <Box
+          alignSelf="flex-end"
+          alignItems="center"
+          space={2}
+          extend={{
+            position: 'absolute',
+            marginTop: name ? 0 : -20,
+            paddingRight: 10,
+          }}>
+          <Box
+            as="p"
+            extend={{
+              position: 'absolute',
+              marginTop: name ? -16 : -12,
+              color: theme.colors.blueDark,
+              marginLeft: 0,
+              fontSize: 12,
+            }}>
+            {copied ? 'Copied!' : ''}
+          </Box>
+          <Box
+            as="button"
+            width={34}
+            height={34}
+            alignItems="center"
+            justifyContent="center"
+            padding={1.7}
+            onClick={() => {
+              setCopied(true)
+              copyToClipboard(children)
+            }}
+            extend={{
+              cursor: 'pointer',
+              borderRadius: 20,
+              outline: 0,
+              backgroundColor: theme.colors.blue,
+              borderWidth: 2,
+              borderStyle: 'solid',
+              borderColor: theme.colors.blueDark,
+              color: 'white',
+              fontSize: 15,
+
+              transition:
+                'background-color 200ms ease-out, color 200ms ease-in-out, border-color 200ms ease-in-out, transform 100ms ease-out',
+              ':hover': {
+                backgroundColor: theme.colors.blueDark,
+              },
+              ':active': {
+                transform: 'scale(0.95, 0.95)',
+              },
+            }}
+            aria-label="Copy code">
+            <i class="far fa-copy"></i>
+          </Box>
+        </Box>
+      )}
     </Box>
   )
 }
