@@ -141,7 +141,7 @@ function Content({ navigationVisible, children, addHeading }) {
   const { theme } = useFela()
 
   return (
-    <Box paddingTop={[2, , , 7]} paddingBottom={20}>
+    <Box paddingTop={[2, , , 8]} paddingBottom={20}>
       <MDXProvider
         components={{
           a: Link,

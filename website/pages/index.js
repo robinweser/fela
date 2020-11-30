@@ -49,25 +49,25 @@ export default () => {
       <Box
         paddingLeft={[0, , 12]}
         paddingRight={[0, , 12]}
-        paddingTop={[6, , 15]}
+        paddingTop={[6, , 16]}
         paddingBottom={[10, , 20]}>
         <Layout>
+          <Box
+            as="h2"
+            extend={{
+              border: 0,
+              clip: 'rect(1px, 1px, 1px, 1px)',
+              clipPath: 'inset(50%)',
+              height: '1px',
+              overflow: 'hidden',
+              padding: 0,
+              position: 'absolute',
+              width: '1px',
+              whiteSpace: 'nowrap',
+            }}>
+            Benefits
+          </Box>
           <Box space={[10, , 15]}>
-            <Box
-              as="h2"
-              extend={{
-                border: 0,
-                clip: 'rect(1px, 1px, 1px, 1px)',
-                clipPath: 'inset(50%)',
-                height: '1px',
-                overflow: 'hidden',
-                padding: 0,
-                position: 'absolute',
-                width: '1px',
-                whiteSpace: 'nowrap',
-              }}>
-              Benefits
-            </Box>
             <Box direction={['column', , 'row']} space={[10, , 15]} wrap="wrap">
               <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>

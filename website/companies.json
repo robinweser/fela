@@ -15,6 +15,10 @@
     "logo": "n26.svg",
     "url": "https://n26.com"
   },
+  "dm-drogerie markt": {
+    "logo": "dm.svg",
+    "url": "https://www.dm.de"
+  },
   "Cloudflare": {
     "logo": "cloudflare.svg",
     "url": "https://www.cloudflare.com"
@@ -26,10 +30,6 @@
   "HelloFresh": {
     "logo": "hellofresh.png",
     "url": "https://www.hellofresh.de"
-  },
-  "dm-drogerie markt": {
-    "logo": "dm.svg",
-    "url": "https://www.dm.de"
   },
   "dmTECH": {
     "logo": "dmTech.png",
