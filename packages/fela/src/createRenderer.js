@@ -43,6 +43,8 @@ import type { FontProperties } from '../../../flowtypes/FontProperties'
 export default function createRenderer(
   config: DOMRendererConfig = {}
 ): DOMRenderer {
+  const optimizePlugins = config.optimizePlugins || false
+
   let renderer: DOMRenderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],

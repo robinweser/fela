@@ -1,10 +1,13 @@
 /* @flow */
+const FALSY_REGEX = /undefined|null/
+const URL_REGEX = /url/
+
 export default function isUndefinedValue(value: any): boolean {
   return (
     value === undefined ||
     value === null ||
     (typeof value === 'string' &&
-      value.match(/(undefined|null)/) !== null &&
-      value.match(/url/) === null)
+      FALSY_REGEX.test(value) &&
+      !URL_REGEX.test(value))
   )
 }
