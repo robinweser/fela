@@ -77,22 +77,23 @@ export default function CodeBlock({
         {({ tokens, getTokenProps }) => (
           <Box
             as="pre"
-            paddingTop={[!nocopy ? 7 : 3.5, , , 3.5]}
-            paddingBottom={3.5}
-            paddingRight={4}
-            paddingLeft={4}
+            paddingTop={[!nocopy ? 8 : 4.5, , , 4.5]}
+            paddingBottom={4.5}
+            paddingRight={5}
+            paddingLeft={5}
             marginBottom={1.5}
             maxWidth="100%"
             extend={{
+              lineHeight: 1.4,
               backgroundColor: theme.colors.background,
               overflow: 'auto',
             }}>
             <Box
               as="code"
               extend={{
-                fontSize: 15,
+                fontSize: 16,
                 fontFamily:
-                  'Dank, Dank Mono, Fira Code, Hack, Consolas, monospace',
+                  'dm, Dank, Dank Mono, Fira Code, Hack, Consolas, monospace',
                 textRendering: 'optimizeLegibility',
               }}>
               {tokens.map((line, i) => (
