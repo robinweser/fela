@@ -73,7 +73,7 @@ export default () => {
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Predictable Styling
                 </Box>
-                <Box as="p" extend={{ lineHeight: 1.5 }}>
+                <Box as="p" extend={{ lineHeight: 1.5, fontSize: 15 }}>
                   Fela generates unique CSS classes for every rule.
                   <br />
                   It automatically sorts rules, pseudo classes and media
@@ -87,7 +87,7 @@ export default () => {
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Atomic CSS
                 </Box>
-                <Box as="p" extend={{ lineHeight: 1.5 }}>
+                <Box as="p" extend={{ lineHeight: 1.5, fontSize: 15 }}>
                   Fela generates atomic CSS classes.
                   <br />
                   For every property-value pair there's a single rule which can
@@ -103,7 +103,7 @@ export default () => {
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Framework-agnostic
                 </Box>
-                <Box as="p" extend={{ lineHeight: 1.5 }}>
+                <Box as="p" extend={{ lineHeight: 1.5, fontSize: 15 }}>
                   Fela is a plain JavaScript library and works without a
                   framework our UI library.
                   <br />
@@ -117,7 +117,7 @@ export default () => {
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Huge Ecosystem
                 </Box>
-                <Box as="p" extend={{ lineHeight: 1.5 }}>
+                <Box as="p" extend={{ lineHeight: 1.5, fontSize: 15 }}>
                   With only ~4kb minfied and gzipped, Fela is a lightweight
                   styling toolbelt.
                   <br />

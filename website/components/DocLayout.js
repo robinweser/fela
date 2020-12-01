@@ -107,8 +107,8 @@ function Headings({ headings }) {
 
   return (
     <Box
-      maxWidth={[0, , 260, 300]}
-      minWidth={[0, , 260, 300]}
+      maxWidth={[0, , 260, 280]}
+      minWidth={[0, , 260, 280]}
       space={2}
       paddingTop={[4, , 8]}
       paddingRight={5}
@@ -149,7 +149,7 @@ function Content({ navigationVisible, children, addHeading }) {
   const { theme } = useFela()
 
   return (
-    <Box paddingTop={[2, , , 8]} paddingBottom={8}>
+    <Box paddingTop={[4, , , 8]} paddingBottom={8}>
       <MDXProvider
         components={{
           a: Link,
@@ -343,9 +343,7 @@ function Content({ navigationVisible, children, addHeading }) {
           ),
           hr: () => <Line />,
         }}>
-        <main style={{ display: navigationVisible ? 'none' : 'block' }}>
-          {children}
-        </main>
+        <main>{children}</main>
       </MDXProvider>
     </Box>
   )
@@ -405,7 +403,7 @@ export default function DocLayout({ children, toc, version }) {
             backgroundColor: theme.colors.background,
             position: 'fixed',
             zIndex: 5,
-            top: 48,
+            top: 50,
             left: 0,
             right: 0,
           }}>
@@ -426,7 +424,7 @@ export default function DocLayout({ children, toc, version }) {
         <title>Fela - {currentPage}</title>
       </Head>
       <Box
-        minWidth={['100%', , 280]}
+        minWidth={['100%', , 260]}
         paddingTop={[4, , 8]}
         paddingLeft={5}
         paddingRight={5}
@@ -439,7 +437,7 @@ export default function DocLayout({ children, toc, version }) {
           position: 'fixed',
           zIndex: 3,
           left: 0,
-          top: 108,
+          top: 106,
           bottom: 0,
           medium: {
             backgroundColor: theme.colors.background,
@@ -463,19 +461,31 @@ export default function DocLayout({ children, toc, version }) {
             ))}
           </Box>
         </Box>
-        <Box space={8}>
+        <Box space={[10, , 8]}>
           {Object.keys(toc).map((group) => (
             <Box space={2.5} key={group}>
-              <Box extend={{ fontWeight: 700 }}>{group}</Box>
-              <Box paddingLeft={4} space={2.5}>
+              <Box
+                extend={{
+                  fontWeight: 700,
+                  fontSize: 18,
+                  medium: { fontSize: 16 },
+                }}>
+                {group}
+              </Box>
+              <Box paddingLeft={[0, , , 0]} space={2.5}>
                 {Object.keys(toc[group]).map((page) => {
                   if (typeof toc[group][page] === 'object') {
                     return (
                       <Box space={2.5} key={page}>
-                        <Box extend={{ fontWeight: 700, fontSize: 14 }}>
+                        <Box
+                          extend={{
+                            fontWeight: 700,
+                            fontSize: 16,
+                            medium: { fontSize: 14 },
+                          }}>
                           {page}
                         </Box>
-                        <Box paddingLeft={4} space={2.5}>
+                        <Box paddingLeft={[2, , , 4]} space={2.5}>
                           {Object.keys(toc[group][page]).map((subPage) => (
                             <NextLink
                               key={group + page + subPage}
@@ -485,12 +495,13 @@ export default function DocLayout({ children, toc, version }) {
                                 as="a"
                                 extend={{
                                   textDecoration: 'none',
-                                  fontSize: 14,
                                   color:
                                     router.pathname ===
                                     docsPath + toc[group][page][subPage]
                                       ? theme.colors.blue
                                       : 'black',
+                                  fontSize: 16,
+                                  medium: { fontSize: 14 },
                                 }}>
                                 {subPage}
                               </Box>
@@ -510,11 +521,12 @@ export default function DocLayout({ children, toc, version }) {
                         as="a"
                         extend={{
                           textDecoration: 'none',
-                          fontSize: 14,
                           color:
                             router.pathname === docsPath + toc[group][page]
                               ? theme.colors.blue
                               : 'black',
+                          fontSize: 16,
+                          medium: { fontSize: 14 },
                         }}>
                         {page}
                       </Box>
@@ -533,12 +545,12 @@ export default function DocLayout({ children, toc, version }) {
           paddingTop: 44,
           paddingBottom: 80,
           medium: {
-            paddingLeft: 300,
+            paddingLeft: 280,
             paddingRight: 280,
             paddingTop: 0,
           },
           large: {
-            paddingLeft: 320,
+            paddingLeft: 300,
             paddingRight: 320,
           },
           '@media (min-width: 1500px)': {
@@ -546,9 +558,7 @@ export default function DocLayout({ children, toc, version }) {
             paddingRight: 0,
           },
         }}>
-        <Content navigationVisible={navigationVisible} addHeading={addHeading}>
-          {children}
-        </Content>
+        <Content addHeading={addHeading}>{children}</Content>
         <Line />
         <Link
           extend={{
