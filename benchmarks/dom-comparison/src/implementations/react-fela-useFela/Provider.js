@@ -1,10 +1,17 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { createRenderer } from 'fela'
-import { RendererProvider  } from 'react-fela'
+import { RendererProvider } from 'react-fela'
+import unit from 'fela-plugin-unit'
+import embedded from 'fela-plugin-embedded'
+import fallbackValue from 'fela-plugin-fallback-value'
+
 import View from './View'
 
-const renderer = createRenderer()
+const renderer = createRenderer({
+  // optimizePlugins: true,
+  plugins: [embedded(), unit(), fallbackValue()],
+})
 
 class Provider extends React.Component {
   render() {
