@@ -14,7 +14,7 @@ module.exports = withBundleAnalyzer(
       return [
         {
           source: '/docs',
-          destination: '/docs/intro/motivation',
+          destination: '/docs/latest/intro/motivation',
           permanent: true,
         },
       ]

@@ -39,7 +39,7 @@ export default () => {
           minWidth={['100%', 350]}
           direction={['column', 'row']}
           space={3}>
-          <Button href="/docs/intro/motivation">Documentation</Button>
+          <Button href="/docs/latest/intro/motivation">Documentation</Button>
           <Button href="https://github.com/robinweser/fela" variant="secondary">
             Github
           </Button>
@@ -130,7 +130,7 @@ export default () => {
             </Box>
             <Box
               as="a"
-              href="/docs/intro/benefits"
+              href="/docs/latest/intro/benefits"
               extend={{
                 display: 'inline-flex',
                 alignSelf: 'flex-start',

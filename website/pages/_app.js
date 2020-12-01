@@ -10,13 +10,18 @@ import theme from '../styling/theme'
 export default function App({ Component, pageProps, renderer }) {
   const router = useRouter()
 
-  const component = <Component {...pageProps} />
-  const componentWithLayout =
-    router.pathname.indexOf('docs') !== -1 ? (
-      <DocLayout>{component}</DocLayout>
-    ) : (
-      component
+  let component = <Component {...pageProps} />
+
+  if (router.pathname.indexOf('docs') !== -1) {
+    const version = router.pathname.split('/')[2]
+    const toc = require('../tocs/' + version)
+
+    component = (
+      <DocLayout toc={toc} version={version}>
+        {component}
+      </DocLayout>
     )
+  }
 
   return (
     <>
@@ -28,7 +33,7 @@ export default function App({ Component, pageProps, renderer }) {
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </Head>
       <FelaProvider renderer={renderer}>
-        <ThemeProvider theme={theme}>{componentWithLayout}</ThemeProvider>
+        <ThemeProvider theme={theme}>{component}</ThemeProvider>
       </FelaProvider>
     </>
   )

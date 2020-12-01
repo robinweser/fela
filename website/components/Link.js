@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from 'kilvin'
 import { useFela } from 'react-fela'
 
-export default function Link({ href, children, highlight, extern }) {
+export default function Link({ href, children, highlight, extern, extend }) {
   const { theme } = useFela()
 
   return (
@@ -19,6 +19,7 @@ export default function Link({ href, children, highlight, extern }) {
         ':hover': {
           color: theme.colors.blueDark,
         },
+        extend,
       }}>
       {children}
     </Box>

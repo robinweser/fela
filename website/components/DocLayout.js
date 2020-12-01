@@ -12,7 +12,17 @@ import NavItem from './NavItem'
 import Template from './Template'
 import Layout from './Layout'
 
-import nav from '../toc.json'
+function Line() {
+  return (
+    <Box
+      marginTop={10}
+      marginBottom={10}
+      height={1}
+      extend={{ backgroundColor: 'rgb(200, 200, 200)' }}
+    />
+  )
+}
+import versions from '../versions.json'
 
 function getFlatNav(nav, flat = {}, prefix = '') {
   Object.keys(nav).forEach((title) => {
@@ -27,8 +37,6 @@ function getFlatNav(nav, flat = {}, prefix = '') {
 
   return flat
 }
-
-const flatNav = getFlatNav(nav)
 
 function beautifyId(text) {
   return text.replace(/ /gi, '-').toLowerCase()
@@ -141,7 +149,7 @@ function Content({ navigationVisible, children, addHeading }) {
   const { theme } = useFela()
 
   return (
-    <Box paddingTop={[2, , , 8]} paddingBottom={20}>
+    <Box paddingTop={[2, , , 8]} paddingBottom={8}>
       <MDXProvider
         components={{
           a: Link,
@@ -333,14 +341,7 @@ function Content({ navigationVisible, children, addHeading }) {
               </Box>
             </Box>
           ),
-          hr: () => (
-            <Box
-              marginTop={10}
-              marginBottom={10}
-              height={1}
-              extend={{ backgroundColor: 'rgb(200, 200, 200)' }}
-            />
-          ),
+          hr: () => <Line />,
         }}>
         <main style={{ display: navigationVisible ? 'none' : 'block' }}>
           {children}
@@ -350,11 +351,13 @@ function Content({ navigationVisible, children, addHeading }) {
   )
 }
 
-export default function DocLayout({ children }) {
+export default function DocLayout({ children, toc, version }) {
   const [navigationVisible, setNavigationVisible] = useState(false)
   const [headings, setHeadings] = useState([])
   const { theme } = useFela()
   const router = useRouter()
+
+  const flatNav = getFlatNav(toc)
 
   const addHeading = (heading) => {
     setHeadings((headings) => {
@@ -367,7 +370,8 @@ export default function DocLayout({ children }) {
     })
   }
 
-  const currentPage = flatNav[router.pathname.substr(6)]
+  const docsPath = `/docs/${version}/`
+  const currentPage = flatNav[router.pathname.substr(docsPath.length)]
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -427,6 +431,7 @@ export default function DocLayout({ children }) {
         paddingLeft={5}
         paddingRight={5}
         paddingBottom={12}
+        space={4}
         display={[navigationVisible ? 'flex' : 'none', , 'flex']}
         extend={{
           backgroundColor: 'white',
@@ -441,23 +446,40 @@ export default function DocLayout({ children }) {
             top: 44,
           },
         }}>
+        <Box space={2} direction="row" alignItems="center">
+          <Box as="label" htmlFor="version" extend={{ fontSize: 14 }}>
+            Version
+          </Box>
+          <Box
+            as="select"
+            id="version"
+            name="version"
+            value={version}
+            onChange={(e) => {
+              router.push(`/docs/${e.target.value}/intro/motivation`)
+            }}>
+            {versions.map((version) => (
+              <option value={version}>{version}</option>
+            ))}
+          </Box>
+        </Box>
         <Box space={8}>
-          {Object.keys(nav).map((group) => (
+          {Object.keys(toc).map((group) => (
             <Box space={2.5} key={group}>
               <Box extend={{ fontWeight: 700 }}>{group}</Box>
               <Box paddingLeft={4} space={2.5}>
-                {Object.keys(nav[group]).map((page) => {
-                  if (typeof nav[group][page] === 'object') {
+                {Object.keys(toc[group]).map((page) => {
+                  if (typeof toc[group][page] === 'object') {
                     return (
                       <Box space={2.5} key={page}>
                         <Box extend={{ fontWeight: 700, fontSize: 14 }}>
                           {page}
                         </Box>
                         <Box paddingLeft={4} space={2.5}>
-                          {Object.keys(nav[group][page]).map((subPage) => (
+                          {Object.keys(toc[group][page]).map((subPage) => (
                             <NextLink
                               key={group + page + subPage}
-                              href={'/docs/' + nav[group][page][subPage]}
+                              href={docsPath + toc[group][page][subPage]}
                               passHref>
                               <Box
                                 as="a"
@@ -466,7 +488,7 @@ export default function DocLayout({ children }) {
                                   fontSize: 14,
                                   color:
                                     router.pathname ===
-                                    '/docs/' + nav[group][page][subPage]
+                                    docsPath + toc[group][page][subPage]
                                       ? theme.colors.blue
                                       : 'black',
                                 }}>
@@ -482,7 +504,7 @@ export default function DocLayout({ children }) {
                   return (
                     <NextLink
                       key={group + page}
-                      href={'/docs/' + nav[group][page]}
+                      href={docsPath + toc[group][page]}
                       passHref>
                       <Box
                         as="a"
@@ -490,7 +512,7 @@ export default function DocLayout({ children }) {
                           textDecoration: 'none',
                           fontSize: 14,
                           color:
-                            router.pathname === '/docs/' + nav[group][page]
+                            router.pathname === docsPath + toc[group][page]
                               ? theme.colors.blue
                               : 'black',
                         }}>
@@ -509,6 +531,7 @@ export default function DocLayout({ children }) {
           paddingLeft: 0,
           paddingRight: 0,
           paddingTop: 44,
+          paddingBottom: 80,
           medium: {
             paddingLeft: 300,
             paddingRight: 280,
@@ -526,6 +549,16 @@ export default function DocLayout({ children }) {
         <Content navigationVisible={navigationVisible} addHeading={addHeading}>
           {children}
         </Content>
+        <Line />
+        <Link
+          extend={{
+            borderBottomWidth: 2,
+            borderBottomStyle: 'solid',
+            borderBottomColor: theme.colors.blue,
+          }}
+          href={`https://github.com/robinweser/fela/edit/new-website/website/pages${router.pathname}.mdx`}>
+          Edit this page on GitHub →
+        </Link>
       </Layout>
       <Headings headings={headings} />
     </Template>
