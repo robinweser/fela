@@ -343,7 +343,9 @@ function Content({ navigationVisible, children, addHeading }) {
           ),
           hr: () => <Line />,
         }}>
-        <main>{children}</main>
+        <main style={{ display: navigationVisible ? 'none' : 'block' }}>
+          {children}
+        </main>
       </MDXProvider>
     </Box>
   )
@@ -370,6 +372,19 @@ export default function DocLayout({ children, toc, version }) {
 
   const docsPath = `/docs/${version}/`
   const currentPage = flatNav[router.pathname.substr(docsPath.length)]
+
+  useEffect(() => {
+    if (navigationVisible) {
+      const handleResize = () => {
+        if (window.innerWidth >= 800) {
+          setNavigationVisible(false)
+        }
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
+  }, [navigationVisible])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -558,7 +573,9 @@ export default function DocLayout({ children, toc, version }) {
             paddingRight: 0,
           },
         }}>
-        <Content addHeading={addHeading}>{children}</Content>
+        <Content navigationVisible={navigationVisible} addHeading={addHeading}>
+          {children}
+        </Content>
         <Line />
         <Link
           extend={{
