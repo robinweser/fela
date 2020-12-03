@@ -62,8 +62,7 @@ const rule = (props) => ({
 })
 ```
 
-**Note:**
-When using `:before` pseudo selector, make sure you are using nested quotes to set the content. Eg: `content: '" "'`
+> **Note:** When using `:before` pseudo selector, make sure you are using nested quotes to set the content. Eg: `content: '" "'`
 
 ### Media Queries
 
@@ -170,8 +169,6 @@ const rule = (props) => ({
 
 If you are familiar with CSS, you may have noticed that this was just a very small subset of CSS selectors. While we only support the above selectors for a reason, we also understand that there might be some edge cases (mostly with third-party libraries) where you want to use other selectors as well. Therefore we provide the `&`-prefix for nested selectors.
 
-> Warning: This is experimental. It basically renders the selector without any further validation.
-
 ```javascript
 const rule = (props) => ({
   color: 'red',
@@ -187,14 +184,13 @@ const rule = (props) => ({
 })
 ```
 
-<br />
-
 ---
 
 ## Related
 
-- [Combined Rules](../advanced/CombinedRules.md)
-- [API Reference - `Renderer.renderRule`](../api/fela/Renderer.md#renderrulerule-props-defaultprops)
+- [Rendering Rules](basics/renderer#renderrule)
+- [Combined Rules](advanced/combined-rules)
+- [API Reference - `Renderer.renderRule`](api/fela/renderer#renderrule)
 
 ### Tools
 

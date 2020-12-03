@@ -6,7 +6,7 @@ Keyframes are very similar to rules, in that they are also defined as functions 
 
 ## Keyframe Object
 
-The objects returned by keyframes are called _keyframe objects_ if they conform a special shape.<br />Each key in the object must be either a percentage value or the keywords `from` or `to`, which are equivalent to `0%` and `100%`. Those keys again need to reference objects containing all style declarations that should be animated. The nested objects have to conform to a [rule](Rules.md)'s [basic shape](Rules.md#basicshape).
+The objects returned by keyframes are called _keyframe objects_ if they conform a special shape.<br />Each key in the object must be either a percentage value or the keywords `from` or `to`, which are equivalent to `0%` and `100%`. Those keys again need to reference objects containing all style declarations that should be animated. The nested objects have to conform to a [rule](basics/rules)'s [basic shape](basics/rules#basic-shape).
 
 ```javascript
 const keyframe = (props) => ({
@@ -17,14 +17,12 @@ const keyframe = (props) => ({
 })
 ```
 
-<br />
-
 ---
 
 ## Related
 
-- [Rendering Keyframes](Renderer.md#renderkeyframe)
-- [API Reference - `Renderer.renderKeyframe` ](../api/fela/Renderer.md#renderkeyframekeyframe-props)
+- [Rendering Keyframes](basics/renderer#renderkeyframe)
+- [API Reference - `Renderer.renderKeyframe` ](api/fela/renderer#renderkeyframe)
 
 ### Tools
 

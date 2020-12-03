@@ -15,7 +15,7 @@ In your `bsconfig.json`, include `"reason-fela"` in the `bs-dependencies`.
 
 ## Creating a Fela renderer
 
-First let's create our Fela renderer. We can pass all the [configs](http://fela.js.org/docs/advanced/RendererConfiguration.html) that the Fela renderer accepts.
+First let's create our Fela [Renderer](basics/renderer) instance. We can pass all the [config](advanced/renderer-configuration) options that the Fela renderer accepts.
 
 ```reason name=FelaRenderer.re
 open Fela;
@@ -59,7 +59,7 @@ let make = (~children) =>
 
 ## Using the Hooks
 
-Now that our app is aware of the renderer, we can use the provided hooks in any component. The hooks are similar to react-fela's [useFela](http://fela.js.org/docs/api/bindings/useFela.html), but split into 3 different hooks for convenience.
+Now that our app is aware of the renderer, we can use the provided hooks in any component. The hooks are similar to react-fela's [useFela](api/react-fela/useFela), but split into 3 different hooks for convenience.
 
 ```reason name=RedText.re
 open ReactFela;
@@ -133,7 +133,7 @@ In your `bsconfig.json`, include `"@astrada/bs-css-core"` in the `bs-dependencie
 
 Now the only thing we need is a type converter which can be done using the `"%identity"` helper. You probably want to create a new utility mode e.g. `FelaUtils` that looks sth. like this:
 
-```reason
+```reason name=FelaUtils.re
 external fromBsCssCore: Css.style => Fela.style = "%identity";
 ```
 
@@ -166,11 +166,10 @@ let make = (~children) => {
 };
 ```
 
-<br />
-
 ---
 
 ## Related
 
-- [reason-fela]()
-- [bs-css-core]()
+- [reason-fela](https://github.com/robinweser/fela/tree/master/packages/reason-fela)
+- [bs-css-fela](https://github.com/astrada/bs-react-fela)
+- [bs-css-core](https://github.com/astrada/bs-css-core)

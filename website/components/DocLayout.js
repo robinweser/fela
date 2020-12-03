@@ -12,12 +12,12 @@ import NavItem from './NavItem'
 import Template from './Template'
 import Layout from './Layout'
 
-function Line() {
+function Line({ thickness = 1 }) {
   return (
     <Box
       marginTop={10}
       marginBottom={10}
-      height={1}
+      height={thickness}
       extend={{ backgroundColor: 'rgb(200, 200, 200)' }}
     />
   )
@@ -145,14 +145,23 @@ function Headings({ headings }) {
   )
 }
 
-function Content({ navigationVisible, children, addHeading }) {
+function Content({ navigationVisible, docsPath, children, addHeading }) {
   const { theme } = useFela()
 
   return (
-    <Box paddingTop={[4, , , 8]} paddingBottom={8}>
+    <Box>
       <MDXProvider
         components={{
-          a: Link,
+          a: ({ href, children }) => {
+            const isExtern = href.indexOf('http') !== -1
+            const resolvedHref = isExtern ? href : docsPath + href
+
+            return (
+              <Link href={resolvedHref} extern={isExtern}>
+                {children}
+              </Link>
+            )
+          },
           pre: ({ children }) => children,
           h1: ({ children }) => <Heading level={1}>{children}</Heading>,
           h2: ({ children }) => (
@@ -403,6 +412,14 @@ export default function DocLayout({ children, toc, version }) {
 
   return (
     <Template>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css"
+        />
+        <link rel="stylesheet" href="/fonts/dank/dmvendor.css" />
+        <title>Fela - {currentPage}</title>
+      </Head>
       <Box>
         <Box
           space={4}
@@ -427,17 +444,25 @@ export default function DocLayout({ children, toc, version }) {
             extend={{ cursor: 'pointer', height: '100%', width: 16 }}>
             <i className={'fas fa-' + (navigationVisible ? 'times' : 'bars')} />
           </Box>
-          <Box>{currentPage}</Box>
+
+          <Box
+            grow={1}
+            shrink={1}
+            extend={{
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              fontSize: 14,
+            }}>
+            {currentPage}
+          </Box>
+          <Link
+            href={`https://github.com/robinweser/fela/edit/new-website/website/pages${router.pathname}.mdx`}>
+            Edit
+          </Link>
         </Box>
       </Box>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css"
-        />
-        <link rel="stylesheet" href="/fonts/dank/dmvendor.css" />
-        <title>Fela - {currentPage}</title>
-      </Head>
+
       <Box
         minWidth={['100%', , 260]}
         paddingTop={[4, , 8]}
@@ -573,19 +598,28 @@ export default function DocLayout({ children, toc, version }) {
             paddingRight: 0,
           },
         }}>
-        <Content navigationVisible={navigationVisible} addHeading={addHeading}>
+        <Box
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          paddingTop={[4, , , 8]}
+          display={['none', , 'flex']}
+          extend={{ fontSize: 14 }}>
+          <Box>Docs / {currentPage}</Box>
+          <Box>
+            <Link
+              href={`https://github.com/robinweser/fela/edit/new-website/website/pages${router.pathname}.mdx`}>
+              <i className="fa fa-edit" /> Edit on GitHub
+            </Link>
+          </Box>
+        </Box>
+        <Spacer size={[4, , 8]} />
+        <Content
+          docsPath={docsPath}
+          navigationVisible={navigationVisible}
+          addHeading={addHeading}>
           {children}
         </Content>
-        <Line />
-        <Link
-          extend={{
-            borderBottomWidth: 2,
-            borderBottomStyle: 'solid',
-            borderBottomColor: theme.colors.blue,
-          }}
-          href={`https://github.com/robinweser/fela/edit/new-website/website/pages${router.pathname}.mdx`}>
-          Edit this page on GitHub →
-        </Link>
       </Layout>
       <Headings headings={headings} />
     </Template>

@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from 'kilvin'
 import { useFela } from 'react-fela'
 
-export default function Link({ href, children, highlight, extern, extend }) {
+export default function Link({ href, children, extern, extend }) {
   const { theme } = useFela()
 
   return (

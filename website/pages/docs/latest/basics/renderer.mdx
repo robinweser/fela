@@ -4,7 +4,7 @@ We have learned about all basic renderable elements which are rules, keyframes a
 
 The renderer is a single object that coordinates the whole rendering workflow. It also uses a special caching mechanism to access previously rendered styles faster and reduce the amount of DOM manipulations.
 
-To create a new renderer, Fela provides the [`createRenderer`](../api/fela/createRenderer.md) function.
+To create a new renderer, Fela provides the [`createRenderer`](api/fela/createRenderer) function.
 
 ```javascript
 import { createRenderer } from 'fela'
@@ -12,21 +12,22 @@ import { createRenderer } from 'fela'
 const renderer = createRenderer()
 ```
 
-We may optionally pass a configuration object as second parameter. Read the [Renderer Configuration](../advanced/RendererConfiguration.md) article for further information.
+We may optionally pass a configuration object as second parameter.<br />
+Read the [Renderer Configuration](advanced/renderer-configuration) article for further information.
 
 ## Rendering Styles
 
 The renderer provides dedicated render methods for each of the three renderable components which we introduced in the previous articles.
 
-- [renderRule](../api/fela/Renderer.md#renderrulerule-props)
-- [renderKeyframe](../api/fela/Renderer.md#renderkeyframe-props)
-- [renderFont](../api/fela/Renderer.md#renderfontfamily-files-properties)
+- [renderRule](api/fela/renderer#renderrule)
+- [renderKeyframe](api/fela/renderer#renderkeyframe)
+- [renderFont](api/fela/renderer#renderfont)
 
-> **Tip**: Read the tips and tricks of each render method first. Especially the [renderRule](../api/fela/Renderer.md#renderrulerule-props) tips are very helpful for beginners as well as advanced users.
+> **Tip**: Read the tips and tricks of each render method first. Especially the [renderRule](api/fela/renderer#renderrule) tips are very helpful for beginners as well as advanced users.
 
 ### renderRule
 
-Takes a [rule](Rules.md) and some `props` to resolve the rule. If no `props` are passed it defaults to an empty object.<br />
+Takes a [rule](basics/rules) and some `props` to resolve the rule. If no `props` are passed it defaults to an empty object.<br />
 It maps each declaration to unique atomic CSS classes and returns them combined.
 
 ```javascript
@@ -62,7 +63,7 @@ renderer.renderRule(rule, { fontSize: '15px' }) // => a b d
 
 ### renderKeyframe
 
-Takes a [keyframe](Keyframes.md) and some `props` to resolve the keyframe. If no `props` are passed it defaults to an empty object.
+Takes a [keyframe](basics/keyframes) and some `props` to resolve the keyframe. If no `props` are passed it defaults to an empty object.
 It returns the rendered animation name.
 It also adds the keyframe with both `@-webkit-` and `@-moz-` prefixes, but we will ignore them here for brevity.
 
@@ -102,7 +103,7 @@ renderer.renderKeyframe(keyframe, { toColor: 'blue' }) // => k2
 
 ### renderFont
 
-Rendering [fonts](Fonts.md) is a bit different. `renderFont` takes the font family and an array of font source files as mandatory arguments and an optional object containing additional font properties.
+Rendering [fonts](basics/fonts) is a bit different. `renderFont` takes the font family and an array of font source files as mandatory arguments and an optional object containing additional font properties.
 
 ```javascript
 import { createRenderer } from 'fela'
@@ -140,19 +141,17 @@ renderer.renderFont('Lato-Bold-Alias', files, {
 
 ## Advanced API
 
-Check out the [API Reference - Renderer](../api/fela/Renderer.md) to learn about all of its methods. This article only describes the basic rendering methods. It does not include `clear`, `subscribe` or even `renderStatic`.
-
-<br />
+Check out the [API Reference - Renderer](api/fela/renderer) to learn about all of its methods. This article only describes the basic rendering methods. It does not include `clear`, `subscribe` or even `renderStatic`.
 
 ---
 
 ## Related
 
-- [DOM Rendering](../advanced/DOMRendering.md)
-- [Server Rendering](../advanced/ServerRendering.md)
-- [Renderer Configuration](../advanced/RendererConfiguration.md)
-- [API Reference - Renderer](../api/fela/Renderer.md)
-- [API Reference - `createRenderer`](../api/fela/createRenderer.md)
+- [DOM Rendering](advanced/dom-rendering)
+- [Server Rendering](advanced/server-rendering)
+- [Renderer Configuration](advanced/renderer-configuration)
+- [API Reference - Renderer](api/fela/renderer)
+- [API Reference - `createRenderer`](api/fela/createRenderer)
 
 ### Tools
 

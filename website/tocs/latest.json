@@ -52,20 +52,23 @@
       "createRenderer": "api/fela-native/createRenderer",
       "Renderer": "api/fela-native/renderer"
     },
-    "react/preact/inferno": {
-      "connect": "api/bindings/connect",
-      "createComponent": "api/bindings/createComponent",
-      "createComponentWithProxy": "api/bindings/createComponentWithProxy",
-      "FelaComponent": "api/bindings/FelaComponent",
-      "FelaRenderer": "api/bindings/FelaRenderer",
-      "RendererProvider": "api/bindings/RendererProvider",
-      "RendererContext": "api/bindings/RendererContext",
-      "ThemeProvider": "api/bindings/ThemeProvider",
-      "ThemeContext": "api/bindings/ThemeContext",
-      "withTheme": "api/bindings/withTheme",
-      "renderToNodeList": "api/bindings/renderToNodeList",
-      "useFela": "api/bindings/useFela",
-      "fe": "api/bindings/fe"
+    "react-fela": {
+      "connect": "api/react-fela/connect",
+      "createComponent": "api/react-fela/createComponent",
+      "createComponentWithProxy": "api/react-fela/createComponentWithProxy",
+      "FelaComponent": "api/react-fela/FelaComponent",
+      "FelaRenderer": "api/react-fela/FelaRenderer",
+      "RendererProvider": "api/react-fela/RendererProvider",
+      "RendererContext": "api/react-fela/RendererContext",
+      "ThemeProvider": "api/react-fela/ThemeProvider",
+      "ThemeContext": "api/react-fela/ThemeContext",
+      "withTheme": "api/react-fela/withTheme",
+      "renderToNodeList": "api/react-fela/renderToNodeList",
+      "useFela": "api/react-fela/useFela",
+      "fe": "api/react-fela/fe"
+    },
+    "jest-react-fela": {
+      "createSnapshot": "api/jest-react-fela/createSnapshot"
     }
   },
   "Extra": {

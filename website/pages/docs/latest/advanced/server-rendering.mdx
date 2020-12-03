@@ -1,7 +1,7 @@
 # Server Rendering
 
 As [already mentioned](../introduction/Benefits.md), Fela supports server-side rendering out of the box.
-All you need to do is call `renderToMarkup` once you are finished rendering styles and you will get the final HTML markup for the `<style>` elements.<br />
+All you need to do is call [`renderToMarkup`](api/fela-dom/renderToMarkup) or, depending on your scenario, [`renderToSheetList`](api/fela-dom/renderToSheetList) once you are finished rendering styles and you will get the final HTML markup for the `<style>` elements.<br />
 That's it. No magic. No extra configuration.
 
 Usually you will render all styles on the server and inject the rendered CSS markup into the HTML markup which gets sent to the client.
@@ -10,23 +10,21 @@ Usually you will render all styles on the server and inject the rendered CSS mar
 
 The following code shows a simple server example using [express](https://github.com/expressjs/express) and [React](https://github.com/facebook/react).
 
-```javascript
+```javascript name=server.js
 import express from 'express'
 import React from 'react'
 import { createRenderer } from 'fela'
 import { renderToMarkup } from 'fela-dom'
-
-const rule = (props) => ({
-  color: props.color,
-  fontSize: '15px',
-})
+import { RendererProvider, useFela } from 'react-fela'
 
 // simplified demo app
-const App = ({ renderer }) => (
-  <div className={renderer.renderRule(rule, { color: 'blue' })}>
-    Hello World
-  </div>
-)
+const App = () => {
+  const { css } = useFela()
+
+  return (
+    <div className={css({ color: 'blue', fontSize: '15px' })}>Hello World</div>
+  )
+}
 
 // Our initial html template
 const appHTML = `
@@ -57,7 +55,11 @@ server.get('/', (req, res) => {
     'html, body'
   )
 
-  const htmlMarkup = renderToString(<App renderer={renderer} />)
+  const htmlMarkup = renderToString(
+    <RendererProvider renderer={renderer}>
+      <App />
+    </RendererProvider>
+  )
 
   const styleMarkup = renderToMarkup(renderer)
   // inject the rendered html and css markup into the basic app html
@@ -72,7 +74,7 @@ server.listen(8080, 'localhost')
 
 ### Rendered Markup
 
-```html
+```html name=index.html
 <!DOCTYPE html>
 <html>
   <head>
@@ -103,15 +105,15 @@ server.listen(8080, 'localhost')
 
 ## Advanced Usage
 
-TBD.
-Mention Gatsby, Next etc.
+The above example highlights the basic mechanics, but we do not recommend writing your own SSR logic. <br />
+There are tools such as [Next](https://nextjs.org) and [Gatsby](https://www.gatsbyjs.com) which can do that for you in a way more clever way. <br/>
 
-<br />
+> Check out all existing [Integrations](intro/ecosystem#integrations).
 
 ---
 
 ## Related
 
-- [API Reference - `renderToMarkup`](../api/fela-dom/renderToMarkup.md)
-- [API Reference - `renderToSheetList`](../api/fela-dom/renderToSheetList.md)
-- [API Reference - `rehydrate`](../api/fela-dom/rehydrate.md)
+- [API Reference - `renderToMarkup`](api/fela-dom/renderToMarkup)
+- [API Reference - `renderToSheetList`](api/fela-dom/renderToSheetList)
+- [API Reference - `rehydrate`](api/fela-dom/rehydrate)

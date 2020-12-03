@@ -60,7 +60,7 @@ const element = (
 ## Solution: Combined Rules
 
 By using combined rules we can merge multiple rules into a single one. Again, the order matters. But this time we can determine the order on our own.
-To combine rules, Fela provides the [`combineRules`](../api/fela/combineRules.md) helper.
+To combine rules, Fela provides the [`combineRules`](api/fela/combineRules) helper.
 
 ```javascript
 import { createRenderer, combineRules } from 'fela'
@@ -84,10 +84,8 @@ const elementBA = (
 
 It does not matter whether `ruleA` and `ruleB` get rendered first or if they won't get rendered at all. `ruleAB` and `ruleBA` are completely new rules which are not dependent on their base rules.
 
-<br />
-
 ---
 
 ## Related
 
-- [API Reference - `combineRules`](../api/fela/combineRules.md)
+- [API Reference - `combineRules`](api/fela/combineRules)

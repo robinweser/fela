@@ -1,6 +1,6 @@
 # Renderer Configuration
 
-We already learned that the renderer is configurable with e.g. [plugins](../advanced/Plugins.md), but there are some more options.
+We already learned that the renderer is configurable with e.g. [plugins](advanced/plugins), but there are some more options.
 
 In general, our renderer accepts a config object. The following table shows each configuration option, its expected value, its default value and what it is used for.
 
@@ -8,9 +8,9 @@ We might introduce more configuration options with future releases, so be sure t
 
 | Option              | Value         | Default                           | Description                                                                                                                                                                                         |
 | ------------------- | ------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| plugins             | _(Array?)_    |                                   | A list of [plugins](../advanced/Plugins.md) to process styles before rendering                                                                                                                      |
+| plugins             | _(Array?)_    |                                   | A list of [plugins](advanced/plugins) to process styles before rendering                                                                                                                            |
 | keyframePrefixes    | _(Array?)_    | `['-webkit-', '-moz-']`           | A list of which additional `@keyframes` prefixes are rendered                                                                                                                                       |
-| enhancers           | _(Array?)_    |                                   | A list of [enhancers](../advanced/Enhancers.md) to enhance the renderer                                                                                                                             |
+| enhancers           | _(Array?)_    |                                   | A list of [enhancers](advanced/enhancers) to enhance the renderer                                                                                                                                   |
 | mediaQueryOrder     | _(Array?)_    |                                   | An explicit order in which `@media` queries are rendered                                                                                                                                            |
 | sortMediaQuery      | _Function_    |                                   | A function with the same signature as sort functions in e.g. `Array.prototype.sort` for dynamically sorting media queries. Maps over an array of media query strings. Overwrites `mediaQueryOrder`. |
 | selectorPrefix      | _(string?)_   |                                   | Prepend a static prefix to every generated class and keyframe. It must only consist of `a-zA-Z0-9-_` and start with `a-zA-Z_`.                                                                      |
@@ -113,12 +113,10 @@ console.log(renderToString(renderer))
 }
 ```
 
-<br />
-
 ---
 
 ## Related
 
-- [Plugins](Plugins.md)
-- [Enhancers](Enhancers.md)
-- [API Reference - `createRenderer`](../api/fela/createRenderer.md)
+- [Plugins](/advanced/plugins)
+- [Enhancers](/advanced/enhancers)
+- [API Reference - `createRenderer`](api/fela/createRenderer)

@@ -4,7 +4,7 @@ Like every solution, also Fela is not **the** ultimate solution and should not b
 
 ## Computed Selectors
 
-The unique computed selectors are quite handy as they [prevent namespacing conflicts](Benefits.md#local-namespace). But they are not designed to be human-readable nor to be mutated at all. <br />
+The unique computed selectors are quite handy as they [prevent namespacing conflicts](intro/benefits#local-namespace). But they are not designed to be human-readable nor to be mutated at all. <br />
 However, if you need to mutate the styles from outside, consider providing an API to pass the props.
 
 ## Shorthand & Longhand Properties
@@ -31,8 +31,6 @@ const rule = (props) => ({
 ```
 
 It might be more code to type, but its also more self-explanatory and descriptive.<br />
-
-> PS: There will soon be a tool, that automatically checks for mixed shorthand / longhand properties and throws a warning if used together.
 
 ## CSS properties that contain double quotes
 

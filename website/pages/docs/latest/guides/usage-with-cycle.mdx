@@ -1,6 +1,7 @@
 # Usage with Cycle
 
-Fela was always designed with React in mind, but is **not** bound to React by default. If you want to use it with Cycle, you should also install the unofficial [Cycle bindings for Fela](https://github.com/wcastand/cycle-fela).
+Fela was always designed with React in mind, but is **not** bound to React by default.<br />
+If you want to use it with Cycle, you should also install the unofficial [Cycle bindings for Fela](https://github.com/wcastand/cycle-fela).
 
 ```bash
 yarn add cycle-fela
@@ -55,13 +56,13 @@ run(main, {
 An options object which let you pass the fela renderer options like plugins, enhancers.
 You can also use it to pass a custom DOMElement for your style with `customStyleNode` and your theme for fela.
 
-the third parameter is an array of [staticRules](http://fela.js.org/docs/api/fela/Renderer.html#renderstaticstyle-reference) for fela.
+The third parameter is an array of [static styles](advanced/static-styles).
 
-You can find more informations about the options for `makeFelaDomDriver` [here](https://github.com/wcastand/cycle-fela#makefeladomdriver)
+> Read more about the [options for `makeFelaDomDriver`](https://github.com/wcastand/cycle-fela#makefeladomdriver).
 
-### createComponent
+## createComponent
 
-cycle-fela exposes `createComponent` like react-fela.
+cycle-fela exposes `createComponent` like react-fela.<br />
 [createComponent](https://github.com/wcastand/cycle-fela#createcomponent) help you create presentational components that can be reused in your app.
 
 ```javascript
@@ -83,7 +84,9 @@ run(main, {
 
 ## Composition
 
-For composition, you can use `combineRules` e.g:
+For composition, you can either use [`combineRules`](api/fela/combineRules) or `createComponent` itself.
+
+### combineRules
 
 ```javascript
 import { combineRules } from 'fela'
@@ -96,7 +99,7 @@ const BoldRed = combineRules(Red, Bold)
 export default createComponent(BoldRed, 'span')
 ```
 
-Or `createComponent` like this:
+### createComponent
 
 ```javascript
 import { createComponent } from 'cycle-fela'
@@ -109,8 +112,8 @@ export default createComponent(Bold, RedSpan)
 
 ## Theming
 
-Like `react-fela`, we provide a way to pass a theme to your components.
-the theme can be passed through options of `makeFelaDomDriver`:
+Just like the React bindings, we provide a way to pass a theme to your components.
+The theme can be passed as an option to `makeFelaDomDriver`.
 
 ```javascript
 const theme = { primaryColor: 'red' }
@@ -118,15 +121,10 @@ const theme = { primaryColor: 'red' }
 makeFelaDomDriver('#app', { theme })
 ```
 
-## More information
-
-You can find more informations [here](https://github.com/wcastand/cycle-fela) and a complete example [here](https://github.com/wcastand/cycle-fela-example)
-
-<br />
-
 ---
 
 ## Related
 
 - [cycle-fela](https://github.com/wcastand/cycle-fela)
-- [API Reference - `combineRules` ](https://github.com/wcastand/fela/blob/master/docs/api/fela/combineRules.md)
+- [Usage Example](https://github.com/wcastand/cycle-fela-example)
+- [API Reference - `combineRules` ](api/fela/combineRules)
