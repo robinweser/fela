@@ -16,9 +16,9 @@ Depending on the browser, it automatically removes unsupported rules.
 import { createRenderer } from 'fela'
 import { render } from 'fela-dom'
 
-const rule = (props) => ({
+const rule = ({ size }) => ({
   backgroundColor: 'red',
-  fontSize: props.size,
+  fontSize: size,
   color: 'blue',
 })
 
@@ -28,9 +28,14 @@ renderer.renderRule(rule, { size: '12px' }) // => a b c
 
 render(renderer)
 
-// automatically adds the rule to the mountNode
-renderer.renderRule(rule, { size: '15px ' }) // => a d c
+// automatically adds the rule to the respective style node
+renderer.renderRule(rule, { size: '16px' }) // => a d c
 ```
+
+## Advanced Usage
+
+Unless working in a plain JavaScript environment, you are usually not calling `render` by yourself.<br />
+Most bindings such as [react-fela](https://github.com/robinweser/fela/tree/master/packages/react-fela) and [vue-fela](https://github.com/wagerfield/vue-fela) will automatically do that for you.
 
 ---
 
