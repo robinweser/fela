@@ -2,7 +2,8 @@
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-multiple-selectors.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-multiple-selectors.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-multiple-selectors@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-multiple-selectors.svg"></a>
 
-Resolves multiple selectors into single separate object properties.
+Resolves comma-separated multiple selectors into single separate object properties.<br />
+It also removes whitespace between selectors.
 
 ## Installation
 
