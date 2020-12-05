@@ -4,31 +4,7 @@ exports[`render (development) should correctly sort rules 1`] = `
 "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    .a {
-      color: blue
-    }
-
-    .e {
-      color: red
-    }
-
-    .c:hover {
-      color: red
-    }
-
-    .f:hover {
-      color: blue
-    }
-
-    .b:focus-within {
-      color: black
-    }
-
-    .d:active {
-      color: yellow
-    }
-  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
 </head>
 
 <body></body>
@@ -78,15 +54,7 @@ exports[`render (development) should create style nodes and render CSS rules 1`]
       }
     }
   </style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    .a {
-      background-color: red
-    }
-
-    .b {
-      color: blue
-    }
-  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
 </head>
 
 <body></body>
@@ -101,14 +69,6 @@ exports[`render (development) should not overwrite rehydrated styles 1`] = `
   <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\">
     .b {
       color: yellow
-    }
-
-    .f {
-      background-color: red
-    }
-
-    .g {
-      color: blue
     }
 
     .c:hover {
@@ -138,15 +98,7 @@ exports[`render (development) should not render multiple times 1`] = `
 "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\">
-    .a {
-      background-color: red
-    }
-
-    .b {
-      color: blue
-    }
-  </style>
+  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
 </head>
 
 <body></body>
