@@ -47,12 +47,31 @@ function addUnit(
   return style
 }
 
-function createSpecific(defaultUnit, propertyMap, isUnitlessProperty) {
-  return {
-    value: (value, property) =>
-      !isUnitlessProperty(property)
-        ? addUnitIfNeeded(value, propertyMap[property] || defaultUnit)
-        : value,
+function createOptimized(defaultUnit, propertyMap, isUnitlessProperty) {
+  return (props) => {
+    if (!isUnitlessProperty(props.property)) {
+      const valueType = typeof props.value
+      /* eslint-disable eqeqeq */
+      if (
+        (valueType === 'number' ||
+          (valueType === 'string' && props.value == parseFloat(props.value))) &&
+        props.value != 0
+      ) {
+        const unit = propertyMap[props.property] || defaultUnit
+        props.value += unit
+      }
+
+      // handle arrays
+      if (Array.isArray(props.value)) {
+        const propertyUnit = propertyMap[props.property] || defaultUnit
+
+        props.value = props.value.map((value) =>
+          addUnitIfNeeded(value, propertyUnit)
+        )
+      }
+    }
+
+    return props
   }
 }
 
@@ -64,7 +83,11 @@ export default function unit(
   const plugin = (style: Object) =>
     addUnit(style, defaultUnit, propertyMap, isUnitlessProperty)
 
-  plugin.specific = createSpecific(defaultUnit, propertyMap, isUnitlessProperty)
+  plugin.optimized = createOptimized(
+    defaultUnit,
+    propertyMap,
+    isUnitlessProperty
+  )
 
   return plugin
 }

@@ -20,7 +20,7 @@
   "workspaces": [
     "packages/*",
     "examples/*",
-    "benchmarks/*"
+    "benchmarks"
   ],
   "jest": {
     "rootDir": "packages",

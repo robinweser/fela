@@ -1,11 +1,15 @@
 /* @flow */
 import isPlainObject from 'isobject'
+import { RULE_TYPE } from 'fela-utils'
+
+import type { StyleType } from '../../../flowtypes/StyleType'
 
 function addImportantToValue(value: any): any {
+  const valueType = typeof value
+
   if (
-    typeof value === 'number' ||
-    (typeof value === 'string' &&
-      value.toLowerCase().indexOf('!important') === -1)
+    valueType === 'number' ||
+    (valueType === 'string' && value.toLowerCase().indexOf('!important') === -1)
   ) {
     return `${value}!important`
   }
@@ -13,28 +17,11 @@ function addImportantToValue(value: any): any {
   return value
 }
 
-function isAnimation(style: Object): boolean {
-  const styleNames = Object.getOwnPropertyNames(style)
-  let isAnimationItem = false
-
-  for (let i = 0; i < styleNames.length; i++) {
-    const property = styleNames[i].toString()
-
-    isAnimationItem =
-      property === 'to' ||
-      property.includes('from') ||
-      property.includes('animation') ||
-      property.includes('%')
-  }
-
-  return isAnimationItem
-}
-
-function addImportant(style: Object): Object {
-  if (!isAnimation(style)) {
+function addImportant(style: Object, type: StyleType): Object {
+  if (type === RULE_TYPE) {
     for (const property in style) {
       const value = style[property]
-      if (property === 'className') {
+      if (property === 'className' || property === '_className') {
         // this is a fixed classname, not a style rule - leave as is
       } else if (isPlainObject(value)) {
         style[property] = addImportant(value)
@@ -47,6 +34,10 @@ function addImportant(style: Object): Object {
   }
 
   return style
+}
+
+addImportant.optimized = (props) => {
+  props.value = addImportantToValue(props.value)
 }
 
 export default () => addImportant
