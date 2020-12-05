@@ -386,6 +386,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       .filter((plugin) => plugin.optimized)
       .map((plugin) => plugin.optimized)
 
+    // only enable the cache map if we have optimized plugins
     if (renderer.optimizedPlugins.length > 0) {
       renderer.plugins = renderer.plugins.filter((plugin) => !plugin.optimized)
       renderer.cacheMap = {}
