@@ -126,6 +126,27 @@ describe('Embedded plugin', () => {
     expect(renderToString(renderer)).toMatchSnapshot()
   })
 
+  it('should render font string fallbacks', () => {
+    const rule = () => ({
+      color: 'red',
+      fontFace: [
+        {
+          fontFamily: 'Arial',
+          src: ['arial-regular.svg', 'arial-regular.ttf'],
+          fontWeight: 400,
+        },
+        'sans-serif',
+      ],
+    })
+
+    const renderer = createRenderer({
+      plugins: [embedded()],
+    })
+    renderer.renderRule(rule)
+
+    expect(renderToString(renderer)).toMatchSnapshot()
+  })
+
   it('should render base64 fonts', () => {
     const rule = () => ({
       fontFace: {
