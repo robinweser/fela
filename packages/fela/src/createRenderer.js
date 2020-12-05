@@ -41,73 +41,13 @@ import type {
 } from '../../../flowtypes/DOMRenderer'
 import type { FontProperties } from '../../../flowtypes/FontProperties'
 
-function createClusteredPlugin(plugins: Array<Object> = []) {
-  return function clusteredPlugin(style: Object, type, renderer, props) {
-    let newStyle = {}
-
-    for (const prop in style) {
-      const val = style[prop]
-
-      let property = prop
-      let value =
-        typeof val === 'object' && !Array.isArray(val)
-          ? clusteredPlugin(val)
-          : val
-
-      arrayEach(plugins, (plugin) => {
-        if (plugin.property) {
-          property = plugin.property(property, type, renderer, props)
-        }
-        if (plugin.value) {
-          value = plugin.value(value, property, type, renderer, props)
-        }
-      })
-
-      newStyle[property] = value
-    }
-
-    return newStyle
-  }
-}
-
-function clusterPlugins(plugins) {
-  const clustered = []
-  let currentCluster = []
-
-  for (let i = 0; i < plugins.length; ++i) {
-    const current = plugins[i]
-
-    if (current.specific) {
-      currentCluster.push(current.specific)
-    } else {
-      if (currentCluster.length > 0) {
-        clustered.push(createClusteredPlugin(currentCluster))
-        currentCluster = []
-      }
-
-      clustered.push(current)
-    }
-  }
-
-  if (currentCluster.length > 0) {
-    clustered.push(createClusteredPlugin(currentCluster))
-  }
-
-  return clustered
-}
-
 export default function createRenderer(
   config: DOMRendererConfig = {}
 ): DOMRenderer {
-  const configPlugins = config.plugins || []
-  const plugins = config.optimizePlugins
-    ? clusterPlugins(configPlugins)
-    : configPlugins
-
   let renderer: DOMRenderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
-    plugins,
+    plugins: config.plugins || [],
     sortMediaQuery:
       config.sortMediaQuery || sortMediaQuery(config.mediaQueryOrder),
     supportQueryOrder: config.supportQueryOrder || [],
@@ -322,7 +262,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
             support
           )
 
-          if (config.optimizeCaching) {
+          if (renderer.cacheMap) {
             if (!renderer.cacheMap.hasOwnProperty(declarationReference)) {
               const pluginInterface = {
                 property,
@@ -333,12 +273,12 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
               }
 
               const processed = arrayReduce(
-                renderer.rulePlugins,
+                renderer.optimizedPlugins,
                 (processed, plugin) => plugin(processed, renderer),
                 pluginInterface
               )
 
-              let cacheReference = generateDeclarationReference(
+              const cacheReference = generateDeclarationReference(
                 processed.property,
                 processed.value,
                 processed.pseudo,
@@ -442,8 +382,14 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
   renderer.keyframePrefixes.push('')
 
   if (config.optimizeCaching) {
-    renderer.cacheMap = {}
-    renderer.rulePlugins = config.rulePlugins || []
+    renderer.optimizedPlugins = renderer.plugins
+      .filter((plugin) => plugin.optimized)
+      .map((plugin) => plugin.optimized)
+
+    if (renderer.optimizedPlugins.length > 0) {
+      renderer.plugins = renderer.plugins.filter((plugin) => !plugin.optimized)
+      renderer.cacheMap = {}
+    }
   }
 
   if (config.enhancers) {

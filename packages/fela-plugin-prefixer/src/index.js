@@ -52,6 +52,7 @@ addVendorPrefixes.optimized = (props) => {
 
   if (prefixed !== cssDeclaration) {
     const [property, value] = prefixed.split(/:(.+)/)
+    // TODO: do we really need to camelCase here?
     props.property = camelCaseProperty(property)
     props.value = value.slice(0, -1)
   }
