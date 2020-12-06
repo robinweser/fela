@@ -16,7 +16,7 @@ function getRegex(specificityPrefix) {
     regexMap[specificityPrefix] = new RegExp(
       `${escapeRegExp(
         specificityPrefix
-      )}[.]([0-9a-z_-]+)([.][0-9a-z_-]+){0,}([^{]+)?{([^:]+):([^}]+)}`,
+      )}[.]([\w-]+)([.][\w-]+){0,}([^{]+)?{([^:]+):([^}]+)}`,
       'gi'
     )
   }
