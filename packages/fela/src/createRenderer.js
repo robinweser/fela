@@ -29,6 +29,7 @@ import generateClassName from './generateClassName'
 import generateFontSource from './generateFontSource'
 import generateStaticReference from './generateStaticReference'
 import getFontLocals from './getFontLocals'
+import getPropertyPriority from './getPropertyPriority'
 import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
 import validateSelectorPrefix from './validateSelectorPrefix'
@@ -51,6 +52,7 @@ export default function createRenderer(
       config.sortMediaQuery || sortMediaQuery(config.mediaQueryOrder),
     supportQueryOrder: config.supportQueryOrder || [],
     styleNodeAttributes: config.styleNodeAttributes || {},
+    propertyPriority: config.propertyPriority || {},
     ruleOrder: [
       /^:link/,
       /^:visited/,
@@ -66,6 +68,7 @@ export default function createRenderer(
 
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
+
 
     nodes: {},
     scoreIndex: {},
@@ -287,7 +290,8 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
             const selector = generateCSSSelector(
               className,
               pseudo,
-              config.specificityPrefix
+              config.specificityPrefix,
+              renderer.propertyPriority[property]
             )
 
             const change = {

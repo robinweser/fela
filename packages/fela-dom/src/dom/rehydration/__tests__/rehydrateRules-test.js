@@ -8,6 +8,15 @@ describe('Rehydrating rules', () => {
       )
     ).toMatchSnapshot()
   })
+
+  it.only('should rehydrate prioritized longhand rules', () => {
+    expect(
+      rehydrateRules(
+        '.a.a{padding-left:20px}.b{padding:10px}.c.c:hover{color:red}'
+      )
+    ).toMatchSnapshot()
+  })
+
   it('should rehydrate the renderer cache with specifity prefix', () => {
     expect(
       rehydrateRules(

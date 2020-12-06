@@ -9,6 +9,21 @@ function escapeRegExp(string) {
   return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&')
 }
 
+// we reuse regexes for improved performance
+const regexMap = {}
+function getRegex(specificityPrefix) {
+  if (!regexMap[specificityPrefix]) {
+    regexMap[specificityPrefix] = new RegExp(
+      `${escapeRegExp(
+        specificityPrefix
+      )}[.]([0-9a-z_-]+)([.][0-9a-z_-]+){0,}([^{]+)?{([^:]+):([^}]+)}`,
+      'gi'
+    )
+  }
+
+  return regexMap[specificityPrefix]
+}
+
 export default function rehydrateRules(
   css: string,
   media: string = '',
@@ -17,19 +32,14 @@ export default function rehydrateRules(
   specificityPrefix?: string = ''
 ): Object {
   let decl
-  const DECL_REGEX = new RegExp(
-    `${escapeRegExp(
-      specificityPrefix
-    )}[.]([0-9a-z_-]+)([^{]+)?{([^:]+):([^}]+)}`,
-    'gi'
-  )
+  const DECL_REGEX = getRegex(specificityPrefix)
 
   // This excellent parsing implementation was originally taken from Styletron and modified to fit Fela
   // https://github.com/rtsao/styletron/blob/master/packages/styletron-client/src/index.js#L47
   /* eslint-disable no-unused-vars,no-cond-assign */
   while ((decl = DECL_REGEX.exec(css))) {
     // $FlowFixMe
-    const [ruleSet, className, pseudo, property, value] = decl
+    const [ruleSet, className, _, pseudo, property, value] = decl
     /* eslint-enable */
 
     const declarationReference = generateDeclarationReference(
