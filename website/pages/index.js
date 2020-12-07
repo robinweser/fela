@@ -7,10 +7,11 @@ import Template from '../components/Template'
 import Layout from '../components/Layout'
 import CodeBlock from '../components/CodeBlock'
 import Button from '../components/Button'
+import LogoBanner from '../components/LogoBanner'
 
-import companies from '../companies.json'
+import companies from '../data/companies.json'
 
-export default () => {
+export default function Page() {
   const { theme } = useFela()
 
   return (
@@ -25,14 +26,9 @@ export default () => {
         paddingRight={5}
         space={[2, , , 8]}
         extend={{ backgroundColor: theme.colors.background }}>
-        <Box
-          as="img"
-          width="100%"
-          alignSelf="center"
-          maxWidth={[300, , 500, , 550]}
-          src="/logo.svg"
-          alt="Fela’s logo"
-        />
+        <Box width="100%" alignSelf="center" maxWidth={[300, , 500, , 550]}>
+          <LogoBanner />
+        </Box>
         <Box
           alignSelf="center"
           paddingTop={10}
@@ -154,23 +150,31 @@ export default () => {
         paddingBottom={[10, , 20]}
         space={5}
         extend={{ backgroundColor: theme.colors.background }}>
-        <Box
-          as="h2"
-          alignSelf="center"
-          extend={{
-            fontSize: 26,
-            fontWeight: 500,
-          }}>
-          Companies using Fela
+        <Box alignSelf="center" alignItems="center" space={1}>
+          <Box
+            as="h2"
+            extend={{
+              fontSize: 26,
+              fontWeight: 500,
+            }}>
+            Companies using Fela.
+          </Box>
+          <Box
+            extend={{
+              width: 70,
+              height: 2,
+              backgroundColor: theme.colors.blue,
+            }}
+          />
         </Box>
-        <Box
+        {/* <Box
           as="p"
           alignSelf="center"
           extend={{ lineHeight: 1.5, textAlign: 'center' }}>
           These companies amongst others rely on Fela for the apps and websites.
           <br />
           Many actively contribute back or even sponsor the project!
-        </Box>
+        </Box> */}
         <Box
           alignItems="center"
           justifyContent="center"
@@ -213,50 +217,6 @@ export default () => {
             )
           })}
         </Box>
-      </Box>
-      <Box
-        padding={8}
-        extend={{ backgroundColor: theme.colors.blue, color: 'white' }}>
-        <Layout>
-          <Box as="p" display="inline" extend={{ lineHeight: 1.5 }}>
-            Fela is licensed under the{' '}
-            <Box
-              as="a"
-              href="http://opensource.org/licenses/MIT"
-              display="inline"
-              extend={{ color: theme.colors.cyan, textDecoration: 'none' }}>
-              MIT License
-            </Box>
-            .<br />
-            Documentation is licensed under the{' '}
-            <Box
-              as="a"
-              href="http://creativecommons.org/licenses/by/4.0/"
-              display="inline"
-              extend={{ color: theme.colors.cyan, textDecoration: 'none' }}>
-              Creative Commons License
-            </Box>
-            .
-            <br />
-            Written with ❤︎ by{' '}
-            <Box
-              as="a"
-              href="https://weser.io"
-              display="inline"
-              extend={{ color: theme.colors.cyan, textDecoration: 'none' }}>
-              Robin Weser
-            </Box>{' '}
-            and its{' '}
-            <Box
-              as="a"
-              href="https://github.com/robinweser/fela/graphs/contributors"
-              display="inline"
-              extend={{ color: theme.colors.cyan, textDecoration: 'none' }}>
-              great contributors
-            </Box>
-            .
-          </Box>
-        </Layout>
       </Box>
     </>
   )

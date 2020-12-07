@@ -15,10 +15,13 @@ export default function App({ Component, pageProps, renderer }) {
 
   if (router.pathname.indexOf('docs') !== -1) {
     const version = router.pathname.split('/')[2]
-    const toc = require('../tocs/' + version)
+    const toc = require('../data/tocs/' + version + '.json')
+    const headings = require('../data/headings' +
+      router.pathname.replace('/docs', '') +
+      '.json')
 
     component = (
-      <DocLayout toc={toc} version={version}>
+      <DocLayout toc={toc} version={version} headings={headings}>
         {component}
       </DocLayout>
     )

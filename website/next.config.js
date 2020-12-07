@@ -4,9 +4,25 @@ var withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const mdxRenderer = `
+  import React from 'react'
+  import { mdx } from '@mdx-js/react'
+
+  export async function getStaticProps () {
+    return {
+      props: {
+        foo: 'bar'
+      }
+    }
+  }
+`
+
 module.exports = withBundleAnalyzer(
   withMDX({
     extension: /\.(md|mdx)$/,
+    options: {
+      renderer: mdxRenderer,
+    },
   })({
     pageExtensions: ['js', 'mdx'],
     target: 'serverless',

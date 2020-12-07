@@ -4,9 +4,10 @@
   "version": "11.4.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn data && next build",
     "export": "next export",
-    "start": "next start"
+    "start": "next start",
+    "data": "babel-node scripts/generate-headings.js"
   },
   "license": "MIT",
   "dependencies": {
@@ -26,8 +27,15 @@
     "react-fela": "^11.4.0"
   },
   "devDependencies": {
+    "@babel/node": "^7.12.6",
     "@mdx-js/loader": "^1.6.19",
+    "@mdx-js/runtime": "^1.6.22",
     "@next/bundle-analyzer": "^9.5.5",
-    "@next/mdx": "^9.5.5"
+    "@next/mdx": "^9.5.5",
+    "babel-node": "^0.0.1-security",
+    "fs-extra": "^9.0.1",
+    "jsdom": "^16.4.0",
+    "react-test-renderer": "^17.0.1",
+    "recursive-readdir": "^2.2.2"
   }
 }

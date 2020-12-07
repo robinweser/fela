@@ -33,4 +33,6 @@ coverage/
 dist
 .next
 
+**/data/headings
+
 \.history/

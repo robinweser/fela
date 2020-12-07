@@ -39,6 +39,10 @@
     "logo": "bookmyshow.png",
     "url": "https://in.bookmyshow.com/events"
   },
+  "Hareetz": {
+    "logo": "hareetz.png",
+    "url": "https://www.haaretz.co.il"
+  },
   "abilis": {
     "logo": "abilis.png",
     "url": "https://www.abilis.de"
@@ -51,6 +55,10 @@
     "logo": "espressive.png",
     "url": "https://www.espressive.com"
   },
+  "Ackee": {
+    "logo": "ackee.png",
+    "url": "https://www.ackee.cz"
+  },
   "Indoqa": {
     "logo": "indoqa.png",
     "url": "https://www.indoqa.com"
@@ -61,7 +69,7 @@
   },
   "MediaFire": {
     "logo": "mediafire.png",
-    "url": "https://m.mediafire.com"
+    "url": "https://www.mediafire.com"
   },
   "Net-A-Porter": {
     "logo": "netaporter.png",

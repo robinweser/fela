@@ -11,6 +11,8 @@ import CodeBlock from './CodeBlock'
 import NavItem from './NavItem'
 import Template from './Template'
 import Layout from './Layout'
+import Heading from './Heading'
+import versions from '../versions.json'
 
 function Line({ thickness = 1 }) {
   return (
@@ -22,7 +24,6 @@ function Line({ thickness = 1 }) {
     />
   )
 }
-import versions from '../versions.json'
 
 function getFlatNav(nav, flat = {}, prefix = '') {
   Object.keys(nav).forEach((title) => {
@@ -36,70 +37,6 @@ function getFlatNav(nav, flat = {}, prefix = '') {
   })
 
   return flat
-}
-
-function beautifyId(text) {
-  return text.replace(/ /gi, '-').toLowerCase()
-}
-
-function getId(children, level, fixedId) {
-  if (fixedId) {
-    return fixedId
-  }
-
-  return typeof children === 'string' && level > 1
-    ? encodeURI(beautifyId(children))
-    : undefined
-}
-
-function getFixedId(children) {
-  if (typeof children === 'string' && children.indexOf(';;') !== 0) {
-    const [text, fixedId] = children.split(';;')
-
-    if (fixedId && fixedId.length > 0) {
-      return [text, fixedId]
-    }
-  }
-
-  return [children]
-}
-
-function Heading({ level, children, otherProps, addHeading }) {
-  const { theme } = useFela()
-  const router = useRouter()
-
-  const [text, fixedId] = getFixedId(children)
-  const id = getId(children, level, fixedId)
-
-  useEffect(() => {
-    if (addHeading) {
-      addHeading([text, id, level])
-    }
-  }, [id])
-
-  return (
-    <Box
-      as={'h' + level}
-      onClick={() => {
-        if (id) {
-          window.location.hash = id
-        }
-      }}
-      extend={{
-        display: 'block',
-        cursor: id ? 'pointer' : 'inherit',
-        marginTop: (level === 1 ? 0 : 22) + (level === 2 ? 26 : 0),
-        marginBottom: level === 1 ? 30 : 10,
-        lineHeight: 1.0,
-        fontWeight: level === 1 ? 700 : level === 2 ? 500 : 600,
-        '> a': {
-          color: theme.colors.foreground,
-        },
-      }}>
-      <Box as="span" id={id} extend={{ marginTop: -80, paddingBottom: 80 }} />
-      {text}
-    </Box>
-  )
 }
 
 function Headings({ headings }) {
@@ -145,7 +82,7 @@ function Headings({ headings }) {
   )
 }
 
-function Content({ navigationVisible, docsPath, children, addHeading }) {
+export function Content({ navigationVisible, docsPath, children, ...props }) {
   const { theme } = useFela()
 
   return (
@@ -164,26 +101,10 @@ function Content({ navigationVisible, docsPath, children, addHeading }) {
           },
           pre: ({ children }) => children,
           h1: ({ children }) => <Heading level={1}>{children}</Heading>,
-          h2: ({ children }) => (
-            <Heading level={2} addHeading={addHeading}>
-              {children}
-            </Heading>
-          ),
-          h3: ({ children }) => (
-            <Heading level={3} addHeading={addHeading}>
-              {children}
-            </Heading>
-          ),
-          h4: ({ children }) => (
-            <Heading level={4} addHeading={addHeading}>
-              {children}
-            </Heading>
-          ),
-          h5: ({ children }) => (
-            <Heading level={5} addHeading={addHeading}>
-              {children}
-            </Heading>
-          ),
+          h2: ({ children }) => <Heading level={2}>{children}</Heading>,
+          h3: ({ children }) => <Heading level={3}>{children}</Heading>,
+          h4: ({ children }) => <Heading level={4}>{children}</Heading>,
+          h5: ({ children }) => <Heading level={5}>{children}</Heading>,
           strong: ({ children }) => (
             <Box as="strong" extend={{ display: 'inline', fontWeight: 500 }}>
               {children}
@@ -360,24 +281,12 @@ function Content({ navigationVisible, docsPath, children, addHeading }) {
   )
 }
 
-export default function DocLayout({ children, toc, version }) {
+export default function DocLayout({ children, toc, version, headings }) {
   const [navigationVisible, setNavigationVisible] = useState(false)
-  const [headings, setHeadings] = useState([])
   const { theme } = useFela()
   const router = useRouter()
 
   const flatNav = getFlatNav(toc)
-
-  const addHeading = (heading) => {
-    setHeadings((headings) => {
-      const exists = headings.find((h) => h[1] === heading[1])
-
-      if (!exists) {
-        return [...headings, heading]
-      }
-      return headings
-    })
-  }
 
   const docsPath = `/docs/${version}/`
   const currentPage = flatNav[router.pathname.substr(docsPath.length)]
@@ -398,7 +307,6 @@ export default function DocLayout({ children, toc, version }) {
   useEffect(() => {
     const handleRouteChange = (url) => {
       setNavigationVisible(false)
-      setHeadings([])
     }
 
     router.events.on('routeChangeComplete', handleRouteChange)
@@ -497,7 +405,9 @@ export default function DocLayout({ children, toc, version }) {
               router.push(`/docs/${e.target.value}/intro/motivation`)
             }}>
             {versions.map((version) => (
-              <option value={version}>{version}</option>
+              <option key={version} value={version}>
+                {version}
+              </option>
             ))}
           </Box>
         </Box>
@@ -614,10 +524,7 @@ export default function DocLayout({ children, toc, version }) {
           </Box>
         </Box>
         <Spacer size={[4, , 8]} />
-        <Content
-          docsPath={docsPath}
-          navigationVisible={navigationVisible}
-          addHeading={addHeading}>
+        <Content docsPath={docsPath} navigationVisible={navigationVisible}>
           {children}
         </Content>
       </Layout>

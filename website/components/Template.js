@@ -8,12 +8,6 @@ import Layout from './Layout'
 import Link from './Link'
 import NavItem from './NavItem'
 
-const nav = {
-  '/': 'Home',
-  '/docs': 'Docs',
-  'https://github.com/robinweser/fela': 'Github',
-}
-
 export default function Template({ children }) {
   const { theme } = useFela()
   const router = useRouter()
