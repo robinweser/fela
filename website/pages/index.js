@@ -39,7 +39,9 @@ export default () => {
           minWidth={['100%', 350]}
           direction={['column', 'row']}
           space={3}>
-          <Button href="/docs/latest/intro/motivation">Documentation</Button>
+          <Button href="/docs/latest/intro/getting-started">
+            Documentation
+          </Button>
           <Button href="https://github.com/robinweser/fela" variant="secondary">
             Github
           </Button>
