@@ -34,10 +34,34 @@ export default function Template({ children }) {
           zIndex: 2,
         }}>
         <Layout>
-          <Box as="nav" direction="row">
-            {Object.keys(nav).map((path) => (
-              <NavItem path={path}>{nav[path]}</NavItem>
-            ))}
+          <Box as="nav" direction="row" justifyContent="space-between">
+            <Box direction="row">
+              <NavItem path="/">Home</NavItem>
+              <NavItem path="/docs">Docs</NavItem>
+            </Box>
+            <Box direction="row">
+              <NavItem path="https://twitter.com/felajs">
+                <i
+                  className="fa fa-twitter"
+                  style={{
+                    fontSize: 24,
+                    position: 'relative',
+                    lineHeight: 0.6,
+                  }}
+                />
+              </NavItem>
+
+              <NavItem path="https://github.com/robinweser/fela">
+                <i
+                  className="fa fa-github"
+                  style={{
+                    fontSize: 24,
+                    position: 'relative',
+                    lineHeight: 0.6,
+                  }}
+                />
+              </NavItem>
+            </Box>
           </Box>
         </Layout>
       </Box>
