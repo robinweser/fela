@@ -411,7 +411,7 @@ export default function DocLayout({ children, toc, version }) {
   }, [])
 
   return (
-    <Template>
+    <>
       <Head>
         <link
           rel="stylesheet"
@@ -622,6 +622,6 @@ export default function DocLayout({ children, toc, version }) {
         </Content>
       </Layout>
       <Headings headings={headings} />
-    </Template>
+    </>
   )
 }

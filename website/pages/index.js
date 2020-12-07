@@ -14,7 +14,7 @@ export default () => {
   const { theme } = useFela()
 
   return (
-    <Template>
+    <>
       <Head>
         <title>Fela</title>
       </Head>
@@ -258,6 +258,6 @@ export default () => {
           </Box>
         </Layout>
       </Box>
-    </Template>
+    </>
   )
 }

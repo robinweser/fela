@@ -3,6 +3,7 @@ import { ThemeProvider } from 'react-fela'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
+import Template from '../components/Template'
 import DocLayout from '../components/DocLayout'
 import FelaProvider from '../styling/FelaProvider'
 import theme from '../styling/theme'
@@ -33,7 +34,9 @@ export default function App({ Component, pageProps, renderer }) {
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </Head>
       <FelaProvider renderer={renderer}>
-        <ThemeProvider theme={theme}>{component}</ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <Template>{component}</Template>
+        </ThemeProvider>
       </FelaProvider>
     </>
   )
