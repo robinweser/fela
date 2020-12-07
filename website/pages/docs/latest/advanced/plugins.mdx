@@ -24,7 +24,7 @@ const config = {
 const renderer = createRenderer(config)
 ```
 
-Fela already ships with tons of plugins. Check out [Introduction - Ecosystem](../introduction/Ecosystem.md#plugins) for more information. Every plugin is published as a separate package and includes documentation on what it does and how it is used.
+Fela already ships with tons of plugins. Check out [Introduction - Ecosystem](intro/ecosystem#plugins) for more information. Every plugin is published as a separate package and includes documentation on what it does and how it is used.
 
 ### Presets
 
@@ -45,14 +45,14 @@ Plugins are executed in the exact same order as provided. The output of the firs
 8. [fela-plugin-fullscreen-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fullscreen-prefixer)
 9. [fela-plugin-placeholder-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-placeholder-prefixer)
 10. [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value)
-11. [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer)
-12. [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
-13. [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)
-14. [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl)
-15. [fela-plugin-theme-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-theme-value)
-16. [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
-17. [fela-plugin-important](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-important)
-18. [fela-plugin-isolation](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-isolation)
+11. [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)
+12. [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl)
+13. [fela-plugin-theme-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-theme-value)
+14. [fela-plugin-important](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-important)
+15. [fela-plugin-isolation](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-isolation)
+16. [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer)
+17. [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
+18. [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
 19. [fela-plugin-validator](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator)
 20. [fela-plugin-logger](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-logger)
 
@@ -70,7 +70,7 @@ const plugin = (style, type, renderer, props) => processedStyle
 
 1. `style` (_Object_): The input style object
 2. `type` (_string_): A type enum `RULE`, `FONT`, `KEYFRAME` or `STATIC`
-3. `renderer` ([_Renderer_](../basics/Renderer.md)): The fela renderer
+3. `renderer` ([_Renderer_](api/fela/renderer.md)): The fela renderer
 4. `props` (_Object_): The props used to resolve the rule
 
 ### Returns
@@ -79,52 +79,105 @@ const plugin = (style, type, renderer, props) => processedStyle
 
 ### Example
 
-TODO: use a better example
+Let's take a very simple example. <br />
+Imagine you work in a big codebase with several people and everyone uses another color format.<br />
+To enforce consistency and maximal reuse, we would like to use the RGB-format everywhere.
 
-Let's take a very simple example. Assume we want to add `display:none` to all rules that have the `hidden` prop.
+Luckily, there's a package called [small-color](https://github.com/robinweser/small-color) that can help with transforming values.<br />
+It is only 900 bytes in total and is especially built for runtime manipulation.
 
-```javascript
-function hiddenPlugin(style, type, renderer, props) {
-  if (props.hidden) {
-    style.display = 'none'
+> An alternative and more common package is [color](https://github.com/Qix-/color), although it comes with 7.6kb in size.
+
+```javascript name=colorPlugin.js
+import { parse, toRgb } from 'small-color'
+import isPlainObject from 'isobject'
+
+const COLOR_REGEX = /color/gi
+const RGB_REGEX = /^rgb(a)/gi
+
+export default function colorPlugin(style) {
+  for (const property in style) {
+    const value = style[property]
+
+    // we also loop nested objects such as pseudo classes and media queries
+    if (isPlainObject(value)) {
+      style[property] = colorPlugin(value)
+    }
+
+    // we test for all properties containing the string "color"
+    // this is a simplified check and might not cover all use cases
+    // we also only apply color transformation if it's not already in rgb-format
+    if (
+      typeof value === 'string' &&
+      COLOR_REGEX.test(property) &&
+      !RGB_REGEX.test(value)
+    ) {
+      style[property] = toRgb(parse(value))
+    }
   }
 
   return style
 }
 ```
 
-And that's it! Now every time you we call `renderer.renderRule(style, { hidden: true })` the `display:none` is automatically added to the style object.
+And that's it! Now whenever we render a color value, it will automatically be transformed to its respective RGB counterpart.
 
 ### Configuration
 
-Sometimes your plugin requires some configuration.<br />
-To achieve this, you may create a plugin factory.<br />
-Let's say we want to configure the prop that adds `display:none`.
+Sometimes your plugin requires some configuration. To achieve this, you may create a plugin factory.<br />
+Let's say we want to configure the output color format to be either RGB or HSL.
 
-```javascript
-function hiddenPluginFactory(name) {
-  return (style, type, renderer, props) => {
-    if (props[name]) {
-      style.display = 'none'
+```javascript name=colorPlugin.js
+import { parse, toRgb, toHsl } from 'small-color'
+import isPlainObject from 'isobject'
+
+const COLOR_REGEX = /color/gi
+const RGB_REGEX = /^rgb(a)/gi
+
+function colorPlugin(style, formatter) {
+  for (const property in style) {
+    const value = style[property]
+
+    if (isPlainObject(value)) {
+      style[property] = colorPlugin(value)
     }
 
-    return style
+    if (
+      typeof value === 'string' &&
+      COLOR_REGEX.test(property) &&
+      !RGB_REGEX.test(value)
+    ) {
+      style[property] = formatter(parse(value))
+    }
   }
+
+  return style
+}
+
+export default function colorPluginFactory(format = 'rgb') {
+  // we pass the formatter to ensure it's only created once and reused
+  const formatter = format === 'rgb' ? toRgb : toHsl
+
+  return (style) => colorPlugin(style, formatter)
 }
 ```
 
-```javascript
-const hiddenPlugin = hiddenPluginFactory('hideIt')
+### Usage
+
+```javascript name=renderer.js
+import { createRenderer } from 'fela'
+
+import colorPlugin from './colorPlugin'
+
+const renderer = createRenderer({
+  plugins: [colorPlugin('hsl')],
+})
 ```
-
-Now instead of passing `{ hidden: true }` we must pass `{ hideIt: true }`.
-
-<br />
 
 ---
 
 ## Related
 
-- [Renderer Configuration](RendererConfiguration.md)
-- [List of plugins](../introduction/Ecosystem.md#plugins)
-- [List of plugin presets](../introduction/Ecosystem.md#plugin-presets)
+- [Renderer Configuration](advanced/renderer-configuration)
+- [List of plugins](intro/ecosystem#plugins)
+- [List of plugin presets](intro/ecosystem/plugin-presets)
