@@ -2,7 +2,10 @@ import { useFela } from 'react-fela'
 import { Box } from 'kilvin'
 
 export function beautifyId(text) {
-  return text.replace(/( |:)/gi, '-').toLowerCase()
+  return text
+    .replace(/ /gi, '-')
+    .replace(/(:|[?]|")/gi, '')
+    .toLowerCase()
 }
 
 export function getId(children, level, fixedId) {
