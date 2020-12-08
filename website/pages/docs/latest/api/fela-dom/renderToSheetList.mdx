@@ -2,17 +2,17 @@
 
 > This method should only be used on the server.
 
-This advanced API is pretty similar to [renderToMarkup](renderToMarkup.md) as it also helps to render the renderer on the server.<br />
+This advanced API is pretty similar to [renderToMarkup](api/fela-dom/renderToMarkup) as it also helps to render the renderer on the server.<br />
 Instead of returning a single string of HTML containing style elements, it returns a list of so called style sheets.
 Each style sheet contains everything we need to be able to render actual style elements on the server.
 
-> Check the [renderToMarkup](renderToMarkup.md) output in order to correctly create custom `style` elements that can be rehydrated.
+> Check the [renderToMarkup](api/fela-dom/renderToMarkup) output in order to correctly create custom `style` elements that can be rehydrated.
 
 ## Arguments
 
-| Argument | Type                              | Description                                                                   |
-| -------- | --------------------------------- | ----------------------------------------------------------------------------- |
-| renderer | [_Renderer_](../fela/Renderer.md) | The renderer providing the styles which are rendered to a list of sheet data. |
+| Argument | Type                            | Description                                                                   |
+| -------- | ------------------------------- | ----------------------------------------------------------------------------- |
+| renderer | [_Renderer_](api/fela/renderer) | The renderer providing the styles which are rendered to a list of sheet data. |
 
 ## Returns
 
@@ -59,20 +59,29 @@ const sheetList = renderToSheetList(renderer)
 
 The following list would be returned:
 
-```javascript
-;[
+```json
+[
   {
-    type: 'STATIC',
-    css: 'html,body{box-sizing:border-box;margin:0}',
-    rehydration: 4,
+    "type": "STATIC",
+    "css": "html,body{box-sizing:border-box;margin:0}",
+    "rehydration": 4
   },
-  { type: 'RULE', css: '.a{font-size:12px}.b{color:blue}', rehydration: 4 },
-  { type: 'RULE', css: '.c{color:green}', support: true, rehydration: 4 },
   {
-    type: 'RULE',
-    css: '.d{color:red}',
-    media: '(min-width: 300px)',
-    rehydration: 4,
+    "type": "RULE",
+    "css": ".a{font-size:12px}.b{color:blue}",
+    "rehydration": 4
   },
+  {
+    "type": "RULE",
+    "css": ".c{color:green}",
+    "support": true,
+    "rehydration": 4
+  },
+  {
+    "type": "RULE",
+    "css": ".d{color:red}",
+    "media": "(min-width: 300px)",
+    "rehydration": 4
+  }
 ]
 ```

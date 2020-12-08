@@ -1,5 +1,6 @@
 # createComponentWithProxy
 
+> **Note**: If you're working with React > 16.3, we **highly recommend** using the [useFela](api/react-fela/useFela) hook instead.<br />It's more easy and safe to use and also has the best rendering performance.
 > **Warning**: Does not work in browsers that don't support [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) e.g. IE 11
 
 Sometimes you need/want to pass all the props the to child element but doesn't know them all except the one you use in your rules. `createComponentWithProxy`allow you to pass all the props to the child by default except the props used in the rules.
@@ -19,7 +20,7 @@ import { createComponentWithProxy } from 'inferno-fela'
 
 ## Example
 
-```javascript
+```jsx name=Title.js
 const title = ({ fontSize, small, color }) => ({
   lineHeight: small ? 1.2 : 1.5,
   fontSize: fontSize + 'px',
@@ -28,7 +29,7 @@ const title = ({ fontSize, small, color }) => ({
 
 const Title = createComponentWithProxy(title, 'div')
 
-<Title fontSize={23} color='red' data-id="foo" onClick={...}>Hello World</Title>
+const Usage = <Title fontSize={23} color='red' data-id="foo" onClick={...}>Hello World</Title>
 // => <div className="a b c" data-id="foo" onclick="...">Hello World</div>
 ```
 
@@ -36,16 +37,15 @@ const Title = createComponentWithProxy(title, 'div')
 
 Sometimes you need to be able to use a props in your rules and still pass it to the child. That's why `passThroughProp` is still available in `createComponentWithProxy`. Any props pass in the `passThroughProp` will be pass to the child even if you use it in your rules's component.
 
-```javascript
+```jsx name=Input.js
 const input = ({ disabled, fontSize, color }) => ({
   fontSize: fontSize + 'px',
-  color: disabled ? 'grey' : color
+  color: disabled ? 'grey' : color,
 })
 
-const Input = createComponentWithProxy(input, 'input', [ 'disabled' ])
+const Input = createComponentWithProxy(input, 'input', ['disabled'])
 
-
-<Input fontSize={23} color='red' disabled />
+const Usage = <Input fontSize={23} color="red" disabled />
 // => <input className="a b" disabled></input>
 ```
 
@@ -53,4 +53,5 @@ const Input = createComponentWithProxy(input, 'input', [ 'disabled' ])
 
 ## Related
 
-- [API Reference - `createComponent`](createComponent.md)
+- [Guide - Usage with React](guides/usage-with-react)
+- [API Reference - `createComponent`](api/react-fela/createComponent)

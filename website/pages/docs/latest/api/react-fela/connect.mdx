@@ -1,6 +1,7 @@
 # connect
 
-A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) that provides the ability to map rendered classes to the component's props using the `styles` key. It is especially useful if we want to style a huge tree of primitive DOM elements e.g. doing basic layouting. This HoC produces a pure component. Behavior by default can be disabled using the configuration parameter.
+> **Note**: If you're working with React > 16.3, we **highly recommend** using the [useFela](api/react-fela/useFela) hook instead.<br />It's more easy and safe to use and also has the best rendering performance.
+> A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) that provides the ability to map rendered classes to the component's props using the `styles` key. It is especially useful if we want to style a huge tree of primitive DOM elements e.g. doing basic layouting. This HoC produces a pure component. Behavior by default can be disabled using the configuration parameter.
 
 ## Arguments
 
@@ -37,40 +38,37 @@ import { connect } from 'inferno-fela'
 
 ## Example
 
-```javascript
+```jsx name=Header.js
 const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.text}>{title}</h1>
   </header>
 )
 
-const container = props => ({
+const container = (props) => ({
   textAlign: 'center',
   padding: '20px',
-  height: '200px'
+  height: '200px',
 })
 
-const text = props => ({
+const text = (props) => ({
   lineHeight: 1.2,
   fontSize: props.size,
-  color: props.color
+  color: props.color,
 })
 
 const ConnectedHeader = connect({
   container,
-  text
+  text,
 })(Header)
 
 // Usage
-<ConnectedHeader
-  title="Hello World"
-  color="red"
-  size="17px" />
+const Usage = <ConnectedHeader title="Hello World" color="red" size="17px" />
 ```
 
 ### Using a Function of Props
 
-```javascript
+```jsx name=Header.js
 const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.text}>{title}</h1>
@@ -81,25 +79,22 @@ const rules = ({ size, color }) => ({
   container: {
     textAlign: 'center',
     padding: '20px',
-    height: '200px'
+    height: '200px',
   },
   text: {
     lineHeight: 1.2,
     fontSize: size,
-    color: color
-  }
+    color: color,
+  },
 })
 
 const ConnectedHeader = connect(rules)(Header)
 
 // Usage
-<ConnectedHeader
-  title="Hello World"
-  color="red"
-  size="17px" />
+const Usage = <ConnectedHeader title="Hello World" color="red" size="17px" />
 ```
 
-### Disable Pure Component Behavior
+### Disabling Pure Component Behavior
 
 ```javascript
 const ConnectedHeader = connect(rules, { pure: false })(Header)
@@ -113,7 +108,7 @@ To extend the styles that are injected through the `connect`, there are several 
 
 It's possible to extend component styles with an `extend` prop that can be either an object or a function.
 
-```javascript
+```jsx name=Header.js
 const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.text}>{title}</h1>
@@ -124,13 +119,13 @@ const rules = ({ size, color }) => ({
   container: {
     textAlign: 'center',
     padding: '20px',
-    height: '200px'
+    height: '200px',
   },
   text: {
     lineHeight: 1.2,
     fontSize: size,
-    color: color
-  }
+    color: color,
+  },
 })
 
 const ConnectedHeader = connect(rules)(Component)
@@ -138,27 +133,30 @@ const ConnectedHeader = connect(rules)(Component)
 const extend = ({ bgColor }) => ({
   container: {
     backgroundColor: bgColor,
-    padding: '30px'
+    padding: '30px',
   },
   text: {
-    fontWeight: 700
-  }
+    fontWeight: 700,
+  },
 })
 
 // Usage
-<ConnectedHeader
-  title="Hello World"
-  size="17px"
-  color="red"
-  bgColor="blue"
-  extend={extend} />
+const Usage = (
+  <ConnectedHeader
+    title="Hello World"
+    size="17px"
+    color="red"
+    bgColor="blue"
+    extend={extend}
+  />
+)
 ```
 
 ## Reconnection Pattern
 
 Instead of directly passing an `extend` object, one can also use the reconnection pattern to achieve the same effect.
 
-```javascript
+```jsx name=Header.js
 const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.text}>{title}</h1>
@@ -169,13 +167,13 @@ const rules = ({ size, color }) => ({
   container: {
     textAlign: 'center',
     padding: '20px',
-    height: '200px'
+    height: '200px',
   },
   text: {
     lineHeight: 1.2,
     fontSize: size,
-    color: color
-  }
+    color: color,
+  },
 })
 
 const ConnectedHeader = connect(rules)(Component)
@@ -183,28 +181,26 @@ const ConnectedHeader = connect(rules)(Component)
 const extend = ({ bgColor }) => ({
   container: {
     backgroundColor: bgColor,
-    padding: '30px'
+    padding: '30px',
   },
   text: {
-    fontWeight: 700
-  }
+    fontWeight: 700,
+  },
 })
 
 const ExtendedHeader = connect(extend)(ConnectedHeader)
 
 // Usage
-<ExtendedHeader
-  title="Hello World"
-  size="17px"
-  color="red"
-  bgColor="blue" />
+const Usage = (
+  <ExtendedHeader title="Hello World" size="17px" color="red" bgColor="blue" />
+)
 ```
 
 ## Proxying and Rules Property
 
 If you want to proxy the rules for child components, you can use the `rules` property on inside the component. This is also convenient when you do not want to inline the styles that you plan to use for the extension.
 
-```javascript
+```jsx name=Header.js
 const Header = ({ title, styles }) => (
   <header className={styles.container}>
     <h1 className={styles.text}>{title}</h1>
@@ -215,13 +211,13 @@ const rules = ({ size, color }) => ({
   container: {
     textAlign: 'center',
     padding: '20px',
-    height: '200px'
+    height: '200px',
   },
   text: {
     lineHeight: 1.2,
     fontSize: size,
-    color: color
-  }
+    color: color,
+  },
 })
 
 const ConnectedHeader = connect(rules)(Header)
@@ -229,11 +225,11 @@ const ConnectedHeader = connect(rules)(Header)
 const extend = ({ bgColor }) => ({
   container: {
     backgroundColor: bgColor,
-    padding: '30px'
+    padding: '30px',
   },
   text: {
-    fontWeight: 700
-  }
+    fontWeight: 700,
+  },
 })
 
 const HeaderProxy = ({ rules }) => (
@@ -243,10 +239,11 @@ const HeaderProxy = ({ rules }) => (
 const ExtendedHeader = connect(extend)(HeaderProxy)
 
 // Usage
-<ExtendedHeader
-  title="Hello World"
-  color="red"
-  bgColor="blue" />
+const Usage = <ExtendedHeader title="Hello World" color="red" bgColor="blue" />
 ```
 
 The injected `rules` property is the resulting multi-rule, which was also used to resolve the `styles` object. It is injected in order to give the parent component the ability to control the styling of the child components on the basis of its own style.
+
+## Related
+
+- [Guide - Usage with React](guides/usage-with-react)

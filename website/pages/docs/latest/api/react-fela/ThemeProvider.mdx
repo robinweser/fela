@@ -1,13 +1,13 @@
 # ThemeProvider
 
-ThemeProvider passes a single theme object down to its children. It can be used multiple times to compose different themes for different parts of the component tree. It uses the [context](https://facebook.github.io/react/docs/context.html) feature to pass down the theme.
+ThemeProvider passes a single theme object down to its children. It can be used multiple times to compose different themes for different parts of the component tree. It uses React's [context](https://reactjs.org/docs/context.html) APIs to pass down the theme.
 
 Nested themes automatically get combined if not explicitly prevented. This helps
 if you only want to change or add a single value without repeating the whole theming
 used before.
 
-[FelaComponent](FelaComponent.md), [createComponent](createComponent.md),
-[connect](connect.md) and [useFela]() automatically receive the theme as well.
+[FelaComponent](api/react-fela/FelaComponent), [createComponent](api/react-fela/createComponent),
+[connect](api/react-fela/connect) and [useFela](api/react-fela/useFela) automatically receive the theme as well.
 
 ## Props
 

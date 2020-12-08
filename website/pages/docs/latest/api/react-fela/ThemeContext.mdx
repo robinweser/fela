@@ -1,8 +1,8 @@
 # ThemeContext
 
-ThemeContext is the internal instance of `React.createContext` that is provided by the new [Context API](https://facebook.github.io/react/docs/context.html). It is exposed to be used with React's new [useContext API](https://reactjs.org/docs/hooks-reference.html#usecontext).
+ThemeContext is the internal instance of `React.createContext` that is provided by React's new [context](https://reactjs.org/docs/context.html) APIs. It is exposed to be used with React's new [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext) hook.
 
-> **Note**: Although it is exposed for react-fela as well as preact-fela and inferno-fela, there are no useContext equivalents for the latter yet.
+> **Note**: Although it is exposed for react-fela as well as preact-fela and inferno-fela, there are no useContext equivalents for the latter yet. We can however leverage the [useFela](api/react-fela/useFela) hook to get the `theme` directly.
 
 ## Imports
 

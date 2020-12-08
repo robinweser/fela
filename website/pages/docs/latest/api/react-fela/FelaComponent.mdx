@@ -1,14 +1,15 @@
 # FelaComponent
 
-FelaComponent is an alternative component to the [createComponent](createComponent.md)-HoC leveraging the render-props pattern. It uses [FelaTheme](FelaTheme.md) internally in order to access the theme directly.
+> **Note**: If you're working with React > 16.3, we **highly recommend** using the [useFela](api/react-fela/useFela) hook instead.<br />It's more easy and safe to use and also has the best rendering performance.
+> FelaComponent is an alternative component to the [createComponent](api/react-fela/createComponent)-HoC leveraging the render-props pattern. It uses [FelaTheme](api/react-fela/FelaTheme) internally in order to access the theme directly.
 
 ## Props
 
-| Property | Type                                                                                                                                                                                      | Default | Description                                                                                                                                                 |
-| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| style    | [_Rule_](../../basics/Rules.md)<br />[_StyleObject_](../../basics/Rules.md#styleobject)<br />_Array_[[_Rule_](../../basics/Rules.md), [_StyleObject_](../../basics/Rules.md#styleobject)] |         | Either a valid style object, and [rule](../../basics/Rules.md) or an array of both                                                                          |
-| children | _any_                                                                                                                                                                                     |         | Either a render function or a primitive child.<br />If passing a render function is receives the specified render interface.                                |
-| as       | _string_                                                                                                                                                                                  | `div`   | If children is passed a primitive child, the component will render an `as`-type DOM element with the className attached and the primitive child as content. |
+| Property | Type                                                                                                                                                    | Default | Description                                                                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| style    | [_Rule_](basics/rules)<br />[_StyleObject_](basics/rules#style-object)<br />_Array_[[_Rule_](basics/rules), [_StyleObject_](basics/rules#style-object)] |         | Either a valid style object, and [rule](basics/rules) or an array of both                                                                                   |
+| children | _any_                                                                                                                                                   |         | Either a render function or a primitive child.<br />If passing a render function is receives the specified render interface.                                |
+| as       | _string_                                                                                                                                                | `div`   | If children is passed a primitive child, the component will render an `as`-type DOM element with the className attached and the primitive child as content. |
 
 ### Render Interface
 
@@ -29,7 +30,7 @@ import { FelaComponent } from 'inferno-fela'
 
 ## Example
 
-```javascript
+```jsx
 <FelaComponent
   style={{
     backgroundColor: 'blue',
@@ -41,9 +42,9 @@ import { FelaComponent } from 'inferno-fela'
 
 ### Generic Components
 
-In order to create dynamically styled components using props, just like [createComponent](createComponent.md), we can create a component that itself renders a FelaComponent.
+In order to create dynamically styled components using props, just like [createComponent](api/react-fela/createComponent), we can create a component that itself renders a FelaComponent.
 
-```javascript
+```jsx name=Button.js
 const Button = ({ color, big = false, text }) => (
   <FelaComponent
     style={{
@@ -59,17 +60,19 @@ const Button = ({ color, big = false, text }) => (
 
 To access theme properties, we can simply pass a function of theme.
 
-```javascript
+```jsx
 const rule = ({ theme }) => ({
-  backgroundColor: theme.bgPrimary,
-  color: 'red'
+  backgroundColor: theme.colors.primary,
+  color: 'red',
 })
 
-<FelaComponent style={rule}>
-  {({ className, theme }) => (
-    <div className={className}>I am red on {theme.bgPrimary}.</div>
-  )}
-/>
+const RedOnPrimary = (
+  <FelaComponent style={rule}>
+    {({ className, theme }) => (
+      <div className={className}>I am red on {theme.colors.primary}.</div>
+    )}
+  </FelaComponent>
+)
 ```
 
 ### Style Rule as a Function of Props and Theme
@@ -83,17 +86,21 @@ using an externally defined function in such use cases. Hopefully, this can
 be help performance in hot paths by not requiring a function to be created on
 every render.
 
-```javascript
-const rule = ({ theme, bgc }) => ({
-  backgroundColor: bgc || 'red',
-  color: theme.bgPrimary,
+```jsx
+const rule = ({ theme, background }) => ({
+  backgroundColor: background || 'red',
+  color: theme.colors.primary,
 })
 
-<FelaComponent bgc='blue' style={rule}>
-  {({ className, theme }) => (
-    <div className={className}>I am {theme.bgPrimary} on {bgc || 'red'}.</div>
-  )}
-/>
+const PrimaryOnBackground = (
+  <FelaComponent background="blue" style={rule}>
+    {({ className, theme }) => (
+      <div className={className}>
+        I am {theme.colors.primary} on {background || 'red'}.
+      </div>
+    )}
+  </FelaComponent>
+)
 ```
 
 ### Shorthand Primitives
@@ -101,7 +108,7 @@ const rule = ({ theme, bgc }) => ({
 Instead of a render function, we can also specify a primitive element to render into.<br />
 Children will automatically be passed down. If not specified at all, it will render into a `div`.
 
-```javascript
+```jsx
 <FelaComponent
   style={{
     backgroundColor: 'blue',
@@ -115,11 +122,11 @@ Children will automatically be passed down. If not specified at all, it will ren
 ### Composition
 
 In order to compose multiple FelaComponents we can't just concatenate classNames as they might overwrite each other due to the atomic CSS design and specificity.<br />
-We have to use a built-in API to correctly combine those rules and styles: [combineRules](../fela/combineRules.md).
+We have to use a built-in API to correctly combine those rules and styles: [combineRules](api/fela/combineRules).
 
 With FelaComponent we can leverage that API automatically by passing an array to the _style_ prop.
 
-```javascript
+```jsx
 const baseStyle = {
   backgroundColor: 'red',
   fontSize: 15,

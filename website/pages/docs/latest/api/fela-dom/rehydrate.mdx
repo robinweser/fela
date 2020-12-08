@@ -1,16 +1,16 @@
 # rehydrate
 
-> This method is used for universal rendering where styles are prerender on the server. For client-side only rendering, we recommend using [render](render.md) directly.
+> This method is used for universal rendering where styles are prerender on the server.<br />For client-side only rendering, we recommend using [render](api/fela-dom/render) directly.
 
 Rehydrates the renderer's cache from existing `<style>` elements.<br />It is primarily used to rehydrate the cache from server-rendered CSS.
 
-It automatically connects the renderer with the DOM by calling [render](render.md) once finished rehydrating.
+It automatically connects the renderer with the DOM by calling [render](api/fela-dom/render) once finished rehydrating.
 
 ## Arguments
 
-| Argument | Type                              | Description                               |
-| -------- | --------------------------------- | ----------------------------------------- |
-| renderer | [_Renderer_](../fela/Renderer.md) | The renderer which's cache is rehydrated. |
+| Argument | Type                            | Description                               |
+| -------- | ------------------------------- | ----------------------------------------- |
+| renderer | [_Renderer_](api/fela/renderer) | The renderer which's cache is rehydrated. |
 
 ## Example
 

@@ -6,13 +6,13 @@ It formats and optimises the output for maximum readability.
 
 ## Arguments
 
-| Argument      | Type                                                                                    | Default                         | Description                                              |
-| ------------- | --------------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------------------- |
-| component     | [_Component_](https://facebook.github.io/react/docs/top-level-api.html#react.component) |                                 | A valid React component that is rendered.                |
-| theme         | _Object?_                                                                               | `{}`                            | A theme object that is automatically used for rendering. |
-| renderer      | [_Renderer?_](../fela/Renderer.md)                                                      | `createRenderer()`              | A Fela renderer with custom configuration                |
-| Provider      | [_Provider?_](../bindings/Provider.md)                                                  | bindings specific Provider      | A custom Provider component                              |
-| ThemeProvider | [_ThemeProvider?_](../bindings/ThemeProvider.md)                                        | bindings specific ThemeProvider | A custom ThemeProvider component                         |
+| Argument      | Type                                                         | Default                         | Description                                              |
+| ------------- | ------------------------------------------------------------ | ------------------------------- | -------------------------------------------------------- |
+| component     | [_Component_](https://reactjs.org/docs/react-component.html) |                                 | A valid React component that is rendered.                |
+| theme         | _Object?_                                                    | `{}`                            | A theme object that is automatically used for rendering. |
+| renderer      | [_Renderer?_](api/fela/renderer)                             | `createRenderer()`              | A Fela renderer with custom configuration                |
+| Provider      | [_Provider?_](api/react-fela/Provider)                       | bindings specific Provider      | A custom Provider component                              |
+| ThemeProvider | [_ThemeProvider?_](api/react-fela/ThemeProvider)             | bindings specific ThemeProvider | A custom ThemeProvider component                         |
 
 ## Returns
 
@@ -28,7 +28,7 @@ import { createSnapshot } from 'jest-inferno-fela'
 
 ## Example
 
-```javascript
+```jsx
 describe('Rendering a Fela component', () => {
   it('should render correctly', () => {
     const snapshot = createSnapshot(
@@ -54,7 +54,7 @@ describe('Rendering a Fela component', () => {
 
 ### Using theme
 
-```javascript
+```jsx
 describe('Rendering a Fela component', () => {
   it('should render correctly', () => {
     const rule = ({ theme }) => ({

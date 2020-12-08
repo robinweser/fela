@@ -46,7 +46,7 @@ renderer.renderRule(rule, { fontSize: '12px' }) // => a b c
 renderer.renderRule(rule, { fontSize: '15px' }) // => a b d
 ```
 
-```css
+```css name=output.css
 .a {
   background-color: blue;
 }
@@ -81,7 +81,7 @@ renderer.renderKeyframe(keyframe, { toColor: 'red' }) // => k1
 renderer.renderKeyframe(keyframe, { toColor: 'blue' }) // => k2
 ```
 
-```css
+```css name=output.css
 @keyframes k1 {
   from {
     color: green;
@@ -120,7 +120,7 @@ renderer.renderFont('Lato-Bold-Alias', files, {
 })
 ```
 
-```css
+```css name=output.css
 @font-face {
   font-family: 'Lato';
   src: url('./fonts/Lato.ttf') format(truetype), url('./fonts/Lato.woff') format(woff);
