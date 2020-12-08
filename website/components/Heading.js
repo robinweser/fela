@@ -52,7 +52,20 @@ export default function Heading({ level, children }) {
           color: theme.colors.foreground,
         },
       }}>
-      <Box as="span" id={id} extend={{ marginTop: -80, paddingBottom: 80 }} />
+      {!id ? null : (
+        <Box
+          as="span"
+          id={id}
+          extend={{
+            marginTop: -125,
+            paddingBottom: 125,
+            medium: {
+              marginTop: -65,
+              paddingBottom: 65,
+            },
+          }}
+        />
+      )}
       {text}
     </Box>
   )

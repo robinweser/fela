@@ -6,26 +6,6 @@ import copyToClipboard from 'copy-to-clipboard'
 
 import nightOwl from 'prism-react-renderer/themes/github'
 
-// const colors = {
-//   keyword: '#07a',
-//   number: '#905',
-//   constant: '#905',
-//   property: '#905',
-//   punctuation: '#999',
-//   function: '#dd4a68',
-//   string: '#690',
-//   comment: '#708090',
-//   operator: '#9a6e3a',
-// }
-
-// const getTokenColor = (token) => {
-//   for (let key in colors) {
-//     if (token.indexOf(key) !== -1) {
-//       return colors[key]
-//     }
-//   }
-// }
-
 export default function CodeBlock({
   children,
   className = '',
@@ -48,6 +28,52 @@ export default function CodeBlock({
 
   return (
     <Box>
+      {!nocopy && (
+        <Box
+          alignSelf="flex-end"
+          alignItems="center"
+          space={2}
+          extend={{
+            position: 'absolute',
+            marginTop: name ? 10 : -14,
+            paddingRight: 10,
+          }}>
+          <Box
+            as="button"
+            width={34}
+            height={34}
+            alignItems="center"
+            justifyContent="center"
+            padding={1.7}
+            onClick={() => {
+              setCopied(true)
+              copyToClipboard(children)
+            }}
+            extend={{
+              cursor: 'pointer',
+              borderRadius: 20,
+              outline: 0,
+              backgroundColor: theme.colors.blue,
+              borderWidth: 2,
+              borderStyle: 'solid',
+              borderColor: theme.colors.blueDark,
+              color: 'white',
+              fontSize: 15,
+
+              transition:
+                'background-color 200ms ease-out, color 200ms ease-in-out, border-color 200ms ease-in-out, transform 100ms ease-out',
+              ':hover': {
+                backgroundColor: theme.colors.blueDark,
+              },
+              ':active': {
+                transform: 'scale(0.95, 0.95)',
+              },
+            }}
+            aria-label="Copy code">
+            <i className={`far fa-${copied ? 'check' : 'copy'}`}></i>
+          </Box>
+        </Box>
+      )}
       {name && (
         <Box
           as="p"
@@ -77,7 +103,7 @@ export default function CodeBlock({
         {({ tokens, getTokenProps }) => (
           <Box
             as="pre"
-            paddingTop={[!nocopy ? 8 : 4.5, , , 4.5]}
+            paddingTop={[!nocopy ? 7 : 4.5, , , 4.5]}
             paddingBottom={4.5}
             paddingRight={5}
             paddingLeft={5}
@@ -125,64 +151,6 @@ export default function CodeBlock({
           </Box>
         )}
       </Highlight>
-
-      {!nocopy && (
-        <Box
-          alignSelf="flex-end"
-          alignItems="center"
-          space={2}
-          extend={{
-            position: 'absolute',
-            marginTop: name ? 0 : -20,
-            paddingRight: 10,
-          }}>
-          <Box
-            as="p"
-            extend={{
-              position: 'absolute',
-              marginTop: name ? -16 : -12,
-              color: theme.colors.blueDark,
-              marginLeft: 0,
-              fontSize: 12,
-            }}>
-            {copied ? 'Copied!' : ''}
-          </Box>
-          <Box
-            as="button"
-            width={34}
-            height={34}
-            alignItems="center"
-            justifyContent="center"
-            padding={1.7}
-            onClick={() => {
-              setCopied(true)
-              copyToClipboard(children)
-            }}
-            extend={{
-              cursor: 'pointer',
-              borderRadius: 20,
-              outline: 0,
-              backgroundColor: theme.colors.blue,
-              borderWidth: 2,
-              borderStyle: 'solid',
-              borderColor: theme.colors.blueDark,
-              color: 'white',
-              fontSize: 15,
-
-              transition:
-                'background-color 200ms ease-out, color 200ms ease-in-out, border-color 200ms ease-in-out, transform 100ms ease-out',
-              ':hover': {
-                backgroundColor: theme.colors.blueDark,
-              },
-              ':active': {
-                transform: 'scale(0.95, 0.95)',
-              },
-            }}
-            aria-label="Copy code">
-            <i class="far fa-copy"></i>
-          </Box>
-        </Box>
-      )}
     </Box>
   )
 }

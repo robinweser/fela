@@ -43,15 +43,19 @@ function getFlatNav(nav, flat = {}, prefix = '') {
 function Headings({ headings }) {
   const { theme } = useFela()
 
+  if (headings.length < 2) {
+    return null
+  }
+
   return (
     <Box
-      maxWidth={[0, , 260, 280]}
-      minWidth={[0, , 260, 280]}
       space={2}
+      minWidth={200}
+      display={['none', , , 'flex']}
       paddingTop={[4, , 8]}
+      paddingLeft={5}
       paddingRight={5}
       paddingBottom={12}
-      display={['none', , 'flex']}
       extend={{
         backgroundColor: 'white',
         overflow: 'auto',
@@ -63,20 +67,27 @@ function Headings({ headings }) {
         medium: {
           top: 44,
         },
+        huge: {
+          left: 'calc(100%  / 2 + 420px)',
+        },
       }}>
+      <Box as="p" marginBottom={4} extend={{ fontWeight: 600, fontSize: 16 }}>
+        On This Page
+      </Box>
+
       {headings.map(([heading, id, level]) => (
         <Box paddingLeft={3 * (level - 2)}>
-          <NextLink href={'#' + id} passHref>
-            <Box
-              as="a"
-              extend={{
-                textDecoration: 'none',
-                color: theme.colors.foreground,
-                fontSize: level === 2 ? 14 : 12,
-              }}>
-              {heading}
-            </Box>
-          </NextLink>
+          <Box
+            as="a"
+            href={'#' + id}
+            onClick={() => false}
+            extend={{
+              textDecoration: 'none',
+              color: theme.colors.foreground,
+              fontSize: level === 2 ? 14 : 12,
+            }}>
+            {heading}
+          </Box>
         </Box>
       ))}
     </Box>
@@ -85,6 +96,7 @@ function Headings({ headings }) {
 
 export function Content({ navigationVisible, docsPath, children, ...props }) {
   const { theme } = useFela()
+  const router = useRouter()
 
   return (
     <Box>
@@ -92,7 +104,12 @@ export function Content({ navigationVisible, docsPath, children, ...props }) {
         components={{
           a: ({ href, children }) => {
             const isExtern = href.indexOf('http') !== -1
-            const resolvedHref = isExtern ? href : docsPath + href
+            const isAnchor = href.indexOf('#') === 0
+            const resolvedHref = isExtern
+              ? href
+              : isAnchor
+              ? router.pathname + href
+              : docsPath + href
 
             return (
               <Link href={resolvedHref} extern={isExtern}>
@@ -333,7 +350,6 @@ export default function DocLayout({ children, toc, version, headings }) {
         <Box
           space={4}
           display={['flex', , 'none']}
-          padding={[5, , 4]}
           paddingLeft={[5, , 4]}
           paddingRight={[5, , 4]}
           paddingTop={[4.5, , 4]}
@@ -366,14 +382,14 @@ export default function DocLayout({ children, toc, version, headings }) {
             {currentPage}
           </Box>
           <Link
-            href={`https://github.com/robinweser/fela/edit/new-website/website/pages${router.pathname}.mdx`}>
+            href={`https://github.com/robinweser/fela/edit/master/website/pages${router.pathname}.mdx`}>
             Edit
           </Link>
         </Box>
       </Box>
 
       <Box
-        minWidth={['100%', , 260]}
+        minWidth={['100%', , 250]}
         paddingTop={[4, , 8]}
         paddingLeft={5}
         paddingRight={5}
@@ -385,12 +401,14 @@ export default function DocLayout({ children, toc, version, headings }) {
           overflow: 'auto',
           position: 'fixed',
           zIndex: 3,
-          left: 0,
+
           top: 106,
           bottom: 0,
           medium: {
-            backgroundColor: theme.colors.background,
             top: 44,
+          },
+          huge: {
+            right: 'calc(100% / 2 + 400px + 10 * 4px)',
           },
         }}>
         <Box space={2} direction="row" alignItems="center">
@@ -436,7 +454,7 @@ export default function DocLayout({ children, toc, version, headings }) {
                           }}>
                           {page}
                         </Box>
-                        <Box paddingLeft={[2, , , 4]} space={2.5}>
+                        <Box paddingLeft={[2, , , 2]} space={2.5}>
                           {Object.keys(toc[group][page]).map((subPage) => (
                             <NextLink
                               key={group + page + subPage}
@@ -496,15 +514,15 @@ export default function DocLayout({ children, toc, version, headings }) {
           paddingTop: 44,
           paddingBottom: 80,
           medium: {
-            paddingLeft: 280,
-            paddingRight: 280,
             paddingTop: 0,
+            paddingLeft: 260,
+            paddingRight: 10,
           },
           large: {
-            paddingLeft: 300,
-            paddingRight: 320,
+            paddingRight: 200 + 10,
+            paddingLeft: 250 + 20,
           },
-          '@media (min-width: 1500px)': {
+          huge: {
             paddingLeft: 0,
             paddingRight: 0,
           },
@@ -519,7 +537,7 @@ export default function DocLayout({ children, toc, version, headings }) {
           <Box>Docs / {currentPage}</Box>
           <Box>
             <Link
-              href={`https://github.com/robinweser/fela/edit/new-website/website/pages${router.pathname}.mdx`}>
+              href={`https://github.com/robinweser/fela/edit/master/website/pages${router.pathname}.mdx`}>
               <i className="fa fa-edit" /> Edit on GitHub
             </Link>
           </Box>

@@ -16,6 +16,7 @@ export default {
     cyan: 'rgb(115, 220, 255)',
     cyanTransparent: 'rgba(115, 220, 255, 0.1)',
     cyanCode: 'rgba(115, 220, 255, 0.2)',
+    cyanBackground: 'rgba(115, 220, 255, 0.3)',
     foreground: 'rgb(30, 30, 30)',
     background: 'rgb(245, 245, 245)',
     border: 'rgb(230, 230, 230)',

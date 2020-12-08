@@ -49,7 +49,7 @@ export default function Page() {
         paddingRight={[0, , 12]}
         paddingTop={[6, , 16]}
         paddingBottom={[10, , 20]}>
-        <Layout>
+        <Layout wide>
           <Box
             as="h2"
             extend={{

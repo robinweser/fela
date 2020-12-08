@@ -54,18 +54,19 @@
       "Renderer": "api/fela-native/renderer"
     },
     "react-fela": {
+      "useFela": "api/react-fela/useFela",
+      "RendererProvider": "api/react-fela/RendererProvider",
+      "ThemeProvider": "api/react-fela/ThemeProvider",
+      "renderToNodeList": "api/react-fela/renderToNodeList",
       "connect": "api/react-fela/connect",
       "createComponent": "api/react-fela/createComponent",
       "createComponentWithProxy": "api/react-fela/createComponentWithProxy",
       "FelaComponent": "api/react-fela/FelaComponent",
       "FelaRenderer": "api/react-fela/FelaRenderer",
-      "RendererProvider": "api/react-fela/RendererProvider",
+      "FelaTheme": "api/react-fela/FelaTheme",
       "RendererContext": "api/react-fela/RendererContext",
-      "ThemeProvider": "api/react-fela/ThemeProvider",
       "ThemeContext": "api/react-fela/ThemeContext",
       "withTheme": "api/react-fela/withTheme",
-      "renderToNodeList": "api/react-fela/renderToNodeList",
-      "useFela": "api/react-fela/useFela",
       "fe": "api/react-fela/fe"
     },
     "jest-react-fela": {
