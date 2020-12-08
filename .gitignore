@@ -34,5 +34,6 @@ dist
 .next
 
 **/data/headings
+**/data/versions.json
 
 \.history/

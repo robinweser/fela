@@ -1,5 +1,5 @@
 import { outputFileSync, readFileSync } from 'fs-extra'
-import path from 'path'
+import { join } from 'path'
 import recursive from 'recursive-readdir'
 
 import React from 'react'
@@ -53,7 +53,7 @@ function generateHeadings(file) {
   return headings
 }
 
-recursive(path.join(__dirname, '../pages/docs'), (err, files) => {
+recursive(join(__dirname, '../pages/docs'), (err, files) => {
   if (err) {
     throw err
   }

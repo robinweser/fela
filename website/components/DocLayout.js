@@ -12,7 +12,8 @@ import NavItem from './NavItem'
 import Template from './Template'
 import Layout from './Layout'
 import Heading from './Heading'
-import versions from '../versions.json'
+
+import versions from '../data/versions.json'
 
 function Line({ thickness = 1 }) {
   return (

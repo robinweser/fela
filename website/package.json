@@ -7,7 +7,9 @@
     "build": "yarn data && next build",
     "export": "next export",
     "start": "next start",
-    "data": "babel-node scripts/generate-headings.js"
+    "data": "yarn data:headings && yarn data:versions",
+    "data:headings": "babel-node scripts/generate-headings.js",
+    "data:versions": "babel-node scripts/generate-versions.js"
   },
   "license": "MIT",
   "dependencies": {
