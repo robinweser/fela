@@ -128,7 +128,12 @@ The main drawbacks (as of now) with CSS Logical Properties is [lacking browser s
 
 ## How RTL works in Fela
 
-In Fela you can use the "PostCSS replacement strategy". It's all automated via a the [fela-plugin-rtl](https://github.com/roWeser/fela/tree/master/packages/fela-plugin-rtl), so you shouldn't have to think about it too much.
+In Fela, we can use both solutions with different plugins:
+
+- The "PostCSS replacement strategy" can be achieved with [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl)
+- Logical Properties support comes with [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)
+
+The later replaces logical properties with widely supported properties such as `margin-right`. So both plugins work in all browsers and achieve the same thing. It's just a matter of preferences.
 
 To render your page in RTL you have to do two things.
 
@@ -149,10 +154,17 @@ Here's a contrived example on how this is achieved:
 
 Only want to render part of a page in RTL? No problem. You can use multiple theme providers, and even nest them.
 
-## Recommended Reading:
+## Recommended Reading
 
 Want to dive deeper into RTL, here are some external articles that dive deeper into the subject:
 
 - [User Interfaces For Right-To-Left Languages](http://www.i18nguy.com/MiddleEastUI.html)
 - [Structural markup and right-to-left text in HTML](https://www.w3.org/International/questions/qa-html-dir)
 - [Understanding Logical Properties And Values](https://www.smashingmagazine.com/2018/03/understanding-logical-properties-values/)
+
+---
+
+## Related
+
+- [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl)
+- [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)

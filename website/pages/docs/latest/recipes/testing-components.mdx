@@ -1,21 +1,11 @@
 # Testing Components
 
-TODO: rewrite using jest fela bindings
+There is no required library for testing Fela components. Since Fela is [framework-agnostic](intro/benefits#framework-agnostic), you may use any javascript testing library to test your components. Fela's source is already [fully tested](https://codeclimate.com/github/robinweser/fela/coverage), so your tests should only confirm that Fela's styles are interacting correctly with the components.
 
-> **Caution**: This documentation is kinda out-dated and more complex than it needs to be. It will be updated soon. For now, please refer to [createSnapshot](../api/jest-bindings/createSnapshot.md) for testing with Jest.
+## Testing Rules
 
-There is no required library for testing Fela components. Since Fela is [framework-agnostic](../introduction/Benefits.md), you may use any javascript testing library to test your components. Fela's source is already [fully tested](https://codeclimate.com/github/robinweser/fela/coverage), so your tests should only confirm that Fela's styles are interacting correctly with the components.
-
-## Approach
-
-### Testing the Renderer
-
-The [`renderer`](../basics/Renderer.md) is only responsible for _inserting the styles into the application_ and _providing your components a reference to the styles_. Therefore, our tests should ensure these two responsibilities work correctly with our components.
-
-### Testing Rules
-
-[Rules are just pure functions](../basics/Rules.md). Eric Elliot, a respected Javascript instructor in the industry, [defines pure functions for us](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976).<br />
-A pure function is a function which:
+The most straight-forward way is to test our [rules](basics/rules) directly. This is the same regardless of which framework and bindings are used.<br />
+[Rules are just pure functions](basics/rules). Eric Elliot, a respected Javascript instructor in the industry, [defines pure functions for us](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976). A pure function is a function which:
 
 - Given the same input, will always return the same output.
 - Produces no side effects.
@@ -23,327 +13,112 @@ A pure function is a function which:
 
 Since our rules will follow this definition, our tests can simply ensure our rules _output the correct styles for every input._
 
-## Implementation
+## Snapshot Testing
 
-We will use [Jest](https://facebook.github.io/jest/) in the following examples, but since any testing library can be used to test Fela components, feel free to apply the approaches above to the library that best suites you. Please be familiar with [how to setup Jest](https://facebook.github.io/jest/docs/en/getting-started.html#content) and [snapshot testing](https://facebook.github.io/jest/docs/en/snapshot-testing.html#content) to find the examples useful.
+While testing pure rules is a nice way to ensure the styles are correctly computed, the benefits are quite limited. Instead, we should test the integration with our actual components.<br />
+The best and most simple method to do so is [snapshot testing](https://facebook.github.io/jest/docs/en/snapshot-testing.html#content). We will use [Jest](https://facebook.github.io/jest/) to demonstrate that, but any other library to supports something similar to snapshot testing with just work fine as well.
 
-### A Basic Test
+A basic snapshot test for a React component looks something like this:
 
-Here is what a basic test for a Fela React component looks like.
-
-```javascript
-import React from 'react'
+```jsx
+import * as React from 'react'
 import renderer from 'react-test-renderer'
-import { createRenderer } from 'fela'
-import { Provider, createComponent } from 'react-fela'
 
-const boxRules = ({ size = 10 }) => ({
-  width: size + 'px',
-  height: size + 'px',
-  backgroundColor: 'red',
-})
+import MyComponent from './MyComponent'
 
-const Box = createComponent(boxRules)
-
-describe('Box', () => {
-  it('should render component', () => {
-    const felaRenderer = createRenderer()
-    const component = renderer.create(
-      <Provider renderer={felaRenderer}>
-        <Box>hello</Box>
-      </Provider>
-    )
-
-    expect(component.toJSON()).toMatchSnapshot()
-  })
-})
-```
-
-Our `expect` case creates a JSON snapshot of the component with [react-test-renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) and compares it to any previous snapshots for changes (Jest feature).
-
-```
-exports[`Box should render component 1`] = `
-<div
-  className="a b c"
-  id={undefined}
-  style={undefined}
->
-  hello
-</div>
-`;
-```
-
-This is not great. There is a lot of boilerplate to simply test if the component renders. Also, since Fela needs the `renderer` context to create the styles, we must wrap every component in Fela's [Provider](../api/bindings/Provider.md). Even after this setup, we're really not testing much about the style of the component. It would be great to get rid of the boilerplate and track changes to the styles themselves (not just the classNames).
-
-### Improving Our Test
-
-From examining a basic test for Fela components, we want to focus on reducing boilerplate and improving our test coverage. To achieve this, let's create some helper functions that can be imported into any of our tests.
-
-#### Simplifying The Provider
-
-Fela components need a `renderer` and an optional `theme` available within their React's [context](https://facebook.github.io/react/docs/context.html) in order to render. Since fela supplies a [Provider](../api/bindings/Provider.md) and optional [ThemeProvider](../api/bindings/ThemeProvider.md) to supplies these values, we must wrap all of our tested components with them. To keep our code DRY, let us create a simple helper function that does this for us.
-
-```javascript
-// test-helpers/felaSnapshot.js
-import React from 'react'
-import renderer from 'react-test-renderer'
-import { createRenderer } from 'fela'
-
-function felaSnapshot(component) {
-  const felaRenderer = createRenderer()
-  return renderer
-    .create(<Provider renderer={felaRenderer}>{component}</Provider>)
-    .toJSON()
-}
-
-export default felaSnapshot
-```
-
-Now, instead of declaring this function in every test, we can import it from one central location. Let's take a look at our basic test utilizing this function.
-
-```javascript
-import React from 'react'
-import { createComponent } from 'react-fela'
-import felaSnapshot from './test-helpers/felaSnapshot.js'
-
-const boxRules = ({ size = 10 }) => ({
-  width: size + 'px',
-  height: size + 'px',
-  backgroundColor: 'red',
-})
-
-const Box = createComponent(boxRules)
-
-describe('Box', () => {
-  it('should render component', () => {
-    const snapshot = felaSnapshot(<Box>hello</Box>)
+describe('<MyComponent />', () => {
+  it('renders correctly', () => {
+    const tree = renderer.create(<MyComponent>Hello</MyComponent>)
+    const snapshot = tree.toJSON()
     expect(snapshot).toMatchSnapshot()
   })
 })
 ```
 
-Much cleaner!
+### CSS Snapshots
 
-#### Better Test Coverage
+The problem is that this snapshot only includes the rendered HTML markup as of now which only includes the class name references e.g.
 
-We've got a test helper to help create component snapshots for our tests, so let us focus on test coverage now. In our `Box` component from the basic example, passing a `size` property would change the size of the box. That seems like an important thing to test, so let us create a test for that now.
-
-```javascript
-...
-  it('should change box size when size prop is passed', () => {
-    const snapshot = felaSnapshot(<Box size={50}>hello</Box>)
-    expect(snapshot).toMatchSnapshot()
-  })
-...
+```snapshot name=Snapshot nocopy
+<div class="a b c d">Hello</div>
 ```
 
-Now look at the snapshot output.
+It **doesn't** include the rendered CSS output and thus is not sufficient for us to also test our styles accordingly.<br />
+Luckily, there's yet another package to achieve that in seconds!
 
-```
-exports[`Box should change box size when size prop is passed 1`] = `
-<div
-  className="a b c"
->
-  hello
-</div>
-`;
-```
+## jest-react-fela
 
-The snapshot does not indicate anything has actually changed. Because the `classNames` just reference the styles that fela generates, we should output those styles to our snapshot as well. Since this output is just a CSS string, we can save it alongside our component snapshot. For this, we are going to need to extend our helper function.
+The [jest-react-fela](https://github.com/robinweser/fela/tree/master/packages/jest-react-fela) package exports a single [createSnapshot](api/jest-react-fela/createSnapshot) function.
 
-```javascript
-// test-helpers/felaSnapshot.js
-import React from 'react'
-import renderer from 'react-test-renderer'
-import { createRenderer } from 'fela'
-import { renderToString } from 'fela-tools'
+> **Note**: It is also available for [Preact](https://github.com/robinweser/fela/tree/master/packages/jest-preact-fela) and [Inferno](https://github.com/robinweser/fela/tree/master/packages/jest-inferno-fela).
 
-// splits the css string into a more readable format (credit: este's source)
-const prettifyFelaString = (str) => str.replace(/\.[a-z]+/g, '\n    $&')
+We can replace our `react-test-renderer` code with a simple [createSnapshot](api/jest-react-fela/createSnapshot) call to get a reasonable snapshot with HTML and CSS markup.
 
-function felaSnapshot(component) {
-  const felaRenderer = createRenderer()
+```jsx
+import * as React from 'react'
+import { createSnapshot } from 'jest-react-fela'
 
-  // output an object with both the component snapshot and raw styles
-  return {
-    component: renderer
-      .create(<Provider renderer={felaRenderer}>{component}</Provider>)
-      .toJSON(),
-    styles: prettifyFelaString(renderToString(felaRenderer)),
-  }
-}
+import MyComponent from './MyComponent'
 
-export default felaSnapshot
-```
-
-`felaSnapshot` now snapshots both the React component output and the styles generated by Fela. If we look at our test snapshots now, we can see the difference when the `size` prop changes.
-
-```
-exports[`Box should change box size when size prop is passed 1`] = `
-Object {
-  "component": <div
-    className="a b c"
->
-    hello
-</div>,
-  "styles": "
-    .a{width:50px}
-    .b{height:50px}
-    .c{background-color:red}",
-}
-`;
-
-exports[`Box should render component 1`] = `
-Object {
-  "component": <div
-    className="a b c"
->
-    hello
-</div>,
-  "styles": "
-    .a{width:10px}
-    .b{height:10px}
-    .c{background-color:red}",
-}
-`;
-```
-
-### Wrap Up
-
-These helper functions make testing the React code much easier. Your code-base may obviously require further functionality, but this provides a solid foundation to build off of.
-
-Here is the full example.
-
-```javascript
-// Box.test.js
-import React from 'react'
-import renderer from 'react-test-renderer'
-import { createRenderer } from 'fela'
-import { renderToString } from 'fela-tools'
-import { Provider, createComponent } from 'react-fela'
-
-const boxRules = ({ size = 10 }) => ({
-  width: size + 'px',
-  height: size + 'px',
-  backgroundColor: 'red',
-})
-
-const Box = createComponent(boxRules)
-
-const prettifyFelaString = (str) => str.replace(/\.[a-z]+/g, '\n    $&')
-
-function felaSnapshot(component) {
-  const felaRenderer = createRenderer()
-
-  return {
-    component: renderer
-      .create(<Provider renderer={felaRenderer}>{component}</Provider>)
-      .toJSON(),
-    styles: prettifyFelaString(renderToString(felaRenderer)),
-  }
-}
-
-describe('Box', () => {
-  it('should render component', () => {
-    const snapshot = felaSnapshot(<Box>hello</Box>)
-    expect(snapshot).toMatchSnapshot()
-  })
-  it('should change box size when size prop is passed', () => {
-    const snapshot = felaSnapshot(<Box size={50}>hello</Box>)
+describe('<MyComponent />', () => {
+  it('renders correctly', () => {
+    const snapshot = createSnapshot(<MyComponent>Hello</MyComponent>)
     expect(snapshot).toMatchSnapshot()
   })
 })
 ```
 
-You may also consider [Enzyme](http://airbnb.io/enzyme/) as your React renderer (instead of [react-test-renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer)). They have a powerful API, and using [enzyme-to-json](https://github.com/adriantoine/enzyme-to-json), you can still utilize Jest's powerful snapshot testing. Their `shallow` and `mount` rendering also provides an API to explicitly pass your own context, so there is no more need for Fela's [Provider](../api/bindings/Provider.md). Here are some wrappers around these Enzyme functions to support Fela.
+The snapshot might now look something like this:
 
-```javascript
-// test-helpers/felaShallow.js
-import React from 'react'
-import { shallow as enzymeShallow } from 'enzyme'
-import { createRenderer } from 'fela'
-import { renderToString } from 'fela-tools'
-import toJson from 'enzyme-to-json'
-
-const shallow = (node, options = {}) => {
-  const renderer = createRenderer()
-  const component = enzymeShallow(node, {
-    context: {
-      renderer,
-      // theme,
-    },
-    ...options,
-  })
-
-  component.snapshot = function snapshot() {
-    return {
-      component: toJson(this),
-      // you should prettify this string
-      styles: renderToString(renderer),
-    }
-  }
-
-  return component
+```snapshot name=Snapshot nocopy
+.a {
+  padding-left: 10px
 }
 
-console.log(shallow(<Box>hello</Box>).snapshot())
-// Object {
-//   "component": <div
-//     className="a b c"
-// >
-//     hello
-// </div>,
-//   "styles": ".a{width:10px}.b{height:10px}.c{background-color:red}",
-// }
-```
-
-```javascript
-// test-helpers/felaMount.js
-import React from 'react'
-import PropTypes from 'prop-types'
-import { mount as enzymeMount } from 'enzyme'
-import { createRenderer } from 'fela'
-import { renderToString } from 'fela-tools'
-import { createTheme } from 'fela-bindings'
-import toJson from 'enzyme-to-json'
-import myTheme from './my-theme'
-
-const mount = (node, options = {}) => {
-  const renderer = createRenderer()
-  const component = enzymeMount(node, {
-    childContextTypes: {
-      renderer: PropTypes.object,
-      _FELA_THEME_: PropTypes.object,
-    },
-    context: {
-      renderer,
-      _FELA_THEME_: createTheme(myTheme),
-    },
-    ...options,
-  })
-
-  component.snapshot = function snapshot() {
-    return {
-      component: toJson(this),
-      // you should prettify this string
-      styles: renderToString(renderer),
-    }
-  }
-
-  return component
+.b {
+  color: red
 }
 
-console.log(mount(<Box>hello</Box>).snapshot())
-// Object {
-//   "component": <boxRules>
-//     <div
-//         className="a b c"
-//     >
-//         hello
-//     </div>
-// </boxRules>,
-//   "styles": ".a{width:10px}.b{height:10px}.c{background-color:red}",
-// }
+.c {
+  font-size: 16px
+}
+
+@media (min-width: 1024px) {
+  .d {
+    padding-left: 15px
+  }
+}
+
+<div class="a b c d">Hello</div>
 ```
 
-Happy testing!
+### Passing a Theme
+
+[createSnapshot](api/jest-react-fela/createSnapshot) accepts a couple of additional arguments.<br />
+Probably the most important one is the second argument which accepts a custom theme to be passed to the component.<br />
+If your component renders styles depending on a theme, it will now automatically pick the passed one.
+
+> Chek the API reference for more information on all accepted arguments.
+
+```jsx
+import * as React from 'react'
+import { createSnapshot } from 'jest-react-fela'
+
+const theme = {
+  colors: {
+    primary: 'red',
+    secondary: 'blue',
+  },
+  breakpoints: {
+    small: '@media (min-width: 480px)',
+    large: '@media (min-width: 1024px)',
+  },
+}
+
+describe('<MyComponent />', () => {
+  it('renders correctly', () => {
+    const snapshot = createSnapshot(<MyComponent>Hello</MyComponent>, theme)
+    expect(snapshot).toMatchSnapshot()
+  })
+})
+```

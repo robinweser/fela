@@ -33,8 +33,7 @@
   "Recipes": {
     "Responsive Components": "recipes/responsive-components",
     "Testing Components": "recipes/testing-components",
-    "Right-to-Left Rendering": "recipes/right-to-left-rendering",
-    "Monolithic Class Names": "recipes/monolithic-class-names"
+    "Right-to-Left Rendering": "recipes/right-to-left-rendering"
   },
   "API Reference": {
     "fela": {

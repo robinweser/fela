@@ -136,7 +136,11 @@ export function Content({ navigationVisible, docsPath, children, ...props }) {
               marginTop={2.5}
               marginBottom={2.5}
               paddingLeft={4.5}
-              extend={{ lineHeight: 1.5 }}>
+              extend={{
+                lineHeight: 1.5,
+                fontFamily: 'inherit',
+                color: theme.colors.foreground,
+              }}>
               {children}
             </Box>
           ),
@@ -147,7 +151,11 @@ export function Content({ navigationVisible, docsPath, children, ...props }) {
               marginTop={2.5}
               marginBottom={2.5}
               paddingLeft={6}
-              extend={{ lineHeight: 1.5 }}>
+              extend={{
+                lineHeight: 1.5,
+                fontFamily: 'inherit',
+                color: theme.colors.foreground,
+              }}>
               {children}
             </Box>
           ),
