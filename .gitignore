@@ -30,7 +30,10 @@ lib/
 es/
 umd/
 coverage/
-_book
 dist
+.next
+
+**/data/headings
+**/data/versions.json
 
 \.history/

@@ -1,0 +1,141 @@
+# createComponent
+
+> **Note**: If you're working with React > 16.3, we **highly recommend** using the [useFela](api/react-fela/useFela) hook instead.<br />It's more easy and safe to use and also has the best rendering performance.
+> A HoC ([Higher-order Component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.njbld18x8)) that creates a presentational React component using the rendered `rule` as className.
+
+It automatically composes rules and passed props for nested Fela components.
+
+## Arguments
+
+| Argument         | Type                                                                         | Default | Description                                                                                                                                                                          |
+| ---------------- | ---------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| rule             | _Function_<br />_Object_                                                     |         | Either a [style object](basics/rules#style-object) or rule function which satisfies the [rule](basics/rules) behavior and returns a valid [style object](basics/rules#style-object). |
+| type             | _string?_<br />_[Component](https://reactjs.org/docs/react-component.html)?_ | `div`   | Component or HTML element which is used as the render base element.<br />**Note**: If a Component is passed, then it receives a className property.                                  |
+| passThroughProps | _Array?_<br />_Function?_                                                    |         | A list of props that get passed to the underlying element.<br />Alternatively a function of `props` that returns an array of prop names.                                             |
+
+## Returns
+
+(_Function_): Stateless functional component.
+
+## Imports
+
+```javascript nocopy
+import { createComponent } from 'react-fela'
+import { createComponent } from 'preact-fela'
+import { createComponent } from 'inferno-fela'
+```
+
+## Example
+
+```jsx name=Header.js
+const title = ({ small, fontSize, color }) => ({
+  lineHeight: small ? 1.2 : 1.5,
+  fontSize: fontSize + 'px',
+  color: color
+})
+
+const Title = createComponent(title, 'div', [ 'onClick' ])
+
+const Usage = <Title fontSize={23} color="red" onClick={...}>Hello World</Title>
+// <div className="a b c" onclick="...">Hello World</div>
+```
+
+## Passing Props
+
+Using the `passThroughProps` parameter allows us to pass props to the underlying DOM element. This is helpful if you want to pass e.g. events such as `onClick`. There are some props that are automatically passed and thus do not need to be specified explicitly:
+
+- `className`
+- `style`
+- `id`
+
+If passing a className, it will automatically be concatenated with the Fela generated className. This allows composing multiple Fela Components.
+
+### Functional passThroughProps
+
+You may also pass a function of `props` as `passThroughProps`. It must return an array of prop names. e.g. to pass all props you can do:
+
+```javascript name=Title.js
+const Title = createComponent(title, 'div', (props) => Object.keys(props))
+
+// shorthand
+const Title = createComponent(title, 'div', Object.keys)
+```
+
+> **Note**: The same can be achieved via [createComponentWithProxy](api/react-fela/createComponentWithProxy).
+
+### Dynamically passing Props
+
+This use case is especially important for library owners. Instead of passing the `passThroughProps` to the `createComponent` call directly, one can also use the `passThrough` prop on the created component to achieve the same effect.
+
+```jsx name=Title.js
+const title = () => ({
+  color: 'red'
+})
+
+const Title = createComponent(title)
+
+const Usage = <Title onClick={...} passThrough={[ 'onClick' ]}>Hello World</Title>
+// => <div className="a" onclick="...">Hello World</div>
+```
+
+## Extending Styles
+
+It's possible to extend component styles with an `extend` prop that can be either an object or a function.
+
+```jsx name=Title.js
+const title = () => ({
+  color: 'red'
+})
+
+const Title = createComponent(title)
+
+const Usage = <Title extend={{ color: 'blue' }}>Hello World</Title>,
+// => <div className="a">Hello World</div>
+// => .a { color: blue }
+
+const extendTitle = props => ({
+  color: props.color
+})
+
+const ExtendedTitle = <Title extend={extendTitle} color="green">Hello World</Title>
+// => <div className="a">Hello World</div>
+// => .a { color: green }
+```
+
+## Custom Type on Runtime
+
+To change the `type` on runtime and/or for each component, you may use the `as` prop.
+
+```jsx name=Title.js
+const title = (props) => ({
+  color: 'red',
+})
+
+const Title = createComponent(title)
+
+const Usage = <Title as="h1">Hello World</Title>
+// => <h1 className="a">Hello World</h1>
+```
+
+## Static Style Object
+
+Instead of rendering a props-depending rule, we can also use plain objects to render static style objects.
+
+```jsx name=Title.js
+const style = {
+  fontSize: '15px',
+  color: 'red',
+}
+
+const Title = createComponent(style, 'h1')
+
+const Usage = <Title>Hello World</Title>
+// => <h1 className="a b">Hello World</h1>
+```
+
+---
+
+## Related
+
+- [Guide - Usage with React](guides/usage-with-react)
+- [API Reference - `createComponentWithProxy`](api/react-fela/createComponentWithProxy)

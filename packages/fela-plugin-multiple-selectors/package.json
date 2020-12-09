@@ -1,0 +1,30 @@
+{
+  "name": "fela-plugin-multiple-selectors",
+  "version": "11.4.0",
+  "description": "Fela plugin to resolves multiple selectors",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "sideEffects": false,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/**",
+    "es/**",
+    "umd/**"
+  ],
+  "repository": "https://github.com/robinweser/fela/",
+  "keywords": [
+    "fela",
+    "fela-plugin",
+    "multiple-selectors",
+    "selectors",
+    "pseudo-classes"
+  ],
+  "author": "Robin Weser",
+  "license": "MIT",
+  "dependencies": {
+    "fast-loops": "^1.0.0",
+    "isobject": "^3.0.1"
+  }
+}

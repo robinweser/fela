@@ -1,0 +1,151 @@
+# Responsive Components
+
+In modern web projects, responsive design and flexible layout is a de facto must-have.<br />
+More are more people are using their phones to browse the web and we want to make sure that they get a great experience no matter what device they're using!
+
+On the other hand, we also want to use primitive configurable components to increase reusability and readability. So we want to be able to set styles depending on specific breakpoints while also maintaining a clean and readable component interface.
+
+## Responsive Values
+
+A pattern, which we call "responsive values", has lately emerged in several different systems. It was pioneered by [styled-system](https://styled-system.com/responsive-styles).<br />
+Instead of passing a single value, it allows you to pass an array of values which then map to a respective list of breakpoints.
+
+For example, let's imagine we have three different main breakpoints:
+
+```js name=theme.js
+export default {
+  breakpoints: {
+    small: '@media (min-width: 480px)',
+    medium: '@media (min-width: 800px)',
+    large: '@media (min-width: 1024px)',
+  },
+}
+```
+
+Imagine we have a component that accepts those responsive values:
+
+```jsx
+<Box padding={[10, 10, 15, '20px 10px']} />
+```
+
+This would now render the following CSS, where the first value always refers to the default value with no breakpoints applied:
+
+```css name=output.css nocopy
+.a {
+  padding: 10px;
+}
+
+@media (min-width: 480px) {
+  .b {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 800px) {
+  .c {
+    padding: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .d {
+    padding: 20px 10px;
+  }
+}
+```
+
+## fela-plugin-responsive-value
+
+To achieve that, we can utilize the [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value) plugin.<br />
+It takes two arguments to configure the behaviour:
+
+1. A function that returns the respective breakpoints given the value and props
+2. A whitelist of properties for which those responsive values are resolved
+
+### Configuration
+
+```js name=renderer.js
+import { createRenderer } from 'fela'
+import responsiveValue from 'fela-plugin-responsive-value'
+
+const getMediaQueries = (values, props) => {
+  const { small, medium, large } = props.theme.breakpoints
+
+  // we can even return different breakpoints depending on the number of passed values
+  // remember the first value is always the default value
+  switch (values.length) {
+    case 2:
+      return [large]
+    case 3:
+      return [small, large]
+    default:
+      return [small, medium, larg]
+  }
+}
+
+const responsiveProps = {
+  padding: true,
+  paddingLeft: true,
+  paddingRight: true,
+  paddingTop: true,
+  paddingBottom: true,
+  margin: true,
+  marginLeft: true,
+  marginRight: true,
+  marginTop: true,
+  marginBottom: true,
+  width: true,
+  height: true,
+}
+
+const renderer = createRenderer({
+  plugins: [responsiveValue(getMediaQueries, responsiveProps)],
+})
+```
+
+### Usage
+
+We now use responsive values with all properties defined in `responsiveProps` above.<br />
+To achieve the same props-based pattern as known from [styled-system](https://styled-system.com/responsive-styles), we can pipe our props directly into the `css` function from [useFela](api/react-fela/useFela).
+
+```jsx name=Box.js
+import * as React from 'react'
+import { useFela } from 'react-fela'
+
+export function Box({ padding, margin, children }) {
+  const { css } = useFela()
+
+  return <div className={css({ padding, margin })}>{children}</div>
+}
+```
+
+## Skipping Values
+
+With the `getMediaQueries` function above, we already cover different sizes of arrays passed in. But even if we use a single array of breakpoints, we can still _skip_ values with a simple trick.<br />
+All we need to do is passing an empty item in our array, which is equal to passing `undefined`. Fela will automatically skip those values.
+
+```jsx
+<Box padding={[10, , 20]} />
+```
+
+will therefore render the following CSS:
+
+```css
+.a {
+  padding: 10px;
+}
+
+@media (min-width: 800px) {
+  .c {
+    padding: 20px;
+  }
+}
+```
+
+> This is especially helpful for values that apply to multiple breakpoints.<br />Instead of repeating those, we skip them. This also reduces the amount of rendered CSS.
+
+---
+
+## Related
+
+- [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value)

@@ -5,8 +5,6 @@ import {
   getRuleScore,
 } from 'fela-utils'
 
-import insertRuleInDevMode from './insertRuleInDevMode'
-
 import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
 
 export default function insertRule(
@@ -15,12 +13,6 @@ export default function insertRule(
   node: Object
 ) {
   const nodeReference = media + support
-  // only use insertRule in production as browser devtools might have
-  // weird behavior if used together with insertRule at runtime
-  if (renderer.devMode) {
-    insertRuleInDevMode(renderer, node)
-    return
-  }
 
   try {
     const score = getRuleScore(renderer.ruleOrder, pseudo)
