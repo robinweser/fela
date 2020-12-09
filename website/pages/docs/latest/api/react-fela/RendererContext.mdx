@@ -1,0 +1,25 @@
+# RendererContext
+
+RendererContext is the internal instance of `React.createContext` that is provided by React's new [context](https://reactjs.org/docs/context.html) APIs. It is exposed to be used with React's new [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext) hook.
+
+> **Note**: Although it is exposed for react-fela as well as preact-fela and inferno-fela, there are no useContext equivalents for the latter yet. We can however leverage the [useFela](api/react-fela/useFela) hook to get the `renderer` directly.
+
+## Imports
+
+```javascript nocopy
+import { RendererContext } from 'react-fela'
+import { RendererContext } from 'preact-fela'
+import { RendererContext } from 'inferno-fela'
+```
+
+## Example
+
+```javascript
+import { useContext } from 'react'
+import { RendererContext } from 'react-fela'
+
+function Button() {
+  const renderer = useContext(RendererContext)
+  // do something with the renderer
+}
+```
