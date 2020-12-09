@@ -6,6 +6,33 @@ This enhancers implements are specific `propertyPriority` configuration that enf
 
 For example, `paddingLeft` will always overwrite the `padding-left` value from a `padding` property, no matter in which order they are rendered.
 
+## How it works
+
+It uses a clever CSS specificity trick where repeated selectors increase the specificity and thus a prioritized over others.
+
+For example, if we render the following style:
+
+```js
+const style = {
+  paddingLeft: 10,
+  padding: 5,
+}
+```
+
+the following CSS will be rendered respectively:
+
+```css
+.a.a {
+  padding-left: 10px;
+}
+
+.b {
+  padding: 5px;
+}
+```
+
+> Check [Selectors Level 3](https://www.w3.org/TR/selectors-3/#specificity) for more information.
+
 ## Installation
 
 ```sh
