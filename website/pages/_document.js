@@ -35,6 +35,16 @@ export default class MyDocument extends Document {
             src="https://kit.fontawesome.com/7ab8891207.js"
             crossorigin="anonymous"
           />
+          <script
+            async
+            defer
+            src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+          <noscript>
+            <img
+              src="https://queue.simpleanalyticscdn.com/noscript.gif"
+              alt=""
+            />
+          </noscript>
         </body>
       </Html>
     )
