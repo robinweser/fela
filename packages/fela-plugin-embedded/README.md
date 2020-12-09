@@ -5,12 +5,15 @@
 This plugins allows the use of inline keyframes and font-faces. It directly resolves them while rendering and only returns the correct reference.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-embedded
 ```
+
 You may alternatively use `npm i --save fela-plugin-embedded`.
 
 ## Usage
+
 Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
 
 ```javascript
@@ -18,12 +21,14 @@ import { createRenderer } from 'fela'
 import embedded from 'fela-plugin-embedded'
 
 const renderer = createRenderer({
-  plugins: [ embedded() ]
+  plugins: [embedded()],
 })
 ```
 
 ## Example
+
 #### Input
+
 ```javascript
 {
   width: '25px',
@@ -40,7 +45,9 @@ const renderer = createRenderer({
   }
 }
 ```
+
 #### Output
+
 ```javascript
 {
   width: '25px',
@@ -64,28 +71,40 @@ const renderer = createRenderer({
 
 ### Multiple font-faces
 
-```javascript
+```js
 {
-  fontFace: [{
+  fontFace: [
+    {
       fontFamily: 'Arial',
-      fontWeight: 400
-      src: [
-        'arial-regular.svg',
-        'arial-regular.ttf'
-      ]
+      fontWeight: 400,
+      src: ['arial-regular.svg', 'arial-regular.ttf'],
     },
     {
       fontFamily: 'Arial',
       fontWeight: 700,
-      src: [
-        'arial-bold.svg',
-        'arial-bold.ttf'
-      ]
-    }]
+      src: ['arial-bold.svg', 'arial-bold.ttf'],
+    },
+  ],
+}
+```
+
+### Fallback fonts
+
+```js
+{
+  fontFace: [
+    {
+      fontFamily: 'Arial',
+      fontWeight: 400,
+      src: ['arial.svg', 'arial.ttf'],
+    },
+    "sans-serif"
+  ],
 }
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

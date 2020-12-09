@@ -5,12 +5,18 @@ import isPlainObject from 'isobject'
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { StyleType } from '../../../flowtypes/StyleType'
 
-function renderFontFace({ fontFamily, src, ...otherProps }, renderer) {
+function renderFontFace(fontFace, renderer) {
+  if (typeof fontFace === 'string') {
+    return fontFace
+  }
+
+  const { fontFamily, src, ...otherProps } = fontFace
   if (typeof fontFamily === 'string' && Array.isArray(src)) {
     return renderer.renderFont(fontFamily, src, otherProps)
   }
 
   // TODO: warning - invalid font data
+
   return undefined
 }
 
