@@ -98,6 +98,22 @@ describe('Renderer', () => {
 
       expect(className).toMatchSnapshot()
     })
+
+    it('should add use the propertyPriority config', () => {
+      const rule = () => ({
+        color: 'red',
+      })
+
+      const renderer = createRenderer({
+        propertyPriority: {
+          color: 2,
+        },
+      })
+
+      renderer.renderRule(rule)
+
+      expect(renderer.cache.colorred.selector).toEqual('.a.a')
+    })
   })
 
   describe('Rendering keyframes', () => {

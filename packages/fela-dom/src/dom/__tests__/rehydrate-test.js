@@ -32,7 +32,7 @@ describe('Rehydrating from DOM nodes', () => {
       },
       '@supports (display: grid)': {
         color: 'blue',
-        '&.foo.bar': {
+        '& .foo.bar': {
           color: 'red',
         },
       },
@@ -123,7 +123,7 @@ describe('Rehydrating from DOM nodes', () => {
       },
       '@supports (display: grid)': {
         color: 'blue',
-        '&.foo.bar': {
+        '& .foo.bar': {
           color: 'red',
         },
       },
