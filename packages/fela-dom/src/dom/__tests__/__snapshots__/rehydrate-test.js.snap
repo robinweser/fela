@@ -13,12 +13,12 @@ Array [
       "support": "",
       "type": "RULE",
     },
-    "(display: grid).foo.barcolorred": Object {
+    "(display: grid) .foo.barcolorred": Object {
       "className": "h",
       "declaration": "color:red",
       "media": "",
-      "pseudo": ".foo.bar",
-      "selector": ".h.foo.bar",
+      "pseudo": " .foo.bar",
+      "selector": ".h .foo.bar",
       "support": "(display: grid)",
       "type": "RULE",
     },
@@ -102,12 +102,12 @@ Array [
       "support": "",
       "type": "RULE",
     },
-    "(display: grid).foo.barcolorred": Object {
+    "(display: grid) .foo.barcolorred": Object {
       "className": "h",
       "declaration": "color:red",
       "media": "",
-      "pseudo": ".foo.bar",
-      "selector": ".parentClass .h.foo.bar",
+      "pseudo": " .foo.bar",
+      "selector": ".parentClass .h .foo.bar",
       "support": "(display: grid)",
       "type": "RULE",
     },

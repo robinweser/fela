@@ -1,5 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Rehydrating rules should rehydrate prioritized longhand rules 1`] = `
+Object {
+  ":hovercolorred": Object {
+    "className": "c",
+    "declaration": "color:red",
+    "media": "",
+    "pseudo": ":hover",
+    "selector": ".c:hover",
+    "support": "",
+    "type": "RULE",
+  },
+  "padding10px": Object {
+    "className": "b",
+    "declaration": "padding:10px",
+    "media": "",
+    "pseudo": "",
+    "selector": ".b",
+    "support": "",
+    "type": "RULE",
+  },
+  "paddingLeft20px": Object {
+    "className": "a",
+    "declaration": "padding-left:20px",
+    "media": "",
+    "pseudo": "",
+    "selector": ".a",
+    "support": "",
+    "type": "RULE",
+  },
+}
+`;
+
 exports[`Rehydrating rules should rehydrate the renderer cache 1`] = `
 Object {
   ":hover:activeborderColor2px solid rgb(255, 255, 0)": Object {

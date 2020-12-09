@@ -52,6 +52,7 @@ export default function createRenderer(
       config.sortMediaQuery || sortMediaQuery(config.mediaQueryOrder),
     supportQueryOrder: config.supportQueryOrder || [],
     styleNodeAttributes: config.styleNodeAttributes || {},
+    propertyPriority: config.propertyPriority || {},
     ruleOrder: [
       /^:link/,
       /^:visited/,
@@ -343,7 +344,8 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       const selector = generateCSSSelector(
         className,
         pseudo,
-        config.specificityPrefix
+        config.specificityPrefix,
+        renderer.propertyPriority[property]
       )
 
       const change = {

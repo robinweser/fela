@@ -32,6 +32,10 @@ const rule = (props) => ({
 
 It might be more code to type, but its also more self-explanatory and descriptive.<br />
 
+### propertyPriority & fela-enforce-longhands
+
+Another option to solve this in a deterministic way is by utilizing the [propertyPriority config option](advanced/renderer-configuration) or using the [fela-enforce-longhands](https://github.com/robinweser/fela/tree/master/packages/fela-enforce-longhands) enhancer which implements an opinionated `propertyPriority` configuration.
+
 ## CSS properties that contain double quotes
 
 For css properties that need double quotes, make sure you are using nested quotes in your code. e.g.:

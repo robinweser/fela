@@ -2,7 +2,10 @@
 export default function generateCSSSelector(
   className: string,
   pseudo: string = '',
-  specificityPrefix?: string = ''
+  specificityPrefix?: string = '',
+  propertyPriority?: number = 1
 ): string {
-  return `${specificityPrefix}.${className}${pseudo}`
+  const classNameSelector = `.${className}`.repeat(propertyPriority)
+
+  return `${specificityPrefix}${classNameSelector}${pseudo}`
 }
