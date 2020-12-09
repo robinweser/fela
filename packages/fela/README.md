@@ -26,7 +26,7 @@ You may alternatively use `npm i --save fela`.
 * No Naming Conflicts
 * Framework-Agnostic
 * Huge Ecosystem
-* i18n Support
+* RTL Support
 
 ## The Gist
 Fela's core principle is to consider [style as a function of state](http://fela.js.org/docs/introduction/Principles.html).<br>
