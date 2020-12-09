@@ -1,0 +1,135 @@
+# Renderer Configuration
+
+We already learned that the renderer is configurable with e.g. [plugins](advanced/plugins), but there are some more options.
+
+In general, our renderer accepts a config object. The following table shows each configuration option, its expected value, its default value and what it is used for.
+
+We might introduce more configuration options with future releases, so be sure to frequently check for updates.
+
+| Option              | Value         | Default                           | Description                                                                                                                                                                                         |
+| ------------------- | ------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| plugins             | _(Array?)_    |                                   | A list of [plugins](advanced/plugins) to process styles before rendering                                                                                                                            |
+| keyframePrefixes    | _(Array?)_    | `['-webkit-', '-moz-']`           | A list of which additional `@keyframes` prefixes are rendered                                                                                                                                       |
+| enhancers           | _(Array?)_    |                                   | A list of [enhancers](advanced/enhancers) to enhance the renderer                                                                                                                                   |
+| mediaQueryOrder     | _(Array?)_    |                                   | An explicit order in which `@media` queries are rendered                                                                                                                                            |
+| sortMediaQuery      | _Function_    |                                   | A function with the same signature as sort functions in e.g. `Array.prototype.sort` for dynamically sorting media queries. Maps over an array of media query strings. Overwrites `mediaQueryOrder`. |
+| selectorPrefix      | _(string?)_   |                                   | Prepend a static prefix to every generated class and keyframe. It must only consist of `a-zA-Z0-9-_` and start with `a-zA-Z_`.                                                                      |
+| specificityPrefix   | _(string?)_   |                                   | Prepend a static prefix to every CSS selector. It must only consist of `a-zA-Z0-9-_` and start with `a-zA-Z_`.                                                                                      |
+| styleNodeAttributes | _(Object?)_   |                                   | A map of attributes that's passed to the generated style nodes.                                                                                                                                     |
+| filterClassName     | _(Function?)_ | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names                                                                                                                                                          |
+| devMode             | _(Boolean?)_  | `false`                           | Enabling development mode for better developer experience. **Make sure to disable devMode in production.**                                                                                          |
+
+## Feature Flags
+
+Additionally to the above mentioned options, we can also pass feature flags to enable experimental features.
+
+> **Note**: Those are experimental features and do not adhere to semantic versioning. Use at your own risk!
+
+| Option          | Description                                                |
+| --------------- | ---------------------------------------------------------- |
+| optimizeCaching |  Enables improved caching mechanism to speed up rendering. |
+
+## Example
+
+```javascript
+import { createRenderer } from 'fela'
+
+import prefixer from 'fela-plugin-prefixer'
+import unit from 'fela-plugin-unit'
+import fallbackValue from 'fela-plugin-fallback-value'
+
+import beautifier from 'fela-beautifier'
+
+import { renderToString } from 'fela-dom'
+
+const config = {
+  devMode: process.env.NODE_ENV !== 'production',
+  plugins: [unit('em'), prefixer(), fallbackValue()],
+  keyframePrefixes: ['-webkit-'],
+  enhancers: [beautifier()],
+  mediaQueryOrder: ['(min-height: 300px)', '(min-height: 500px)'],
+  selectorPrefix: 'fela_',
+  specificityPrefix: '.App ',
+  styleNodeAttributes: {
+    nonce: 'XXX',
+  },
+
+  // feature flags
+  optimizeCaching: true,
+}
+
+const renderer = createRenderer(config)
+
+const keyframe = (props) => ({
+  from: {
+    width: 'calc(100% - 50px)',
+    height: props.height * 2,
+  },
+  to: {
+    width: 'calc(50% - 50px)',
+    height: props.height,
+  },
+})
+
+const rule = (props) => ({
+  color: props.color,
+  fontSize: 12,
+})
+
+renderer.renderRule(rule, { color: 'red ' })
+renderer.renderKeyframe(keyframe, { height: 100 })
+
+console.log(renderToString(renderer))
+```
+
+### Rendered CSS
+
+```css
+@-webkit-keyframes fela_k1 {
+  from {
+    width: -webkit-calc(100% - 50px);
+    width: -moz-calc(100% - 50px);
+    width: calc(100% - 50px);
+    height: 200em;
+  }
+
+  to {
+    width: -webkit-calc(50% - 50px);
+    width: -moz-calc(50% - 50px);
+    width: calc(50% - 50px);
+    height: 100em;
+  }
+}
+
+@keyframes fela_k1 {
+  from {
+    width: -webkit-calc(100% - 50px);
+    width: -moz-calc(100% - 50px);
+    width: calc(100% - 50px);
+    height: 200em;
+  }
+
+  to {
+    width: -webkit-calc(50% - 50px);
+    width: -moz-calc(50% - 50px);
+    width: calc(50% - 50px);
+    height: 100em;
+  }
+}
+
+.App .fela_a {
+  color: red;
+}
+
+.App .fela_b {
+  font-size: 12px;
+}
+```
+
+---
+
+## Related
+
+- [Plugins](/advanced/plugins)
+- [Enhancers](/advanced/enhancers)
+- [API Reference - `createRenderer`](api/fela/createRenderer)

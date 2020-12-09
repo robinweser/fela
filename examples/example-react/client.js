@@ -6,6 +6,8 @@ import createRenderer from './renderer'
 
 const renderer = createRenderer()
 
+window.renderer = renderer
+
 render(
   <RendererProvider renderer={renderer}>
     <App />

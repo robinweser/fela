@@ -16,4 +16,12 @@ function resolveFallbackValues(style: Object): Object {
   return style
 }
 
+resolveFallbackValues.optimized = (props) => {
+  if (Array.isArray(props.value)) {
+    props.value = resolveArrayValue(props.property, props.value)
+  }
+
+  return props
+}
+
 export default () => resolveFallbackValues

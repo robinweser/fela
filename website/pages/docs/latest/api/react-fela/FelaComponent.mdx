@@ -1,0 +1,144 @@
+# FelaComponent
+
+> **Note**: If you're working with React > 16.3, we **highly recommend** using the [useFela](api/react-fela/useFela) hook instead.<br />It's more easy and safe to use and also has the best rendering performance.
+> FelaComponent is an alternative component to the [createComponent](api/react-fela/createComponent)-HoC leveraging the render-props pattern. It uses [FelaTheme](api/react-fela/FelaTheme) internally in order to access the theme directly.
+
+## Props
+
+| Property | Type                                                                                                                                                    | Default | Description                                                                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| style    | [_Rule_](basics/rules)<br />[_StyleObject_](basics/rules#style-object)<br />_Array_[[_Rule_](basics/rules), [_StyleObject_](basics/rules#style-object)] |         | Either a valid style object, and [rule](basics/rules) or an array of both                                                                                   |
+| children | _any_                                                                                                                                                   |         | Either a render function or a primitive child.<br />If passing a render function is receives the specified render interface.                                |
+| as       | _string_                                                                                                                                                | `div`   | If children is passed a primitive child, the component will render an `as`-type DOM element with the className attached and the primitive child as content. |
+
+### Render Interface
+
+| Property  | Type      | Default | Description                                       |
+| --------- | --------- | ------- | ------------------------------------------------- |
+| className | _string_  |         | The class names for the rendered _style_ object   |
+|  children | _Element_ |         | The component children                            |
+| theme     | _Object_  | `{}`    | The theme object which is passed down via context |
+| as        | _string_  | `div`   | The `as` property that is passed to the component |
+
+## Imports
+
+```javascript nocopy
+import { FelaComponent } from 'react-fela'
+import { FelaComponent } from 'preact-fela'
+import { FelaComponent } from 'inferno-fela'
+```
+
+## Example
+
+```jsx
+<FelaComponent
+  style={{
+    backgroundColor: 'blue',
+    color: 'red',
+  }}>
+  {({ className, theme }) => <div className={className}>I am red on blue.</div>}
+</FelaComponent>
+```
+
+### Generic Components
+
+In order to create dynamically styled components using props, just like [createComponent](api/react-fela/createComponent), we can create a component that itself renders a FelaComponent.
+
+```jsx name=Button.js
+const Button = ({ color, big = false, text }) => (
+  <FelaComponent
+    style={{
+      backgroundColor: color,
+      fontSize: big ? 18 : 15,
+    }}>
+    {({ className }) => <button className={className}>{text}</button>}
+  </FelaComponent>
+)
+```
+
+### Using Theme
+
+To access theme properties, we can simply pass a function of theme.
+
+```jsx
+const rule = ({ theme }) => ({
+  backgroundColor: theme.colors.primary,
+  color: 'red',
+})
+
+const RedOnPrimary = (
+  <FelaComponent style={rule}>
+    {({ className, theme }) => (
+      <div className={className}>I am red on {theme.colors.primary}.</div>
+    )}
+  </FelaComponent>
+)
+```
+
+### Style Rule as a Function of Props and Theme
+
+Sometimes it is desirable to style a component as a function of both theme and
+props. The `style` prop takes a callback, and passes it an object with `theme`
+and all props passed to FelaComponent except _style_ and _children_.
+
+This provides an API that is both compatible with createComponent, and allows
+using an externally defined function in such use cases. Hopefully, this can
+be help performance in hot paths by not requiring a function to be created on
+every render.
+
+```jsx
+const rule = ({ theme, background }) => ({
+  backgroundColor: background || 'red',
+  color: theme.colors.primary,
+})
+
+const PrimaryOnBackground = (
+  <FelaComponent background="blue" style={rule}>
+    {({ className, theme }) => (
+      <div className={className}>
+        I am {theme.colors.primary} on {background || 'red'}.
+      </div>
+    )}
+  </FelaComponent>
+)
+```
+
+### Shorthand Primitives
+
+Instead of a render function, we can also specify a primitive element to render into.<br />
+Children will automatically be passed down. If not specified at all, it will render into a `div`.
+
+```jsx
+<FelaComponent
+  style={{
+    backgroundColor: 'blue',
+    color: 'red',
+  }}
+  as="span">
+  I am red on blue
+</FelaComponent>
+```
+
+### Composition
+
+In order to compose multiple FelaComponents we can't just concatenate classNames as they might overwrite each other due to the atomic CSS design and specificity.<br />
+We have to use a built-in API to correctly combine those rules and styles: [combineRules](api/fela/combineRules).
+
+With FelaComponent we can leverage that API automatically by passing an array to the _style_ prop.
+
+```jsx
+const baseStyle = {
+  backgroundColor: 'red',
+  fontSize: 15,
+}
+
+const Button = ({ style, ...props }) => (
+  <FelaComponent style={[baseStyle, style]} {...props} as="button" />
+)
+
+const ExtendedButton = ({ style, children }) => (
+  <Button style={{ color: 'blue' }}>Click</Button>
+)
+```
+
+The array accepts both style objects, rule functions and even nested arrays again.

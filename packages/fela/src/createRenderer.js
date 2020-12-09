@@ -1,6 +1,7 @@
 /* @flow */
 import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
 import arrayEach from 'fast-loops/lib/arrayEach'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 import isPlainObject from 'isobject'
 
 import {
@@ -68,7 +69,6 @@ export default function createRenderer(
 
     uniqueRuleIdentifier: 0,
     uniqueKeyframeIdentifier: 0,
-
 
     nodes: {},
     scoreIndex: {},
@@ -256,7 +256,7 @@ Maybe you forgot to add a plugin to resolve it?
 Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information.`)
           }
         } else {
-          const declarationReference = generateDeclarationReference(
+          let declarationReference = generateDeclarationReference(
             property,
             value,
             pseudo,
@@ -264,48 +264,54 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
             support
           )
 
-          if (!renderer.cache.hasOwnProperty(declarationReference)) {
-            // we remove undefined values to enable
-            // usage of optional props without side-effects
-            if (isUndefinedValue(value)) {
-              renderer.cache[declarationReference] = {
-                className: '',
-              }
-              /* eslint-disable no-continue */
-              continue
-              /* eslint-enable */
-            }
-
-            const className =
-              renderer.selectorPrefix +
-              renderer.generateClassName(
+          if (renderer.cacheMap) {
+            if (!renderer.cacheMap.hasOwnProperty(declarationReference)) {
+              const pluginInterface = {
                 property,
                 value,
                 pseudo,
                 media,
-                support
+                support,
+              }
+
+              const processed = arrayReduce(
+                renderer.optimizedPlugins,
+                (processed, plugin) => plugin(processed, renderer),
+                pluginInterface
               )
 
-            const declaration = cssifyDeclaration(property, value)
-            const selector = generateCSSSelector(
-              className,
-              pseudo,
-              config.specificityPrefix,
-              renderer.propertyPriority[property]
-            )
+              const cacheReference = generateDeclarationReference(
+                processed.property,
+                processed.value,
+                processed.pseudo,
+                processed.media,
+                processed.support
+              )
 
-            const change = {
-              type: RULE_TYPE,
-              className,
-              selector,
-              declaration,
-              pseudo,
-              media,
-              support,
+              renderer._renderStyleToCache(
+                cacheReference,
+                processed.property,
+                processed.value,
+                processed.pseudo,
+                processed.media,
+                processed.support
+              )
+
+              renderer.cacheMap[declarationReference] = cacheReference
             }
 
-            renderer.cache[declarationReference] = change
-            renderer._emitChange(change)
+            declarationReference = renderer.cacheMap[declarationReference]
+          }
+
+          if (!renderer.cache.hasOwnProperty(declarationReference)) {
+            renderer._renderStyleToCache(
+              declarationReference,
+              property,
+              value,
+              pseudo,
+              media,
+              support
+            )
           }
 
           const cachedClassName = renderer.cache[declarationReference].className
@@ -318,6 +324,43 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       }
 
       return classNames
+    },
+
+    _renderStyleToCache(reference, property, value, pseudo, media, support) {
+      // we remove undefined values to enable
+      // usage of optional props without side-effects
+      if (isUndefinedValue(value)) {
+        renderer.cache[reference] = {
+          className: '',
+        }
+
+        return
+      }
+
+      const className =
+        renderer.selectorPrefix +
+        renderer.generateClassName(property, value, pseudo, media, support)
+
+      const declaration = cssifyDeclaration(property, value)
+      const selector = generateCSSSelector(
+        className,
+        pseudo,
+        config.specificityPrefix,
+        renderer.propertyPriority[property]
+      )
+
+      const change = {
+        type: RULE_TYPE,
+        className,
+        selector,
+        declaration,
+        pseudo,
+        media,
+        support,
+      }
+
+      renderer.cache[reference] = change
+      renderer._emitChange(change)
     },
 
     generateClassName(
@@ -340,6 +383,18 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
   // initial setup
   renderer.keyframePrefixes.push('')
+
+  if (config.optimizeCaching) {
+    renderer.optimizedPlugins = renderer.plugins
+      .filter((plugin) => plugin.optimized)
+      .map((plugin) => plugin.optimized)
+
+    // only enable the cache map if we have optimized plugins
+    if (renderer.optimizedPlugins.length > 0) {
+      renderer.plugins = renderer.plugins.filter((plugin) => !plugin.optimized)
+      renderer.cacheMap = {}
+    }
+  }
 
   if (config.enhancers) {
     arrayEach(config.enhancers, (enhancer) => {

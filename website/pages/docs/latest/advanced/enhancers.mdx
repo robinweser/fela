@@ -1,0 +1,81 @@
+# Enhancers
+
+Enhancers are similar to plugins.<br />
+While plugins operate on the style object **every** render, enhancers **enhance** the renderer **once**.
+
+## Use Case
+
+They are used to add, remove or modify functionality. They can also be used as a wrapper for change subscriptions e.g. for logging or metrics reasons.
+
+## Using Enhancers
+
+To use plugins we need to add them to the renderer configuration directly. You can do this by passing a configuration object using the `enhancers` key while creating your renderer.
+
+```javascript
+import { createRenderer } from 'fela'
+
+const config = {
+  // It must be an array to be able
+  // to pass multiple enhancers
+  enhancers: [
+    /* your enhancers */
+  ],
+}
+
+const renderer = createRenderer(config)
+```
+
+## Official Enhancers
+
+Fela already ships with a set of useful enhancers. Check out [Introduction - Ecosystem](intro/ecosystem#enhancers) for more information.<br />
+
+> **Note**: Official enhancers are wrapped by a configuration function by default.
+
+## Custom Enhancers
+
+Let's imagine, we would like to add a function to the `renderer` that returns the number of unique CSS classes rendered.<br />
+We can get that number by counting all cache entries with a `RULE` type.
+
+```js name=getClassesCount.js
+function getClassesCount(renderer) {
+  const rules = renderer.cache.filter((entry) => entry.type === 'RULE')
+  return rules.length
+}
+```
+
+We can now utilize this little helper to write our enhancer.
+
+```javascript name=classesCount.js
+import getClassesCount from './getClassesCount'
+
+export default function classesCount(renderer) {
+  renderer.getClassesCount = () => getClassesCount(renderer)
+
+  return renderer
+}
+```
+
+### Usage
+
+```js name=renderer.js
+import { createRenderer } from 'fela'
+
+import classesCount from './classesCount'
+
+const renderer = createRenderer({
+  enhancers: [classesCount],
+})
+
+renderer.renderRule(() => ({ color: 'red' }))
+
+renderer.getClassesCount()
+// => 1
+```
+
+---
+
+## Related
+
+- [Renderer Configuration](advanced/renderer-configuration)
+- [List of enhancers](intro/ecosystem#enhancers)
+- [API Reference - `enhance`](api/fela/enhance)

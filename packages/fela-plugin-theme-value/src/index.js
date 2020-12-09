@@ -1,18 +1,23 @@
 /* @flow */
 import isPlainObject from 'isobject'
+import arrayReduce from 'fast-loops/lib/arrayReduce'
 
 import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
 import type { StyleType } from '../../../flowtypes/StyleType'
 
-function getValue(object, key) {
-  const value = key.split('.').reduce((value, key) => {
-    if (isPlainObject(value) && value[key]) {
-      return value[key]
-    }
+function getThemeValue(object, key) {
+  const value = arrayReduce(
+    key.split('.'),
+    (value, index) => {
+      if (isPlainObject(value) && value[index]) {
+        return value[index]
+      }
 
-    return undefined
-  }, object)
+      return undefined
+    },
+    object
+  )
 
   return value || key
 }
@@ -26,7 +31,7 @@ function resolveThemeValues(
     const value = style[property]
 
     if (typeof value === 'string' && mapping[property]) {
-      style[property] = getValue(mapping[property](theme), value)
+      style[property] = getThemeValue(mapping[property](theme), value)
     } else if (isPlainObject(value)) {
       style[property] = resolveThemeValues(style[property], theme, mapping)
     }
@@ -41,5 +46,5 @@ export default function themeValue(mapping: Object = {}) {
     type: StyleType,
     renderer: DOMRenderer | NativeRenderer,
     props: Object
-  ): Object => resolveThemeValues(style, props.theme, mapping)
+  ) => resolveThemeValues(style, props.theme, mapping)
 }

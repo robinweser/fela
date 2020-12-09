@@ -9,7 +9,7 @@ const rule = () => ({
   '@media (min-width: 1024px)': {
     color: 'red',
   },
-  color: 'rgb(50, 50, 50)',
+  color: ['red', 'rgba(255, 0, 0, 0.8)'],
   fontSize: 100,
   padding: 50,
   ':hover': { animationDuration: '500ms' },
