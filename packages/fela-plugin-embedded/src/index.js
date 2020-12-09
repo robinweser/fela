@@ -16,7 +16,6 @@ function renderFontFace(fontFace, renderer) {
   }
 
   // TODO: warning - invalid font data
-
   return undefined
 }
 

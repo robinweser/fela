@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-theme-value",
-  "version": "11.4.0",
+  "version": "11.5.0-rc.0",
   "description": "Fela plugin to resolve values from a theme",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -17,14 +17,14 @@
     "fela",
     "fela-plugin",
     "theme",
-    "themed-ui",
+    "theme-ui",
     "mixin",
     "cssinjs"
   ],
   "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "^3.0.0",
+    "fast-loops": "^1.1.3",
     "isobject": "^3.0.1"
   },
   "peerDependencies": {

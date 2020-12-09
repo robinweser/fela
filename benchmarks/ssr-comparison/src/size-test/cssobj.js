@@ -1,1 +1,0 @@
-import cssobj from 'cssobj'

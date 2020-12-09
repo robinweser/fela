@@ -19,6 +19,16 @@ We might introduce more configuration options with future releases, so be sure t
 | filterClassName     | _(Function?)_ | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names                                                                                                                                                          |
 | devMode             | _(Boolean?)_  | `false`                           | Enabling development mode for better developer experience. **Make sure to disable devMode in production.**                                                                                          |
 
+## Feature Flags
+
+Additionally to the above mentioned options, we can also pass feature flags to enable experimental features.
+
+> **Note**: Those are experimental features and do not adhere to semantic versioning. Use at your own risk!
+
+| Option          | Description                                                |
+| --------------- | ---------------------------------------------------------- |
+| optimizeCaching |  Enables improved caching mechanism to speed up rendering. |
+
 ## Example
 
 ```javascript
@@ -43,6 +53,9 @@ const config = {
   styleNodeAttributes: {
     nonce: 'XXX',
   },
+
+  // feature flags
+  optimizeCaching: true,
 }
 
 const renderer = createRenderer(config)

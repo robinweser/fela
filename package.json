@@ -3,22 +3,25 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --reject-cycles",
-    "build": "./scripts/build.sh && lerna run build:umd",
+    "bundle": "lerna run build:umd",
+    "compile": "./scripts/build.sh",
     "clear": "lerna clean --yes && rimraf coverage && rimraf && rimraf packages/*/es && rimraf packages/*/lib",
     "check": "yarn format && yarn lint && yarn coverage && yarn flow",
     "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
-    "release": "git pull --rebase && yarn run check && yarn build && lerna publish --force-publish",
+    "release": "yarn prepare-release && lerna publish --force-publish",
+    "pre-release": "yarn prepare-release && lerna publish --force-publish --dist-tag next --preid rc",
+    "prepare-release": "git pull --rebase && yarn run check && yarn compile && yarn bundle",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test --coverage",
     "watch": "yarn test --watch",
-    "postinstall": "yarn build"
+    "postinstall": "yarn compile"
   },
   "workspaces": [
     "packages/*",
     "examples/*",
-    "benchmarks/*",
+    "benchmarks",
     "website"
   ],
   "jest": {
