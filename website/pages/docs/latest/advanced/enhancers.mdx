@@ -33,33 +33,43 @@ Fela already ships with a set of useful enhancers. Check out [Introduction - Eco
 
 ## Custom Enhancers
 
-TODO: add a better example
+Let's imagine, we would like to add a function to the `renderer` that returns the number of unique CSS classes rendered.<br />
+We can get that number by counting all cache entries with a `RULE` type.
 
-Lets say we want to automatically beautify the rendered CSS output. This is a common use case as it makes debugging much simpler.
+```js name=getClassesCount.js
+function getClassesCount(renderer) {
+  const rules = renderer.cache.filter((entry) => entry.type === 'RULE')
+  return rules.length
+}
+```
 
-There is a great package called [cssbeautify](https://github.com/senchalabs/cssbeautify), which does exactly what we try to achieve. We just have to write an enhancers that adds the beautifier to the `renderToString`-method
+We can now utilize this little helper to write our enhancer.
 
-> **Note**: Every enhancers gets the renderer passed as the only argument.
+```javascript name=classesCount.js
+import getClassesCount from './getClassesCount'
 
-```javascript
-import cssbeautify from 'cssbeautify'
-
-function beautifier(renderer) {
-  const existingRenderToString = renderer.renderToString.bind(renderer)
-
-  renderer.renderToString = () => {
-    const css = existingRenderToString()
-    return cssbeautify(css)
-  }
+export default function classesCount(renderer) {
+  renderer.getClassesCount = () => getClassesCount(renderer)
 
   return renderer
 }
+```
 
-const config = {
-  enhancers: [beautifier],
-}
+### Usage
 
-const renderer = createRenderer(config)
+```js name=renderer.js
+import { createRenderer } from 'fela'
+
+import classesCount from './classesCount'
+
+const renderer = createRenderer({
+  enhancers: [classesCount],
+})
+
+renderer.renderRule(() => ({ color: 'red' }))
+
+renderer.getClassesCount()
+// => 1
 ```
 
 ---
