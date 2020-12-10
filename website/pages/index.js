@@ -3,11 +3,10 @@ import { Box } from 'kilvin'
 import Head from 'next/head'
 import { useFela } from 'react-fela'
 
-import Template from '../components/Template'
 import Layout from '../components/Layout'
 import CodeBlock from '../components/CodeBlock'
 import Button from '../components/Button'
-import LogoBanner from '../components/LogoBanner'
+import Logo from '../components/Logo'
 
 import companies from '../data/companies.json'
 
@@ -18,6 +17,16 @@ export default function Page() {
     <>
       <Head>
         <title>Fela</title>
+        <meta
+          name="description"
+          content
+          type="Fela is a small, high-performant and framework-agnostic toolbelt to
+          handle state-driven styling in JavaScript."
+        />
+        <meta
+          name="keywords"
+          content="Fela, fela, felajs, CSSinJS, CSS-in-JS, CSS, Styling, React, Atomic CSS"
+        />
       </Head>
       <Box
         paddingTop={15}
@@ -27,7 +36,7 @@ export default function Page() {
         space={[2, , , 8]}
         extend={{ backgroundColor: theme.colors.background }}>
         <Box width="100%" alignSelf="center" maxWidth={[300, , 500, , 550]}>
-          <LogoBanner />
+          <Logo />
         </Box>
         <Box
           alignSelf="center"
@@ -49,7 +58,7 @@ export default function Page() {
         paddingRight={[0, , 12]}
         paddingTop={[6, , 16]}
         paddingBottom={[10, , 20]}>
-        <Layout wide>
+        <Layout>
           <Box
             as="h2"
             extend={{
@@ -71,7 +80,7 @@ export default function Page() {
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Predictable Styling
                 </Box>
-                <Box as="p" extend={{ lineHeight: 1.5, fontSize: 15 }}>
+                <Box as="p" extend={{ lineHeight: 1.5 }}>
                   Fela generates unique CSS classes for every rule.
                   <br />
                   It automatically sorts rules, pseudo classes and media
@@ -85,7 +94,7 @@ export default function Page() {
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Atomic CSS
                 </Box>
-                <Box as="p" extend={{ lineHeight: 1.5, fontSize: 15 }}>
+                <Box as="p" extend={{ lineHeight: 1.5 }}>
                   Fela generates atomic CSS classes.
                   <br />
                   For every property-value pair there's a single rule which can
@@ -101,7 +110,7 @@ export default function Page() {
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Framework-agnostic
                 </Box>
-                <Box as="p" extend={{ lineHeight: 1.5, fontSize: 15 }}>
+                <Box as="p" extend={{ lineHeight: 1.5 }}>
                   Fela is a plain JavaScript library and works without a
                   framework our UI library.
                   <br />
@@ -115,7 +124,7 @@ export default function Page() {
                 <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
                   Huge Ecosystem
                 </Box>
-                <Box as="p" extend={{ lineHeight: 1.5, fontSize: 15 }}>
+                <Box as="p" extend={{ lineHeight: 1.5 }}>
                   With only ~4kb minfied and gzipped, Fela is a lightweight
                   styling toolbelt.
                   <br />

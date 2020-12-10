@@ -16,6 +16,7 @@ export default class MyDocument extends Document {
 
     const initialProps = await Document.getInitialProps(ctx)
     const styles = renderToNodeList(renderer)
+
     return {
       ...initialProps,
       styles: [...initialProps.styles, ...styles],
@@ -33,7 +34,7 @@ export default class MyDocument extends Document {
           <NextScript />
           <script
             src="https://kit.fontawesome.com/7ab8891207.js"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           />
           <script
             async

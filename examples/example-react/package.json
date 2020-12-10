@@ -30,8 +30,8 @@
     "fela-plugin-unit": "^11.5.0-rc.0",
     "fela-plugin-validator": "^11.5.0-rc.0",
     "fela-sort-media-query-mobile-first": "^11.5.0-rc.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-fela": "^11.5.0-rc.0",
     "webpack": "^4.42.1",
     "webpack-dev-server": "^3.10.3"

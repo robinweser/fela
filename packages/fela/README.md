@@ -140,11 +140,11 @@ render(
 
 ## Documentation
 
-- [Getting Started](http://fela.js.org/docs/intro/getting-started)
-- [Ecosystem](http://fela.js.org/docs/intro/ecosystem)
+- [Getting Started](http://fela.js.org/docs/latest/intro/getting-started)
+- [Ecosystem](http://fela.js.org/docs/latest/intro/ecosystem)
 - [Migration Guide](http://fela.js.org/docs/latest/extra/migration)
 - [Changelog](https://github.com/robinweser/fela/releases)
-- [FAQ](http://fela.js.org/docs/extra/faq)
+- [FAQ](http://fela.js.org/docs/latest/extra/faq)
 
 ## Workshop
 
@@ -169,7 +169,7 @@ If you are coming from CSS and want to learn JavaScript Styling with Fela, there
 
 ## Ecosystem
 
-There are tons of useful packages maintained within this repository including plugins, enhancers, bindings and tools that can be used together with Fela. Check the [Ecosystem](http://fela.js.org/docs/introduction/Ecosystem.html) documentation for a quick overview.
+There are tons of useful packages maintained within this repository including plugins, enhancers, bindings and tools that can be used together with Fela. Check the [Ecosystem](http://fela.js.org/docs/latest/intro/ecosystem) documentation for a quick overview.
 
 ## Community
 

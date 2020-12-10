@@ -74,6 +74,9 @@
   },
   "Extra": {
     "Examples": "extra/examples",
+    "Migration": "extra/migration",
+    "Changelog": "https://github.com/robinweser/fela/releases",
+    "Support": "https://github.com/robinweser/fela/discussions",
     "FAQ": "extra/faq"
   }
 }

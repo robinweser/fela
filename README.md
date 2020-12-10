@@ -13,14 +13,6 @@ Fela can be used with [React](https://github.com/robinweser/fela/tree/master/pac
 
 Support Robin Weser's work on Fela and its ecosystem directly via [**GitHub Sponsors**](https://github.com/sponsors/robinweser).
 
-## Installation
-
-```sh
-yarn add fela
-```
-
-You may alternatively use `npm i --save fela`.
-
 ## Benefits
 
 - Predictable Styling
@@ -31,6 +23,8 @@ You may alternatively use `npm i --save fela`.
 - Framework-Agnostic
 - Huge Ecosystem
 - RTL Support
+
+> [Read more about the benefits](https://fela.js.org/docs/latest/intro/benefits)!
 
 ## The Gist
 
@@ -85,42 +79,27 @@ Using the [React bindings](packages/react-fela), you get powerful APIs to create
 
 > **Read**: [Usage with React](http://fela.js.org/docs/latest/guides/usage-with-react) for a full guide.
 
-```javascript
-import React from 'react'
-import { RendererProvider, useFela } from 'react-fela'
-import { createRenderer } from 'fela'
-import { render } from 'react-dom'
+```jsx
+import * as React from 'react'
+import { useFela } from 'react-fela'
 
-const rule = (state) => ({
+const rule = ({ fontSize }) => ({
   textAlign: 'center',
   padding: '5px 10px',
-  // directly use the state to compute style values
-  fontSize: state.fontSize + 'pt',
+  // directly use the props to compute style values
+  fontSize: fontSize + 'pt',
   borderRadius: 5,
-  // deeply nest media queries and pseudo classes
   ':hover': {
-    fontSize: state.fontSize + 2 + 'pt',
+    fontSize: fontSize + 2 + 'pt',
     boxShadow: '0 0 2px rgb(70, 70, 70)',
   },
 })
 
-const Button = ({ children, ...props }) => {
-  const { css } = useFela(props)
+function Button({ fontSize, children }) {
+  const { css } = useFela({ fontSize })
 
   return <button className={css(rule)}>{children}</button>
 }
-
-const renderer = createRenderer()
-
-render(
-  <RendererProvider renderer={renderer}>
-    <>
-      <Button>Basic Button</Button>
-      <Button fontSize={18}>Big Button</Button>
-    </>
-  </RendererProvider>,
-  document.body
-)
 ```
 
 > Check this example on [CodeSandbox](https://codesandbox.io/s/fela-demo-7tsj5)
@@ -140,11 +119,11 @@ render(
 
 ## Documentation
 
-- [Getting Started](http://fela.js.org/docs/intro/getting-started)
-- [Ecosystem](http://fela.js.org/docs/intro/ecosystem)
+- [Getting Started](http://fela.js.org/docs/latest/intro/getting-started)
+- [Ecosystem](http://fela.js.org/docs/latest/intro/ecosystem)
 - [Migration Guide](http://fela.js.org/docs/latest/extra/migration)
 - [Changelog](https://github.com/robinweser/fela/releases)
-- [FAQ](http://fela.js.org/docs/extra/faq)
+- [FAQ](http://fela.js.org/docs/latest/extra/faq)
 
 ## Workshop
 
@@ -169,7 +148,7 @@ If you are coming from CSS and want to learn JavaScript Styling with Fela, there
 
 ## Ecosystem
 
-There are tons of useful packages maintained within this repository including plugins, enhancers, bindings and tools that can be used together with Fela. Check the [Ecosystem](http://fela.js.org/docs/introduction/Ecosystem.html) documentation for a quick overview.
+There are tons of useful packages maintained within this repository including plugins, enhancers, bindings and tools that can be used together with Fela. Check the [Ecosystem](http://fela.js.org/docs/latest/intro/ecosystem) documentation for a quick overview.
 
 ## Community
 

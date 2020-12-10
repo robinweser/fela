@@ -6,27 +6,28 @@ This guide should help migrating your Fela codebase to newer versions.
 
 ## 10.0.0
 
-With Version 10, we did some major changes to all the React-like bindings.<br>
+With Version 10, we did some major changes to all the React-like bindings.<br/>
 All older APIs should still work, but will now render a deprecation warning with instructions on how to migrate. We will do a code cleanup with Version 11.
 
 > **Codemods**: We also have Codemods to automate the migration process. They should catch at least 80% of all usages.
 
-#### Relevant Packages
-* react-fela
-* preact-fela
-* inferno-fela
+### Relevant Packages
+
+- react-fela
+- preact-fela
+- inferno-fela
 
 ---
 
 ### FelaTheme
 
-[Codemod](https://github.com/robinweser/fela/tree/master/packages/fela-codemods#felatheme) | [API Reference](http://fela.js.org/docs/api/bindings/FelaTheme.html)
+[Codemod](https://github.com/robinweser/fela/tree/master/packages/fela-codemods#felatheme) | [API Reference](api/react-fela/FelaTheme)
 
-The FelaTheme component now no longer uses the special `render` prop to pass a render function, but uses `children` instead.<br>
+The FelaTheme component now no longer uses the special `render` prop to pass a render function, but uses `children` instead.<br/>
 
 ### FelaComponent
 
-[Codemod](https://github.com/robinweser/fela/tree/master/packages/fela-codemods#felacomponent) | [API Reference](http://fela.js.org/docs/api/bindings/FelaComponent.html)
+[Codemod](https://github.com/robinweser/fela/tree/master/packages/fela-codemods#felacomponent) | [API Reference](api/react-fela/FelaComponent)
 
 The same goes for FelaComponent. We now use `children` directly rather than `render`. In order to pass a primitive render type, one may now use the `as` prop.
 
@@ -34,6 +35,6 @@ Instead of accepting both `style` and `rule` it now only accepts `style` but all
 
 ### RendererProvider
 
-[Codemod](https://github.com/robinweser/fela/tree/master/packages/fela-codemods#rendererprovider) | [API Reference](http://fela.js.org/docs/api/bindings/RendererProvider.html)
+[Codemod](https://github.com/robinweser/fela/tree/master/packages/fela-codemods#rendererprovider) | [API Reference](api/react-fela/RendererProvider)
 
 The old `Provider` component has been renamed to `RendererProvider` for more clarity and specificity.

@@ -314,6 +314,8 @@ export default function DocLayout({ children, toc, version, headings }) {
 
   const flatNav = getFlatNav(toc)
 
+  console.log(flatNav)
+
   const docsPath = `/docs/${version}/`
   const currentPage = flatNav[router.pathname.substr(docsPath.length)]
 
@@ -429,7 +431,7 @@ export default function DocLayout({ children, toc, version, headings }) {
             name="version"
             value={version}
             onChange={(e) => {
-              router.push(`/docs/${e.target.value}/intro/motivation`)
+              router.push(`/docs/${e.target.value}/intro/getting-started`)
             }}>
             {versions.map((version) => (
               <option key={version} value={version}>
@@ -451,7 +453,9 @@ export default function DocLayout({ children, toc, version, headings }) {
               </Box>
               <Box paddingLeft={[0, , , 0]} space={2.5}>
                 {Object.keys(toc[group]).map((page) => {
-                  if (typeof toc[group][page] === 'object') {
+                  const path = toc[group][page]
+
+                  if (typeof path === 'object') {
                     return (
                       <Box space={2.5} key={page}>
                         <Box
@@ -463,43 +467,49 @@ export default function DocLayout({ children, toc, version, headings }) {
                           {page}
                         </Box>
                         <Box paddingLeft={[2, , , 2]} space={2.5}>
-                          {Object.keys(toc[group][page]).map((subPage) => (
-                            <NextLink
-                              key={group + page + subPage}
-                              href={docsPath + toc[group][page][subPage]}
-                              passHref>
-                              <Box
-                                as="a"
-                                extend={{
-                                  textDecoration: 'none',
-                                  color:
-                                    router.pathname ===
-                                    docsPath + toc[group][page][subPage]
-                                      ? theme.colors.blue
-                                      : 'black',
-                                  fontSize: 16,
-                                  medium: { fontSize: 14 },
-                                }}>
-                                {subPage}
-                              </Box>
-                            </NextLink>
-                          ))}
+                          {Object.keys(path).map((subPage) => {
+                            const subPath = path[subPage]
+                            const isExtern = subPath.indexOf('http') === 0
+
+                            return (
+                              <NextLink
+                                key={group + page + subPage}
+                                href={isExtern ? subPath : docsPath + subPath}
+                                passHref>
+                                <Box
+                                  as="a"
+                                  extend={{
+                                    textDecoration: 'none',
+                                    color:
+                                      router.pathname === docsPath + subPath
+                                        ? theme.colors.blue
+                                        : 'black',
+                                    fontSize: 16,
+                                    medium: { fontSize: 14 },
+                                  }}>
+                                  {subPage}
+                                </Box>
+                              </NextLink>
+                            )
+                          })}
                         </Box>
                       </Box>
                     )
                   }
 
+                  const isExtern = path.indexOf('http') === 0
+
                   return (
                     <NextLink
                       key={group + page}
-                      href={docsPath + toc[group][page]}
+                      href={isExtern ? path : docsPath + path}
                       passHref>
                       <Box
                         as="a"
                         extend={{
                           textDecoration: 'none',
                           color:
-                            router.pathname === docsPath + toc[group][page]
+                            router.pathname === docsPath + path
                               ? theme.colors.blue
                               : 'black',
                           fontSize: 16,
