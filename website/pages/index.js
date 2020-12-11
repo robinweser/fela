@@ -9,12 +9,13 @@ import Button from '../components/Button'
 import Logo from '../components/Logo'
 
 import companies from '../data/companies.json'
+import VisuallyHidden from '../components/VisuallyHidden'
 
 export default function Page() {
   const { theme } = useFela()
 
   return (
-    <>
+    <main id="main" role="main" aria-label="Main content">
       <Head>
         <title>Fela</title>
         <meta
@@ -37,6 +38,7 @@ export default function Page() {
         extend={{ backgroundColor: theme.colors.background }}>
         <Box width="100%" alignSelf="center" maxWidth={[300, , 500, , 550]}>
           <Logo />
+          <VisuallyHidden as="h1">Fela</VisuallyHidden>
         </Box>
         <Box
           alignSelf="center"
@@ -227,6 +229,6 @@ export default function Page() {
           })}
         </Box>
       </Box>
-    </>
+    </main>
   )
 }

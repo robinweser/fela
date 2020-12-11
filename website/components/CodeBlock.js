@@ -5,6 +5,7 @@ import { useFela } from 'react-fela'
 import copyToClipboard from 'copy-to-clipboard'
 
 import nightOwl from 'prism-react-renderer/themes/github'
+import VisuallyHidden from './VisuallyHidden'
 
 export default function CodeBlock({
   children,
@@ -69,8 +70,9 @@ export default function CodeBlock({
                 transform: 'scale(0.95, 0.95)',
               },
             }}
-            aria-label="Copy code">
+            type="button">
             <i className={`far fa-${copied ? 'check' : 'copy'}`}></i>
+            <VisuallyHidden>Copy code</VisuallyHidden>
           </Box>
         </Box>
       )}

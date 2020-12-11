@@ -4,6 +4,8 @@ import { Box } from 'kilvin'
 export default function Logo() {
   return (
     <Box
+      aria-hidden="true"
+      focusable="false"
       as="svg"
       width="100%"
       height="100%"

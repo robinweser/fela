@@ -51,24 +51,15 @@ export default function Heading({ level, children }) {
         marginBottom: level === 1 ? 30 : 10,
         lineHeight: 1.0,
         fontWeight: level === 1 ? 700 : level === 2 ? 500 : 600,
+        scrollMarginTop: 125,
         '> a': {
           color: theme.colors.foreground,
         },
-      }}>
-      {!id ? null : (
-        <Box
-          as="span"
-          id={id}
-          extend={{
-            marginTop: -125,
-            paddingBottom: 125,
-            medium: {
-              marginTop: -65,
-              paddingBottom: 65,
-            },
-          }}
-        />
-      )}
+        medium: {
+          scrollMarginTop: 65,
+        },
+      }}
+      id={id}>
       {text}
     </Box>
   )
