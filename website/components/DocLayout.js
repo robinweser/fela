@@ -12,6 +12,7 @@ import NavItem from './NavItem'
 import Template from './Template'
 import Layout from './Layout'
 import Heading from './Heading'
+import VisuallyHidden from './VisuallyHidden'
 
 import versions from '../data/versions.json'
 
@@ -49,6 +50,9 @@ function Headings({ headings }) {
 
   return (
     <Box
+      as="nav"
+      id="secondary-navigation"
+      aria-labelledby="toc-title"
       space={2}
       minWidth={200}
       display={['none', , , 'flex']}
@@ -71,8 +75,12 @@ function Headings({ headings }) {
           left: 'calc(100%  / 2 + 420px)',
         },
       }}>
-      <Box as="p" marginBottom={4} extend={{ fontWeight: 600, fontSize: 16 }}>
-        On This Page
+      <Box
+        as="h2"
+        marginBottom={4}
+        extend={{ fontWeight: 600, fontSize: 16 }}
+        id="toc-title">
+        Table of Contents
       </Box>
 
       {headings.map(([heading, id, level]) => (
@@ -299,7 +307,11 @@ export function Content({ navigationVisible, docsPath, children, ...props }) {
           ),
           hr: () => <Line />,
         }}>
-        <main style={{ display: navigationVisible ? 'none' : 'block' }}>
+        <main
+          role="main"
+          aria-label="Main content"
+          id="main"
+          style={{ display: navigationVisible ? 'none' : 'block' }}>
           {children}
         </main>
       </MDXProvider>
@@ -311,11 +323,7 @@ export default function DocLayout({ children, toc, version, headings }) {
   const [navigationVisible, setNavigationVisible] = useState(false)
   const { theme } = useFela()
   const router = useRouter()
-
   const flatNav = getFlatNav(toc)
-
-  console.log(flatNav)
-
   const docsPath = `/docs/${version}/`
   const currentPage = flatNav[router.pathname.substr(docsPath.length)]
 
@@ -354,7 +362,7 @@ export default function DocLayout({ children, toc, version, headings }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css"
         />
         <link rel="stylesheet" href="/fonts/dank/dmvendor.css" />
-        <title>Fela - {currentPage}</title>
+        <title>{currentPage} — Fela</title>
       </Head>
       <Box>
         <Box
@@ -375,12 +383,27 @@ export default function DocLayout({ children, toc, version, headings }) {
             right: 0,
           }}>
           <Box
+            as="button"
+            type="button"
+            aria-controls="main-navigation"
             onClick={() => setNavigationVisible(!navigationVisible)}
-            extend={{ cursor: 'pointer', height: '100%', width: 16 }}>
+            extend={{
+              cursor: 'pointer',
+              height: '100%',
+              width: 16,
+              background: 'transparent',
+              padding: 0,
+              border: 0,
+              font: 'inherit',
+            }}>
             <i className={'fas fa-' + (navigationVisible ? 'times' : 'bars')} />
+            <VisuallyHidden>
+              {navigationVisible ? 'Close menu' : 'Open menu'}
+            </VisuallyHidden>
           </Box>
 
           <Box
+            as="p"
             grow={1}
             shrink={1}
             extend={{
@@ -393,12 +416,15 @@ export default function DocLayout({ children, toc, version, headings }) {
           </Box>
           <Link
             href={`https://github.com/robinweser/fela/edit/master/website/pages${router.pathname}.mdx`}>
-            Edit
+            Edit <VisuallyHidden>on GitHub</VisuallyHidden>
           </Link>
         </Box>
       </Box>
 
       <Box
+        as="nav"
+        id="main-navigation"
+        aria-labelledby="nav-title"
         minWidth={['100%', , 250]}
         paddingTop={[4, , 8]}
         paddingLeft={5}
@@ -421,6 +447,9 @@ export default function DocLayout({ children, toc, version, headings }) {
             right: 'calc(100% / 2 + 400px + 10 * 4px)',
           },
         }}>
+        <VisuallyHidden as="h2" id="nav-title">
+          Main navigation
+        </VisuallyHidden>
         <Box space={2} direction="row" alignItems="center">
           <Box as="label" htmlFor="version" extend={{ fontSize: 14 }}>
             Version
@@ -478,6 +507,11 @@ export default function DocLayout({ children, toc, version, headings }) {
                                 passHref>
                                 <Box
                                   as="a"
+                                  aria-current={
+                                    router.pathname === docsPath + subPath
+                                      ? 'page'
+                                      : undefined
+                                  }
                                   extend={{
                                     textDecoration: 'none',
                                     color:
@@ -506,6 +540,11 @@ export default function DocLayout({ children, toc, version, headings }) {
                       passHref>
                       <Box
                         as="a"
+                        aria-current={
+                          router.pathname === docsPath + path
+                            ? 'page'
+                            : undefined
+                        }
                         extend={{
                           textDecoration: 'none',
                           color:
@@ -552,8 +591,8 @@ export default function DocLayout({ children, toc, version, headings }) {
           paddingTop={[4, , , 8]}
           display={['none', , 'flex']}
           extend={{ fontSize: 14 }}>
-          <Box>Docs / {currentPage}</Box>
-          <Box>
+          <Box as="p">Docs / {currentPage}</Box>
+          <Box as="p">
             <Link
               href={`https://github.com/robinweser/fela/edit/master/website/pages${router.pathname}.mdx`}>
               <i className="fa fa-edit" /> Edit on GitHub
