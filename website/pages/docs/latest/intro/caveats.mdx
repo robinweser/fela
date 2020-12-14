@@ -4,8 +4,7 @@ Like every solution, also Fela is not **the** ultimate solution and should not b
 
 ## Computed Selectors
 
-The unique computed selectors are quite handy as they [prevent namespacing conflicts](intro/benefits#local-namespace). But they are not designed to be human-readable nor to be mutated at all. <br />
-However, if you need to mutate the styles from outside, consider providing an API to pass the props.
+The unique computed selectors are quite handy as they [prevent namespacing conflicts](intro/benefits#local-namespace). But they are not designed to be human-readable nor to be mutated at all. However, if you need to mutate the styles from outside, consider providing an API to pass the props.
 
 ## Shorthand & Longhand Properties
 
@@ -20,21 +19,13 @@ const rule = (props) => ({
 
 The above example will not unconditionally render a red border as we can't tell which rule might be rendered before and therefore appears first in the stylesheet. There might have been another rule that renders `borderColor: red` which is rendered before this rule. Now rendering this rule, would cause `border: 1px solid black` to always be preferred based on how CSS specificity works.
 
-To solve this problem, you should not use shorthand and longhand properties together in a single rule. Perhaps the best is to avoid them at all. To give you an example, here's how you would write the above:
+> There are different solutions to this problem. We highly recommend reading [The Shorthand-Longhand Problem in Atomic CSS](https://weser.io/blog/the-shorthand-longhand-problem-in-atomic-css) for an in-depth explanation including all possible solutions.
 
-```javascript nocopy
-const rule = (props) => ({
-  borderStyle: 'solid',
-  borderWidth: '1px',
-  borderColor: 'red',
-})
-```
+There are three options to solve this with Fela. We recommend using [fela-enforce-longhands](https://github.com/robinweser/fela/tree/master/packages/fela-enforce-longhands) as it is the simplest and fastest solution.
 
-It might be more code to type, but its also more self-explanatory and descriptive.<br />
-
-### propertyPriority & fela-enforce-longhands
-
-Another option to solve this in a deterministic way is by utilizing the [propertyPriority config option](advanced/renderer-configuration) or using the [fela-enforce-longhands](https://github.com/robinweser/fela/tree/master/packages/fela-enforce-longhands) enhancer which implements an opinionated `propertyPriority` configuration.
+1. Do **not** use shorthand and longhand properties together in a single rule. Perhaps the best is to avoid them at all. It might be more code to type, but its also more self-explanatory and descriptive.
+2. Use [fela-plugin-expand-shorthand](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-expand-shorthand) to resolve shorthand properties into their longhand equivalents.
+3. Utilize the [propertyPriority configuration option](advanced/renderer-configuration) or use the [fela-enforce-longhands](https://github.com/robinweser/fela/tree/master/packages/fela-enforce-longhands) enhancer directly which implements an opinionated `propertyPriority` configuration. This will prioritize longhand over shorthand properties so that they always overwrite their shorthand equivalent.
 
 ## CSS properties that contain double quotes
 

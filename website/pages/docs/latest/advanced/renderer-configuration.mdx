@@ -18,6 +18,7 @@ We might introduce more configuration options with future releases, so be sure t
 | styleNodeAttributes | _(Object?)_   |                                   | A map of attributes that's passed to the generated style nodes.                                                                                                                                     |
 | filterClassName     | _(Function?)_ | `cls => cls.indexOf('ad') !== -1` | Filter-function to filter used class names                                                                                                                                                          |
 | devMode             | _(Boolean?)_  | `false`                           | Enabling development mode for better developer experience. **Make sure to disable devMode in production.**                                                                                          |
+| propertyPriority    | _(Object?)_   |                                   | A map of property-priority pairs where default priority is `1`. Use numbers starting with `2` to prioritize certain properties over others.                                                         |
 
 ## Feature Flags
 
