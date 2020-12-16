@@ -37,7 +37,7 @@
   "license": "MIT",
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
-    "csstype": "^2.5.5",
+    "csstype": "^3.0.5",
     "fast-loops": "^1.0.0",
     "fela-utils": "^11.5.0",
     "isobject": "^3.0.1"
