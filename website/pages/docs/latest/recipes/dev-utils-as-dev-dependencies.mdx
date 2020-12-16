@@ -1,0 +1,56 @@
+# Dev utils as devDependencies
+
+Production dependencies and dev dependencies should be installed as such so that production builds do not contain development dependencies. That being said, it can be difficult to dynamically require/import dependencies based on whether they have been installed or not.
+
+Consider a Fela configuration relying on `fela-plugin-embedded` in all environments. Additionally, it uses `fela-beautifier` and `fela-plugin-validator` in development for debugging purposes, both installed as `devDependencies`. When trying to import or require them in production code, the application would throw a runtime error because they are not installed.
+
+## With webpack
+
+The main idea is to have 2 different files exporting plugins and enhancers (or any piece Fela configuration that differs between environments, really): one for development (`fela.development.js`), and one for production (`fela.production.js`).
+
+The development one could look like this:
+
+```js name=fela.development.js
+import beautifier from 'fela-beautifier'
+import validator from 'fela-plugin-validator'
+import embedded from 'fela-plugin-embedded'
+
+export const enhancers = [beautifier()]
+export const plugins = [validator(), embedded()]
+```
+
+And the production one:
+
+```js name=fela.production.js
+import embedded from 'fela-plugin-embedded'
+
+export const enhancers = []
+export const plugins = [embedded()]
+```
+
+Then in Webpack, we provide the content of the correct file as a global variable (e.g. `FELA_CONFIG`) based on the environment:
+
+```js name=webpack.config.js
+const { resolve } = require('path')
+const { ProvidePlugin } = require('webpack')
+
+const NODE_ENV = process.env.NODE_ENV
+
+module.exports = {
+  plugins: [
+    new ProvidePlugin({ FELA_CONFIG: resolve(`src/fela.${NODE_ENV}.js`) }),
+  ],
+}
+```
+
+Finally, when instantiating the Fela renderer, read the plugins and enhancers from the global `FELA_CONFIG` variable.
+
+```js
+/* global FELA_CONFIG */
+export default createRenderer({
+  plugins: FELA_CONFIG.plugins,
+  enhancers: FELA_CONFIG.enhancers,
+})
+```
+
+> This recipe relies on Webpack, but it should be applicable with any bundler able to expose a global variable.

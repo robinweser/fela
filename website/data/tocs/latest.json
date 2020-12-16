@@ -33,7 +33,8 @@
   "Recipes": {
     "Responsive Components": "recipes/responsive-components",
     "Testing Components": "recipes/testing-components",
-    "Right-to-Left Rendering": "recipes/right-to-left-rendering"
+    "Right-to-Left Rendering": "recipes/right-to-left-rendering",
+    "Dev utils as devDependencies": "recipes/dev-utils-as-dev-dependencies"
   },
   "API Reference": {
     "fela": {
