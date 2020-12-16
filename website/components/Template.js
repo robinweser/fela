@@ -7,7 +7,9 @@ import { useFela } from 'react-fela'
 import Layout from './Layout'
 import Link from './Link'
 import NavItem from './NavItem'
-import VisuallyHidden from './VisuallyHidden'
+import Icon from './Icon'
+import Twitter from '../icons/Twitter'
+import GitHub from '../icons/GitHub'
 
 export default function Template({ children }) {
   const { theme } = useFela()
@@ -37,27 +39,15 @@ export default function Template({ children }) {
             </Box>
             <Box direction="row">
               <NavItem path="https://twitter.com/felajs">
-                <i
-                  className="fa fa-twitter"
-                  style={{
-                    fontSize: 24,
-                    position: 'relative',
-                    lineHeight: 0.6,
-                  }}
+                <Icon
+                  icon={Twitter}
+                  extend={{ fontSize: 24 }}
+                  label="Twitter"
                 />
-                <VisuallyHidden>Twitter</VisuallyHidden>
               </NavItem>
 
               <NavItem path="https://github.com/robinweser/fela">
-                <i
-                  className="fa fa-github"
-                  style={{
-                    fontSize: 24,
-                    position: 'relative',
-                    lineHeight: 0.6,
-                  }}
-                />
-                <VisuallyHidden>GitHub</VisuallyHidden>
+                <Icon icon={GitHub} extend={{ fontSize: 24 }} label="GitHub" />
               </NavItem>
             </Box>
           </Box>

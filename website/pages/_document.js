@@ -33,10 +33,6 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
           <script
-            src="https://kit.fontawesome.com/7ab8891207.js"
-            crossOrigin="anonymous"
-          />
-          <script
             async
             defer
             src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
