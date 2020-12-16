@@ -34,7 +34,8 @@
     "Responsive Components": "recipes/responsive-components",
     "Testing Components": "recipes/testing-components",
     "Right-to-Left Rendering": "recipes/right-to-left-rendering",
-    "Dev utils as devDependencies": "recipes/dev-utils-as-dev-dependencies"
+    "Dev utils as devDependencies": "recipes/dev-utils-as-dev-dependencies",
+    "Integrating with react-dates": "recipes/integrating-with-react-dates"
   },
   "API Reference": {
     "fela": {
