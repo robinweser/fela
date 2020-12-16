@@ -6,6 +6,9 @@ import copyToClipboard from 'copy-to-clipboard'
 
 import nightOwl from 'prism-react-renderer/themes/github'
 import VisuallyHidden from './VisuallyHidden'
+import Icon from './Icon'
+import Copy from '../icons/Copy'
+import Check from '../icons/Check'
 
 export default function CodeBlock({
   children,
@@ -78,8 +81,7 @@ export default function CodeBlock({
               },
             }}
             type="button">
-            <i className={`far fa-${copied ? 'check' : 'copy'}`}></i>
-            <VisuallyHidden>Copy code</VisuallyHidden>
+            <Icon icon={copied ? Check : Copy} label="Copy code" />
           </Box>
         </Box>
       )}

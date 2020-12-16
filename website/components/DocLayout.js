@@ -6,12 +6,14 @@ import { useFela } from 'react-fela'
 import { Box, Spacer } from 'kilvin'
 import { MDXProvider } from '@mdx-js/react'
 
-import Link from './Link'
 import CodeBlock from './CodeBlock'
-import NavItem from './NavItem'
-import Template from './Template'
-import Layout from './Layout'
+import Cross from '../icons/Cross'
+import Edit from '../icons/Edit'
+import Hamburger from '../icons/Hamburger'
 import Heading from './Heading'
+import Icon from './Icon'
+import Layout from './Layout'
+import Link from './Link'
 import VisuallyHidden from './VisuallyHidden'
 
 import versions from '../data/versions.json'
@@ -396,10 +398,10 @@ export default function DocLayout({ children, toc, version, headings }) {
               border: 0,
               font: 'inherit',
             }}>
-            <i className={'fas fa-' + (navigationVisible ? 'times' : 'bars')} />
-            <VisuallyHidden>
-              {navigationVisible ? 'Close menu' : 'Open menu'}
-            </VisuallyHidden>
+            <Icon
+              icon={navigationVisible ? Cross : Hamburger}
+              label={navigationVisible ? 'Close menu' : 'Open menu'}
+            />
           </Box>
 
           <Box
@@ -595,7 +597,7 @@ export default function DocLayout({ children, toc, version, headings }) {
           <Box as="p">
             <Link
               href={`https://github.com/robinweser/fela/edit/master/website/pages${router.pathname}.mdx`}>
-              <i className="fa fa-edit" /> Edit on GitHub
+              <Icon icon={Edit} /> Edit on GitHub
             </Link>
           </Box>
         </Box>
