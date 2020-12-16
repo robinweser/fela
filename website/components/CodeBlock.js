@@ -52,19 +52,26 @@ export default function CodeBlock({
             }}
             extend={{
               cursor: 'pointer',
-              borderRadius: 20,
+              borderRadius: '50%',
               outline: 0,
-              backgroundColor: theme.colors.blue,
+              backgroundColor: theme.colors.blueLight,
               borderWidth: 2,
               borderStyle: 'solid',
               borderColor: theme.colors.blueDark,
               color: 'white',
               fontSize: 15,
+              opacity: 0.75,
 
               transition:
                 'background-color 200ms ease-out, color 200ms ease-in-out, border-color 200ms ease-in-out, transform 100ms ease-out',
               ':hover': {
-                backgroundColor: theme.colors.blueDark,
+                backgroundColor: theme.colors.blue,
+                opacity: 1,
+              },
+              ':focus': {
+                backgroundColor: theme.colors.blue,
+                opacity: 1,
+                boxShadow: `0 0 0 2px white, 0 0 0 4px ${theme.colors.pink}`,
               },
               ':active': {
                 transform: 'scale(0.95, 0.95)',
