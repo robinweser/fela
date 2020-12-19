@@ -37,7 +37,7 @@ export default function Template({ children }) {
               <NavItem path="/">Home</NavItem>
               <NavItem path="/docs">Docs</NavItem>
             </Box>
-            <Box direction="row">
+            <Box direction="row" marginBottom={-1.5} marginTop={-1.5}>
               <NavItem path="https://twitter.com/felajs">
                 <Icon
                   icon={Twitter}
