@@ -1,6 +1,6 @@
 {
   "name": "fela-logger",
-  "version": "11.5.0",
+  "version": "11.5.1",
   "description": "Logging tool for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "cssbeautify": "^0.3.1",
-    "fela-utils": "^11.5.0"
+    "fela-utils": "^11.5.1"
   },
   "gitHead": "4cc4686d9e16877251ac5c73e161076ec7c113a1"
 }
