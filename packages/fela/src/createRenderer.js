@@ -287,14 +287,16 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
                 processed.support
               )
 
-              renderer._renderStyleToCache(
-                cacheReference,
-                processed.property,
-                processed.value,
-                processed.pseudo,
-                processed.media,
-                processed.support
-              )
+              if (!renderer.cache.hasOwnProperty(cacheReference)) {
+                renderer._renderStyleToCache(
+                  cacheReference,
+                  processed.property,
+                  processed.value,
+                  processed.pseudo,
+                  processed.media,
+                  processed.support
+                )
+              }
 
               renderer.cacheMap[declarationReference] = cacheReference
             }
