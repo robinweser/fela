@@ -1,3 +1,5 @@
+type Type = 'RULE' | 'KEYFRAME' | 'FONT' | 'STATIC';
+
 declare module "fela" {
   import * as CSS from 'csstype';
   import { TRuleType, TKeyframeType, TFontType, TStaticType, TClearType } from 'fela-utils';
@@ -12,7 +14,7 @@ declare module "fela" {
   };
 
   type TRendererCreator = (config?: IConfig) => IRenderer;
-  type TPlugin = (style: IStyle) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
+  type TPlugin<T = {}> = (style: IStyle, type?: Type, renderer?: IRenderer, props?: T) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
   type TEnhancer = (renderer: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
 
   type TSubscribeMessageType = TRuleType | TKeyframeType | TFontType | TStaticType | TClearType
@@ -74,7 +76,7 @@ declare module "fela-dom" {
   function renderToMarkup(renderer: IRenderer): string;
   function renderToSheetList(renderer: IRenderer): {
     css: string,
-    type: 'RULE' | 'KEYFRAME' | 'FONT' | 'STATIC',
+    type: Type,
     media?: string,
     support?: boolean,
   }[];
