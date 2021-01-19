@@ -1,5 +1,3 @@
-type Type = 'RULE' | 'KEYFRAME' | 'FONT' | 'STATIC';
-
 declare module "fela" {
   import * as CSS from 'csstype';
   import { TRuleType, TKeyframeType, TFontType, TStaticType, TClearType } from 'fela-utils';
@@ -14,7 +12,17 @@ declare module "fela" {
   };
 
   type TRendererCreator = (config?: IConfig) => IRenderer;
-  type TPlugin<T = {}> = (style: IStyle, type?: Type, renderer?: IRenderer, props?: T) => IStyle; //http://fela.js.org/docs/advanced/Plugins.html
+  type TRenderType = 'RULE' | 'KEYFRAME' | 'FONT' | 'STATIC';
+
+  type TPlugin<T = Record<string, unknown>> = {
+    (
+      style: IStyle,
+      type: TRenderType,
+      renderer: IRenderer,
+      props: T,
+    ): IStyle;
+  };
+
   type TEnhancer = (renderer: IRenderer) => IRenderer; //http://fela.js.org/docs/advanced/Enhancers.html
 
   type TSubscribeMessageType = TRuleType | TKeyframeType | TFontType | TStaticType | TClearType
@@ -69,14 +77,14 @@ declare module "fela" {
 }
 
 declare module "fela-dom" {
-  import { IRenderer } from 'fela';
+  import { IRenderer, TRenderType } from 'fela';
 
   function render(renderer: IRenderer): void;
   function rehydrate(renderer: IRenderer): void;
   function renderToMarkup(renderer: IRenderer): string;
   function renderToSheetList(renderer: IRenderer): {
     css: string,
-    type: Type,
+    type: TRenderType,
     media?: string,
     support?: boolean,
   }[];
