@@ -9,11 +9,12 @@ export default function processStyleWithPlugins(
   renderer: DOMRenderer | NativeRenderer,
   style: Object,
   type: StyleType,
-  props: Object = {}
+  props: Object = {},
+  plugins: Array<Function> = renderer.plugins
 ) {
-  if (renderer.plugins.length > 0) {
+  if (plugins.length > 0) {
     return arrayReduce(
-      renderer.plugins,
+      plugins,
       (processedStyle, plugin) => plugin(processedStyle, type, renderer, props),
       style
     )
