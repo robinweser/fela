@@ -9,6 +9,7 @@ import ThemeProvider from './ThemeProvider'
 import renderToNodeList from './renderToNodeList'
 import withTheme from './withTheme'
 import fe from './fe'
+import useFela from './useFela'
 
 import { RendererContext, ThemeContext } from './context'
 
@@ -28,4 +29,5 @@ export {
   ThemeProvider,
   withTheme,
   fe,
+  useFela,
 }
