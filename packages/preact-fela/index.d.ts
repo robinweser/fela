@@ -2066,9 +2066,7 @@ declare module "preact-fela" {
     ): Preact.ComponentChild;
   }
 
-  export type CssFelaStyle<T, P> = IStyle | StyleFunction<T, P>;
-
-  export type CssFunction<T, P> = (...style: CssFelaStyle<T, P>[]) => string;
+  export type CssFunction<T, P> = (...style: FelaStyle<T, P>[]) => string;
 
   export interface FelaHookProps<T, P> {
     css: CssFunction<T, P>;
