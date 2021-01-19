@@ -48,10 +48,18 @@ declare module "fela" {
     filterClassName?: (className: string) => boolean;
     devMode?: boolean;
   }
+  
+  type CSSObject = CSSProperties & CSSPseudos;
 
-  export interface IStyle extends CSS.Properties<string | number> {
-    // for selectors and pseudo classes use fela-plugin-typescript
-  }
+  type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject; };
+  type CSSProperties = CSS.Properties<number | string>;
+  
+  interface IStyleExtension {}
+  
+  export type IStyle = 
+    | CSSObject
+    | { [prop: string]: IStyle }
+    | IStyleExtension;
 
   function createRenderer(config?: IConfig): IRenderer;
 
