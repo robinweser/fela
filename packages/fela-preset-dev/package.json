@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-dev",
-  "version": "11.5.1",
+  "version": "11.5.2",
   "description": "Fela plugin preset for web applications",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,8 +21,8 @@
   "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
-    "fela-plugin-logger": "^11.5.1",
-    "fela-plugin-validator": "^11.5.1"
+    "fela-plugin-logger": "^11.5.2",
+    "fela-plugin-validator": "^11.5.2"
   },
   "gitHead": "4cc4686d9e16877251ac5c73e161076ec7c113a1"
 }
