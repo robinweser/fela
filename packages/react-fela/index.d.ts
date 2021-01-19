@@ -573,9 +573,7 @@ declare module "react-fela" {
     export class FelaComponent<T, P = {}> extends React.Component<FelaComponentProps<T, P> & P> {
     }
 
-    export type CssFelaStyle<T, P> = IStyle | StyleFunction<T, P>
-
-    export type CssFunction<T, P> = (...style: CssFelaStyle<T, P>[]) => string
+    export type CssFunction<T, P> = (...style: FelaStyle<T, P>[]) => string
 
     export interface FelaHookProps<T, P> {
       css: CssFunction<T, P>,
