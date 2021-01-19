@@ -202,7 +202,8 @@ export default function createRenderer(
         renderer,
         style,
         RULE_TYPE,
-        props
+        props,
+        renderer.unoptimizedPlugins || renderer.plugins
       )
 
       return renderer._renderStyleToClassNames(processedStyle).slice(1)
@@ -392,8 +393,10 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
     // only enable the cache map if we have optimized plugins
     if (renderer.optimizedPlugins.length > 0) {
-      renderer.plugins = renderer.plugins.filter((plugin) => !plugin.optimized)
       renderer.cacheMap = {}
+      renderer.unoptimizedPlugins = renderer.plugins.filter(
+        (plugin) => !plugin.optimized
+      )
     }
   }
 
