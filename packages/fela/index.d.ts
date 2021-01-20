@@ -50,15 +50,16 @@ declare module "fela" {
   }
   
   type CSSObject = CSSProperties & CSSPseudos;
+  type CSSCustom = { [prop: string]: IStyle };
 
   type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject; };
   type CSSProperties = CSS.Properties<number | string>;
   
-  interface IStyleExtension {}
-  
+  interface IStyleExtension { __brand?: never }
+
   export type IStyle = 
     | CSSObject
-    | { [prop: string]: IStyle }
+    | CSSCustom
     | IStyleExtension;
 
   function createRenderer(config?: IConfig): IRenderer;
