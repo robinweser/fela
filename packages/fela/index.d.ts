@@ -54,6 +54,7 @@ declare module "fela" {
 
   type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject; };
   type CSSProperties = CSS.Properties<number | string>;
+  type CSSPropertiesFallback = CSS.PropertiesFallback<number | string>;
   
   interface IStyleExtension { __brand?: never }
 

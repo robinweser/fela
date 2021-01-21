@@ -5,8 +5,5 @@ declare module "fela-plugin-fallback-value" {
 }
 
 declare module "fela" {
-  import * as CSS from 'csstype';
-
-  type CSSPropertiesFallback = CSS.PropertiesFallback<number | string>;
   interface IStyleExtension extends CSSPropertiesFallback {}
 }
