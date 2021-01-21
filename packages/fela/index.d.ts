@@ -51,7 +51,7 @@ declare module "fela" {
   
   type CSSObject = CSSProperties & CSSPseudos;
 
-  type CSSCustom = { [prop: string]: IStylePrimitive | IStyle };
+  type CSSCustom = { [prop: string]: CSSCustomPrimitive | IStyle };
   type CSSCustomPrimitive = IStylePrimitiveExtension[keyof IStylePrimitiveExtension];
 
   type CSSProperties = CSS.Properties<number | string>;
