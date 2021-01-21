@@ -51,13 +51,13 @@ declare module "fela" {
   
   type CSSObject = CSSProperties & CSSPseudos;
 
-  type IStylePrimitive = IStylePrimitiveExtension[keyof IStylePrimitiveExtension];
   type CSSCustom = { [prop: string]: IStylePrimitive | IStyle };
-
-  type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject; };
+  type CSSCustomPrimitive = IStylePrimitiveExtension[keyof IStylePrimitiveExtension];
 
   type CSSProperties = CSS.Properties<number | string>;
   type CSSPropertiesFallback = CSS.PropertiesFallback<number | string>;
+
+  type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject; };
 
   interface IStyleExtension { __brand?: never }
   interface IStylePrimitiveExtension {
