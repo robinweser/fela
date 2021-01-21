@@ -249,12 +249,6 @@ declare module "fela-plugin-extend" {
   export default function(): TPlugin;
 }
 
-declare module "fela-plugin-fallback-value" {
-  import { TPlugin } from "fela";
-
-  export default function(): TPlugin;
-}
-
 declare module "fela-plugin-friendly-pseudo-class" {
   import { TPlugin } from "fela";
 
