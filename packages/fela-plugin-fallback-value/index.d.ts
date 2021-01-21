@@ -6,4 +6,9 @@ declare module "fela-plugin-fallback-value" {
 
 declare module "fela" {
   interface IStyleExtension extends CSSPropertiesFallback {}
+
+  interface IStylePrimitiveExtension {
+    _string_array: string[];
+    _number_array: number[];
+  }  
 }
