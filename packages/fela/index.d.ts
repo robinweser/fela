@@ -58,10 +58,27 @@ declare module "fela" {
     filterClassName?: (className: string) => boolean;
     devMode?: boolean;
   }
+  
+  type CSSObject = CSSProperties & CSSPseudos;
 
-  export interface IStyle extends CSS.Properties<string | number> {
-    // for selectors and pseudo classes use fela-plugin-typescript
+  type CSSCustom = { [prop: string]: CSSCustomPrimitive | IStyle };
+  type CSSCustomPrimitive = IStylePrimitiveExtension[keyof IStylePrimitiveExtension];
+
+  type CSSProperties = CSS.Properties<number | string>;
+  type CSSPropertiesFallback = CSS.PropertiesFallback<number | string>;
+
+  type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject; };
+
+  interface IStyleExtension { __brand?: never }
+  interface IStylePrimitiveExtension {
+    _string: string;
+    _number: number;
   }
+  
+  export type IStyle = 
+    | CSSObject
+    | CSSCustom
+    | IStyleExtension;
 
   function createRenderer(config?: IConfig): IRenderer;
 
@@ -244,12 +261,6 @@ declare module "fela-plugin-embedded" {
 }
 
 declare module "fela-plugin-extend" {
-  import { TPlugin } from "fela";
-
-  export default function(): TPlugin;
-}
-
-declare module "fela-plugin-fallback-value" {
   import { TPlugin } from "fela";
 
   export default function(): TPlugin;

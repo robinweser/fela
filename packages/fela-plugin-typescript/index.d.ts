@@ -5,9 +5,7 @@ declare module "fela-plugin-typescript" {
 }
 
 declare module "fela" {
-  import * as CSS from "csstype";
-
-  export interface IStyle extends CSS.Properties<string | number> {
+  interface IStyleExtension {
     nested?: INestedSelectors;
   }
 
