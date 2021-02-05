@@ -30,8 +30,8 @@
   "author": "Robin Weser",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "^11.3.1",
-    "react": "^16.3.0"
+    "fela": ">= 11.3.1",
+    "react": ">= 16.3.0"
   },
   "dependencies": {
     "fela-bindings": "^11.5.2",
