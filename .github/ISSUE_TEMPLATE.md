@@ -11,7 +11,7 @@
 
 | Packages | Version |
 | -------- | ------- |
-| fela     | 6.0.x   |
+| fela     | 11.5.x  |
 
 -------------------
 #### Description
