@@ -72,4 +72,31 @@ describe('multiple-selectors plugin', () => {
       },
     })
   })
+
+  it('should merge resolved nested objects', () => {
+    const style = {
+      color: 'blue',
+      ':hover': {
+        color: 'blue',
+        fontSize: 12,
+      },
+      ':hover,:focus': {
+        backgroundColor: 'red',
+        color: 'red',
+      },
+    }
+
+    expect(multipleSelectors()(style)).toEqual({
+      color: 'blue',
+      ':hover': {
+        backgroundColor: 'red',
+        fontSize: 12,
+        color: 'red',
+      },
+      ':focus': {
+        backgroundColor: 'red',
+        color: 'red',
+      },
+    })
+  })
 })
