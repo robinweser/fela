@@ -9,12 +9,16 @@ describe('Rehydrating rules', () => {
     ).toMatchSnapshot()
   })
 
-  it.only('should rehydrate prioritized longhand rules', () => {
+  it('should rehydrate prioritized longhand rules', () => {
     expect(
       rehydrateRules(
         '.a.a{padding-left:20px}.b{padding:10px}.c.c:hover{color:red}'
       )
     ).toMatchSnapshot()
+  })
+
+  it('should rehydrate css custom properties', () => {
+    expect(rehydrateRules('.a{--custom-property:12px}')).toMatchSnapshot()
   })
 
   it('should rehydrate the renderer cache with specifity prefix', () => {
