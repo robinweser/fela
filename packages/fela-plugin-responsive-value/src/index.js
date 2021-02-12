@@ -1,4 +1,5 @@
 /* @flow */
+import isPlainObject from 'isobject'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
 import arrayEach from 'fast-loops/lib/arrayEach'
 
@@ -7,9 +8,19 @@ import type { StyleType } from '../../../flowtypes/StyleType'
 
 function resolveResponsiveValues(style, properties, getMediaQueries, props) {
   for (const property in style) {
-    if (properties[property]) {
-      const value = style[property]
+    const value = style[property]
 
+    // resolve nested styles
+    if (isPlainObject(value)) {
+      style[property] = resolveResponsiveValues(
+        value,
+        properties,
+        getMediaQueries,
+        props
+      )
+    }
+
+    if (properties[property]) {
       if (Array.isArray(value)) {
         const mediaQueries = getMediaQueries(value, props)
 
