@@ -1,5 +1,5 @@
 /* @flow */
-import { Component, Children, createElement } from 'react'
+import { Component, createElement } from 'react'
 import { RendererProviderFactory } from 'fela-bindings'
 import PropTypes from 'prop-types'
 
@@ -9,7 +9,7 @@ export default RendererProviderFactory(
   Component,
   RendererContext,
   createElement,
-  (children) => Children.only(children),
+  (children) => children,
   {
     propTypes: {
       renderer: PropTypes.object.isRequired,
