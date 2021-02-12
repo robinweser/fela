@@ -43,7 +43,8 @@ export default function rehydrateRules(
     /* eslint-enable */
 
     const declarationReference = generateDeclarationReference(
-      camelCaseProperty(property),
+      // keep css custom properties as lower-cased props
+      property.indexOf('--') === 0 ? property : camelCaseProperty(property),
       value,
       pseudo,
       media,

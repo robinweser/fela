@@ -114,6 +114,17 @@ describe('Renderer', () => {
 
       expect(renderer.cache.colorred.selector).toEqual('.a.a')
     })
+
+    it('should render css custom properties', () => {
+      const rule = () => ({
+        '--custom-property': '12px',
+      })
+
+      const renderer = createRenderer()
+      renderer.renderRule(rule)
+
+      expect(renderer.cache).toMatchSnapshot()
+    })
   })
 
   describe('Rendering keyframes', () => {
