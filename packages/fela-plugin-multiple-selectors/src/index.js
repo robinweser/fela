@@ -11,7 +11,14 @@ function multipleSelectors(style: Object): Object {
         const resolvedValue = multipleSelectors(value)
 
         arrayEach(property.split(','), (selector) => {
-          normalizedStyle[selector.trim()] = resolvedValue
+          const key = selector.trim()
+
+          // merge styles with base styles
+          const baseStyle = normalizedStyle[key] || {}
+          normalizedStyle[key] = {
+            ...baseStyle,
+            ...resolvedValue,
+          }
         })
       } else {
         normalizedStyle[property] = value
