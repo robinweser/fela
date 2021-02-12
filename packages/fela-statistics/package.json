@@ -1,6 +1,6 @@
 {
   "name": "fela-statistics",
-  "version": "11.5.2",
+  "version": "11.6.0",
   "description": "Statistic generation tool for Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,8 +25,8 @@
   "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
-    "fela-tools": "^11.5.2",
-    "fela-utils": "^11.5.2",
+    "fela-tools": "^11.6.0",
+    "fela-utils": "^11.6.0",
     "gzip-size": "^3.0.0"
   },
   "gitHead": "4cc4686d9e16877251ac5c73e161076ec7c113a1"
