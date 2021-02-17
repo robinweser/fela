@@ -498,4 +498,5 @@ declare module "inferno-fela" {
 
   export function fe (): Function;
 
+  export function renderToNodeList(renderer: IRenderer): Inferno.VNode[]
 }
