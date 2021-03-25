@@ -2074,5 +2074,7 @@ declare module "preact-fela" {
     renderer: IRenderer;
   }
 
+  export function renderToNodeList(renderer: IRenderer): Preact.VNode[]
+
   export function useFela<T = {}, P = {}>(props?: P): FelaHookProps<T, P>;
 }
