@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-kebab-case",
-  "version": "11.6.0",
+  "version": "11.6.1",
   "description": "Fela plugin to normalize kebab-case properties",
   "main": "lib/index.js",
   "module": "es/index.js",
