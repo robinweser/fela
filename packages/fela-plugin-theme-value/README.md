@@ -5,7 +5,7 @@
 When creating consistent UI, a theme is mandatory too keep everything aligned. With built-in theme support, Fela made that possible from the very beginning.
 
 Yet, using values from the theme can be annoying since one has to access the theme manually and pick the correct values.<br>
-With tools like [theme-ui](https://theme-ui.com), a direct string based approach became very popular as it's easy too use and still easy to understand. 
+With tools like [theme-ui](https://theme-ui.com), a direct string based approach became very popular as it's easy to use and still easy to understand. 
 
 This plugin provides basic support for string-based theme values in Fela.
 
