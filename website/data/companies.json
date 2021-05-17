@@ -23,6 +23,10 @@
     "logo": "cloudflare.svg",
     "url": "https://www.cloudflare.com"
   },
+  "Carla": {
+    "logo": "carla.svg",
+    "url": "https://www.carla.se"
+  },
   "Zendesk": {
     "logo": "zendesk.svg",
     "url": "https://www.zendesk.com"

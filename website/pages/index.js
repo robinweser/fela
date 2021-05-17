@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { useFela } from 'react-fela'
 
 import Layout from '../components/Layout'
-import CodeBlock from '../components/CodeBlock'
+
 import Button from '../components/Button'
 import Logo from '../components/Logo'
 
