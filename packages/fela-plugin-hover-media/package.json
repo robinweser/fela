@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-hover-media",
-  "version": "11.6.1",
+  "version": "11.7.0",
   "description": "Fela plugin to wrap :hover styles in @media (hover: hover)",
   "main": "lib/index.js",
   "module": "es/index.js",
