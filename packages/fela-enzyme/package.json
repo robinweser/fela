@@ -26,7 +26,7 @@
   "peerDependencies": {
     "enzyme": "*",
     "enzyme-to-json": "*",
-    "react": "*"
+    "react": "alpha"
   },
   "devDependencies": {
     "enzyme": "3.3.0",

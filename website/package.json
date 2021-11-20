@@ -22,10 +22,10 @@
     "fela-preset-web": "^11.7.0",
     "fela-sort-media-query-mobile-first": "^11.7.0",
     "kilvin": "^2.0.10",
-    "next": "^9.5.5",
+    "next": "12.0.1",
     "prism-react-renderer": "^1.1.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "alpha",
+    "react-dom": "alpha",
     "react-fela": "^11.7.0"
   },
   "devDependencies": {

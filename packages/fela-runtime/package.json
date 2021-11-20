@@ -1,37 +1,42 @@
 {
-  "name": "fela-plugin-native-media-query",
+  "name": "fela-runtime",
   "version": "11.7.0",
-  "description": "Fela plugin to resolve media queries in React Native",
+  "description": "Fela runtime for usage with react-fela-concurrent",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "sideEffects": false,
+  "scripts": {
+    "build:umd": "webpack --config webpack.config.js"
+  },
   "files": [
     "LICENSE",
     "README.md",
     "lib/**",
-    "es/**"
+    "es/**",
+    "umd/**"
   ],
   "repository": "https://github.com/robinweser/fela/",
   "keywords": [
     "fela",
-    "fela-native",
-    "react-native",
-    "media query",
+    "dynamic styling",
+    "stylesheet",
+    "css",
+    "styling",
     "cssinjs"
   ],
   "author": "Robin Weser",
   "license": "MIT",
-  "peerDependencies": {
-    "fela-native": "^11.2.0",
-    "react": "alpha",
-    "react-native": "*"
-  },
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
-    "css-mediaquery": "^0.1.2",
+    "fast-loops": "^1.0.1",
     "fela-utils": "^11.7.0",
-    "isobject": "^3.0.1"
+    "sort-css-media-queries": "^1.4.3"
+  },
+  "devDependencies": {
+    "fela": "^11.7.0",
+    "fela-preset-web": "^11.7.0",
+    "fela-tools": "^11.7.0"
   },
   "gitHead": "4cc4686d9e16877251ac5c73e161076ec7c113a1"
 }

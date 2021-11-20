@@ -32,6 +32,10 @@ export default function RendererProviderFactory(
       this._renderStyle()
     }
 
+    componentDidMount() {
+      this.props.renderer.isLoaded = true
+    }
+
     componentDidUpdate(prevProps) {
       // TODO: we might add a shallow compare to avoid unnecessary rerenders
       this._renderStyle()

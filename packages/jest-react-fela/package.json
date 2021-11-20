@@ -27,8 +27,8 @@
   "license": "MIT",
   "peerDependencies": {
     "fela": "*",
-    "react": "*",
-    "react-dom": "*",
+    "react": "alpha",
+    "react-dom": "alpha",
     "react-fela": "*"
   },
   "dependencies": {
