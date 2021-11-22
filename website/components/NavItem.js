@@ -3,16 +3,18 @@ import NextLink from 'next/link'
 import { Box } from 'kilvin'
 import { useFela } from 'react-fela'
 
-export default function NavItem({ path, children }) {
+export default function NavItem({ href, children }) {
   const { theme } = useFela()
 
   return (
-    <NextLink href={path} passHref>
+    <NextLink href={href} passHref>
       <Box
         as="a"
-        paddingLeft={1.5}
-        paddingRight={1.5}
+        paddingLeft={2.5}
+        paddingRight={2.5}
         height="100%"
+        direction="row"
+        alignItems="center"
         extend={{
           cursor: 'pointer',
           marginTop: -1,
@@ -20,11 +22,13 @@ export default function NavItem({ path, children }) {
           lineHeight: 1,
           textDecoration: 'none',
           color: 'white',
-          ':first-child': {
-            paddingLeft: 0,
-          },
-          ':last-child': {
-            paddingRight: 0,
+          large: {
+            ':first-child': {
+              paddingLeft: 0,
+            },
+            ':last-child': {
+              paddingRight: 0,
+            },
           },
         }}>
         {children}

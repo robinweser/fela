@@ -13,16 +13,6 @@ const style = {
   width: 1,
 }
 
-function useScreenReaderOnly() {
-  return {
-    style,
-  }
-}
-
-const VisuallyHidden = (props) => {
-  const { style } = useScreenReaderOnly()
-
+export default function VisuallyHidden(props) {
   return <Box as="span" extend={style} {...props} />
 }
-
-export default VisuallyHidden

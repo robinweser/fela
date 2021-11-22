@@ -19,6 +19,7 @@ export default [
       WebkitTextSizeAdjust: '100%',
       fontFamily: 'Inter, -apple-system, sans-serif',
       color: 'rgb(60, 60, 60)',
+      overflowY: 'scroll',
     },
   },
   {

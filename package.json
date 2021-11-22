@@ -5,7 +5,7 @@
     "bootstrap": "lerna bootstrap --reject-cycles",
     "bundle": "lerna run build:umd",
     "compile": "./scripts/build.sh",
-    "clear": "lerna clean --yes && rimraf coverage && rimraf && rimraf packages/*/es && rimraf packages/*/lib",
+    "clear": "lerna clean --yes && rimraf coverage && rimraf packages/*/es && rimraf packages/*/lib",
     "check": "yarn format && yarn lint && yarn coverage && yarn flow",
     "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
@@ -15,8 +15,7 @@
     "prepare-release": "git pull --rebase && yarn run check && yarn compile && yarn bundle",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "coverage": "yarn test --coverage",
-    "watch": "yarn test --watch",
-    "postinstall": "yarn compile"
+    "watch": "yarn test --watch"
   },
   "workspaces": [
     "packages/*",

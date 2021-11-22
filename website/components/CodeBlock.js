@@ -31,21 +31,21 @@ export default function CodeBlock({
   }, [copied])
 
   return (
-    <Box>
+    <Box shrink={1} maxWidth="100%" marginTop={3}>
       {!nocopy && (
         <Box
           alignSelf="flex-end"
           alignItems="center"
+          paddingRight={4}
           space={2}
           extend={{
             position: 'absolute',
-            marginTop: name ? 10 : -14,
-            paddingRight: 10,
+            marginTop: name ? 12 : -14,
           }}>
           <Box
             as="button"
-            width={34}
-            height={34}
+            width={48}
+            height={48}
             alignItems="center"
             justifyContent="center"
             padding={1.7}
@@ -58,12 +58,9 @@ export default function CodeBlock({
               borderRadius: '50%',
               outline: 0,
               backgroundColor: theme.colors.blueLight,
-              borderWidth: 2,
-              borderStyle: 'solid',
-              borderColor: theme.colors.blueDark,
               color: 'white',
-              fontSize: 15,
-              opacity: 0.75,
+              border: 'none',
+              fontSize: 18,
 
               transition:
                 'background-color 200ms ease-out, color 200ms ease-in-out, border-color 200ms ease-in-out, transform 100ms ease-out',
@@ -90,10 +87,7 @@ export default function CodeBlock({
           as="p"
           direction="row"
           space={2}
-          paddingTop={2}
-          paddingBottom={2}
-          paddingRight={2}
-          paddingLeft={2}
+          padding={3}
           extend={{
             fontSize: 14,
             lineHeight: 1,
@@ -119,22 +113,21 @@ export default function CodeBlock({
             paddingRight={5}
             paddingLeft={5}
             marginBottom={1.5}
-            maxWidth="100%"
             extend={{
               lineHeight: 1.4,
               backgroundColor: theme.colors.background,
-              overflow: 'auto',
             }}>
             <Box
               as="code"
               extend={{
                 fontSize: 16,
+                overflow: 'auto',
                 fontFamily:
                   'dm, Dank, Dank Mono, Fira Code, Hack, Consolas, monospace',
                 textRendering: 'optimizeLegibility',
               }}>
               {tokens.map((line, i) => (
-                <div key={i}>
+                <Box key={i} direction="row" wrap="wrap">
                   {line.map((token, key) => {
                     const props = getTokenProps({ token, key })
 
@@ -156,7 +149,7 @@ export default function CodeBlock({
                       </Box>
                     )
                   })}
-                </div>
+                </Box>
               ))}
             </Box>
           </Box>
