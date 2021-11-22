@@ -13,6 +13,5 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node }}
-    - run: yarn global add lerna
-    - run: yarn bootstrap
+    - run: yarn
     - run: yarn run check
