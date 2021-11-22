@@ -16,8 +16,6 @@ import Layout from './Layout'
 import Link from './Link'
 import VisuallyHidden from './VisuallyHidden'
 
-import versions from '../data/versions.json'
-
 function Line({ thickness = 1 }) {
   return (
     <Box
