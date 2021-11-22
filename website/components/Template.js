@@ -3,6 +3,8 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Box, Spacer } from 'kilvin'
 import { useFela } from 'react-fela'
+import { DocSearch } from '@docsearch/react'
+import '@docsearch/css'
 
 import Layout from './Layout'
 import Link from './Link'
@@ -15,12 +17,14 @@ export default function Template({ children }) {
   const { theme } = useFela()
   const router = useRouter()
 
+  const isDocs = router.pathname.indexOf('/docs') !== -1
+
   return (
-    <Box grow={1}>
+    <Box grow={1} maxWidth="100vw">
       <Box
         as="header"
         direction="row"
-        height={[50, , 44]}
+        height={70}
         alignItems="center"
         role="banner"
         extend={{
@@ -32,28 +36,49 @@ export default function Template({ children }) {
           zIndex: 2,
         }}>
         <Layout>
-          <Box direction="row" justifyContent="space-between">
-            <Box direction="row">
-              <NavItem path="/">Home</NavItem>
-              <NavItem path="/docs">Docs</NavItem>
+          <Box direction="row" justifyContent="space-between" space={5}>
+            <Box direction="row" alignItems="center">
+              <NavItem href="/">Home</NavItem>
+              <NavItem href="/docs">Docs</NavItem>
             </Box>
-            <Box direction="row" marginBottom={-1.5} marginTop={-1.5}>
-              <NavItem path="https://twitter.com/felajs">
+            {isDocs && (
+              <Box grow={1}>
+                <Box grow={1} maxWidth={600}>
+                  <DocSearch
+                    appId="BH4D9OD16A"
+                    indexName="fela-js"
+                    apiKey="8162c7234f303213ba1b2207825d3b17"
+                  />
+                </Box>
+              </Box>
+            )}
+            <Box direction="row" alignItems="center">
+              <NavItem href="https://github.com/robinweser/fela">
+                <Box display={['none', , 'flex']}>Source</Box>
+                <Icon
+                  icon={GitHub}
+                  extend={{
+                    fontSize: 28,
+                    marginLeft: 0,
+                    medium: {
+                      marginLeft: 8,
+                    },
+                  }}
+                  label="GitHub"
+                />
+              </NavItem>
+              <NavItem href="https://twitter.com/felajs">
                 <Icon
                   icon={Twitter}
                   extend={{ fontSize: 24 }}
                   label="Twitter"
                 />
               </NavItem>
-
-              <NavItem path="https://github.com/robinweser/fela">
-                <Icon icon={GitHub} extend={{ fontSize: 24 }} label="GitHub" />
-              </NavItem>
             </Box>
           </Box>
         </Layout>
       </Box>
-      <Box grow={1} paddingTop={[12.5, , 11]}>
+      <Box grow={1} paddingTop={70 / theme.baselineGrid}>
         {children}
       </Box>
     </Box>

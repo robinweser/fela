@@ -3,8 +3,8 @@ import Head from 'next/head'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useFela } from 'react-fela'
-import { Box, Spacer } from 'kilvin'
-import { MDXProvider } from '@mdx-js/react'
+import { Box, Spacer, Grid } from 'kilvin'
+import { MDXRemote } from 'next-mdx-remote'
 
 import CodeBlock from './CodeBlock'
 import Cross from '../icons/Cross'
@@ -16,8 +16,6 @@ import Layout from './Layout'
 import Link from './Link'
 import VisuallyHidden from './VisuallyHidden'
 
-import versions from '../data/versions.json'
-
 function Line({ thickness = 1 }) {
   return (
     <Box
@@ -28,6 +26,8 @@ function Line({ thickness = 1 }) {
     />
   )
 }
+
+const NAV_WIDTH = 240
 
 function getFlatNav(nav, flat = {}, prefix = '') {
   Object.keys(nav).forEach((title) => {
@@ -56,25 +56,21 @@ function Headings({ headings }) {
       id="secondary-navigation"
       aria-labelledby="toc-title"
       space={2}
-      minWidth={200}
       display={['none', , , 'flex']}
-      paddingTop={[4, , 8]}
-      paddingLeft={5}
-      paddingRight={5}
+      paddingTop={8}
       paddingBottom={12}
+      maxHeight="calc(100vh - 70px)"
+      width={200}
       extend={{
+        zIndex: 1,
         backgroundColor: 'white',
         overflow: 'auto',
         position: 'fixed',
-
-        zIndex: 3,
         right: 0,
-        bottom: 0,
-        medium: {
-          top: 44,
-        },
-        huge: {
-          left: 'calc(100%  / 2 + 420px)',
+        top: 70,
+        '@media (min-width: 1300px)': {
+          marginLeft: 1300 - 200,
+          right: 'unset',
         },
       }}>
       <Box
@@ -104,13 +100,15 @@ function Headings({ headings }) {
   )
 }
 
-export function Content({ navigationVisible, docsPath, children, ...props }) {
-  const { theme } = useFela()
+export function Content({ docsPath, children }) {
   const router = useRouter()
+  const { theme } = useFela()
 
   return (
-    <Box>
-      <MDXProvider
+    <Box as="main" role="main" aria-label="Main content" id="main">
+      <MDXRemote
+        {...children}
+        lazy
         components={{
           a: ({ href, children }) => {
             const isExtern = href.indexOf('http') !== -1
@@ -308,16 +306,40 @@ export function Content({ navigationVisible, docsPath, children, ...props }) {
             </Box>
           ),
           hr: () => <Line />,
-        }}>
-        <main
-          role="main"
-          aria-label="Main content"
-          id="main"
-          style={{ display: navigationVisible ? 'none' : 'block' }}>
-          {children}
-        </main>
-      </MDXProvider>
+        }}
+      />
     </Box>
+  )
+}
+
+function NavigationItem({ path, group, page, docsPath }) {
+  const router = useRouter()
+
+  const isExtern = path.indexOf('http') === 0
+  const isCurrentPage = router.asPath === docsPath + path
+
+  return (
+    <NextLink key={group + page} href={isExtern ? path : docsPath + path}>
+      <Box
+        as="a"
+        key={group + page}
+        href={isExtern ? path : docsPath + path}
+        aria-current={isCurrentPage ? page : undefined}
+        extend={{
+          color: 'black',
+          wordBreak: 'break-word',
+          fontSize: 16,
+          padding: 12,
+          borderRadius: 4,
+          backgroundColor: isCurrentPage ? 'rgb(220, 220, 220)' : 'transparent',
+          textDecoration: 'none',
+          large: {
+            padding: 8,
+          },
+        }}>
+        {page}
+      </Box>
+    </NextLink>
   )
 }
 
@@ -327,7 +349,9 @@ export default function DocLayout({ children, toc, version, headings }) {
   const router = useRouter()
   const flatNav = getFlatNav(toc)
   const docsPath = `/docs/${version}/`
-  const currentPage = flatNav[router.pathname.substr(docsPath.length)]
+
+  const currentPage =
+    flatNav[router.asPath.substr(docsPath.length).split('#')[0]]
 
   useEffect(() => {
     if (navigationVisible) {
@@ -366,247 +390,188 @@ export default function DocLayout({ children, toc, version, headings }) {
         <link rel="stylesheet" href="/fonts/dank/dmvendor.css" />
         <title>{currentPage} — Fela</title>
       </Head>
+
       <Box>
         <Box
-          space={4}
-          display={['flex', , 'none']}
-          paddingLeft={[5, , 4]}
-          paddingRight={[5, , 4]}
-          paddingTop={[4.5, , 4]}
-          paddingBottom={[4.5, , 4]}
-          direction="row"
-          alignItems="center"
+          display={['none', , , 'flex']}
           extend={{
-            backgroundColor: theme.colors.background,
+            backgroundColor: 'rgb(245, 245, 245)',
             position: 'fixed',
-            zIndex: 5,
-            top: 50,
+            width: 20,
+            '@media (min-width: 1300px)': {
+              width: 'calc((100% - 1300px) / 2 + 30px)',
+            },
+            zIndex: -1,
             left: 0,
-            right: 0,
-          }}>
-          <Box
-            as="button"
-            type="button"
-            aria-controls="main-navigation"
-            onClick={() => setNavigationVisible(!navigationVisible)}
-            extend={{
-              cursor: 'pointer',
-              height: '100%',
-              width: 16,
-              background: 'transparent',
-              padding: 0,
-              border: 0,
-              font: 'inherit',
-            }}>
-            <Icon
-              icon={navigationVisible ? Cross : Hamburger}
-              label={navigationVisible ? 'Close menu' : 'Open menu'}
-            />
-          </Box>
-
-          <Box
-            as="p"
-            grow={1}
-            shrink={1}
-            extend={{
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
-              fontSize: 14,
-            }}>
-            {currentPage}
-          </Box>
-          <Link
-            href={`https://github.com/robinweser/fela/edit/master/website/pages${router.pathname}.mdx`}>
-            Edit <VisuallyHidden>on GitHub</VisuallyHidden>
-          </Link>
-        </Box>
-      </Box>
-
-      <Box
-        as="nav"
-        id="main-navigation"
-        aria-labelledby="nav-title"
-        minWidth={['100%', , 250]}
-        paddingTop={[4, , 8]}
-        paddingLeft={5}
-        paddingRight={5}
-        paddingBottom={12}
-        space={4}
-        display={[navigationVisible ? 'flex' : 'none', , 'flex']}
-        extend={{
-          backgroundColor: 'white',
-          overflow: 'auto',
-          position: 'fixed',
-          zIndex: 3,
-
-          top: 106,
-          bottom: 0,
-          medium: {
-            top: 44,
-          },
-          huge: {
-            right: 'calc(100% / 2 + 400px + 10 * 4px)',
-          },
-        }}>
-        <VisuallyHidden as="h2" id="nav-title">
-          Main navigation
-        </VisuallyHidden>
-        <Box space={2} direction="row" alignItems="center">
-          <Box as="label" htmlFor="version" extend={{ fontSize: 14 }}>
-            Version
-          </Box>
-          <Box
-            as="select"
-            id="version"
-            name="version"
-            value={version}
-            onChange={(e) => {
-              router.push(`/docs/${e.target.value}/intro/getting-started`)
-            }}>
-            {versions.map((version) => (
-              <option key={version} value={version}>
-                {version}
-              </option>
-            ))}
-          </Box>
-        </Box>
-        <Box space={[10, , 8]}>
-          {Object.keys(toc).map((group) => (
-            <Box space={2.5} key={group}>
+            top: 0,
+            bottom: 0,
+          }}
+        />
+        <Layout>
+          <Grid
+            columns={['100%', , , NAV_WIDTH + 'px auto 200px']}
+            gap={[0, , , 10]}>
+            <Box
+              as="nav"
+              id="main-navigation"
+              aria-labelledby="nav-title"
+              paddingTop={8}
+              paddingRight={[8, , , 5]}
+              paddingBottom={[8, , , 12]}
+              paddingLeft={[8, , , 0]}
+              maxHeight={['100%', , , 'calc(100% - 70px)']}
+              width={['100%', , , NAV_WIDTH]}
+              display={[navigationVisible ? 'flex' : 'none', , , 'flex']}
+              extend={{
+                backgroundColor: 'rgb(245, 245, 245)',
+                left: 0,
+                right: 0,
+                zIndex: 20,
+                position: 'fixed',
+                bottom: 0,
+                overflow: 'auto',
+                large: {
+                  top: 70,
+                  left: 'unset',
+                  right: 'unset',
+                },
+              }}>
+              <VisuallyHidden as="h2" id="nav-title">
+                Main navigation
+              </VisuallyHidden>
               <Box
+                as="button"
+                type="button"
+                aria-controls="main-navigation"
+                width={50}
+                height={50}
+                alignItems="center"
+                justifyContent="center"
+                onClick={() => setNavigationVisible(false)}
                 extend={{
-                  fontWeight: 700,
-                  fontSize: 18,
-                  medium: { fontSize: 16 },
+                  cursor: 'pointer',
+                  background: 'transparent',
+                  padding: 0,
+                  border: 0,
+                  right: 10,
+                  top: 10,
+                  position: 'fixed',
+                  font: 'inherit',
                 }}>
-                {group}
+                <Icon
+                  icon={Cross}
+                  label="Close menu"
+                  extend={{
+                    fontSize: 24,
+                  }}
+                />
               </Box>
-              <Box paddingLeft={[0, , , 0]} space={2.5}>
-                {Object.keys(toc[group]).map((page) => {
-                  const path = toc[group][page]
+              <Box space={4} paddingTop={[5, , , 0]}>
+                <Box space={10}>
+                  {Object.keys(toc).map((group) => (
+                    <Box space={2.5} key={group}>
+                      <Box>{group}</Box>
+                      <Box>
+                        {Object.keys(toc[group]).map((page) => {
+                          const path = toc[group][page]
 
-                  if (typeof path === 'object') {
-                    return (
-                      <Box space={2.5} key={page}>
-                        <Box
-                          extend={{
-                            fontWeight: 700,
-                            fontSize: 16,
-                            medium: { fontSize: 14 },
-                          }}>
-                          {page}
-                        </Box>
-                        <Box paddingLeft={[2, , , 2]} space={2.5}>
-                          {Object.keys(path).map((subPage) => {
-                            const subPath = path[subPage]
-                            const isExtern = subPath.indexOf('http') === 0
-
+                          if (typeof path === 'object') {
                             return (
-                              <NextLink
-                                key={group + page + subPage}
-                                href={isExtern ? subPath : docsPath + subPath}
-                                passHref>
-                                <Box
-                                  as="a"
-                                  aria-current={
-                                    router.pathname === docsPath + subPath
-                                      ? 'page'
-                                      : undefined
-                                  }
-                                  extend={{
-                                    textDecoration: 'none',
-                                    color:
-                                      router.pathname === docsPath + subPath
-                                        ? theme.colors.blue
-                                        : 'black',
-                                    fontSize: 16,
-                                    medium: { fontSize: 14 },
-                                  }}>
-                                  {subPage}
+                              <Box space={1} paddingTop={4} key={page}>
+                                <Box>{page}</Box>
+                                <Box>
+                                  {Object.keys(path).map((page) => (
+                                    <NavigationItem
+                                      key={group + page}
+                                      page={page}
+                                      group={group}
+                                      path={path[page]}
+                                      docsPath={docsPath}
+                                    />
+                                  ))}
                                 </Box>
-                              </NextLink>
+                              </Box>
                             )
-                          })}
-                        </Box>
-                      </Box>
-                    )
-                  }
+                          }
 
-                  const isExtern = path.indexOf('http') === 0
-
-                  return (
-                    <NextLink
-                      key={group + page}
-                      href={isExtern ? path : docsPath + path}
-                      passHref>
-                      <Box
-                        as="a"
-                        aria-current={
-                          router.pathname === docsPath + path
-                            ? 'page'
-                            : undefined
-                        }
-                        extend={{
-                          textDecoration: 'none',
-                          color:
-                            router.pathname === docsPath + path
-                              ? theme.colors.blue
-                              : 'black',
-                          fontSize: 16,
-                          medium: { fontSize: 14 },
-                        }}>
-                        {page}
+                          return (
+                            <NavigationItem
+                              key={path}
+                              path={path}
+                              group={group}
+                              page={page}
+                              docsPath={docsPath}
+                            />
+                          )
+                        })}
                       </Box>
-                    </NextLink>
-                  )
-                })}
+                    </Box>
+                  ))}
+                </Box>
               </Box>
             </Box>
-          ))}
-        </Box>
+
+            <Box />
+            <Box paddingTop={[0, , , 8]} paddingBottom={15}>
+              <Box
+                space={1}
+                direction="row"
+                alignItems="center"
+                paddingBottom={3}
+                display={['flex', , , 'none']}
+                marginLeft={-2.5}>
+                <Box
+                  as="button"
+                  type="button"
+                  aria-controls="main-navigation"
+                  width={50}
+                  height={50}
+                  alignItems="center"
+                  justifyContent="center"
+                  onClick={() => setNavigationVisible(true)}
+                  extend={{
+                    cursor: 'pointer',
+                    background: 'transparent',
+                    padding: 0,
+                    border: 0,
+                    font: 'inherit',
+                  }}>
+                  <Icon
+                    icon={Hamburger}
+                    label="Close menu"
+                    extend={{
+                      fontSize: 24,
+                    }}
+                  />
+                </Box>
+
+                <Box
+                  extend={{
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                  }}>
+                  {currentPage}
+                </Box>
+                <Box grow={1} />
+
+                <Box direction="row" as="span">
+                  <Link
+                    href={`https://github.com/robinweser/fela/edit/master/website/pages${router.pathname}.mdx`}>
+                    <Icon icon={Edit} /> Edit
+                    <Box as="span" display={['none', , , 'flex']}>
+                      {' '}
+                      on GitHub
+                    </Box>
+                  </Link>
+                </Box>
+              </Box>
+              <Content docsPath={docsPath}>{children}</Content>
+            </Box>
+            <Headings headings={headings} />
+          </Grid>
+        </Layout>
       </Box>
-      <Layout
-        extend={{
-          paddingLeft: 0,
-          paddingRight: 0,
-          paddingTop: 44,
-          paddingBottom: 80,
-          medium: {
-            paddingTop: 0,
-            paddingLeft: 260,
-            paddingRight: 10,
-          },
-          large: {
-            paddingRight: 200 + 10,
-            paddingLeft: 250 + 20,
-          },
-          huge: {
-            paddingLeft: 0,
-            paddingRight: 0,
-          },
-        }}>
-        <Box
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          paddingTop={[4, , , 8]}
-          display={['none', , 'flex']}
-          extend={{ fontSize: 14 }}>
-          <Box as="p">Docs / {currentPage}</Box>
-          <Box as="p">
-            <Link
-              href={`https://github.com/robinweser/fela/edit/master/website/pages${router.pathname}.mdx`}>
-              <Icon icon={Edit} /> Edit on GitHub
-            </Link>
-          </Box>
-        </Box>
-        <Spacer size={[4, , 8]} />
-        <Content docsPath={docsPath} navigationVisible={navigationVisible}>
-          {children}
-        </Content>
-      </Layout>
-      <Headings headings={headings} />
     </>
   )
 }

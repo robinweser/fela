@@ -35,6 +35,9 @@ export const responsiveProps = {
   flexWrap: true,
   order: true,
   display: true,
+  gridTemplateColumns: true,
+  gridTemplateRows: true,
+  gridGap: true,
 }
 
 const getResponsiveMediaQueries = (values, props) => {

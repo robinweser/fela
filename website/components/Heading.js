@@ -51,12 +51,9 @@ export default function Heading({ level, children }) {
         marginBottom: level === 1 ? 30 : 10,
         lineHeight: 1.0,
         fontWeight: level === 1 ? 700 : level === 2 ? 500 : 600,
-        scrollMarginTop: 125,
+        scrollMarginTop: 95,
         '> a': {
           color: theme.colors.foreground,
-        },
-        medium: {
-          scrollMarginTop: 65,
         },
       }}
       id={id}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from 'kilvin'
+import { Box, Grid, Spacer } from 'kilvin'
 import Head from 'next/head'
 import { useFela } from 'react-fela'
 
@@ -61,96 +61,81 @@ export default function Page() {
         paddingTop={[6, , 16]}
         paddingBottom={[10, , 20]}>
         <Layout>
+          <VisuallyHidden as="h2">Benefits</VisuallyHidden>
+          <Grid gap={[10, , 15]} columns={['1fr', , '1fr 1fr']}>
+            <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
+              <Box as="h3" extend={{ fontSize: 24, fontWeight: 500 }}>
+                Predictable Styling
+              </Box>
+              <Box as="p" extend={{ fontSize: 18, lineHeight: 1.5 }}>
+                Fela generates unique CSS classes for every rule.
+                <br />
+                It automatically sorts rules, pseudo classes and media queries.
+                This prevents global namespace and specificity conflicts and
+                ensures predictabiity.
+                <br />
+                You always get the styles you write.
+              </Box>
+            </Box>
+            <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
+              <Box as="h3" extend={{ fontSize: 24, fontWeight: 500 }}>
+                Atomic CSS
+              </Box>
+              <Box as="p" extend={{ fontSize: 18, lineHeight: 1.5 }}>
+                Fela generates atomic CSS classes.
+                <br />
+                For every property-value pair there's a single rule which can be
+                reused across your whole application. This limits the amount of
+                rendered CSS and ensures reusability.
+                <br />
+                You only get the styles you actually need.
+              </Box>
+            </Box>
+
+            <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
+              <Box as="h3" extend={{ fontSize: 24, fontWeight: 500 }}>
+                Framework-agnostic
+              </Box>
+              <Box as="p" extend={{ fontSize: 18, lineHeight: 1.5 }}>
+                Fela is a plain JavaScript library and works without a framework
+                our UI library.
+                <br />
+                It ships several bindings for popular tools such as React, Vue
+                or ReasonML amongst others.
+                <br />
+                You choose the stack you want.
+              </Box>
+            </Box>
+            <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
+              <Box as="h3" extend={{ fontSize: 24, fontWeight: 500 }}>
+                Huge Ecosystem
+              </Box>
+              <Box as="p" extend={{ fontSize: 18, lineHeight: 1.5 }}>
+                With only ~4kb minfied and gzipped, Fela is a lightweight
+                styling toolbelt.
+                <br />
+                Yet, it ships with a huge ecosystem consisting of dozens of
+                plugins, enhancers and third-party packages.
+                <br />
+                You choose the extensions you need.
+              </Box>
+            </Box>
+          </Grid>
+          <Spacer size={10} />
           <Box
-            as="h2"
+            as="a"
+            href="/docs/latest/intro/benefits"
             extend={{
-              border: 0,
-              clip: 'rect(1px, 1px, 1px, 1px)',
-              clipPath: 'inset(50%)',
-              height: '1px',
-              overflow: 'hidden',
-              padding: 0,
-              position: 'absolute',
-              width: '1px',
-              whiteSpace: 'nowrap',
+              display: 'inline-flex',
+              alignSelf: 'flex-start',
+              color: theme.colors.blue,
+              textDecoration: 'none',
+              borderBottomWidth: 2,
+              borderBottomStyle: 'solid',
+              borderBottomColor: theme.colors.blue,
+              fontSize: 18,
             }}>
-            Benefits
-          </Box>
-          <Box space={[10, , 15]}>
-            <Box direction={['column', , 'row']} space={[10, , 15]} wrap="wrap">
-              <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
-                <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
-                  Predictable Styling
-                </Box>
-                <Box as="p" extend={{ lineHeight: 1.5 }}>
-                  Fela generates unique CSS classes for every rule.
-                  <br />
-                  It automatically sorts rules, pseudo classes and media
-                  queries. This prevents global namespace and specificity
-                  conflicts and ensures predictabiity.
-                  <br />
-                  You always get the styles you write.
-                </Box>
-              </Box>
-              <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
-                <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
-                  Atomic CSS
-                </Box>
-                <Box as="p" extend={{ lineHeight: 1.5 }}>
-                  Fela generates atomic CSS classes.
-                  <br />
-                  For every property-value pair there's a single rule which can
-                  be reused across your whole application. This limits the
-                  amount of rendered CSS and ensures reusability.
-                  <br />
-                  You only get the styles you actually need.
-                </Box>
-              </Box>
-            </Box>
-            <Box direction={['column', , 'row']} space={[10, , 15]} wrap="wrap">
-              <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
-                <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
-                  Framework-agnostic
-                </Box>
-                <Box as="p" extend={{ lineHeight: 1.5 }}>
-                  Fela is a plain JavaScript library and works without a
-                  framework our UI library.
-                  <br />
-                  It ships several bindings for popular tools such as React, Vue
-                  or ReasonML amongst others.
-                  <br />
-                  You choose the stack you want.
-                </Box>
-              </Box>
-              <Box grow={1} shrink={0} basis={['auto', , 0]} space={1.5}>
-                <Box as="h3" extend={{ fontSize: 20, fontWeight: 500 }}>
-                  Huge Ecosystem
-                </Box>
-                <Box as="p" extend={{ lineHeight: 1.5 }}>
-                  With only ~4kb minfied and gzipped, Fela is a lightweight
-                  styling toolbelt.
-                  <br />
-                  Yet, it ships with a huge ecosystem consisting of dozens of
-                  plugins, enhancers and third-party packages.
-                  <br />
-                  You choose the extensions you need.
-                </Box>
-              </Box>
-            </Box>
-            <Box
-              as="a"
-              href="/docs/latest/intro/benefits"
-              extend={{
-                display: 'inline-flex',
-                alignSelf: 'flex-start',
-                color: theme.colors.blue,
-                textDecoration: 'none',
-                borderBottomWidth: 2,
-                borderBottomStyle: 'solid',
-                borderBottomColor: theme.colors.blue,
-              }}>
-              Read about all the benefits →
-            </Box>
+            Read about all the benefits →
           </Box>
         </Layout>
       </Box>

@@ -4,16 +4,15 @@
   "version": "11.7.0",
   "scripts": {
     "dev": "next dev",
-    "build": "yarn data && next build",
+    "build": "next build",
     "export": "next export",
-    "start": "next start",
-    "data": "yarn data:headings && yarn data:versions",
-    "data:headings": "babel-node scripts/generate-headings.js",
-    "data:versions": "babel-node scripts/generate-versions.js"
+    "start": "next start"
   },
   "license": "MIT",
   "dependencies": {
+    "@docsearch/react": "^3.0.0-alpha.41",
     "@mdx-js/react": "^1.6.19",
+    "@mdx-js/runtime": "^1.6.22",
     "copy-to-clipboard": "^3.3.1",
     "fela": "^11.7.0",
     "fela-dom": "^11.7.0",
@@ -21,8 +20,8 @@
     "fela-plugin-responsive-value": "^11.7.0",
     "fela-preset-web": "^11.7.0",
     "fela-sort-media-query-mobile-first": "^11.7.0",
-    "kilvin": "^2.0.10",
-    "next": "^9.5.5",
+    "kilvin": "^3.1.1",
+    "next": "^12.0.4",
     "prism-react-renderer": "^1.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -30,13 +29,8 @@
   },
   "devDependencies": {
     "@babel/node": "^7.12.6",
-    "@mdx-js/loader": "^1.6.19",
-    "@mdx-js/runtime": "^1.6.22",
     "@next/bundle-analyzer": "^9.5.5",
-    "@next/mdx": "^9.5.5",
-    "fs-extra": "^9.0.1",
-    "jsdom": "^16.4.0",
-    "react-test-renderer": "^17.0.1",
-    "recursive-readdir": "^2.2.2"
+    "next-mdx-remote": "^3.0.8",
+    "react-test-renderer": "^17.0.1"
   }
 }

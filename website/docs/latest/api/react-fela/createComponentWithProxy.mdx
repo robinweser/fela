@@ -24,13 +24,17 @@ import { createComponentWithProxy } from 'inferno-fela'
 const title = ({ fontSize, small, color }) => ({
   lineHeight: small ? 1.2 : 1.5,
   fontSize: fontSize + 'px',
-  color: color
+  color: color,
 })
 
 const Title = createComponentWithProxy(title, 'div')
 
-const Usage = <Title fontSize={23} color='red' data-id="foo" onClick={...}>Hello World</Title>
-// => <div className="a b c" data-id="foo" onclick="...">Hello World</div>
+const Usage = (
+  <Title fontSize={23} color="red" data-id="foo">
+    Hello World
+  </Title>
+)
+// => <div className="a b c" data-id="foo">Hello World</div>
 ```
 
 ## Tips
