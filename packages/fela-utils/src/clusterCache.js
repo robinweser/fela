@@ -1,6 +1,4 @@
-/* @flow */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { arrayReduce, objectReduce } from 'fast-loops'
 
 import generateCSSRule from './generateCSSRule'
 import objectSortByScore from './objectSortByScore'
@@ -55,10 +53,7 @@ const handlers = {
   },
 }
 
-export default function clusterCache(
-  cache: Object,
-  ruleOrder: Array<any> = []
-) {
+export default function clusterCache(cache, ruleOrder = []) {
   const sortedCache = objectSortByScore(cache, (value) =>
     getRuleScore(ruleOrder, value.pseudo)
   )

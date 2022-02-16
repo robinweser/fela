@@ -1,9 +1,4 @@
-/* @flow */
-
-export default function FelaThemeFactory(
-  createElement: Function,
-  ThemeContext: any
-): any {
+export default function FelaThemeFactory(createElement, ThemeContext) {
   function FelaTheme({ children }) {
     const renderFn = children
 

@@ -2,7 +2,7 @@ import { KEYFRAME_TYPE, generateDeclarationReference } from 'fela-utils'
 
 const RE = /@(-webkit-|-moz-)?keyframes ([a-z_][a-z0-9-_]*)(\{.*?(?=}})}})/gi
 
-export default function rehydrateKeyframes(css: string, cache?: Object = {}) {
+export default function rehydrateKeyframes(css, cache = {}) {
   let decl
 
   while ((decl = RE.exec(css))) {

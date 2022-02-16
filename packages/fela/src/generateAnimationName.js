@@ -1,4 +1,3 @@
-/* @flow */
-export default function generateAnimationName(id: number): string {
+export default function generateAnimationName(id) {
   return 'k' + id
 }

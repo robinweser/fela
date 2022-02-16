@@ -1,10 +1,6 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { objectReduce } from 'fast-loops'
 
-export default function resolveUsedProps(
-  props: Array<string>,
-  src: Object
-): Array<string> {
+export default function resolveUsedProps(props, src) {
   return objectReduce(
     src,
     (output, value, prop) => {

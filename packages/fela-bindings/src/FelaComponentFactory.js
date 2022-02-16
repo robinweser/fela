@@ -1,11 +1,10 @@
-/* @flow */
 import { combineRules } from 'fela'
 
 export default function FelaComponentFactory(
-  createElement: Function,
-  RendererContext: any,
-  FelaTheme: Function
-): Function {
+  createElement,
+  RendererContext,
+  FelaTheme
+) {
   function FelaComponent({ children, as = 'div', style, ...otherProps }) {
     const renderFn = (renderer) => {
       if (renderer.devMode && style == null) {

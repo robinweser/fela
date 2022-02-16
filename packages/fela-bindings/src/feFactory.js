@@ -1,11 +1,7 @@
-/* @flow */
 // Fe was heavily inspired by glam, both the code as well as the name
 // https://github.com/threepointone/glam/blob/master/packages/glam/src/index.js#L83
-export default function feFactory(
-  createElement: Function,
-  FelaComponent: Function
-) {
-  return function fe(type: any, props: Object = {}, ...children: any) {
+export default function feFactory(createElement, FelaComponent) {
+  return function fe(type, props = {}, ...children) {
     if (props) {
       const { css, key, ref, className, ...otherProps } = props
 

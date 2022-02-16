@@ -1,11 +1,7 @@
-/* @flow */
 import isPlainObject from 'isobject'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import { assignStyle } from 'css-in-js-utils'
 
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { StyleType } from '../../../flowtypes/StyleType'
-
-function resolveHoverStyles(style: Object) {
+function resolveHoverStyles(style) {
   for (const property in style) {
     const value = style[property]
 
@@ -28,11 +24,4 @@ function resolveHoverStyles(style: Object) {
   return style
 }
 
-export default function hoverMedia() {
-  return (
-    style: Object,
-    type: StyleType,
-    renderer: DOMRenderer,
-    props: Object
-  ) => resolveHoverStyles(style)
-}
+export default () => resolveHoverStyles

@@ -1,6 +1,5 @@
-/* @flow */
 import { render, rehydrate } from 'fela-dom'
-import objectEach from 'fast-loops/lib/objectEach'
+import { objectEach } from 'fast-loops'
 
 function hasDOM(renderer, targetDocument) {
   // ensure we're on a browser by using document since window is defined in e.g. React Native
@@ -19,14 +18,14 @@ function hasServerRenderedStyle(targetDocument = document) {
 }
 
 export default function RendererProviderFactory(
-  BaseComponent: any,
-  RendererContext: any,
-  createElement: Function,
-  renderChildren: Function,
-  statics?: Object
-): any {
+  BaseComponent,
+  RendererContext,
+  createElement,
+  renderChildren,
+  statics
+) {
   class RendererProvider extends BaseComponent {
-    constructor(props: Object, context: Object) {
+    constructor(props, context) {
       super(props, context)
 
       this._renderStyle()
@@ -53,7 +52,7 @@ export default function RendererProviderFactory(
       }
     }
 
-    render(): Object {
+    render() {
       return createElement(
         RendererContext.Provider,
         {

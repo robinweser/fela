@@ -1,16 +1,13 @@
-/* @flow */
 import {
   generateCSSRule,
   generateCSSSupportRule,
   getRuleScore,
 } from 'fela-utils'
 
-import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
-
 export default function insertRule(
-  { selector, declaration, support, media, pseudo }: Object,
-  renderer: DOMRenderer,
-  node: Object
+  { selector, declaration, support, media, pseudo },
+  renderer,
+  node
 ) {
   const nodeReference = media + support
 

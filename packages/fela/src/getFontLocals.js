@@ -1,7 +1,4 @@
-/* @flow */
-export default function getFontLocals(
-  localAlias?: string | Array<string>
-): Array<string> {
+export default function getFontLocals(localAlias) {
   if (typeof localAlias === 'string') {
     return [localAlias]
   }

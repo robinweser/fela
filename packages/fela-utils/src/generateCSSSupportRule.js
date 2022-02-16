@@ -1,7 +1,3 @@
-/* @flow */
-export default function generateCSSSupportRule(
-  support: string,
-  cssRules: string
-): string {
+export default function generateCSSSupportRule(support, cssRules) {
   return `@supports ${support}{${cssRules}}`
 }

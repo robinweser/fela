@@ -1,7 +1,6 @@
-/* @flow */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { arrayReduce } from 'fast-loops'
 
-function addIsolation(style: Object, exclude: Array<string> = []): Object {
+function addIsolation(style, exclude = []) {
   if (style.isolation === false) {
     // remove the isolation prop to
     // prevent false CSS properties
@@ -25,6 +24,6 @@ function addIsolation(style: Object, exclude: Array<string> = []): Object {
   }
 }
 
-export default function isolation(options: Object = {}) {
-  return (style: Object) => addIsolation(style, options.exclude)
+export default function isolation(options = {}) {
+  return (style) => addIsolation(style, options.exclude)
 }

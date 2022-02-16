@@ -10,8 +10,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@docsearch/react": "^3.0.0-alpha.41",
-    "@mdx-js/react": "^1.6.19",
+    "@docsearch/react": "^3.0.0-alpha.50",
+    "@mdx-js/react": "2.0.0",
     "@mdx-js/runtime": "^1.6.22",
     "copy-to-clipboard": "^3.3.1",
     "fela": "^11.7.0",
@@ -21,16 +21,16 @@
     "fela-preset-web": "^11.7.0",
     "fela-sort-media-query-mobile-first": "^11.7.0",
     "kilvin": "^3.1.1",
-    "next": "^12.0.4",
+    "next": "^12.0.10",
     "prism-react-renderer": "^1.1.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-fela": "^11.7.0"
   },
   "devDependencies": {
     "@babel/node": "^7.12.6",
     "@next/bundle-analyzer": "^9.5.5",
     "next-mdx-remote": "^3.0.8",
-    "react-test-renderer": "^17.0.1"
+    "react-test-renderer": "17.0.1"
   }
 }

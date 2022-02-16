@@ -1,7 +1,6 @@
-/* @flow */
 import isPlainObject from 'isobject'
 
-function addImportantToValue(value: any): any {
+function addImportantToValue(value) {
   if (
     typeof value === 'number' ||
     (typeof value === 'string' &&
@@ -13,7 +12,7 @@ function addImportantToValue(value: any): any {
   return value
 }
 
-function isAnimation(style: Object): boolean {
+function isAnimation(style) {
   const styleNames = Object.getOwnPropertyNames(style)
   let isAnimationItem = false
 
@@ -30,7 +29,7 @@ function isAnimation(style: Object): boolean {
   return isAnimationItem
 }
 
-function addImportant(style: Object): Object {
+function addImportant(style) {
   if (!isAnimation(style)) {
     for (const property in style) {
       const value = style[property]

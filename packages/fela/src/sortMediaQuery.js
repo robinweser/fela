@@ -1,6 +1,5 @@
-/* @flow */
-export default function sortMediaQuery(mediaQueryOrder: Array<string> = []) {
-  return function (a: string, b: string) {
+export default function sortMediaQuery(mediaQueryOrder = []) {
+  return function (a, b) {
     if (mediaQueryOrder.indexOf(b) === -1) {
       if (mediaQueryOrder.indexOf(a) === -1) {
         return 0

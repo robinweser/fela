@@ -1,4 +1,3 @@
-/* @flow */
 import { RULE_TYPE, generateDeclarationReference } from 'fela-utils'
 import { camelCaseProperty } from 'css-in-js-utils'
 
@@ -25,12 +24,12 @@ function getRegex(specificityPrefix) {
 }
 
 export default function rehydrateRules(
-  css: string,
-  media: string = '',
-  support?: string = '',
-  cache?: Object = {},
-  specificityPrefix?: string = ''
-): Object {
+  css,
+  media = '',
+  support = '',
+  cache = {},
+  specificityPrefix = ''
+) {
   let decl
   const DECL_REGEX = getRegex(specificityPrefix)
 

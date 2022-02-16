@@ -1,11 +1,7 @@
-/* @flow */
 import customProperty from 'fela-plugin-custom-property'
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { arrayReduce } from 'fast-loops'
 
-export default function pseudoPrefixer(
-  pseudoSelector: string,
-  prefixes: Array<string>
-) {
+export default function pseudoPrefixer(pseudoSelector, prefixes) {
   return customProperty({
     [pseudoSelector]: (value) =>
       arrayReduce(

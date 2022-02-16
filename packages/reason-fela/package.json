@@ -11,9 +11,18 @@
     "lib/**"
   ],
   "scripts": {
-    "clean": "bsb -clean-world",
-    "build": "bsb -make-world",
-    "watch": "bsb -make-world -w"
+    "setup": "yarn build",
+    "clean": "rimraf lib es coverage",
+    "build": "yarn clean && yarn build:re && yarn build:es && yarn build:lib",
+    "build:re": "bsb -make-world",
+    "build:es": "babel src --out-dir es --ignore **/__tests__",
+    "build:lib": "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore **/__tests__",
+    "build:umd": "echo 1",
+    "watch": "npm run watch:lib & npm run watch:es",
+    "watch:lib": "BABEL_ENV=commonjs babel src -d lib -w",
+    "watch:es": "babel src -d es -w",
+    "test": "echo 1",
+    "coverage": "yarn test --coverage"
   },
   "license": "MIT",
   "author": "Robin Weser <contact@weser.io>",
@@ -29,5 +38,17 @@
     "bs-platform": "^5.0.6",
     "reason-react": "^0.7.0"
   },
-  "gitHead": "4cc4686d9e16877251ac5c73e161076ec7c113a1"
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.13.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.5.5",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^26.6.0",
+    "cross-env": "^6.0.3",
+    "jest": "^26.6.0",
+    "rimraf": "^3.0.0"
+  }
 }

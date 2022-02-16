@@ -15,8 +15,8 @@
     "fela-plugin-native-media-query": "^11.7.0",
     "fela-tools": "^11.7.0",
     "fela-utils": "^11.7.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-fela": "^11.7.0",
     "react-native": "0.44.0"
   }

@@ -1,6 +1,5 @@
-/* @flow */
 const regex = /^(:|\[|>|&)/
 
-export default function isNestedSelector(property: string): boolean {
+export default function isNestedSelector(property) {
   return regex.test(property)
 }

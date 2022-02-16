@@ -1,5 +1,4 @@
-/* @flow  */
-export default function toCSSString(value: string): string {
+export default function toCSSString(value) {
   if (value.charAt(0) === '"') {
     return value
   }

@@ -1,4 +1,3 @@
-/* @flow */
 import { createElement } from 'react'
 import { FelaComponentFactory } from 'fela-bindings'
 

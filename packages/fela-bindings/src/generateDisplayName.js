@@ -1,5 +1,4 @@
-/* @flow */
-export default function generateDisplayName(component: any): string {
+export default function generateDisplayName(component) {
   const displayName = component.displayName || component.name
 
   if (displayName) {

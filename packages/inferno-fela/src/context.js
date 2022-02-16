@@ -1,4 +1,3 @@
-/* @flow */
 import createContext from 'create-inferno-context'
 
 // $FlowFixMe

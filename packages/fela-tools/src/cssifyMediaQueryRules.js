@@ -1,8 +1,4 @@
-/* @flow  */
-export default function cssifyMediaQueryRules(
-  mediaQuery: string,
-  mediaQueryRules?: string
-): string {
+export default function cssifyMediaQueryRules(mediaQuery, mediaQueryRules) {
   if (mediaQueryRules) {
     return `@media ${mediaQuery}{${mediaQueryRules}}`
   }

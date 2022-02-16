@@ -1,4 +1,3 @@
-/* @flow */
 import render from './dom/render'
 import rehydrate from './dom/rehydrate'
 

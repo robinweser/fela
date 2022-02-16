@@ -1,6 +1,4 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
-import objectEach from 'fast-loops/lib/objectEach'
+import { objectReduce, objectEach } from 'fast-loops'
 import { combineMultiRules } from 'fela-tools'
 import shallowCompare from 'react-addons-shallow-compare'
 
@@ -8,30 +6,23 @@ import generateDisplayName from './generateDisplayName'
 import generateSelectorPrefix from './generateSelectorPrefix'
 import hoistStatics from './hoistStatics'
 
-export type ConnectConfig = {
-  pure?: boolean,
-}
-
-const defaultConfig: ConnectConfig = {
+const defaultConfig = {
   pure: true,
 }
 
 export default function connectFactory(
-  BaseComponent: any,
-  createElement: Function,
-  RendererContext: any,
-  ThemeContext: any
-): Function {
-  return function connect(
-    rules: Object | Function,
-    config: ConnectConfig = {}
-  ): Function {
+  BaseComponent,
+  createElement,
+  RendererContext,
+  ThemeContext
+) {
+  return function connect(rules, config = {}) {
     const connectConfig = {
       ...defaultConfig,
       ...config,
     }
 
-    return (component: any): any => {
+    return (component) => {
       class EnhancedComponent extends BaseComponent {
         static displayName = generateDisplayName(component)
 

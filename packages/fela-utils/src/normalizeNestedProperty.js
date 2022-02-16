@@ -1,7 +1,4 @@
-/* @flow */
-export default function normalizeNestedProperty(
-  nestedProperty: string
-): string {
+export default function normalizeNestedProperty(nestedProperty) {
   if (nestedProperty.charAt(0) === '&') {
     return nestedProperty.slice(1)
   }

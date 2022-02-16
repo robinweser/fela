@@ -1,9 +1,7 @@
-/* @flow */
 import { renderToSheetList } from 'fela-dom'
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 
-export default function renderToNodeListFactory(createElement: Function) {
-  return function renderToNodeList(renderer: DOMRenderer) {
+export default function renderToNodeListFactory(createElement) {
+  return function renderToNodeList(renderer) {
     const sheetList = renderToSheetList(renderer)
 
     return sheetList.map(({ type, media, rehydration, support, css }) =>

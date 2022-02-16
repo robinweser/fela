@@ -1,10 +1,8 @@
-/* @flow */
-
 import { objectReduce } from 'fast-loops'
 import { camelCaseProperty } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 
-function normalizeKebabCase(style: Object): Object {
+function normalizeKebabCase(style) {
   return objectReduce(
     style,
     (normalizedStyle, value, property) => {

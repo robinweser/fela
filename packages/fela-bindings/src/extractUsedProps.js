@@ -1,8 +1,4 @@
-/* @flow */
-export default function extractUsedProps(
-  rule: Function,
-  theme: Object = {}
-): Array<string> {
+export default function extractUsedProps(rule, theme = {}) {
   const usedProps = []
 
   // if the browser doesn't support proxies

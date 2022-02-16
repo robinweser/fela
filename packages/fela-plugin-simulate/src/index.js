@@ -1,17 +1,7 @@
-/* @flow */
 import isPlainObject from 'isobject'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import { assignStyle } from 'css-in-js-utils'
 
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
-import type { StyleType } from '../../../flowtypes/StyleType'
-
-function resolveSimulation(
-  style: Object,
-  type: StyleType,
-  renderer: DOMRenderer | NativeRenderer,
-  props: Object
-): Object {
+function resolveSimulation(style, type, renderer, props) {
   if (props.simulate) {
     for (const property in style) {
       const value = style[property]

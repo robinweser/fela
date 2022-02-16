@@ -1,8 +1,4 @@
-/* @flow */
-export default function getRuleScore(
-  ruleOrder: Array<any> = [],
-  pseudo: string = ''
-): number {
+export default function getRuleScore(ruleOrder = [], pseudo = '') {
   if (ruleOrder.length === 0 || pseudo.length === 0) {
     return 0
   }

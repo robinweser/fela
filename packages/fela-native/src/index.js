@@ -1,24 +1,17 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import { StyleSheet } from 'react-native'
-/* @flow */
-import arrayEach from 'fast-loops/lib/arrayEach'
+import { arrayEach } from 'fast-loops'
+
 import { processStyleWithPlugins, RULE_TYPE, CLEAR_TYPE } from 'fela-utils'
 
-import type {
-  NativeRenderer,
-  NativeRendererConfig,
-} from '../../../flowtypes/NativeRenderer'
-
-export function createRenderer(
-  config: NativeRendererConfig = {}
-): NativeRenderer {
-  let renderer: NativeRenderer = {
+export function createRenderer(config = {}) {
+  let renderer = {
     listeners: [],
     cache: {},
     plugins: config.plugins || [],
     isNativeRenderer: true,
 
-    clear(): void {
+    clear() {
       renderer.cache = {}
 
       renderer._emitChange({
@@ -26,7 +19,7 @@ export function createRenderer(
       })
     },
 
-    subscribe(callback: Function): { unsubscribe: Function } {
+    subscribe(callback) {
       renderer.listeners.push(callback)
 
       return {
@@ -35,7 +28,7 @@ export function createRenderer(
       }
     },
 
-    renderRule(rule: Function, props: Object = {}): Object {
+    renderRule(rule, props = {}) {
       const processedStyle = processStyleWithPlugins(
         renderer,
         rule(props, renderer),
@@ -59,7 +52,7 @@ export function createRenderer(
       return renderer.cache[reference].style
     },
 
-    _emitChange(change: Object): void {
+    _emitChange(change) {
       arrayEach(renderer.listeners, (listener) => listener(change))
     },
   }

@@ -1,5 +1,4 @@
-/* @flow */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { arrayReduce } from 'fast-loops'
 import {
   clusterCache,
   cssifySupportRules,
@@ -11,9 +10,7 @@ import {
 
 import cssifyMediaQueryRules from './cssifyMediaQueryRules'
 
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
-
-export default function renderToString(renderer: DOMRenderer): string {
+export default function renderToString(renderer) {
   const {
     fontFaces,
     statics,

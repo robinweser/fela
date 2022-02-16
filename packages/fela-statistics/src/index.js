@@ -1,23 +1,14 @@
-/* @flow */
 /* eslint-disable prefer-rest-params */
 import gzipSize from 'gzip-size'
 import { RULE_TYPE } from 'fela-utils'
 import { renderToString } from 'fela-tools'
 
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
-
-function lengthInUtf8Bytes(str: string): number {
+function lengthInUtf8Bytes(str) {
   const m = encodeURIComponent(str).match(/%[89ABab]/g)
   return str.length + (m ? m.length : 0)
 }
 
-type RendererWithStatistics = {
-  getStatistics: Function,
-}
-
-function addStatistics(
-  renderer: DOMRenderer
-): DOMRenderer & RendererWithStatistics {
+function addStatistics(renderer) {
   const statistics = {
     count: {
       classes: 0,
@@ -33,7 +24,7 @@ function addStatistics(
     totalUsage: 0,
   }
 
-  function addClassNamesToUsage(classNames: string): void {
+  function addClassNamesToUsage(classNames) {
     classNames.split(' ').forEach((className) => {
       if (!statistics.usage[className]) {
         statistics.usage[className] = 0
@@ -44,17 +35,17 @@ function addStatistics(
   }
 
   const existingRenderRule = renderer.renderRule
-  renderer.renderRule = function renderRule(): string {
+  renderer.renderRule = function renderRule() {
     statistics.totalRenders++
-    const classNames: string = existingRenderRule.apply(renderer, arguments)
+    const classNames = existingRenderRule.apply(renderer, arguments)
     addClassNamesToUsage(classNames)
     return classNames
   }
 
-  renderer.subscribe(({ type, selector, media, static: isStatic }: Object) => {
+  renderer.subscribe(({ type, selector, media, static: isStatic }) => {
     if (type === RULE_TYPE && !isStatic) {
       statistics.totalClasses++
-      const isPseudoSelector: boolean = selector.indexOf(':') > -1
+      const isPseudoSelector = selector.indexOf(':') > -1
       if (media) {
         statistics.totalMediaQueryClasses++
 
@@ -84,13 +75,13 @@ function addStatistics(
     }
   })
 
-  function calculateReuse(): number {
+  function calculateReuse() {
     const quotient =
       (statistics.totalUsage - statistics.totalClasses) / statistics.totalUsage
     return Math.floor(quotient * 10000) / 10000
   }
 
-  renderer.getStatistics = (): Object => {
+  renderer.getStatistics = () => {
     const currentStats = {
       ...statistics,
     }

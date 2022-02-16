@@ -1,20 +1,10 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { objectReduce } from 'fast-loops'
 
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
+const defaultGenerator = (identifierName, index) => index.toString()
 
-const defaultGenerator = (identifierName?: string, index: number): string =>
-  index.toString()
+const isRenderer = (renderer) => renderer && renderer.renderRule
 
-const isRenderer = (renderer: DOMRenderer): boolean =>
-  renderer && renderer.renderRule
-
-type IdentifierConfig = {
-  prefix?: string,
-  generator?: Function,
-}
-
-export default function identifier(config?: IdentifierConfig = {}) {
+export default function identifier(config = {}) {
   const { prefix = 'fela-identifier' } = config
   const { generator = defaultGenerator } = config
 
@@ -22,10 +12,10 @@ export default function identifier(config?: IdentifierConfig = {}) {
   let index = 0
   let enhanced = false
 
-  return (identifierName?: string | DOMRenderer) => {
+  return (identifierName) => {
     if (isRenderer(identifierName)) {
       enhanced = true
-      const renderer: DOMRenderer = identifierName
+      const renderer = identifierName
       const existingFilterClassName = renderer.filterClassName.bind(renderer)
       const existingRenderRule = renderer.renderRule.bind(renderer)
 
@@ -77,11 +67,8 @@ export default function identifier(config?: IdentifierConfig = {}) {
       .filter((chunk) => chunk)
       .join('-')
 
-    const identifierRule = (() => ({
+    const identifierRule = () => ({
       [`--${identifierKey}`]: '',
-    }): {
-      className?: string,
-      toString?: () => string,
     })
 
     identifierRule.className = identifierKey

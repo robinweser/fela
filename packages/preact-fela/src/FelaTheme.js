@@ -1,4 +1,3 @@
-/* @flow */
 // $FlowFixMe
 import { h as createElement } from 'preact'
 import { FelaThemeFactory } from 'fela-bindings'

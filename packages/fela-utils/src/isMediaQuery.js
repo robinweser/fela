@@ -1,4 +1,3 @@
-/* @flow */
-export default function isMediaQuery(property: string): boolean {
+export default function isMediaQuery(property) {
   return property.substr(0, 6) === '@media'
 }

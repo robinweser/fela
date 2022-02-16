@@ -1,16 +1,11 @@
-/* @flow */
 /* eslint-disable */
 // $FlowFixMe
 import { Dimensions } from 'react-native'
 /* eslint-enable */
 
-import * as React from 'react'
+import { Component } from 'react'
 
-type Props = {
-  children: React.Node,
-}
-
-export default class DimensionProvider extends React.Component<Props> {
+export default class DimensionProvider extends Component {
   componentDidMount() {
     Dimensions.addEventListener('change', this.forceUpdate)
   }
@@ -20,7 +15,6 @@ export default class DimensionProvider extends React.Component<Props> {
   }
 
   render() {
-    const { children } = this.props
-    return React.Children.only(children)
+    return this.props.children
   }
 }

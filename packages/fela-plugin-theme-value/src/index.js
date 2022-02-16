@@ -1,10 +1,5 @@
-/* @flow */
 import isPlainObject from 'isobject'
-import arrayReduce from 'fast-loops/lib/arrayReduce'
-
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
-import type { StyleType } from '../../../flowtypes/StyleType'
+import { arrayReduce } from 'fast-loops'
 
 function getThemeValue(object, key) {
   const value = arrayReduce(
@@ -22,11 +17,7 @@ function getThemeValue(object, key) {
   return value || key
 }
 
-function resolveThemeValues(
-  style: Object,
-  theme: Object = {},
-  mapping: Object
-): Object {
+function resolveThemeValues(style, theme = {}, mapping) {
   for (const property in style) {
     const value = style[property]
 
@@ -40,11 +31,7 @@ function resolveThemeValues(
   return style
 }
 
-export default function themeValue(mapping: Object = {}) {
-  return (
-    style: Object,
-    type: StyleType,
-    renderer: DOMRenderer | NativeRenderer,
-    props: Object
-  ) => resolveThemeValues(style, props.theme, mapping)
+export default function themeValue(mapping = {}) {
+  return (style, type, renderer, props) =>
+    resolveThemeValues(style, props?.theme, mapping)
 }

@@ -1,8 +1,7 @@
-/* @flow */
 export default function generateCombinedMediaQuery(
-  currentMediaQuery: string,
-  nestedMediaQuery: string
-): string {
+  currentMediaQuery,
+  nestedMediaQuery
+) {
   if (currentMediaQuery.length === 0) {
     return nestedMediaQuery
   }

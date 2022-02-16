@@ -1,4 +1,3 @@
-/* @flow */
 import objectEach from 'fast-loops/lib/objectEach'
 import arrayEach from 'fast-loops/lib/arrayEach'
 import assignStyle from 'css-in-js-utils/lib/assignStyle'
@@ -6,7 +5,7 @@ import isPlainObject from 'isobject'
 
 import { isUndefinedValue } from 'fela-utils'
 
-function removeUndefined(style: Object): Object {
+function removeUndefined(style) {
   objectEach(style, (value, property) => {
     if (isPlainObject(value)) {
       style[property] = removeUndefined(value)
@@ -20,7 +19,7 @@ function removeUndefined(style: Object): Object {
   return style
 }
 
-function extendStyle(style: Object, extension: Object): void {
+function extendStyle(style, extension) {
   // extend conditional style objects
   if (
     extension &&
@@ -36,7 +35,7 @@ function extendStyle(style: Object, extension: Object): void {
   }
 }
 
-function extend(style: Object): Object {
+function extend(style) {
   objectEach(style, (value, property) => {
     if (property === 'extend') {
       const extensions = [].concat(value)

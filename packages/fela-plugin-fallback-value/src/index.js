@@ -1,8 +1,7 @@
-/* @flow */
-import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
+import { resolveArrayValue } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 
-function resolveFallbackValues(style: Object): Object {
+function resolveFallbackValues(style) {
   for (const property in style) {
     const value = style[property]
 

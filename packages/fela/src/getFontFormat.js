@@ -1,9 +1,6 @@
-/* @flow */
 import isBase64 from './isBase64'
 
-const formats: {
-  [string]: string,
-} = {
+const formats = {
   '.woff': 'woff',
   '.woff2': 'woff2',
   '.eot': 'embedded-opentype',
@@ -13,9 +10,7 @@ const formats: {
   '.svgz': 'svg',
 }
 
-const base64Formats: {
-  [string]: string,
-} = {
+const base64Formats = {
   'image/svg+xml': 'svg',
   'application/x-font-woff': 'woff',
   'application/font-woff': 'woff',
@@ -30,7 +25,7 @@ const base64Formats: {
   'application/font-sfnt': 'sfnt',
 }
 
-export default function getFontFormat(src: string): string {
+export default function getFontFormat(src) {
   if (isBase64(src)) {
     let mime = ''
     for (let i = 5; ; i++) {

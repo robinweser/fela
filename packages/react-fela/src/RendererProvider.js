@@ -1,4 +1,3 @@
-/* @flow */
 import { Component, createElement } from 'react'
 import { RendererProviderFactory } from 'fela-bindings'
 import PropTypes from 'prop-types'

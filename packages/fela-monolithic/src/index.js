@@ -1,6 +1,5 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
-import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
+import { objectReduce } from 'fast-loops'
+import { cssifyObject } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 import {
   isSupport,
@@ -16,21 +15,15 @@ import {
 
 import generateMonolithicClassName from './generateMonolithicClassName'
 
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
-import type MonolithicRenderer from '../../../flowtypes/MonolithicRenderer'
-
-function useMonolithicRenderer(
-  renderer: DOMRenderer,
-  prettySelectors: boolean = false
-): MonolithicRenderer {
+function useMonolithicRenderer(renderer, prettySelectors = false) {
   renderer.prettySelectors = prettySelectors
 
   renderer._renderStyleToCache = (
-    className: string,
-    style: Object,
-    pseudo: string = '',
-    media: string = '',
-    support: string = ''
+    className,
+    style,
+    pseudo = '',
+    media = '',
+    support = ''
   ) => {
     const ruleSet = objectReduce(
       style,
@@ -107,10 +100,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
     }
   }
 
-  renderer._renderStyleToClassNames = (
-    { _className, ...style }: Object,
-    rule: Function
-  ): string => {
+  renderer._renderStyleToClassNames = ({ _className, ...style }, rule) => {
     if (Object.keys(style).length < 1) {
       return ''
     }
@@ -133,14 +123,10 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
     return (_className ? _className + ' ' : '') + className
   }
 
-  renderer.renderRule = (rule: Function, props: Object = {}): string =>
+  renderer.renderRule = (rule, props = {}) =>
     renderer._renderStyle(rule(props, renderer), props, rule)
 
-  renderer._renderStyle = (
-    style: Object = {},
-    props: Object = {},
-    rule?: Function
-  ): string => {
+  renderer._renderStyle = (style = {}, props = {}, rule) => {
     const processedStyle = processStyleWithPlugins(
       renderer,
       style,
@@ -169,8 +155,8 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
   return renderer
 }
 
-export default function monolithic(options: Object = {}) {
-  return (renderer: DOMRenderer) =>
+export default function monolithic(options = {}) {
+  return (renderer) =>
     useMonolithicRenderer(
       renderer,
       process.env.NODE_ENV !== 'production' && options.prettySelectors

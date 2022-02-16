@@ -1,10 +1,9 @@
-/* @flow */
 export default function generateDeclarationReference(
-  property: string,
-  value: any,
-  pseudo?: string = '',
-  media?: string = '',
-  support?: string = ''
-): string {
+  property,
+  value,
+  pseudo = '',
+  media = '',
+  support = ''
+) {
   return support + media + pseudo + property + value
 }

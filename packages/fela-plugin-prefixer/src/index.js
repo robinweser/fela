@@ -1,17 +1,18 @@
 /* @flow */
 import { prefix } from 'inline-style-prefixer'
 import { prefix as stylisPrefix } from 'stylis'
-import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
-import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
-import camelCaseProperty from 'css-in-js-utils/lib/camelCaseProperty'
-import objectReduce from 'fast-loops/lib/objectReduce'
-
+import {
+  cssifyObject,
+  cssifyDeclaration,
+  camelCaseProperty,
+} from 'css-in-js-utils'
+import { objectReduce } from 'fast-loops'
 import fallbackValue from 'fela-plugin-fallback-value'
 import isPlainObject from 'isobject'
 
 const resolveFallbackValues = fallbackValue()
 
-function addVendorPrefixes(style: Object): Object {
+function addVendorPrefixes(style) {
   return objectReduce(
     style,
     (prefixedStyle, value, property) => {

@@ -1,9 +1,7 @@
-/* @flow */
-
 import { objectReduce, arrayEach } from 'fast-loops'
 import isPlainObject from 'isobject'
 
-function multipleSelectors(style: Object): Object {
+function multipleSelectors(style) {
   return objectReduce(
     style,
     (normalizedStyle, value, property) => {

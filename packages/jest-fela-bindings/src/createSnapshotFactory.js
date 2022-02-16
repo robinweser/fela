@@ -1,9 +1,6 @@
 import { format } from 'prettier'
-import HTMLtoJSX from 'htmltojsx'
 
 import { renderToString } from 'fela-tools'
-
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
 
 function formatCSS(css) {
   return format(css, { parser: 'css', useTabs: false, tabWidth: 2 })
@@ -19,18 +16,18 @@ function formatHTML(html) {
 }
 
 export default function createSnapshotFactory(
-  createElement: Function,
-  render: Function,
-  defaultRenderer: Function,
-  defaultRendererProvider: Function,
-  defaultThemeProvider: Function
-): Function {
+  createElement,
+  render,
+  defaultRenderer,
+  defaultRendererProvider,
+  defaultThemeProvider
+) {
   return function createSnapshot(
-    component: any,
-    theme: Object = {},
-    renderer: DOMRenderer = defaultRenderer,
-    RendererProvider: Function = defaultRendererProvider,
-    ThemeProvider: Function = defaultThemeProvider
+    component,
+    theme = {},
+    renderer = defaultRenderer,
+    RendererProvider = defaultRendererProvider,
+    ThemeProvider = defaultThemeProvider
   ) {
     const div = document.createElement('div')
 

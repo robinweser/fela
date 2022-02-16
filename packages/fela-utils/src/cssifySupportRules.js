@@ -1,9 +1,8 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { objectReduce } from 'fast-loops'
 
 import generateCSSSupportRule from './generateCSSSupportRule'
 
-export default function cssifySupportRules(supportRules: Object): string {
+export default function cssifySupportRules(supportRules) {
   return objectReduce(
     supportRules,
     (css, cssRules, support) => {

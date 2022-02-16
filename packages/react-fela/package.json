@@ -7,9 +7,6 @@
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "sideEffects": false,
-  "scripts": {
-    "build:umd": "webpack --config webpack.config.js"
-  },
   "files": [
     "LICENSE",
     "README.md",
@@ -18,6 +15,19 @@
     "es/**",
     "umd/**"
   ],
+  "scripts": {
+    "setup": "yarn build",
+    "clean": "rimraf lib es coverage",
+    "build": "yarn clean && yarn build:es && yarn build:lib",
+    "build:es": "babel src --out-dir es --ignore **/__tests__",
+    "build:lib": "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore **/__tests__",
+    "build:umd": "webpack --config webpack.config.js",
+    "watch": "npm run watch:lib & npm run watch:es",
+    "watch:lib": "BABEL_ENV=commonjs babel src -d lib -w",
+    "watch:es": "babel src -d es -w",
+    "test": "echo 1",
+    "coverage": "yarn test --coverage"
+  },
   "repository": "https://github.com/robinweser/fela/",
   "keywords": [
     "fela",
@@ -31,12 +41,22 @@
   "license": "MIT",
   "peerDependencies": {
     "fela": ">= 11.3.1",
-    "react": ">= 16.3.0"
+    "react": "*"
   },
   "dependencies": {
     "fela-bindings": "^11.7.0",
     "fela-dom": "^11.7.0",
     "prop-types": "^15.5.8"
   },
-  "gitHead": "4cc4686d9e16877251ac5c73e161076ec7c113a1"
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.13.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.5.5",
+    "babel-core": "7.0.0-bridge.0",
+    "cross-env": "^6.0.3",
+    "rimraf": "^3.0.0"
+  }
 }

@@ -1,10 +1,7 @@
-/* @flow */
-import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
-
 export default function queryNode(
-  { type, media, support }: NodeAttributes,
-  targetDocument: any = document
-): ?Object {
+  { type, media, support },
+  targetDocument = document
+) {
   const mediaQuery = media ? `[media="${media}"]` : ':not([media])'
   const supportQuery = support
     ? '[data-fela-support="true"]'
