@@ -54,6 +54,7 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.5.5",
     "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "^8.2.3",
     "babel-jest": "^26.6.0",
     "cross-env": "^6.0.3",
     "jest": "^26.6.0",

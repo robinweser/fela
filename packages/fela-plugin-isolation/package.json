@@ -46,6 +46,7 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.5.5",
     "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "^8.2.3",
     "cross-env": "^6.0.3",
     "rimraf": "^3.0.0",
     "webpack": "^4.41.6",

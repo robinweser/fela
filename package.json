@@ -11,7 +11,7 @@
     "lint": "eslint packages/*/src/**/*.js",
     "release": "yarn prepare-release && lerna publish --force-publish",
     "pre-release": "yarn prepare-release && lerna publish --force-publish --dist-tag next --preid rc",
-    "prepare-release": "git pull --rebase && yarn run check && yarn compile && yarn bundle",
+    "prepare-release": "git pull --rebase && yarn run check && yarn build && yarn build:umd",
     "test": "yarn turbo run test",
     "coverage": "yarn turbo run coverage"
   },
@@ -33,9 +33,6 @@
         ]
       },
       "build:umd": {
-        "dependsOn": [
-          "^build"
-        ],
         "outputs": [
           "umd/**"
         ]
