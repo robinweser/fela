@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "fela-integration",
-  "version": "11.7.0",
+  "version": "12.0.0-rc.0",
   "description": "Fela private intergration testing package",
   "sideEffects": false,
   "scripts": {
@@ -12,14 +12,14 @@
     "coverage": "yarn test --coverage"
   },
   "dependencies": {
-    "fela": "^11.7.0",
-    "fela-monolithic": "^11.7.0",
-    "fela-tools": "^11.7.0",
-    "jest-react-fela": "^11.7.0",
+    "fela": "^12.0.0-rc.0",
+    "fela-monolithic": "^12.0.0-rc.0",
+    "fela-tools": "^12.0.0-rc.0",
+    "jest-react-fela": "^12.0.0-rc.0",
     "raf": "^3.4.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-fela": "^11.7.0",
+    "react-fela": "^12.0.0-rc.0",
     "react-test-renderer": "^17.0.0"
   },
   "devDependencies": {
@@ -31,8 +31,8 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "^8.2.3",
     "babel-jest": "^26.6.0",
+    "babel-loader": "^8.2.3",
     "cross-env": "^6.0.3",
     "jest": "^26.6.0",
     "rimraf": "^3.0.0"

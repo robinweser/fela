@@ -1,6 +1,6 @@
 {
   "name": "fela-codemods",
-  "version": "11.7.0",
+  "version": "12.0.0-rc.0",
   "description": "Automatic codemods to upgrade Fela code to newer versions",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -40,12 +40,9 @@
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.1",
-    "fela-utils": "^11.7.0"
+    "fela-utils": "^12.0.0-rc.0"
   },
   "devDependencies": {
-    "fela": "^11.7.0",
-    "fela-preset-web": "^11.7.0",
-    "fela-tools": "^11.7.0",
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.13.0",
@@ -53,9 +50,12 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.5.5",
     "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "^8.2.3",
     "babel-jest": "^26.6.0",
+    "babel-loader": "^8.2.3",
     "cross-env": "^6.0.3",
+    "fela": "^12.0.0-rc.0",
+    "fela-preset-web": "^12.0.0-rc.0",
+    "fela-tools": "^12.0.0-rc.0",
     "jest": "^26.6.0",
     "rimraf": "^3.0.0"
   }
