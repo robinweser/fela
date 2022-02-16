@@ -3,10 +3,7 @@
   "name": "@fela/website",
   "version": "11.7.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "export": "next export",
-    "start": "next start"
+    "dev": "next dev"
   },
   "license": "MIT",
   "dependencies": {
