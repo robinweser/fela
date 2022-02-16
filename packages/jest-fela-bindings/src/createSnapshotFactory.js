@@ -1,4 +1,5 @@
 import { format } from 'prettier'
+import HTMLtoJSX from 'htmltojsx'
 
 import { renderToString } from 'fela-tools'
 

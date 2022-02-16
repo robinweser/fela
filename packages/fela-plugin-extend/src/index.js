@@ -1,6 +1,5 @@
-import objectEach from 'fast-loops/lib/objectEach'
-import arrayEach from 'fast-loops/lib/arrayEach'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import { arrayEach, objectEach } from 'fast-loops'
+import { assignStyle } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 
 import { isUndefinedValue } from 'fela-utils'

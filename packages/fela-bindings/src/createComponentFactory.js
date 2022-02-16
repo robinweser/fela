@@ -14,11 +14,7 @@ export default function createComponentFactory(
   withProxy = false,
   alwaysPassThroughProps = []
 ) {
-  return function createComponent(
-    rule,
-    type = 'div',
-    passThroughProps= []
-  ) {
+  return function createComponent(rule, type = 'div', passThroughProps = []) {
     const displayName = rule.name ? rule.name : 'FelaComponent'
 
     const FelaComponent = ({

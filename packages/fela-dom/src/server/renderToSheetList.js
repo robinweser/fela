@@ -4,9 +4,6 @@ import {
   cssifySupportRules,
   sheetMap,
   RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE,
 } from 'fela-utils'
 
 import getRehydrationIndex from './getRehydrationIndex'

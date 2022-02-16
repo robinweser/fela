@@ -2,8 +2,32 @@ import prefixer from '../index'
 
 describe('Prefixer plugin', () => {
   it('should prefix styles', () => {
+    const style = {
+      display: 'flex',
+      justifyContent: 'center',
+    }
+
+    expect(prefixer()(style)).toMatchSnapshot()
+  })
+
+  it('should prefix nested objects', () => {
+    const style = {
+      display: 'flex',
+      ':hover': {
+        justifyContent: 'center',
+      },
+    }
+
+    expect(prefixer()(style)).toMatchSnapshot()
+  })
+})
+
+describe('Prefixer plugin (optimized)', () => {
+  it('should prefix styles', () => {
+    const plugin = prefixer().optimized
+
     expect(
-      prefixer()({
+      plugin({
         property: 'display',
         value: 'flex',
       })
@@ -14,7 +38,7 @@ describe('Prefixer plugin', () => {
     })
 
     expect(
-      prefixer()({
+      plugin({
         property: 'justifyContent',
         value: 'center',
       })

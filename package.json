@@ -5,7 +5,7 @@
     "postinstall": "yarn turbo run setup",
     "build": "yarn turbo run build",
     "build:umd": "yarn turbo run build:umd",
-    "check": "yarn format && yarn lint && yarn run coverage",
+    "check": "yarn format && yarn lint && yarn test",
     "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
@@ -48,6 +48,15 @@
           "**/__snapshots__/**"
         ]
       },
+      "coverage": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "**/__snapshots__/**",
+          "coverage/**"
+        ]
+      },
       "setup": {
         "outputs": [
           "lib/**",
@@ -57,6 +66,7 @@
     }
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^5.8.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.1.0",
@@ -65,6 +75,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
+    "lerna": "^4.0.0",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
     "turbo": "^1.0.19"

@@ -24,9 +24,7 @@
     "build:umd": "webpack --config webpack.config.js",
     "watch": "npm run watch:lib & npm run watch:es",
     "watch:lib": "BABEL_ENV=commonjs babel src -d lib -w",
-    "watch:es": "babel src -d es -w",
-    "test": "echo 1",
-    "coverage": "yarn test --coverage"
+    "watch:es": "babel src -d es -w"
   },
   "repository": "https://github.com/robinweser/fela/",
   "keywords": [
