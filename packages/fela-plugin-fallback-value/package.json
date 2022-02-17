@@ -37,7 +37,8 @@
   "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
-    "css-in-js-utils": "^3.0.0"
+    "css-in-js-utils": "^3.0.0",
+    "isobject": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",

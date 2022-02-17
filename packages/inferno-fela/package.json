@@ -62,6 +62,10 @@
     "jest": "^26.6.0",
     "rimraf": "^3.0.0",
     "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "create-inferno-context": "^0.2.4",
+    "inferno": "^5.0.1",
+    "inferno-create-element": "^5.0.1",
+    "fela": "^12.0.0-rc.0"
   }
 }

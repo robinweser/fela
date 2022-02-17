@@ -36,7 +36,8 @@
   "author": "Robin Weser",
   "license": "MIT",
   "peerDependencies": {
-    "preact": "^10.2.1"
+    "preact": "^10.2.1",
+    "fela": ">= 11.3.1"
   },
   "dependencies": {
     "fela-bindings": "^12.0.0-rc.0",
@@ -51,6 +52,8 @@
     "@babel/preset-env": "^7.5.5",
     "babel-core": "7.0.0-bridge.0",
     "cross-env": "^6.0.3",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "preact": "^10.6.6",
+    "fela": "^12.0.0-rc.0"
   }
 }

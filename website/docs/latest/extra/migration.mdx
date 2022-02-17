@@ -4,6 +4,23 @@
 
 This guide should help migrating your Fela codebase to newer versions.
 
+## 12.0.0
+
+Version 12 is mostly a cleanup and performance update, but it introduces some changes to how plugins work that might require some manual work.<br />
+The order in which the plugins need to be executed needs to be adjusted the following:
+
+- [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
+- [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer)
+- [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
+
+It previously was in this order:
+
+- [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer)
+- [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
+- [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
+
+> **Note**: If you're using [fela-preset-web](https://github.com/robinweser/fela/tree/master/packages/fela-preset-web) that this will be handled automatically.
+
 ## 10.0.0
 
 With Version 10, we did some major changes to all the React-like bindings.<br/>

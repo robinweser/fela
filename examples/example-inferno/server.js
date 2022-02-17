@@ -24,6 +24,9 @@ app.get('/', (req, res) => {
       <App />
     </RendererProvider>
   )
+
+  console.log(appHtml)
+
   const appCSS = renderToMarkup(renderer)
 
   res.write(
