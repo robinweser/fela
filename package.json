@@ -2,21 +2,22 @@
   "name": "fela",
   "private": true,
   "scripts": {
-    "postinstall": "yarn turbo run setup",
-    "build": "yarn turbo run build",
-    "build:umd": "yarn turbo run build:umd",
-    "check": "yarn format && yarn lint && yarn test",
+    "postinstall": "pnpm turbo run setup",
+    "build": "pnpm turbo run build",
+    "build:umd": "pnpm turbo run build:umd",
+    "check": "pnpm format && pnpm lint && pnpm test",
     "format": "prettier --write \"packages/*/src/**/*.js\"",
-    "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
-    "release": "yarn prepare-release && lerna publish --force-publish",
-    "pre-release": "yarn prepare-release && lerna publish --force-publish --dist-tag next --preid rc",
-    "prepare-release": "git pull --rebase && yarn run check && yarn build && yarn build:umd",
-    "test": "yarn turbo run test",
-    "coverage": "yarn turbo run coverage"
+    "release": "pnpm prepare-release && lerna publish --force-publish",
+    "pre-release": "pnpm prepare-release && lerna publish --force-publish --dist-tag next --preid rc",
+    "prepare-release": "git pull --rebase && pnpm run check && pnpm build && pnpm build:umd",
+    "test": "pnpm turbo run test",
+    "coverage": "pnpm turbo run coverage"
   },
   "workspaces": [
     "packages/*",
+    "examples/*",
+    "benchmarks",
     "website"
   ],
   "turbo": {

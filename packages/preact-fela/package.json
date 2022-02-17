@@ -15,9 +15,9 @@
     "es/**"
   ],
   "scripts": {
-    "setup": "yarn build",
+    "setup": "pnpm build",
     "clean": "rimraf lib es coverage",
-    "build": "yarn clean && yarn build:es && yarn build:lib",
+    "build": "pnpm clean && pnpm build:es && pnpm build:lib",
     "build:es": "babel src --out-dir es --ignore **/__tests__",
     "build:lib": "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore **/__tests__",
     "watch": "npm run watch:lib & npm run watch:es",
@@ -50,7 +50,6 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.5.5",
     "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "^8.2.3",
     "cross-env": "^6.0.3",
     "rimraf": "^3.0.0"
   }

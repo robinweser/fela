@@ -16,9 +16,9 @@
     "umd/**"
   ],
   "scripts": {
-    "setup": "yarn build",
+    "setup": "pnpm build",
     "clean": "rimraf lib es coverage",
-    "build": "yarn clean && yarn build:es && yarn build:lib",
+    "build": "pnpm clean && pnpm build:es && pnpm build:lib",
     "build:es": "babel src --out-dir es --ignore **/__tests__",
     "build:lib": "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore **/__tests__",
     "build:umd": "webpack --config webpack.config.js",
@@ -26,7 +26,7 @@
     "watch:lib": "BABEL_ENV=commonjs babel src -d lib -w",
     "watch:es": "babel src -d es -w",
     "test": "jest --config=jest.config.js",
-    "coverage": "yarn test --coverage"
+    "coverage": "pnpm test --coverage"
   },
   "repository": "https://github.com/robinweser/fela/",
   "keywords": [
