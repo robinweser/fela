@@ -191,34 +191,9 @@ Don't want to miss any update? Follow us on [Twitter](https://twitter.com/felajs
 
 ## Who's using Fela?
 
-> Your company is using Fela, but is not listed yet? [Add your company / organisation](https://github.com/robinweser/fela/edit/master/README.md#L121)
+Check all the [logos on the website](https://fela.js.org).
 
-- [abilis](https://www.abilis.de)
-- [Bookmyshow](https://in.bookmyshow.com/events)
-- [BdP LV RPS](http://www.bdp-rps.de)
-- [Cloudflare](https://www.cloudflare.com)
-- [dm-drogerie markt](https://www.dm.de)
-- [dmTECH](https://www.dmtech.de)
-- [Espressive](https://www.espressive.com)
-- [Gazzer](https://www.gazzer.io)
-- [HelloFresh](https://www.hellofresh.de)
-- [Indoqa](https://www.indoqa.com)
-- [Kilix](http://kilix.fr)
-- [Lusk](https://lusk.io)
-- [MediaFire](https://m.mediafire.com)
-- [Medium](https://medium.com)
-- [Microsoft](https://microsoft.com)
-- [N26](https://n26.com)
-- [Net-A-Porter](https://www.net-a-porter.com/gb/en/porter)
-- [NinjaConcept](https://www.ninjaconcept.com)
-- [Optisure](https://www.optisure.de)
-- [Robin Weser](http://weser.io)
-- [Rocket Station](http://rstation.io)
-- [Root Systems](https://www.rootsystems.nz)
-- [Space Between](https://www.spacebetween.co.uk/)
-- [V2](https://www.v2.com)
-- [Volvo Cars](https://www.volvocars.com)
-- [Zendesk](https://www.zendesk.com)
+> Want to add yours? [Please create a new issue](https://github.com/robinweser/fela/issues/new/choose) with your logo attached and we will add it!
 
 ## Contributing
 
