@@ -49,15 +49,8 @@ export default function rehydrateRules(
   // https://github.com/rtsao/styletron/blob/master/packages/styletron-client/src/index.js#L47
   /* eslint-disable no-unused-vars,no-cond-assign */
   while ((decl = DECL_REGEX.exec(css))) {
-    const [
-      ruleSet,
-      className,
-      classList,
-      _,
-      pseudo = '',
-      property,
-      value,
-    ] = decl
+    const [ruleSet, className, classList, _, pseudo = '', property, value] =
+      decl
     /* eslint-enable */
 
     const [classes, propertyPriority] = rehydrateClassList(classList, className)
