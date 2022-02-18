@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-18.04]
-        node: [12, 13]
+        node: [16, 18]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
