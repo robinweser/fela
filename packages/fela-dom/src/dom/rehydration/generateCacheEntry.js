@@ -8,12 +8,18 @@ export default function generateCacheEntry(
   pseudo = '',
   media = '',
   support = '',
-  specificityPrefix = ''
+  specificityPrefix = '',
+  propertyPriority = 1
 ) {
   return {
     type,
     className,
-    selector: generateCSSSelector(className, pseudo, specificityPrefix),
+    selector: generateCSSSelector(
+      className,
+      pseudo,
+      specificityPrefix,
+      propertyPriority
+    ),
     declaration: property + ':' + value,
     pseudo,
     media,

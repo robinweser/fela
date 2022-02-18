@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Rehydrating rules should rehydrate additional class names correctly 1`] = `
+Object {
+  ".rc-tooltip.rc-tooltip-placement-topRightpaddingLeft20px": Object {
+    "className": "a",
+    "declaration": "padding-left:20px",
+    "media": "",
+    "pseudo": ".rc-tooltip.rc-tooltip-placement-topRight",
+    "selector": ".a.rc-tooltip.rc-tooltip-placement-topRight",
+    "support": "",
+    "type": "RULE",
+  },
+}
+`;
+
 exports[`Rehydrating rules should rehydrate css custom properties 1`] = `
 Object {
   "--custom-property12px": Object {
@@ -21,7 +35,7 @@ Object {
     "declaration": "color:red",
     "media": "",
     "pseudo": ":hover",
-    "selector": ".c:hover",
+    "selector": ".c.c.c:hover",
     "support": "",
     "type": "RULE",
   },
@@ -39,7 +53,7 @@ Object {
     "declaration": "padding-left:20px",
     "media": "",
     "pseudo": "",
-    "selector": ".a",
+    "selector": ".a.a",
     "support": "",
     "type": "RULE",
   },

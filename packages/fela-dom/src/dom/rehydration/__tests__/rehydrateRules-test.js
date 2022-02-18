@@ -12,7 +12,7 @@ describe('Rehydrating rules', () => {
   it('should rehydrate prioritized longhand rules', () => {
     expect(
       rehydrateRules(
-        '.a.a{padding-left:20px}.b{padding:10px}.c.c:hover{color:red}'
+        '.a.a{padding-left:20px}.b{padding:10px}.c.c.c:hover{color:red}'
       )
     ).toMatchSnapshot()
   })
@@ -29,6 +29,14 @@ describe('Rehydrating rules', () => {
         '',
         {},
         '.parentClass '
+      )
+    ).toMatchSnapshot()
+  })
+
+  it.only('should rehydrate additional class names correctly', () => {
+    expect(
+      rehydrateRules(
+        '.a.rc-tooltip.rc-tooltip-placement-topRight{padding-left:20px}'
       )
     ).toMatchSnapshot()
   })
