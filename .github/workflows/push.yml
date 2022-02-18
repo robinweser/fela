@@ -1,13 +1,13 @@
 on: [push, pull_request]
-name: Test
+name: Test & Lint
 jobs:
   test:
-    name: Ubuntu on node ${{ matrix.node }}
+    name: Ubuntu on Node ${{ matrix.node }}
     runs-on: ubuntu-18.04
     strategy:
       matrix:
         os: [ubuntu-18.04]
-        node: [16]
+        node: [15, 16]
     steps:
       - uses: actions/checkout@v2
 
