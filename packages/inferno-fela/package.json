@@ -1,6 +1,6 @@
 {
   "name": "inferno-fela",
-  "version": "12.0.0-rc.0",
+  "version": "12.0.0-rc.1",
   "description": "Inferno bindings for Fela",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -44,8 +44,8 @@
     "inferno-create-element": "^5.0.1"
   },
   "dependencies": {
-    "fela-bindings": "^12.0.0-rc.0",
-    "fela-dom": "^12.0.0-rc.0"
+    "fela-bindings": "^12.0.0-rc.1",
+    "fela-dom": "^12.0.0-rc.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -58,14 +58,14 @@
     "babel-jest": "^26.6.0",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^3.0.0",
+    "create-inferno-context": "^0.2.4",
     "cross-env": "^6.0.3",
+    "fela": "^12.0.0-rc.1",
+    "inferno": "^5.0.1",
+    "inferno-create-element": "^5.0.1",
     "jest": "^26.6.0",
     "rimraf": "^3.0.0",
     "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.10",
-    "create-inferno-context": "^0.2.4",
-    "inferno": "^5.0.1",
-    "inferno-create-element": "^5.0.1",
-    "fela": "^12.0.0-rc.0"
+    "webpack-cli": "^3.3.10"
   }
 }

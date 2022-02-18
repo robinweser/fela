@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "example-inferno",
-  "version": "11.7.0",
+  "version": "12.0.0-rc.1",
   "description": "Fela example with Inferno",
   "scripts": {
     "client": "NODE_ENV=development webpack-dev-server",
@@ -10,22 +10,22 @@
   "author": "Robin Weser <robin@weser.io>",
   "license": "MIT",
   "dependencies": {
-    "fela": "^12.0.0-rc.0",
-    "fela-beautifier": "^12.0.0-rc.0",
-    "fela-dom": "^12.0.0-rc.0",
-    "fela-perf": "^12.0.0-rc.0",
-    "fela-plugin-embedded": "^12.0.0-rc.0",
-    "fela-plugin-fallback-value": "^12.0.0-rc.0",
-    "fela-plugin-logger": "^12.0.0-rc.0",
+    "create-inferno-context": "^0.2.4",
+    "fela": "^12.0.0-rc.1",
+    "fela-beautifier": "^12.0.0-rc.1",
+    "fela-dom": "^12.0.0-rc.1",
+    "fela-perf": "^12.0.0-rc.1",
+    "fela-plugin-embedded": "^12.0.0-rc.1",
+    "fela-plugin-fallback-value": "^12.0.0-rc.1",
+    "fela-plugin-logger": "^12.0.0-rc.1",
     "fela-plugin-lvha": "^5.0.16",
-    "fela-plugin-prefixer": "^12.0.0-rc.0",
-    "fela-plugin-unit": "^12.0.0-rc.0",
-    "fela-plugin-validator": "^12.0.0-rc.0",
+    "fela-plugin-prefixer": "^12.0.0-rc.1",
+    "fela-plugin-unit": "^12.0.0-rc.1",
+    "fela-plugin-validator": "^12.0.0-rc.1",
     "inferno": "^6.1.5",
     "inferno-create-element": "^6.1.5",
-    "inferno-fela": "^12.0.0-rc.0",
-    "inferno-server": "^6.1.5",
-    "create-inferno-context": "^0.2.4"
+    "inferno-fela": "^12.0.0-rc.1",
+    "inferno-server": "^6.1.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -34,17 +34,17 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.5.5",
-    "babel-plugin-inferno": "^6.3.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "^8.2.3",
+    "babel-plugin-inferno": "^6.3.0",
+    "concurrently": "^3.4.0",
     "cross-env": "^6.0.3",
+    "express": "^4.14.0",
+    "express-http-proxy": "^1.0.3",
     "jest": "^26.6.0",
     "rimraf": "^3.0.0",
     "webpack": "^4.41.6",
-    "concurrently": "^3.4.0",
-    "express": "^4.14.0",
-    "express-http-proxy": "^1.0.3",
-    "webpack-dev-server": "^4.7.4",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }

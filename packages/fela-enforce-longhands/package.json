@@ -1,6 +1,6 @@
 {
   "name": "fela-enforce-longhands",
-  "version": "12.0.0-rc.0",
+  "version": "12.0.0-rc.1",
   "description": "Fela enhancer that enforces longhand over shorthand properties",
   "main": "lib/index.js",
   "module": "es/index.js",
