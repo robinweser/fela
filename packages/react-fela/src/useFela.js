@@ -13,6 +13,7 @@ export default function useFela(props = {}) {
     )
   }
 
+  // we add the theme to props so that it can be used within styles
   props.theme = theme
 
   function css(...rules) {
