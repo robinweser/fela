@@ -1,0 +1,35 @@
+# enhance
+
+Composes a renderer enhancer to enhance the basic [createRenderer](api/fela/createRenderer) function. You can also [pass](advanced/renderer-configuration) `enhancers` to [createRenderer](api/fela/createRenderer) directly which makes the use of `enhance` optional.
+
+## Arguments
+
+Accepts a list of [enhancers](advanced/enhancers).
+
+## Returns
+
+(_Function_): Renderer enhancer which is used to enhance the [createRenderer](api/fela/createRenderer) function.
+
+## Example
+
+```javascript
+import { createRenderer, enhance } from 'fela'
+import perf from 'fela-perf'
+import beautifier from 'fela-beautifier'
+
+const enhancer = enhance(perf(), beautifier())
+
+const createEnhancedRenderer = enhancer(createRenderer)
+
+const enhancedRenderer = createEnhancedRenderer()
+```
+
+You may also directly apply the enhancer using the following short version.
+
+```javascript
+const createEnhancedRenderer = enhance(perf(), beautifier())(createRenderer)
+
+// or even shorter by directly creating the renderer
+// but this is not very easy to read though
+const renderer = enhance(perf(), beautifier())(createRenderer)()
+```

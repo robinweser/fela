@@ -1,0 +1,32 @@
+# renderToNodeList
+
+This method returns a NodeList with `<style>` objects with the rendered CSS. This is useful for SSR (Server Side Rendering). This method uses the [renderToSheetList](api/fela-dom/renderToSheetList) internally.
+
+## Arguments
+
+| Argument | Type                             | Description                                                                   |
+| -------- | -------------------------------- | ----------------------------------------------------------------------------- |
+| renderer | [_Renderer_](api/fela/renderers) | The renderer providing the styles which are rendered to a list of sheet data. |
+
+## Returns
+
+(_Object[]_): NodeList of style sheet nodes
+
+## Imports
+
+```javascript nocopy
+import { renderToNodeList } from 'react-fela'
+import { renderToNodeList } from 'preact-fela'
+import { renderToNodeList } from 'inferno-fela'
+```
+
+## Example
+
+```jsx
+import { renderToNodeList } from 'react-fela'
+import { createRenderer } from 'fela'
+
+const renderer = createRenderer()
+
+const Head = <head>{renderToNodeList(renderer)}</head>
+```

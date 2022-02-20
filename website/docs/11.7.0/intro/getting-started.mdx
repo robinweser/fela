@@ -1,0 +1,113 @@
+# Getting Started
+
+This page is an overview of the Fela documentation and related resources.<br />
+It aims to help you get started as quickly as possible, by guiding you to the most relevant pages.<br />
+
+Fela is a small, high-performant and framework-agnostic toolbelt to handle state-driven styling in JavaScript. It generates atomic CSS and supports all common CSS features such as media queries, pseudo classes, keyframes and font-faces.<br />
+
+## Preparation
+
+Before we jump right into the code, we recommend reading a bit about the [motivation](intro/motivation) behind Fela. <br />
+Also make sure to read about its [principles](intro/principles), [benefits](intro/benefits) and [caveats](intro/caveats) which might help if you're still unsure about it.
+
+We also recommend reading about the basics. Most important, what [rules](basics/rules) are and how the [renderer](basics/renderer) works at its core. Thos two concepts are the core of Fela and we talk about them everywhere.
+
+## Installation
+
+To get started, the first thing we need to do is to install Fela and all revelant packages. <br />
+Fela is split into many separate packages, so we have to choose which ones we actually need.<br />
+
+The [ecosystem](intro/ecosystem) is a great place to get an overview of all available packages. <br />
+In general, you most likely need a [renderer](intro/ecosystem#renderers), [library bindings](intro/ecosystem#bindings) and a couple of [plugins](intro/ecosystem#plugins) and [enhancers](intro/ecosystem#enhancers).<br/>
+You will learn more about each of those different packages as you go on, so don't feel bad if you're overwhelmed already.
+
+## Setup
+
+No matter which set of packages we choose, we need to have some kind of root setup for our Fela renderer.
+Let use with the most common web setup as an example.<br/>
+All we need are the DOM-specific fela renderers and the [plugin preset for web](https://github.com/robinweser/fela/tree/master/packages/fela-preset-web).
+
+```bash
+yarn add fela fela-dom fela-preset-web
+```
+
+We can now create our own fela renderer which is the single source of truth for our configuration.<br />
+
+> The renderer accepts a variety of configuration options to adapt to all kind of use cases.<br/>Check out the [renderer configuration](advanced/renderer-configuration) page for all available options.
+
+```js name=felaRenderer.js
+import { createRenderer } from 'fela'
+import plugins from 'fela-preset-web'
+
+export default createRenderer({ plugins })
+```
+
+Using the renderer, we can already render styles to the DOM.
+
+```js
+import { render } from 'fela-dom'
+
+import renderer from './felaRenderer'
+
+const rule = (props) => ({
+  fontSize: props.fontSize,
+  color: 'red',
+})
+
+const className = renderer.renderRule(rule, { fontSize: 16 })
+// => a b
+
+// This call connects the renderer with the DOM
+// rendering all styles to respective <style> elements in the head
+// it also automatically updates those whenever we render more styles
+render(renderer)
+```
+
+> Check out the documentation for [static styles](advanced/static-style), [keyframes](basics/keyframes) and [fonts](basics/fonts) to learn more about how to render those as well.
+
+## Bindings
+
+Chances are high, that we don't use plain JavaScript, but one of the established UI frameworks such as [React](https://reactjs.org) or [Vue](https://vuejs.org). That's why we can choose from a couple of [library bindings](intro/ecosystem#bindings) to seamlessly integrate with them.
+
+Not only do they provide useful helpers, but they also implement best practices. Most of them also take care of the [DOM rendering](advanced/dom-rendering) completely.
+
+We provide a couple of guides for the most common ones. If we're missing a guide but provide (third-party) bindings, make sure to check the binding repository directly for more information.
+
+- [Usage with React](guides/usage-with-react)
+- [Usage with React Native](guides/usage-with-react-native)
+- [Usage with Preact](guides/usage-with-preact)
+- [Usage with Inferno](guides/usage-with-inferno)
+- [Usage with ReasonML](guides/usage-with-reasonml)
+- [Usage with Cycle](guides/usage-with-cycle)
+
+## Examples & API Reference
+
+Once we're done with the initial setup, it might be helpful to check the [examples](extra/examples).<br />
+They demonstrate all the aspects and functionality of Fela and are a great starting point for our own applications.<br />
+Next to the examples, we can always come back to the API reference to lookup all revelant functions, options and parameters.
+
+## Recipes
+
+Now that we know the all the essentials, it's time to get into detail. <br/>
+The recipes sections provides a couple of advanced guides and best practices. Make sure to check them out as soon as you start building your components and applications.
+They can help to keep your code clean and performant as it grows more complex.
+
+Apart from that, they might include some nice tricks and techniques which you weren't aware of or haven't been mentioned in the documentation yet.
+
+## Questions
+
+Last but not least, if there's any open question, we're more than happy to help!
+
+First, checkout the [FAQ](extra/faq) - chances are that you're question has already been answered before.<br />
+Otherwise feel free to go ahead to our [support](https://github.com/robinweser/fela/discussions) page and ask whatever you like.
+
+If you think you found a bug or miss an important feature, go ahead and [create an issue](https://github.com/robinweser/fela/issues/new) on GitHub.
+
+## Additional Resources
+
+Next to the offical documentation, there're a couple of excellent external resources from other members of the community.
+Make sure to check them out to get more insights on how others use Fela and what they think about it!
+
+- [Workshop](https://github.com/robinweser/fela#workshop)
+- [Talks](https://github.com/robinweser/fela#talks)
+- [Articles](https://github.com/robinweser/fela#posts)

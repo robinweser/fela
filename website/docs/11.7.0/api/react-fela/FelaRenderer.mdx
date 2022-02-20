@@ -1,0 +1,29 @@
+# FelaRenderer
+
+> **Note**: If you're working with React > 16.3, we **highly recommend** using the [useFela](api/react-fela/useFela) hook instead.<br />It's more easy and safe to use and also has the best rendering performance.
+
+FelaRenderer is a consumer component leveraging the render-props pattern. It can be used to access the renderer object that is passed down via React's [context](https://reactjs.org/docs/context.html) APIs by a [RendererProvider](api/react-fela/RendererProvider).
+
+## Props
+
+| Property | Type       | Description                                                                 |
+| -------- | ---------- | --------------------------------------------------------------------------- |
+| children | _Function_ | A render function that receives the renderer object as its first parameter. |
+
+## Imports
+
+```javascript nocopy
+import { FelaRenderer } from 'react-fela'
+import { FelaRenderer } from 'preact-fela'
+import { FelaRenderer } from 'inferno-fela'
+```
+
+## Example
+
+```jsx
+<FelaRenderer>
+  {renderer => (
+    // do something with the renderer
+  )}
+</FelaRenderer>
+```
