@@ -184,7 +184,7 @@ export default function createRenderer(config = {}) {
     },
 
     _renderStyle(style = {}, props = {}) {
-      const _className = style._className + ' ' || ''
+      const customClassName = style._className ? style._className + ' ' : ''
       delete style._className
 
       const processedStyle = processStyleWithPlugins(
@@ -196,7 +196,8 @@ export default function createRenderer(config = {}) {
       )
 
       return (
-        _className + renderer._renderStyleToClassNames(processedStyle).substr(1)
+        customClassName +
+        renderer._renderStyleToClassNames(processedStyle).substr(1)
       )
     },
 
