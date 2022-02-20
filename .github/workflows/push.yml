@@ -1,5 +1,17 @@
-on: [push, pull_request]
 name: Test & Lint
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'packages/**'
+  pull_request:
+    branches:
+      - 'master'
+    paths:
+      - 'packages/**'
+
 jobs:
   test:
     name: Ubuntu on Node ${{ matrix.node }}
