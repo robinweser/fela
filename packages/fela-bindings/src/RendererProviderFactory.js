@@ -32,8 +32,10 @@ export default function RendererProviderFactory(
     }
 
     componentDidUpdate(prevProps) {
-      // TODO: we might add a shallow compare to avoid unnecessary rerenders
-      this._renderStyle()
+      if (prevProps.renderer !== this.props.renderer) {
+        // add warning that renderer is changed
+        this._renderStyle()
+      }
     }
 
     _renderStyle() {

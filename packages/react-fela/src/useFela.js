@@ -1,4 +1,3 @@
-// $FlowFixMe
 import { useContext } from 'react'
 import { combineRules } from 'fela'
 
@@ -14,13 +13,10 @@ export default function useFela(props = {}) {
     )
   }
 
-  const propsWithTheme = {
-    ...props,
-    theme,
-  }
+  props.theme = theme
 
   function css(...rules) {
-    return renderer.renderRule(combineRules(...rules), propsWithTheme)
+    return renderer.renderRule(combineRules(...rules), props)
   }
 
   return {

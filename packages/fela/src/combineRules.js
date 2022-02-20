@@ -14,6 +14,11 @@ function resolveRule(rule, props, renderer) {
 }
 
 export default function combineRules(...rules) {
+  // escape hatch to skip the object assignment for single rules
+  if (rules.length === 1) {
+    return rules[0]
+  }
+
   return (props, renderer) =>
     arrayReduce(
       rules,
