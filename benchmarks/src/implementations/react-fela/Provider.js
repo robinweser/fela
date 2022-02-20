@@ -6,8 +6,10 @@ import plugins from 'fela-preset-web'
 
 import View from './View'
 
+const [extend, embedded, unit, fallback, prefixer] = plugins
+
 const renderer = createRenderer({
-  plugins,
+  plugins: [unit, fallback, prefixer],
 })
 
 export default function Provider({ children }) {
