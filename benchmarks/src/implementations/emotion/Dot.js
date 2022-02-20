@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { css } from 'emotion';
+import React from 'react'
+import { css } from '@emotion/css'
 
 const Dot = ({ size, x, y, children, color }) => (
   <div
@@ -10,12 +10,11 @@ const Dot = ({ size, x, y, children, color }) => (
       borderBottomWidth: `${size / 2}px`,
       borderLeftWidth: `${size / 2}px`,
       marginLeft: `${x}px`,
-      marginTop: `${y}px`
-    })}
-  >
+      marginTop: `${y}px`,
+    })}>
     {children}
   </div>
-);
+)
 
 const styles = {
   root: {
@@ -26,8 +25,8 @@ const styles = {
     borderColor: 'transparent',
     borderStyle: 'solid',
     borderTopWidth: 0,
-    transform: 'translate(50%, 50%)'
-  }
-};
+    transform: 'translate(50%, 50%)',
+  },
+}
 
-export default Dot;
+export default Dot
