@@ -184,6 +184,9 @@ export default function createRenderer(config = {}) {
     },
 
     _renderStyle(style = {}, props = {}) {
+      const _className = style._className + ' ' || ''
+      delete style._className
+
       const processedStyle = processStyleWithPlugins(
         renderer,
         style,
@@ -192,16 +195,13 @@ export default function createRenderer(config = {}) {
         renderer.unoptimizedPlugins || renderer.plugins
       )
 
-      return renderer._renderStyleToClassNames(processedStyle).slice(1)
+      return (
+        _className + renderer._renderStyleToClassNames(processedStyle).substr(1)
+      )
     },
 
-    _renderStyleToClassNames(
-      { _className, ...style },
-      pseudo = '',
-      media = '',
-      support = ''
-    ) {
-      let classNames = _className ? ` ${_className}` : ''
+    _renderStyleToClassNames(style, pseudo = '', media = '', support = '') {
+      let classNames = ''
 
       for (const property in style) {
         const value = style[property]
