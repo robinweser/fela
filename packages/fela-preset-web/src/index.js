@@ -12,8 +12,8 @@ export function createWebPreset({
     extend(...extendConfig),
     embedded(),
     unit(...unitConfig),
-    prefixer(),
     fallbackValue(),
+    prefixer(),
   ]
 }
 
