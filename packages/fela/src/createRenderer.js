@@ -32,6 +32,7 @@ import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
 import validateSelectorPrefix from './validateSelectorPrefix'
 import sortMediaQuery from './sortMediaQuery'
+import extractCustomClassName from './extractCustomClassName'
 
 export default function createRenderer(config = {}) {
   let renderer = {
@@ -184,9 +185,7 @@ export default function createRenderer(config = {}) {
     },
 
     _renderStyle(style = {}, props = {}) {
-      const customClassName = style._className ? style._className + ' ' : ''
-      delete style._className
-
+      const customClassName = extractCustomClassName(style)
       const processedStyle = processStyleWithPlugins(
         renderer,
         style,

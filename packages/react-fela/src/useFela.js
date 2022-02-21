@@ -3,22 +3,23 @@ import { combineRules } from 'fela'
 
 import { RendererContext, ThemeContext } from './context'
 
-function getPropsWithTheme(props, theme = {}) {
-  if (props) {
-    return {
-      ...props,
-      theme,
-    }
+function getPropsWithTheme(props, theme) {
+  // if props is not a direct copy of React props
+  // we can simply add the theme to it for perf reasons
+  if (Object.isExtensible(props)) {
+    props.theme = theme
+    return props
   }
 
   return {
+    ...props,
     theme,
   }
 }
 
-export default function useFela(props) {
+export default function useFela(props = {}) {
   const renderer = useContext(RendererContext)
-  const theme = useContext(ThemeContext)
+  const theme = useContext(ThemeContext) || {}
 
   if (!renderer) {
     throw new Error(
