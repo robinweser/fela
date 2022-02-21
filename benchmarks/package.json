@@ -12,6 +12,7 @@
     "@emotion/css": "^11.7.1",
     "fela": "^12.0.0-rc.1",
     "fela-preset-web": "^12.0.0-rc.1",
+    "fela-enforce-longhands": "^12.0.0-rc.1",
     "glamor": "^2.20.40",
     "radium": "^0.26.0",
     "react": "^17.0.2",

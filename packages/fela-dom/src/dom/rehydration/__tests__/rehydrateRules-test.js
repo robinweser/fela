@@ -33,7 +33,7 @@ describe('Rehydrating rules', () => {
     ).toMatchSnapshot()
   })
 
-  it.only('should rehydrate additional class names correctly', () => {
+  it('should rehydrate additional class names correctly', () => {
     expect(
       rehydrateRules(
         '.a.rc-tooltip.rc-tooltip-placement-topRight{padding-left:20px}'
