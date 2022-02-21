@@ -250,55 +250,28 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
             support
           )
 
-          if (renderer.cacheMap) {
-            if (!renderer.cacheMap.hasOwnProperty(declarationReference)) {
-              const pluginInterface = {
-                property,
-                value,
-                pseudo,
-                media,
-                support,
-              }
-
-              const processed = arrayReduce(
-                renderer.optimizedPlugins,
-                (processed, plugin) => plugin(processed, renderer),
-                pluginInterface
-              )
-
-              const cacheReference = generateDeclarationReference(
-                processed.property,
-                processed.value,
-                processed.pseudo,
-                processed.media,
-                processed.support
-              )
-
-              if (!renderer.cache.hasOwnProperty(cacheReference)) {
-                renderer._renderStyleToCache(
-                  cacheReference,
-                  processed.property,
-                  processed.value,
-                  processed.pseudo,
-                  processed.media,
-                  processed.support
-                )
-              }
-
-              renderer.cacheMap[declarationReference] = cacheReference
-            }
-
-            declarationReference = renderer.cacheMap[declarationReference]
-          }
-
           if (!renderer.cache.hasOwnProperty(declarationReference)) {
-            renderer._renderStyleToCache(
-              declarationReference,
+            const pluginInterface = {
               property,
               value,
               pseudo,
               media,
-              support
+              support,
+            }
+
+            const processed = arrayReduce(
+              renderer.optimizedPlugins,
+              (processed, plugin) => plugin(processed, renderer),
+              pluginInterface
+            )
+
+            renderer._renderStyleToCache(
+              declarationReference,
+              processed.property,
+              processed.value,
+              processed.pseudo,
+              processed.media,
+              processed.support
             )
           }
 
@@ -380,7 +353,6 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
   // only enable the cache map if we have optimized plugins
   if (renderer.optimizedPlugins.length > 0) {
-    renderer.cacheMap = {}
     renderer.unoptimizedPlugins = arrayFilter(
       renderer.plugins,
       (plugin) => !plugin.optimized
