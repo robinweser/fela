@@ -3,7 +3,8 @@
   "name": "benchmarks",
   "version": "12.0.0-rc.2",
   "scripts": {
-    "compile": "mkdir -p dist && cp -f index.html dist/index.html && ./node_modules/.bin/webpack-cli --config ./webpack.config.js"
+    "compile": "mkdir -p dist && cp -f index.html dist/index.html && ./node_modules/.bin/webpack-cli --config ./webpack.config.js",
+    "copy": "cp -r dist/ ../website/public/benchmarks"
   },
   "dependencies": {
     "@emotion/css": "^11.7.1",

@@ -10,6 +10,11 @@ module.exports = withBundleAnalyzer({
         destination: '/docs/latest/intro/getting-started',
         permanent: true,
       },
+      {
+        source: '/benchmarks',
+        destination: '/benchmarks/benchmarks.html',
+        permanent: true,
+      },
     ]
   },
 })
