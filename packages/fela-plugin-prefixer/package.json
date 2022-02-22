@@ -40,10 +40,8 @@
   "dependencies": {
     "css-in-js-utils": "^3.1.0",
     "fast-loops": "^1.1.3",
-    "fela-plugin-fallback-value": "^12.0.0-rc.2",
-    "inline-style-prefixer": "^6.0.1",
     "isobject": "^4.0.0",
-    "stylis": "^4.0.6"
+    "stylis": "^4.0.13"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
