@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-expand-shorthand",
-  "version": "12.0.0-rc.2",
+  "version": "12.0.0-y.0",
   "description": "Fela plugin to expand shorthand properties in style objects",
   "main": "lib/index.js",
   "module": "es/index.js",

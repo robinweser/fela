@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-logger",
-  "version": "12.0.0-rc.2",
+  "version": "12.0.0-y.0",
   "description": "Fela plugin to log processed style objects",
   "main": "lib/index.js",
   "module": "es/index.js",
