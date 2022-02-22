@@ -353,11 +353,9 @@ declare module 'fela-plugin-logger' {
 declare module 'fela-plugin-named-keys' {
   import { TPlugin } from 'fela'
 
-  interface MediaQueryMap {
-    [key: string]: string
-  }
+  type MediaQueryMap<Props> = ((props: Props) => Record<string, string>) | Record<string, string>;
 
-  export default function (mediaQueryMap: MediaQueryMap): TPlugin
+  export default function<Props>(mediaQueryMap: MediaQueryMap<Props>): TPlugin;
 }
 
 declare module 'fela-plugin-native-media-query' {
@@ -449,6 +447,12 @@ declare module 'fela-plugin-validator' {
   }
 
   export default function (configs?: Configs): TPlugin
+}
+
+declare module 'fela-plugin-expand-shorthand' {
+  import { TPlugin } from 'fela';
+  
+  export default function (autoMerge: boolean = false): TPlugin;
 }
 
 /**
