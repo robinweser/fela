@@ -15,7 +15,7 @@ const propertyPriority = {
   flexShrink: 2,
   flexBasis: 2,
   backgroundColor: 2,
-  backgoundRepeat: 2,
+  backgroundRepeat: 2,
   backgroundPosition: 2,
   backgroundImage: 2,
   backgroundOrigin: 2,
