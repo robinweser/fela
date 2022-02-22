@@ -75,7 +75,7 @@ export default function unit(
   isUnitlessProperty = defaultIsUnitlessProperty
 ) {
   function unitPlugin(style) {
-    addUnit(style, defaultUnit, propertyMap, isUnitlessProperty)
+    return addUnit(style, defaultUnit, propertyMap, isUnitlessProperty)
   }
 
   unitPlugin.optimized = createOptimized(

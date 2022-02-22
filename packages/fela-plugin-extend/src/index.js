@@ -23,11 +23,11 @@ function extendStyle(style, extension) {
   if (extension && extension.hasOwnProperty('condition')) {
     if (extension.condition) {
       // eslint-disable-next-line no-use-before-define
-      assignStyle(style, extend(extension.style))
+      assignStyle(style, extendPlugin(extension.style))
     }
   } else {
     // extend basic style objects
-    assignStyle(style, removeUndefined(extend(extension)))
+    assignStyle(style, removeUndefined(extendPlugin(extension)))
   }
 }
 
@@ -40,7 +40,7 @@ function extendPlugin(style) {
       delete style[property]
     } else if (isPlainObject(value)) {
       // support nested extend as well
-      style[property] = extend(value)
+      style[property] = extendPlugin(value)
     }
   })
 

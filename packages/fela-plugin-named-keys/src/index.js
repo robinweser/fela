@@ -27,6 +27,9 @@ function resolveNamedKeys(style, keys) {
 
 export default function namedKeys(keys) {
   return function namedKeysPlugin(style, type, renderer, props = {}) {
-    resolveNamedKeys(style, keys instanceof Function ? keys(props) : keys)
+    return resolveNamedKeys(
+      style,
+      keys instanceof Function ? keys(props) : keys
+    )
   }
 }

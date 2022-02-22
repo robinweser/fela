@@ -33,6 +33,6 @@ function resolveThemeValues(style, theme = {}, mapping) {
 
 export default function themeValue(mapping = {}) {
   return function themeValuePlugin(style, type, renderer, props) {
-    resolveThemeValues(style, props?.theme, mapping)
+    return resolveThemeValues(style, props?.theme, mapping)
   }
 }
