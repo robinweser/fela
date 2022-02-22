@@ -2,29 +2,33 @@
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-monolithic.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-monolithic.svg"> <a href="https://bundlephobia.com/result?p=fela-monolithic@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-monolithic.svg"></a>
 
+> **Warning**: This plugin is not meant to be used in production. We don't monitor its performance and also can't make sure that it works with every plugin. It was initially build for better developer experience, but since Chrome fixed the issue with debugging styles rendered with `insertRule`, we no longer need it for that regard. The only use case for which we actively recommend this plugin is snapshot testing.
+
 The monolithic enhancer will use unique class names instead of atomic ones.
 These generated class names are not re-usable like the atomic design but allows you to debug and modify styles with ease.
 Every ruleset will have it's own unique class - this means that a new class will be generated if you are using props and they change. If you want to fix the class name, you can add property `className` into your rule set. This can be useful if you want to generate an external stylesheet that's human readable, re-usable and can be used on non-JS projects.
 
 ## Installation
+
 ```sh
 yarn add fela-monolithic
 ```
+
 You may alternatively use `npm i --save fela-monolithic`.
 
 ## Usage
 
 ```javascript
-import { createRenderer } from 'fela'
+import { createRenderer } from 'fela'
 import monolithic from 'fela-monolithic'
 
 const renderer = createRenderer({
-  enhancers: [ monolithic() ]
+  enhancers: [monolithic()],
 })
 
 const rule = () => ({
   className: 'custom',
-  color: 'red'
+  color: 'red',
 })
 
 renderer.renderRule(rule)
@@ -34,7 +38,7 @@ outputs
 
 ```css
 .custom {
-  color: red
+  color: red;
 }
 ```
 
@@ -42,39 +46,42 @@ if `className` property is not used, the output will be
 
 ```css
 .137u7ef {
-  color: red
+  color: red;
 }
 ```
 
 `137u7ef` is a hash based on rule properties (`color: red` in this case).
 
 ### Configuration
+
 ##### Options
-| Option | Value | Default | Description |
-| --- | --- | --- | --- |
-| `prettySelectors` | *(boolean)* | `false` | use pretty selectors in development |
+
+|  Option           | Value       | Default | Description                         |
+| ----------------- | ----------- | ------- | ----------------------------------- |
+| `prettySelectors` | _(boolean)_ | `false` | use pretty selectors in development |
 
 If you are using `prettySelectors` with plain Fela rules it will add the `rule.name` to the className e.g.
 
 > Note: anonymous functions will still only use the hash!
 
 ```javascript
-import { createRenderer } from 'fela'
+import { createRenderer } from 'fela'
 import monolithic from 'fela-monolithic'
 
 const renderer = createRenderer({
-  enhancers: [ monolithic({ prettySelectors: true }) ]
+  enhancers: [monolithic({ prettySelectors: true })],
 })
 
 const redText = () => ({
-  color: 'red'
+  color: 'red',
 })
 
 renderer.renderRule(redText) // => redText_137u7ef
 ```
+
 ```css
 .redText_137u7ef {
-  color: red
+  color: red;
 }
 ```
 
@@ -102,8 +109,8 @@ const Comp2 = createComponent(ExtendedButton, Button)
 // => <div class="ExtendedButton_Button__xxxxx"></div>
 ```
 
-
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

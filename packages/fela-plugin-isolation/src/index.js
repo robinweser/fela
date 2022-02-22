@@ -25,5 +25,7 @@ function addIsolation(style, exclude = []) {
 }
 
 export default function isolation(options = {}) {
-  return (style) => addIsolation(style, options.exclude)
+  return function isolationPlugin(style) {
+    return addIsolation(style, options.exclude)
+  }
 }

@@ -1,4 +1,4 @@
-import { arrayEach, objectEach } from 'fast-loops'
+import { arrayEach, arrayFilter, objectEach } from 'fast-loops'
 import { assignStyle } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 
@@ -9,7 +9,7 @@ function removeUndefined(style) {
     if (isPlainObject(value)) {
       style[property] = removeUndefined(value)
     } else if (Array.isArray(value)) {
-      style[property] = value.filter((val) => !isUndefinedValue(val))
+      style[property] = arrayFilter(value, (item) => !isUndefinedValue(item))
     } else if (isUndefinedValue(value)) {
       delete style[property]
     }
@@ -20,10 +20,7 @@ function removeUndefined(style) {
 
 function extendStyle(style, extension) {
   // extend conditional style objects
-  if (
-    extension &&
-    Object.prototype.hasOwnProperty.call(extension, 'condition')
-  ) {
+  if (extension && extension.hasOwnProperty('condition')) {
     if (extension.condition) {
       // eslint-disable-next-line no-use-before-define
       assignStyle(style, extend(extension.style))
@@ -34,7 +31,7 @@ function extendStyle(style, extension) {
   }
 }
 
-function extend(style) {
+function extendPlugin(style) {
   objectEach(style, (value, property) => {
     if (property === 'extend') {
       const extensions = [].concat(value)
@@ -50,4 +47,6 @@ function extend(style) {
   return style
 }
 
-export default () => extend
+export default function extend() {
+  return extendPlugin
+}

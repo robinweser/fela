@@ -23,5 +23,7 @@ function resolveCustomProperty(style, properties) {
 }
 
 export default function customProperty(properties) {
-  return (style) => resolveCustomProperty(style, properties)
+  return function customPropertyPlugin(style) {
+    return resolveCustomProperty(style, properties)
+  }
 }

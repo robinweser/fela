@@ -1,4 +1,4 @@
-function addLogger(style, type) {
+function loggerPlugin(style, type) {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line
     console.log(type, { ...style })
@@ -7,4 +7,6 @@ function addLogger(style, type) {
   return style
 }
 
-export default () => addLogger
+export default function logger() {
+  return loggerPlugin
+}

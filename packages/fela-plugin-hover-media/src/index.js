@@ -1,12 +1,12 @@
 import isPlainObject from 'isobject'
 import { assignStyle } from 'css-in-js-utils'
 
-function resolveHoverStyles(style) {
+function hoverMediaPlugin(style) {
   for (const property in style) {
     const value = style[property]
 
     if (isPlainObject(value)) {
-      const resolvedValue = resolveHoverStyles(value)
+      const resolvedValue = hoverMediaPlugin(value)
 
       if (property === ':hover' || property === '&:hover') {
         style['@media (hover: hover)'] = {
@@ -24,4 +24,6 @@ function resolveHoverStyles(style) {
   return style
 }
 
-export default () => resolveHoverStyles
+export default function hoverMedia() {
+  return hoverMediaPlugin
+}

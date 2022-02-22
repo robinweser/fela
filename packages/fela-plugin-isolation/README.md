@@ -4,60 +4,67 @@
 
 Adds style isolation to every rule by attaching `all: initial` to every class.
 
-*If you just have classname collisions, please take a look at [the advanced Renderer configuration](https://fela.js.org/docs/advanced/RendererConfiguration.html) first.*
+_If you just have classname collisions, please take a look at [the advanced Renderer configuration](https://fela.js.org/docs/advanced/RendererConfiguration.html) first._
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-isolation
 ```
+
 You may alternatively use `npm i --save fela-plugin-isolation`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import isolation from 'fela-plugin-isolation'
 
 const renderer = createRenderer({
-  plugins: [ isolation() ]
+  plugins: [isolation()],
 })
 ```
 
 ### Configuration
+
 ##### Parameters
-| Parameter | Value | Default | Description |
-| --- | --- | --- | --- |
-| exclude | *(Array*) | `[]` | CSS properties that will not be isolated |
+
+|  Parameter | Value     | Default | Description                              |
+| ---------- | --------- | ------- | ---------------------------------------- |
+| exclude    | _(Array_) | `[]`    | CSS properties that will not be isolated |
 
 ##### Example
+
 ```javascript
 import { createRenderer } from 'fela'
 import isolation from 'fela-plugin-isolation'
 
 const isolationPlugin = isolation({
-  exclude: [
-    'boxSizing',
-    'display'
-  ]
+  exclude: ['boxSizing', 'display'],
 })
 
 const renderer = createRenderer({
-  plugins: [ isolationPlugin ]
+  plugins: [isolationPlugin],
 })
 ```
 
 ## Example
+
 Using the above example code:
+
 #### Input
+
 ```javascript
 {
   fontSize: 15,
   color: 'red'
 }
 ```
+
 #### Output
+
 ```javascript
 {
   all: 'initial',
@@ -69,18 +76,21 @@ Using the above example code:
 ```
 
 ## Disable isolation
+
 To disable style isolation for single rules, simply add the `isolation: false` property to that rule.
 
 ##### Example
+
 ```javascript
-const rule = props => ({
+const rule = (props) => ({
   isolation: false,
   fontSize: 15,
-  color: 'red'
+  color: 'red',
 })
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

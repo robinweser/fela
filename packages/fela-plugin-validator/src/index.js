@@ -196,5 +196,7 @@ export default function validator(options = {}) {
       }
     : defaultRules
 
-  return (style, type) => validateStyle(style, type, preparedOptions)
+  return function validatorPlugin(style, type) {
+    return validateStyle(style, type, preparedOptions)
+  }
 }

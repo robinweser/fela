@@ -1,9 +1,7 @@
 import transformStyle from 'bidi-css-js'
 
-export default function bidi(flowDirection = 'ltr') {
-  return (style, type, renderer, props) =>
-    transformStyle(
-      style,
-      (props && props.theme && props.theme.direction) || flowDirection
-    )
+export default function bidi(direction = 'ltr') {
+  function bidiPlugin(style, type, renderer, props) {
+    return transformStyle(style, props?.theme?.direction || direction)
+  }
 }

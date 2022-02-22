@@ -17,12 +17,12 @@ const pseudoElements = [
   'grammar-error',
 ]
 
-function friendlyPseudoClass(style) {
+function friendlyPseudoClassPlugin(style) {
   for (const property in style) {
     const value = style[property]
 
     if (isPlainObject(value)) {
-      const resolvedValue = friendlyPseudoClass(value)
+      const resolvedValue = friendlyPseudoClassPlugin(value)
 
       if (property.match(FRIENDLY_PSEUDO_REGEX) !== null) {
         const pseudo = property
@@ -43,4 +43,6 @@ function friendlyPseudoClass(style) {
   return style
 }
 
-export default () => friendlyPseudoClass
+export default function friendlyPseudoClass() {
+  return friendlyPseudoClassPlugin
+}

@@ -12,7 +12,7 @@ function getOrientation(width, height) {
   return width > height ? 'landscape' : 'portrait'
 }
 
-function resolveMediaQuery(style) {
+function nativeMediaQueryPlugin(style) {
   const { width, height } = Dimensions.get('window')
 
   for (const property in style) {
@@ -37,6 +37,8 @@ function resolveMediaQuery(style) {
   return style
 }
 
-export default () => resolveMediaQuery
+export default function nativeMediaQuery() {
+  return nativeMediaQueryPlugin
+}
 
 export { DimensionProvider }

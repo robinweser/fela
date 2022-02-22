@@ -15,7 +15,7 @@ function renderFontFace(fontFace, renderer) {
   return undefined
 }
 
-function embedded(style, type, renderer, props) {
+function embeddedPlugin(style, type, renderer, props) {
   for (const property in style) {
     const value = style[property]
 
@@ -47,11 +47,13 @@ function embedded(style, type, renderer, props) {
         style[property] = renderer.renderKeyframe(() => value, props)
       }
     } else if (isPlainObject(value)) {
-      embedded(value, type, renderer, props)
+      embeddedPlugin(value, type, renderer, props)
     }
   }
 
   return style
 }
 
-export default () => embedded
+export default function embedded() {
+  return embeddedPlugin
+}

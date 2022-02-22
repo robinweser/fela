@@ -6,53 +6,58 @@ Always writing length values as string with a value applied seems not like the J
 It is aware of unitless properties such as `lineHeight`, zero-values and also adds units to multiple values inside an array.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-unit
 ```
+
 You may alternatively use `npm i --save fela-plugin-unit`.
 
-
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import unit from 'fela-plugin-unit'
 
 const renderer = createRenderer({
-  plugins: [ unit() ]
+  plugins: [unit()],
 })
 ```
 
 ### Configuration
+
 ##### Parameters
-| Parameter | Value | Default | Description |
-| --- | --- | --- | --- |
-| unit | `ch`, `em`, `ex`, `rem`, `vh`, `vw`, `vmin`, `vmax`, `px`, `cm`, `mm`, `in`, `pc`, `pt`, `mozmm` | `px` | unit which gets applied |
-| unitPerProperty | *(Object)* | `{}` | Default units per property |
-| isUnitlessProperty | *(Function)* | [`util function`](https://github.com/robinweser/css-in-js-utils/blob/master/modules/isUnitlessProperty.js) | check whether property should remain unitless |
+
+|  Parameter         | Value                                                                                            | Default                                                                                                    | Description                                   |
+| ------------------ | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| unit               | `ch`, `em`, `ex`, `rem`, `vh`, `vw`, `vmin`, `vmax`, `px`, `cm`, `mm`, `in`, `pc`, `pt`, `mozmm` |  `px`                                                                                                      | unit which gets applied                       |
+| unitPerProperty    |  *(Object)*                                                                                      | `{}`                                                                                                       |  Default units per property                   |
+| isUnitlessProperty | _(Function)_                                                                                     | [`util function`](https://github.com/robinweser/css-in-js-utils/blob/master/modules/isUnitlessProperty.js) | check whether property should remain unitless |
 
 ##### Example
+
 ```javascript
 import { createRenderer } from 'fela'
 import unit from 'fela-plugin-unit'
 
 const unitPlugin = unit('em', {
   margin: '%',
-  fontSize: 'pt'
+  fontSize: 'pt',
 })
 
 const renderer = createRenderer({
-  plugins: [ unitPlugin ]
+  plugins: [unitPlugin],
 })
 ```
 
-
 ## Example
+
 Using the above example code:
 
 #### Input
+
 ```javascript
 {
   marginTop: 0,
@@ -63,7 +68,9 @@ Using the above example code:
   margin: 10
 }
 ```
+
 #### Output
+
 ```javascript
 {
   marginTop: 0,
@@ -76,6 +83,7 @@ Using the above example code:
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

@@ -38,6 +38,7 @@ function resolveResponsiveValues(style, properties, getMediaQueries, props) {
 }
 
 export default function responsiveValue(getMediaQueries, properties = {}) {
-  return (style, type, renderer, props) =>
+  return function responsiveValuePlugin(style, type, renderer, props) {
     resolveResponsiveValues(style, properties, getMediaQueries, props)
+  }
 }

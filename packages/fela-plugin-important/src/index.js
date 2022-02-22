@@ -29,14 +29,14 @@ function isAnimation(style) {
   return isAnimationItem
 }
 
-function addImportant(style) {
+function importantPlugin(style) {
   if (!isAnimation(style)) {
     for (const property in style) {
       const value = style[property]
       if (property === 'className') {
         // this is a fixed classname, not a style rule - leave as is
       } else if (isPlainObject(value)) {
-        style[property] = addImportant(value)
+        style[property] = importantPlugin(value)
       } else if (Array.isArray(value)) {
         style[property] = value.map(addImportantToValue)
       } else {
@@ -48,4 +48,6 @@ function addImportant(style) {
   return style
 }
 
-export default () => addImportant
+export default function important() {
+  return importantPlugin
+}

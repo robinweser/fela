@@ -5,35 +5,38 @@
 Uses [rtl-css-js](https://github.com/kentcdodds/rtl-css-js) to convert a style object to its right-to-left counterpart.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-rtl
 ```
+
 You may alternatively use `npm i --save fela-plugin-rtl`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import rtl from 'fela-plugin-rtl'
 
 const renderer = createRenderer({
-  plugins: [ rtl() ]
+  plugins: [rtl()],
 })
 ```
 
-
 ### Configuration
-##### Parameters
-| Parameter | Value | Default | Description |
-| --- | --- | --- | --- |
-| defaultDirection | *("rtl" \| "ltr")* | `rtl` | The default direction which can be useful if one is using the `theme.direction` option to dynamically toggle rtl transformation |
 
+##### Parameters
+
+|  Parameter       | Value              | Default | Description                                                                                                                     |
+| ---------------- | ------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| defaultDirection | _("rtl" \| "ltr")_ |  `rtl`  | The default direction which can be useful if one is using the `theme.direction` option to dynamically toggle rtl transformation |
 
 ## Example
 
 #### Input
+
 ```javascript
 {
   paddingLeft: 20,
@@ -42,7 +45,9 @@ const renderer = createRenderer({
   textShadow: 'red 2px 0'
 }
 ```
+
 #### Output
+
 ```javascript
 {
   paddingRight: 20,
@@ -53,6 +58,7 @@ const renderer = createRenderer({
 ```
 
 ## Theme-Based Mode
+
 Apart from enforcing rtl all the time, one can also leverage a special `props.theme.direction` property to enable/disable rtl transformation. This is especially useful together with React to disable transformation for subtrees.
 
 ```javascript
@@ -60,17 +66,18 @@ const rule = () => ({
   paddingLeft: 20,
   marginRight: '25px',
   cursor: 'w-resize',
-  textShadow: 'red 2px 0'
+  textShadow: 'red 2px 0',
 })
 
 // will be transformed
 renderer.renderRule(rule)
 
 // wont be transformed
-renderer.renderRule(rule, { theme: { direction: 'ltr' }})
+renderer.renderRule(rule, { theme: { direction: 'ltr' } })
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

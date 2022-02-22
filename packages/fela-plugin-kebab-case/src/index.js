@@ -2,12 +2,12 @@ import { objectReduce } from 'fast-loops'
 import { camelCaseProperty } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 
-function normalizeKebabCase(style) {
+function kebabCasePlugin(style) {
   return objectReduce(
     style,
     (normalizedStyle, value, property) => {
       if (isPlainObject(value)) {
-        normalizedStyle[property] = normalizeKebabCase(value)
+        normalizedStyle[property] = kebabCasePlugin(value)
       } else {
         if (property.indexOf('-') !== -1) {
           normalizedStyle[camelCaseProperty(property)] = value
@@ -22,4 +22,6 @@ function normalizeKebabCase(style) {
   )
 }
 
-export default () => normalizeKebabCase
+export default function kebabCase() {
+  return kebabCasePlugin
+}

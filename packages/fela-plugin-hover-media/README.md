@@ -22,7 +22,7 @@ You may alternatively use `npm i --save fela-plugin-hover-media`.
 
 ## Usage
 
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'

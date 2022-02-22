@@ -74,14 +74,15 @@ export default function unit(
   propertyMap = {},
   isUnitlessProperty = defaultIsUnitlessProperty
 ) {
-  const plugin = (style) =>
+  function unitPlugin(style) {
     addUnit(style, defaultUnit, propertyMap, isUnitlessProperty)
+  }
 
-  plugin.optimized = createOptimized(
+  unitPlugin.optimized = createOptimized(
     defaultUnit,
     propertyMap,
     isUnitlessProperty
   )
 
-  return plugin
+  return unitPlugin
 }
