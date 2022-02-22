@@ -328,7 +328,7 @@ function NavigationItem({ path, group, page, docsPath }) {
         extend={{
           color: 'black',
           wordBreak: 'break-word',
-          fontSize: 16,
+          fontSize: 14,
           padding: 12,
           borderRadius: 4,
           backgroundColor: isCurrentPage ? 'rgb(220, 220, 220)' : 'transparent',
