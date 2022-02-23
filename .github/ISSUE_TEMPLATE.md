@@ -4,17 +4,19 @@
 ------------------------------------------->
 
 **Type**: Bug / Feature / Infrastructure / Docs / Question
+
 <!------------------------------------------
   Before choosing question, please consider asking on Sectrum as we might close question issues
 ------------------------------------------->
 
-
 | Packages | Version |
 | -------- | ------- |
-| fela     | 11.5.x  |
+| fela     | 12.x.x  |
 
--------------------
+---
+
 #### Description
+
 Please try to add as much detail as possible.
 
 <!---------------
@@ -22,6 +24,7 @@ Please try to add as much detail as possible.
 ---------------->
 
 #### Steps to reproduce
+
 <!--------------------
   If possible, please provide a url to a repository that reproduces the issue or bug. If not possible, try to explain what you've done below
 --------------------->
@@ -30,11 +33,13 @@ Please try to add as much detail as possible.
 2. Second step
 
 #### Expected Behavior
+
 ```javascript
 // your code here
 ```
 
 #### Actual Behavior
+
 ```javascript
 // your code here
 ```
@@ -42,14 +47,16 @@ Please try to add as much detail as possible.
 <!--------------------
   FEATURE REQUEST ONLY
 --------------------->
+
 #### Proposal
+
 Any information on how this might be achieved.
 
 **Code Example**:
+
 ```javascript
 // your proposal here
 ```
-
 
 <!---------------------
   REPORTING GUIDE-LINES

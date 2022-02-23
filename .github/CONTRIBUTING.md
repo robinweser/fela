@@ -7,15 +7,15 @@ If you have a feature request please create an issue. Also if you're even improv
 
 ## Project setup
 
-We assume that you got [node](https://nodejs.org) and [yarn](https://yarnpkg.com) in your environment. To get started with the repo:
+We assume that you got [node](https://nodejs.org) and [pnpm](https://pnpm.io) in your environment. To get started with the repo:
 
 ```
 git clone git@github.com:robinweser/fela.git
 cd fela
-yarn
+pnpm i
 ```
 
-**Fela is a collection of multiple packages**. We use the tool [lerna](https://lernajs.io/) to maintain it. All source code can be found in the folder [/packages](packages).
+**Fela is a collection of multiple packages**. We use the tool pnpm's workspace feature with [turbo](https://turborepo.org) to maintain it. All source code can be found in the folder [/packages](packages).
 
 ## Commands
 
@@ -24,38 +24,32 @@ In order to run the tests:
 Tests:
 
 ```
-yarn test
+pnpm run test
 ```
 
 Linting:
 
 ```
-yarn lint
-```
-
-Flow:
-
-```
-yarn flow
+pnpm run lint
 ```
 
 Formatting:
 
 ```
-yarn format
+pnpm run format
 ```
 
 You can also run all four of them at the same time:
 
 ```
-yarn check
+pnpm run  check
 ```
 
-Note: If your tests use other fela packages as depedencies, you might need to run `yarn build` (it's a part of `yarn setup`).
+> **Note**: If your tests use other fela packages as depedencies, you might need to run `yarn build` (it's also part of the install step).
 
 ## Tip for developing
 
-Fela contains many examples. It can be handy to smoke test your changes as a part of [example-react](http://fela.js.org/docs/introduction/Examples.html).
+Fela contains many examples. It can be handy to smoke test your changes as a part of [example-react](https://fela.js.org/docs/latest/extra/examples#react).
 
 ## Code Formatting
 
@@ -66,7 +60,7 @@ We use [prettier](https://prettier.io/), an opinionated code formatter. If you'r
 1. Fork the repo and create your feature/bug branch from `master`.
 2. If you've added code that should be tested, add tests!
 3. If you've changed APIs, update the documentation.
-4. Ensure that all tests pass (`yarn check`).
+4. Ensure that all tests pass (`pnpm run check`).
 
 ## Creating Issues
 
