@@ -1,6 +1,6 @@
 {
   "name": "fela-preset-web",
-  "version": "12.0.0-rc.3.0",
+  "version": "12.0.0",
   "description": "Fela plugin preset for web applications",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -35,11 +35,11 @@
   "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
-    "fela-plugin-embedded": "^12.0.0-rc.3.0",
-    "fela-plugin-extend": "^12.0.0-rc.3.0",
-    "fela-plugin-fallback-value": "^12.0.0-rc.3.0",
-    "fela-plugin-prefixer": "^12.0.0-rc.3.0",
-    "fela-plugin-unit": "^12.0.0-rc.3.0"
+    "fela-plugin-embedded": "^12.0.0",
+    "fela-plugin-extend": "^12.0.0",
+    "fela-plugin-fallback-value": "^12.0.0",
+    "fela-plugin-prefixer": "^12.0.0",
+    "fela-plugin-unit": "^12.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -53,8 +53,8 @@
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^6.0.3",
-    "fela": "^12.0.0-rc.3.0",
-    "fela-tools": "^12.0.0-rc.3.0",
+    "fela": "^12.0.0",
+    "fela-tools": "^12.0.0",
     "jest": "^26.6.0",
     "rimraf": "^3.0.0",
     "webpack": "^4.41.6",

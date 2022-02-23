@@ -1,6 +1,6 @@
 {
   "name": "react-fela",
-  "version": "12.0.0-rc.3.0",
+  "version": "12.0.0",
   "description": "React bindings for Fela",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -42,8 +42,8 @@
     "react": "*"
   },
   "dependencies": {
-    "fela-bindings": "^12.0.0-rc.3.0",
-    "fela-dom": "^12.0.0-rc.3.0",
+    "fela-bindings": "^12.0.0",
+    "fela-dom": "^12.0.0",
     "prop-types": "^15.5.8"
   },
   "devDependencies": {
@@ -57,7 +57,7 @@
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^6.0.3",
-    "fela": "^12.0.0-rc.3.0",
+    "fela": "^12.0.0",
     "react": "^17.0.2",
     "rimraf": "^3.0.0",
     "webpack": "^4.41.6",
