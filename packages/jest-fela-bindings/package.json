@@ -1,6 +1,6 @@
 {
   "name": "jest-fela-bindings",
-  "version": "12.0.0",
+  "version": "12.0.1",
   "description": "Abstract Fela bindings for Jest",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -38,7 +38,7 @@
   "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
-    "fela-tools": "^12.0.0",
+    "fela-tools": "^12.0.1",
     "htmltojsx": "^0.3.0"
   },
   "devDependencies": {
