@@ -1,29 +1,14 @@
-/* @flow */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { arrayReduce, objectReduce } from 'fast-loops'
 import {
   clusterCache,
   cssifySupportRules,
   sheetMap,
   RULE_TYPE,
-  KEYFRAME_TYPE,
-  FONT_TYPE,
-  STATIC_TYPE,
 } from 'fela-utils'
 
 import getRehydrationIndex from './getRehydrationIndex'
 
-import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
-
-type Sheet = {
-  css: string,
-  type: RULE_TYPE | KEYFRAME_TYPE | FONT_TYPE | STATIC_TYPE,
-  media?: string,
-  support?: boolean,
-  rehydration: number,
-}
-
-export default function renderToSheetList(renderer: DOMRenderer): Array<Sheet> {
+export default function renderToSheetList(renderer) {
   const cacheCluster = clusterCache(renderer.cache, renderer.ruleOrder)
 
   const rehydrationIndex = getRehydrationIndex(renderer)

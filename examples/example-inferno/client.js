@@ -1,5 +1,6 @@
 import Inferno, { render } from 'inferno'
 import { RendererProvider } from 'inferno-fela'
+
 import App from './app'
 import createRenderer from './renderer'
 

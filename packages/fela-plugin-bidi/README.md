@@ -9,14 +9,16 @@ It is important to note that, when used as a Fela renderer plugin, this package 
 When used in conjunction with [fela-plugin-fallback-value](https://github.com/robinweser/fela/blob/master/packages/fela-plugin-fallback-value), `fela-plugin-bidi` must be passed to the `plugins` array _**after**_ `fela-plugin-fallback-value`, as it cannot handle the array used to pass fallbacks on its own.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-bidi
 ```
+
 You may alternatively use `npm i --save fela-plugin-bidi`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 For details on what the plugin can and cannot do, please see the documentation in the [underlying library](https://github.com/TxHawks/bidi-css-js/blob/master/README.md). Please make sure to look at the
 note about four-directional shorthand properties, as there was a breaking change in version `2.0.0`.
@@ -26,30 +28,34 @@ import { createRenderer } from 'fela'
 import bidi from 'fela-plugin-bidi'
 
 const renderer = createRenderer({
-  plugins: [ bidi('rtl') ]
+  plugins: [bidi('rtl')],
 })
 ```
 
 With `fela-plugin-fallback-value`:
+
 ```js
 import { createRenderer } from 'fela'
 import fallbackValue from 'fela-plugin-fallback-value'
 import bidi from 'fela-plugin-bidi'
 
 const renderer = createRenderer({
-  plugins:[fallbackValue(), bidi('rtl')] // Order matters.
+  plugins: [fallbackValue(), bidi('rtl')], // Order matters.
 })
 ```
 
 ### Configuration
+
 ##### Parameters
-| Parameter | Value | Default | Description |
-| --- | --- | --- | --- |
-| flowDirection | *("rtl" \| "ltr")* | `ltr` | The default flow direction |
+
+|  Parameter    | Value              | Default | Description                |
+| ------------- | ------------------ | ------- | -------------------------- |
+| flowDirection | _("rtl" \| "ltr")_ |  `ltr`  | The default flow direction |
 
 ## Example
 
 #### Input
+
 ```javascript
 {
   // BackgroundImage also supports transforming linear-gradient
@@ -60,7 +66,9 @@ const renderer = createRenderer({
   paddingStart: 20,
 }
 ```
+
 #### Output
+
 ```javascript
 // When `flowDirection` is set to `rtl`
 {
@@ -82,6 +90,7 @@ const renderer = createRenderer({
 ```
 
 ## Theme-Based Mode
+
 Apart from enforcing either rtl or ltr all the time, one can also leverage a special `props.theme.direction` property to dynamically set the transformation mode. This is especially useful together with React to switch transformation for subtrees.
 
 ```javascript
@@ -94,11 +103,12 @@ const rule = () => ({
 })
 
 // default
-renderer.renderRule(rule, { theme: { direction: 'ltr' }})
-renderer.renderRule(rule, { theme: { direction: 'rtl' }})
+renderer.renderRule(rule, { theme: { direction: 'ltr' } })
+renderer.renderRule(rule, { theme: { direction: 'rtl' } })
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

@@ -1,14 +1,12 @@
-/* @flow */
-/* eslint-disable no-console */
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
+const REGEX = /\s+/g
 
-function addClassNameSorting(renderer: DOMRenderer) {
+function sortClassNames(renderer) {
   const existingRenderRule = renderer.renderRule.bind(renderer)
 
   renderer.renderRule = (...args) => {
     const className = existingRenderRule(...args)
     return className
-      .split(/\s+/g)
+      .split(REGEX)
       .sort((a, b) => (a < b ? -1 : a > b ? +1 : 0))
       .join(' ')
   }
@@ -16,6 +14,4 @@ function addClassNameSorting(renderer: DOMRenderer) {
   return renderer
 }
 
-export default function sortClassNames() {
-  return addClassNameSorting
-}
+export default () => sortClassNames

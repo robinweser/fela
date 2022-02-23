@@ -7,32 +7,37 @@ This plugin adds support for responsive values as pioneered by [styled-system](h
 > **Warning**: This package might clash with [fela-plugin-fallback-value](../fela-plugin-fallback-value/) and thus requires a list of whitelisted properties. We recommend using it **before** the fallback value.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-responsive-value
 ```
+
 You may alternatively use `npm i --save fela-plugin-responsive-value`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import responsiveValue from 'fela-plugin-responsive-value'
 
 const renderer = createRenderer({
-  plugins: [ responsiveValue() ]
+  plugins: [responsiveValue()],
 })
 ```
 
 ### Configuration
+
 ##### Parameters
-| Parameter | Value | Default | Description |
-| --- | --- | --- | --- |
-| getMediaQueries | *(Function)* |  | Resolve the list of media queries used based on the values and props |
-| properties | *(Object)* |  | A map of property-boolean pairs of which properties are resolved |
+
+|  Parameter      | Value        | Default | Description                                                          |
+| --------------- | ------------ | ------- | -------------------------------------------------------------------- |
+| getMediaQueries | _(Function)_ |         | Resolve the list of media queries used based on the values and props |
+| properties      | _(Object)_   |         | A map of property-boolean pairs of which properties are resolved     |
 
 ##### Example
+
 ```javascript
 import { createRenderer } from 'fela'
 import responsiveValue from 'fela-plugin-responsive-value'
@@ -41,33 +46,37 @@ import responsiveValue from 'fela-plugin-responsive-value'
 // if we get 3, also use a tablet media query in between
 const getMediaQueries = (values, props) => {
   if (values.length === 2) {
-    return ["@media (min-width: 1024px)"]
+    return ['@media (min-width: 1024px)']
   }
 
-  return  ["@media (min-width: 800px)", "@media (min-width: 1024px)"]
+  return ['@media (min-width: 800px)', '@media (min-width: 1024px)']
 }
 
 const renderer = createRenderer({
-  plugins: [ 
+  plugins: [
     responsiveValue(getMediaQueries, {
       padding: true,
-      margin: true
-    })
-  ]
+      margin: true,
+    }),
+  ],
 })
 ```
 
 ## Example
+
 Using the above example code:
 
 #### Input
+
 ```javascript
 {
   margin: [0, 10]
   padding: [5, 10, 15]
 }
 ```
+
 #### Output
+
 ```javascript
 {
   margin: 0,
@@ -83,6 +92,7 @@ Using the above example code:
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

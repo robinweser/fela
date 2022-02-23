@@ -1,29 +1,32 @@
 {
   "private": true,
   "name": "benchmarks",
-  "version": "11.7.0",
+  "version": "12.0.0-rc.3.0",
   "scripts": {
-    "build": "mkdir -p dist && cp -f index.html dist/index.html && ./node_modules/.bin/webpack-cli --config ./webpack.config.js"
+    "compile": "mkdir -p dist && cp -f index.html dist/index.html && ./node_modules/.bin/webpack-cli --config ./webpack.config.js",
+    "copy": "cp -r dist/ ../website/public/benchmarks"
   },
   "dependencies": {
+    "@emotion/css": "^11.7.1",
     "aphrodite": "^2.4.0",
     "classnames": "^2.2.6",
     "d3-scale-chromatic": "1.2.0",
-    "emotion": "^10.0.27",
-    "fela": "^11.7.0",
+    "fela": "^12.0.0-rc.3.0",
+    "fela-enforce-longhands": "^12.0.0-rc.3.0",
+    "fela-preset-web": "^12.0.0-rc.3.0",
     "glamor": "^2.20.40",
     "radium": "^0.26.0",
-    "react": "^17.0.1",
+    "react": "^17.0.2",
     "react-art": "^17.0.0",
-    "react-dom": "^17.0.1",
-    "react-fela": "^11.7.0",
+    "react-dom": "^17.0.2",
+    "react-fela": "^12.0.0-rc.3.0",
     "react-jss": "^10.0.4",
-    "react-native-web": "^0.14.7",
+    "react-native-web": "^0.17.6",
     "reactxp": "^2.0.0",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.3.3",
     "styled-jsx": "^3.2.4",
     "styletron-engine-atomic": "^1.4.6",
-    "styletron-react": "^5.2.6"
+    "styletron-react": "^6.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -42,6 +45,7 @@
     "babel-plugin-react-native-web": "0.14.7",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "css-loader": "^3.4.2",
+    "fbjs": "^3.0.4",
     "style-loader": "^1.1.3",
     "url-loader": "^3.0.0",
     "webpack": "^5.9.0",

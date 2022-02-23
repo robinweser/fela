@@ -1,4 +1,3 @@
-/* @flow */
 import { combineRules } from 'fela'
 
 import hoistStatics from './hoistStatics'
@@ -9,17 +8,13 @@ import resolvePassThrough from './resolvePassThrough'
 import resolveUsedProps from './resolveUsedProps'
 
 export default function createComponentFactory(
-  createElement: Function,
-  RendererContext: any,
-  FelaTheme: Function,
-  withProxy: boolean = false,
-  alwaysPassThroughProps: Array<string> = []
-): Function {
-  return function createComponent(
-    rule: Function,
-    type: any = 'div',
-    passThroughProps: Array<string> | Function = []
-  ): Function {
+  createElement,
+  RendererContext,
+  FelaTheme,
+  withProxy = false,
+  alwaysPassThroughProps = []
+) {
+  return function createComponent(rule, type = 'div', passThroughProps = []) {
     const displayName = rule.name ? rule.name : 'FelaComponent'
 
     const FelaComponent = ({

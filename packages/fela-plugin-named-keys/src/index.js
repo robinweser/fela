@@ -1,11 +1,7 @@
-/* @flow */
 import isPlainObject from 'isobject'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import { assignStyle } from 'css-in-js-utils'
 
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { StyleType } from '../../../flowtypes/StyleType'
-
-function resolveNamedKeys(style: Object, keys: Object) {
+function resolveNamedKeys(style, keys) {
   for (const property in style) {
     const value = style[property]
 
@@ -29,11 +25,11 @@ function resolveNamedKeys(style: Object, keys: Object) {
   return style
 }
 
-export default function namedKeys(keys: Object | Function) {
-  return (
-    style: Object,
-    type: StyleType,
-    renderer: DOMRenderer,
-    props: Object
-  ) => resolveNamedKeys(style, keys instanceof Function ? keys(props) : keys)
+export default function namedKeys(keys) {
+  return function namedKeysPlugin(style, type, renderer, props = {}) {
+    return resolveNamedKeys(
+      style,
+      keys instanceof Function ? keys(props) : keys
+    )
+  }
 }

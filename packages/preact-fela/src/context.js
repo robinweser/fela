@@ -1,4 +1,3 @@
-/* @flow */
 // $FlowFixMe
 import { createContext } from 'preact'
 

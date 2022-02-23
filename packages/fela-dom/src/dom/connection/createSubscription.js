@@ -1,6 +1,5 @@
-/* @flow */
 /* eslint-disable consistent-return */
-import objectEach from 'fast-loops/lib/objectEach'
+import { objectEach } from 'fast-loops'
 import {
   RULE_TYPE,
   KEYFRAME_TYPE,
@@ -13,12 +12,10 @@ import {
 import getNodeFromCache from './getNodeFromCache'
 import insertRule from './insertRule'
 
-import type { DOMRenderer } from '../../../../../flowtypes/DOMRenderer'
-
 export default function createSubscription(
-  renderer: DOMRenderer,
-  targetDocument: any = document
-): Function {
+  renderer,
+  targetDocument = document
+) {
   return (change) => {
     if (change.type === CLEAR_TYPE) {
       objectEach(renderer.nodes, (node) => node.parentNode.removeChild(node))

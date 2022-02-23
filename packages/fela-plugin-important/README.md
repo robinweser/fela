@@ -2,29 +2,35 @@
 
 <img alt="npm version" src="https://badge.fury.io/js/fela-plugin-important.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/fela-plugin-important.svg"> <a href="https://bundlephobia.com/result?p=fela-plugin-important@latest"><img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/fela-plugin-important.svg"></a>
 
+> **Warning**: Use this plugin with caution. It is not recommended and should only be used as a last resort.
+
 Adds `!important` to every declaration value except animations item and keyframes. This helps to force specificity over third-party libraries. Animation items and keyframes with `!important` disrupt functionality of animations. [More about.](https://developer.mozilla.org/en-US/docs/Web/CSS/%40keyframes#!important_in_a_keyframe)
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-important
 ```
+
 You may alternatively use `npm i --save fela-plugin-important`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import important from 'fela-plugin-important'
 
 const renderer = createRenderer({
-  plugins: [ important() ]
+  plugins: [important()],
 })
 ```
 
 ## Example
+
 #### Input
+
 ```javascript
 {
   width: '25px',
@@ -32,7 +38,9 @@ const renderer = createRenderer({
   fontWeight: 'normal'
 }
 ```
+
 #### Output
+
 ```javascript
 {
   width: '25px!important',
@@ -42,6 +50,7 @@ const renderer = createRenderer({
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

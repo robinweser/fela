@@ -1,0 +1,45 @@
+# DOM Rendering
+
+Knowing all the basics, we are already able to build up our whole styling environment. But we still do not know how to actually render our styles into the DOM. Luckily this is really simple as all we have to do is call a single function.<br />
+The `fela-dom` package is used for any DOM specific methods.
+It provides a [`render`](api/fela-dom/render) function which takes the renderer as a parameter.
+
+## Automatic Updates
+
+Once rendered to the DOM, a change listener will subscribe to changes. The DOM nodes will automatically be updated on changes.
+It uses an optimized rendering mechanism based on [`CSSStyleSheet.insertRule`](https://developer.mozilla.org/en-US/docs/Web/api/CSSStyleSheet/insertRule) to update as performant as possible.<br />
+Depending on the browser, it automatically removes unsupported rules.
+
+## Example
+
+```javascript
+import { createRenderer } from 'fela'
+import { render } from 'fela-dom'
+
+const rule = ({ size }) => ({
+  backgroundColor: 'red',
+  fontSize: size,
+  color: 'blue',
+})
+
+const renderer = createRenderer()
+
+renderer.renderRule(rule, { size: '12px' }) // => a b c
+
+render(renderer)
+
+// automatically adds the rule to the respective style node
+renderer.renderRule(rule, { size: '16px' }) // => a d c
+```
+
+## Advanced Usage
+
+Unless working in a plain JavaScript environment, you are usually not calling `render` by yourself.<br />
+Most bindings such as [react-fela](https://github.com/robinweser/fela/tree/master/packages/react-fela) and [vue-fela](https://github.com/wagerfield/vue-fela) will automatically do that for you.
+
+---
+
+## Related
+
+- [API Reference - `render`](api/fela-dom/render)
+- [API Reference - `rehydrate`](api/fela-dom/rehydrate)

@@ -1,8 +1,7 @@
-/* @flow */
-import defaultIsUnitlessProperty from 'css-in-js-utils/lib/isUnitlessProperty'
+import { isUnitlessProperty as defaultIsUnitlessProperty } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 
-function addUnitIfNeeded(value: any, propertyUnit: string): any {
+function addUnitIfNeeded(value, propertyUnit) {
   const valueType = typeof value
   /* eslint-disable eqeqeq */
   if (
@@ -16,12 +15,7 @@ function addUnitIfNeeded(value: any, propertyUnit: string): any {
   return value
 }
 
-function addUnit(
-  style: Object,
-  defaultUnit: string,
-  propertyMap: Object,
-  isUnitlessProperty: Function
-): Object {
+function addUnit(style, defaultUnit, propertyMap, isUnitlessProperty) {
   for (const property in style) {
     if (!isUnitlessProperty(property)) {
       const cssValue = style[property]
@@ -76,18 +70,19 @@ function createOptimized(defaultUnit, propertyMap, isUnitlessProperty) {
 }
 
 export default function unit(
-  defaultUnit: string = 'px',
-  propertyMap: Object = {},
-  isUnitlessProperty: Function = defaultIsUnitlessProperty
+  defaultUnit = 'px',
+  propertyMap = {},
+  isUnitlessProperty = defaultIsUnitlessProperty
 ) {
-  const plugin = (style: Object) =>
-    addUnit(style, defaultUnit, propertyMap, isUnitlessProperty)
+  function unitPlugin(style) {
+    return addUnit(style, defaultUnit, propertyMap, isUnitlessProperty)
+  }
 
-  plugin.optimized = createOptimized(
+  unitPlugin.optimized = createOptimized(
     defaultUnit,
     propertyMap,
     isUnitlessProperty
   )
 
-  return plugin
+  return unitPlugin
 }

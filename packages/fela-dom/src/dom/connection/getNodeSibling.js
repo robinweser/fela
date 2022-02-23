@@ -1,12 +1,9 @@
-/* @flow */
 import { FONT_TYPE, STATIC_TYPE, KEYFRAME_TYPE, RULE_TYPE } from 'fela-utils'
 
-import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
-
 export default function getNodeSibling(
-  nodes: Object,
-  { type, media, support }: NodeAttributes,
-  sortMediaQuery: Function
+  nodes,
+  { type, media, support },
+  sortMediaQuery
 ) {
   switch (type) {
     case FONT_TYPE:

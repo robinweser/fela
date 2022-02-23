@@ -1,4 +1,3 @@
-/* @flow */
 import { RULE_TYPE, generateDeclarationReference } from 'fela-utils'
 import { camelCaseProperty } from 'css-in-js-utils'
 
@@ -16,7 +15,7 @@ function getRegex(specificityPrefix) {
     regexMap[specificityPrefix] = new RegExp(
       `${escapeRegExp(
         specificityPrefix
-      )}[.]([0-9a-z_-]+)([.][0-9a-z_-]+){0,}([^{]+)?{([^:]+):([^}]+)}`,
+      )}[.]([0-9a-z_-]+)(([.][0-9a-z_-]+){0,})([^{]+)?{([^:]+):([^}]+)}`,
       'gi'
     )
   }
@@ -24,13 +23,25 @@ function getRegex(specificityPrefix) {
   return regexMap[specificityPrefix]
 }
 
+function rehydrateClassList(classList, className) {
+  if (classList) {
+    const regex = new RegExp(`(([.]${className})+)?(.*)?`, '')
+
+    const [match, repeated, selector, other = ''] = classList.match(regex)
+
+    return [other, repeated ? repeated.length / selector.length + 1 : 1]
+  }
+
+  return ['', 1]
+}
+
 export default function rehydrateRules(
-  css: string,
-  media: string = '',
-  support?: string = '',
-  cache?: Object = {},
-  specificityPrefix?: string = ''
-): Object {
+  css,
+  media = '',
+  support = '',
+  cache = {},
+  specificityPrefix = ''
+) {
   let decl
   const DECL_REGEX = getRegex(specificityPrefix)
 
@@ -38,15 +49,17 @@ export default function rehydrateRules(
   // https://github.com/rtsao/styletron/blob/master/packages/styletron-client/src/index.js#L47
   /* eslint-disable no-unused-vars,no-cond-assign */
   while ((decl = DECL_REGEX.exec(css))) {
-    // $FlowFixMe
-    const [ruleSet, className, _, pseudo, property, value] = decl
+    const [ruleSet, className, classList, _, pseudo = '', property, value] =
+      decl
     /* eslint-enable */
+
+    const [classes, propertyPriority] = rehydrateClassList(classList, className)
 
     const declarationReference = generateDeclarationReference(
       // keep css custom properties as lower-cased props
       property.indexOf('--') === 0 ? property : camelCaseProperty(property),
       value,
-      pseudo,
+      classes + pseudo,
       media,
       support
     )
@@ -56,10 +69,11 @@ export default function rehydrateRules(
       className,
       property,
       value,
-      pseudo,
+      classes + pseudo,
       media,
       support,
-      specificityPrefix
+      specificityPrefix,
+      propertyPriority
     )
   }
 

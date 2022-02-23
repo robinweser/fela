@@ -5,27 +5,30 @@
 Adds prefixes to `:fullscreen` pseudo class.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-fullscreen-prefixer
 ```
+
 You may alternatively use `npm i --save fela-plugin-fullscreen-prefixer`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import fullscreenPrefixer from 'fela-plugin-fullscreen-prefixer'
 
 const renderer = createRenderer({
-  plugins: [ fullscreenPrefixer() ]
+  plugins: [fullscreenPrefixer()],
 })
 ```
 
 ## Example
 
 #### Input
+
 ```javascript
 {
   color: 'red',
@@ -34,7 +37,9 @@ const renderer = createRenderer({
   }
 }
 ```
+
 #### Output
+
 ```javascript
 {
   color: 'red',
@@ -57,6 +62,7 @@ const renderer = createRenderer({
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

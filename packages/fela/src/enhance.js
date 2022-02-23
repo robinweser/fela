@@ -1,7 +1,6 @@
-/* @flow */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { arrayReduce } from 'fast-loops'
 
-export default function enhance(...enhancers: Array<Function>): Function {
+export default function enhance(...enhancers) {
   return (createRenderer) => (config) =>
     arrayReduce(
       enhancers,

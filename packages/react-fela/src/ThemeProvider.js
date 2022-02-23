@@ -1,4 +1,3 @@
-/* @flow */
 import { createElement } from 'react'
 import { ThemeProviderFactory } from 'fela-bindings'
 import PropTypes from 'prop-types'

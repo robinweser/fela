@@ -1,10 +1,6 @@
-/* @flow */
 import isPlainObject from 'isobject'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
-import arrayEach from 'fast-loops/lib/arrayEach'
-
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { StyleType } from '../../../flowtypes/StyleType'
+import { assignStyle } from 'css-in-js-utils'
+import { arrayEach } from 'fast-loops'
 
 function resolveResponsiveValues(style, properties, getMediaQueries, props) {
   for (const property in style) {
@@ -41,14 +37,8 @@ function resolveResponsiveValues(style, properties, getMediaQueries, props) {
   return style
 }
 
-export default function responsiveValue(
-  getMediaQueries: Function,
-  properties: Object = {}
-) {
-  return (
-    style: Object,
-    type: StyleType,
-    renderer: DOMRenderer,
-    props: Object
-  ) => resolveResponsiveValues(style, properties, getMediaQueries, props)
+export default function responsiveValue(getMediaQueries, properties = {}) {
+  return function responsiveValuePlugin(style, type, renderer, props) {
+    return resolveResponsiveValues(style, properties, getMediaQueries, props)
+  }
 }

@@ -1,8 +1,7 @@
-/* @flow  */
 const chars = 'abcdefghijklmnopqrstuvwxyz'
 const charLength = chars.length
 
-function generateUniqueClassName(id: number, className: string = ''): string {
+function generateUniqueClassName(id, className = '') {
   if (id <= charLength) {
     return chars[id - 1] + className
   }
@@ -15,10 +14,7 @@ function generateUniqueClassName(id: number, className: string = ''): string {
   )
 }
 
-export default function generateClassName(
-  getId: Function,
-  filterClassName: Function = () => true
-): string {
+export default function generateClassName(getId, filterClassName = () => true) {
   const startId = getId()
   const generatedClassName = generateUniqueClassName(startId)
 

@@ -1,22 +1,21 @@
-/* @flow */
-import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue'
+import { resolveArrayValue } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 
-function resolveFallbackValues(style: Object): Object {
+function fallbackValuePlugin(style) {
   for (const property in style) {
     const value = style[property]
 
     if (Array.isArray(value)) {
       style[property] = resolveArrayValue(property, value)
     } else if (isPlainObject(value) && property !== 'fontFace') {
-      style[property] = resolveFallbackValues(value)
+      style[property] = fallbackValuePlugin(value)
     }
   }
 
   return style
 }
 
-resolveFallbackValues.optimized = (props) => {
+fallbackValuePlugin.optimized = (props) => {
   if (Array.isArray(props.value)) {
     props.value = resolveArrayValue(props.property, props.value)
   }
@@ -24,4 +23,6 @@ resolveFallbackValues.optimized = (props) => {
   return props
 }
 
-export default () => resolveFallbackValues
+export default function fallbackValue() {
+  return fallbackValuePlugin
+}

@@ -1,0 +1,53 @@
+# Integrating with react-dates
+
+[react-dates](https://github.com/airbnb/react-dates) is a fantastic date-picker library from AirBnB. It is built on top of Aphrodite and comes with monolithic class names by default in order to be unopinionated regarding the styling layer.
+
+Here is how to integrate it properly with Fela so styles are applied atomically with Fela (and therefore optimised) instead of through the original CSS classes.
+
+It offers a way to customise the rendering process with [react-with-styles](https://github.com/airbnb/react-with-styles) interfaces. The idea is to write a `react-with-styles` interface for Fela. Then, the interface can be registered against `ThemedStyleSheet` from `react-with-styles`.
+
+```js
+import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet'
+
+ThemedStyleSheet.registerInterface(FelaInterface)
+```
+
+It needs the Fela renderer as an argument in order to compute resolved class names.
+
+```js
+import { StyleSheet } from 'fela-tools'
+import { combineRules } from 'fela'
+
+// Custom `react-with-styles` interface for Fela:
+// https://github.com/airbnb/react-with-styles
+export default (renderer) => ({
+  create(styleHash) {
+    return StyleSheet.create(styleHash)
+  },
+
+  resolve(stylesArray) {
+    const styles = stylesArray.flat()
+    const rules = []
+    const classNames = []
+
+    // This is run on potentially every node in the tree when rendering,
+    // where performance is critical. Normally we would prefer using
+    // `forEach`, but old-fashioned `for` loops are slightly faster.
+    for (let i = 0; i < styles.length; i += 1) {
+      const style = styles[i]
+
+      if (!style) continue
+      if (style.ruleName) classNames.push(style.ruleName)
+      if (typeof style === 'function') rules.push(style)
+      else rules.push(() => style)
+    }
+
+    const rule = combineRules(...rules)
+    const classes = renderer.renderRule(combineRules(...rules))
+
+    classNames.push(classes)
+
+    return { className: classNames.join(' ') }
+  },
+})
+```

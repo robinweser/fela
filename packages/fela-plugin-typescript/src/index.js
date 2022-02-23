@@ -1,6 +1,6 @@
 import isPlainObject from 'isobject'
 
-function typescript(style: Object): Object {
+function typescript(style) {
   for (const property in style) {
     const value = style[property]
 

@@ -1,9 +1,7 @@
-/* @flow  */
 import hash from 'string-hash'
 
 const collisionBuffer = {}
-
-export default function generateUniqueHash(reference: string | {}): string {
+export default function generateUniqueHash(reference = {}) {
   let result =
     typeof reference === 'object' ? JSON.stringify(reference) : reference
   let prevResult

@@ -1,17 +1,23 @@
-/* @flow */
-// $FlowFixMe
 import { useContext } from 'react'
 import { combineRules } from 'fela'
 
 import { RendererContext, ThemeContext } from './context'
 
-type HookInterface = {
-  css: Function,
-  theme: Object,
-  renderer: Object,
+function getPropsWithTheme(props, theme) {
+  // if props is not a direct copy of React props
+  // we can simply add the theme to it for perf reasons
+  if (Object.isExtensible(props)) {
+    props.theme = theme
+    return props
+  }
+
+  return {
+    ...props,
+    theme,
+  }
 }
 
-export default function useFela(props: Object = {}): HookInterface {
+export default function useFela(props = {}) {
   const renderer = useContext(RendererContext)
   const theme = useContext(ThemeContext) || {}
 
@@ -21,12 +27,10 @@ export default function useFela(props: Object = {}): HookInterface {
     )
   }
 
-  const propsWithTheme = {
-    ...props,
-    theme,
-  }
+  // we add the theme to props so that it can be used within styles
+  const propsWithTheme = getPropsWithTheme(props, theme)
 
-  function css(...rules: Array<Object | Function>) {
+  function css(...rules) {
     return renderer.renderRule(combineRules(...rules), propsWithTheme)
   }
 

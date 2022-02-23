@@ -1,13 +1,12 @@
-/* @flow */
-/* eslint-disable no-console */
-import type { StyleType } from '../../../flowtypes/StyleType'
-
-function addLogger(style: Object, type: StyleType): Object {
+function loggerPlugin(style, type) {
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line
     console.log(type, { ...style })
   }
 
   return style
 }
 
-export default () => addLogger
+export default function logger() {
+  return loggerPlugin
+}

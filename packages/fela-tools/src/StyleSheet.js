@@ -1,8 +1,7 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { objectReduce } from 'fast-loops'
 
 export default {
-  create(styleSheet: Object): Object {
+  create(styleSheet) {
     return objectReduce(
       styleSheet,
       (ruleSheet, rule, ruleName) => {

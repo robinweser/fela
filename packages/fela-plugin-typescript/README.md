@@ -7,25 +7,30 @@ This plugins allows you to write type-safe style rules and provides some autocom
 ![Autocomplete](./docs/autocomplete.gif)
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-typescript
 ```
+
 You may alternatively use `npm i --save fela-plugin-typescript`.
 
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import typescript from 'fela-plugin-typescript'
 
 const renderer = createRenderer({
-  plugins: [ typescript() ]
+  plugins: [typescript()],
 })
 ```
 
 ## Example
+
 #### Input
+
 ```javascript
 {
   color: 'red',
@@ -38,7 +43,9 @@ const renderer = createRenderer({
   },
 }
 ```
+
 #### Output
+
 ```javascript
 {
   color: 'red',
@@ -51,18 +58,23 @@ const renderer = createRenderer({
 ```
 
 ## FAQ
+
 #### Why use additional prop "nested"?
-In Typescript you can't declare a simple property and indexed property with different types of values in single type. For example it will not work:  
+
+In Typescript you can't declare a simple property and indexed property with different types of values in single type. For example it will not work:
+
 ```typescript
 type IStyle = {
-    padding?: number; // <-- Error: Property 'padding' of type 'number' 
-                      // is not assignable to string index type 'IStyle'.
-    [selector: string]: IStyle
+  padding?: number // <-- Error: Property 'padding' of type 'number'
+  // is not assignable to string index type 'IStyle'.
+  [selector: string]: IStyle
 }
 ```
+
 So the "nested" property is a tricky way to provide type-safety of Fela rules.
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

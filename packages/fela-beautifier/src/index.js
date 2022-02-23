@@ -1,10 +1,7 @@
-/* @flow */
 import cssbeautify from 'cssbeautify'
-import objectEach from 'fast-loops/lib/objectEach'
+import { objectEach } from 'fast-loops'
 
-import type DOMRenderer from '../../../flowtypes/DOMRenderer'
-
-function addBeautifier(renderer: DOMRenderer, options: Object): DOMRenderer {
+function addBeautifier(renderer, options) {
   function beautify() {
     objectEach(renderer.nodes, ({ node }) => {
       const beautifiedContent = cssbeautify(node.textContent, options)
@@ -31,8 +28,8 @@ const defaultOptions = {
   autosemicolon: false,
 }
 
-export default function beautifier(options: Object = {}) {
-  return (renderer: DOMRenderer) =>
+export default function beautifier(options = {}) {
+  return (renderer) =>
     addBeautifier(renderer, {
       ...defaultOptions,
       ...options,

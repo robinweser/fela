@@ -1,8 +1,3 @@
-/* @flow */
-export default function insertAtIndex(
-  arr: Array<any>,
-  el: any,
-  index: number
-): Array<any> {
+export default function insertAtIndex(arr, el, index) {
   return [...arr.slice(0, index), el, ...arr.slice(index, arr.length)]
 }

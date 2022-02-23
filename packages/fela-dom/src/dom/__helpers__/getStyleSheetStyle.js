@@ -1,4 +1,4 @@
-import { RULE_TYPE } from '../../../../fela-utils/src/styleTypes'
+import { RULE_TYPE } from 'fela-utils'
 
 function getRules(cssRules, rules = {}) {
   for (let i = 0; i < cssRules.length; ++i) {

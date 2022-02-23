@@ -1,4 +1,3 @@
-/* @flow */
-export default function isSupport(property: string): boolean {
+export default function isSupport(property) {
   return property.substr(0, 9) === '@supports'
 }

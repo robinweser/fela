@@ -1,8 +1,7 @@
-/* @flow */
 import isPlainObject from 'isobject'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import { assignStyle } from 'css-in-js-utils'
 
-function resolveCustomProperty(style: Object, properties: Object): Object {
+function resolveCustomProperty(style, properties) {
   for (const property in style) {
     const value = style[property]
 
@@ -23,6 +22,8 @@ function resolveCustomProperty(style: Object, properties: Object): Object {
   return style
 }
 
-export default function customProperty(properties: Object) {
-  return (style: Object) => resolveCustomProperty(style, properties)
+export default function customProperty(properties) {
+  return function customPropertyPlugin(style) {
+    return resolveCustomProperty(style, properties)
+  }
 }

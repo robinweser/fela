@@ -1,4 +1,3 @@
-/* @flow */
 import { createElement } from 'inferno-create-element'
 import { ThemeProviderFactory } from 'fela-bindings'
 

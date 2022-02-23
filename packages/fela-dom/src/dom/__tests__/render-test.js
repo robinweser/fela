@@ -1,10 +1,9 @@
+import { createRenderer } from 'fela'
 import { html as beautify } from 'js-beautify'
 
 import render from '../render'
 import rehydrate from '../rehydrate'
 import renderToMarkup from '../../server/renderToMarkup'
-
-import createRenderer from '../../../../fela/src/createRenderer'
 
 import getStyleSheetStyle from '../__helpers__/getStyleSheetStyle'
 import cleanHead from '../__helpers__/cleanHead'

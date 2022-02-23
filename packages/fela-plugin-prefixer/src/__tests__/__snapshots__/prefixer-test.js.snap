@@ -3,27 +3,15 @@
 exports[`Prefixer plugin should prefix nested objects 1`] = `
 Object {
   ":hover": Object {
-    "justifyContent": "center;-webkit-box-pack:center",
+    "justifyContent": "center",
   },
-  "display": Array [
-    "-webkit-box",
-    "-moz-box",
-    "-ms-flexbox",
-    "-webkit-flex",
-    "flex",
-  ],
+  "display": "-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex",
 }
 `;
 
 exports[`Prefixer plugin should prefix styles 1`] = `
 Object {
-  "display": Array [
-    "-webkit-box",
-    "-moz-box",
-    "-ms-flexbox",
-    "-webkit-flex",
-    "flex",
-  ],
-  "justifyContent": "center;-webkit-box-pack:center",
+  "display": "-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex",
+  "justifyContent": "center",
 }
 `;

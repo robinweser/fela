@@ -1,5 +1,4 @@
-/* @flow */
-import arrayEach from 'fast-loops/lib/arrayEach'
+import { arrayEach } from 'fast-loops'
 import { RULE_TYPE, KEYFRAME_TYPE, getRuleScore } from 'fela-utils'
 
 import rehydrateSupportRules from './rehydration/rehydrateSupportRules'
@@ -7,16 +6,12 @@ import rehydrateRules from './rehydration/rehydrateRules'
 
 import render from './render'
 
-import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
 import rehydrateKeyframes from './rehydration/rehydrateKeyframes'
 
 const CLASSNAME_REGEX = /[.][a-z0-9_-]*/gi
 
 // TODO: static, font
-export default function rehydrate(
-  renderer: DOMRenderer,
-  targetDocument: any = document
-): void {
+export default function rehydrate(renderer, targetDocument = document) {
   render(renderer, targetDocument)
 
   arrayEach(targetDocument.querySelectorAll('[data-fela-type]'), (node) => {

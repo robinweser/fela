@@ -1,13 +1,9 @@
-/* @flow */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { arrayReduce } from 'fast-loops'
 
 import getFontUrl from './getFontUrl'
 import getFontFormat from './getFontFormat'
 
-export default function generateFontSource(
-  files: Array<string> = [],
-  fontLocals: Array<string> = []
-): string {
+export default function generateFontSource(files = [], fontLocals = []) {
   const localSource = arrayReduce(
     fontLocals,
     (src, local, index) => {

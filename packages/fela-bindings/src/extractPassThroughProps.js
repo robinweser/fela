@@ -1,10 +1,6 @@
-/* @flow  */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { arrayReduce } from 'fast-loops'
 
-export default function extractPassThroughProps(
-  passThrough: Array<string>,
-  ruleProps: Object
-): Object {
+export default function extractPassThroughProps(passThrough, ruleProps) {
   return arrayReduce(
     passThrough,
     (output, property) => {

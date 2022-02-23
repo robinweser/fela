@@ -12,11 +12,11 @@ const rule = ({ size, x, y, color }) => ({
   borderTopWidth: 0,
   transform: 'translate(50%, 50%)',
   borderBottomColor: color,
-  borderRightWidth: `${size / 2}px`,
-  borderBottomWidth: `${size / 2}px`,
-  borderLeftWidth: `${size / 2}px`,
-  marginLeft: `${x}px`,
-  marginTop: `${y}px`,
+  borderRightWidth: size / 2,
+  borderBottomWidth: size / 2,
+  borderLeftWidth: size / 2,
+  marginLeft: x,
+  marginTop: y,
 })
 
 const Dot = ({ size, x, y, color, children }) => {

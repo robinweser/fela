@@ -1,33 +1,35 @@
-/* @flow */
-
-import { objectReduce, arrayEach } from 'fast-loops'
+import { objectEach, arrayEach } from 'fast-loops'
 import isPlainObject from 'isobject'
 
-function multipleSelectors(style: Object): Object {
-  return objectReduce(
-    style,
-    (normalizedStyle, value, property) => {
-      if (isPlainObject(value)) {
-        const resolvedValue = multipleSelectors(value)
+function multipleSelectorsPlugin(style) {
+  objectEach(style, (value, property) => {
+    if (isPlainObject(value)) {
+      const resolvedValue = multipleSelectorsPlugin(value)
 
-        arrayEach(property.split(','), (selector) => {
+      const selectors = property.split(',')
+
+      if (selectors.length > 1) {
+        arrayEach(selectors, (selector) => {
           const key = selector.trim()
 
           // merge styles with base styles
-          const baseStyle = normalizedStyle[key] || {}
-          normalizedStyle[key] = {
+          const baseStyle = style[key] || {}
+          style[key] = {
             ...baseStyle,
             ...resolvedValue,
           }
         })
-      } else {
-        normalizedStyle[property] = value
-      }
 
-      return normalizedStyle
-    },
-    {}
-  )
+        delete style[property]
+      }
+    } else {
+      style[property] = value
+    }
+  })
+
+  return style
 }
 
-export default () => multipleSelectors
+export default function multipleSelectors() {
+  return multipleSelectorsPlugin
+}

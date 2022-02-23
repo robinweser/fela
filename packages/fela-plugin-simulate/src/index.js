@@ -1,23 +1,13 @@
-/* @flow */
 import isPlainObject from 'isobject'
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
+import { assignStyle } from 'css-in-js-utils'
 
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
-import type { StyleType } from '../../../flowtypes/StyleType'
-
-function resolveSimulation(
-  style: Object,
-  type: StyleType,
-  renderer: DOMRenderer | NativeRenderer,
-  props: Object
-): Object {
+function simulatePlugin(style, type, renderer, props) {
   if (props.simulate) {
     for (const property in style) {
       const value = style[property]
 
       if (isPlainObject(value) && props.simulate[property]) {
-        const resolvedValue = resolveSimulation(value, type, renderer, props)
+        const resolvedValue = simulatePlugin(value, type, renderer, props)
 
         assignStyle(style, resolvedValue)
         delete style[property]
@@ -28,4 +18,6 @@ function resolveSimulation(
   return style
 }
 
-export default () => resolveSimulation
+export default function simulate() {
+  return simulatePlugin
+}

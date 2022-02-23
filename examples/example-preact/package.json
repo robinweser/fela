@@ -1,51 +1,50 @@
 {
-    "private": true,
-    "name": "example-preact",
-    "version": "11.7.0",
-    "description": "Fela example with Preact",
-    "scripts": {
-        "client": "NODE_ENV=development webpack-dev-server",
-        "start": "concurrently --kill-others \"npm run client\" \"babel-node server.js\""
-    },
-    "author": "Robin Weser <robin@weser.io>",
-    "license": "MIT",
-    "devDependencies": {
-        "babel-cli": "^6.24.1",
-        "babel-loader": "^7.0.0",
-        "babel-preset-es2015": "^6.24.1",
-        "babel-preset-react": "^6.24.1",
-        "concurrently": "^3.1.0",
-        "express": "^4.14.0",
-        "express-http-proxy": "^1.0.3",
-        "fela": "^11.7.0",
-        "fela-beautifier": "^11.7.0",
-        "fela-dom": "^11.7.0",
-        "fela-perf": "^11.7.0",
-        "fela-plugin-embedded": "^11.7.0",
-        "fela-plugin-fallback-value": "^11.7.0",
-        "fela-plugin-logger": "^11.7.0",
-        "fela-plugin-lvha": "^5.0.16",
-        "fela-plugin-prefixer": "^11.7.0",
-        "fela-plugin-unit": "^11.7.0",
-        "fela-plugin-validator": "^11.7.0",
-        "preact": "^10.2.1",
-        "preact-fela": "^11.7.0",
-        "preact-render-to-string": "^3.6.0",
-        "webpack": "^2.6.1",
-        "webpack-dev-server": "^3.1.11"
-    },
-    "babel": {
-        "presets": [
-            "es2015",
-            "react"
-        ],
-        "plugins": [
-            [
-                "transform-react-jsx",
-                {
-                    "pragma": "h"
-                }
-            ]
-        ]
-    }
+  "private": true,
+  "name": "example-preact",
+  "version": "12.0.0-rc.3.0",
+  "description": "Fela example with Preact",
+  "scripts": {
+    "client": "NODE_ENV=development webpack-dev-server",
+    "start": "concurrently --kill-others \"npm run client\" \"babel-node server.js\""
+  },
+  "author": "Robin Weser <robin@weser.io>",
+  "license": "MIT",
+  "dependencies": {
+    "fela": "^12.0.0-rc.3.0",
+    "fela-beautifier": "^12.0.0-rc.3.0",
+    "fela-dom": "^12.0.0-rc.3.0",
+    "fela-layout-debugger": "^12.0.0-rc.3.0",
+    "fela-perf": "^12.0.0-rc.3.0",
+    "fela-plugin-embedded": "^12.0.0-rc.3.0",
+    "fela-plugin-fallback-value": "^12.0.0-rc.3.0",
+    "fela-plugin-logger": "^12.0.0-rc.3.0",
+    "fela-plugin-lvha": "^5.0.16",
+    "fela-plugin-prefixer": "^12.0.0-rc.3.0",
+    "fela-plugin-unit": "^12.0.0-rc.3.0",
+    "fela-plugin-validator": "^12.0.0-rc.3.0",
+    "fela-sort-media-query-mobile-first": "^12.0.0-rc.3.0",
+    "preact": "^10.2.1",
+    "preact-fela": "^12.0.0-rc.3.0",
+    "preact-render-to-string": "^3.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.13.0",
+    "@babel/plugin-transform-react-jsx": "^7.17.3",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.5.5",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "^8.2.3",
+    "concurrently": "^3.4.0",
+    "cross-env": "^6.0.3",
+    "express": "^4.14.0",
+    "express-http-proxy": "^1.0.3",
+    "jest": "^26.6.0",
+    "rimraf": "^3.0.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
 }

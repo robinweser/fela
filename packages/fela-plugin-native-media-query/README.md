@@ -6,49 +6,56 @@ This plugin is basically a convenient plugin for more readable code and better m
 It enables the use of named media query keys.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-native-media-query
 ```
+
 You may alternatively use `npm i --save fela-plugin-native-media-query`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import namedMediaQuery from 'fela-plugin-native-media-query'
 
 const renderer = createRenderer({
-  plugins: [ namedMediaQuery() ]
+  plugins: [namedMediaQuery()],
 })
 ```
 
 ### Configuration
+
 ##### Parameters
-| Parameter | Value | Default | Description |
-| --- | --- | --- | --- |
-| mediaQueryMap | *(Object)* | `{}` | An object with shorthand-mediaQuery pairs |
+
+|  Parameter    | Value      | Default | Description                               |
+| ------------- | ---------- | ------- | ----------------------------------------- |
+| mediaQueryMap | _(Object)_ |  `{}`   | An object with shorthand-mediaQuery pairs |
 
 ##### Example
+
 ```javascript
 import { createRenderer } from 'fela'
 import namedMediaQuery from 'fela-plugin-native-media-query'
 
 const namedMediaQueryPlugin = namedMediaQuery({
   desktop: '@media (min-width: 1024px)',
-  tablet: '@media (min-width: 768px)'
+  tablet: '@media (min-width: 768px)',
 })
 
 const renderer = createRenderer({
-  plugins: [ namedMediaQueryPlugin ]
+  plugins: [namedMediaQueryPlugin],
 })
 ```
 
 ## Example
+
 Using the above example code:
 
 #### Input
+
 ```javascript
 {
   color: 'red',
@@ -57,7 +64,9 @@ Using the above example code:
   }
 }
 ```
+
 #### Output
+
 ```javascript
 {
   color: 'red',
@@ -68,6 +77,7 @@ Using the above example code:
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

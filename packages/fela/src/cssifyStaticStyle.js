@@ -1,15 +1,9 @@
-/* @flow */
-import cssifyObject from 'css-in-js-utils/lib/cssifyObject'
+import { cssifyObject } from 'css-in-js-utils'
 import { processStyleWithPlugins, STATIC_TYPE } from 'fela-utils'
 
 import minifyCSSString from './minifyCSSString'
 
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-
-export default function cssifyStaticStyle(
-  staticStyle: string | Object,
-  renderer: DOMRenderer
-): string {
+export default function cssifyStaticStyle(staticStyle, renderer) {
   if (typeof staticStyle === 'string') {
     return minifyCSSString(staticStyle)
   }

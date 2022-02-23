@@ -1,7 +1,9 @@
-/* @flow */
 import isPlainObject from 'isobject'
 
-const regex = new RegExp('^on([A-Z])')
+const FRIENDLY_PSEUDO_REGEX = /^on([A-Z])/
+const UPPERCASE_REGEX = /([A-Z])/g
+const ON_REGEX = /^on-(.*)/g
+
 const pseudoElements = [
   'after',
   'before',
@@ -15,20 +17,19 @@ const pseudoElements = [
   'grammar-error',
 ]
 
-function friendlyPseudoClass(style: Object): Object {
+function friendlyPseudoClassPlugin(style) {
   for (const property in style) {
     const value = style[property]
 
     if (isPlainObject(value)) {
-      const resolvedValue = friendlyPseudoClass(value)
+      const resolvedValue = friendlyPseudoClassPlugin(value)
 
-      if (regex.test(property)) {
+      if (property.match(FRIENDLY_PSEUDO_REGEX) !== null) {
         const pseudo = property
-          .replace(/([A-Z])/g, (match: string) => '-' + match.toLowerCase())
+          .replace(UPPERCASE_REGEX, (match) => '-' + match.toLowerCase())
           .replace(
-            /^on-(.*)/g,
-            (match, p1: string) =>
-              `${pseudoElements.includes(p1) ? '::' : ':'}${p1}`
+            ON_REGEX,
+            (match, p1) => `${pseudoElements.includes(p1) ? '::' : ':'}${p1}`
           )
 
         style[pseudo] = resolvedValue
@@ -42,4 +43,6 @@ function friendlyPseudoClass(style: Object): Object {
   return style
 }
 
-export default () => friendlyPseudoClass
+export default function friendlyPseudoClass() {
+  return friendlyPseudoClassPlugin
+}

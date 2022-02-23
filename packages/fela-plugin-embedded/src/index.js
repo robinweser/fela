@@ -1,9 +1,5 @@
-/* @flow */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { arrayReduce } from 'fast-loops'
 import isPlainObject from 'isobject'
-
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { StyleType } from '../../../flowtypes/StyleType'
 
 function renderFontFace(fontFace, renderer) {
   if (typeof fontFace === 'string') {
@@ -19,12 +15,7 @@ function renderFontFace(fontFace, renderer) {
   return undefined
 }
 
-function embedded(
-  style: Object,
-  type: StyleType,
-  renderer: DOMRenderer,
-  props: Object
-): Object {
+function embeddedPlugin(style, type, renderer, props) {
   for (const property in style) {
     const value = style[property]
 
@@ -56,11 +47,13 @@ function embedded(
         style[property] = renderer.renderKeyframe(() => value, props)
       }
     } else if (isPlainObject(value)) {
-      embedded(value, type, renderer, props)
+      embeddedPlugin(value, type, renderer, props)
     }
   }
 
   return style
 }
 
-export default () => embedded
+export default function embedded() {
+  return embeddedPlugin
+}

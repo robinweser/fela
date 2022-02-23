@@ -1,16 +1,13 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { objectReduce } from 'fast-loops'
 
 import getNodeSibling from './getNodeSibling'
 
-import type { NodeAttributes } from '../../../../../flowtypes/DOMNode'
-
 export default function createNode(
-  attributes: NodeAttributes,
-  targetDocument: any = document,
-  sortMediaQuery: Function,
-  styleNodeAttributes: Object
-): Object {
+  attributes,
+  targetDocument = document,
+  sortMediaQuery,
+  styleNodeAttributes
+) {
   const head = targetDocument.head || {}
   const { type, media, support } = attributes
 

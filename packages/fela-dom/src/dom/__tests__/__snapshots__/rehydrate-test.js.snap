@@ -4,9 +4,9 @@ exports[`Rehydrating from DOM nodes should rehydrate the renderer cache 1`] = `
 Array [
   10,
   Object {
-    " #id > .foo ~ barbackgroundColorred": Object {
+    " #id > .foo ~ barWebkitBackgroundColorred;background-color:red": Object {
       "className": "e",
-      "declaration": "background-color:red",
+      "declaration": "-webkit-background-color:red;background-color:red",
       "media": "",
       "pseudo": " #id > .foo ~ bar",
       "selector": ".e #id > .foo ~ bar",
@@ -49,21 +49,30 @@ Array [
       "support": "",
       "type": "RULE",
     },
+    "WebkitBackgroundColorred;background-color:red": Object {
+      "className": "c",
+      "declaration": "-webkit-background-color:red;background-color:red",
+      "media": "",
+      "pseudo": "",
+      "selector": ".c",
+      "support": "",
+      "type": "RULE",
+    },
+    "WebkitFlex1;-ms-flex:1;flex:1": Object {
+      "className": "d",
+      "declaration": "-webkit-flex:1;-ms-flex:1;flex:1",
+      "media": "",
+      "pseudo": "",
+      "selector": ".d",
+      "support": "",
+      "type": "RULE",
+    },
     "[alt=\\"Hello\\"]fontSize12px": Object {
       "className": "f",
       "declaration": "font-size:12px",
       "media": "",
       "pseudo": "[alt=\\"Hello\\"]",
       "selector": ".f[alt=\\"Hello\\"]",
-      "support": "",
-      "type": "RULE",
-    },
-    "backgroundColorred": Object {
-      "className": "c",
-      "declaration": "background-color:red",
-      "media": "",
-      "pseudo": "",
-      "selector": ".c",
       "support": "",
       "type": "RULE",
     },
@@ -76,15 +85,6 @@ Array [
       "support": "",
       "type": "RULE",
     },
-    "flex1": Object {
-      "className": "d",
-      "declaration": "flex:1",
-      "media": "",
-      "pseudo": "",
-      "selector": ".d",
-      "support": "",
-      "type": "RULE",
-    },
   },
 ]
 `;
@@ -93,9 +93,9 @@ exports[`Rehydrating from DOM nodes should rehydrate the renderer cache 2`] = `
 Array [
   10,
   Object {
-    " #id > .foo ~ barbackgroundColorred": Object {
+    " #id > .foo ~ barWebkitBackgroundColorred;background-color:red": Object {
       "className": "e",
-      "declaration": "background-color:red",
+      "declaration": "-webkit-background-color:red;background-color:red",
       "media": "",
       "pseudo": " #id > .foo ~ bar",
       "selector": ".parentClass .e #id > .foo ~ bar",
@@ -138,6 +138,24 @@ Array [
       "support": "",
       "type": "RULE",
     },
+    "WebkitBackgroundColorred;background-color:red": Object {
+      "className": "c",
+      "declaration": "-webkit-background-color:red;background-color:red",
+      "media": "",
+      "pseudo": "",
+      "selector": ".parentClass .c",
+      "support": "",
+      "type": "RULE",
+    },
+    "WebkitFlex1;-ms-flex:1;flex:1": Object {
+      "className": "d",
+      "declaration": "-webkit-flex:1;-ms-flex:1;flex:1",
+      "media": "",
+      "pseudo": "",
+      "selector": ".parentClass .d",
+      "support": "",
+      "type": "RULE",
+    },
     "[alt=\\"Hello\\"]fontSize12px": Object {
       "className": "f",
       "declaration": "font-size:12px",
@@ -147,30 +165,12 @@ Array [
       "support": "",
       "type": "RULE",
     },
-    "backgroundColorred": Object {
-      "className": "c",
-      "declaration": "background-color:red",
-      "media": "",
-      "pseudo": "",
-      "selector": ".parentClass .c",
-      "support": "",
-      "type": "RULE",
-    },
     "coloryellow": Object {
       "className": "b",
       "declaration": "color:yellow",
       "media": "",
       "pseudo": "",
       "selector": ".parentClass .b",
-      "support": "",
-      "type": "RULE",
-    },
-    "flex1": Object {
-      "className": "d",
-      "declaration": "flex:1",
-      "media": "",
-      "pseudo": "",
-      "selector": ".parentClass .d",
       "support": "",
       "type": "RULE",
     },

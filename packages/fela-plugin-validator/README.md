@@ -8,37 +8,42 @@ If enabled, [csslint](https://github.com/CSSLint/csslint) is used to check the C
 One might also enable automatic property deletion.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-validator
 ```
+
 You may alternatively use `npm i --save fela-plugin-validator`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import validator from 'fela-plugin-validator'
 
 const renderer = createRenderer({
-  plugins: [ validator() ]
+  plugins: [validator()],
 })
 ```
 
 ### Plugin ordering
 
-Make sure that you place the validator plugin *at the end* of your plugins array - or else you may get some false error / validation messages.
+Make sure that you place the validator plugin _at the end_ of your plugins array - or else you may get some false error / validation messages.
 
 ### Configuration
+
 ##### Options
-| Option | Value | Default | Description |
-| --- | --- | --- | --- |
-| logInvalid | *(boolean?)* | `true` | logs invalid properties/values |
-| deleteInvalid | *(boolean?)* | `false` | deletes invalid properties/values |
-| useCSSLint | *(boolean?)*<br>*(Object?)* | `false` | use CSSLint for style validation. <br> If an object is transferred, it will be interpreted as a set of rules for the validation (see [here](https://github.com/CSSLint/csslint/wiki/Rules)) |
+
+|  Option       | Value                       | Default  | Description                                                                                                                                                                                 |
+| ------------- | --------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| logInvalid    | _(boolean?)_                |  `true`  | logs invalid properties/values                                                                                                                                                              |
+| deleteInvalid | _(boolean?)_                |  `false` | deletes invalid properties/values                                                                                                                                                           |
+| useCSSLint    | _(boolean?)_<br>_(Object?)_ | `false`  | use CSSLint for style validation. <br> If an object is transferred, it will be interpreted as a set of rules for the validation (see [here](https://github.com/CSSLint/csslint/wiki/Rules)) |
 
 ##### Example
+
 ```javascript
 import { createRenderer } from 'fela'
 import validator from 'fela-plugin-validator'
@@ -46,21 +51,22 @@ import validator from 'fela-plugin-validator'
 const validatorPlugin = validator({
   logInvalid: true,
   deleteInvalid: true,
-  useCSSLint: true
+  useCSSLint: true,
 })
 
 const renderer = createRenderer({
-  plugins: [ validatorPlugin ]
+  plugins: [validatorPlugin],
 })
 ```
 
-
-
 ## Example
+
 If the `deleteInvalid` option is enabled.
 
 ### Keyframe
+
 #### Input
+
 ```javascript
 {
   '0%': {
@@ -74,6 +80,7 @@ If the `deleteInvalid` option is enabled.
 ```
 
 #### Output
+
 ```javascript
 {
   '0%': {
@@ -81,8 +88,11 @@ If the `deleteInvalid` option is enabled.
   }
 }
 ```
+
 ### Rule
+
 #### Input
+
 ```javascript
 {
   color: 'red',
@@ -99,6 +109,7 @@ If the `deleteInvalid` option is enabled.
 ```
 
 #### Output
+
 ```javascript
 {
   color: 'red',
@@ -108,8 +119,8 @@ If the `deleteInvalid` option is enabled.
 }
 ```
 
-
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

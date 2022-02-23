@@ -1,8 +1,8 @@
-import rehydrate from '../rehydrate'
+import { createRenderer } from 'fela'
+import webPreset from 'fela-preset-web'
 
+import rehydrate from '../rehydrate'
 import renderToMarkup from '../../server/renderToMarkup'
-import createRenderer from '../../../../fela/src/createRenderer'
-import webPreset from '../../../../fela-preset-web/src/index'
 
 import sortObject from '../__helpers__/sortObject'
 
@@ -17,7 +17,7 @@ describe('Rehydrating from DOM nodes', () => {
   it('should rehydrate the renderer cache', () => {
     const serverRenderer = createRenderer({
       filterClassName: (cls) => cls !== 'a',
-      plugins: [...webPreset],
+      plugins: webPreset,
     })
 
     serverRenderer.renderRule(() => ({

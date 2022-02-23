@@ -1,4 +1,3 @@
-/* @flow  */
 import {
   RULE_TYPE,
   KEYFRAME_TYPE,
@@ -6,11 +5,9 @@ import {
   isMediaQuery,
   isSupport,
 } from 'fela-utils'
-import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
+import { cssifyDeclaration } from 'css-in-js-utils'
 import isPlainObject from 'isobject'
 import { CSSLint } from 'csslint'
-
-import type { StyleType } from '../../../flowtypes/StyleType'
 
 const defaultRules = CSSLint.getRules().reduce(
   (rules, { id }) => ({
@@ -21,13 +18,13 @@ const defaultRules = CSSLint.getRules().reduce(
 )
 
 function handleError(
-  property: string,
-  style: Object,
-  logInvalid: boolean,
-  deleteInvalid: boolean,
-  message: string,
-  logObject: any
-): void {
+  property,
+  style,
+  logInvalid,
+  deleteInvalid,
+  message,
+  logObject
+) {
   if (deleteInvalid) {
     delete style[property]
   }
@@ -38,12 +35,12 @@ function handleError(
 }
 
 function validateStyleObject(
-  style: Object,
-  logInvalid: boolean,
-  deleteInvalid: boolean,
-  useCSSLint: boolean,
-  cssRules: Object
-): void {
+  style,
+  logInvalid,
+  deleteInvalid,
+  useCSSLint,
+  cssRules
+) {
   for (const property in style) {
     const value = style[property]
 
@@ -100,7 +97,7 @@ function validateStyleObject(
   }
 }
 
-function isValidPercentage(percentage: string): boolean {
+function isValidPercentage(percentage) {
   const percentageValue = parseFloat(percentage)
 
   return (
@@ -111,12 +108,12 @@ function isValidPercentage(percentage: string): boolean {
 }
 
 function validateKeyframeObject(
-  style: Object,
-  logInvalid: boolean,
-  deleteInvalid: boolean,
-  useCSSLint: boolean,
-  cssRules: Object
-): void {
+  style,
+  logInvalid,
+  deleteInvalid,
+  useCSSLint,
+  cssRules
+) {
   for (const percentage in style) {
     const value = style[percentage]
     if (!isPlainObject(value)) {
@@ -161,11 +158,7 @@ function validateKeyframeObject(
   }
 }
 
-function validateStyle(
-  style: Object,
-  type: StyleType,
-  options: Object
-): Object {
+function validateStyle(style, type, options) {
   const { logInvalid, deleteInvalid, useCSSLint, cssRules } = options
 
   if (type === KEYFRAME_TYPE) {
@@ -189,7 +182,7 @@ const defaultOptions = {
   useCSSLint: false,
 }
 
-export default function validator(options: Object = {}) {
+export default function validator(options = {}) {
   const { useCSSLint } = options
   const preparedOptions = {
     ...defaultOptions,
@@ -203,6 +196,7 @@ export default function validator(options: Object = {}) {
       }
     : defaultRules
 
-  return (style: Object, type: StyleType) =>
-    validateStyle(style, type, preparedOptions)
+  return function validatorPlugin(style, type) {
+    return validateStyle(style, type, preparedOptions)
+  }
 }

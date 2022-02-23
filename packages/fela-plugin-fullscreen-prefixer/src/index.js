@@ -1,4 +1,3 @@
-/* @flow */
 import pseudoPrefixer from 'fela-plugin-pseudo-prefixer'
 
 const fullscreenPrefixes = [

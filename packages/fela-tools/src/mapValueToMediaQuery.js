@@ -1,10 +1,6 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { objectReduce } from 'fast-loops'
 
-export default function mapValueToMediaQuery(
-  queryValueMap: Object = {},
-  mapper: Function | string
-): Object {
+export default function mapValueToMediaQuery(queryValueMap = {}, mapper) {
   return objectReduce(
     queryValueMap,
     (style, value, query) => {

@@ -1,8 +1,4 @@
-/* @flow */
-export default function resolvePassThrough(
-  passThrough: Function | Array<string>,
-  ruleProps: Object
-): Array<string> {
+export default function resolvePassThrough(passThrough, ruleProps) {
   if (typeof passThrough === 'function') {
     return passThrough(ruleProps)
   }

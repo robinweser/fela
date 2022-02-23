@@ -1,14 +1,7 @@
-/* @flow */
 import hoistStatics from './hoistStatics'
 
-export default function withThemeFactory(
-  createElement: Function,
-  FelaTheme: Function
-): Function {
-  return function withTheme(
-    component: Object,
-    propName?: string = 'theme'
-  ): Object {
+export default function withThemeFactory(createElement, FelaTheme) {
+  return function withTheme(component, propName = 'theme') {
     const WithTheme = (props) =>
       createElement(FelaTheme, undefined, (theme) =>
         createElement(component, {

@@ -1,2 +1,0 @@
-instrumentation:
-  excludes: ['./packages/fela-utils/src/warning.js']

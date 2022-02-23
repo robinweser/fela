@@ -7,56 +7,64 @@ Sometimes it's handy to define some custom properties mostly used as shortcuts.
 A custom property basically is just a plain function that takes a value as input and outputs an object of style declarations.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-custom-property
 ```
+
 You may alternatively use `npm i --save fela-plugin-custom-property`.
 
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import customProperty from 'fela-plugin-custom-property'
 
 const renderer = createRenderer({
-  plugins: [ customProperty() ]
+  plugins: [customProperty()],
 })
 ```
 
 ### Configuration
+
 In order to get custom properties resolved, you need to configure the plugin with all custom properties once.
 
 ```javascript
 import { createRenderer } from 'fela'
 import customProperty from 'fela-plugin-custom-property'
 
-const sizeProperty = size => ({
+const sizeProperty = (size) => ({
   width: size + 'px',
-  height: size + 'px'
+  height: size + 'px',
 })
 
 const customPropertyPlugin = customProperty({
   // the key defines the used CSS property
   // the value references the resolving function
-  size: sizeProperty
+  size: sizeProperty,
 })
 
 const renderer = createRenderer({
-  plugins: [ customPropertyPlugin ]
+  plugins: [customPropertyPlugin],
 })
 ```
 
 ## Example
+
 Let's say we want to have a custom property `size` that accepts a single number which will then be transformed into both `width` and `height` with a `px` unit applied.
 
 #### Input
+
 ```javascript
 {
   size: 25
 }
 ```
+
 #### Output
+
 ```javascript
 {
   width: '25px',
@@ -65,6 +73,7 @@ Let's say we want to have a custom property `size` that accepts a single number 
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

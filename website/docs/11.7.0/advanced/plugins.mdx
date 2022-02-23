@@ -1,0 +1,185 @@
+# Plugins
+
+We have learned that the renderer is the universal interface to render basic styles, but yet all it does is cache and transform simple shape-conforming style objects into CSS markup. We do not have any fancy additional functionality such as auto-prefixing. That's where the built-in plugin system comes to the rescue!<br />
+Plugins are functions that take a style object, alter its shape and return a new style object, which in most cases is the mutated input itself.
+Before the resolved style object gets cached and transformed to CSS, it is piped through each plugin.
+
+## Use Case
+
+They are especially helpful to automate certain aspects of styling such as auto-prefixing. They are also very handy to improve the developer experience e.g. by automatically adding a unit like `px` to dimension values.
+
+## Using Plugins
+
+To use plugins we need to add them to the renderer configuration directly. You can do this by passing a configuration object using the `plugins` key while creating your renderer.
+
+```javascript
+import { createRenderer } from 'fela'
+
+const config = {
+  plugins: [
+    /* your plugins */
+  ],
+}
+
+const renderer = createRenderer(config)
+```
+
+Fela already ships with tons of plugins. Check out [Introduction - Ecosystem](intro/ecosystem#plugins) for more information. Every plugin is published as a separate package and includes documentation on what it does and how it is used.
+
+### Presets
+
+In additional to each single plugin, we also provide plugin presets which should simplify the configuration process.<br />
+Right now there are two different presets available, a basic web preset [fela-preset-web](https://github.com/robinweser/fela/tree/master/packages/fela-preset-web) and one development-only preset [fela-preset-dev](https://github.com/robinweser/fela/tree/master/packages/fela-preset-dev).
+
+### Order Matters
+
+Plugins are executed in the exact same order as provided. The output of the first plugin is passed to the second plugin and so on. Keep in mind that some plugins need to be executed before or after another. To be safe, stick to the following order:
+
+1. [fela-plugin-extend](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-extend)
+2. [fela-plugin-kebab-case](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-kebab-case)
+3. [fela-plugin-custom-property](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-custom-property)
+4. [fela-plugin-embedded](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-embedded)
+5. [fela-plugin-friendly-pseudo-class](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-friendly-pseudo-class)
+6. [fela-plugin-named-keys](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-named-keys)
+7. [fela-plugin-multiple-selectors](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-multiple-selectors)
+8. [fela-plugin-hover-media](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-hover-media)
+9. [fela-plugin-pseudo-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-pseudo-prefixer)
+10. [fela-plugin-fullscreen-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fullscreen-prefixer)
+11. [fela-plugin-placeholder-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-placeholder-prefixer)
+12. [fela-plugin-responsive-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-responsive-value)
+13. [fela-plugin-bidi](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-bidi)
+14. [fela-plugin-rtl](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-rtl)
+15. [fela-plugin-theme-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-theme-value)
+16. [fela-plugin-important](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-important)
+17. [fela-plugin-isolation](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-isolation)
+18. [fela-plugin-prefixer](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-prefixer)
+19. [fela-plugin-fallback-value](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-fallback-value)
+20. [fela-plugin-unit](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-unit)
+21. [fela-plugin-validator](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-validator)
+22. [fela-plugin-logger](https://github.com/robinweser/fela/tree/master/packages/fela-plugin-logger)
+
+## Custom Plugins
+
+In order to learn how to write custom plugins, we first need to learn te exact API. A plugin is basically just a pure function that takes a style object and returns a (transformed) style object.
+
+In addition to the input style object, it also receives some extra information:
+
+```javascript
+const plugin = (style, type, renderer, props) => processedStyle
+```
+
+### Parameter
+
+1. `style` (_Object_): The input style object
+2. `type` (_string_): A type enum `RULE`, `FONT`, `KEYFRAME` or `STATIC`
+3. `renderer` ([_Renderer_](api/fela/renderer)): The fela renderer
+4. `props` (_Object_): The props used to resolve the rule
+
+### Returns
+
+(_Object_) a transformed style object
+
+### Example
+
+Let's take a very simple example. <br />
+Imagine you work in a big codebase with several people and everyone uses another color format.<br />
+To enforce consistency and maximal reuse, we would like to use the RGB-format everywhere.
+
+Luckily, there's a package called [small-color](https://github.com/robinweser/small-color) that can help with transforming values.<br />
+It is only 900 bytes in total and is especially built for runtime manipulation.
+
+> An alternative and more common package is [color](https://github.com/Qix-/color), although it comes with 7.6kb in size.
+
+```javascript name=colorPlugin.js
+import { parse, toRgb } from 'small-color'
+import isPlainObject from 'isobject'
+
+const COLOR_REGEX = /color/gi
+const RGB_REGEX = /^rgb(a)/gi
+
+export default function colorPlugin(style) {
+  for (const property in style) {
+    const value = style[property]
+
+    // we also loop nested objects such as pseudo classes and media queries
+    if (isPlainObject(value)) {
+      style[property] = colorPlugin(value)
+    }
+
+    // we test for all properties containing the string "color"
+    // this is a simplified check and might not cover all use cases
+    // we also only apply color transformation if it's not already in rgb-format
+    if (
+      typeof value === 'string' &&
+      COLOR_REGEX.test(property) &&
+      !RGB_REGEX.test(value)
+    ) {
+      style[property] = toRgb(parse(value))
+    }
+  }
+
+  return style
+}
+```
+
+And that's it! Now whenever we render a color value, it will automatically be transformed to its respective RGB counterpart.
+
+### Configuration
+
+Sometimes your plugin requires some configuration. To achieve this, you may create a plugin factory.<br />
+Let's say we want to configure the output color format to be either RGB or HSL.
+
+```javascript name=colorPlugin.js
+import { parse, toRgb, toHsl } from 'small-color'
+import isPlainObject from 'isobject'
+
+const COLOR_REGEX = /color/gi
+const RGB_REGEX = /^rgb(a)/gi
+
+function colorPlugin(style, formatter) {
+  for (const property in style) {
+    const value = style[property]
+
+    if (isPlainObject(value)) {
+      style[property] = colorPlugin(value)
+    }
+
+    if (
+      typeof value === 'string' &&
+      COLOR_REGEX.test(property) &&
+      !RGB_REGEX.test(value)
+    ) {
+      style[property] = formatter(parse(value))
+    }
+  }
+
+  return style
+}
+
+export default function colorPluginFactory(format = 'rgb') {
+  // we pass the formatter to ensure it's only created once and reused
+  const formatter = format === 'rgb' ? toRgb : toHsl
+
+  return (style) => colorPlugin(style, formatter)
+}
+```
+
+### Usage
+
+```javascript name=renderer.js
+import { createRenderer } from 'fela'
+
+import colorPlugin from './colorPlugin'
+
+const renderer = createRenderer({
+  plugins: [colorPlugin('hsl')],
+})
+```
+
+---
+
+## Related
+
+- [Renderer Configuration](advanced/renderer-configuration)
+- [List of plugins](intro/ecosystem#plugins)
+- [List of plugin presets](intro/ecosystem/plugin-presets)

@@ -1,18 +1,7 @@
-/* @flow */
 import transformStyle from 'bidi-css-js'
 
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { StyleType } from '../../../flowtypes/StyleType'
-
-export default function bidi(flowDirection: 'ltr' | 'rtl' = 'ltr') {
-  return (
-    style: Object,
-    type: StyleType,
-    renderer: DOMRenderer,
-    props: Object
-  ) =>
-    transformStyle(
-      style,
-      (props && props.theme && props.theme.direction) || flowDirection
-    )
+export default function bidi(direction = 'ltr') {
+  return function bidiPlugin(style, type, renderer, props) {
+    return transformStyle(style, props?.theme?.direction || direction)
+  }
 }

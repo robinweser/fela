@@ -1,4 +1,3 @@
-/* @flow */
-export default function minifyCSSString(style: string): string {
+export default function minifyCSSString(style) {
   return style.replace(/\s{2,}/g, '')
 }

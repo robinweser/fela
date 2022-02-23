@@ -1,4 +1,5 @@
 import { createRenderer } from 'fela'
+
 import renderToSheetList from '../renderToSheetList'
 
 describe('Rendering to a sheet list', () => {

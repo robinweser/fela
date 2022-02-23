@@ -1,15 +1,7 @@
-/* @flow */
-import assignStyle from 'css-in-js-utils/lib/assignStyle'
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { assignStyle } from 'css-in-js-utils'
+import { arrayReduce } from 'fast-loops'
 
-import type { DOMRenderer } from '../../../flowtypes/DOMRenderer'
-import type { NativeRenderer } from '../../../flowtypes/NativeRenderer'
-
-function resolveRule(
-  rule: Array<Function | Object> | Function | Object,
-  props: Object,
-  renderer: DOMRenderer | NativeRenderer
-): Object {
+function resolveRule(rule, props, renderer) {
   if (Array.isArray(rule)) {
     return resolveRule(combineRules(...rule), props, renderer)
   }
@@ -21,9 +13,12 @@ function resolveRule(
   return rule
 }
 
-export default function combineRules(
-  ...rules: Array<Function | Object>
-): Function {
+export default function combineRules(...rules) {
+  // escape hatch to skip the object assignment for single rules
+  if (rules.length === 1) {
+    return (props, renderer) => resolveRule(rules[0], props, renderer)
+  }
+
   return (props, renderer) =>
     arrayReduce(
       rules,

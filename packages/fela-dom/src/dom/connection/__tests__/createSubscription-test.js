@@ -1,6 +1,6 @@
-import createSubscription from '../createSubscription'
+import { createRenderer } from 'fela'
 
-import createRenderer from '../../../../../fela/src/createRenderer'
+import createSubscription from '../createSubscription'
 
 import getStyleSheetStyle from '../../__helpers__/getStyleSheetStyle'
 import cleanHead from '../../__helpers__/cleanHead'

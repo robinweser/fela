@@ -1,7 +1,6 @@
-/* @flow */
 import isPlainObject from 'isobject'
 
-function addImportantToValue(value: any): any {
+function addImportantToValue(value) {
   if (
     typeof value === 'number' ||
     (typeof value === 'string' &&
@@ -13,7 +12,7 @@ function addImportantToValue(value: any): any {
   return value
 }
 
-function isAnimation(style: Object): boolean {
+function isAnimation(style) {
   const styleNames = Object.getOwnPropertyNames(style)
   let isAnimationItem = false
 
@@ -30,14 +29,14 @@ function isAnimation(style: Object): boolean {
   return isAnimationItem
 }
 
-function addImportant(style: Object): Object {
+function importantPlugin(style) {
   if (!isAnimation(style)) {
     for (const property in style) {
       const value = style[property]
       if (property === 'className') {
         // this is a fixed classname, not a style rule - leave as is
       } else if (isPlainObject(value)) {
-        style[property] = addImportant(value)
+        style[property] = importantPlugin(value)
       } else if (Array.isArray(value)) {
         style[property] = value.map(addImportantToValue)
       } else {
@@ -49,4 +48,6 @@ function addImportant(style: Object): Object {
   return style
 }
 
-export default () => addImportant
+export default function important() {
+  return importantPlugin
+}

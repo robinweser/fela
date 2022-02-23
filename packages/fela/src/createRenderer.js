@@ -1,7 +1,5 @@
-/* @flow */
-import cssifyDeclaration from 'css-in-js-utils/lib/cssifyDeclaration'
-import arrayEach from 'fast-loops/lib/arrayEach'
-import arrayReduce from 'fast-loops/lib/arrayReduce'
+import { cssifyDeclaration } from 'css-in-js-utils'
+import { arrayEach, arrayReduce, arrayFilter } from 'fast-loops'
 import isPlainObject from 'isobject'
 
 import {
@@ -34,17 +32,10 @@ import isSafeClassName from './isSafeClassName'
 import toCSSString from './toCSSString'
 import validateSelectorPrefix from './validateSelectorPrefix'
 import sortMediaQuery from './sortMediaQuery'
+import extractCustomClassName from './extractCustomClassName'
 
-import type {
-  DOMRenderer,
-  DOMRendererConfig,
-} from '../../../flowtypes/DOMRenderer'
-import type { FontProperties } from '../../../flowtypes/FontProperties'
-
-export default function createRenderer(
-  config: DOMRendererConfig = {}
-): DOMRenderer {
-  let renderer: DOMRenderer = {
+export default function createRenderer(config = {}) {
+  let renderer = {
     listeners: [],
     keyframePrefixes: config.keyframePrefixes || ['-webkit-', '-moz-'],
     plugins: config.plugins || [],
@@ -83,11 +74,11 @@ export default function createRenderer(
       return ++renderer.uniqueKeyframeIdentifier
     },
 
-    renderRule(rule: Function, props: Object = {}): string {
+    renderRule(rule, props = {}) {
       return renderer._renderStyle(rule(props, renderer), props)
     },
 
-    renderKeyframe(keyframe: Function, props: Object = {}): string {
+    renderKeyframe(keyframe, props = {}) {
       const resolvedKeyframe = keyframe(props, renderer)
       const processedKeyframe = processStyleWithPlugins(
         renderer,
@@ -123,15 +114,11 @@ export default function createRenderer(
       return renderer.cache[keyframeReference].name
     },
 
-    generateAnimationName(_props: Object) {
+    generateAnimationName(_props) {
       return generateAnimationName(renderer.getNextKeyframeIdentifier())
     },
 
-    renderFont(
-      family: string,
-      files: Array<string>,
-      properties: FontProperties = {}
-    ): string {
+    renderFont(family, files, properties = {}) {
       const { localAlias, ...otherProperties } = properties
 
       const fontReference = family + JSON.stringify(properties)
@@ -161,7 +148,7 @@ export default function createRenderer(
       return renderer.cache[fontReference].fontFamily
     },
 
-    renderStatic(staticStyle: Object | string, selector?: string): void {
+    renderStatic(staticStyle, selector) {
       const staticReference = generateStaticReference(staticStyle, selector)
 
       if (!renderer.cache.hasOwnProperty(staticReference)) {
@@ -178,7 +165,7 @@ export default function createRenderer(
       }
     },
 
-    subscribe(callback: Function): { unsubscribe: Function } {
+    subscribe(callback) {
       renderer.listeners.push(callback)
 
       return {
@@ -197,7 +184,8 @@ export default function createRenderer(
       })
     },
 
-    _renderStyle(style: Object = {}, props: Object = {}): string {
+    _renderStyle(style = {}, props = {}) {
+      const customClassName = extractCustomClassName(style)
       const processedStyle = processStyleWithPlugins(
         renderer,
         style,
@@ -206,16 +194,14 @@ export default function createRenderer(
         renderer.unoptimizedPlugins || renderer.plugins
       )
 
-      return renderer._renderStyleToClassNames(processedStyle).slice(1)
+      return (
+        customClassName +
+        renderer._renderStyleToClassNames(processedStyle).substr(1)
+      )
     },
 
-    _renderStyleToClassNames(
-      { _className, ...style }: Object,
-      pseudo: string = '',
-      media: string = '',
-      support: string = ''
-    ): string {
-      let classNames = _className ? ` ${_className}` : ''
+    _renderStyleToClassNames(style, pseudo = '', media = '', support = '') {
+      let classNames = ''
 
       for (const property in style) {
         const value = style[property]
@@ -320,7 +306,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
           // only append if we got a class cached
           if (cachedClassName) {
-            classNames += ` ${cachedClassName}`
+            classNames += ' ' + cachedClassName
           }
         }
       }
@@ -365,20 +351,14 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       renderer._emitChange(change)
     },
 
-    generateClassName(
-      property: string,
-      value: any,
-      pseudo?: string,
-      media?: string,
-      support?: string
-    ): string {
+    generateClassName(property, value, pseudo, media, support) {
       return generateClassName(
         renderer.getNextRuleIdentifier,
         renderer.filterClassName
       )
     },
 
-    _emitChange(change: Object): void {
+    _emitChange(change) {
       arrayEach(renderer.listeners, (listener) => listener(change))
     },
   }
@@ -386,18 +366,25 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
   // initial setup
   renderer.keyframePrefixes.push('')
 
-  if (config.optimizeCaching) {
-    renderer.optimizedPlugins = renderer.plugins
-      .filter((plugin) => plugin.optimized)
-      .map((plugin) => plugin.optimized)
+  renderer.optimizedPlugins = arrayReduce(
+    renderer.plugins,
+    (plugins, plugin) => {
+      if (plugin.optimized) {
+        plugins.push(plugin.optimized)
+      }
 
-    // only enable the cache map if we have optimized plugins
-    if (renderer.optimizedPlugins.length > 0) {
-      renderer.cacheMap = {}
-      renderer.unoptimizedPlugins = renderer.plugins.filter(
-        (plugin) => !plugin.optimized
-      )
-    }
+      return plugins
+    },
+    []
+  )
+
+  // only enable the cache map if we have optimized plugins
+  if (renderer.optimizedPlugins.length > 0) {
+    renderer.cacheMap = {}
+    renderer.unoptimizedPlugins = arrayFilter(
+      renderer.plugins,
+      (plugin) => !plugin.optimized
+    )
   }
 
   if (config.enhancers) {

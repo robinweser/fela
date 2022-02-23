@@ -1,4 +1,3 @@
-/* @flow */
 import connect from './connect'
 import createComponent from './createComponent'
 import createComponentWithProxy from './createComponentWithProxy'

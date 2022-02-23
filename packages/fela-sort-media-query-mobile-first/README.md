@@ -5,24 +5,26 @@
 Uses [sort-css-media-queries](https://github.com/dutchenkoOleg/sort-css-media-queries) to sort you `mediaQueryOrder` following a mobile-first approach.
 
 ## Installation
+
 ```sh
 yarn add fela-sort-media-query-mobile-first
 ```
+
 You may alternatively use `npm i --save fela-sort-media-query-mobile-first`.
 
 ## Usage
+
 ```javascript
 import { createRenderer } from 'fela'
 import sortMediaQueryMobileFirst from 'fela-sort-media-query-mobile-first'
 
 const renderer = createRenderer({
-  enhancers: [ sortMediaQueryMobileFirst() ]
+  enhancers: [sortMediaQueryMobileFirst()],
 })
 ```
 
-
-
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
-Created with ♥ by [@roWeser](http://roWeser.de) and all the great contributors.
+Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

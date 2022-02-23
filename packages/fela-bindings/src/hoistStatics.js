@@ -1,5 +1,4 @@
-/* @flow */
-import arrayEach from 'fast-loops/lib/arrayEach'
+import { arrayEach } from 'fast-loops'
 
 const basicStatics = {
   name: true,
@@ -19,7 +18,7 @@ const blockedStatics = {
   contextType: true,
 }
 
-export default function hoistStatics(target: any, source: any): any {
+export default function hoistStatics(target, source) {
   if (typeof source === 'string') {
     return target
   }

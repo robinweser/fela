@@ -1,4 +1,5 @@
 import { createRenderer } from 'fela'
+
 import sortClassNames from '../index'
 
 describe('Using the sortClassNames enhancer', () => {

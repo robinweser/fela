@@ -3,19 +3,19 @@ import { useFela } from 'react-fela'
 
 const rule = ({ color, fixed = false, layout = 'column', outer = false }) => ({
   alignItems: 'stretch',
-  borderWidth: '0px',
+  borderWidth: 0,
   borderStyle: 'solid',
   boxSizing: 'border-box',
   display: 'flex',
   flexBasis: 'auto',
   flexDirection: 'column',
-  flexShrink: '0',
-  margin: '0px',
-  padding: '0px',
+  flexShrink: 0,
+  margin: 0,
+  padding: 0,
   position: 'relative',
   // fix flexbox bugs
-  minHeight: '0px',
-  minWidth: '0px',
+  minHeight: 0,
+  minWidth: 0,
   ...styles[`color${color}`],
   ...(fixed && styles.fixed),
   ...(layout === 'row' && styles.row),
@@ -31,7 +31,7 @@ const Box = ({ children, color, fixed, layout, outer }) => {
 const styles = {
   outer: {
     alignSelf: 'flex-start',
-    padding: '4px',
+    padding: 4,
   },
   row: {
     flexDirection: 'row',
@@ -55,8 +55,8 @@ const styles = {
     backgroundColor: '#E0245E',
   },
   fixed: {
-    width: '6px',
-    height: '6px',
+    width: 6,
+    height: 6,
   },
 }
 

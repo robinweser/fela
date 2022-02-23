@@ -1,14 +1,8 @@
-/* @flow */
-import objectEach from 'fast-loops/lib/objectEach'
+import { objectEach } from 'fast-loops'
 
 import createSubscription from './connection/createSubscription'
 
-import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
-
-export default function render(
-  renderer: DOMRenderer,
-  targetDocument?: any
-): void {
+export default function render(renderer, targetDocument) {
   if (!renderer.updateSubscription) {
     renderer.scoreIndex = {}
     renderer.nodes = {}

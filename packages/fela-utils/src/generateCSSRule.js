@@ -1,7 +1,3 @@
-/* @flow */
-export default function generateCSSRule(
-  selector: string,
-  cssDeclaration: string
-): string {
+export default function generateCSSRule(selector, cssDeclaration) {
   return `${selector}{${cssDeclaration}}`
 }

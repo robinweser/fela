@@ -12,13 +12,8 @@ import sortMediaQueryMobileFirst from 'fela-sort-media-query-mobile-first'
 
 export default () => {
   const renderer = createRenderer({
-    optimizeCaching: true,
     plugins: [embedded(), unit(), prefixer(), fallbackValue()],
-    enhancers: [
-      // perf(),
-      // beautifier(),
-      sortMediaQueryMobileFirst(),
-    ],
+    enhancers: [perf(), beautifier(), sortMediaQueryMobileFirst()],
   })
 
   renderer.renderStatic(

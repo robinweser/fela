@@ -1,17 +1,42 @@
-on: [push, pull_request]
-name: Test
+name: Test & Lint
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'packages/**'
+  pull_request:
+    branches:
+      - 'master'
+    paths:
+      - 'packages/**'
+
 jobs:
   test:
-    name: Ubuntu on node ${{ matrix.node }}
+    name: Ubuntu on Node ${{ matrix.node }}
     runs-on: ubuntu-18.04
     strategy:
       matrix:
         os: [ubuntu-18.04]
-        node: [12, 13]
+        node: [16]
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node }}
-    - run: yarn
-    - run: yarn run check
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - uses: pnpm/action-setup@v2.1.0
+        with:
+          version: 6.28.0
+          run_install: true
+      - run: pnpm run check

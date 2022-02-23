@@ -7,28 +7,30 @@ Writing CSS pseudo classes within a plain JavaScript object sadly is sometimes p
 This plugins provides support for JavaScript-friendly pseudo class syntax with an `on`-prefix. e.g.
 
 ## Installation
+
 ```sh
 yarn add fela-plugin-friendly-pseudo-class
 ```
+
 You may alternatively use `npm i --save fela-plugin-friendly-pseudo-class`.
 
-
 ## Usage
-Make sure to read the documentation on [how to use plugins](http://fela.js.org/docs/advanced/Plugins.html).
+
+Make sure to read the documentation on [how to use plugins](https://fela.js.org/docs/latest/advanced/plugins#using-plugins).
 
 ```javascript
 import { createRenderer } from 'fela'
 import friendlyPseudoClass from 'fela-plugin-friendly-pseudo-class'
 
 const renderer = createRenderer({
-  plugins: [ friendlyPseudoClass() ]
+  plugins: [friendlyPseudoClass()],
 })
 ```
-
 
 ## Example
 
 #### Input
+
 ```javascript
 {
   onHover: {
@@ -36,7 +38,9 @@ const renderer = createRenderer({
   }
 }
 ```
+
 #### Output
+
 ```javascript
 {
   ':hover': {
@@ -46,6 +50,7 @@ const renderer = createRenderer({
 ```
 
 ## License
+
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Commons License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@robinweser](http://weser.io) and all the great contributors.

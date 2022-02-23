@@ -1,6 +1,4 @@
-/* @flow */
-import arrayReduce from 'fast-loops/lib/arrayReduce'
-import objectReduce from 'fast-loops/lib/objectReduce'
+import { arrayReduce, objectReduce } from 'fast-loops'
 import {
   clusterCache,
   cssifySupportRules,
@@ -11,9 +9,7 @@ import {
 import createStyleTagMarkup from './createStyleTagMarkup'
 import getRehydrationIndex from './getRehydrationIndex'
 
-import type { DOMRenderer } from '../../../../flowtypes/DOMRenderer'
-
-export default function renderToMarkup(renderer: DOMRenderer): string {
+export default function renderToMarkup(renderer) {
   const cacheCluster = clusterCache(renderer.cache, renderer.ruleOrder)
 
   const rehydrationIndex = getRehydrationIndex(renderer)

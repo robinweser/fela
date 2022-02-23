@@ -1,9 +1,6 @@
-/* @flow */
 const PREFIX_SYNTAX = /^[a-z_][a-z0-9-_]*$/gi
 
-export default function validateSelectorPrefix(
-  selectorPrefix?: string = ''
-): string {
+export default function validateSelectorPrefix(selectorPrefix = '') {
   if (
     selectorPrefix.length > 0 &&
     selectorPrefix.match(PREFIX_SYNTAX) === null

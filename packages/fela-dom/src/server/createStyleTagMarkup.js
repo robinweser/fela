@@ -1,16 +1,13 @@
-/* @flow */
-import objectReduce from 'fast-loops/lib/objectReduce'
-
-import type { StyleType } from '../../../../flowtypes/StyleType'
+import { objectReduce } from 'fast-loops'
 
 export default function createStyleTagMarkup(
-  css: string,
-  type: StyleType,
-  media: string = '',
-  rehydrationIndex: number = -1,
-  support: boolean = false,
-  styleNodeAttributes: Object = {}
-): string {
+  css,
+  type,
+  media = '',
+  rehydrationIndex = -1,
+  support = false,
+  styleNodeAttributes = {}
+) {
   const mediaAttribute = media.length > 0 ? ` media="${media}"` : ''
   const supportAttribute = support ? ' data-fela-support="true"' : ''
   const userAttributes = objectReduce(

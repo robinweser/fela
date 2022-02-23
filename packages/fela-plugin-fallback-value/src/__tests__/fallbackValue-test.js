@@ -59,3 +59,33 @@ describe('Fallback value plugin', () => {
     })
   })
 })
+
+describe('Fallback value plugin (optimized)', () => {
+  it('should resolve fallback value arrays to strings', () => {
+    const plugin = fallbackValue().optimized
+
+    expect(
+      plugin({
+        property: 'width',
+        value: ['-webkit-calc(20px)', 'calc(20px)'],
+      })
+    ).toEqual({
+      property: 'width',
+      value: '-webkit-calc(20px);width:calc(20px)',
+    })
+  })
+
+  it('should convert properties to dash case within value', () => {
+    const plugin = fallbackValue().optimized
+
+    expect(
+      plugin({
+        property: 'marginLeft',
+        value: ['-webkit-calc(20px)', 'calc(20px)'],
+      })
+    ).toEqual({
+      property: 'marginLeft',
+      value: '-webkit-calc(20px);margin-left:calc(20px)',
+    })
+  })
+})

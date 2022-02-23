@@ -1,7 +1,6 @@
-/* @flow */
 import { expandWithMerge, expand } from 'inline-style-expand-shorthand'
 
-function expandShorthand(style: Object, shouldMerge: boolean): Object {
+function resolveShorthands(style, shouldMerge) {
   if (shouldMerge) {
     return expandWithMerge(style)
   }
@@ -9,6 +8,8 @@ function expandShorthand(style: Object, shouldMerge: boolean): Object {
   return expand(style)
 }
 
-export default function resolveShorthands(merge: boolean = false) {
-  return (style: Object) => expandShorthand(style, merge)
+export default function expandShorthand(merge = false) {
+  return function expandShorthandPlugin(style) {
+    return resolveShorthands(style, merge)
+  }
 }
