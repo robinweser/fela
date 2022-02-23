@@ -97,7 +97,8 @@ declare module 'fela' {
   type CSSObject = CSSProperties & CSSPseudos
 
   type CSSCustom = { [prop: string]: CSSCustomPrimitive | IStyle }
-  type CSSCustomPrimitive = IStylePrimitiveExtension[keyof IStylePrimitiveExtension]
+  type CSSCustomPrimitive =
+    IStylePrimitiveExtension[keyof IStylePrimitiveExtension]
 
   type CSSProperties = CSS.Properties<number | string>
   type CSSPropertiesFallback = CSS.PropertiesFallback<number | string>
@@ -135,9 +136,7 @@ declare module 'fela-dom' {
   function render(renderer: IRenderer): void
   function rehydrate(renderer: IRenderer): void
   function renderToMarkup(renderer: IRenderer): string
-  function renderToSheetList(
-    renderer: IRenderer
-  ): {
+  function renderToSheetList(renderer: IRenderer): {
     css: string
     type: TRenderType
     media?: string
@@ -217,9 +216,7 @@ declare module 'fela-identifier' {
     generator?: (name?: string, index?: number) => string
   }
 
-  type Identifier = (
-    name?: string
-  ) => TRule & {
+  type Identifier = (name?: string) => TRule & {
     className: string
     toString(): string
   }
@@ -353,9 +350,11 @@ declare module 'fela-plugin-logger' {
 declare module 'fela-plugin-named-keys' {
   import { TPlugin } from 'fela'
 
-  type MediaQueryMap<Props> = ((props: Props) => Record<string, string>) | Record<string, string>;
+  type MediaQueryMap<Props> =
+    | ((props: Props) => Record<string, string>)
+    | Record<string, string>
 
-  export default function<Props>(mediaQueryMap: MediaQueryMap<Props>): TPlugin;
+  export default function <Props>(mediaQueryMap: MediaQueryMap<Props>): TPlugin
 }
 
 declare module 'fela-plugin-native-media-query' {
@@ -450,9 +449,9 @@ declare module 'fela-plugin-validator' {
 }
 
 declare module 'fela-plugin-expand-shorthand' {
-  import { TPlugin } from 'fela';
-  
-  export default function (autoMerge: boolean = false): TPlugin;
+  import { TPlugin } from 'fela'
+
+  export default function (autoMerge?: boolean): TPlugin
 }
 
 /**
