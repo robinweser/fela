@@ -3,7 +3,20 @@ import { combineRules } from 'fela'
 
 import { RendererContext, ThemeContext } from './context'
 
-export default function useFela(props = {}) {
+function getPropsWithTheme(props, theme) {
+  if (props) {
+    return {
+      ...props,
+      theme,
+    }
+  }
+
+  return {
+    theme,
+  }
+}
+
+export default function useFela(props) {
   const renderer = useContext(RendererContext)
   const theme = useContext(ThemeContext) || {}
 
@@ -14,10 +27,7 @@ export default function useFela(props = {}) {
   }
 
   // we add the theme to props so that it can be used within styles
-  const propsWithTheme = {
-    ...props,
-    theme,
-  }
+  const propsWithTheme = getPropsWithTheme(props, theme)
 
   function css(...rules) {
     return renderer.renderRule(combineRules(...rules), propsWithTheme)
