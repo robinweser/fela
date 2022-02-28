@@ -7,6 +7,7 @@ import ThemeProviderFactory from './ThemeProviderFactory'
 import withThemeFactory from './withThemeFactory'
 import feFactory from './feFactory'
 import renderToNodeListFactory from './renderToNodeListFactory'
+import useFelaFactory from './useFelaFactory'
 
 export {
   connectFactory,
@@ -18,4 +19,5 @@ export {
   withThemeFactory,
   feFactory,
   renderToNodeListFactory,
+  useFelaFactory,
 }

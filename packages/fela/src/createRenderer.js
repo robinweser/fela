@@ -148,11 +148,11 @@ export default function createRenderer(config = {}) {
       return renderer.cache[fontReference].fontFamily
     },
 
-    renderStatic(staticStyle, selector) {
+    renderStatic(staticStyle, selector, props = {}) {
       const staticReference = generateStaticReference(staticStyle, selector)
 
       if (!renderer.cache.hasOwnProperty(staticReference)) {
-        const cssDeclarations = cssifyStaticStyle(staticStyle, renderer)
+        const cssDeclarations = cssifyStaticStyle(staticStyle, renderer, props)
 
         const change = {
           type: STATIC_TYPE,
