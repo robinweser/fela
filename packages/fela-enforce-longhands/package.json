@@ -23,7 +23,7 @@
     "watch": "npm run watch:lib & npm run watch:es",
     "watch:lib": "BABEL_ENV=commonjs babel src -d lib -w",
     "watch:es": "babel src -d es -w",
-    "test": "echo 1",
+    "test": "jest --config=jest.config.js",
     "coverage": "pnpm test --coverage"
   },
   "repository": "https://github.com/robinweser/fela/",
