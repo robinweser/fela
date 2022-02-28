@@ -1,0 +1,34 @@
+# withTheme
+
+> **Note**: If you're working with React > 16.3, we **highly recommend** using the [useFela](api/react-fela/useFela) hook instead.<br />It's more easy and safe to use and also has the best rendering performance.
+
+Injects the theme object, that is passed down using a [ThemeProvider](api/react-fela/ThemeProvider), into a component's props.
+It will automatically rerender the component if the theme changes. This even works if any parent component implements `shouldComponentUpdate`.
+
+## Arguments
+
+| Argument  | Type                                                         | Default | Description                                         |
+| --------- | ------------------------------------------------------------ | ------- | --------------------------------------------------- |
+| component | _[Component](https://reactjs.org/docs/react-component.html)_ |         | A valid React component that gets enhanced.         |
+| propName  | _string?_                                                    | `theme` | An alternative name that is used to pass the theme. |
+
+## Imports
+
+```javascript nocopy
+import { withTheme } from 'react-fela'
+import { withTheme } from 'preact-fela'
+import { withTheme } from 'inferno-fela'
+```
+
+## Example
+
+```javascript
+const Component = ({ theme }) => <div>The primary color is {theme.primary}</div>
+
+const ComponentWithTheme = withTheme(Component)
+```
+
+## Tips & Tricks
+
+- If components were accessing theme object directly via context before, this would not be possible since 6.0 release. You would have to wrap the component with the `withTheme`-HoC and access the theme via props.
+- Another way to access theme inside a custom component would be to pass in the component to createComponent and access theme object via props.
