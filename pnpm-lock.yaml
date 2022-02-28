@@ -55,15 +55,15 @@ importers:
       css-loader: ^3.4.2
       d3-scale-chromatic: 1.2.0
       fbjs: ^3.0.4
-      fela: ^12.0.0-rc.3.0
-      fela-enforce-longhands: ^12.0.0-rc.3.0
-      fela-preset-web: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-enforce-longhands: ^12.0.2
+      fela-preset-web: ^12.0.2
       glamor: ^2.20.40
       radium: ^0.26.0
       react: ^17.0.2
       react-art: ^17.0.0
       react-dom: ^17.0.2
-      react-fela: ^12.0.0-rc.3.0
+      react-fela: ^12.0.2
       react-jss: ^10.0.4
       react-native-web: ^0.17.6
       reactxp: ^2.0.0
@@ -81,15 +81,15 @@ importers:
       aphrodite: 2.4.0
       classnames: 2.3.1
       d3-scale-chromatic: 1.2.0
-      fela: 12.0.0-y.0
-      fela-enforce-longhands: 12.0.0-y.0
-      fela-preset-web: 12.0.0-y.0_fela@12.0.0-y.0
+      fela: link:../packages/fela
+      fela-enforce-longhands: link:../packages/fela-enforce-longhands
+      fela-preset-web: link:../packages/fela-preset-web
       glamor: 2.20.40
       radium: 0.26.1_react@17.0.2
       react: 17.0.2
       react-art: 17.0.2_react@17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
+      react-fela: link:../packages/react-fela
       react-jss: 10.9.0_react@17.0.2
       react-native-web: 0.17.6_react-dom@17.0.2+react@17.0.2
       reactxp: 2.0.0_react-dom@17.0.2+react@17.0.2
@@ -137,20 +137,20 @@ importers:
       cross-env: ^6.0.3
       express: ^4.14.0
       express-http-proxy: ^1.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-beautifier: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
-      fela-perf: ^12.0.0-rc.3.0
-      fela-plugin-embedded: ^12.0.0-rc.3.0
-      fela-plugin-fallback-value: ^12.0.0-rc.3.0
-      fela-plugin-logger: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-beautifier: ^12.0.2
+      fela-dom: ^12.0.2
+      fela-perf: ^12.0.2
+      fela-plugin-embedded: ^12.0.2
+      fela-plugin-fallback-value: ^12.0.2
+      fela-plugin-logger: ^12.0.2
       fela-plugin-lvha: ^5.0.16
-      fela-plugin-prefixer: ^12.0.0-rc.3.0
-      fela-plugin-unit: ^12.0.0-rc.3.0
-      fela-plugin-validator: ^12.0.0-rc.3.0
+      fela-plugin-prefixer: ^12.0.2
+      fela-plugin-unit: ^12.0.2
+      fela-plugin-validator: ^12.0.2
       inferno: ^6.1.5
       inferno-create-element: ^6.1.5
-      inferno-fela: ^12.0.0-rc.3.0
+      inferno-fela: ^12.0.2
       inferno-server: ^6.1.5
       jest: ^26.6.0
       rimraf: ^3.0.0
@@ -159,20 +159,20 @@ importers:
       webpack-dev-server: ^4.7.4
     dependencies:
       create-inferno-context: 0.2.4_inferno@6.3.1
-      fela: 12.0.0-y.0
-      fela-beautifier: 12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      fela-perf: 12.0.0-y.0
-      fela-plugin-embedded: 12.0.0-y.0
-      fela-plugin-fallback-value: 12.0.0-y.0
-      fela-plugin-logger: 12.0.0-y.0
+      fela: link:../../packages/fela
+      fela-beautifier: link:../../packages/fela-beautifier
+      fela-dom: link:../../packages/fela-dom
+      fela-perf: link:../../packages/fela-perf
+      fela-plugin-embedded: link:../../packages/fela-plugin-embedded
+      fela-plugin-fallback-value: link:../../packages/fela-plugin-fallback-value
+      fela-plugin-logger: link:../../packages/fela-plugin-logger
       fela-plugin-lvha: 5.0.16
-      fela-plugin-prefixer: 12.0.0-y.0
-      fela-plugin-unit: 12.0.0-y.0
-      fela-plugin-validator: 12.0.0-y.0
+      fela-plugin-prefixer: link:../../packages/fela-plugin-prefixer
+      fela-plugin-unit: link:../../packages/fela-plugin-unit
+      fela-plugin-validator: link:../../packages/fela-plugin-validator
       inferno: 6.3.1
       inferno-create-element: 6.3.1
-      inferno-fela: 12.0.0-y.0_f068668a92c69e08aaae84a76642e4b5
+      inferno-fela: link:../../packages/inferno-fela
       inferno-server: 6.3.1
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -209,43 +209,43 @@ importers:
       cross-env: ^6.0.3
       express: ^4.14.0
       express-http-proxy: ^1.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-beautifier: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
-      fela-layout-debugger: ^12.0.0-rc.3.0
-      fela-perf: ^12.0.0-rc.3.0
-      fela-plugin-embedded: ^12.0.0-rc.3.0
-      fela-plugin-fallback-value: ^12.0.0-rc.3.0
-      fela-plugin-logger: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-beautifier: ^12.0.2
+      fela-dom: ^12.0.2
+      fela-layout-debugger: ^12.0.2
+      fela-perf: ^12.0.2
+      fela-plugin-embedded: ^12.0.2
+      fela-plugin-fallback-value: ^12.0.2
+      fela-plugin-logger: ^12.0.2
       fela-plugin-lvha: ^5.0.16
-      fela-plugin-prefixer: ^12.0.0-rc.3.0
-      fela-plugin-unit: ^12.0.0-rc.3.0
-      fela-plugin-validator: ^12.0.0-rc.3.0
-      fela-sort-media-query-mobile-first: ^12.0.0-rc.3.0
+      fela-plugin-prefixer: ^12.0.2
+      fela-plugin-unit: ^12.0.2
+      fela-plugin-validator: ^12.0.2
+      fela-sort-media-query-mobile-first: ^12.0.2
       jest: ^26.6.0
       preact: ^10.2.1
-      preact-fela: ^12.0.0-rc.3.0
+      preact-fela: ^12.0.2
       preact-render-to-string: ^3.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^4.9.2
       webpack-dev-server: ^4.7.4
     dependencies:
-      fela: 12.0.0-y.0
-      fela-beautifier: 12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      fela-layout-debugger: 12.0.0-y.0
-      fela-perf: 12.0.0-y.0
-      fela-plugin-embedded: 12.0.0-y.0
-      fela-plugin-fallback-value: 12.0.0-y.0
-      fela-plugin-logger: 12.0.0-y.0
+      fela: link:../../packages/fela
+      fela-beautifier: link:../../packages/fela-beautifier
+      fela-dom: link:../../packages/fela-dom
+      fela-layout-debugger: link:../../packages/fela-layout-debugger
+      fela-perf: link:../../packages/fela-perf
+      fela-plugin-embedded: link:../../packages/fela-plugin-embedded
+      fela-plugin-fallback-value: link:../../packages/fela-plugin-fallback-value
+      fela-plugin-logger: link:../../packages/fela-plugin-logger
       fela-plugin-lvha: 5.0.16
-      fela-plugin-prefixer: 12.0.0-y.0
-      fela-plugin-unit: 12.0.0-y.0
-      fela-plugin-validator: 12.0.0-y.0
-      fela-sort-media-query-mobile-first: 12.0.0-y.0
+      fela-plugin-prefixer: link:../../packages/fela-plugin-prefixer
+      fela-plugin-unit: link:../../packages/fela-plugin-unit
+      fela-plugin-validator: link:../../packages/fela-plugin-validator
+      fela-sort-media-query-mobile-first: link:../../packages/fela-sort-media-query-mobile-first
       preact: 10.6.6
-      preact-fela: 12.0.0-y.0_fela@12.0.0-y.0+preact@10.6.6
+      preact-fela: link:../../packages/preact-fela
       preact-render-to-string: 3.8.2_preact@10.6.6
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -281,44 +281,44 @@ importers:
       cross-env: ^6.0.3
       express: ^4.14.0
       express-http-proxy: ^1.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-beautifier: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
-      fela-layout-debugger: ^12.0.0-rc.3.0
-      fela-perf: ^12.0.0-rc.3.0
-      fela-plugin-embedded: ^12.0.0-rc.3.0
-      fela-plugin-fallback-value: ^12.0.0-rc.3.0
-      fela-plugin-logger: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-beautifier: ^12.0.2
+      fela-dom: ^12.0.2
+      fela-layout-debugger: ^12.0.2
+      fela-perf: ^12.0.2
+      fela-plugin-embedded: ^12.0.2
+      fela-plugin-fallback-value: ^12.0.2
+      fela-plugin-logger: ^12.0.2
       fela-plugin-lvha: ^5.0.16
-      fela-plugin-prefixer: ^12.0.0-rc.3.0
-      fela-plugin-unit: ^12.0.0-rc.3.0
-      fela-plugin-validator: ^12.0.0-rc.3.0
-      fela-sort-media-query-mobile-first: ^12.0.0-rc.3.0
+      fela-plugin-prefixer: ^12.0.2
+      fela-plugin-unit: ^12.0.2
+      fela-plugin-validator: ^12.0.2
+      fela-sort-media-query-mobile-first: ^12.0.2
       jest: ^26.6.0
       react: ^17.0.2
       react-dom: ^17.0.2
-      react-fela: ^12.0.0-rc.3.0
+      react-fela: ^12.0.2
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^4.9.2
       webpack-dev-server: ^4.7.4
     dependencies:
-      fela: 12.0.0-y.0
-      fela-beautifier: 12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      fela-layout-debugger: 12.0.0-y.0
-      fela-perf: 12.0.0-y.0
-      fela-plugin-embedded: 12.0.0-y.0
-      fela-plugin-fallback-value: 12.0.0-y.0
-      fela-plugin-logger: 12.0.0-y.0
+      fela: link:../../packages/fela
+      fela-beautifier: link:../../packages/fela-beautifier
+      fela-dom: link:../../packages/fela-dom
+      fela-layout-debugger: link:../../packages/fela-layout-debugger
+      fela-perf: link:../../packages/fela-perf
+      fela-plugin-embedded: link:../../packages/fela-plugin-embedded
+      fela-plugin-fallback-value: link:../../packages/fela-plugin-fallback-value
+      fela-plugin-logger: link:../../packages/fela-plugin-logger
       fela-plugin-lvha: 5.0.16
-      fela-plugin-prefixer: 12.0.0-y.0
-      fela-plugin-unit: 12.0.0-y.0
-      fela-plugin-validator: 12.0.0-y.0
-      fela-sort-media-query-mobile-first: 12.0.0-y.0
+      fela-plugin-prefixer: link:../../packages/fela-plugin-prefixer
+      fela-plugin-unit: link:../../packages/fela-plugin-unit
+      fela-plugin-validator: link:../../packages/fela-plugin-validator
+      fela-sort-media-query-mobile-first: link:../../packages/fela-sort-media-query-mobile-first
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
+      react-fela: link:../../packages/react-fela
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -342,30 +342,30 @@ importers:
     specifiers:
       babel-preset-react-native: ^1.0.1
       create-react-native-app: ^0.0.6
-      fela: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
-      fela-native: ^12.0.0-rc.3.0
-      fela-plugin-extend: ^12.0.0-rc.3.0
-      fela-plugin-native-media-query: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-dom: ^12.0.2
+      fela-native: ^12.0.2
+      fela-plugin-extend: ^12.0.2
+      fela-plugin-native-media-query: ^12.0.2
+      fela-tools: ^12.0.2
+      fela-utils: ^12.0.2
       react: ^17.0.2
       react-dom: ^17.0.2
-      react-fela: ^12.0.0-rc.3.0
+      react-fela: ^12.0.2
       react-native: 0.44.0
     devDependencies:
       babel-preset-react-native: 1.9.2
       create-react-native-app: 0.0.6
-      fela: 12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      fela-native: 12.0.0-y.0
-      fela-plugin-extend: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-plugin-native-media-query: 12.0.0-y.0_590c11b3fed3588e326301c178848fa4
-      fela-tools: 12.0.0-y.0
-      fela-utils: 12.0.0-y.0
+      fela: link:../../packages/fela
+      fela-dom: link:../../packages/fela-dom
+      fela-native: link:../../packages/fela-native
+      fela-plugin-extend: link:../../packages/fela-plugin-extend
+      fela-plugin-native-media-query: link:../../packages/fela-plugin-native-media-query
+      fela-tools: link:../../packages/fela-tools
+      fela-utils: link:../../packages/fela-utils
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
+      react-fela: link:../../packages/react-fela
       react-native: 0.44.0_react@17.0.2
 
   examples/example-with-styleguidist:
@@ -375,23 +375,23 @@ importers:
       '@babel/preset-env': ^7.4.2
       babel-loader: ^8.0.5
       dog-names: ^1.0.2
-      fela: ^12.0.0-rc.3.0
-      fela-beautifier: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-beautifier: ^12.0.2
       fela-combine-arrays: ^1.0.9
-      fela-plugin-embedded: ^12.0.0-rc.3.0
-      fela-plugin-friendly-pseudo-class: ^12.0.0-rc.3.0
+      fela-plugin-embedded: ^12.0.2
+      fela-plugin-friendly-pseudo-class: ^12.0.2
       fela-plugin-named-media-query: ^5.0.13
-      fela-plugin-placeholder-prefixer: ^12.0.0-rc.3.0
-      fela-plugin-unit: ^12.0.0-rc.3.0
-      fela-plugin-validator: ^12.0.0-rc.3.0
-      fela-preset-web: ^12.0.0-rc.3.0
-      fela-statistics: ^12.0.0-rc.3.0
+      fela-plugin-placeholder-prefixer: ^12.0.2
+      fela-plugin-unit: ^12.0.2
+      fela-plugin-validator: ^12.0.2
+      fela-preset-web: ^12.0.2
+      fela-statistics: ^12.0.2
       lodash: ^4.17.4
       polished: 1.9.0
       prop-types: ^15.5.10
       react: ^17.0.2
       react-dom: ^17.0.2
-      react-fela: ^12.0.0-rc.3.0
+      react-fela: ^12.0.2
       react-modal: ^2.2.2
       react-styleguidist: 9.0.4
       webpack: 4.29.6
@@ -401,23 +401,23 @@ importers:
       '@babel/preset-env': 7.16.11_@babel+core@7.17.4
       babel-loader: 8.2.3_a3a1752b84ca3b676cfbcf1e86c2c8d3
       dog-names: 1.0.2
-      fela: 12.0.0-y.0
-      fela-beautifier: 12.0.0-y.0
+      fela: link:../../packages/fela
+      fela-beautifier: link:../../packages/fela-beautifier
       fela-combine-arrays: 1.0.9
-      fela-plugin-embedded: 12.0.0-y.0
-      fela-plugin-friendly-pseudo-class: 12.0.0-y.0
+      fela-plugin-embedded: link:../../packages/fela-plugin-embedded
+      fela-plugin-friendly-pseudo-class: link:../../packages/fela-plugin-friendly-pseudo-class
       fela-plugin-named-media-query: 5.0.13
-      fela-plugin-placeholder-prefixer: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-plugin-unit: 12.0.0-y.0
-      fela-plugin-validator: 12.0.0-y.0
-      fela-preset-web: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-statistics: 12.0.0-y.0
+      fela-plugin-placeholder-prefixer: link:../../packages/fela-plugin-placeholder-prefixer
+      fela-plugin-unit: link:../../packages/fela-plugin-unit
+      fela-plugin-validator: link:../../packages/fela-plugin-validator
+      fela-preset-web: link:../../packages/fela-preset-web
+      fela-statistics: link:../../packages/fela-statistics
       lodash: 4.17.21
       polished: 1.9.0
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
+      react-fela: link:../../packages/react-fela
       react-modal: 2.4.1_react-dom@17.0.2+react@17.0.2
       react-styleguidist: 9.0.4_2b9933fd29c26bd3b9b40fa26d69c206
       webpack: 4.29.6
@@ -439,7 +439,7 @@ importers:
       css-in-js-utils: ^3.0.0
       csstype: ^3.0.5
       fast-loops: ^1.0.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela-utils: ^12.0.2
       isobject: ^3.0.1
       jest: ^26.6.0
       rimraf: ^3.0.0
@@ -449,7 +449,7 @@ importers:
       css-in-js-utils: 3.1.0
       csstype: 3.0.10
       fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
       isobject: 3.0.1
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -516,9 +516,9 @@ importers:
       babel-jest: ^26.6.0
       cross-env: ^6.0.3
       fast-loops: ^1.0.0
-      fela: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-dom: ^12.0.2
+      fela-tools: ^12.0.2
       jest: ^26.6.0
       react: ^17.0.2
       react-addons-shallow-compare: ^15.6.2
@@ -526,8 +526,8 @@ importers:
       shallow-equal: ^1.0.0
     dependencies:
       fast-loops: 1.1.3
-      fela-dom: 12.0.0-y.0
-      fela-tools: 12.0.0-y.0
+      fela-dom: link:../fela-dom
+      fela-tools: link:../fela-tools
       react-addons-shallow-compare: 15.6.3
       shallow-equal: 1.2.1
     devDependencies:
@@ -540,7 +540,7 @@ importers:
       babel-core: 7.0.0-bridge.0_@babel+core@7.17.4
       babel-jest: 26.6.3_@babel+core@7.17.4
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
+      fela: link:../fela
       jest: 26.6.3
       react: 17.0.2
       rimraf: 3.0.2
@@ -558,16 +558,16 @@ importers:
       cross-env: ^6.0.3
       css-in-js-utils: ^3.0.0
       fast-loops: ^1.0.1
-      fela: ^12.0.0-rc.3.0
-      fela-preset-web: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-preset-web: ^12.0.2
+      fela-tools: ^12.0.2
+      fela-utils: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
     dependencies:
       css-in-js-utils: 3.1.0
       fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -578,9 +578,9 @@ importers:
       babel-core: 7.0.0-bridge.0_@babel+core@7.17.4
       babel-jest: 26.6.3_@babel+core@7.17.4
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
-      fela-preset-web: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-tools: 12.0.0-y.0
+      fela: link:../fela
+      fela-preset-web: link:../fela-preset-web
+      fela-tools: link:../fela-tools
       jest: 26.6.3
       rimraf: 3.0.2
 
@@ -599,10 +599,10 @@ importers:
       cross-env: ^6.0.3
       css-in-js-utils: ^3.0.0
       fast-loops: ^1.0.1
-      fela: ^12.0.0-rc.3.0
-      fela-preset-web: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-preset-web: ^12.0.2
+      fela-tools: ^12.0.2
+      fela-utils: ^12.0.2
       jest: ^26.6.0
       js-beautify: ^1.14.0
       jsdom: ^16.6.0
@@ -613,7 +613,7 @@ importers:
     dependencies:
       css-in-js-utils: 3.1.0
       fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
       sort-css-media-queries: 1.5.4
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -627,9 +627,9 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
-      fela-preset-web: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-tools: 12.0.0-y.0
+      fela: link:../fela
+      fela-preset-web: link:../fela-preset-web
+      fela-tools: link:../fela-tools
       jest: 26.6.3
       js-beautify: 1.14.0
       jsdom: 16.7.0
@@ -686,14 +686,14 @@ importers:
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
       fast-loops: ^1.0.0
-      fela: ^12.0.0-rc.3.0
-      fela-monolithic: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-monolithic: ^12.0.2
+      fela-tools: ^12.0.2
       jest: ^26.6.0
-      jest-react-fela: ^12.0.0-rc.3.0
+      jest-react-fela: ^12.0.2
       jsdom: ^16.6.0
       react: ^17.0.2
-      react-fela: ^12.0.0-rc.3.0
+      react-fela: ^12.0.2
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
@@ -712,14 +712,14 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
-      fela-monolithic: 12.0.0-y.0
-      fela-tools: 12.0.0-y.0
+      fela: link:../fela
+      fela-monolithic: link:../fela-monolithic
+      fela-tools: link:../fela-tools
       jest: 26.6.3
-      jest-react-fela: 12.0.0-y.0_e036599f5092e549e5534366fe1841c5
+      jest-react-fela: link:../jest-react-fela
       jsdom: 16.7.0
       react: 17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
+      react-fela: link:../react-fela
       rimraf: 3.0.2
       webpack: 4.46.0_webpack-cli@3.3.12
       webpack-cli: 3.3.12_webpack@4.46.0
@@ -736,28 +736,28 @@ importers:
       babel-core: 7.0.0-bridge.0
       babel-jest: ^26.6.0
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
-      fela-monolithic: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-dom: ^12.0.2
+      fela-monolithic: ^12.0.2
+      fela-tools: ^12.0.2
       jest: ^26.6.0
-      jest-react-fela: ^12.0.0-rc.3.0
+      jest-react-fela: ^12.0.2
       raf: ^3.4.1
       react: ^17.0.2
       react-dom: ^17.0.2
-      react-fela: ^12.0.0-rc.3.0
+      react-fela: ^12.0.2
       react-test-renderer: ^17.0.2
       rimraf: ^3.0.0
     dependencies:
-      fela: 12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      fela-monolithic: 12.0.0-y.0
-      fela-tools: 12.0.0-y.0
-      jest-react-fela: 12.0.0-y.0_bed73af5c20c75ed4229a108288d15c4
+      fela: link:../fela
+      fela-dom: link:../fela-dom
+      fela-monolithic: link:../fela-monolithic
+      fela-tools: link:../fela-tools
+      jest-react-fela: link:../jest-react-fela
       raf: 3.4.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
+      react-fela: link:../react-fela
       react-test-renderer: 17.0.2_react@17.0.2
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -786,7 +786,7 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
+      fela: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
       styles-debugger: ^0.0.5
@@ -806,7 +806,7 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
+      fela: link:../fela
       jest: 26.6.3
       rimraf: 3.0.2
       webpack: 4.46.0_webpack-cli@3.3.12
@@ -826,14 +826,14 @@ importers:
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
       cssbeautify: ^0.3.1
-      fela-utils: ^12.0.0-rc.3.0
+      fela-utils: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
       cssbeautify: 0.3.1
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -866,9 +866,9 @@ importers:
       cross-env: ^6.0.3
       css-in-js-utils: ^3.0.0
       fast-loops: ^1.0.0
-      fela: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-tools: ^12.0.2
+      fela-utils: ^12.0.2
       isobject: ^3.0.1
       jest: ^26.6.0
       rimraf: ^3.0.0
@@ -878,7 +878,7 @@ importers:
     dependencies:
       css-in-js-utils: 3.1.0
       fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
       isobject: 3.0.1
       string-hash: 1.1.3
     devDependencies:
@@ -893,8 +893,8 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
-      fela-tools: 12.0.0-y.0
+      fela: link:../fela
+      fela-tools: link:../fela-tools
       jest: 26.6.3
       rimraf: 3.0.2
       webpack: 4.46.0_webpack-cli@3.3.12
@@ -912,12 +912,12 @@ importers:
       babel-jest: ^26.6.0
       cross-env: ^6.0.3
       fast-loops: ^1.0.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela-utils: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
     dependencies:
       fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -1055,8 +1055,8 @@ importers:
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
       fast-loops: ^1.0.0
-      fela: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-tools: ^12.0.2
       isobject: ^3.0.1
       jest: ^26.6.0
       rimraf: ^3.0.0
@@ -1077,8 +1077,8 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
-      fela-tools: 12.0.0-y.0
+      fela: link:../fela
+      fela-tools: link:../fela-tools
       jest: 26.6.3
       rimraf: 3.0.2
       webpack: 4.46.0_webpack-cli@3.3.12
@@ -1136,7 +1136,7 @@ importers:
       cross-env: ^6.0.3
       css-in-js-utils: ^3.0.0
       fast-loops: ^1.0.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela-utils: ^12.0.2
       isobject: ^3.0.1
       jest: ^26.6.0
       rimraf: ^3.0.0
@@ -1145,7 +1145,7 @@ importers:
     dependencies:
       css-in-js-utils: 3.1.0
       fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
       isobject: 3.0.1
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -1253,13 +1253,13 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela-plugin-pseudo-prefixer: ^12.0.0-rc.3.0
+      fela-plugin-pseudo-prefixer: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
-      fela-plugin-pseudo-prefixer: 12.0.0-y.0
+      fela-plugin-pseudo-prefixer: link:../fela-plugin-pseudo-prefixer
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -1331,14 +1331,14 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela-utils: ^12.0.0-rc.3.0
+      fela-utils: ^12.0.2
       isobject: ^3.0.1
       jest: ^26.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
       isobject: 3.0.1
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -1558,7 +1558,7 @@ importers:
       cross-env: ^6.0.3
       css-in-js-utils: ^3.0.0
       css-mediaquery: ^0.1.2
-      fela-utils: ^12.0.0-rc.3.0
+      fela-utils: ^12.0.2
       isobject: ^3.0.1
       jest: ^26.6.0
       react: ^17.0.2
@@ -1568,7 +1568,7 @@ importers:
     dependencies:
       css-in-js-utils: 3.1.0
       css-mediaquery: 0.1.2
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
       isobject: 3.0.1
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -1601,13 +1601,13 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela-plugin-pseudo-prefixer: ^12.0.0-rc.3.0
+      fela-plugin-pseudo-prefixer: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
-      fela-plugin-pseudo-prefixer: 12.0.0-y.0
+      fela-plugin-pseudo-prefixer: link:../fela-plugin-pseudo-prefixer
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -1682,14 +1682,14 @@ importers:
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
       fast-loops: ^1.0.0
-      fela-plugin-custom-property: ^12.0.0-rc.3.0
+      fela-plugin-custom-property: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
       fast-loops: 1.1.3
-      fela-plugin-custom-property: 12.0.0-y.0
+      fela-plugin-custom-property: link:../fela-plugin-custom-property
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -1946,7 +1946,7 @@ importers:
       cross-env: ^6.0.3
       css-in-js-utils: ^3.0.0
       csslint: ^1.0.5
-      fela-utils: ^12.0.0-rc.3.0
+      fela-utils: ^12.0.2
       isobject: ^3.0.1
       jest: ^26.6.0
       rimraf: ^3.0.0
@@ -1955,7 +1955,7 @@ importers:
     dependencies:
       css-in-js-utils: 3.1.0
       csslint: 1.0.5
-      fela-utils: 12.0.0-y.0
+      fela-utils: link:../fela-utils
       isobject: 3.0.1
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -1987,16 +1987,16 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-plugin-logger: ^12.0.0-rc.3.0
-      fela-plugin-validator: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-plugin-logger: ^12.0.2
+      fela-plugin-validator: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
-      fela-plugin-logger: 12.0.0-y.0
-      fela-plugin-validator: 12.0.0-y.0
+      fela-plugin-logger: link:../fela-plugin-logger
+      fela-plugin-validator: link:../fela-plugin-validator
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -2009,7 +2009,7 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
+      fela: link:../fela
       jest: 26.6.3
       rimraf: 3.0.2
       webpack: 4.46.0_webpack-cli@3.3.12
@@ -2028,23 +2028,23 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-plugin-embedded: ^12.0.0-rc.3.0
-      fela-plugin-extend: ^12.0.0-rc.3.0
-      fela-plugin-fallback-value: ^12.0.0-rc.3.0
-      fela-plugin-prefixer: ^12.0.0-rc.3.0
-      fela-plugin-unit: ^12.0.0-rc.3.0
-      fela-tools: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-plugin-embedded: ^12.0.2
+      fela-plugin-extend: ^12.0.2
+      fela-plugin-fallback-value: ^12.0.2
+      fela-plugin-prefixer: ^12.0.2
+      fela-plugin-unit: ^12.0.2
+      fela-tools: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
-      fela-plugin-embedded: 12.0.0-y.0
-      fela-plugin-extend: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-plugin-fallback-value: 12.0.0-y.0
-      fela-plugin-prefixer: 12.0.0-y.0
-      fela-plugin-unit: 12.0.0-y.0
+      fela-plugin-embedded: link:../fela-plugin-embedded
+      fela-plugin-extend: link:../fela-plugin-extend
+      fela-plugin-fallback-value: link:../fela-plugin-fallback-value
+      fela-plugin-prefixer: link:../fela-plugin-prefixer
+      fela-plugin-unit: link:../fela-plugin-unit
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -2057,8 +2057,8 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
-      fela-tools: 12.0.0-y.0
+      fela: link:../fela
+      fela-tools: link:../fela-tools
       jest: 26.6.3
       rimraf: 3.0.2
       webpack: 4.46.0_webpack-cli@3.3.12
@@ -2077,7 +2077,7 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
+      fela: ^12.0.2
       jest: ^26.6.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
@@ -2094,7 +2094,7 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
+      fela: link:../fela
       jest: 26.6.3
       rimraf: 3.0.2
       webpack: 4.46.0_webpack-cli@3.3.12
@@ -2149,15 +2149,15 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela-tools: ^12.0.0-rc.3.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela-tools: ^12.0.2
+      fela-utils: ^12.0.2
       gzip-size: ^3.0.0
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
-      fela-tools: 12.0.0-y.0
-      fela-utils: 12.0.0-y.0
+      fela-tools: link:../fela-tools
+      fela-utils: link:../fela-utils
       gzip-size: 3.0.0
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -2189,8 +2189,8 @@ importers:
       cross-env: ^6.0.3
       css-in-js-utils: ^3.0.0
       fast-loops: ^1.0.0
-      fela: ^12.0.0-rc.3.0
-      fela-utils: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-utils: ^12.0.2
       jest: ^26.6.0
       js-beautify: ^1.14.0
       jsdom: ^16.6.0
@@ -2200,8 +2200,8 @@ importers:
     dependencies:
       css-in-js-utils: 3.1.0
       fast-loops: 1.1.3
-      fela: 12.0.0-y.0
-      fela-utils: 12.0.0-y.0
+      fela: link:../fela
+      fela-utils: link:../fela-utils
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -2274,9 +2274,9 @@ importers:
       clean-webpack-plugin: ^3.0.0
       create-inferno-context: ^0.2.4
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-bindings: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-bindings: ^12.0.2
+      fela-dom: ^12.0.2
       inferno: ^5.0.1
       inferno-create-element: ^5.0.1
       jest: ^26.6.0
@@ -2284,8 +2284,8 @@ importers:
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
-      fela-bindings: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-dom: 12.0.0-y.0
+      fela-bindings: link:../fela-bindings
+      fela-dom: link:../fela-dom
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -2299,7 +2299,7 @@ importers:
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       create-inferno-context: 0.2.4_inferno@5.6.2
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
+      fela: link:../fela
       inferno: 5.6.2
       inferno-create-element: 5.6.2_inferno@5.6.2
       jest: 26.6.3
@@ -2318,12 +2318,12 @@ importers:
       babel-core: 7.0.0-bridge.0
       babel-jest: ^26.6.0
       cross-env: ^6.0.3
-      fela-tools: ^12.0.0-rc.3.0
+      fela-tools: ^12.0.2
       htmltojsx: ^0.3.0
       jest: ^26.6.0
       rimraf: ^3.0.0
     dependencies:
-      fela-tools: 12.0.0-y.0
+      fela-tools: link:../fela-tools
       htmltojsx: 0.3.0
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -2348,10 +2348,10 @@ importers:
       '@babel/preset-env': ^7.5.5
       babel-core: 7.0.0-bridge.0
       cross-env: ^6.0.3
-      jest-fela-bindings: ^12.0.0-rc.3.0
+      jest-fela-bindings: ^12.0.2
       rimraf: ^3.0.0
     dependencies:
-      jest-fela-bindings: 12.0.0-y.0
+      jest-fela-bindings: link:../jest-fela-bindings
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -2373,10 +2373,10 @@ importers:
       '@babel/preset-env': ^7.5.5
       babel-core: 7.0.0-bridge.0
       cross-env: ^6.0.3
-      jest-fela-bindings: ^12.0.0-rc.3.0
+      jest-fela-bindings: ^12.0.2
       rimraf: ^3.0.0
     dependencies:
-      jest-fela-bindings: 12.0.0-y.0
+      jest-fela-bindings: link:../jest-fela-bindings
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -2398,14 +2398,14 @@ importers:
       '@babel/preset-env': ^7.5.5
       babel-core: 7.0.0-bridge.0
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-preset-web: ^12.0.0-rc.3.0
-      jest-fela-bindings: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-preset-web: ^12.0.2
+      jest-fela-bindings: ^12.0.2
       react: ^17.0.2
-      react-fela: ^12.0.0-rc.3.0
+      react-fela: ^12.0.2
       rimraf: ^3.0.0
     dependencies:
-      jest-fela-bindings: 12.0.0-y.0
+      jest-fela-bindings: link:../jest-fela-bindings
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -2415,10 +2415,10 @@ importers:
       '@babel/preset-env': 7.16.11_@babel+core@7.17.4
       babel-core: 7.0.0-bridge.0_@babel+core@7.17.4
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
-      fela-preset-web: 12.0.0-y.0_fela@12.0.0-y.0
+      fela: link:../fela
+      fela-preset-web: link:../fela-preset-web
       react: 17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
+      react-fela: link:../react-fela
       rimraf: 3.0.2
 
   packages/preact-fela:
@@ -2431,14 +2431,14 @@ importers:
       '@babel/preset-env': ^7.5.5
       babel-core: 7.0.0-bridge.0
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-bindings: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-bindings: ^12.0.2
+      fela-dom: ^12.0.2
       preact: ^10.6.6
       rimraf: ^3.0.0
     dependencies:
-      fela-bindings: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-dom: 12.0.0-y.0
+      fela-bindings: link:../fela-bindings
+      fela-dom: link:../fela-dom
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
       '@babel/core': 7.17.4
@@ -2448,7 +2448,7 @@ importers:
       '@babel/preset-env': 7.16.11_@babel+core@7.17.4
       babel-core: 7.0.0-bridge.0_@babel+core@7.17.4
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
+      fela: link:../fela
       preact: 10.6.6
       rimraf: 3.0.2
 
@@ -2464,17 +2464,17 @@ importers:
       babel-loader: ^8.2.3
       clean-webpack-plugin: ^3.0.0
       cross-env: ^6.0.3
-      fela: ^12.0.0-rc.3.0
-      fela-bindings: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-bindings: ^12.0.2
+      fela-dom: ^12.0.2
       prop-types: ^15.5.8
       react: ^17.0.2
       rimraf: ^3.0.0
       webpack: ^4.41.6
       webpack-cli: ^3.3.10
     dependencies:
-      fela-bindings: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-dom: 12.0.0-y.0
+      fela-bindings: link:../fela-bindings
+      fela-dom: link:../fela-dom
       prop-types: 15.8.1
     devDependencies:
       '@babel/cli': 7.17.3_@babel+core@7.17.4
@@ -2487,7 +2487,7 @@ importers:
       babel-loader: 8.2.3_6fb82b936942eb9f11ea0fd3e177918b
       clean-webpack-plugin: 3.0.0_webpack@4.46.0
       cross-env: 6.0.3
-      fela: 12.0.0-y.0
+      fela: link:../fela
       react: 17.0.2
       rimraf: 3.0.2
       webpack: 4.46.0_webpack-cli@3.3.12
@@ -2529,37 +2529,37 @@ importers:
       '@mdx-js/runtime': ^1.6.22
       '@next/bundle-analyzer': ^9.5.5
       copy-to-clipboard: ^3.3.1
-      fela: ^12.0.0-rc.3.0
-      fela-dom: ^12.0.0-rc.3.0
-      fela-plugin-named-keys: ^12.0.0-rc.3.0
-      fela-plugin-responsive-value: ^12.0.0-rc.3.0
-      fela-preset-web: ^12.0.0-rc.3.0
-      fela-sort-media-query-mobile-first: ^12.0.0-rc.3.0
+      fela: ^12.0.2
+      fela-dom: ^12.0.2
+      fela-plugin-named-keys: ^12.0.2
+      fela-plugin-responsive-value: ^12.0.2
+      fela-preset-web: ^12.0.2
+      fela-sort-media-query-mobile-first: ^12.0.2
       kilvin: ^3.1.1
       next: ^12.0.10
       next-mdx-remote: ^3.0.8
       prism-react-renderer: ^1.3.1
       react: ^17.0.2
       react-dom: ^17.0.2
-      react-fela: ^12.0.0-rc.3.0
+      react-fela: ^12.0.2
       react-test-renderer: ^17.0.2
     dependencies:
       '@docsearch/react': 3.0.0-alpha.50_react-dom@17.0.2+react@17.0.2
       '@mdx-js/react': 2.0.0_react@17.0.2
       '@mdx-js/runtime': 1.6.22_react@17.0.2
       copy-to-clipboard: 3.3.1
-      fela: 12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      fela-plugin-named-keys: 12.0.0-y.0
-      fela-plugin-responsive-value: 12.0.0-y.0
-      fela-preset-web: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-sort-media-query-mobile-first: 12.0.0-y.0
+      fela: link:../packages/fela
+      fela-dom: link:../packages/fela-dom
+      fela-plugin-named-keys: link:../packages/fela-plugin-named-keys
+      fela-plugin-responsive-value: link:../packages/fela-plugin-responsive-value
+      fela-preset-web: link:../packages/fela-preset-web
+      fela-sort-media-query-mobile-first: link:../packages/fela-sort-media-query-mobile-first
       kilvin: 3.1.1
       next: 12.0.10_788bdfc033c0bbbfec1329987123a634
       prism-react-renderer: 1.3.1_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
+      react-fela: file:packages/react-fela_react@17.0.2
     devDependencies:
       '@babel/core': 7.17.4
       '@babel/node': 7.16.8_@babel+core@7.17.4
@@ -8044,6 +8044,7 @@ packages:
   /browser-request/0.3.3:
     resolution: {integrity: sha1-ns5bWsqJopkyJC4Yv5M975h2zBc=}
     engines: {'0': node}
+    dev: false
 
   /browserify-aes/1.2.0:
     resolution: {integrity: sha512-+7CHXqGuspUn/Sl5aO7Ea0xWGAtETPXNSAjHo48JfLdPWcMng33Xe4znFvQweqc/uzk5zSOI3H52CYnjCfb5hA==}
@@ -8663,6 +8664,7 @@ packages:
   /clone/2.1.2:
     resolution: {integrity: sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=}
     engines: {node: '>=0.8'}
+    dev: false
 
   /clsx/1.1.1:
     resolution: {integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==}
@@ -9346,6 +9348,7 @@ packages:
     resolution: {integrity: sha512-fJAcud6B3rRu+KHYk+Bwf+WFL2MDCJJ1XG9x137tJQ0xYxor7XziQtuGFbWNdqrvF4Tk26O3H73nfVqXt/fW1A==}
     dependencies:
       hyphenate-style-name: 1.0.4
+    dev: false
 
   /css-initials/0.2.0:
     resolution: {integrity: sha512-t80yjg0pi4VAIc5itIqLh6M+ZlA+cB+gUXEQkDR09+ExTDwLMGfJ8YviBsGW+DklIrb2k9fwB75Io8ooWXDxxw==}
@@ -9383,6 +9386,7 @@ packages:
 
   /css-mediaquery/0.1.2:
     resolution: {integrity: sha1-aiw3NEkoYYYxxUvTPO3TAdoYvqA=}
+    dev: false
 
   /css-to-react-native/3.0.0:
     resolution: {integrity: sha512-Ro1yETZA813eoyUp2GDBhG2j+YggidUmzO1/v9eYBKR2EHVEniE2MI/NqpTQ954BMpTPZFsGNPm46qFB9dpaPQ==}
@@ -9402,6 +9406,7 @@ packages:
   /cssbeautify/0.3.1:
     resolution: {integrity: sha1-Et0fc0A1wub6ymfcvc73TkKBE5c=}
     hasBin: true
+    dev: false
 
   /cssesc/3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -9416,6 +9421,7 @@ packages:
     dependencies:
       clone: 2.1.2
       parserlib: 1.1.1
+    dev: false
 
   /cssom/0.3.8:
     resolution: {integrity: sha512-b0tGHbfegbhPJpxpiBPU2sCkigAqtM9O121le6bbOlgyV+NyGyCmVfJ6QW9eRjz8CpNfWEOYBIMIGRYkLwsIYg==}
@@ -9428,6 +9434,7 @@ packages:
     resolution: {integrity: sha1-VBCXI0yyUTyDzu06zdwn/yeYfVQ=}
     dependencies:
       cssom: 0.3.8
+    dev: false
 
   /cssstyle/2.3.0:
     resolution: {integrity: sha512-AZL67abkUzIuvcHqk7c09cezpGNcxUxU4Ioi/05xHk4DQeTkWmGYftIE6ctU6AEt+Gn4n1lDStOtj7FKycP71A==}
@@ -9438,6 +9445,7 @@ packages:
 
   /csstype/3.0.10:
     resolution: {integrity: sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==}
+    dev: false
 
   /csurf/1.8.3:
     resolution: {integrity: sha1-I/KhO/HY/OHQyZZYg5RELLqGpWo=}
@@ -9860,6 +9868,7 @@ packages:
     dependencies:
       domelementtype: 2.2.0
       entities: 2.2.0
+    dev: false
 
   /dom-walk/0.1.2:
     resolution: {integrity: sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==}
@@ -9872,9 +9881,11 @@ packages:
 
   /domelementtype/1.3.1:
     resolution: {integrity: sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==}
+    dev: false
 
   /domelementtype/2.2.0:
     resolution: {integrity: sha512-DtBMo82pv1dFtUmHyr48beiuq792Sxohr+8Hm9zoxklYPfa6n0Z3Byjj2IV7bmr2IyqClnqEQhfgHJJ5QF0R5A==}
+    dev: false
 
   /domexception/2.0.1:
     resolution: {integrity: sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==}
@@ -9887,12 +9898,14 @@ packages:
     resolution: {integrity: sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==}
     dependencies:
       domelementtype: 1.3.1
+    dev: false
 
   /domutils/1.7.0:
     resolution: {integrity: sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==}
     dependencies:
       dom-serializer: 0.2.2
       domelementtype: 1.3.1
+    dev: false
 
   /dot-prop/5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
@@ -10029,9 +10042,11 @@ packages:
 
   /entities/1.1.2:
     resolution: {integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==}
+    dev: false
 
   /entities/2.2.0:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
+    dev: false
 
   /env-paths/2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
@@ -10842,23 +10857,17 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /fela-beautifier/12.0.0-y.0:
-    resolution: {integrity: sha512-S3I8dwC65WuyOsld57xZIhWh4jy0p94C72R9R8o56DP8N4CHmLGNj+5nGApTDCaH+MoVf2tguS4z5uJAvia+5g==}
-    dependencies:
-      cssbeautify: 0.3.1
-      fast-loops: 1.1.3
-
-  /fela-bindings/12.0.0-y.0_fela@12.0.0-y.0:
-    resolution: {integrity: sha512-HLOq2V0+oTKXMuvndS1qWYXJZtwRXu8/wK3aVEq+pUwXtsK2AFbr3xYlF21J1g/UukijQgbu3+GW1TY60Ha5qA==}
+  /fela-bindings/12.0.2:
+    resolution: {integrity: sha512-d0bv4X/N/Rvrhj7Sq2nRx2BpkXWpKrGcgFb+ad1XamH2bbn/6s8D1N/7VtaxZBi6nS1dCU0xA4SXOYMAlXLLVw==}
     peerDependencies:
       fela: '*'
     dependencies:
       fast-loops: 1.1.3
-      fela: 12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      fela-tools: 12.0.0-y.0
+      fela-dom: 12.0.2
+      fela-tools: 12.0.2
       react-addons-shallow-compare: 15.6.3
       shallow-equal: 1.2.1
+    dev: false
 
   /fela-combine-arrays/1.0.9:
     resolution: {integrity: sha512-5Nk8ukEmsU01TjwlVNQIT+4OmqA4JI7HCX5Npx1Wk+oEGjc/Zxy8HIp0pT7kpXkJ99L5MAFi6L4wgrErXreJ0w==}
@@ -10867,94 +10876,13 @@ packages:
       isobject: 3.0.1
     dev: true
 
-  /fela-dom/12.0.0-y.0:
-    resolution: {integrity: sha512-Ee3zK/a7MDnbMI9zPZy2W7AItkZNmuhuSJIUOkSB8Gy7/5M6+5WtTLkEiwLRPioRKxe61Q9qTcE0G6bxbYm2GA==}
+  /fela-dom/12.0.2:
+    resolution: {integrity: sha512-LEkrlggTKsGap7xnENvLayKMOcnEzFJD7ho3SP/jVXzVvmDdlZZM1O9hzDdP3hlt1yM2FRy1Fi1EAPOkEiWQOg==}
     dependencies:
       css-in-js-utils: 3.1.0
       fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
+      fela-utils: 12.0.2
       sort-css-media-queries: 1.5.4
-
-  /fela-enforce-longhands/12.0.0-y.0:
-    resolution: {integrity: sha512-K5RnBfNL63v7O3TmYUO5wLYz714eGt8R52ttySfhA4dSTsN4W2SHc3xLVDTdbZKnNnDrASfIHuIfg1lglINmAQ==}
-    dev: false
-
-  /fela-layout-debugger/12.0.0-y.0:
-    resolution: {integrity: sha512-1LvO16VC2Qjakxzo+D59RnpeIIHkXuK7M/taQZCthutQgYXBoOUePBcLEq8DKxvRQXMZeKTh0/bdQpUxavn9GA==}
-    dependencies:
-      styles-debugger: 0.0.5
-    dev: false
-
-  /fela-monolithic/12.0.0-y.0:
-    resolution: {integrity: sha512-wv7cgMqnt8L7EmGrgo/vLLk5bqh10iuEYpHI5Z1yp8Q8EudZXtcWPdqxXBx+zvjPXd6H2mfgCPE4DOleL6K+dg==}
-    dependencies:
-      css-in-js-utils: 3.1.0
-      fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
-      isobject: 3.0.1
-      string-hash: 1.1.3
-
-  /fela-native/12.0.0-y.0:
-    resolution: {integrity: sha512-R8pXmprBiv3hi0GRM2QCbKNpN7TGASXX0KcPaqNDotx1zELz89u2bYYXElWhu8jNjRmWUpsLoX0jPSXiTVvsQw==}
-    dependencies:
-      fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
-    dev: true
-
-  /fela-perf/12.0.0-y.0:
-    resolution: {integrity: sha512-DC0M+yzjX2Gv0P/zc7PfGiy93Xczo2IIr5aYIGsV4nWNxjEsbIzyKPzNSrVc8NlsoPQR7p0OBaUELeHbP+JUyQ==}
-    dev: false
-
-  /fela-plugin-custom-property/12.0.0-y.0:
-    resolution: {integrity: sha512-+nBVV0fDl0CJPORtNsMSj75WOLN5VGUB8O46iuUCnGnCxWPiE0SPzpfSymJQV9MzBf0TnMIMz39+EGjzM7Wf0A==}
-    peerDependencies:
-      fela: ^11.2.0
-    dependencies:
-      css-in-js-utils: 3.1.0
-      isobject: 3.0.1
-    dev: false
-
-  /fela-plugin-custom-property/12.0.0-y.0_fela@12.0.0-y.0:
-    resolution: {integrity: sha512-+nBVV0fDl0CJPORtNsMSj75WOLN5VGUB8O46iuUCnGnCxWPiE0SPzpfSymJQV9MzBf0TnMIMz39+EGjzM7Wf0A==}
-    peerDependencies:
-      fela: ^11.2.0
-    dependencies:
-      css-in-js-utils: 3.1.0
-      fela: 12.0.0-y.0
-      isobject: 3.0.1
-    dev: true
-
-  /fela-plugin-embedded/12.0.0-y.0:
-    resolution: {integrity: sha512-uALT8UMzXXAo9Vve7R5xFMQjK6XYOm5Boqt+CGwlpZWjknciZOqcTlX3Qn0tFmFEmrzVBudAHy1uRy3A3PLwLA==}
-    dependencies:
-      fast-loops: 1.1.3
-      isobject: 3.0.1
-
-  /fela-plugin-extend/12.0.0-y.0_fela@12.0.0-y.0:
-    resolution: {integrity: sha512-0zdplZBDhf96y48C01yeAhW3EgdmR5FbjI5HAZG4m9LsZb8sBxBuPSi3f86BLinRe+uN1FNWGaLKv2+RA1RNSA==}
-    peerDependencies:
-      fela: ^11.2.0
-    dependencies:
-      css-in-js-utils: 3.1.0
-      fast-loops: 1.1.3
-      fela: 12.0.0-y.0
-      fela-utils: 12.0.0-y.0
-      isobject: 3.0.1
-
-  /fela-plugin-fallback-value/12.0.0-y.0:
-    resolution: {integrity: sha512-ydyU5xfsxVlFKG53MOfgxRyQ9s7Up1kMGVMTFbRLdnUm8jgP1V78gzgZxJS7JJQrYqxOASlBJaRPzgo3jL1fJA==}
-    dependencies:
-      css-in-js-utils: 3.1.0
-      isobject: 4.0.0
-
-  /fela-plugin-friendly-pseudo-class/12.0.0-y.0:
-    resolution: {integrity: sha512-vXlSjqyCifH+6f+Zab2iRFiVJyArXpJKMiQ9J0mq8djTkQ2LTLWAlyoocBiu5RXmiwEnqiUrvmvNDrOFwBfnXw==}
-    dependencies:
-      isobject: 3.0.1
-    dev: true
-
-  /fela-plugin-logger/12.0.0-y.0:
-    resolution: {integrity: sha512-nXryacFwwG7wUfH14A41lz/7aeCDzwuJ+tDMKnsveFa4jSB8SYODq46eErcBlPCRQq0+RopAkfrmVx0AcM21Vw==}
     dev: false
 
   /fela-plugin-lvha/5.0.16:
@@ -10963,129 +10891,27 @@ packages:
       fast-loops: 1.1.3
     dev: false
 
-  /fela-plugin-named-keys/12.0.0-y.0:
-    resolution: {integrity: sha512-MzimtA0wj3d2r9qTUwHMdLQH+Bv1wD0lsA5p1sL8t6oR1DDoQ7/RrCPjvsl4UctH56qQKgLO0xoadnUUMhK+3g==}
-    dependencies:
-      css-in-js-utils: 3.1.0
-      isobject: 3.0.1
-    dev: false
-
   /fela-plugin-named-media-query/5.0.13:
     resolution: {integrity: sha512-QQnPZ1EwRkiLJ+69gRJ4AzFa9ZkASPFBo9IUsYPPKy8tx7JzPqDE5KtZ25NPpMktMTCmbvzE+LvCOnXKpHVLLw==}
     dependencies:
       fela-utils: 7.0.5
     dev: true
 
-  /fela-plugin-native-media-query/12.0.0-y.0_590c11b3fed3588e326301c178848fa4:
-    resolution: {integrity: sha512-Xiz6kdHqOrteQ5JIR0ZetEYijO3zWATgJR3TM0G1EyTWoHtYiNanleiqOYef75b3fUUHBkAVFa/D33KwBX6Cqw==}
-    peerDependencies:
-      fela-native: ^11.2.0
-      react: '*'
-      react-native: '*'
-    dependencies:
-      css-in-js-utils: 3.1.0
-      css-mediaquery: 0.1.2
-      fela-native: 12.0.0-y.0
-      fela-utils: 12.0.0-y.0
-      isobject: 3.0.1
-      react: 17.0.2
-      react-native: 0.44.0_react@17.0.2
-    dev: true
-
-  /fela-plugin-placeholder-prefixer/12.0.0-y.0_fela@12.0.0-y.0:
-    resolution: {integrity: sha512-E3J5e6s0XibL/vzYYgWosbZAxiEw130GI5dY3Oxg/arK93ElTcJ0d6Xhv/IjD5Dy0yLEOmNRs0k4CWpEJ3zu+Q==}
-    dependencies:
-      fela-plugin-pseudo-prefixer: 12.0.0-y.0_fela@12.0.0-y.0
-    transitivePeerDependencies:
-      - fela
-    dev: true
-
-  /fela-plugin-prefixer/12.0.0-y.0:
-    resolution: {integrity: sha512-j3r9mjDL+2s8mFqI+N+hOWCxNf4weSgbnBT47sCRLaGP6NdzsO8lpVomh6+jgbU9Nmprpy0edUjBn6v5WIYszA==}
+  /fela-tools/12.0.2:
+    resolution: {integrity: sha512-ChtymUzulMavTktUddOO0JNnGvrb/dtrDacBKUbB6/4UOCso+K2lFQB8ZLfbhbiB33nYCb+ugkqJWBhh2CGVmg==}
     dependencies:
       css-in-js-utils: 3.1.0
       fast-loops: 1.1.3
-      isobject: 4.0.0
-      stylis: 4.0.13
-
-  /fela-plugin-pseudo-prefixer/12.0.0-y.0:
-    resolution: {integrity: sha512-hRWnwTpB8ulo+wQOFvfLxlQaoLXt6Odsp/R0kL/8jtUTc3Gc/Nx3rfnvgEe2Fzpzt28s6YmZKHJfUCmCG5738A==}
-    dependencies:
-      fast-loops: 1.1.3
-      fela-plugin-custom-property: 12.0.0-y.0
-    transitivePeerDependencies:
-      - fela
+      fela: 12.0.2
+      fela-utils: 12.0.2
     dev: false
 
-  /fela-plugin-pseudo-prefixer/12.0.0-y.0_fela@12.0.0-y.0:
-    resolution: {integrity: sha512-hRWnwTpB8ulo+wQOFvfLxlQaoLXt6Odsp/R0kL/8jtUTc3Gc/Nx3rfnvgEe2Fzpzt28s6YmZKHJfUCmCG5738A==}
-    dependencies:
-      fast-loops: 1.1.3
-      fela-plugin-custom-property: 12.0.0-y.0_fela@12.0.0-y.0
-    transitivePeerDependencies:
-      - fela
-    dev: true
-
-  /fela-plugin-responsive-value/12.0.0-y.0:
-    resolution: {integrity: sha512-UsjSUKy7kSfQ1sIVSnWh1YDzdiBTepWFtTKbmaWpkJGAvFH6BF+SVgMuWXlUfm2wmDeyEMVzUxl/xl9Wv4ZrCg==}
+  /fela-utils/12.0.2:
+    resolution: {integrity: sha512-QileFjN2GCvVjf+7m8CckLalpG9UHU8dONAjkkF2q2kOZqipyTQl8rfqchHEdXgUrYEqE7lfTWfV/VTJH+FnNw==}
     dependencies:
       css-in-js-utils: 3.1.0
       fast-loops: 1.1.3
-      isobject: 3.0.1
     dev: false
-
-  /fela-plugin-unit/12.0.0-y.0:
-    resolution: {integrity: sha512-7Jv+HeUAfX9NmkcweAYqT8AP40Nq1O9y1m/m/3Iju7v/rtsvVXDX848K43yym7u3Y6mEHj3r8eo0LjcGgbffsQ==}
-    dependencies:
-      css-in-js-utils: 3.1.0
-      isobject: 4.0.0
-
-  /fela-plugin-validator/12.0.0-y.0:
-    resolution: {integrity: sha512-l96U6qXs75cwr99EsC4bCCRUMAzNU1iHUjRBYtGlXtNsdA1n6ConoN0JCzrTplzwCf7eqL+pdLelSG5VOA5kbA==}
-    dependencies:
-      css-in-js-utils: 3.1.0
-      csslint: 1.0.5
-      fela-utils: 12.0.0-y.0
-      isobject: 3.0.1
-
-  /fela-preset-web/12.0.0-y.0_fela@12.0.0-y.0:
-    resolution: {integrity: sha512-nIITwVjWkexTMWCmj/oeSyVDqvXcZfyLUsYHH4V3My6L+0Wr23/s/4HJBC/BpFf9Jompq1ZhyqhI8vkspeJrhQ==}
-    dependencies:
-      fela-plugin-embedded: 12.0.0-y.0
-      fela-plugin-extend: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-plugin-fallback-value: 12.0.0-y.0
-      fela-plugin-prefixer: 12.0.0-y.0
-      fela-plugin-unit: 12.0.0-y.0
-    transitivePeerDependencies:
-      - fela
-
-  /fela-sort-media-query-mobile-first/12.0.0-y.0:
-    resolution: {integrity: sha512-gva8xWNwq/gbeCKzmxt7K5VC/akBy/2zupBHZwAJPp7i3CvfQHAZ1/j2toVVzrY7eqzJHfapdLeEjSOrSemv7g==}
-    dependencies:
-      sort-css-media-queries: 1.5.4
-    dev: false
-
-  /fela-statistics/12.0.0-y.0:
-    resolution: {integrity: sha512-xy1maLj+TI+u61rhrq+SVbeaeOf6ElEyxSHzjF+vnEs6cprVjsFJnI+po9Ep7IbKX9AXQlXQQNYk+yDlvuJmcQ==}
-    dependencies:
-      fela-tools: 12.0.0-y.0
-      fela-utils: 12.0.0-y.0
-      gzip-size: 3.0.0
-    dev: true
-
-  /fela-tools/12.0.0-y.0:
-    resolution: {integrity: sha512-CYrtXUk7RY3VYu9k8ozCGb7+rVrdgPDHYNgGk20vHrlCikXj6P/icVX0N3juuvjUdKf/B15F+Gh4Lx9/DG+RUg==}
-    dependencies:
-      css-in-js-utils: 3.1.0
-      fast-loops: 1.1.3
-      fela: 12.0.0-y.0
-      fela-utils: 12.0.0-y.0
-
-  /fela-utils/12.0.0-y.0:
-    resolution: {integrity: sha512-VygGuumictARvGo0DADY3YNuhFgQQKlq+mltslYOIGio4dF0AUatIznv4yv8o7H5fJaW0uOIPAFbJFj4zFugzA==}
-    dependencies:
-      css-in-js-utils: 3.1.0
-      fast-loops: 1.1.3
 
   /fela-utils/7.0.5:
     resolution: {integrity: sha512-rvKW6Lb0en6nd+DGoK/zXtYTz/WPoExZjMGPUVFfWl/w+gII5KrPCeH9gyqo6H9m+MuEZBT4HpX97fV5oV2RQQ==}
@@ -11093,14 +10919,15 @@ packages:
       css-in-js-utils: 2.0.0
     dev: true
 
-  /fela/12.0.0-y.0:
-    resolution: {integrity: sha512-v6jjY3v3FxK8dRp3iMJztDLUW307uZZVF4AM+vM2yYFyThNnYpVSwaaME2t8b0AzRbotXhKK0i8pLZZaqxcM2w==}
+  /fela/12.0.2:
+    resolution: {integrity: sha512-iYQB/li1IBLlhJobppwKdU1fasX64hqqpDACbK1j4i8uAT/O8q2SwwLi9PSAf5Tm2T1Y+JlsebUMPBu69axMcg==}
     dependencies:
       css-in-js-utils: 3.1.0
       csstype: 3.0.10
       fast-loops: 1.1.3
-      fela-utils: 12.0.0-y.0
+      fela-utils: 12.0.2
       isobject: 3.0.1
+    dev: false
 
   /figgy-pudding/3.5.2:
     resolution: {integrity: sha512-0btnI/H8f2pavGMN8w40mlSKOfTK2SVJmBfBeVIj3kNw0swwgzyRq0d5TJVOwodFmtvpPeWPN/MCcfuWF0Ezbw==}
@@ -11877,6 +11704,7 @@ packages:
     engines: {node: '>=0.12.0'}
     dependencies:
       duplexer: 0.1.2
+    dev: false
 
   /gzip-size/5.0.0:
     resolution: {integrity: sha512-5iI7omclyqrnWw4XbXAmGhPsABkSIDQonv2K0h61lybgofWa6iZyvrI3r2zsJH4P8Nb64fFVzlvfhs0g7BBxAA==}
@@ -12180,6 +12008,7 @@ packages:
       entities: 1.1.2
       inherits: 2.0.4
       readable-stream: 3.6.0
+    dev: false
 
   /htmltojsx/0.3.0:
     resolution: {integrity: sha1-ZIfEUE1mAFHkn3OhJ7RV12PfgmY=}
@@ -12189,6 +12018,7 @@ packages:
       react: 15.4.2
       react-dom: 15.4.2_react@15.4.2
       yargs: 4.6.0
+    dev: false
 
   /http-cache-semantics/4.1.0:
     resolution: {integrity: sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==}
@@ -12466,22 +12296,6 @@ packages:
     resolution: {integrity: sha512-UY7wvSEx2UNLBrXE+D7tTHIyqDGQu4BCbNMiYmKKonioe84H/u3vWm9uQW02SS/K0md9xvzrTqeojR2pfEbzgg==}
     dependencies:
       inferno: 6.3.1
-    dev: false
-
-  /inferno-fela/12.0.0-y.0_f068668a92c69e08aaae84a76642e4b5:
-    resolution: {integrity: sha512-cbk4FeBV6gwP9cQLRfEHTNMqerJ6t2Fleq9HyO8aKTZT5Wlr1vmA727Gzg2rkv75z9EO/g46CuuAb1TbfVwbRg==}
-    peerDependencies:
-      create-inferno-context: ^0.2.4
-      inferno: ^5.0.1
-      inferno-create-element: ^5.0.1
-    dependencies:
-      create-inferno-context: 0.2.4_inferno@6.3.1
-      fela-bindings: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      inferno: 6.3.1
-      inferno-create-element: 6.3.1
-    transitivePeerDependencies:
-      - fela
     dev: false
 
   /inferno-server/6.3.1:
@@ -13216,6 +13030,7 @@ packages:
   /isobject/4.0.0:
     resolution: {integrity: sha512-S/2fF5wH8SJA/kmwr6HYhK/RI/OkhD84k8ntalo0iJjZikgq1XFvR5M8NPT1x5F7fBwCG3qHfnzeP/Vh/ZxCUA==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /isomorphic-fetch/2.2.1:
     resolution: {integrity: sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=}
@@ -13415,12 +13230,6 @@ packages:
       jest-util: 26.6.2
     dev: true
 
-  /jest-fela-bindings/12.0.0-y.0:
-    resolution: {integrity: sha512-Sf3xSWCNmUAhKw3pGJpBk3v6Qwv26Lj7oFlNDnTmYc8q2QbIN79bZ3hOYx6FMnKm+reHUiQAr/fkNYRU6AOedQ==}
-    dependencies:
-      fela-tools: 12.0.0-y.0
-      htmltojsx: 0.3.0
-
   /jest-get-type/26.3.0:
     resolution: {integrity: sha512-TpfaviN1R2pQWkIihlfEanwOXK0zcxrKEE4MlU6Tn7keoXdN6/3gK/xl0yEh8DOunn5pOVGKf8hB4R9gVh04ig==}
     engines: {node: '>= 10.14.2'}
@@ -13558,35 +13367,6 @@ packages:
         optional: true
     dependencies:
       jest-resolve: 26.6.2
-    dev: true
-
-  /jest-react-fela/12.0.0-y.0_bed73af5c20c75ed4229a108288d15c4:
-    resolution: {integrity: sha512-ZwblpadQvEJ8FpbtxVgbI3HlvqNFvaLMnRfhk0WEUUJYhjaSiWP4fA3CT1eG/oklOvYObjEpagmICEyhY+l2CA==}
-    peerDependencies:
-      fela: '*'
-      react: '*'
-      react-dom: '*'
-      react-fela: '*'
-    dependencies:
-      fela: 12.0.0-y.0
-      jest-fela-bindings: 12.0.0-y.0
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
-    dev: false
-
-  /jest-react-fela/12.0.0-y.0_e036599f5092e549e5534366fe1841c5:
-    resolution: {integrity: sha512-ZwblpadQvEJ8FpbtxVgbI3HlvqNFvaLMnRfhk0WEUUJYhjaSiWP4fA3CT1eG/oklOvYObjEpagmICEyhY+l2CA==}
-    peerDependencies:
-      fela: '*'
-      react: '*'
-      react-dom: '*'
-      react-fela: '*'
-    dependencies:
-      fela: 12.0.0-y.0
-      jest-fela-bindings: 12.0.0-y.0
-      react: 17.0.2
-      react-fela: 12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2
     dev: true
 
   /jest-regex-util/25.2.6:
@@ -13873,6 +13653,7 @@ packages:
       request: 2.88.2
       xml-name-validator: 1.0.0
       xmlhttprequest: 1.8.0
+    dev: false
 
   /jsdom/16.7.0:
     resolution: {integrity: sha512-u9Smc2G1USStM+s/x1ru5Sxrl6mPYCbByG1U/hUmqaVsm4tbNyS7CicOSRyuGQYZhTu0h84qkZZQ/I+dzizSVw==}
@@ -14503,6 +14284,7 @@ packages:
 
   /lodash.assign/4.2.0:
     resolution: {integrity: sha1-DZnzzNem0mHRm9rrkkUAXShYCOc=}
+    dev: false
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=}
@@ -15752,6 +15534,7 @@ packages:
 
   /nwmatcher/1.4.4:
     resolution: {integrity: sha512-3iuY4N5dhgMpCUrOVnuAdGrgxVqV2cJpM+XNccjR2DKOB1RUP0aA+wGXEiNziG/UKboFyGBIoKOaNlJxx8bciQ==}
+    dev: false
 
   /nwsapi/2.2.0:
     resolution: {integrity: sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==}
@@ -16311,12 +16094,14 @@ packages:
 
   /parse5/1.5.1:
     resolution: {integrity: sha1-m387DeMr543CQBsXVzzK8Pb1nZQ=}
+    dev: false
 
   /parse5/6.0.1:
     resolution: {integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==}
 
   /parserlib/1.1.1:
     resolution: {integrity: sha1-pkz6ckBiQ0/fw1HJpOwtkrlMBvQ=}
+    dev: false
 
   /parseurl/1.3.3:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
@@ -16476,6 +16261,7 @@ packages:
       load-json-file: 1.1.0
       object-assign: 4.1.1
       symbol: 0.2.3
+    dev: false
 
   /pkg-dir/2.0.0:
     resolution: {integrity: sha1-9tXREJ4Z1j7fQo4L1X4Sd3YVM0s=}
@@ -16606,18 +16392,6 @@ packages:
       nanoid: 3.3.1
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: false
-
-  /preact-fela/12.0.0-y.0_fela@12.0.0-y.0+preact@10.6.6:
-    resolution: {integrity: sha512-Mze6pIMhycruCLVqMnA9fMa6LIKmQAFbBMxszNcJTvcfDGJinAxv3Db/Q3/zjl9hnL0PmYq464oyrBWJPEuCCA==}
-    peerDependencies:
-      fela: '>= 11.3.1'
-      preact: ^10.2.1
-    dependencies:
-      fela: 12.0.0-y.0
-      fela-bindings: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      preact: 10.6.6
     dev: false
 
   /preact-render-to-string/3.8.2_preact@10.6.6:
@@ -16971,6 +16745,7 @@ packages:
     resolution: {integrity: sha512-EDJbgKTtGRLhr3wiGDXK/+AEJ59yqGS+tKE6mue0aNXT6ZMR7VJbbzIiT6akotmHg1BLj46ElJSb+NBMp80XBg==}
     dependencies:
       object-assign: 4.1.1
+    dev: false
 
   /react-art/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-x+AhS0ex8B8kWh2GNyRK/IdX9V+xPax22WphtML8RBdu8CYd9dDOgP3ejQlPthpmwILJUaVf/+5a/qQ8X4I+yA==}
@@ -17071,6 +16846,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react: 15.4.2
+    dev: false
 
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
@@ -17085,18 +16861,6 @@ packages:
   /react-error-overlay/5.1.6:
     resolution: {integrity: sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==}
     dev: true
-
-  /react-fela/12.0.0-y.0_fela@12.0.0-y.0+react@17.0.2:
-    resolution: {integrity: sha512-Pqbkp5bL7HMCmIsYrqpYfsBuFtDYElUwRobfQdFG71EjPJy1pADemXXb4SDmDt93MPgY6URnq+ca6wYJlcrinA==}
-    peerDependencies:
-      fela: '>= 11.3.1'
-      react: '*'
-    dependencies:
-      fela: 12.0.0-y.0
-      fela-bindings: 12.0.0-y.0_fela@12.0.0-y.0
-      fela-dom: 12.0.0-y.0
-      prop-types: 15.8.1
-      react: 17.0.2
 
   /react-group/3.0.2_react@17.0.2:
     resolution: {integrity: sha512-0Jy99MD27jHSJ0PeynomUM0WArxywdcqQUKLttBWV6KYH+zlKWT/RhDwVxrODtMkRxf644BzuJFie1Hvfun7jA==}
@@ -17415,6 +17179,7 @@ packages:
       fbjs: 0.8.18
       loose-envify: 1.4.0
       object-assign: 4.1.1
+    dev: false
 
   /react/17.0.2:
     resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
@@ -18494,6 +18259,7 @@ packages:
 
   /shallow-equal/1.2.1:
     resolution: {integrity: sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==}
+    dev: false
 
   /shallowequal/1.1.0:
     resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
@@ -18690,6 +18456,7 @@ packages:
   /sort-css-media-queries/1.5.4:
     resolution: {integrity: sha512-YP5W/h4Sid/YP7Lp87ejJ5jP13/Mtqt2vx33XyhO+IAugKlufRPbOrPlIiEUuxmpNBSBd3EeeQpFhdu3RfI2Ag==}
     engines: {node: '>= 6.3.0'}
+    dev: false
 
   /sort-keys/2.0.0:
     resolution: {integrity: sha1-ZYU1WEhh7JfXMNbPQYIuH1ZoQSg=}
@@ -18985,6 +18752,7 @@ packages:
 
   /string-hash/1.1.3:
     resolution: {integrity: sha1-6Kr8CsGFW0Zmkp7X3RJ1311sgRs=}
+    dev: false
 
   /string-length/4.0.2:
     resolution: {integrity: sha512-+l6rNN5fYHNhZZy41RXsYptCjA2Igmq4EG7kZAYFQI1E1VTXarr6ZPXBg6eq7Y6eK4FEhY6AJlyuFIb/v/S0VQ==}
@@ -19289,6 +19057,7 @@ packages:
 
   /stylis/4.0.13:
     resolution: {integrity: sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==}
+    dev: false
 
   /subscribableevent/1.0.1:
     resolution: {integrity: sha512-rFXit43+QoyWRUV/aTiYMUUJl71xmDcxED2cza3PEED75pgHTofMyPcPQrnHzyPqZh+kazEd36eydUKbOZBCpQ==}
@@ -19354,6 +19123,7 @@ packages:
 
   /symbol/0.2.3:
     resolution: {integrity: sha1-O5hzuKkB5Hxu/iFSajrDcu8ou8c=}
+    dev: false
 
   /table/5.4.6:
     resolution: {integrity: sha512-wmEc8m4fjnob4gt5riFRtTu/6+4rSe12TpAELNSqHMfF3IqnA+CH37USM6/YR3qRZv7e56kAEAtd6nKZaxe0Ug==}
@@ -21059,6 +20829,7 @@ packages:
     resolution: {integrity: sha1-tDFbtCFKPXBY6+7okuE/ok2YsHU=}
     engines: {node: '>= 0.10.0'}
     hasBin: true
+    dev: false
 
   /word-wrap/1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
@@ -21249,6 +21020,7 @@ packages:
 
   /xml-name-validator/1.0.0:
     resolution: {integrity: sha1-3Pgu4JIyKVHvjMG6WWycv9FKg/E=}
+    dev: false
 
   /xml-name-validator/3.0.0:
     resolution: {integrity: sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==}
@@ -21285,6 +21057,7 @@ packages:
   /xmlhttprequest/1.8.0:
     resolution: {integrity: sha1-Z/4HXFwk/vOfnWX197f+dRcZaPw=}
     engines: {node: '>=0.4.0'}
+    dev: false
 
   /xpipe/1.0.5:
     resolution: {integrity: sha1-jdi/Rfw/f1Xw4FS4ePQ6YmFNr98=}
@@ -21342,6 +21115,7 @@ packages:
     dependencies:
       camelcase: 3.0.0
       lodash.assign: 4.2.0
+    dev: false
 
   /yargs-parser/20.2.4:
     resolution: {integrity: sha512-WOkpgNhPTlE73h4VFAFsOnomJVaovO8VqLDzy5saChRBFQFBoMYirowyW+Q9HB4HFF4Z7VZTiG3iSzJJA29yRA==}
@@ -21428,6 +21202,7 @@ packages:
       window-size: 0.2.0
       y18n: 3.2.2
       yargs-parser: 2.4.1
+    dev: false
 
   /yargs/6.6.0:
     resolution: {integrity: sha1-eC7CHvQDNF+DCoCMo9UTr1YGUgg=}
@@ -21454,3 +21229,18 @@ packages:
 
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
+
+  file:packages/react-fela_react@17.0.2:
+    resolution: {directory: packages/react-fela, type: directory}
+    id: file:packages/react-fela
+    name: react-fela
+    version: 12.0.2
+    peerDependencies:
+      fela: '>= 11.3.1'
+      react: '*'
+    dependencies:
+      fela-bindings: 12.0.2
+      fela-dom: 12.0.2
+      prop-types: 15.8.1
+      react: 17.0.2
+    dev: false
