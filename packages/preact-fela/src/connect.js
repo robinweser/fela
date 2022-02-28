@@ -1,4 +1,3 @@
-// $FlowFixMe
 import { h as createElement, Component } from 'preact'
 import { connectFactory } from 'fela-bindings'
 
