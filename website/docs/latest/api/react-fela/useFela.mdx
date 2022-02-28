@@ -4,9 +4,9 @@ useFela is React [hook](https://reactjs.org/docs/hooks-intro.html) that provides
 
 ## Arguments
 
-| Argument | Type     | Default                                          |
-| -------- | -------- | ------------------------------------------------ |
-| props    | _Object_ | An object of props that is used to render rules. |
+| Argument | Type     | Default                                                            |
+| -------- | -------- | ------------------------------------------------------------------ |
+| props    | _Object_ | An object of props that is used to render rules and static styles. |
 
 ## Returns
 
@@ -15,11 +15,11 @@ useFela is React [hook](https://reactjs.org/docs/hooks-intro.html) that provides
 ## Interface
 
 | Property    | Type                            | Description                                                                                                                             |
-| ----------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| ----------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | css         | _function_                      | A function that accepts a list of [style object](basics/rules/style-object) and/or [rule](basics/rules) and returns a single className. |
-| staticStyle | _function_                      | A function that accepts the same arguments as [renderStatic](api/fela/renderer#renderStatic)                                            |     |
-| theme       | _Object_                        | The theme object which is passed down via context                                                                                       |
-| renderer    | _[Renderer](api/fela/renderer)_ | The renderer that is passed down via context                                                                                            |
+| staticStyle | _function_                      | A function that accepts the same arguments as [renderStatic](api/fela/renderer#renderStatic).                                           |
+| theme       | _Object_                        | The theme object which is passed down via context.                                                                                      |
+| renderer    | _[Renderer](api/fela/renderer)_ | The renderer that is passed down via context.                                                                                           |
 
 ## Imports
 
