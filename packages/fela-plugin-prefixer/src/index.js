@@ -14,7 +14,7 @@ function addVendorPrefixes(style) {
         const prefixed = stylisPrefix(cssDeclaration, property.length)
 
         if (prefixed !== cssDeclaration) {
-          const [property, value] = prefixed.split(/:(.+)/)
+          const [property, value] = prefixed.split(/:([\S\s]+)/)
           // TODO: do we really need to camelCase here?
           prefixedStyle[camelCaseProperty(property)] = value.slice(0, -1)
         } else {
@@ -33,7 +33,7 @@ addVendorPrefixes.optimized = (props) => {
   const prefixed = stylisPrefix(cssDeclaration, props.property.length)
 
   if (prefixed !== cssDeclaration) {
-    const [property, value] = prefixed.split(/:(.+)/)
+    const [property, value] = prefixed.split(/:([\S\s]+)/)
     // TODO: do we really need to camelCase here?
     props.property = camelCaseProperty(property)
     props.value = value.slice(0, -1)

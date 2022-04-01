@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Prefixer plugin handles css property values with line breaks correctly 1`] = `
+Object {
+  ":hover": Object {
+    "justifyContent": "center",
+  },
+  "WebkitBackgroundImage": "linear-gradient(90deg,
+      rgba(255,255,255, 0) 0,
+      red 40%,
+      red 60%,
+      rgba(255,255,255, 0)
+    );background-image:linear-gradient(90deg,
+      rgba(255,255,255, 0) 0,
+      red 40%,
+      red 60%,
+      rgba(255,255,255, 0)
+    )",
+  "display": "-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex",
+}
+`;
+
 exports[`Prefixer plugin should prefix nested objects 1`] = `
 Object {
   ":hover": Object {
