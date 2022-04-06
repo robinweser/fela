@@ -1,12 +1,12 @@
 # useFela
 
-useFela is React [hook](https://reactjs.org/docs/hooks-intro.html) that provides a universal `css` function. It also provides access to both renderer and theme.
+useFela is React [hook](https://reactjs.org/docs/hooks-intro.html) that provides a universal `css` function as well as a `staticStyle` function. It also provides access to both renderer and theme.
 
 ## Arguments
 
-| Argument | Type     | Default                                          |
-| -------- | -------- | ------------------------------------------------ |
-| props    | _Object_ | An object of props that is used to render rules. |
+| Argument | Type     | Default                                                            |
+| -------- | -------- | ------------------------------------------------------------------ |
+| props    | _Object_ | An object of props that is used to render rules and static styles. |
 
 ## Returns
 
@@ -14,15 +14,16 @@ useFela is React [hook](https://reactjs.org/docs/hooks-intro.html) that provides
 
 ## Interface
 
-| Property | Type                            | Description                                                                                                                             |
-| -------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| css      | _function_                      | A function that accepts a list of [style object](basics/rules/style-object) and/or [rule](basics/rules) and returns a single className. |
-| theme    | _Object_                        | The theme object which is passed down via context                                                                                       |
-| renderer | _[Renderer](api/fela/renderer)_ | The renderer that is passed down via context                                                                                            |
+| Property    | Type                            | Description                                                                                                                             |
+| ----------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| css         | _function_                      | A function that accepts a list of [style object](basics/rules/style-object) and/or [rule](basics/rules) and returns a single className. |
+| staticStyle | _function_                      | A function that accepts the same arguments as [renderStatic](api/fela/renderer#renderStatic).                                           |
+| theme       | _Object_                        | The theme object which is passed down via context.                                                                                      |
+| renderer    | _[Renderer](api/fela/renderer)_ | The renderer that is passed down via context.                                                                                           |
 
 ## Imports
 
-> **Note**: Due to lack of support for hooks, useFela is currently only available for react-fela and preact-fela.
+> **Note**: Due to lack of support for hooks in Inferno, useFela is currently only available for React and Preact.
 
 ```javascript
 import { useFela } from 'react-fela'
@@ -77,4 +78,31 @@ function RedOnBlue({ children, customStyle }) {
 
 // Usage
 const Usage = <RedOnBlue customStyle={{ fontSize: 12 }} />
+```
+
+### Accessing theme
+
+```javascript
+function WithTheme() {
+  const { theme } = useFela()
+
+  return <div>Primary color is {theme.colors.primary}</div>
+}
+```
+
+### Rendering static styles
+
+```javascript
+function WithTheme() {
+  const { staticStyle } = useFela()
+
+  staticStyle(
+    {
+      backgroundColor: 'blue',
+    },
+    'body'
+  )
+
+  return <div>Primary color is {theme.colors.primary}</div>
+}
 ```
