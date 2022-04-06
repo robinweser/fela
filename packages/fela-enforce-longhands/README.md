@@ -52,6 +52,29 @@ const renderer = createRenderer({
 })
 ```
 
+### Configuration
+
+#### Options
+
+| Property   | Type                                  | Default | Description                                                                                                                                                                                                                                                                                       |
+| ---------- | ------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| borderMode | `none` \| `directional` \| `longhand` | `none`  | Defines which border properties take priority.<br />`none` will treat both second level properties (e.g. `border-width` or `border-top`) the same.<br />`directional` will prioritize e.g. `border-top` over `border-width`<br />`longhand` will prioritize e.g. `border-width` over `border-top` |
+
+#### Example
+
+```javascript
+import { createRenderer } from 'fela'
+import enforceLonghands from 'fela-enforce-longhands'
+
+const renderer = createRenderer({
+  enhancers: [
+    enforceLonghands({
+      borderMode: 'directional',
+    }),
+  ],
+})
+```
+
 ## License
 
 Fela is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
