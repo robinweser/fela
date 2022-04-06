@@ -37,7 +37,7 @@
   "author": "Sergei Grishchenko <s.i.grishchenko@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "fela": "^11.2.0"
+    "fela": ">=11"
   },
   "dependencies": {
     "isobject": "^3.0.1"

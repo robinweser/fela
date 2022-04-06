@@ -37,7 +37,7 @@
   "author": "Robin Weser",
   "license": "MIT",
   "peerDependencies": {
-    "fela-native": "^11.2.0",
+    "fela-native": ">=11",
     "react": "*",
     "react-native": "*"
   },

@@ -36,8 +36,8 @@
   "author": "Robin Weser",
   "license": "MIT",
   "peerDependencies": {
-    "fela": ">= 11.3.1",
-    "preact": "^10.2.1"
+    "fela": ">=11.3",
+    "preact": ">=10"
   },
   "dependencies": {
     "fela-bindings": "^12.0.2",

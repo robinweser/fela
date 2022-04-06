@@ -31,8 +31,8 @@
     "url": "https://github.com/robinweser/fela"
   },
   "peerDependencies": {
-    "fela": "^10.x.x",
-    "react-fela": "^10.x.x"
+    "fela": ">=10",
+    "react-fela": ">=10"
   },
   "dependencies": {
     "bs-platform": "^5.0.6",

@@ -42,7 +42,7 @@
     "isobject": "^3.0.1"
   },
   "peerDependencies": {
-    "fela": "^11.2.0"
+    "fela": ">=11"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",

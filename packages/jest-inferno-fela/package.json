@@ -39,8 +39,8 @@
   "license": "MIT",
   "peerDependencies": {
     "fela": "*",
-    "inferno": "^4.0.0",
-    "inferno-create-element": "^4.0.0",
+    "inferno": ">=5",
+    "inferno-create-element": ">=5",
     "inferno-fela": "*"
   },
   "dependencies": {

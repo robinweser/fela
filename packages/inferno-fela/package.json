@@ -39,9 +39,9 @@
   "author": "Robin Weser",
   "license": "MIT",
   "peerDependencies": {
-    "create-inferno-context": "^0.2.4",
-    "inferno": "^5.0.1",
-    "inferno-create-element": "^5.0.1"
+    "create-inferno-context": "*",
+    "inferno": ">=5",
+    "inferno-create-element": ">=5"
   },
   "dependencies": {
     "fela-bindings": "^12.0.2",
