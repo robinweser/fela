@@ -18,8 +18,8 @@ try {
 
 function renderComponent(component, node) {
   if (createRoot) {
-    const root = ReactDOMClient.createRoot(component)
-    root.render(node)
+    const root = createRoot(node)
+    root.render(component)
   } else {
     render(component, node)
   }
