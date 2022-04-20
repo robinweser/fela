@@ -131,7 +131,7 @@ If you are coming from CSS and want to learn JavaScript Styling with Fela, there
 ## Talks
 
 - [**CSS in JS: The Good & Bad Parts**](https://www.youtube.com/watch?v=95M-2YzyTno) ([Slides](https://speakerdeck.com/robinweser/css-in-js-the-good-and-bad-parts))<br> - _by [Robin Weser](https://twitter.com/robinweser)_
-- [**CSS in JS: Patterns**](https://www.webexpo.net/prague2018/talk?id=css-in-js-patterns)<br> - _by [Vojtech Miksu](https://twitter.com/vmiksu)_
+- [**CSS in JS: Patterns**](https://www.webexpo.net/prague2018/talk/css-in-js-patterns)<br> - _by [Vojtech Miksu](https://twitter.com/vmiksu)_
 
 ## Posts
 
