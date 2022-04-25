@@ -36,9 +36,9 @@ const rule = (props) => ({
 })
 ```
 
-### Pseudo Classes
+### Pseudo Classes and Pseudo Elements
 
-Pseudo classes are one of the key features of CSS. They let you add interactive behavior to your basic styles. You can easily define them as nested property objects within your rules. You can also nest them to require both pseudo classes to be active.
+Pseudo classes and pseudo elements are one of the key features of CSS. They let you add interactive behavior to your basic styles or create additional elements for styling purposes. You can easily define them as nested property objects within your rules. You can also nest them if you wish to combine them the resulted styles. Combining them in a single string works too.
 
 ```javascript
 const rule = (props) => ({
@@ -92,9 +92,9 @@ const rule = (props) => ({
 })
 ```
 
-### Support Queries
+### Feature Queries
 
-Another useful CSS feature are [support queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports).<br />
+Another useful CSS feature are [feature queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports).<br />
 They're used to conditionally apply CSS values **only** if a certain CSS feature is supported by the targeted browser. This helps to provide the best experience for both modern and old browsers.
 
 ```javascript
