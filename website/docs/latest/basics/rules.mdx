@@ -56,13 +56,17 @@ const rule = (props) => ({
     color: 'black',
   },
   // make sure you are using nested quotes to set the content.
-  ':before': {
+  '::before': {
     content: '" "',
+  },
+  // conbination without nesting works too
+  ':hover::after': {
+    content: '"hello"',
   },
 })
 ```
 
-> **Note:** When using `:before` pseudo selector, make sure you are using nested quotes to set the content. Eg: `content: '" "'`
+> **Note:** When using `::before` or `::after` pseudo elements, make sure you are using nested quotes to set the content. Eg: `content: '" "'`
 
 ### Media Queries
 

@@ -29,11 +29,11 @@ There are three options to solve this with Fela. We recommend using [fela-enforc
 
 ## CSS properties that contain double quotes
 
-For css properties that need double quotes, make sure you are using nested quotes in your code. e.g.:
+For CSS properties that need double quotes, make sure you are using nested quotes in your code. e.g.:
 
 ```javascript nocopy
 const rule = (props) => ({
-  ':before': {
+  '::before': {
     content: '" "',
   },
 })
