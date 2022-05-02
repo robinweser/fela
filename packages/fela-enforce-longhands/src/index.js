@@ -1,9 +1,15 @@
+const VENDOR_PREFIXES = ['Webkit', 'Moz', 'Ms']
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 function getPropertyPriority({
   borderLonghand,
   borderDirectional,
   borderDirectionalLonghand,
 }) {
-  return {
+  const propertyPriority = {
     marginLeft: 2,
     marginRight: 2,
     marginTop: 2,
@@ -77,6 +83,17 @@ function getPropertyPriority({
     textDecorationStyle: 2,
     textDecorationColor: 2,
   }
+  // Add all possible vendor prefixes to all properties
+  // fela-plugin-prefixer converts properties to prefixed ones like `WebkitBackgroundColor`
+  return Object.entries(propertyPriority).reduce(
+    (acc, [property, priority]) => {
+      for (const prefix of VENDOR_PREFIXES) {
+        acc[prefix + capitalize(property)] = priority
+      }
+      return acc
+    },
+    propertyPriority
+  )
 }
 
 function addPropertyPriority(renderer, borderMode) {
