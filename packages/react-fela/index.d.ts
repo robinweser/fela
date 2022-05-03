@@ -13,6 +13,7 @@ declare module "react-fela" {
   interface ThemeProviderProps {
     theme: object;
     overwrite?: boolean;
+    children: React.ReactNode;
   }
 
   /**
@@ -35,6 +36,7 @@ declare module "react-fela" {
     renderer: object;
     rehydrate?: boolean;
     targetDocument?: any;
+    children: React.ReactNode;
   }
 
   interface FelaWithThemeProps<Theme> {
