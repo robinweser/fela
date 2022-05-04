@@ -11,7 +11,7 @@ function renderToMarkup(component) {
 
 export default createSnapshotFactory(
   createElement,
-  renderComponent,
+  renderToMarkup,
   createRenderer(),
   RendererProvider,
   ThemeProvider

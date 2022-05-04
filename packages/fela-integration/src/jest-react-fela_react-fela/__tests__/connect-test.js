@@ -30,38 +30,6 @@ describe('Connect Factory for bindings', () => {
     expect(createSnapshot(<Comp />)).toMatchSnapshot()
   })
 
-  it('should pass through "theme" prop into Component', () => {
-    const rules = {
-      rule1: () => ({
-        padding: 1,
-      }),
-      rule2: (props) => ({
-        color: props.color,
-      }),
-    }
-
-    const InnerComp = jest.fn(() => null)
-
-    const Comp = connect(rules)(InnerComp)
-
-    const theme = {
-      primary: 'red',
-      secondary: 'blue',
-    }
-
-    createSnapshot(<Comp />, theme)
-
-    expect(InnerComp).toHaveBeenCalledWith(
-      {
-        styles: expect.anything(),
-        rules: expect.anything(),
-        theme,
-      },
-      expect.anything()
-    )
-    expect(InnerComp).toHaveBeenCalledTimes(1)
-  })
-
   it('should process rules and create classNames with rules as function', () => {
     const rules = jest.fn((props) => ({
       rule1: {
