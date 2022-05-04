@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-important",
-  "version": "12.1.1",
+  "version": "12.1.2",
   "description": "Fela plugin that adds !important to every value",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -35,7 +35,7 @@
   "author": "Robin Weser",
   "license": "MIT",
   "dependencies": {
-    "fela-utils": "^12.1.1",
+    "fela-utils": "^12.1.2",
     "isobject": "^3.0.1"
   },
   "devDependencies": {

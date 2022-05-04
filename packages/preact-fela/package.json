@@ -1,6 +1,6 @@
 {
   "name": "preact-fela",
-  "version": "12.1.1",
+  "version": "12.1.2",
   "description": "Preact bindings for Fela",
   "typings": "index.d.ts",
   "main": "lib/index.js",
@@ -40,8 +40,8 @@
     "preact": ">=10"
   },
   "dependencies": {
-    "fela-bindings": "^12.1.1",
-    "fela-dom": "^12.1.1"
+    "fela-bindings": "^12.1.2",
+    "fela-dom": "^12.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -52,7 +52,7 @@
     "@babel/preset-env": "^7.5.5",
     "babel-core": "7.0.0-bridge.0",
     "cross-env": "^6.0.3",
-    "fela": "^12.1.1",
+    "fela": "^12.1.2",
     "preact": "^10.6.6",
     "rimraf": "^3.0.0"
   }

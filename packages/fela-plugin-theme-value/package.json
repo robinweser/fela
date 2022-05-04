@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-theme-value",
-  "version": "12.1.1",
+  "version": "12.1.2",
   "description": "Fela plugin to resolve values from a theme",
   "main": "lib/index.js",
   "module": "es/index.js",
