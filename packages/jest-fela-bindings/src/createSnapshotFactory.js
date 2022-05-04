@@ -18,7 +18,7 @@ function formatHTML(html) {
 
 export default function createSnapshotFactory(
   createElement,
-  render,
+  renderToMarkup,
   defaultRenderer,
   defaultRendererProvider,
   defaultThemeProvider
@@ -30,22 +30,17 @@ export default function createSnapshotFactory(
     RendererProvider = defaultRendererProvider,
     ThemeProvider = defaultThemeProvider
   ) {
-    const div = document.createElement('div')
-
     // reset renderer to have a clean setup
     renderer.clear()
 
-    render(
+    const markup = renderToMarkup(
       createElement(
         RendererProvider,
         { renderer },
         createElement(ThemeProvider, { theme }, component)
-      ),
-      div
+      )
     )
 
-    return `${formatCSS(renderToString(renderer))}\n\n${formatHTML(
-      div.innerHTML
-    )}`
+    return `${formatCSS(renderToString(renderer))}\n\n${formatHTML(markup)}`
   }
 }

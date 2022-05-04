@@ -1,28 +1,12 @@
 import { createElement } from 'react'
-import { render } from 'react-dom'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { createRenderer } from 'fela'
 import { RendererProvider, ThemeProvider } from 'react-fela'
 
 import { createSnapshotFactory } from 'jest-fela-bindings'
 
-let createRoot
-try {
-  const ReactDOMClient = require('react-dom/client')
-  if (
-    typeof ReactDOMClient !== 'undefined' &&
-    typeof ReactDOMClient.createRoot !== 'undefined'
-  ) {
-    createRoot = ReactDOMClient.createRoot
-  }
-} catch (e) {}
-
-function renderComponent(component, node) {
-  if (createRoot) {
-    const root = createRoot(node)
-    root.render(component)
-  } else {
-    render(component, node)
-  }
+function renderToMarkup(component) {
+  return renderToStaticMarkup(component)
 }
 
 export default createSnapshotFactory(
