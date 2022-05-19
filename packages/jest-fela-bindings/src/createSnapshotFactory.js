@@ -32,14 +32,28 @@ export default function createSnapshotFactory(
   ) {
     // reset renderer to have a clean setup
     renderer.clear()
+    let markup
 
-    const markup = renderToMarkup(
-      createElement(
-        RendererProvider,
-        { renderer },
-        createElement(ThemeProvider, { theme }, component)
+    if (renderToMarkup.renderToStaticMarkup) {
+      markup = renderToMarkup.renderToStaticMarkup(
+        createElement(
+          RendererProvider,
+          { renderer },
+          createElement(ThemeProvider, { theme }, component)
+        )
       )
-    )
+    } else {
+      const div = document.createElement('div')
+      renderToMarkup.render(
+        createElement(
+          RendererProvider,
+          { renderer },
+          createElement(ThemeProvider, { theme }, component)
+        ),
+        div
+      )
+      markup = div.innerHTML
+    }
 
     return `${formatCSS(renderToString(renderer))}\n\n${formatHTML(markup)}`
   }
