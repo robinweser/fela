@@ -1,3 +1,4 @@
 import createSnapshotFactory from './createSnapshotFactory'
+import createAsyncSnapshotFactory from './createAsyncSnapshotFactory'
 
-export { createSnapshotFactory }
+export { createSnapshotFactory, createAsyncSnapshotFactory }
