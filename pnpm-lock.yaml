@@ -2317,6 +2317,7 @@ importers:
       '@babel/core': ^7.2.2
       '@babel/node': ^7.13.0
       '@babel/plugin-transform-modules-commonjs': ^7.5.0
+      '@babel/plugin-transform-runtime': ^7.5.0
       '@babel/polyfill': ^7.7.0
       '@babel/preset-env': ^7.5.5
       babel-core: 7.0.0-bridge.0
@@ -2334,6 +2335,7 @@ importers:
       '@babel/core': 7.17.4
       '@babel/node': 7.16.8_@babel+core@7.17.4
       '@babel/plugin-transform-modules-commonjs': 7.16.8_@babel+core@7.17.4
+      '@babel/plugin-transform-runtime': 7.17.0_@babel+core@7.17.4
       '@babel/polyfill': 7.12.1
       '@babel/preset-env': 7.16.11_@babel+core@7.17.4
       babel-core: 7.0.0-bridge.0_@babel+core@7.17.4
@@ -2400,12 +2402,17 @@ importers:
       '@babel/plugin-transform-modules-commonjs': ^7.5.0
       '@babel/polyfill': ^7.7.0
       '@babel/preset-env': ^7.5.5
+      '@babel/preset-react': ^7.5.5
       babel-core: 7.0.0-bridge.0
       cross-env: ^6.0.3
       fela: ^12.1.2
       fela-preset-web: ^12.1.2
+      jest: ^26.6.0
       jest-fela-bindings: ^12.1.2
       react: ^17.0.2
+      react-18: npm:react@^18.1.0
+      react-dom: ^17.0.2
+      react-dom-18: npm:react-dom@^18.1.0
       react-fela: ^12.1.2
       rimraf: ^3.0.0
     dependencies:
@@ -2417,11 +2424,16 @@ importers:
       '@babel/plugin-transform-modules-commonjs': 7.16.8_@babel+core@7.17.4
       '@babel/polyfill': 7.12.1
       '@babel/preset-env': 7.16.11_@babel+core@7.17.4
+      '@babel/preset-react': 7.16.7_@babel+core@7.17.4
       babel-core: 7.0.0-bridge.0_@babel+core@7.17.4
       cross-env: 6.0.3
       fela: link:../fela
       fela-preset-web: link:../fela-preset-web
+      jest: 26.6.3
       react: 17.0.2
+      react-18: /react/18.1.0
+      react-dom: 17.0.2_react@17.0.2
+      react-dom-18: /react-dom/18.1.0_react@17.0.2
       react-fela: link:../react-fela
       rimraf: 3.0.2
 
@@ -16941,6 +16953,16 @@ packages:
       react: 17.0.2
       scheduler: 0.20.2
 
+  /react-dom/18.1.0_react@17.0.2:
+    resolution: {integrity: sha512-fU1Txz7Budmvamp7bshe4Zi32d0ll7ect+ccxNu9FlObT605GOEB8BfO4tmRJ39R5Zj831VCpvQ05QPBW5yb+w==}
+    peerDependencies:
+      react: ^18.1.0
+    dependencies:
+      loose-envify: 1.4.0
+      react: 17.0.2
+      scheduler: 0.22.0
+    dev: true
+
   /react-error-overlay/5.1.6:
     resolution: {integrity: sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==}
     dev: true
@@ -17270,6 +17292,13 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+
+  /react/18.1.0:
+    resolution: {integrity: sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: true
 
   /reactxp/2.0.0_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-HAWwZFL7gXQXnQi87FOBybugSRo+/Xq30rj8tgX77i0uAHWRQHMFw4N10GPLWeacjDuC3/t0RjY6bSftGNJaFg==}
@@ -18114,6 +18143,12 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+
+  /scheduler/0.22.0:
+    resolution: {integrity: sha512-6QAm1BgQI88NPYymgGQLCZgvep4FyePDWFpXVK+zNSUgHwlqpJy8VEh8Et0KxTACS4VWwMousBElAZOH9nkkoQ==}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: true
 
   /schema-utils/1.0.0:
     resolution: {integrity: sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==}
