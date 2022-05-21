@@ -1,6 +1,5 @@
 import 'raf/polyfill'
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import { createSnapshot } from 'jest-react-fela'
 import { ThemeProvider, FelaTheme } from 'react-fela'
