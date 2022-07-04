@@ -581,6 +581,7 @@ declare module "react-fela" {
       css: CssFunction<T, P>,
       theme: T,
       renderer: IRenderer,
+      staticStyle: IRenderer["renderStatic"],
     }
 
     export function useFela<T = {}, P = {}>(props?: P): FelaHookProps<T, P>
