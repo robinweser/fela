@@ -24,7 +24,7 @@
     "watch": "npm run watch:lib & npm run watch:es",
     "watch:lib": "BABEL_ENV=commonjs babel src -d lib -w",
     "watch:es": "babel src -d es -w",
-    "test": "echo 1",
+    "test": "jest --config=jest.config.js",
     "coverage": "pnpm test --coverage"
   },
   "repository": "https://github.com/robinweser/fela/",
@@ -48,17 +48,22 @@
     "jest-fela-bindings": "^12.1.2"
   },
   "devDependencies": {
+    "react-18": "npm:react@^18.1.0",
+    "jest": "^26.6.0",
+    "react-dom-18": "npm:react-dom@^18.1.0",
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.13.0",
     "@babel/plugin-transform-modules-commonjs": "^7.5.0",
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.5.5",
     "babel-core": "7.0.0-bridge.0",
     "cross-env": "^6.0.3",
     "fela": "^12.1.2",
     "fela-preset-web": "^12.1.2",
     "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-fela": "^12.1.2",
     "rimraf": "^3.0.0"
   }

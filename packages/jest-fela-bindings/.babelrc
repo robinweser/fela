@@ -7,14 +7,13 @@
       }
     ]
   ],
+  "plugins": ["@babel/plugin-transform-runtime"],
   "env": {
     "production": {
       "plugins": ["transform-dev-warning"]
     },
     "test": {
-      "plugins": [
-        "@babel/plugin-transform-modules-commonjs"
-      ]
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
     },
     "commonjs": {
       "presets": [

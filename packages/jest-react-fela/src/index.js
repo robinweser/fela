@@ -1,3 +1,4 @@
 import createSnapshot from './createSnapshot'
+import createSnapshotAsync from './createSnapshotAsync'
 
-export { createSnapshot }
+export { createSnapshot, createSnapshotAsync }

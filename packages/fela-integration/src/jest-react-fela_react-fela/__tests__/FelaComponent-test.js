@@ -12,8 +12,7 @@ describe('Using the FelaComponent component', () => {
           style={{
             fontSize: '12px',
             color: 'red',
-          }}
-        >
+          }}>
           {({ className }) => (
             <div className={className}>I am red and written in 12px.</div>
           )}
@@ -34,8 +33,7 @@ describe('Using the FelaComponent component', () => {
             {
               backgroundColor: 'black',
             },
-          ]}
-        >
+          ]}>
           {({ className }) => (
             <div className={className}>
               I am red on black and written in 12px.
@@ -59,8 +57,7 @@ describe('Using the FelaComponent component', () => {
             ({ bgColor }) => ({
               backgroundColor: bgColor,
             }),
-          ]}
-        >
+          ]}>
           {({ className }) => (
             <div className={className}>
               I am red on blue and written in 12px.
@@ -111,8 +108,7 @@ describe('Using the FelaComponent component', () => {
           style={{
             fontSize: '12px',
             color: 'red',
-          }}
-        >
+          }}>
           <span>Hello World</span>
         </FelaComponent>
       )
@@ -141,8 +137,7 @@ describe('Using the FelaComponent component', () => {
           style={{
             fontSize: '12px',
             color: 'red',
-          }}
-        >
+          }}>
           Hello World
         </FelaComponent>
       )
@@ -218,8 +213,7 @@ describe('Using the FelaComponent component', () => {
         <ExtendedButton
           style={{ backgroundColor: 'blue' }}
           color="black"
-          padding="10px"
-        >
+          padding="10px">
           Hello World
         </ExtendedButton>
       )
