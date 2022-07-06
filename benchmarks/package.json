@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "benchmarks",
-  "version": "12.1.2",
+  "version": "12.2.0",
   "scripts": {
     "compile": "mkdir -p dist && cp -f index.html dist/index.html && ./node_modules/.bin/webpack-cli --config ./webpack.config.js",
     "copy": "cp -r dist/ ../website/public/benchmarks"
@@ -11,15 +11,15 @@
     "aphrodite": "^2.4.0",
     "classnames": "^2.2.6",
     "d3-scale-chromatic": "1.2.0",
-    "fela": "^12.1.2",
-    "fela-enforce-longhands": "^12.1.2",
-    "fela-preset-web": "^12.1.2",
+    "fela": "^12.2.0",
+    "fela-enforce-longhands": "^12.2.0",
+    "fela-preset-web": "^12.2.0",
     "glamor": "^2.20.40",
     "radium": "^0.26.0",
     "react": "^17.0.2",
     "react-art": "^17.0.0",
     "react-dom": "^17.0.2",
-    "react-fela": "^12.1.2",
+    "react-fela": "^12.2.0",
     "react-jss": "^10.0.4",
     "react-native-web": "^0.17.6",
     "reactxp": "^2.0.0",

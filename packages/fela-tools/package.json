@@ -1,6 +1,6 @@
 {
   "name": "fela-tools",
-  "version": "12.1.2",
+  "version": "12.2.0",
   "description": "Useful tools for working with Fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -40,8 +40,8 @@
   "dependencies": {
     "css-in-js-utils": "^3.0.0",
     "fast-loops": "^1.0.0",
-    "fela": "^12.1.2",
-    "fela-utils": "^12.1.2"
+    "fela": "^12.2.0",
+    "fela-utils": "^12.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",

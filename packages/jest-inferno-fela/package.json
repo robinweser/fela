@@ -1,6 +1,6 @@
 {
   "name": "jest-inferno-fela",
-  "version": "12.1.2",
+  "version": "12.2.0",
   "description": "Jest helpers for inferno-fela",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -44,7 +44,7 @@
     "inferno-fela": "*"
   },
   "dependencies": {
-    "jest-fela-bindings": "^12.1.2"
+    "jest-fela-bindings": "^12.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",

@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-prefixer",
-  "version": "12.1.2",
+  "version": "12.2.0",
   "description": "Fela plugin to add vendor prefixes",
   "main": "lib/index.js",
   "module": "es/index.js",
