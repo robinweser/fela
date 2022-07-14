@@ -92,6 +92,9 @@ declare module 'fela' {
     specificityPrefix?: string
     filterClassName?: (className: string) => boolean
     devMode?: boolean
+    optimizeCaching?: boolean
+    styleNodeAttributes?: { [key: string]: string }
+    propertyPriority?: { [key: string]: number }
   }
 
   type CSSObject = CSSProperties & CSSPseudos
