@@ -1,6 +1,6 @@
 {
   "name": "fela-plugin-multiple-selectors",
-  "version": "12.2.0",
+  "version": "12.2.1",
   "description": "Fela plugin to resolves multiple selectors",
   "main": "lib/index.js",
   "module": "es/index.js",
