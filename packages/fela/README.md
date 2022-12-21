@@ -181,6 +181,7 @@ Apart from all the packages managed within this repository, there are many commu
 - [vashet](https://github.com/derHowie/vashet) - ClojureScript wrapper for Fela
 - [veel](https://github.com/queckezz/veel) - Base react styling components using fela with a design system
 - [vue-fela](https://github.com/dustin-H/vue-fela) - Vue bindings for Fela
+- [fela-vue](https://github.com/houd1ni/fela-vue) - Enchanced modern vue bindings and toolkit for Fela
 - [black-box](https://github.com/rocketstation/black-box) - combines behavior, presentation, structure in one place & creates all-in-one components using only JS syntax
 
 ## Support
