@@ -3,6 +3,7 @@ import { arrayReduce } from 'fast-loops'
 
 function resolveRule(rule, props, renderer) {
   if (Array.isArray(rule)) {
+    // eslint-disable-next-line no-use-before-define
     return resolveRule(combineRules(...rule), props, renderer)
   }
 

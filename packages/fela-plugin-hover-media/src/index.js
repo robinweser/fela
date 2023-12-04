@@ -1,5 +1,4 @@
 import isPlainObject from 'isobject'
-import { assignStyle } from 'css-in-js-utils'
 
 function hoverMediaPlugin(style) {
   for (const property in style) {

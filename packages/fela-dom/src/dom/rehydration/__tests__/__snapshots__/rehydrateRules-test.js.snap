@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rehydrating rules should rehydrate additional class names correctly 1`] = `
-Object {
-  ".rc-tooltip.rc-tooltip-placement-topRightpaddingLeft20px": Object {
+{
+  ".rc-tooltip.rc-tooltip-placement-topRightpaddingLeft20px": {
     "className": "a",
     "declaration": "padding-left:20px",
     "media": "",
@@ -15,8 +15,8 @@ Object {
 `;
 
 exports[`Rehydrating rules should rehydrate css custom properties 1`] = `
-Object {
-  "--custom-property12px": Object {
+{
+  "--custom-property12px": {
     "className": "a",
     "declaration": "--custom-property:12px",
     "media": "",
@@ -29,8 +29,8 @@ Object {
 `;
 
 exports[`Rehydrating rules should rehydrate prioritized longhand rules 1`] = `
-Object {
-  ":hovercolorred": Object {
+{
+  ":hovercolorred": {
     "className": "c",
     "declaration": "color:red",
     "media": "",
@@ -39,7 +39,7 @@ Object {
     "support": "",
     "type": "RULE",
   },
-  "padding10px": Object {
+  "padding10px": {
     "className": "b",
     "declaration": "padding:10px",
     "media": "",
@@ -48,7 +48,7 @@ Object {
     "support": "",
     "type": "RULE",
   },
-  "paddingLeft20px": Object {
+  "paddingLeft20px": {
     "className": "a",
     "declaration": "padding-left:20px",
     "media": "",
@@ -61,8 +61,8 @@ Object {
 `;
 
 exports[`Rehydrating rules should rehydrate the renderer cache 1`] = `
-Object {
-  ":hover:activeborderColor2px solid rgb(255, 255, 0)": Object {
+{
+  ":hover:activeborderColor2px solid rgb(255, 255, 0)": {
     "className": "c",
     "declaration": "border-color:2px solid rgb(255, 255, 0)",
     "media": "",
@@ -71,7 +71,7 @@ Object {
     "support": "",
     "type": "RULE",
   },
-  "colorblue": Object {
+  "colorblue": {
     "className": "b",
     "declaration": "color:blue",
     "media": "",
@@ -80,7 +80,7 @@ Object {
     "support": "",
     "type": "RULE",
   },
-  "colorred": Object {
+  "colorred": {
     "className": "a",
     "declaration": "color:red",
     "media": "",
@@ -93,8 +93,8 @@ Object {
 `;
 
 exports[`Rehydrating rules should rehydrate the renderer cache with specifity prefix 1`] = `
-Object {
-  ":hover:activeborderColor2px solid rgb(255, 255, 0)": Object {
+{
+  ":hover:activeborderColor2px solid rgb(255, 255, 0)": {
     "className": "c",
     "declaration": "border-color:2px solid rgb(255, 255, 0)",
     "media": "",
@@ -103,7 +103,7 @@ Object {
     "support": "",
     "type": "RULE",
   },
-  "colorblue": Object {
+  "colorblue": {
     "className": "b",
     "declaration": "color:blue",
     "media": "",
@@ -112,7 +112,7 @@ Object {
     "support": "",
     "type": "RULE",
   },
-  "colorred": Object {
+  "colorred": {
     "className": "a",
     "declaration": "color:red",
     "media": "",

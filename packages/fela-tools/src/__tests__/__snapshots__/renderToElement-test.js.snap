@@ -4,7 +4,7 @@ exports[`renderToElement should do initial and subscription render into node 1`]
 "<html>
 
 <head>
-  <style type=\\"text/css\\">
+  <style type=\"text/css\">
     .a {
       background-color: red
     }
@@ -24,7 +24,7 @@ exports[`renderToElement should do initial and subscription render into node 2`]
 "<html>
 
 <head>
-  <style type=\\"text/css\\">
+  <style type=\"text/css\">
     @-webkit-keyframes k1 {
       0% {
         color: yellow

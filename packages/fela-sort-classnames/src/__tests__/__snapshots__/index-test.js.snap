@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Using the sortClassNames enhancer should correctly sort the class names 1`] = `
-Array [
+[
   "a b",
   "b c d",
 ]

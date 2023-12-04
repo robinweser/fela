@@ -42,7 +42,7 @@ pnpm run format
 You can also run all four of them at the same time:
 
 ```
-pnpm run  check
+pnpm run check
 ```
 
 > **Note**: If your tests use other fela packages as depedencies, you might need to run `yarn build` (it's also part of the install step).

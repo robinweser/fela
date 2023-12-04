@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`enforceLonghands enhancer should accept a borderMode=directional configuration 1`] = `
-Object {
+{
   "MozAnimationDelay": 2,
   "MozAnimationDirection": 2,
   "MozAnimationDuration": 2,
@@ -290,7 +290,7 @@ Object {
 `;
 
 exports[`enforceLonghands enhancer should accept a borderMode=longhand configuration 1`] = `
-Object {
+{
   "MozAnimationDelay": 2,
   "MozAnimationDirection": 2,
   "MozAnimationDuration": 2,
@@ -579,7 +579,7 @@ Object {
 `;
 
 exports[`enforceLonghands enhancer should correctly apply property priority 1`] = `
-Object {
+{
   "MozAnimationDelay": 2,
   "MozAnimationDirection": 2,
   "MozAnimationDuration": 2,

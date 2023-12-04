@@ -17,7 +17,7 @@ exports[`Fela identifier enhancer identifier enhancer should not remove meta inf
 `;
 
 exports[`Fela identifier enhancer identifier rule should be combined with usual style rules 1`] = `
-Object {
+{
   "--fela-identifier-0": "",
   "color": "red",
   "fontSize": "12px",
@@ -31,11 +31,11 @@ exports[`Fela identifier enhancer rule can have references to several identifier
 exports[`Fela identifier enhancer should be thrown error if the identifier was not used as an enhancer 1`] = `"You are trying to create a new identifier before you used the identifier as an enhancer. Please add the identifier as an enhancer in the configuration of the renderer."`;
 
 exports[`Fela identifier enhancer should produce rule with custom property 1`] = `
-Array [
-  Object {
+[
+  {
     "--fela-identifier-0": "",
   },
-  Object {
+  {
     "--fela-identifier-1": "",
   },
 ]

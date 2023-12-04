@@ -38,8 +38,8 @@ export default function createSubscription(
           node.textContent += change.fontFace
         }
         break
-      case STATIC_TYPE:
-        let css = change.selector
+      case STATIC_TYPE: {
+        const css = change.selector
           ? generateCSSRule(change.selector, change.css)
           : change.css
 
@@ -47,6 +47,7 @@ export default function createSubscription(
           node.textContent += css
         }
         break
+      }
       case RULE_TYPE:
         insertRule(change, renderer, node)
         break

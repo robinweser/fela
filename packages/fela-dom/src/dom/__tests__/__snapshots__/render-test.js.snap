@@ -4,7 +4,7 @@ exports[`render (development) should correctly sort rules 1`] = `
 "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\"RULE\" type=\"text/css\"></style>
 </head>
 
 <body></body>
@@ -16,14 +16,14 @@ exports[`render (development) should create style nodes and render CSS rules 1`]
 "<html>
 
 <head>
-  <style data-fela-type=\\"FONT\\" type=\\"text/css\\">
+  <style data-fela-type=\"FONT\" type=\"text/css\">
     @font-face {
       font-weight: 300;
       src: url('../Lato.ttf') format('truetype');
-      font-family: \\"Lato\\"
+      font-family: \"Lato\"
     }
   </style>
-  <style data-fela-type=\\"KEYFRAME\\" type=\\"text/css\\">
+  <style data-fela-type=\"KEYFRAME\" type=\"text/css\">
     @-webkit-keyframes k1 {
       0% {
         color: yellow
@@ -54,7 +54,7 @@ exports[`render (development) should create style nodes and render CSS rules 1`]
       }
     }
   </style>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\"RULE\" type=\"text/css\"></style>
 </head>
 
 <body></body>
@@ -66,7 +66,7 @@ exports[`render (development) should not overwrite rehydrated styles 1`] = `
 "<html>
 
 <head>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\">
+  <style type=\"text/css\" data-fela-rehydration=\"5\" data-fela-type=\"RULE\">
     .b {
       color: yellow
     }
@@ -75,14 +75,14 @@ exports[`render (development) should not overwrite rehydrated styles 1`] = `
       color: red
     }
   </style>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" data-fela-support=\\"true\\">
+  <style type=\"text/css\" data-fela-rehydration=\"5\" data-fela-type=\"RULE\" data-fela-support=\"true\">
     @supports (display:flex) {
       .e {
         color: green
       }
     }
   </style>
-  <style type=\\"text/css\\" data-fela-rehydration=\\"5\\" data-fela-type=\\"RULE\\" media=\\"(max-width: 800px)\\">
+  <style type=\"text/css\" data-fela-rehydration=\"5\" data-fela-type=\"RULE\" media=\"(max-width: 800px)\">
     .d {
       color: blue
     }
@@ -98,7 +98,7 @@ exports[`render (development) should not render multiple times 1`] = `
 "<html>
 
 <head>
-  <style data-fela-type=\\"RULE\\" type=\\"text/css\\"></style>
+  <style data-fela-type=\"RULE\" type=\"text/css\"></style>
 </head>
 
 <body></body>
@@ -107,28 +107,28 @@ exports[`render (development) should not render multiple times 1`] = `
 `;
 
 exports[`render (production) should correctly sort rules 1`] = `
-Array [
-  Object {
+[
+  {
     "_media": "",
     "_support": false,
     "_type": "RULE",
-    "style": Object {
-      "0_.a": Object {
+    "style": {
+      "0_.a": {
         "color": "blue",
       },
-      "1_.e": Object {
+      "1_.e": {
         "color": "red",
       },
-      "2_.c:hover": Object {
+      "2_.c:hover": {
         "color": "red",
       },
-      "3_.f:hover": Object {
+      "3_.f:hover": {
         "color": "blue",
       },
-      "4_.b:focus-within": Object {
+      "4_.b:focus-within": {
         "color": "black",
       },
-      "5_.d:active": Object {
+      "5_.d:active": {
         "color": "yellow",
       },
     },
@@ -137,91 +137,91 @@ Array [
 `;
 
 exports[`render (production) should create style nodes and render CSS rules 1`] = `
-Array [
-  Object {
+[
+  {
     "_media": "",
     "_support": false,
     "_type": "RULE",
-    "style": Object {
-      "0_.a": Object {
+    "style": {
+      "0_.a": {
         "background-color": "red",
       },
-      "1_.b": Object {
+      "1_.b": {
         "color": "blue",
       },
     },
   },
-  Object {
+  {
     "_type": "KEYFRAME",
     "style": "@-webkit-keyframes k1{0%{color:yellow}100%{color:orange}}@-moz-keyframes k1{0%{color:yellow}100%{color:orange}}@keyframes k1{0%{color:yellow}100%{color:orange}}",
   },
-  Object {
+  {
     "_type": "FONT",
-    "style": "@font-face{font-weight:300;src:url('../Lato.ttf') format('truetype');font-family:\\"Lato\\"}",
+    "style": "@font-face{font-weight:300;src:url('../Lato.ttf') format('truetype');font-family:\"Lato\"}",
   },
 ]
 `;
 
 exports[`render (production) should not overwrite rehydrated styles 1`] = `
-Array [
-  Object {
+[
+  {
     "_media": "",
     "_support": false,
     "_type": "RULE",
-    "style": Object {
-      "0_.b": Object {
+    "style": {
+      "0_.b": {
         "color": "yellow",
       },
-      "1_.f": Object {
+      "1_.f": {
         "background-color": "red",
       },
-      "2_.g": Object {
+      "2_.g": {
         "color": "blue",
       },
-      "3_.c:hover": Object {
+      "3_.c:hover": {
         "color": "red",
       },
     },
   },
-  Object {
+  {
     "_media": "",
     "_support": "true",
     "_type": "RULE",
-    "style": Object {
-      "(display:flex)": Object {
-        "0_.e": Object {
+    "style": {
+      "(display:flex)": {
+        "0_.e": {
           "color": "green",
         },
       },
-      "(display:grid)": Object {
-        "0_.h": Object {
+      "(display:grid)": {
+        "0_.h": {
           "color": "black",
         },
       },
     },
   },
-  Object {
+  {
     "_media": "(max-width: 800px)",
     "_support": false,
     "_type": "RULE",
-    "style": Object {
-      "0_.d": Object {
+    "style": {
+      "0_.d": {
         "color": "blue",
       },
     },
   },
-  Object {
+  {
     "_media": "",
     "_support": "true",
     "_type": "RULE",
-    "style": Object {
-      "(display:flex)": Object {
-        "0_.e": Object {
+    "style": {
+      "(display:flex)": {
+        "0_.e": {
           "color": "green",
         },
       },
-      "(display:grid)": Object {
-        "0_.h": Object {
+      "(display:grid)": {
+        "0_.h": {
           "color": "black",
         },
       },
@@ -231,16 +231,16 @@ Array [
 `;
 
 exports[`render (production) should not render multiple times 1`] = `
-Array [
-  Object {
+[
+  {
     "_media": "",
     "_support": false,
     "_type": "RULE",
-    "style": Object {
-      "0_.a": Object {
+    "style": {
+      "0_.a": {
         "background-color": "red",
       },
-      "1_.b": Object {
+      "1_.b": {
         "color": "blue",
       },
     },

@@ -14,9 +14,12 @@ function addVendorPrefixes(style) {
         const prefixed = stylisPrefix(cssDeclaration, property.length)
 
         if (prefixed !== cssDeclaration) {
-          const [property, value] = prefixed.split(/:([\S\s]+)/)
+          const [prefixProperty, prefixValue] = prefixed.split(/:([\S\s]+)/)
           // TODO: do we really need to camelCase here?
-          prefixedStyle[camelCaseProperty(property)] = value.slice(0, -1)
+          prefixedStyle[camelCaseProperty(prefixProperty)] = prefixValue.slice(
+            0,
+            -1
+          )
         } else {
           prefixedStyle[property] = value
         }

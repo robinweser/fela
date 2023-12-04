@@ -27,6 +27,7 @@ function extendStyle(style, extension) {
     }
   } else {
     // extend basic style objects
+    // eslint-disable-next-line no-use-before-define
     assignStyle(style, removeUndefined(extendPlugin(extension)))
   }
 }

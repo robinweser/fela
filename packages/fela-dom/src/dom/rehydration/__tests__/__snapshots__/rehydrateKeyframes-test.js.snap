@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rehydrating keyframes should match all keyframes 1`] = `
+{
+  "{0% {opacity:0;}}": {
+    "keyframe": "@keyframes frameName1{0% {opacity:0;}}",
+    "name": "frameName1",
+    "type": "KEYFRAME",
+  },
+  "{100%{opacity: 1;}}": {
+    "keyframe": "@keyframes frameName2{100%{opacity: 1;}}",
+    "name": "frameName2",
+    "type": "KEYFRAME",
+  },
+}
+`;

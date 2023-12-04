@@ -4,9 +4,9 @@ import { arrayReduce } from 'fast-loops'
 function getThemeValue(object, key) {
   const value = arrayReduce(
     key.split('.'),
-    (value, index) => {
-      if (isPlainObject(value) && value[index]) {
-        return value[index]
+    (currentValue, index) => {
+      if (isPlainObject(currentValue) && currentValue[index]) {
+        return currentValue[index]
       }
 
       return undefined
