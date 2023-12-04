@@ -51,8 +51,8 @@ function createOptimized(defaultUnit, propertyMap, isUnitlessProperty) {
           (valueType === 'string' && props.value == parseFloat(props.value))) &&
         props.value != 0
       ) {
-        const unit = propertyMap[props.property] || defaultUnit
-        props.value += unit
+        const currentUnit = propertyMap[props.property] || defaultUnit
+        props.value += currentUnit
       }
 
       // handle arrays

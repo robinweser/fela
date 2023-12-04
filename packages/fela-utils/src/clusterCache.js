@@ -1,4 +1,4 @@
-import { arrayReduce, objectReduce } from 'fast-loops'
+import { objectReduce } from 'fast-loops'
 
 import generateCSSRule from './generateCSSRule'
 import objectSortByScore from './objectSortByScore'

@@ -10,7 +10,7 @@ export default function getNodeSibling(
     case STATIC_TYPE:
     case KEYFRAME_TYPE:
       return nodes[0]
-    case RULE_TYPE:
+    case RULE_TYPE: {
       const mediaNodes = nodes.map((node) => node.media)
       const filteredNodes = mediaNodes.filter((m) => m.length !== 0)
 
@@ -51,5 +51,9 @@ export default function getNodeSibling(
           return nodes.find((el) => el.media === insertMedia)
         }
       }
+      return undefined
+    }
+    default:
+      return undefined
   }
 }

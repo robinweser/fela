@@ -1,12 +1,5 @@
 import { arrayReduce } from 'fast-loops'
-import {
-  clusterCache,
-  cssifySupportRules,
-  RULE_TYPE,
-  KEYFRAME_TYPE,
-  STATIC_TYPE,
-  FONT_TYPE,
-} from 'fela-utils'
+import { clusterCache, cssifySupportRules } from 'fela-utils'
 
 import cssifyMediaQueryRules from './cssifyMediaQueryRules'
 

@@ -27,7 +27,7 @@ function rehydrateClassList(classList, className) {
   if (classList) {
     const regex = new RegExp(`(([.]${className})+)?(.*)?`, '')
 
-    const [match, repeated, selector, other = ''] = classList.match(regex)
+    const [, repeated, selector, other = ''] = classList.match(regex)
 
     return [other, repeated ? repeated.length / selector.length + 1 : 1]
   }

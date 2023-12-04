@@ -51,7 +51,7 @@ describe('Fela with Fela Tools integration', () => {
       const renderer = createRenderer({
         specificityPrefix: '.parent ',
       })
-      const className = renderer.renderRule(rule)
+      renderer.renderRule(rule)
 
       expect(renderToString(renderer)).toMatchSnapshot()
     })

@@ -114,7 +114,7 @@ export default function createRenderer(config = {}) {
       return renderer.cache[keyframeReference].name
     },
 
-    generateAnimationName(_props) {
+    generateAnimationName() {
       return generateAnimationName(renderer.getNextKeyframeIdentifier())
     },
 
@@ -203,6 +203,8 @@ export default function createRenderer(config = {}) {
     _renderStyleToClassNames(style, pseudo = '', media = '', support = '') {
       let classNames = ''
 
+      const applyPlugin = (processed, plugin) => plugin(processed, renderer)
+
       for (const property in style) {
         const value = style[property]
 
@@ -262,7 +264,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
 
               const processed = arrayReduce(
                 renderer.optimizedPlugins,
-                (processed, plugin) => plugin(processed, renderer),
+                applyPlugin,
                 pluginInterface
               )
 
@@ -351,7 +353,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
       renderer._emitChange(change)
     },
 
-    generateClassName(property, value, pseudo, media, support) {
+    generateClassName() {
       return generateClassName(
         renderer.getNextRuleIdentifier,
         renderer.filterClassName

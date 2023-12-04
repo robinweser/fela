@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rehydrating @supports rules should rehydrate the renderer cache 1`] = `
-Object {
-  "(display:grid) and (display:flex)colorgreen": Object {
+{
+  "(display:grid) and (display:flex)colorgreen": {
     "className": "c",
     "declaration": "color:green",
     "media": "",
@@ -11,7 +11,7 @@ Object {
     "support": "(display:grid) and (display:flex)",
     "type": "RULE",
   },
-  "(display:grid)colorblue": Object {
+  "(display:grid)colorblue": {
     "className": "b",
     "declaration": "color:blue",
     "media": "",
@@ -20,7 +20,7 @@ Object {
     "support": "(display:grid)",
     "type": "RULE",
   },
-  "(display:grid)colorred": Object {
+  "(display:grid)colorred": {
     "className": "a",
     "declaration": "color:red",
     "media": "",
@@ -33,8 +33,8 @@ Object {
 `;
 
 exports[`Rehydrating @supports rules should rehydrate the renderer cache with specifityPrefix 1`] = `
-Object {
-  "(display:grid) and (display:flex)colorgreen": Object {
+{
+  "(display:grid) and (display:flex)colorgreen": {
     "className": "c",
     "declaration": "color:green",
     "media": "",
@@ -43,7 +43,7 @@ Object {
     "support": "(display:grid) and (display:flex)",
     "type": "RULE",
   },
-  "(display:grid)colorblue": Object {
+  "(display:grid)colorblue": {
     "className": "b",
     "declaration": "color:blue",
     "media": "",
@@ -52,7 +52,7 @@ Object {
     "support": "(display:grid)",
     "type": "RULE",
   },
-  "(display:grid)colorred": Object {
+  "(display:grid)colorred": {
     "className": "a",
     "declaration": "color:red",
     "media": "",
