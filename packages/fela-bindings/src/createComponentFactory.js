@@ -77,6 +77,7 @@ export default function createComponentFactory(
             theme: _felaTheme,
             as,
             id,
+            children,
           }
 
           // if the component renders into another Fela component
