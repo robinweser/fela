@@ -99,4 +99,20 @@ describe('multiple-selectors plugin', () => {
       },
     })
   })
+
+  it('should not resolve relative selector lists', () => {
+    const style = {
+      ':not(:hover, :focus)': {
+        color: 'blue',
+        fontSize: 12,
+      },
+    }
+
+    expect(multipleSelectors()(style)).toEqual({
+      ':not(:hover, :focus)': {
+        color: 'blue',
+        fontSize: 12,
+      },
+    })
+  })
 })
