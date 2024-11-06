@@ -6,7 +6,9 @@ function multipleSelectorsPlugin(style) {
     if (isPlainObject(value)) {
       const resolvedValue = multipleSelectorsPlugin(value)
 
-      const selectors = property.split(',')
+      // split on commas, but not within a relative selector list
+      //   e.g. ":hover, :focus", but not ":where(:hover, :focus)"
+      const selectors = property.split(/(?<!\([^)]*),(?![^(]*\))/)
 
       if (selectors.length > 1) {
         arrayEach(selectors, (selector) => {
